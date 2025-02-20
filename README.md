@@ -1,2 +1,27 @@
 # criptotrade_ams5
 Projeto acadêmico desenvolvido em grupo com o objetivo de criar uma corretora de criptoativos. O sistema será modularizado em diferentes vertentes: Front-end, Back-end, Mobile e Microserviços. A solução visa oferecer uma plataforma eficiente, segura e escalável para negociação de criptoativos.
+
+# Cryptotrade Platform
+
+## 📌 Sobre o Projeto
+Este projeto acadêmico tem como objetivo desenvolver uma corretora de criptoativos moderna e escalável. O sistema será dividido em diferentes módulos, cada um com sua respectiva tecnologia, permitindo uma abordagem arquitetural robusta e flexível.
+
+## 🚀 Tecnologias Utilizadas
+O projeto será desenvolvido utilizando as seguintes tecnologias:
+
+### 🌐 **Front-end**
+- [React.js](https://react.dev/) - Interface web interativa e responsiva.
+
+### 🖥️ **Back-end**
+- [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) - Lógica de negócios e gerenciamento de dados.
+- [ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/) - API para comunicação entre serviços.
+- [Entity Framework](https://learn.microsoft.com/en-us/ef/) - ORM para manipulação de banco de dados.
+
+### 📱 **Mobile**
+- [React Native](https://reactnative.dev/) - Aplicativo para dispositivos móveis.
+
+### 🏗️ **Microserviços & Mensageria**
+- [RabbitMQ](https://www.rabbitmq.com/) - Comunicação assíncrona entre serviços.
+
+## ⚙️ Estrutura do Projeto
+A plataforma será organizada nos seguintes módulos:
