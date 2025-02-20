@@ -23,5 +23,19 @@ O projeto será desenvolvido utilizando as seguintes tecnologias:
 ### 🏗️ **Microserviços & Mensageria**
 - [RabbitMQ](https://www.rabbitmq.com/) - Comunicação assíncrona entre serviços.
 
-## ⚙️ Estrutura do Projeto
-A plataforma será organizada nos seguintes módulos:
+## 📖 Funcionalidades Planejadas
+✅ Cadastro e autenticação de usuários  
+✅ Consulta e cotação de criptoativos em tempo real  
+✅ Execução de ordens de compra e venda  
+✅ Histórico de transações  
+✅ Painel administrativo para gestão da corretora  
+
+## 🏗️ Status do Projeto
+🔧 **Em desenvolvimento** - Implementação inicial das funcionalidades.
+
+## 📄 Licença
+Este projeto é de uso acadêmico e não deve ser utilizado para fins comerciais.
+
+---
+👨‍💻 **Desenvolvido por:** Márcio Torres, Enrico Meira, Cauã Ortiz, Filipe Fogaça, Beatriz Cacao  
+🎓 **Projeto acadêmico - Fatec Sorocaba**
