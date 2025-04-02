@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lYWxSsOrhgA=",
+  "dgSpecHash": "TEkEf/Pn9p0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\cicer\\binance-backend\\backend\\userapi\\userApi.csproj",
+  "projectFilePath": "C:\\Users\\cicer\\criptotrade_ams5\\backend\\userApi\\userApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cicer\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\cicer\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
