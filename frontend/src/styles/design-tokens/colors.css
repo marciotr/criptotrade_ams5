@@ -1,0 +1,57 @@
+:root {
+  /* Brand Colors */
+  --brand-primary-light: rgba(var(--brand-primary-rgb), 0.1);
+  --brand-primary: #eab308;
+  --brand-secondary: #eab308;
+  
+  /* Background Colors */
+  --background-primary: #ffffff;
+  --background-secondary: #f3f4f6;
+  --background-tertiary: #e5e7eb;
+  
+  /* Text Colors */
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  
+  /* Border Colors */
+  --border-primary: #e5e7eb;
+  --border-secondary: #d1d5db;
+  
+  /* Feedback Colors */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+}
+
+.dark {
+  /* Dark Theme Colors */
+  --background-primary: #121212;
+  --background-secondary: #1a1a1a;
+  --background-tertiary: #242424;
+  
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+  
+  --border-primary: #2d2d2d;
+  --border-secondary: #404040;
+
+  --brand-primary: #eab308;
+  --brand-secondary: #2563eb;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-animation-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
