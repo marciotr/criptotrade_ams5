@@ -2,19 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ModalDeactivate } from './components/ModalDeactivate';
 import { ModalDeleteAccount } from './components/ModalDeleteAccount';
+<<<<<<< HEAD
 import { ModalUpdatePhoto } from './components/ModalUpdatePhoto';
+=======
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
 import { Camera, MapPin, Phone, Globe, Calendar, Building, Shield } from 'lucide-react';
 import InputMask from 'react-input-mask';
 import axios from 'axios';
 import { NotificationToast } from '../../components/common/NotificationToast';
 import { useAuth } from '../../store/auth/useAuth';
+<<<<<<< HEAD
 import { userApi } from '../../services/api/api';
+=======
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
 
 export function ProfileSettings() {
   const { user } = useAuth();
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+<<<<<<< HEAD
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
+=======
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
   const [address, setAddress] = useState({
     cep: user?.address || '',
     street: '',
@@ -33,6 +42,7 @@ export function ProfileSettings() {
   });
   const [notification, setNotification] = useState(null);
 
+<<<<<<< HEAD
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -82,6 +92,34 @@ export function ProfileSettings() {
 
     if (user?.id) {
       fetchUserProfile();
+=======
+  // Update form data when user data changes
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        fullName: user.name || '',
+        username: user.name || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        website: user.website || '',
+        bio: user.bio || ''
+      });
+
+      // Parse address if it exists
+      if (user.address) {
+        try {
+          setAddress({
+            cep: user.address || '',
+            street: '',
+            neighborhood: '',
+            city: '',
+            state: '',
+          });
+        } catch (error) {
+          console.error('Error parsing address:', error);
+        }
+      }
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
     }
   }, [user]);
 
@@ -113,6 +151,10 @@ export function ProfileSettings() {
             state: data.uf || '',
           }));
         } else {
+<<<<<<< HEAD
+=======
+          // Reset fields if CEP is invalid
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
           setAddress(prev => ({
             ...prev,
             street: '',
@@ -123,6 +165,10 @@ export function ProfileSettings() {
         }
       } catch (error) {
         console.error('Error fetching address:', error);
+<<<<<<< HEAD
+=======
+        // Reset fields on error
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
         setAddress(prev => ({
           ...prev,
           street: '',
@@ -146,6 +192,7 @@ export function ProfileSettings() {
 
   const handleDeactivate = (days) => {
     console.log(`Account will be deactivated for ${days} days.`);
+<<<<<<< HEAD
   };
 
   const handleDelete = async () => {
@@ -177,12 +224,24 @@ export function ProfileSettings() {
     }
   };
 
+=======
+    // Adicione a lógica para desativar a conta aqui
+  };
+
+  const handleDelete = () => {
+    console.log('Account will be deleted.');
+    // Adicione a lógica para excluir a conta aqui
+  };
+
+  // Update the handleSave function to send data to API
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
   const handleSave = async (e) => {
     e.preventDefault();
     
     try {
       setIsLoading(true);
       
+<<<<<<< HEAD
       // Concatena os dados do endereço
       const fullAddress = [
         address.street,
@@ -212,10 +271,44 @@ export function ProfileSettings() {
         type: 'success',
         message: 'Your profile has been updated successfully!'
       });
+=======
+      // Prepare data for API
+      const updatedUserData = {
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        address: address.street,
+        photo: user?.photo || '',
+      };
+
+      // Make API call to update user profile
+      const response = await fetch(`/api/User/${user.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(updatedUserData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
+      }
+
+      setNotification({
+        type: 'success',
+        message: 'Your profile settings have been saved successfully!'
+      });
+
+      setTimeout(() => {
+        setNotification(null);
+      }, 3000);
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
     } catch (error) {
       console.error('Error updating profile:', error);
       setNotification({
         type: 'error',
+<<<<<<< HEAD
         message: 'Failed to update profile. Please try again.'
       });
     } finally {
@@ -238,6 +331,9 @@ export function ProfileSettings() {
       setNotification({
         type: 'error',
         message: 'Failed to update profile photo. Please try again.'
+=======
+        message: 'Failed to save settings. Please try again.'
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
       });
     } finally {
       setIsLoading(false);
@@ -272,10 +368,14 @@ export function ProfileSettings() {
               alt="User Avatar"
               className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover"
             />
+<<<<<<< HEAD
             <button 
               onClick={() => setIsPhotoModalOpen(true)}
               className="absolute bottom-0 right-0 p-2 bg-brand-primary rounded-full text-background-primary hover:opacity-90 transition-colors"
             >
+=======
+            <button className="absolute bottom-0 right-0 p-2 bg-brand-primary rounded-full text-background-primary hover:opacity-90 transition-colors">
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
               <Camera size={16} />
             </button>
           </div>
@@ -493,6 +593,7 @@ export function ProfileSettings() {
         <ModalDeleteAccount
           onClose={() => setIsDeleteModalOpen(false)}
           onDelete={handleDelete}
+<<<<<<< HEAD
           isLoading={isLoading}
         />
       )}
@@ -502,6 +603,8 @@ export function ProfileSettings() {
           currentPhoto={user?.photo || "https://img.freepik.com/fotos-gratis/retrato-de-um-homem-sorridente-satisfeito-trabalhando_171337-12116.jpg"}
           onClose={() => setIsPhotoModalOpen(false)}
           onUpdate={handleUpdatePhoto}
+=======
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
         />
       )}
     </div>

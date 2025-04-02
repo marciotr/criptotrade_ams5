@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Lock, User, Github, Facebook, Chrome } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useNotification } from '../../context/NotificationContext';
+<<<<<<< HEAD
 import { useAuth } from '../../store/auth/useAuth';
 import { authApi } from '../../services/api/api';
 
@@ -11,6 +12,15 @@ export function AuthForm({ type }) {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+=======
+import { useAuth } from '../../store/auth/useAuth'; 
+
+export function AuthForm({ type }) {
+  const { showNotification } = useNotification();
+  const { login, register } = useAuth(); 
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); 
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,6 +29,7 @@ export function AuthForm({ type }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     if (isLoading) return;
 
     setIsLoading(true);
@@ -48,6 +59,31 @@ export function AuthForm({ type }) {
       console.error('Erro de autenticação:', error);
       showNotification(
         error.message || 'Falha na autenticação. Tente novamente.',
+=======
+    if(isLoading) return;
+
+    setIsLoading(true);
+    
+    try {
+      if (type === 'signin') {
+        const success = await login(formData);
+      
+        if (success) {
+          showNotification('Successfully logged in! Welcome back.', 'success');
+          navigate('/dashboard', { replace: true });
+        } else {
+          showNotification('Login failed. Please check your credentials.', 'error');
+        }
+      } else {
+        await register(formData);
+        showNotification('Account created successfully! Welcome to CryptoEx.', 'success');
+        navigate('/dashboard', { replace: true });
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      showNotification(
+        error.message || 'Authentication failed. Please try again.',
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
         'error'
       );
     } finally {

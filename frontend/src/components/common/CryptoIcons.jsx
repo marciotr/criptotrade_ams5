@@ -1,5 +1,6 @@
 import React from 'react';
 
+<<<<<<< HEAD
 export const CryptoIcon = ({ symbol, size = 24 }) => {
   const [fallback, setFallback] = React.useState(false);
   
@@ -23,6 +24,11 @@ export const CryptoIcon = ({ symbol, size = 24 }) => {
 
   // Fallback para ícones locais ou círculo com letra
   const IconComponent = CRYPTO_ICONS[symbol?.toUpperCase()] || FallbackIcon;
+=======
+// Componente que seleciona o ícone apropriado com base no símbolo
+export const CryptoIcon = ({ symbol, size = 24 }) => {
+  const IconComponent = CRYPTO_ICONS[symbol.toUpperCase()] || FallbackIcon;
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
   return <IconComponent size={size} symbol={symbol} />;
 };
 
@@ -137,11 +143,14 @@ export const CRYPTO_ICONS = {
   'XRP': XRPIcon,
   'DOT': DOTIcon,
   'SOL': SOLIcon,
+<<<<<<< HEAD
   'USDT': ({ size }) => (
     <div className={`w-${size} h-${size} rounded-full bg-[#26A17B] flex items-center justify-center`}>
       <span className="text-white font-bold" style={{ fontSize: size/2 }}>T</span>
     </div>
   ),
+=======
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
   // Adicione mais ícones conforme necessário
 };
 

@@ -2,9 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+<<<<<<< HEAD
 using userApi.Infrastructure.ExternalServices;
 using userApi.Application.Interfaces;
 using userApi.Application.Services;
+=======
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -76,11 +79,14 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddApplicationServices();
 
+<<<<<<< HEAD
 // Register services
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<BinanceApiClient>();
 builder.Services.AddScoped<ICryptoService, CryptoService>();
 
+=======
+>>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
 // Adicione a configuração do CORS aqui
 builder.Services.AddCors(options =>
 {
