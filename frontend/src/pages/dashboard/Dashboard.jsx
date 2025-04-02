@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useState, useMemo, useEffect } from 'react';
-=======
-import React, { useState, useMemo } from 'react';
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
 import { motion, AnimatePresence } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { Wallet, TrendingUp, DollarSign, Activity, ArrowUp, ArrowDown, Newspaper, ChevronDown, ChevronRight } from 'lucide-react';
@@ -20,10 +16,7 @@ import {
 import logoBranca from '../../assets/img/logoBinanceRemoved.png';
 import logoPreta from '../../assets/img/logoBinanceRemoved.png';
 import { useTheme } from '../../context/ThemeContext';
-<<<<<<< HEAD
 import { marketApi } from '../../services/api/api';
-=======
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -50,24 +43,17 @@ export function Dashboard() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [timeRange, setTimeRange] = useState('24H');
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
-<<<<<<< HEAD
   const [cryptoData, setCryptoData] = useState([]);
   const [selectedCryptoData, setSelectedCryptoData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
-=======
-  const [showAllMarketCoins, setShowAllMarketCoins] = useState(false);
-
-  React.useEffect(() => {
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-<<<<<<< HEAD
   useEffect(() => {
     const fetchCryptoData = async () => {
       try {
@@ -103,8 +89,6 @@ export function Dashboard() {
     fetchCryptoData();
   }, []);
 
-=======
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
   const chartHeight = useMemo(() => {
     if (windowWidth < 640) return 250;
     if (windowWidth < 1024) return 300;
@@ -128,7 +112,6 @@ export function Dashboard() {
     ];
   }, [windowWidth]);
 
-<<<<<<< HEAD
   const visibleMarketData = cryptoData.slice(0, visibleCount);
 
   const handleShowMore = () => {
@@ -138,9 +121,6 @@ export function Dashboard() {
       setVisibleCount(4); // Reset to initial 4
     }
   };
-=======
-  const visibleMarketData = showAllMarketCoins ? marketData : marketData.slice(0, 4);
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
 
   return (
     <div className="relative p-4 lg:p-6 space-y-6">
@@ -317,7 +297,6 @@ export function Dashboard() {
           </div>
           <div className="space-y-4">
             <AnimatePresence>
-<<<<<<< HEAD
               {isLoading ? (
                 <div className="flex items-center justify-center p-4">
                   <div className="w-6 h-6 border-2 border-brand-primary rounded-full border-t-transparent animate-spin"></div>
@@ -363,62 +342,17 @@ export function Dashboard() {
                   </motion.div>
                 ))
               )}
-=======
-              {visibleMarketData.map((coin, index) => (
-                <motion.div 
-                  key={coin.id || index}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center justify-between p-3 hover:bg-background-secondary rounded-lg transition-colors"
-                >
-                  <div className="flex items-center space-x-2">
-                    <CryptoIcon symbol={coin.symbol} />
-                    <div>
-                      <p className="font-semibold text-text-primary">{coin.name}</p>
-                      <p className="text-sm text-text-secondary">Vol: {coin.volume}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-text-primary">${coin.price.toLocaleString()}</p>
-                    <p className={`text-sm flex items-center justify-end ${
-                      typeof coin.change === 'string' 
-                        ? coin.change.startsWith('+') ? 'text-feedback-success' : 'text-feedback-error'
-                        : coin.change > 0 ? 'text-feedback-success' : 'text-feedback-error'
-                    }`}>
-                      {typeof coin.change === 'string'
-                        ? (coin.change.startsWith('+') ? <ArrowUp size={12} /> : <ArrowDown size={12} />)
-                        : (coin.change > 0 ? <ArrowUp size={12} /> : <ArrowDown size={12} />)
-                      }
-                      {typeof coin.change === 'string' ? coin.change : `${coin.change > 0 ? '+' : ''}${coin.change}%`}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
             </AnimatePresence>
           </div>
 
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-<<<<<<< HEAD
             onClick={handleShowMore}
             className="mt-4 w-full py-2 px-4 text-sm font-medium text-brand-primary bg-background-secondary rounded-lg flex items-center justify-center hover:bg-background-tertiary transition-colors"
           >
             {visibleCount > 4 ? 'Show Less' : 'View More'}
             <motion.div animate={{ rotate: visibleCount > 4 ? 90 : 0 }}>
-=======
-            onClick={() => setShowAllMarketCoins(!showAllMarketCoins)}
-            className="mt-4 w-full py-2 px-4 text-sm font-medium text-brand-primary bg-background-secondary rounded-lg flex items-center justify-center hover:bg-background-tertiary transition-colors"
-          >
-            {showAllMarketCoins ? 'Show Less' : 'View More'}
-            <motion.div
-              animate={{ rotate: showAllMarketCoins ? 90 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
               <ChevronRight size={16} className="ml-2" />
             </motion.div>
           </motion.button>

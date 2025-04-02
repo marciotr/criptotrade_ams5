@@ -116,10 +116,6 @@ export function TransactionHistory() {
               </option>
             </select>
 
-<<<<<<< HEAD
-=======
-            {/* Export Button */}
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
             <button className="flex items-center justify-center px-4 py-2 text-sm font-medium text-background-primary bg-brand-primary rounded-lg hover:opacity-90 transition-colors">
               <Download size={16} className="mr-2" />
               Export
