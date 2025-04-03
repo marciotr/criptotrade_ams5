@@ -1,3 +1,5 @@
+import { TrendingUp, TrendingDown, DollarSign, BarChart2 } from 'lucide-react';
+
 const demoData = [
     { time: '00:00', price: 45000, volume: 12000 },
     { time: '04:00', price: 46200, volume: 14000 },
@@ -92,11 +94,31 @@ const demoData = [
     { coin: 'XRP', symbol: 'XRP', price: '23.45', change: '-1.23%', volume: '123M' },
   ];
   
-  const statsData = [
-    { title: 'Portfolio Value', value: '$48,234.12', subValue: '+12.5% this week' },
-    { title: '24h Change', value: '+5.23%', subValue: '+$2,345.67' },
-    { title: 'Total Balance', value: '1.234 BTC', subValue: '≈ $47,123.45' },
-    { title: 'Active Orders', value: '3', subValue: '2 buy, 1 sell' },
+  export const statsData = [
+    {
+      title: 'Total Volume',
+      value: '$2.4B',
+      subValue: '+12.5% from last 24h',
+      icon: BarChart2
+    },
+    {
+      title: 'Total Market Cap',
+      value: '$1.2T',
+      subValue: '-2.3% from last 24h',
+      icon: DollarSign
+    },
+    {
+      title: 'Biggest Gainer',
+      value: 'BTC +5.4%',
+      subValue: '$27,342.15',
+      icon: TrendingUp
+    },
+    {
+      title: 'Biggest Loser',
+      value: 'DOGE -8.2%',
+      subValue: '$0.0721',
+      icon: TrendingDown
+    }
   ];
   
   const portfolioData = [
@@ -166,7 +188,6 @@ const demoData = [
     news,
     gainers,
     losers,
-    statsData,
     portfolioData,
     portfolioHistoricalData,
     portfolioStats,

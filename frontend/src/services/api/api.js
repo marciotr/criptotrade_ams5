@@ -14,7 +14,15 @@ export const userApi = {
 };
 
 export const marketApi = {
-  getPrices: () => api.get('/market/prices'),
+  getPrices: () => api.get('/crypto/prices'),
+  getAllTickers: () => api.get('/crypto/tickers'),
+  getTickerBySymbol: (symbol) => api.get(`/crypto/ticker/${symbol}`),
+  getOrderBook: (symbol, limit = 100) => api.get(`/crypto/orderbook/${symbol}`, {
+    params: { limit }
+  }),
+  getRecentTrades: (symbol, limit = 500) => api.get(`/crypto/trades/${symbol}`, {
+    params: { limit }
+  }),
   getCoinData: (symbol) => api.get(`/market/coin/${symbol}`),
   getHistory: (symbol, timeframe) => api.get(`/market/history/${symbol}`, { 
     params: { timeframe } 
@@ -22,7 +30,10 @@ export const marketApi = {
   getAllCryptos: () => api.get('/Crypto'),
   getCryptoBySymbol: (symbol) => api.get(`/Crypto/${symbol}`),
   getCryptoIcon: (symbol) => `https://bin.bnbstatic.com/image/crypto/${symbol.toLowerCase()}.png`,
-  // exemplo: https://bin.bnbstatic.com/image/crypto/btc.png
+  getKlines: (symbol, interval = '15m', limit = 100) => 
+    api.get(`/crypto/klines/${symbol}`, {
+      params: { interval, limit }
+    }),
 };
 
 export const transactionApi = {

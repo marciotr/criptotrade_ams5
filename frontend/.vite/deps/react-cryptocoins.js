@@ -1,0 +1,18313 @@
+import {
+  require_prop_types
+} from "./chunk-L4UMR4YY.js";
+import {
+  require_react
+} from "./chunk-32E4H3EV.js";
+import {
+  __commonJS
+} from "./chunk-G3PMV62Z.js";
+
+// node_modules/react-cryptocoins/dist/icons/ADA-alt.js
+var require_ADA_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ADA-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var AdaAlt = function AdaAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement(
+          "g",
+          { fill: "currentColor", fillRule: "evenodd" },
+          _react2.default.createElement("circle", { fill: "currentColor", cx: "125", cy: "125", r: "125" }),
+          _react2.default.createElement("path", {
+            d: "M113.06 114.978a10.055 10.055 0 0 1-9.029-5.572c-2.501-4.99-.497-11.091 4.476-13.607a10.154 10.154 0 0 1 4.536-1.083c3.841 0 7.3 2.136 9.032 5.568 2.509 4.99.498 11.095-4.475 13.603a10.075 10.075 0 0 1-4.54 1.09m-11.854 20.707c-.198 0-.389-.007-.586-.014-5.552-.324-9.823-5.12-9.506-10.695.313-5.554 5.061-9.867 10.658-9.54 5.559.312 9.823 5.114 9.509 10.689-.307 5.366-4.738 9.56-10.075 9.56m11.93 20.645c-1.967 0-3.88-.571-5.533-1.658a10.065 10.065 0 0 1-4.349-6.405 10.1 10.1 0 0 1 1.439-7.62 10.094 10.094 0 0 1 8.456-4.576c1.966 0 3.885.578 5.532 1.661a10.043 10.043 0 0 1 4.352 6.409c.556 2.646.04 5.35-1.442 7.615a10.065 10.065 0 0 1-8.456 4.574m23.821-.048a10.057 10.057 0 0 1-9.022-5.572 10.074 10.074 0 0 1-.572-7.731 10.06 10.06 0 0 1 5.047-5.872 10.05 10.05 0 0 1 4.54-1.087c3.842 0 7.301 2.136 9.026 5.575 2.501 4.986.497 11.088-4.476 13.603a10.129 10.129 0 0 1-4.543 1.084m11.868-20.7c-.201 0-.392-.013-.583-.02-5.566-.315-9.83-5.117-9.513-10.685.314-5.557 5.065-9.87 10.662-9.543a10.012 10.012 0 0 1 6.96 3.367 10.064 10.064 0 0 1 2.542 7.321c-.3 5.363-4.727 9.56-10.068 9.56m-11.97-20.651c-1.96 0-3.875-.57-5.528-1.661-4.663-3.066-5.962-9.355-2.908-14.028a10.084 10.084 0 0 1 13.981-2.915c4.66 3.059 5.965 9.351 2.911 14.024a10.092 10.092 0 0 1-8.456 4.58m-33.906-37.605c1.257 2.495.252 5.544-2.233 6.795a5.037 5.037 0 0 1-6.776-2.235 5.07 5.07 0 0 1 2.233-6.802 5.045 5.045 0 0 1 6.776 2.242m-30.573 43.238c2.784.157 4.911 2.55 4.754 5.339a5.06 5.06 0 0 1-5.327 4.771c-2.781-.164-4.905-2.553-4.751-5.346a5.054 5.054 0 0 1 5.324-4.764m22.052 48.173a5.031 5.031 0 0 1 6.983-1.456c2.332 1.528 2.983 4.665 1.452 7.007a5.042 5.042 0 0 1-6.987 1.46 5.074 5.074 0 0 1-1.448-7.011m52.631 4.935a5.064 5.064 0 0 1 2.23-6.791 5.042 5.042 0 0 1 6.779 2.235c1.257 2.495.252 5.544-2.236 6.795a5.029 5.029 0 0 1-6.773-2.239m30.57-43.237c-2.788-.157-4.908-2.55-4.751-5.339.157-2.796 2.539-4.929 5.324-4.768 2.78.154 4.914 2.546 4.758 5.342a5.054 5.054 0 0 1-5.331 4.765M155.583 82.26a5.038 5.038 0 0 1-6.987 1.46 5.066 5.066 0 0 1-1.452-7.008 5.032 5.032 0 0 1 6.983-1.46 5.074 5.074 0 0 1 1.456 7.008M91.91 61.8a3.28 3.28 0 0 1-1.445 4.399 3.26 3.26 0 0 1-4.386-1.453 3.278 3.278 0 0 1 1.445-4.396 3.266 3.266 0 0 1 4.386 1.45m-38.463 60.587a3.267 3.267 0 0 1 3.074 3.452c-.105 1.805-1.646 3.192-3.442 3.08a3.26 3.26 0 0 1-3.074-3.45 3.27 3.27 0 0 1 3.442-3.082m33.092 63.698a3.257 3.257 0 0 1 4.526-.94A3.278 3.278 0 0 1 92 189.68a3.262 3.262 0 0 1-4.52.944 3.286 3.286 0 0 1-.94-4.54m71.555 3.118a3.28 3.28 0 0 1 1.448-4.403 3.251 3.251 0 0 1 4.38 1.45 3.272 3.272 0 0 1-1.442 4.395 3.262 3.262 0 0 1-4.386-1.442m38.46-60.588a3.276 3.276 0 0 1-3.078-3.459 3.265 3.265 0 0 1 3.452-3.083 3.256 3.256 0 0 1 3.065 3.456 3.271 3.271 0 0 1-3.44 3.086M163.47 64.911a3.26 3.26 0 0 1-4.523.943 3.284 3.284 0 0 1-.94-4.535 3.252 3.252 0 0 1 4.519-.937 3.28 3.28 0 0 1 .944 4.529M92.9 100.157c2.74 1.798 3.507 5.49 1.707 8.238a5.917 5.917 0 0 1-8.22 1.712c-2.744-1.798-3.508-5.486-1.708-8.24 1.8-2.745 5.48-3.518 8.22-1.71m-5.838 40.551c2.928-1.483 6.5-.297 7.976 2.636 1.472 2.936.296 6.518-2.631 7.998-2.925 1.48-6.5.294-7.973-2.636-1.475-2.936-.3-6.518 2.628-7.998m31.674 25.345c.188-3.282 2.996-5.79 6.265-5.61 3.278.185 5.78 3.005 5.593 6.283-.184 3.285-2.99 5.797-6.268 5.609-3.272-.188-5.774-3.001-5.59-6.282m38.375-15.203a5.977 5.977 0 0 1-1.715-8.248 5.93 5.93 0 0 1 8.218-1.71c2.744 1.799 3.507 5.49 1.71 8.238a5.921 5.921 0 0 1-8.213 1.72m5.835-40.558c-2.928 1.48-6.5.3-7.972-2.636-1.476-2.932-.304-6.514 2.628-7.99 2.93-1.484 6.5-.302 7.982 2.634 1.469 2.933.29 6.515-2.638 7.992m-32.097-25.345c-.187 3.278-2.996 5.794-6.274 5.606a5.947 5.947 0 0 1-5.59-6.283c.187-3.284 2.989-5.793 6.261-5.608a5.958 5.958 0 0 1 5.603 6.285m-60.058 4.53c1.922 1.257 2.454 3.844 1.196 5.769a4.141 4.141 0 0 1-5.753 1.196 4.172 4.172 0 0 1-1.196-5.77 4.146 4.146 0 0 1 5.753-1.196m-4.005 65.092a4.146 4.146 0 0 1 5.583 1.846 4.175 4.175 0 0 1-1.844 5.599 4.151 4.151 0 0 1-5.58-1.843c-1.029-2.054-.207-4.566 1.841-5.602m53.787 36.026a4.153 4.153 0 0 1 4.383-3.924 4.16 4.16 0 0 1 3.913 4.396 4.153 4.153 0 0 1-4.383 3.927 4.157 4.157 0 0 1-3.913-4.4m58.637-29.07a4.178 4.178 0 0 1-1.196-5.769 4.153 4.153 0 0 1 5.757-1.2 4.182 4.182 0 0 1 1.196 5.77 4.15 4.15 0 0 1-5.757 1.2m4.012-65.089a4.16 4.16 0 0 1-5.586-1.852 4.167 4.167 0 0 1 1.844-5.592 4.148 4.148 0 0 1 5.58 1.842 4.18 4.18 0 0 1-1.838 5.602m-54.21-36.029a4.161 4.161 0 0 1-4.39 3.924 4.165 4.165 0 0 1-3.912-4.396 4.158 4.158 0 0 1 4.386-3.927 4.164 4.164 0 0 1 3.916 4.4",
+            fill: "currentColor",
+            fillRule: "nonzero"
+          })
+        )
+      );
+    };
+    AdaAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    AdaAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = AdaAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ADA.js
+var require_ADA = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ADA.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ada = function Ada2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M107.59 109.254c-5.762 0-10.956-3.196-13.543-8.337-3.752-7.467-.746-16.597 6.713-20.361a15.26 15.26 0 0 1 6.805-1.621 15.11 15.11 0 0 1 13.548 8.331c3.763 7.468.746 16.603-6.713 20.357a15.141 15.141 0 0 1-6.81 1.631M89.81 140.24c-.297 0-.583-.01-.88-.02-8.328-.486-14.734-7.662-14.258-16.004.47-8.311 7.592-14.766 15.987-14.275 8.338.465 14.734 7.651 14.264 15.993-.46 8.03-7.107 14.306-15.113 14.306m17.894 30.893a15.09 15.09 0 0 1-8.298-2.48 15.06 15.06 0 0 1-6.523-9.586c-.829-3.958-.057-8.01 2.157-11.4a15.15 15.15 0 0 1 12.684-6.849c2.95 0 5.828.865 8.298 2.486a15.027 15.027 0 0 1 6.529 9.59c.833 3.959.06 8.004-2.163 11.396a15.106 15.106 0 0 1-12.684 6.843m35.731-.072a15.089 15.089 0 0 1-13.533-8.337c-1.825-3.61-2.126-7.718-.859-11.569 1.263-3.846 3.963-6.961 7.572-8.787a15.104 15.104 0 0 1 6.81-1.627 15.075 15.075 0 0 1 13.538 8.343c3.753 7.462.746 16.592-6.713 20.356a15.223 15.223 0 0 1-6.815 1.621m17.802-30.974c-.302 0-.588-.02-.874-.03-8.349-.471-14.745-7.658-14.27-15.99.471-8.316 7.598-14.77 15.993-14.28a15.032 15.032 0 0 1 10.44 5.038 15.038 15.038 0 0 1 3.813 10.956c-.45 8.025-7.09 14.306-15.102 14.306m-17.955-30.903c-2.94 0-5.813-.854-8.293-2.486-6.994-4.588-8.941-13.999-4.36-20.99a15.136 15.136 0 0 1 12.678-6.844c2.95 0 5.824.86 8.293 2.48 6.989 4.578 8.947 13.994 4.366 20.986-2.817 4.281-7.551 6.854-12.684 6.854M92.42 52.91c1.887 3.734.379 8.296-3.348 10.168a7.564 7.564 0 0 1-10.164-3.345 7.578 7.578 0 0 1 3.349-10.178c3.727-1.872 8.287-.379 10.163 3.355m-45.859 64.7c4.177.236 7.367 3.816 7.132 7.99-.235 4.179-3.819 7.37-7.99 7.14-4.173-.245-7.358-3.82-7.128-8 .235-4.168 3.814-7.364 7.986-7.13m33.078 72.087a7.558 7.558 0 0 1 10.476-2.179c3.497 2.287 4.473 6.982 2.178 10.486-2.29 3.498-6.984 4.47-10.481 2.184a7.581 7.581 0 0 1-2.173-10.49m78.948 7.385c-1.887-3.729-.379-8.28 3.343-10.163 3.748-1.882 8.293-.378 10.17 3.345 1.886 3.734.377 8.296-3.355 10.168a7.55 7.55 0 0 1-10.158-3.35m45.854-64.7c-4.182-.236-7.362-3.817-7.127-7.99a7.562 7.562 0 0 1 7.986-7.135c4.172.23 7.372 3.81 7.137 7.994-.23 4.179-3.824 7.365-7.996 7.13m-33.068-72.086a7.569 7.569 0 1 1-12.658-8.302 7.56 7.56 0 0 1 10.475-2.184c3.492 2.297 4.474 6.987 2.183 10.486M75.867 29.68a4.902 4.902 0 0 1-2.168 6.583 4.895 4.895 0 0 1-6.58-2.174 4.9 4.9 0 0 1 2.168-6.578 4.904 4.904 0 0 1 6.58 2.169m-57.695 90.663a4.893 4.893 0 0 1 4.612 5.166c-.159 2.7-2.47 4.777-5.164 4.608a4.882 4.882 0 0 1-4.611-5.16 4.9 4.9 0 0 1 5.163-4.614M67.81 215.66a4.893 4.893 0 0 1 6.79-1.406 4.899 4.899 0 0 1 1.4 6.787 4.9 4.9 0 0 1-6.78 1.412 4.91 4.91 0 0 1-1.41-6.793m107.332 4.665c-1.217-2.43-.245-5.375 2.173-6.588a4.882 4.882 0 0 1 6.57 2.169 4.89 4.89 0 0 1-2.163 6.577 4.899 4.899 0 0 1-6.58-2.158m57.69-90.663a4.906 4.906 0 0 1-4.617-5.176 4.893 4.893 0 0 1 5.18-4.613c2.694.143 4.764 2.47 4.595 5.17-.143 2.696-2.464 4.762-5.158 4.619m-49.627-95.328c-1.493 2.266-4.53 2.9-6.785 1.412a4.908 4.908 0 0 1-1.41-6.787 4.885 4.885 0 0 1 6.778-1.402 4.9 4.9 0 0 1 1.417 6.777M77.35 87.077c4.11 2.69 5.26 8.214 2.561 12.327a8.888 8.888 0 0 1-12.331 2.562c-4.116-2.69-5.261-8.21-2.562-12.332 2.7-4.107 8.221-5.263 12.332-2.557m-8.758 60.68c4.392-2.219 9.75-.444 11.963 3.944 2.209 4.394.445 9.754-3.947 11.969-4.386 2.214-9.75.44-11.958-3.944-2.214-4.393-.45-9.754 3.942-11.968m47.51 37.925c.282-4.91 4.495-8.664 9.397-8.393 4.919.276 8.671 4.496 8.39 9.4a8.905 8.905 0 0 1-9.402 8.394c-4.908-.281-8.66-4.49-8.384-9.4m57.562-22.75c-4.11-2.707-5.261-8.225-2.572-12.343 2.7-4.107 8.22-5.252 12.326-2.557 4.116 2.69 5.261 8.214 2.567 12.326-2.695 4.123-8.216 5.263-12.321 2.573m8.752-60.69c-4.391 2.214-9.75.45-11.958-3.944-2.214-4.389-.455-9.749 3.942-11.958 4.397-2.22 9.75-.45 11.973 3.943 2.204 4.388.435 9.749-3.957 11.958m-48.144-37.925c-.282 4.905-4.494 8.67-9.413 8.388a8.907 8.907 0 0 1-8.384-9.401c.281-4.915 4.484-8.67 9.392-8.393a8.925 8.925 0 0 1 8.405 9.406m-90.088 6.777c2.883 1.882 3.68 5.754 1.794 8.633a6.221 6.221 0 0 1-8.63 1.79c-2.878-1.887-3.686-5.759-1.794-8.633 1.891-2.875 5.751-3.688 8.63-1.79m-6.007 97.404a6.225 6.225 0 0 1 8.374 2.762 6.241 6.241 0 0 1-2.766 8.378c-3.073 1.544-6.82.317-8.37-2.757-1.543-3.074-.311-6.833 2.762-8.383m80.68 53.909a6.224 6.224 0 0 1 6.575-5.872 6.231 6.231 0 0 1 5.87 6.578 6.224 6.224 0 0 1-6.576 5.876 6.226 6.226 0 0 1-5.869-6.582m87.956-43.5a6.243 6.243 0 0 1-1.794-8.634c1.891-2.875 5.756-3.688 8.635-1.796a6.248 6.248 0 0 1 1.794 8.634 6.233 6.233 0 0 1-8.635 1.795m6.018-97.399a6.247 6.247 0 0 1-8.38-2.772 6.228 6.228 0 0 1 2.766-8.368 6.23 6.23 0 0 1 8.37 2.757c1.548 3.08.311 6.833-2.756 8.383m-81.315-53.914a6.236 6.236 0 0 1-12.454-.706c.2-3.447 3.139-6.076 6.58-5.876a6.236 6.236 0 0 1 5.874 6.582" })
+      );
+    };
+    Ada.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ada.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ada;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ADC-alt.js
+var require_ADC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ADC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var AdcAlt = function AdcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M136.1 110.9l-32-18.5c-2.8-1.6-6.2.4-6.2 3.6v37c0 3.2 3.5 5.2 6.2 3.6l32-18.5c2.8-1.6 2.8-5.6 0-7.2z" }),
+        _react2.default.createElement("path", { d: "M113.4 59.6c-29.6 0-53.8 24.1-53.8 53.8 0 29.6 24.1 53.8 53.8 53.8 29.6 0 53.8-24.1 53.8-53.8 0-29.7-24.2-53.8-53.8-53.8zm0 101.3c-26.2 0-47.6-21.3-47.6-47.6 0-26.2 21.3-47.6 47.6-47.6 26.2 0 47.6 21.3 47.6 47.6-.1 26.3-21.4 47.6-47.6 47.6z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zm0 185.3c-39.7 0-71.9-32.2-71.9-71.9s32.2-71.9 71.9-71.9 71.9 32.2 71.9 71.9-32.2 71.9-71.9 71.9z" })
+      );
+    };
+    AdcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    AdcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = AdcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ADC.js
+var require_ADC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ADC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Adc = function Adc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 38.4c-41.4 0-75 33.6-75 75s33.6 75 75 75 75-33.6 75-75-33.7-75-75-75zm35.9 82.4l-50.4 29.1c-4.4 2.5-9.8-.6-9.8-5.7V86c0-5 5.4-8.2 9.8-5.7l50.4 29.1c4.3 2.6 4.3 8.9 0 11.4z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4c62.6 0 113.4-50.8 113.4-113.4S176 0 113.4 0zm0 198.2c-46.8 0-84.8-38-84.8-84.8s38-84.8 84.8-84.8 84.8 38 84.8 84.8c0 46.7-38.1 84.8-84.8 84.8z" })
+      );
+    };
+    Adc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Adc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Adc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/AEON-alt.js
+var require_AEON_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/AEON-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var AeonAlt = function AeonAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M146.835 87.515c-10.021-1.901-21.25 2.188-27.354 8.87-2.477-5.644-10.193-9.617-20.559-8.811S80.437 90.28 80.437 90.28l-2.131 12.267s7.774-4.205 15.318-4.264c7.543-.057 14.916.405 13.706 8.178 0 0-9.558-.346-18.024.806 0 0-16.643 1.383-19.408 14.109-2.763 12.726 4.377 18.656 14.34 18.601 9.962-.059 17.422-2.708 23.223-9.214 5.801 8.926 15.303 8.581 22.443 8.695 7.14.115 16.758-2.476 16.758-2.476l2.418-12.44s-9.732 4.492-17.563 4.377c-7.832-.113-12.266-1.15-11.46-8.292 0 0 11.518.115 17.795-.748 0 0 15.663-1.901 18.887-12.036 3.226-10.135.116-18.427-9.904-20.328zm-46.244 38.929c-2.935 2.937-9.242 4.319-12.999 1.339-3.758-2.98-1.469-8.941 3.023-10.496 4.491-1.554 14.686-.991 14.686-.991s-1.772 7.212-4.71 10.148zm33.559-15.894c-7.083.778-12.395.301-12.395.301s.475-7.169 5.355-10.624c4.881-3.456 11.921-3.281 13.648.258 1.729 3.544.475 9.287-6.608 10.065z" }),
+        _react2.default.createElement("path", { d: "M113.389 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389 62.622 0 113.388-50.766 113.388-113.389C226.777 50.766 176.011 0 113.389 0zm70.068 60.423c3.722 4.881 5.082 11.176 4.368 18.337-18.479-9.684-47.696-14.009-79.745-10.259-1.234.145-2.46.304-3.68.469 33.651-20.181 66.918-24.465 79.057-8.547zm-41.046-29.77c6.476 2.259 11.467 7.616 14.881 15.217-17.754 1.505-39.831 9.988-61.48 24.456a189.926 189.926 0 0 0-10.036 2.094c16.717-30.052 39.38-47.786 56.635-41.767zm-99.09 136.622c-3.721-4.883-5.083-11.176-4.368-18.339 18.479 9.685 47.695 14.011 79.745 10.259 1.232-.144 2.458-.303 3.678-.471-33.65 20.184-66.917 24.469-79.055 8.551zm41.047 29.769c-6.477-2.26-11.468-7.617-14.882-15.217 17.754-1.506 39.83-9.988 61.479-24.455a189.224 189.224 0 0 0 10.034-2.093c-16.715 30.05-39.378 47.784-56.631 41.765zm33.931-41.245c-48.332 5.658-89.713-8.537-92.425-31.706-2.712-23.167 34.272-46.538 82.604-52.195 48.334-5.657 89.714 8.54 92.424 31.708 2.713 23.168-34.27 46.536-82.603 52.193z" })
+      );
+    };
+    AeonAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    AeonAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = AeonAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/AEON.js
+var require_AEON = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/AEON.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Aeon = function Aeon2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M170.15 25.549c-4.412-9.821-10.858-16.744-19.228-19.664C128.626-1.891 99.34 21.023 77.74 59.856a245.669 245.669 0 0 1 12.967-2.707c27.974-18.694 56.502-29.656 79.443-31.6zM56.692 201.228c4.411 9.82 10.86 16.742 19.229 19.663 22.295 7.777 51.58-15.14 73.18-53.968a246.134 246.134 0 0 1-12.969 2.704c-27.974 18.695-56.5 29.655-79.44 31.601z" }),
+        _react2.default.createElement("path", { d: "M106.562 54.793c41.412-4.847 79.165.742 103.043 13.256.924-9.254-.836-17.388-5.645-23.696-15.684-20.568-58.672-15.034-102.154 11.045a264.85 264.85 0 0 1 4.756-.605zm13.717 117.188c-41.411 4.85-79.164-.739-103.042-13.253-.923 9.256.835 17.389 5.645 23.694 15.684 20.57 58.671 15.034 102.151-11.046-1.576.218-3.158.422-4.754.605zm-36.286-54.149c-5.805 2.009-8.762 9.71-3.906 13.561 4.855 3.854 13.003 2.065 16.797-1.729 3.795-3.794 6.083-13.112 6.083-13.112s-13.169-.73-18.974 1.28zm47.158-22.045c-6.306 4.465-6.918 13.729-6.918 13.729s6.861.616 16.015-.391c9.153-1.004 10.772-8.426 8.54-13.004-2.234-4.573-11.328-4.798-17.637-.334z" }),
+        _react2.default.createElement("path", { d: "M226.504 100.153C223 70.215 169.532 51.871 107.076 59.18 44.621 66.491-3.168 96.689.337 126.626c3.505 29.937 56.976 48.28 119.429 40.969 62.454-7.31 110.244-37.506 106.738-67.442zm-57.069 5.476c-4.165 13.096-24.404 15.552-24.404 15.552-8.112 1.117-22.995.966-22.995.966-1.04 9.228 4.688 10.567 14.811 10.718 10.119.146 22.694-5.658 22.694-5.658l-3.125 16.074s-12.427 3.348-21.656 3.199c-9.226-.146-21.503.3-28.999-11.234-7.495 8.407-17.134 11.829-30.007 11.905-12.874.074-22.101-7.591-18.529-24.035 3.571-16.446 25.077-18.232 25.077-18.232 10.938-1.488 23.29-1.041 23.29-1.041 1.564-10.046-7.961-10.642-17.709-10.567-9.748.075-19.792 5.508-19.792 5.508l2.752-15.85s10.491-2.456 23.887-3.498c13.394-1.042 23.364 4.093 26.565 11.385 7.888-8.633 22.396-13.917 35.345-11.46 12.946 2.456 16.965 13.172 12.795 26.268z" })
+      );
+    };
+    Aeon.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Aeon.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Aeon;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/AMP-alt.js
+var require_AMP_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/AMP-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var AmpAlt = function AmpAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("circle", { cx: "89.056", cy: "113.228", r: "18.796" }),
+        _react2.default.createElement("path", { d: "M146.994 94.432c-.069 0-.136.009-.204.011l.011-.011c-14.662 0-26.547-11.885-26.547-26.547 0-10.381-8.416-18.797-18.797-18.797s-18.795 8.416-18.795 18.797 8.415 18.795 18.795 18.795c.068 0 .136-.01.205-.011l-.011.011c14.661 0 26.548 11.886 26.548 26.547s-11.887 26.546-26.548 26.546c-10.38 0-18.795 8.416-18.795 18.796 0 10.381 8.416 18.796 18.795 18.796 10.381 0 18.796-8.415 18.796-18.796 0-14.662 11.886-26.547 26.547-26.547 10.38 0 18.796-8.416 18.796-18.795 0-10.38-8.416-18.795-18.796-18.795z" }),
+        _react2.default.createElement("path", { d: "M113.389 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389 62.622 0 113.388-50.766 113.388-113.389C226.777 50.766 176.011 0 113.389 0zm-.001 199.423c-47.515 0-86.035-38.518-86.035-86.034 0-47.518 38.52-86.035 86.035-86.035 47.517 0 86.034 38.518 86.034 86.035.001 47.516-38.517 86.034-86.034 86.034z" })
+      );
+    };
+    AmpAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    AmpAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = AmpAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/AMP.js
+var require_AMP = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/AMP.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Amp = function Amp2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388 0C50.765 0 0 50.764 0 113.389c0 62.624 50.766 113.388 113.389 113.388 62.622 0 113.388-50.765 113.388-113.388C226.776 50.764 176.01 0 113.388 0zM56.549 113.177c0-13.681 11.09-24.771 24.772-24.771 13.68 0 24.771 11.09 24.771 24.771 0 13.682-11.091 24.771-24.771 24.771-13.682 0-24.772-11.09-24.772-24.771zm101.129 24.771c-19.322 0-34.986 15.664-34.986 34.987 0 13.682-11.091 24.771-24.772 24.771s-24.771-11.09-24.771-24.771c0-13.681 11.09-24.771 24.771-24.771 19.322 0 34.988-15.664 34.988-34.987S117.242 78.19 97.92 78.19l.014-.013c-.091.001-.18.013-.27.013-13.682 0-24.772-11.091-24.772-24.772 0-13.68 11.09-24.772 24.772-24.772 13.68 0 24.771 11.092 24.771 24.772h.002c0 19.324 15.663 34.988 34.986 34.988l-.014.014c.09-.002.179-.014.269-.014 13.682 0 24.772 11.09 24.772 24.771.001 13.681-11.09 24.771-24.772 24.771z" })
+      );
+    };
+    Amp.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Amp.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Amp;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ANC-alt.js
+var require_ANC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ANC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var AncAlt = function AncAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.389 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389 62.622 0 113.388-50.766 113.388-113.389C226.777 50.766 176.011 0 113.389 0zm-.001 197.385c-23.071 0-43.966-9.303-59.146-24.359l9.05-16.431h100.349l8.979 16.347c-15.188 15.106-36.118 24.443-59.232 24.443zm33.081-72.189l8.099 14.808H72.339l8.072-14.808h66.058zm-57.012-16.592l23.931-43.893 24.007 43.893H89.457zm94.495 50.363L113.388 29.39 42.744 158.844c-8.448-13.104-13.354-28.707-13.354-45.456 0-46.391 37.607-83.999 83.998-83.999 46.391 0 83.997 37.607 83.997 83.999 0 16.803-4.935 32.451-13.433 45.579z" })
+      );
+    };
+    AncAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    AncAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = AncAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ANC.js
+var require_ANC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ANC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Anc = function Anc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M181.224 171.715H45.763l-12.218 22.179c20.493 20.325 48.7 32.884 79.843 32.884 31.201 0 59.456-12.604 79.958-32.996l-12.122-22.067zM113.388 0C50.765 0 0 50.767 0 113.389c0 22.61 6.621 43.674 18.026 61.362L113.388 0zm113.389 113.389C226.777 50.767 176.011 0 113.388 0l95.254 174.916c11.471-17.722 18.135-38.845 18.135-61.527zm-145.694-6.457h64.712L113.388 47.68zm-23.109 42.386h111.001l-10.93-19.989H68.871z" })
+      );
+    };
+    Anc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Anc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Anc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ARCH-alt.js
+var require_ARCH_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ARCH-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ArchAlt = function ArchAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M117.539 15.073L0 211.704h117.539l-4.412-9.033H16.492l57.982-100.418 59.87 109.451h92.644z" })
+      );
+    };
+    ArchAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ArchAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ArchAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ARCH.js
+var require_ARCH = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ARCH.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Arch = function Arch2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.385 0C50.763 0 0 50.763 0 113.385S50.764 226.77 113.385 226.77 226.77 176.006 226.77 113.385 176.006 0 113.385 0zm11.256 158.821L92.318 99.729l-31.305 54.214h52.174l2.382 4.878h-63.46L115.568 52.66l59.092 106.161h-50.019z" })
+      );
+    };
+    Arch.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Arch.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Arch;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ARDR-alt.js
+var require_ARDR_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ARDR-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ArdrAlt = function ArdrAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M297.64 124.087C133.689 124.087.782 256.994.782 420.945c0 163.953 132.907 296.86 296.858 296.86s296.857-132.907 296.857-296.86c0-163.951-132.906-296.858-296.857-296.858zm-173.979 409.79l172.598-301.509 44.531 76.711-131.06 224.798h-86.069zm92.194 0l70.584-121.287 44.061 54.541-114.645 66.746zm176.268-.068L288.601 407.551l82.651-45.043 100.366 171.301h-79.495z" })
+      );
+    };
+    ArdrAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ArdrAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ArdrAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ARDR.js
+var require_ARDR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ARDR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ardr = function Ardr2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M295.279 163.035L0 678.854h147.242L371.46 294.273zM157.723 678.854l196.13-114.191-75.379-93.308zm265.849-293.178l-141.395 77.061 177.104 215.997H595.28z" })
+      );
+    };
+    Ardr.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ardr.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ardr;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ARK-alt.js
+var require_ARK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ARK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ArkAlt = function ArkAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement(
+          "g",
+          { fill: "currentColor", fillRule: "evenodd" },
+          _react2.default.createElement("circle", { fill: "currentColor", cx: "125", cy: "125", r: "125" }),
+          _react2.default.createElement("path", {
+            d: "M124.637 107.958L50 184.279 124.972 66 200 185l-75.363-77.042zm10.83 30.318h-23.335l12-12.804 11.335 12.911v-.107zm-44.995 21.003l-.002-.164 13.23-13.136v-.055l40.364-.169 13.621 13.524H90.472z",
+            fill: "currentColor",
+            fillRule: "nonzero"
+          })
+        )
+      );
+    };
+    ArkAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ArkAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ArkAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ARK.js
+var require_ARK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ARK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ark = function Ark2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M124.956 99.113L13 213.916 125.458 36 238 215 124.956 99.113zm16.245 45.604h-35.003l18-19.258 17.003 19.42v-.162zM73.708 176.31l-.003-.246 19.845-19.76v-.082l60.546-.254 20.431 20.342H73.709z" })
+      );
+    };
+    Ark.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ark.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ark;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/AUR-alt.js
+var require_AUR_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/AUR-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var AurAlt = function AurAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M297.592 123.305C133.235 123.305 0 256.429 0 420.665c0 164.221 133.235 297.35 297.591 297.35 164.353 0 297.591-133.129 297.591-297.35.001-164.236-133.237-297.36-297.59-297.36zm75.918 237.037l20.552 39.388-137.675 71.821v114.876h-44.421V264.385h44.421v50.337l117.124-61.097 20.552 39.382-137.675 71.825v56.609l117.122-61.099z" })
+      );
+    };
+    AurAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    AurAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = AurAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/AUR.js
+var require_AUR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/AUR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Aur = function Aur2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M423.467 315.074L214.422 424.12V323.085l245.717-128.186-36.672-70.295-209.045 109.047v-89.85h-79.281v574.784h79.281V513.558l245.717-128.192z" })
+      );
+    };
+    Aur.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Aur.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Aur;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BANX-alt.js
+var require_BANX_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BANX-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BanxAlt = function BanxAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M185.621 144.285l11.828-19.276 10.853 19.276h18.309l-20.414-30.378 18.713-27.459h-17.176l-10.285 17.982-9.721-17.982h-17.74l18.875 27.459-20.576 30.378zM88.24 86.448H72.929l-21.626 57.837h15.471l3.646-10.368h20.17l3.564 10.368h15.717L88.24 86.448zm-14.338 36.289l6.562-20.25h.164l6.396 20.25H73.902zm-33.395-10.125c4.535-2.269 7.613-6.479 7.613-11.664 0-12.07-10.934-14.662-20.898-14.5H.166v57.837H27.95c12.396 0 22.519-4.213 22.519-17.983 0-6.561-3.806-11.907-9.962-13.69zM15.233 98.113h11.665c3.161 0 6.158 1.376 6.158 5.59 0 4.129-3.565 5.508-6.158 5.508H15.233V98.113zm12.069 34.103H15.233v-13.283h12.069c4.538 0 8.102 1.698 8.102 6.802 0 4.78-3.322 6.481-8.102 6.481zm122.333-10.126l-20.09-35.642h-15.473v57.837h14.178v-36.047h.16l20.09 36.047h15.47V86.448h-14.175v35.642zM28.451 152.024a.866.866 0 0 0-.866.865v20.816c0 .477.389.865.866.865h12.572a.867.867 0 0 0 .866-.865v-20.816a.866.866 0 0 0-.866-.865H28.451zm12.573-72.417a.867.867 0 0 0 .866-.864V57.927a.866.866 0 0 0-.866-.866H28.451a.865.865 0 0 0-.866.866v20.815c0 .476.389.864.866.864h12.573zm-27.419 0a.867.867 0 0 0 .866-.864V57.927a.865.865 0 0 0-.866-.866H1.032a.864.864 0 0 0-.866.866v20.815c0 .476.387.864.866.864h12.573zM1.032 152.024a.865.865 0 0 0-.866.865v20.816c0 .477.387.865.866.865h12.572a.867.867 0 0 0 .866-.865v-20.816a.865.865 0 0 0-.866-.865H1.032z" })
+      );
+    };
+    BanxAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BanxAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BanxAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BANX.js
+var require_BANX = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BANX.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Banx = function Banx2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M52.791 116.949h-9.334v10.274h9.334c3.696 0 6.265-1.314 6.265-5.013-.001-3.947-2.757-5.261-6.265-5.261zm41.115-12.718l-5.075 15.661H98.98l-4.948-15.661zm-36.666.94c0-3.259-2.319-4.324-4.762-4.324h-9.021v8.583h9.021c2.005 0 4.762-1.065 4.762-4.259z" }),
+        _react2.default.createElement("path", { d: "M113.429.085C50.831.085.084 50.832.084 113.431s50.747 113.346 113.345 113.346c62.602 0 113.348-50.746 113.348-113.346S176.031.085 113.429.085zM53.01 69.767c0-.37.299-.669.669-.669h9.724c.369 0 .669.299.669.669v16.099a.67.67 0 0 1-.669.669h-9.724c-.37 0-.669-.3-.669-.669V69.767zm-21.208 0c0-.37.299-.669.67-.669h9.723c.371 0 .67.299.67.669v16.099a.67.67 0 0 1-.67.669h-9.723a.67.67 0 0 1-.67-.669V69.767zm11.064 89.544a.67.67 0 0 1-.67.67h-9.723a.67.67 0 0 1-.67-.67v-16.099a.67.67 0 0 1 .67-.67h9.723a.67.67 0 0 1 .67.67v16.099zm21.206 0c0 .369-.3.67-.669.67h-9.724a.67.67 0 0 1-.669-.67v-16.099a.67.67 0 0 1 .669-.67h9.724a.67.67 0 0 1 .669.67v16.099zm-10.78-22.753h-21.49V91.825h20.925c7.707-.125 16.164 1.879 16.164 11.215 0 4.009-2.38 7.267-5.888 9.021 4.762 1.379 7.705 5.515 7.705 10.589 0 10.651-7.83 13.908-17.416 13.908zm51.202 0l-2.757-8.02h-15.6l-2.819 8.02H71.352l16.727-44.733H99.92l16.729 44.733h-12.155zm53.996 0h-11.964l-15.538-27.88h-.124v27.88h-10.966V91.825h11.968l15.537 27.566h.125V91.825h10.962v44.733zm34.287 0l-8.392-14.911-9.148 14.911H161.83l15.915-23.495-14.601-21.238h13.722l7.52 13.908 7.954-13.908h13.282l-14.471 21.238 15.788 23.495h-14.162z" })
+      );
+    };
+    Banx.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Banx.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Banx;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BAT-alt.js
+var require_BAT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BAT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BatAlt = function BatAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zM109 36.132v49.509l-25.956 45.306-42.977 24.754L109 36.132zM44.204 163l42.877-25h52.637l42.875 25H44.204zm99.151-32.053L117 85.643v-49.51l69.133 119.569-42.778-24.755z" })
+      );
+    };
+    BatAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BatAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BatAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BAT.js
+var require_BAT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BAT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bat = function Bat2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M107.193 12.925L0 198.589l66.577-38.438 40.616-70.35zm47.073 158.121H72.533L5.955 209.484h214.886zm-34.659-81.241l40.615 70.346 66.578 38.44L119.607 12.928z" })
+      );
+    };
+    Bat.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bat.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bat;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BAY-alt.js
+var require_BAY_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BAY-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BayAlt = function BayAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M145.608 114.043l2.947-3.83c.894-1.209 5.782-9.929 5.782-19.19 0-3.604-2.142-10.015-6.84-15.576-2.843-3.364-8.91-9.008-17.618-9.008H95.948v11.268h31.882c6.513 0 12.43 4.473 14.394 10.876a15.634 15.634 0 0 1-3.773 15.686c-1.308 1.309-6.478 5.835-10.62 9.434 4.384 4.162 10.312 9.8 11.773 11.26 4.824 4.824 3.899 13.431 1.145 17.235-2.23 3.079-6.194 7.172-14.852 7.172H82.93V95.634h12.292v41.442h30.674c3.129 0 3.963-.827 4.715-1.84.143-.49.167-1.365.054-1.824-2.289-2.254-11.491-10.982-16.214-15.453l-4.943-4.677 5.154-4.443c5.131-4.423 13.771-11.935 15.098-13.263.054-.055 1.331-1.363.71-3.392-.441-1.436-1.662-2.185-2.64-2.185H72.387v70.554h52.882c12.717 0 21.755-4.952 26.866-14.716 7.095-13.552-3.371-27.897-3.482-28.036l-3.045-3.758z" }),
+        _react2.default.createElement("path", { d: "M113.494 0C50.813 0 0 50.813 0 113.494s50.813 113.494 113.495 113.494c62.68 0 113.494-50.813 113.494-113.494S176.175 0 113.494 0zm49.533 151.536c-4.428 8.457-11.011 14.511-19.571 17.995-5.4 2.198-11.52 3.313-18.187 3.313H60.094V77.706h23.56V54.145h46.226c10.135 0 19.726 4.748 27.009 13.367 6.008 7.114 9.742 16.124 9.742 23.51 0 9.432-3.397 17.909-5.954 22.772a48.003 48.003 0 0 1 4.436 10.216c2.946 9.769 2.226 19.288-2.086 27.526z" })
+      );
+    };
+    BayAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BayAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BayAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BAY.js
+var require_BAY = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BAY.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bay = function Bay2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M139.705 226.777H15.185V45.012h45.013V0h88.315c19.359 0 37.684 9.07 51.598 25.538 11.479 13.592 18.611 30.803 18.611 44.917 0 18.02-6.489 34.213-11.372 43.507a91.855 91.855 0 0 1 8.473 19.516c5.634 18.664 4.255 36.851-3.984 52.591-8.455 16.155-21.038 27.721-37.392 34.378-10.318 4.2-22.007 6.33-34.742 6.33zM38.669 203.292h101.036c24.293 0 41.561-9.461 51.327-28.113 13.552-25.891-6.441-53.299-6.65-53.566l-5.819-7.179 5.632-7.316c1.704-2.311 11.045-18.969 11.045-36.663 0-6.884-4.092-19.132-13.067-29.759-5.432-6.428-17.026-17.211-33.658-17.211h-64.83v21.528h60.913c12.441 0 23.748 8.543 27.496 20.779a29.863 29.863 0 0 1-7.204 29.969c-2.501 2.499-12.376 11.146-20.292 18.023 8.376 7.951 19.703 18.724 22.493 21.513 9.217 9.217 7.449 25.657 2.187 32.928-4.259 5.883-11.835 13.702-28.371 13.702H58.814V79.261h23.485v79.181h58.606c5.976 0 7.568-1.582 9.002-3.517.275-.936.323-2.608.107-3.486-4.375-4.306-21.955-20.981-30.979-29.521l-9.442-8.936 9.847-8.488c9.806-8.451 26.305-22.802 28.843-25.34.104-.104 2.544-2.604 1.356-6.482-.84-2.74-3.172-4.174-5.042-4.174H38.669v134.794z" })
+      );
+    };
+    Bay.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bay.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bay;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BC-alt.js
+var require_BC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BcAlt = function BcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M9.013 3.635s27.076 6.973 27.076 47.18v121.333c0 47.482-27.076 50.21-27.076 50.21v4.041l44.25-2.122V2.119L9.013 0v3.635zm169.07 50.464c.605 32.261-12.429 44.855-12.429 44.855s31.978-10.305 31.369-46.978c-.605-36.672-43.795-46.068-43.795-46.068s24.247 15.929 24.855 48.191zm-2.952 56.827s19.136 17.035 20.059 53.297c.927 36.264-20.059 54.146-20.059 54.146s40.382-11.366 39.927-54.555c-.455-43.189-39.927-52.888-39.927-52.888z" }),
+        _react2.default.createElement("path", { d: "M162.322 118.805c-7.274-6.061-27.885-13.032-27.885-13.032s13.64-6.819 19.853-16.669c6.213-9.851 11.063-27.884 6.518-46.826-4.546-18.943-21.216-37.886-40.613-40.613-19.398-2.729-27.631.454-51.172.758v221.652s35.714 2.626 54.96 2.475c19.245-.151 48.795-13.336 54.25-49.251 5.455-35.914-8.639-52.432-15.911-58.494zM89.128 20.911c3.485-3.333 21.519-9.244 38.643 2.577s21.568 46.422 7.425 64.809-49.401 13.538-49.401 13.538-.153-77.59 3.333-80.924zm70.515 157.4c-8.182 31.622-33.034 32.534-46.068 32.027-13.032-.507-25.562-.305-26.975-36.977-1.412-36.673-.808-56.273-.808-56.273s38.794-1.516 52.03 4.244c13.235 5.759 30.006 25.357 21.821 56.979z" })
+      );
+    };
+    BcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BC.js
+var require_BC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bc = function Bc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M127.593 100.42c7.294-9.483 5.002-27.329-3.829-33.426-8.832-6.097-18.133-3.047-19.931-1.329-1.798 1.72-1.719 41.736-1.719 41.736s18.184 2.502 25.479-6.981zm1.353 17.039c-6.826-2.97-26.833-2.188-26.833-2.188s-.311 10.108.416 29.023c.731 18.913 7.192 18.809 13.913 19.071 6.724.261 19.541-.209 23.761-16.519 4.22-16.309-4.429-26.418-11.257-29.387z" }),
+        _react2.default.createElement("path", { d: "M113.45.122C50.861.122.122 50.861.122 113.45S50.861 226.777 113.45 226.777s113.327-50.738 113.327-113.327S176.039.122 113.45.122zm46.032 81.566c.312 18.914-16.18 24.229-16.18 24.229s6.722-6.496 6.409-23.134c-.313-16.64-12.817-24.855-12.817-24.855s22.276 4.846 22.588 23.76zm-74.146 88.865l-22.823 1.095v-2.084s13.965-1.408 13.965-25.896v-62.58c0-20.737-13.965-24.334-13.965-24.334V54.88l22.823 1.093v114.58zm36.473 1.172c-9.926.079-28.347-1.276-28.347-1.276V56.131c12.142-.157 16.388-1.798 26.392-.392 10.005 1.405 18.603 11.177 20.947 20.947 2.345 9.769-.155 19.071-3.362 24.15-3.203 5.081-10.238 8.599-10.238 8.599s10.63 3.595 14.383 6.72c3.751 3.127 11.02 11.646 8.206 30.17-2.814 18.523-18.055 25.323-27.981 25.4zm26.38-4.219s10.823-9.224 10.347-27.925c-.478-18.703-10.347-27.49-10.347-27.49s20.358 5.003 20.592 27.278c.235 22.275-20.592 28.137-20.592 28.137z" })
+      );
+    };
+    Bc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BCH-alt.js
+var require_BCH_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BCH-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BchAlt = function BchAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M202.277 184h-39.986c22-15.421 36.383-40.953 36.383-69.84 0-28.886-14.383-54.418-36.383-69.84h41.018C182.557 17.369 149.967 0 113.322 0 76.674 0 44.086 17.368 23.334 44.32h41.019C42.351 59.743 27.97 85.275 27.97 114.16c0 28.887 14.381 54.419 36.383 69.84H24.366c20.791 26.198 52.912 43 88.956 43 36.043 0 68.164-16.802 88.955-43zM45.582 131.146c-9.56-37.37 13.02-75.406 50.432-84.954 37.412-9.55 75.488 13.005 85.047 50.376 9.559 37.37-13.02 75.406-50.432 84.955-37.411 9.548-75.489-13.007-85.047-50.377z" }),
+        _react2.default.createElement("path", { d: "M150.084 116.529c-1.297-5.572-4.377-8.818-7.777-10.237s-7.684-1.24-7.684-1.24 2.93-2.868 3.826-5.217c.898-2.348.813-5.61.52-7.24s-1.734-8.412-7.959-10.939c-4.813-1.955-9.756-1.957-16.088-.752l-3.464-13.545-8.361 2.134 3.423 13.384-6.367 1.626-3.424-13.385-8.36 2.133 3.425 13.385-16.447 4.198 2.218 8.67 4.833-1.233c1.32-.337 3.7-.788 4.981.071 1.28.858 1.607 1.398 2.16 3.563l8.839 34.554c.21.821.313 1.875-.22 2.719-.534.842-1.196 1.177-2.877 1.606l-5 1.275.848 10.47 16.446-4.198 3.414 13.347 8.359-2.134-3.414-13.346 6.367-1.625 3.414 13.346 8.361-2.134-3.469-13.566c2.127-.678 4.1-1.354 5.236-1.81l.18-.071c2.387-.95 7.459-2.969 11.498-7.648 4.141-4.799 3.866-10.59 2.563-16.161zm-43.392-6.468l-4.123-16.115s2.597-.912 5.225-1.542c2.628-.629 4.951-1.14 8.659-.963 3.707.178 6.395 2.233 7.254 5.258.855 3.024.047 5.392-1.969 7.277-2.014 1.887-5.074 3.415-8.093 4.311-3.017.895-6.953 1.774-6.953 1.774zm24.8 19.028c-1.645 1.543-5.234 3.457-8.873 4.677-3.643 1.222-9.219 2.519-9.219 2.519l-4.582-17.911s5.243-1.629 9.454-2.413c4.211-.782 7.957-.618 9.719-.235 1.762.382 4.936 1.4 5.984 5.498 1.048 4.095-.838 6.323-2.483 7.865z" })
+      );
+    };
+    BchAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BchAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BchAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BCH.js
+var require_BCH = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BCH.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bch = function Bch2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.666 43.5c-5.767-.01-11.629.7-17.475 2.191v-.003c-37.41 9.551-59.99 47.587-50.431 84.957 9.56 37.37 47.637 59.925 85.049 50.375 37.412-9.548 59.99-47.584 50.432-84.954-8.067-31.53-36.434-52.514-67.575-52.566zM0 43.82V183.5h64.531c-22-15.421-36.383-40.953-36.383-69.84 0-28.886 14.382-54.418 36.383-69.84H0zm162.469 0c22 15.422 36.383 40.954 36.383 69.84 0 28.887-14.382 54.419-36.383 69.84H227V43.82h-64.531zm-50.832 23.037l3.465 13.545c6.33-1.205 11.273-1.202 16.087.754 6.224 2.526 7.666 9.308 7.96 10.938.291 1.63.377 4.894-.521 7.24-.896 2.35-3.824 5.219-3.824 5.219s4.279-.179 7.683 1.24c3.397 1.42 6.479 4.664 7.778 10.236 1.303 5.569 1.574 11.361-2.564 16.159-4.039 4.679-9.113 6.699-11.498 7.649l-.179.07c-1.136.455-3.108 1.133-5.237 1.81l3.469 13.565-8.359 2.135-3.415-13.346-6.367 1.625 3.414 13.346-8.359 2.135-3.414-13.348-16.447 4.197-.846-10.469 5-1.275c1.68-.431 2.342-.764 2.875-1.605.533-.844.43-1.899.22-2.721l-8.837-34.553c-.554-2.165-.88-2.705-2.16-3.563-1.282-.859-3.663-.409-4.983-.069l-4.832 1.231-2.219-8.672 16.448-4.197-3.427-13.383 8.36-2.133 3.423 13.385 6.367-1.625-3.424-13.385 8.363-2.135zm3.666 24.047c-2.965-.012-5.03.447-7.33.998-2.627.63-5.225 1.543-5.225 1.543l4.121 16.116s3.938-.881 6.955-1.776c3.018-.896 6.082-2.422 8.094-4.308 2.015-1.887 2.824-4.256 1.969-7.28-.86-3.024-3.547-5.08-7.254-5.258a31.112 31.112 0 0 0-1.33-.035zm8.926 24.002a32.93 32.93 0 0 0-5.777.555c-4.213.784-9.456 2.412-9.456 2.412l4.582 17.91s5.579-1.296 9.219-2.518c3.641-1.22 7.229-3.133 8.875-4.676 1.643-1.542 3.529-3.771 2.481-7.867-1.048-4.098-4.221-5.116-5.983-5.498-.881-.191-2.258-.328-3.941-.318z" })
+      );
+    };
+    Bch.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bch.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bch;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BCN-alt.js
+var require_BCN_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BCN-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BcnAlt = function BcnAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M190.199 97.104s21.134-12.992 21.134-35.948c0-22.955-22.226-52.22-57.207-52.22H55.873v64.118H0v27.328h55.873v36.254H0v27.327h55.873v53.879h90.966c42.996 0 79.797-23.453 79.797-66.087-.001-42.624-36.437-54.651-36.437-54.651zm-51.74-59.391c18.22 0 36.802 8.74 36.802 28.602 0 19.858-19.675 29.876-37.896 29.876H93.278V37.713h45.181zm6.155 145.745H93.278V120.06h51.012c33.885 0 47.909 14.023 47.909 34.613 0 20.587-24.628 28.785-47.585 28.785z" })
+      );
+    };
+    BcnAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BcnAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BcnAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BCN.js
+var require_BCN = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BCN.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bcn = function Bcn2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M130.324 116.855h-27.473v34.143h27.647c12.364 0 25.627-4.413 25.627-15.501.001-11.089-7.552-18.642-25.801-18.642zm16.68-28.946c0-10.697-10.008-15.404-19.819-15.404h-24.333V104h23.743c9.812 0 20.409-5.396 20.409-16.091z" }),
+        _react2.default.createElement("path", { d: "M113.533.288C50.989.288.288 50.989.288 113.533c0 62.543 50.701 113.244 113.245 113.244 62.543 0 113.244-50.701 113.244-113.244C226.777 50.989 176.076.288 113.533.288zm18.165 169.228H82.705V140.5h-30.09v-14.717h30.091v-19.526H52.615V91.538h30.091V57.007h52.916c18.841 0 30.811 15.762 30.811 28.124 0 12.364-11.381 19.361-11.381 19.361s19.622 6.477 19.622 29.433c-.001 22.96-19.821 35.591-42.976 35.591z" })
+      );
+    };
+    Bcn.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bcn.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bcn;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BFT-alt.js
+var require_BFT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BFT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BftAlt = function BftAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M316.458 441.51c-6.739-5.107-15.683-7.665-26.794-7.665h-55.853v64.129h54.872c5.018 0 9.81-.5 14.379-1.467 4.585-.994 8.613-2.631 12.097-4.915 3.461-2.29 6.251-5.392 8.318-9.323 2.065-3.938 3.128-8.938 3.128-15.053.001-12.001-3.382-20.558-10.147-25.706z" }),
+        _react2.default.createElement("path", { d: "M298.158 124.06c-164.097 0-297.121 132.914-297.121 296.891 0 163.958 133.024 296.881 297.121 296.881 164.094 0 297.121-132.923 297.121-296.881.001-163.978-133.027-296.891-297.121-296.891zm72.868 376.681c-4.565 8.658-10.711 15.682-18.464 21.125-7.711 5.461-16.54 9.467-26.459 12.086-9.896 2.614-20.092 3.933-30.535 3.933H182.496V304.268h109.79c11.097 0 21.243.969 30.391 2.935 9.147 1.972 16.986 5.182 23.526 9.659 6.535 4.464 11.595 10.418 15.191 17.842 3.597 7.401 5.39 16.552 5.39 27.467 0 11.779-2.659 21.586-7.992 29.448-5.363 7.861-13.253 14.288-23.7 19.293 14.379 4.173 25.121 11.409 32.169 21.772 7.095 10.369 10.635 22.865 10.635 37.485 0 11.78-2.282 21.969-6.87 30.572zm75.464 37.144h-51.318v-50.372h51.318v50.372z" }),
+        _react2.default.createElement("path", { d: "M308.295 392.275c5.879-4.347 8.827-11.452 8.827-21.279 0-5.426-.994-9.904-2.948-13.396-1.955-3.469-4.578-6.225-7.827-8.194-3.281-1.929-7.044-3.318-11.277-4.08a76.125 76.125 0 0 0-13.25-1.145h-48.008v54.636h51.943c9.159.002 16.659-2.172 22.54-6.542z" })
+      );
+    };
+    BftAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BftAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BftAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BFT.js
+var require_BFT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BFT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bft = function Bft2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M314.623 376.888c7.656-5.659 11.495-14.91 11.495-27.71 0-7.063-1.293-12.902-3.839-17.448-2.544-4.52-5.964-8.106-10.197-10.669-4.27-2.512-9.171-4.318-14.68-5.317a99.798 99.798 0 0 0-17.26-1.49h-62.521v71.154h67.643c11.934-.001 21.697-2.829 29.359-8.52zm10.63 64.123c-8.778-6.65-20.422-9.992-34.897-9.992h-72.735v83.517h71.462c6.531 0 12.78-.644 18.727-1.903 5.968-1.296 11.214-3.426 15.751-6.408 4.506-2.979 8.141-7.015 10.835-12.139 2.683-5.13 4.073-11.642 4.073-19.602 0-15.627-4.406-26.774-13.216-33.473z" }),
+        _react2.default.createElement("path", { d: "M.304 123.305v595.28h595.28v-595.28H.304zM396.32 518.141c-5.944 11.273-13.948 20.428-24.048 27.514-10.043 7.109-21.544 12.327-34.461 15.739-12.886 3.407-26.161 5.121-39.764 5.121H150.793V262.281h142.981c14.452 0 27.663 1.256 39.579 3.819 11.915 2.563 22.12 6.745 30.639 12.572 8.508 5.822 15.104 13.572 19.781 23.236 4.683 9.65 7.018 21.561 7.018 35.774 0 15.34-3.463 28.121-10.407 38.354-6.983 10.234-17.257 18.607-30.863 25.127 18.725 5.434 32.712 14.856 41.895 28.354 9.237 13.498 13.846 29.775 13.846 48.811-.002 15.341-2.97 28.608-8.942 39.813zm98.271 48.374h-66.833V500.91h66.833v65.605z" })
+      );
+    };
+    Bft.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bft.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bft;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BRK-alt.js
+var require_BRK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BRK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BrkAlt = function BrkAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.621 97.878h-4.559v14.227h4.058c3.056 0 7.664-1.102 7.664-7.063.001-5.961-3.906-7.164-7.163-7.164zm-32.499 19.337h-5.598v12.975h5.539c2.68 0 6.76-1.41 6.76-6.329 0-4.92-2.353-6.646-6.701-6.646zm4.747-13.551c0-4.283-1.979-5.786-5.636-5.786h-4.709v11.296h4.659c2.254 0 5.686-1.226 5.686-5.51z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm84.872 131.379s-7.003 7.434-15.162 21.565c-8.159 14.132-11.095 23.913-11.095 23.913l10.095 5.828c-11.456 11.283-25.675 19.766-41.553 24.339v-12.005s-9.939-2.348-26.257-2.348-26.257 2.348-26.257 2.348v12.501c-16.293-4.356-30.91-12.805-42.684-24.183l11.226-6.481s-2.936-9.781-11.095-23.913c-8.159-14.131-15.162-21.565-15.162-21.565l-11.591 6.692a98.046 98.046 0 0 1-3.269-25.161 98.102 98.102 0 0 1 3.126-24.632l11.735 6.775s7.003-7.434 15.162-21.565 11.095-23.913 11.095-23.913l-11.619-6.708c11.84-11.57 26.601-20.161 43.076-24.566v13.113s9.939 2.348 26.257 2.348 26.257-2.348 26.257-2.348V18.796c16.059 4.626 30.424 13.248 41.947 24.724l-10.488 6.055s2.936 9.782 11.095 23.913 15.162 21.565 15.162 21.565l10.161-5.866a98.136 98.136 0 0 1 2.9 23.723 98.074 98.074 0 0 1-3.031 24.259l-10.031-5.79z" }),
+        _react2.default.createElement("path", { d: "M113.4 36.981c-41.935 0-75.93 33.995-75.93 75.93 0 41.935 33.995 75.93 75.93 75.93 41.935 0 75.93-33.995 75.93-75.93 0-41.935-33.995-75.93-75.93-75.93zm-16.961 89.927c-1.277 9.242-9.543 12.173-14.953 12.173H66.683v-49.97h14.981c9.796 0 13.122 6.011 12.972 13.676-.188 6.049-4.734 9.318-6.613 9.543 4.809 1.353 9.693 5.336 8.416 14.578zm25.06 12.173l-7.735-18.119c-.214.005-3.621.01-4.701.01v18.109h-9.017v-49.97h15.58c6.913 0 13.926 3.907 13.926 15.58 0 7.332-2.709 11.875-7.094 14.241l8.998 20.149h-9.957zm36.607 0l-9.929-20.575-4.392 7.355v13.22h-8.877v-49.97h8.877v20.152l11.976-20.152h9.966l-11.934 19.987 14.111 29.983h-9.798z" })
+      );
+    };
+    BrkAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BrkAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BrkAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BRK.js
+var require_BRK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BRK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Brk = function Brk2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M224.041 85.93l-11.765 6.793s-8.109-8.608-17.556-24.971c-9.447-16.363-12.848-27.69-12.848-27.69l12.145-7.012C180.674 19.762 164.04 9.777 145.445 4.421V19.03s-11.509 2.719-30.404 2.719-30.404-2.719-30.404-2.719V3.847c-19.077 5.1-36.17 15.049-49.882 28.447l13.455 7.768s-3.4 11.327-12.848 27.69-17.556 24.971-17.556 24.971L4.218 84.878A113.592 113.592 0 0 0 .599 113.4c0 10.073 1.32 19.837 3.785 29.135l13.422-7.749s8.109 8.608 17.556 24.971c9.447 16.363 12.848 27.69 12.848 27.69l-12.999 7.505c13.634 13.174 30.56 22.958 49.426 28.002v-14.476s11.509-2.719 30.404-2.719 30.404 2.719 30.404 2.719v13.901c18.386-5.296 34.85-15.119 48.116-28.184l-11.689-6.749s3.4-11.326 12.848-27.69c9.447-16.363 17.556-24.971 17.556-24.971l11.614 6.705a113.63 113.63 0 0 0 3.509-28.091 113.62 113.62 0 0 0-3.358-27.469zM113.999 201.322c-48.558 0-87.922-39.364-87.922-87.922s39.364-87.922 87.922-87.922 87.922 39.364 87.922 87.922-39.364 87.922-87.922 87.922z" }),
+        _react2.default.createElement("path", { d: "M84.613 112.729c2.175-.261 7.439-4.046 7.657-11.05.174-8.875-3.677-15.836-15.02-15.836H59.903v57.862h17.141c6.265 0 15.836-3.393 17.315-14.096 1.479-10.702-4.177-15.314-9.746-16.88zM70.141 95.994h5.453c4.234 0 6.526 1.74 6.526 6.7s-3.974 6.381-6.584 6.381h-5.395V95.994zm6.413 37.415H70.14v-15.024h6.482c5.034 0 7.758 1.999 7.758 7.695.001 5.696-4.723 7.329-7.826 7.329zm56.147-29.526c0-13.516-8.121-18.04-16.126-18.04h-18.04v57.862h10.441v-20.97c1.251 0 5.197-.006 5.444-.011l8.956 20.981h11.529l-10.419-23.331c5.079-2.741 8.215-8.002 8.215-16.491zm-19.026 8.585h-4.699V95.994h5.279c3.77 0 8.295 1.392 8.295 8.295 0 6.903-5.337 8.179-8.875 8.179zm60.915-26.625h-11.54l-13.867 23.335V85.843h-10.28v57.862h10.28v-15.308l5.085-8.517 11.497 23.825h11.346l-16.339-34.718z" })
+      );
+    };
+    Brk.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Brk.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Brk;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BRX-alt.js
+var require_BRX_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BRX-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BrxAlt = function BrxAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M80.35 117.349h-5.837v13.527h5.775c2.794 0 7.048-1.47 7.048-6.599 0-5.128-2.453-6.928-6.986-6.928zm33.884-20.16h-4.753v14.833h4.231c3.186 0 7.991-1.149 7.991-7.364-.001-6.216-4.075-7.469-7.469-7.469zm-28.935 6.032c0-4.466-2.063-6.032-5.876-6.032h-4.91v11.778h4.857c2.35 0 5.929-1.28 5.929-5.746z" }),
+        _react2.default.createElement("path", { d: "M113.502 36.901c-41.979 0-76.009 34.03-76.009 76.009s34.03 76.009 76.009 76.009 76.009-34.03 76.009-76.009c0-41.978-34.03-76.009-76.009-76.009zm-17.183 90.555c-1.332 9.636-9.95 12.692-15.59 12.692H65.295V88.049h15.62c10.214 0 13.681 6.267 13.524 14.259-.196 6.307-4.936 9.715-6.894 9.95 5.013 1.409 10.106 5.561 8.774 15.198zm26.128 12.691l-8.064-18.891c-.223.005-3.775.01-4.902.01v18.881h-9.401V88.049h16.243c7.208 0 14.52 4.074 14.52 16.243 0 7.644-2.824 12.381-7.396 14.848l9.381 21.007h-10.381zm46.105 0H158.21l-7.364-18.881-6.737 18.881h-9.95l11.36-26.794-10.733-25.305h10.42l6.581 18.411 5.954-18.411h10.106l-10.655 26.049 11.36 26.05z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm85.063 131.398s-7.01 7.441-15.177 21.588c-8.167 14.146-11.107 23.938-11.107 23.938l10.105 5.834c-11.468 11.294-25.702 19.787-41.596 24.365v-12.017s-9.95-2.35-26.284-2.35c-16.335 0-26.284 2.35-26.284 2.35v12.514c-16.31-4.36-30.942-12.819-42.729-24.208l11.237-6.488s-2.939-9.792-11.107-23.938c-8.167-14.146-15.177-21.588-15.177-21.588l-11.604 6.699a98.16 98.16 0 0 1-3.272-25.187 98.197 98.197 0 0 1 3.129-24.657l11.747 6.782s7.01-7.441 15.177-21.588c8.167-14.146 11.107-23.938 11.107-23.938l-11.632-6.716C56.85 31.211 71.627 22.61 88.119 18.201v13.127s9.95 2.35 26.284 2.35c16.335 0 26.284-2.35 26.284-2.35v-12.63c16.076 4.63 30.455 13.262 41.99 24.75l-10.499 6.062s2.939 9.792 11.107 23.938c8.167 14.146 15.177 21.588 15.177 21.588l10.171-5.872a98.243 98.243 0 0 1 2.903 23.748 98.18 98.18 0 0 1-3.034 24.284l-10.039-5.798z" })
+      );
+    };
+    BrxAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BrxAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BrxAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BRX.js
+var require_BRX = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BRX.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Brx = function Brx2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M83.374 112.644c2.266-.272 7.748-4.214 7.975-11.509.181-9.244-3.829-16.493-15.644-16.493H57.637v60.264H75.49c6.525 0 16.493-3.534 18.034-14.681 1.54-11.147-4.35-15.95-10.15-17.581zM68.3 95.214h5.679c4.41 0 6.797 1.812 6.797 6.978s-4.138 6.646-6.857 6.646H68.3V95.214zm6.68 38.968H68.3v-15.648h6.752c5.243 0 8.08 2.082 8.08 8.015s-4.92 7.633-8.152 7.633zm58.478-30.751c0-14.077-8.458-18.789-16.795-18.789H97.874v60.264h10.875v-21.84c1.303 0 5.412-.006 5.67-.012l9.328 21.852h12.008l-10.851-24.3c5.287-2.854 8.554-8.333 8.554-17.175zm-19.816 8.941h-4.894V95.214h5.498c3.927 0 8.639 1.45 8.639 8.639 0 7.19-5.558 8.519-9.243 8.519zm50.93-27.73l-6.888 21.296-7.612-21.296h-12.053l12.415 29.271-13.14 30.993h11.509l7.794-21.84 8.518 21.84h11.963l-13.141-30.132 12.325-30.132z" }),
+        _react2.default.createElement("path", { d: "M223.442 85.93l-11.765 6.793s-8.109-8.608-17.556-24.971c-9.447-16.363-12.848-27.69-12.848-27.69l12.145-7.012c-13.343-13.288-29.976-23.273-48.572-28.629V19.03s-11.509 2.719-30.404 2.719-30.404-2.719-30.404-2.719V3.847c-19.077 5.1-36.17 15.049-49.882 28.447l13.455 7.768s-3.4 11.327-12.848 27.69-17.556 24.971-17.556 24.971L3.619 84.878A113.592 113.592 0 0 0 0 113.4c0 10.073 1.32 19.837 3.785 29.135l13.422-7.749s8.109 8.608 17.556 24.971 12.848 27.69 12.848 27.69l-12.999 7.505c13.634 13.174 30.56 22.958 49.426 28.002v-14.476s11.509-2.719 30.404-2.719 30.404 2.719 30.404 2.719v13.901c18.386-5.296 34.85-15.119 48.116-28.184l-11.689-6.749s3.4-11.326 12.848-27.69c9.447-16.363 17.556-24.971 17.556-24.971l11.614 6.705a113.63 113.63 0 0 0 3.509-28.091 113.62 113.62 0 0 0-3.358-27.469zM113.4 201.322c-48.558 0-87.922-39.364-87.922-87.922S64.842 25.478 113.4 25.478s87.922 39.364 87.922 87.922-39.364 87.922-87.922 87.922z" })
+      );
+    };
+    Brx.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Brx.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Brx;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BSD-alt.js
+var require_BSD_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BSD-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BsdAlt = function BsdAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zm22 169.6v-34.7h-93v-17.7h142l-49 52.4zm49-60h-142l48.9-52.4v34.7h93v17.7z" })
+      );
+    };
+    BsdAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BsdAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BsdAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BSD.js
+var require_BSD = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BSD.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bsd = function Bsd2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M78.2 80.9V25.4L0 109.1h226.8V80.9zM0 145.9h148.6v55.5l78.2-83.8H0z" })
+      );
+    };
+    Bsd.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bsd.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bsd;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTA.js
+var require_BTA = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTA.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bta = function Bta2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M39.39 136.08V0H10.499C4.7 0 0 4.698 0 10.496v28.417h28.458v51.446H0v126.009c0 5.794 4.701 10.496 10.499 10.496h91.417C65.363 212.908 39.39 177.535 39.39 136.08zm169.618 64.722l-36.516-36.519c6.11-7.77 9.784-17.548 9.784-28.203 0-25.251-20.471-45.721-45.721-45.721h-34.789V38.913h34.789c41 0 76.043 25.409 90.31 61.326V10.496c0-5.797-4.7-10.496-10.498-10.496H90.835v136.08c0 25.249 20.467 45.72 45.72 45.72 10.654 0 20.431-3.674 28.203-9.784l36.518 36.519a97.31 97.31 0 0 1-30.069 18.33h45.16c5.798 0 10.498-4.702 10.498-10.496V171.94a97.25 97.25 0 0 1-17.857 28.862z" })
+      );
+    };
+    Bta.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bta.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bta;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTC-alt.js
+var require_BTC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BtcAlt = function BtcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M182.981 112.854c-7.3-5.498-17.699-7.697-17.699-7.697s8.8-5.102 12.396-10.199c3.6-5.099 5.399-12.999 5.7-17.098.299-4.101 1-21.296-12.399-31.193-10.364-7.658-22.241-10.698-38.19-11.687V.278h-21.396V34.57H95.096V.278H73.702V34.57H31.61v22.219h12.372c3.373 0 9.372.375 11.921 3.228 2.55 2.848 3 4.349 3 9.895l.001 88.535c0 2.099-.4 4.697-2.201 6.398-1.798 1.701-3.597 2.098-7.898 2.098H36.009l-4.399 25.698h42.092v34.195h21.395v-34.195h16.297v34.195h21.396v-34.759c5.531-.323 10.688-.742 13.696-1.136 6.1-.798 19.896-2.398 32.796-11.397 12.896-9 15.793-23.098 16.094-37.294.304-14.197-5.102-23.897-12.395-29.396zM95.096 58.766s6.798-.599 13.497-.501c6.701.099 12.597.3 21.398 3 8.797 2.701 13.992 9.3 14.196 17.099.199 7.799-3.204 12.996-9.2 16.296-5.998 3.299-14.292 5.099-22.094 5.396-7.797.301-17.797 0-17.797 0v-41.29zm47.89 102.279c-4.899 2.701-14.698 5.1-24.194 5.798-9.499.701-23.696.401-23.696.401v-45.893s13.598-.698 24.197 0c10.597.703 19.495 3.4 23.492 5.403 3.999 1.998 11 6.396 11 16.896 0 10.496-5.903 14.696-10.799 17.395z" })
+      );
+    };
+    BtcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BtcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BtcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTC.js
+var require_BTC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Btc = function Btc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M135.715 122.244c-2.614-1.31-8.437-3.074-15.368-3.533-6.934-.458-15.828 0-15.828 0v30.02s9.287.198 15.503-.26c6.21-.458 12.621-2.027 15.826-3.795 3.203-1.766 7.063-4.513 7.063-11.379 0-6.869-4.579-9.745-7.196-11.053zm-19.555-17.465c5.104-.197 10.532-1.373 14.453-3.532 3.925-2.158 6.148-5.557 6.02-10.66-.134-5.102-3.532-9.418-9.287-11.186-5.757-1.766-9.613-1.897-13.998-1.962-4.382-.064-8.83.328-8.83.328v27.012c.001 0 6.541.197 11.642 0z" }),
+        _react2.default.createElement("path", { d: "M113.413 0C50.777 0 0 50.776 0 113.413c0 62.636 50.777 113.413 113.413 113.413s113.411-50.777 113.411-113.413C226.824 50.776 176.049 0 113.413 0zm46.178 156.777c-8.44 5.887-17.465 6.935-21.455 7.456-1.969.259-5.342.532-8.959.744v22.738h-13.998v-22.37h-10.66v22.37H90.522v-22.37H62.987l2.877-16.812h8.371c2.814 0 3.989-.261 5.166-1.372 1.177-1.113 1.439-2.812 1.439-4.188V85.057c0-3.628-.295-4.61-1.963-6.473-1.668-1.867-5.591-2.112-7.8-2.112h-8.091V61.939h27.535V39.505h13.996v22.434h10.66V39.505h13.998v22.703c10.435.647 18.203 2.635 24.983 7.645 8.766 6.475 8.306 17.724 8.11 20.406-.195 2.682-1.372 7.85-3.729 11.183-2.352 3.337-8.108 6.673-8.108 6.673s6.801 1.438 11.578 5.036c4.771 3.598 8.307 9.941 8.106 19.229-.192 9.288-2.088 18.511-10.524 24.397z" })
+      );
+    };
+    Btc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Btc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Btc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTCD-alt.js
+var require_BTCD_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTCD-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BtcdAlt = function BtcdAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M21.139 32.3S49.405.17 106.178.17c56.772 0 114.753 53.873 114.753 116.445 0 62.57-49.766 110.162-103.64 110.162-53.875 0-110.285-38.896-110.285-101.224 0-62.33 54.841-88.181 86.368-87.454 32.605.75 64.865 27.177 68.61 57.013 3.272 26.077-11.434 45.984-18.037 52.104-6.604 6.118-25.124 14.495-41.552 10.146-16.429-4.349-24.158-17.235-25.608-24.001-1.45-6.764-2.401-22.482 10.759-30.042 13.158-7.563 22.097 1.86 23.946 6.529 1.851 4.67-.808 11.597-5.959 12.805-5.153 1.209-9.743-.649-12.483-2.983 0 0-.401 11.257 10.59 13.19 10.993 1.933 17.818-4.349 21.019-9.301 3.201-4.953 9.18-21.139-5.073-36.178C105.332 72.343 80.51 73.43 66.437 83.82c-14.071 10.387-28.306 29.575-22.347 57.598 5.962 28.025 31.486 54.12 69.457 54.44 37.971.321 80.489-29.952 84.033-80.045 3.542-50.09-30.764-85.521-55.404-95.829-24.643-10.31-45.895-14.527-72.477-9.347S29.113 27.064 21.139 32.3z" })
+      );
+    };
+    BtcdAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BtcdAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BtcdAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTCD.js
+var require_BTCD = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTCD.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Btcd = function Btcd2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.395.011C50.775.011.012 50.774.012 113.394c0 62.619 50.764 113.383 113.383 113.383 62.618 0 113.382-50.764 113.382-113.383C226.777 50.775 176.013.011 113.395.011zm4.576 190.879c-36.836 0-75.408-26.596-75.408-69.213 0-42.621 37.497-60.296 59.055-59.799 22.295.512 44.352 18.583 46.914 38.984 2.238 17.83-7.818 31.442-12.334 35.627-4.514 4.182-17.178 9.91-28.41 6.937-11.235-2.973-16.52-11.784-17.512-16.411-.991-4.624-1.642-15.372 7.357-20.542 8.996-5.17 15.108 1.272 16.374 4.464 1.265 3.194-.552 7.931-4.076 8.757-3.522.826-6.662-.445-8.535-2.041 0 0-.274 7.696 7.242 9.019 7.516 1.321 12.182-2.973 14.371-6.359 2.19-3.387 6.277-14.455-3.47-24.737-9.745-10.283-26.717-9.541-36.341-2.436-9.621 7.104-19.354 20.223-15.28 39.383 4.077 19.164 21.53 37.005 47.492 37.225 25.962.22 55.036-20.479 57.461-54.731 2.42-34.25-21.036-58.477-37.885-65.525-16.85-7.049-31.38-9.934-49.557-6.391-18.176 3.542-27.752 11.231-33.205 14.813 0 0 19.329-21.969 58.147-21.969 38.819 0 78.464 36.835 78.464 79.62.002 42.782-34.025 75.325-70.864 75.325z" })
+      );
+    };
+    Btcd.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Btcd.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Btcd;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTM-alt.js
+var require_BTM_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTM-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BtmAlt = function BtmAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement(
+          "g",
+          { fill: "currentColor", fillRule: "evenodd" },
+          _react2.default.createElement("circle", { fill: "currentColor", cx: "125", cy: "125", r: "125" }),
+          _react2.default.createElement("path", {
+            d: "M99.304 92.522l14.609 14.608-40.696 40.957 6 22.696 15.392 4.174 19.304 19.304-5.74 5.739-45.912-12.26L50 141.825l9.13-9.13 40.174-40.174zm88.435 95.217L141.826 200l-49.304-49.304 14.608-14.609 40.957 40.696 22.696-6 4.174-15.392 19.304-19.304 5.739 5.74-12.26 45.912zM170.783 79.217l-15.392-4.174-19.304-19.304 5.74-5.739 45.912 12.26L200 108.175l-49.304 49.304-14.609-14.608 40.696-40.957-6-22.696zM75.043 94.61L55.74 113.913l-5.74-5.74 12.26-45.912L108.175 50l9.13 9.13 40.174 40.174-14.608 14.609-40.957-40.696-22.696 6-4.174 15.392z",
+            fill: "currentColor",
+            fillRule: "nonzero"
+          })
+        )
+      );
+    };
+    BtmAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BtmAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BtmAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTM.js
+var require_BTM = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTM.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Btm = function Btm2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M86.957 76.783l21.913 21.913-61.044 61.434 9 34.044 23.087 6.26 28.957 28.957-8.61 8.609-68.869-18.391L13 150.739l13.696-13.696 60.26-60.26zm132.652 142.826L150.739 238l-73.956-73.957 21.913-21.913 61.434 61.044 34.044-9 6.26-23.087 28.957-28.957 8.609 8.61-18.391 68.869zM194.174 56.826l-23.087-6.26-28.957-28.957L150.74 13l68.869 18.391L238 100.261l-73.957 73.956-21.913-21.913 61.044-61.434-9-34.044zM50.565 79.913L21.61 108.87 13 100.26l18.391-68.869L100.261 13l13.696 13.696 60.26 60.26-21.913 21.914L90.87 47.826l-34.044 9-6.26 23.087z" })
+      );
+    };
+    Btm.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Btm.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Btm;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTS-alt.js
+var require_BTS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var BtsAlt = function BtsAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M92.506 142.156L43.653 93.302v58.718h45.025c.462-3.481 1.855-6.846 3.828-9.864zm-3.828 19.495H43.653c1.043 15.898 7.427 30.172 17.058 41.429l31.794-32.146c-1.972-2.666-3.365-5.917-3.827-9.283zm71.017-57.906c-11.259-9.864-25.529-16.247-41.428-17.059v45.025c3.596.581 6.846 1.973 9.633 3.83l31.795-31.796zm-24.367 66.726l31.795 31.795c9.633-11.256 15.665-25.296 16.71-40.848h-45.257c-.582 3.25-1.625 6.267-3.248 9.053zm3.248-18.451h45.023c-1.043-15.897-7.428-30.172-17.055-41.427l-31.799 31.912c1.975 2.669 3.249 6.034 3.831 9.515zm-71.017 57.674c11.254 9.863 25.53 16.246 41.427 17.058v-45.025c-3.599-.58-6.849-1.973-9.631-3.828l-31.796 31.795zm50.708-27.967v45.025c15.898-1.044 30.17-7.427 41.428-17.291l-31.563-31.563c-3.019 1.857-6.269 3.249-9.865 3.829zM43.653 78.798c12.068 12.067 49.897 50.246 56.279 56.515 2.785-1.628 5.804-3.02 8.821-3.601V58.14L43.769.003c-.116 0-.116 76.589-.116 78.795z" })
+      );
+    };
+    BtsAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    BtsAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = BtsAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/BTS.js
+var require_BTS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/BTS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Bts = function Bts2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.435.193C50.866.193.094 50.867.094 113.435c0 62.567 50.772 113.342 113.342 113.342 62.568 0 113.342-50.774 113.342-113.342C226.777 50.867 176.004.193 113.435.193zm47.328 134.785h-27.854c-.346-2.179-1.147-4.243-2.406-5.963l19.716-19.716c5.843 6.993 9.856 15.818 10.544 25.679zm-40.579-40.464c9.858.457 18.686 4.47 25.676 10.545l-19.716 19.717c-1.718-1.145-3.782-2.065-5.96-2.408V94.514zM73.99 40.753l40.349 36.107v45.622c-1.834.345-3.784 1.149-5.388 2.179-3.898-3.897-27.396-27.512-34.847-35.078-.114-1.376-.114-48.83-.114-48.83zm0 57.886l30.261 30.261c-1.145 1.835-2.063 3.899-2.408 6.078H73.99V98.639zm0 42.297h27.853c.344 2.065 1.147 4.127 2.408 5.733l-19.717 19.945c-5.959-6.877-9.856-15.818-10.544-25.678zm40.461 40.35c-9.856-.459-18.682-4.469-25.674-10.545l19.717-19.715c1.717 1.146 3.781 2.062 5.957 2.406v27.854zm5.733 0v-27.854a14.748 14.748 0 0 0 6.076-2.406l19.6 19.6c-6.877 6.075-15.817 9.973-25.676 10.66zm30.377-15.131L130.73 146.44a15.823 15.823 0 0 0 2.064-5.617h28.082c-.686 9.63-4.469 18.341-10.315 25.332z" })
+      );
+    };
+    Bts.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Bts.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Bts;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/CLAM-alt.js
+var require_CLAM_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/CLAM-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ClamAlt = function ClamAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.389 0C50.767 0 .001 50.766.001 113.389S50.767 226.777 113.39 226.777s113.388-50.766 113.388-113.388S176.012 0 113.389 0zm68.035 86.053c2.42 3.35 3.214 7.877 3.475 10.725l-.951 2.243c-1.825 4.304-12.979 24.156-24.205 38.297-9.725 12.251-24.339 26.782-27.841 30.226a25.008 25.008 0 0 0-3.813-2.854c3.292-4.322 16.049-21.396 24.119-36.903 9.192-17.667 18.487-42.46 20.016-48.37 2.022.746 6.368 2.716 9.2 6.636zm-31.225-25.664c2.04-.042 6.537.328 11.672 3.679 4.974 3.247 7.536 9.422 8.607 12.738l-.498 1.954c-1.215 4.779-10.189 29.393-19.844 47.948-8.186 15.731-21.271 33.123-24.121 36.849a25.135 25.135 0 0 0-3.319-1.321c2.651-5.449 13.265-27.697 18.215-44.583 5.829-19.879 9.193-46.423 9.288-57.17v-.094zm-22.664-11.913c1.389-.595 4.136-1.159 8.852.127 5.403 1.475 9.58 6.985 11.494 9.949l-.017 1.909c-.094 10.615-3.422 36.856-9.193 56.536-5.04 17.19-16.043 40.062-18.272 44.625a27.786 27.786 0 0 0-3.335-.529c.928-5.803 4.987-31.632 7.546-55.168 2.715-24.97 2.926-49.74 2.926-56.737v-.712zm-15.856-6.196c6.232 0 11.326 3.83 13.52 5.786v1.121c0 6.967-.209 31.633-2.91 56.484-2.591 23.825-6.725 50.023-7.569 55.295-.204-.002-.401-.016-.608-.016-1.175 0-2.292.065-3.362.179-.826-4.886-5.275-31.63-8.026-56.771-2.992-27.354-4.208-50.508-4.371-55.21-.013-.377-.021-.729-.031-1.083 2.141-1.956 7.127-5.785 13.357-5.785zm-28.135 7.854c5.856-2.716 10.417-1.97 12.462-1.372.005.159.007.302.013.466.163 4.72 1.384 27.958 4.383 55.383 2.745 25.092 7.177 51.776 8.036 56.847a27.185 27.185 0 0 0-3.455.877c-2.172-4.681-11.848-25.944-18.354-47.248-7.254-23.755-11.41-45.81-12.287-52.77-.103-.804-.192-1.523-.276-2.171 1.274-2.82 4.089-7.514 9.478-10.012zM61.22 65.601a16.758 16.758 0 0 1 10.772-3.258l.034.267c.884 7.023 5.073 29.259 12.372 53.159 6.469 21.185 16.05 42.328 18.395 47.392-.826.355-1.607.737-2.334 1.147-2.852-3.353-14.684-17.8-25.58-39.005-11.918-23.193-16.44-39.226-18.372-46.072l-.292-1.037a81.24 81.24 0 0 1-.716-2.658c.601-2.903 2.085-7.254 5.721-9.935zM41.815 86.683c2.664-4.923 9.451-7.172 12.142-7.893l.012.043.292 1.03c1.95 6.913 6.517 23.105 18.541 46.507 10.733 20.888 22.396 35.321 25.662 39.191a24.03 24.03 0 0 0-2.492 1.989c-3.375-2.91-16.827-14.846-30.563-31.705-11.584-14.217-19.585-26.815-23.782-37.453a110.765 110.765 0 0 1-1.615-4.342c.022-2.229.44-4.85 1.803-7.367zm30.372 69.501c-23.539-20.425-36.428-34.629-36.938-43.603-.39-6.847 3.039-10.712 4.687-12.164 4.395 10.606 12.342 23.009 23.662 36.904 13.673 16.779 27.088 28.745 30.725 31.89a23.054 23.054 0 0 0-2.344 3.08c-5.62-4.209-12.22-9.535-19.792-16.107zm42.021 28.89c-2.746 0-9.584-3.492-20.349-11.385 1.718-2.817 7.526-10.404 20.252-10.404 12.638 0 18.461 7.78 20.222 10.742-9.578 6.819-17.371 11.047-20.125 11.047zm77.331-73.73c-.486 8.654-15.126 25.823-33.51 43.185a229.416 229.416 0 0 1-21.818 18.145 24.362 24.362 0 0 0-2.659-3.481c3.564-3.505 18.231-18.095 28.018-30.423 11.25-14.174 22.456-34.077 24.468-38.702 1.92 1.268 5.87 4.696 5.501 11.276z" })
+      );
+    };
+    ClamAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ClamAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ClamAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/CLAM.js
+var require_CLAM = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/CLAM.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Clam = function Clam2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M133.922 19.865c0 10.147-.307 46.07-4.24 82.281-3.711 34.133-9.599 71.589-10.945 80.004 1.701.163 3.308.428 4.836.767 3.234-6.615 19.191-39.787 26.499-64.716 8.37-28.537 13.197-66.593 13.333-81.986.011-1.008.019-1.923.024-2.77-2.776-4.295-8.832-12.289-16.669-14.427-6.839-1.864-10.823-1.046-12.838-.183v1.03z" }),
+        _react2.default.createElement("path", { d: "M166.79 36.244c-.138 15.586-5.017 54.081-13.47 82.91-7.178 24.486-22.568 56.75-26.414 64.653a36.741 36.741 0 0 1 4.812 1.918c4.136-5.404 23.111-30.628 34.982-53.44 14-26.908 27.015-62.603 28.778-69.532l.722-2.835c-1.555-4.809-5.271-13.763-12.483-18.47-7.445-4.862-13.968-5.398-16.926-5.337l-.001.133z" }),
+        _react2.default.createElement("path", { d: "M169.703 133.848c-11.705 22.492-30.203 47.251-34.979 53.52a35.94 35.94 0 0 1 5.529 4.138c5.081-4.992 26.272-26.068 40.376-43.835 16.28-20.506 32.458-49.297 35.104-55.537l1.378-3.253c-.377-4.129-1.53-10.695-5.038-15.553-4.107-5.685-10.408-8.54-13.344-9.623-2.218 8.57-15.694 44.522-29.026 70.143zM56.783 38.907c1.271 10.091 7.299 42.077 17.819 76.526 9.435 30.894 23.465 61.73 26.617 68.519a39.133 39.133 0 0 1 5.009-1.271c-1.242-7.356-7.671-46.052-11.653-82.44-4.35-39.772-6.12-73.471-6.356-80.318-.007-.236-.011-.444-.019-.674-2.965-.87-9.58-1.948-18.073 1.99-7.815 3.624-11.897 10.43-13.744 14.52.121.937.252 1.981.4 3.148zm34.819-19.1c.235 6.82 2 40.397 6.339 80.067 3.987 36.459 10.44 75.246 11.638 82.328a46.84 46.84 0 0 1 4.876-.256c.3 0 .586.016.883.02 1.225-7.643 7.22-45.636 10.975-80.187 3.919-36.041 4.225-71.811 4.225-81.915v-1.625c-3.186-2.836-10.571-8.39-19.608-8.39-9.036 0-16.267 5.553-19.371 8.388.013.513.025 1.022.043 1.57zm22.854 165.523c-18.456 0-26.878 11.003-29.369 15.087 15.609 11.447 25.527 16.511 29.51 16.511 3.993 0 15.294-6.13 29.185-16.018-2.555-4.297-10.999-15.58-29.326-15.58z" }),
+        _react2.default.createElement("path", { d: "M218.762 93.653c-2.917 6.707-19.169 35.572-35.483 56.125-14.191 17.881-35.463 39.04-40.631 44.122a35.47 35.47 0 0 1 3.856 5.045 331.75 331.75 0 0 0 31.641-26.31c26.66-25.179 47.893-50.076 48.597-62.63.535-9.543-5.193-14.514-7.98-16.352zM9.338 91.225c6.086 15.424 17.689 33.698 34.489 54.313C63.748 169.99 83.256 187.3 88.151 191.52a35.335 35.335 0 0 1 3.613-2.889c-4.735-5.61-21.649-26.542-37.214-56.835-17.436-33.937-24.061-57.417-26.89-67.443l-.423-1.494-.018-.063C23.317 63.84 13.474 67.104 9.61 74.243c-1.976 3.65-2.582 7.45-2.616 10.683a161.37 161.37 0 0 0 2.344 6.299z" }),
+        _react2.default.createElement("path", { d: "M85.758 193.926c-5.274-4.56-24.729-21.912-44.557-46.248C24.785 127.531 13.26 109.542 6.885 94.16c-2.391 2.104-7.362 7.71-6.796 17.641.74 13.014 19.432 33.611 53.568 63.233 10.981 9.529 20.551 17.254 28.701 23.358a33.431 33.431 0 0 1 3.4-4.466zM30.494 61.93l.424 1.504c2.802 9.928 9.36 33.179 26.643 66.815 15.801 30.754 32.96 51.701 37.095 56.563a35.789 35.789 0 0 1 3.386-1.664c-3.401-7.34-17.296-38.003-26.678-68.727-10.584-34.658-16.658-66.905-17.94-77.09l-.048-.387c-2.988-.162-9.413.144-15.623 4.724-5.273 3.89-7.425 10.2-8.298 14.407.265 1.06.601 2.322 1.039 3.855z" })
+      );
+    };
+    Clam.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Clam.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Clam;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/CLOAK-alt.js
+var require_CLOAK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/CLOAK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var CloakAlt = function CloakAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.353 41.198c-39.73 0-72.054 32.323-72.054 72.055 0 39.729 32.324 72.052 72.054 72.052 39.73 0 72.054-32.323 72.054-72.052 0-39.732-32.323-72.055-72.054-72.055zm25.333 100.821c-3.858-2.011-8.09-3.573-12.594-4.604 8.664-4.588 14.585-13.695 14.585-24.162 0-15.068-12.257-27.326-27.324-27.326-15.066 0-27.325 12.258-27.325 27.326 0 10.467 5.92 19.574 14.585 24.162-4.504 1.03-8.735 2.594-12.594 4.604-7.978-7.033-13.025-17.319-13.025-28.767 0-21.153 17.208-38.36 38.359-38.36 21.15 0 38.358 17.207 38.358 38.36.001 11.448-5.047 21.734-13.025 28.767zm17.818 16.786c-2.019-3.629-4.684-6.962-7.888-9.892 9.206-9.103 14.92-21.725 14.92-35.661 0-27.671-22.513-50.183-50.183-50.183s-50.182 22.512-50.182 50.183c0 13.937 5.713 26.559 14.917 35.661-3.203 2.93-5.868 6.263-7.887 9.892-12.083-11.451-19.643-27.633-19.643-45.553 0-34.625 28.169-62.793 62.793-62.793s62.793 28.167 62.793 62.793c.002 17.921-7.556 34.102-19.64 45.553z" }),
+        _react2.default.createElement("path", { d: "M113.354 0C50.75 0 0 50.75 0 113.354s50.75 113.354 113.354 113.354 113.354-50.751 113.354-113.354C226.709 50.75 175.958 0 113.354 0zm-.001 198.705c-47.119 0-85.453-38.335-85.453-85.452 0-47.12 38.334-85.454 85.453-85.454s85.453 38.334 85.453 85.454c0 47.117-38.334 85.452-85.453 85.452z" })
+      );
+    };
+    CloakAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    CloakAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = CloakAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/CLOAK.js
+var require_CLOAK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/CLOAK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Cloak = function Cloak2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.403 0C50.872 0 0 50.872 0 113.403c0 62.53 50.872 113.402 113.403 113.402 62.53 0 113.402-50.872 113.402-113.402C226.804 50.872 175.932 0 113.403 0zm0 209.023c-52.725 0-95.621-42.896-95.621-95.62 0-52.726 42.896-95.622 95.621-95.622 52.726 0 95.621 42.896 95.621 95.622-.001 52.725-42.895 95.62-95.621 95.62z" }),
+        _react2.default.createElement("path", { d: "M113.403 62.497c-28.069 0-50.905 22.836-50.905 50.906 0 15.191 6.698 28.843 17.287 38.177 5.119-2.67 10.736-4.743 16.712-6.111-11.5-6.09-19.356-18.174-19.356-32.065 0-19.995 16.268-36.262 36.262-36.262 19.995 0 36.261 16.267 36.261 36.262 0 13.892-7.854 25.976-19.355 32.065 5.977 1.369 11.594 3.441 16.712 6.111 10.588-9.334 17.288-22.985 17.288-38.177-.001-28.07-22.837-50.906-50.906-50.906z" }),
+        _react2.default.createElement("path", { d: "M113.403 30.073c-45.949 0-83.331 37.38-83.331 83.33 0 23.784 10.032 45.256 26.067 60.452 2.678-4.816 6.215-9.239 10.466-13.126-12.214-12.08-19.798-28.832-19.798-47.326 0-36.721 29.875-66.596 66.596-66.596s66.594 29.875 66.594 66.596c0 18.494-7.584 35.246-19.799 47.326 4.253 3.887 7.79 8.31 10.469 13.126 16.034-15.196 26.065-36.668 26.065-60.452 0-45.95-37.382-83.33-83.329-83.33z" })
+      );
+    };
+    Cloak.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Cloak.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Cloak;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DAO-alt.js
+var require_DAO_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DAO-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var DaoAlt = function DaoAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M79.5 157.1h36.3c19.5 0 37.6-10.1 37.6-43.7 0-33.5-22.2-44.4-37-44.4h-37v40.6h-8.5v7.4h8.5v40.1zM90.9 117h22.5v-7.4H90.9V80h25.3c10.1 0 25.3 8.1 25.3 33.3 0 25.2-12.4 32.8-25.7 32.8H90.9V117z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zM170 170H56.8V56.8H170V170z" })
+      );
+    };
+    DaoAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    DaoAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = DaoAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DAO.js
+var require_DAO = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DAO.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dao = function Dao2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M119 46.5H68.3v59.3h45.1v14.9H68.3v58.1h49.8c26.7 0 51.5-15.2 51.5-65.6.1-50.4-30.4-66.7-50.6-66.7z" }),
+        _react2.default.createElement("path", { d: "M0 0v226.8h226.8V0H0zm118.3 200.9H45.5v-80.2H28.6v-14.9h16.9V24.5h74c29.6 0 74 21.7 74 88.9s-36.1 87.5-75.2 87.5z" })
+      );
+    };
+    Dao.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dao.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dao;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DASH-alt.js
+var require_DASH_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DASH-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var DashAlt = function DashAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M92.683 97.738H10.195L.65 128.765h82.488z" }),
+        _react2.default.createElement("path", { d: "M223.896 57.882c-4.539-8.829-13.874-12.097-20.937-12.097H48.831l-10.426 33.79h138.119l-20.803 67.626H16.501l-10.427 33.79h148.032c14.464 0 18.33-2.531 28.673-8.586s18.414-16.649 22.789-29.262c4.376-12.613 15.05-48.181 18.328-60.037 3.281-11.855 4.541-16.395 0-25.224z" })
+      );
+    };
+    DashAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    DashAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = DashAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DASH.js
+var require_DASH = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DASH.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dash = function Dash2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389s113.389-50.766 113.389-113.389C226.777 50.766 176.011 0 113.388 0zM56.562 104.802h45.266l-5.238 17.024H51.326l5.236-17.024zm117.268-8.029c-1.801 6.506-7.656 26.023-10.059 32.945-2.4 6.922-6.829 12.734-12.506 16.057-5.676 3.323-7.797 4.712-15.731 4.712H54.303l5.721-18.542h76.395l11.414-37.109h-75.79l5.722-18.541h84.577c3.875 0 8.996 1.792 11.488 6.639 2.491 4.841 1.799 7.333 0 13.839z" })
+      );
+    };
+    Dash.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dash.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dash;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DCR-alt.js
+var require_DCR_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DCR-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var DcrAlt = function DcrAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 595.279 595.281",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M297.648 0C133.262 0 0 133.262 0 297.646c0 164.389 133.262 297.651 297.648 297.651 164.386 0 297.649-133.262 297.649-297.651C595.297 133.262 462.034 0 297.648 0zm-60.674 422.967c-56.094 0-101.569-45.47-101.569-101.565 0-42.553 26.179-79.003 63.303-94.11l-63.294-54.947h72.426l109.405 94.975h-80.271c-29.815 0-54.087 24.257-54.087 54.083 0 29.816 24.268 54.084 54.087 54.084h25.572l54.698 47.481h-80.27zm222.904 0H387.45l-109.404-94.958h80.277c29.822 0 54.081-24.272 54.081-54.096 0-29.825-24.259-54.087-54.081-54.087h-25.572l-54.705-47.481h80.277c56.09 0 101.56 45.482 101.56 101.569 0 42.555-26.175 78.997-63.3 94.104l63.295 54.949z" })
+      );
+    };
+    DcrAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    DcrAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = DcrAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DCR.js
+var require_DCR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DCR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dcr = function Dcr2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 595.279 595.281",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M595.282 254.087c0-102.905-83.421-186.343-186.32-186.343H261.687l100.354 87.109h46.92c54.708 0 99.217 44.515 99.217 99.234 0 54.711-44.509 99.238-99.217 99.238H261.687l200.708 174.212H595.27L479.152 426.73c68.109-27.721 116.13-94.582 116.13-172.643z" }),
+        _react2.default.createElement("path", { d: "M186.334 440.428c-54.705 0-99.227-44.521-99.227-99.228 0-54.718 44.528-99.222 99.227-99.222h147.262L132.888 67.744H.012l116.12 100.807C48.023 196.27 0 263.139 0 341.201c0 102.916 83.425 186.337 186.334 186.337h147.267l-100.353-87.109h-46.914z" })
+      );
+    };
+    Dcr.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dcr.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dcr;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DCT-alt.js
+var require_DCT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DCT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var DctAlt = function DctAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227 227 176.184 227 113.5 176.184 0 113.5 0zM78.523 148H66.4v-13.468h12.124c11.107 0 17.277-3.14 24.109-14.592l.134.287c2.219 4.729 4.553 9.043 7.105 12.888C102.785 142.165 93.491 148 78.523 148zM180 148h-32.457c-19.027 0-29.745-9.746-39.359-30.257-9.514-20.294-15.67-25.275-29.659-25.275H60.431V148H47V79h31.525c23.503 0 33.016 14.39 41.97 33.024s14.923 22.877 27.048 22.877H180V148zm0-55.902h-32.457c-10.155 0-15.992 2.977-22.88 14.89-2.274-4.568-4.729-9.02-7.5-13.095C124.843 83.845 134.127 79 147.543 79H180v13.098z" })
+      );
+    };
+    DctAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    DctAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = DctAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DCT.js
+var require_DCT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DCT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dct = function Dct2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M0 54v119h22.924V77.227h30.88c23.879 0 34.385 8.592 50.622 43.592C120.836 156.191 139.13 173 171.604 173H227v-22.59h-55.396c-20.693 0-30.883-7.32-46.164-39.455C110.157 78.818 93.92 54 53.805 54H0zm171.604 0c-22.896 0-38.744 8.355-51.852 25.684 4.73 7.028 8.92 14.707 12.8 22.586 11.759-20.545 21.72-25.68 39.052-25.68H227V54h-55.396zm-76.65 70.607c-11.66 19.75-22.191 25.166-41.15 25.166H33.111V173h20.694c25.544 0 41.408-10.063 53.506-25.672-4.358-6.63-8.342-14.07-12.127-22.227l-.23-.494z" })
+      );
+    };
+    Dct.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dct.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dct;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DGB-alt.js
+var require_DGB_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DGB-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var DgbAlt = function DgbAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.327 0C50.739 0 0 50.739 0 113.327c0 62.589 50.739 113.328 113.328 113.328 62.589 0 113.328-50.738 113.328-113.328C226.655 50.739 175.917 0 113.327 0zm61.024 106.188c-1.103 14.649-18.525 45.776-52.768 52.048l-3.298 30.622-10.829-1.168 3.029-28.13c-3.081.245-6.059.413-8.939.519l-2.809 26.068-10.83-1.169 2.676-24.805c-22.099-.436-35.663-4.494-35.663-4.494L89.7 89.946l25.797 4.776-27.327 54.079c28.607 1.895 44.334-12.037 53.122-26.943 8.787-14.909.387-30.192-11.463-32.676-11.849-2.483-71.276-11.847-71.276-11.847l14.712-16.626s16.524 2.917 34.963 6.268l2.832-26.282 10.83 1.167-2.919 27.082c2.944.542 5.866 1.083 8.709 1.613l2.927-27.15 10.83 1.167-3.021 28.042c24.28 4.973 37.064 18.52 35.935 33.572z" })
+      );
+    };
+    DgbAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    DgbAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = DgbAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DGB.js
+var require_DGB = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DGB.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dgb = function Dgb2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M149.813 48.964l4.634-43.015-16.612-1.79-4.491 41.648c-4.358-.814-8.843-1.643-13.359-2.474l4.478-41.545L107.848 0l-4.345 40.318a11875.008 11875.008 0 0 0-53.631-9.615L27.303 56.206s91.163 14.365 109.338 18.175c18.177 3.81 31.064 27.254 17.586 50.124-13.48 22.867-37.604 44.24-81.49 41.335l41.919-82.959-39.572-7.327-53.352 100.835s20.807 6.227 54.705 6.894l-4.102 38.052 16.614 1.792 4.307-39.988c4.418-.162 8.986-.419 13.713-.796l-4.648 43.151 16.613 1.793 5.061-46.976c52.526-9.621 79.256-57.37 80.946-79.843 1.732-23.088-17.881-43.87-55.128-51.504z" })
+      );
+    };
+    Dgb.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dgb.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dgb;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DGD.js
+var require_DGD = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DGD.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dgd = function Dgd2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M65.206 83.361h31.279v10.182H65.206zm77.997 46.551H70.3v37.099h72.806c10.1 0 18.96-8.457 18.96-18.665-.001-9.863-8.287-18.434-18.863-18.434z" }),
+        _react2.default.createElement("path", { d: "M113.33 0C50.739 0 0 50.741 0 113.331c0 62.592 50.739 113.331 113.33 113.331 62.59 0 113.33-50.739 113.33-113.331C226.66 50.741 175.92 0 113.33 0zm3.522 50.627h54.555v10.912H128.49v32.004h31.278V83.361h-21.822V72.449h33.461v32.006h-54.555V50.627zm-62.037.592h34.169v13.114H54.815V51.219zm-1.245 21.23h42.917V50.627h12.365v53.828H53.57V72.449zm91.293 108.381H55.025v-64.736h89.838c17.437 0 31.622 14.618 31.622 32.368S162.3 180.83 144.863 180.83z" })
+      );
+    };
+    Dgd.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dgd.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dgd;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DGX.js
+var require_DGX = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DGX.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dgx = function Dgx2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M65.241 83.402h31.294v10.19H65.241z" }),
+        _react2.default.createElement("path", { d: "M113.388 0C50.766 0 0 50.766 0 113.388c0 62.624 50.766 113.389 113.388 113.389 62.624 0 113.389-50.765 113.389-113.389C226.777 50.766 176.011 0 113.388 0zm3.526 50.653h54.58V61.57h-42.938v32.021h31.295v-10.19h-21.834V72.487h33.477v32.021h-54.58V50.653zm-62.07.59H89.03v13.122H54.844V51.243zm-1.246 21.244h42.938V50.653h12.372v53.854h-55.31v-32.02zm119.41 108.301h-24.754l-34.785-23.887-34.784 23.887H53.93l47.162-32.387-47.162-32.385h24.754l34.784 23.885 34.785-23.885h24.754l-47.162 32.385 47.163 32.387z" })
+      );
+    };
+    Dgx.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dgx.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dgx;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DMD-alt.js
+var require_DMD_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DMD-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var DmdAlt = function DmdAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M43.633 85.44L1.734 93.536A113.903 113.903 0 0 0 0 113.386c0 7.086.656 14.021 1.899 20.749l41.735 7.29-.001-55.985zm69.752 18.589l26.207-51.967H87.177zM52.06 87.178v52.416l51.969-26.208zm119.764-7.982l-24.25-24.251-24.67 48.922zM72.835 49.389L33.749 33.76l15.57 39.143zm120.176-15.64l-39.143 15.573 23.515 23.515zm-18.302 105.845V87.178l-51.966 26.208zm18.313 53.417l-15.573-39.143-23.516 23.516zM149.588 41.955l37.348-14.858c-12.777-10.901-28.002-19.015-44.738-23.399l7.39 38.257zm77.183 71.431c0-7.087-.656-14.021-1.899-20.749l-41.734-7.29v55.983l41.899-8.096a113.88 113.88 0 0 0 1.734-19.848zm-42.008-36.307l38.081 6.651c-4.436-16.413-12.46-31.347-23.184-43.912l-14.897 37.261zM72.901 177.45l-23.515-23.514-15.627 39.086zm111.915-27.862l14.858 37.348c10.901-12.775 19.014-28.001 23.399-44.737l-38.257 7.389zm2.137 50.073l-37.26-14.897-6.652 38.082c16.411-4.436 31.347-12.46 43.912-23.185zm-15.128-52.086l-48.921-24.671 24.67 48.92zM85.347 43.635h55.984l-8.096-41.901A113.991 113.991 0 0 0 113.385 0c-7.089 0-14.022.656-20.749 1.902l-7.289 41.733zm56.076 139.503H85.44l8.096 41.898a113.894 113.894 0 0 0 19.85 1.734c7.087 0 14.02-.656 20.749-1.899l7.288-41.733zm-28.038-60.395l-26.207 51.966h52.414zm-73.566-95.63l37.258 14.896L83.73 3.927c-16.413 4.437-31.347 12.46-43.911 23.186zm15.128 52.085l48.919 24.669-24.669-48.918zm-12.992-2.014L27.096 39.836C16.196 52.612 8.082 67.838 3.697 84.573l38.258-7.389zm12.991 70.393l24.249 24.25 24.671-48.923zm22.235 37.239l-37.346 14.858c12.775 10.901 28.002 19.014 44.738 23.399l-7.392-38.257zm-35.173-35.124l-38.081-6.651c4.435 16.411 12.46 31.348 23.184 43.912l14.897-37.261z" })
+      );
+    };
+    DmdAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    DmdAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = DmdAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DMD.js
+var require_DMD = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DMD.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Dmd = function Dmd2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.369 0C50.757 0 0 50.757 0 113.369s50.757 113.369 113.369 113.369c62.611 0 113.369-50.757 113.369-113.369S175.98 0 113.369 0zm66.871 95.253l-23.266-4.063 9.102-22.763a69.08 69.08 0 0 1 14.164 26.826zm-27.773-6.654l-14.365-14.366 23.913-9.513-9.548 23.879zm-39.097 19.055L97.359 75.907h32.021l-16.01 31.747zm20.887-29.986l14.814 14.815-29.886 15.072 15.072-29.887zm-26.702 29.887L77.669 92.484 92.484 77.67l15.071 29.885zm.099 5.815l-31.748 16.011V97.359l31.748 16.011zm-.099 5.815l-15.073 29.887-14.813-14.814 29.886-15.073zm5.815-.098l16.01 31.746H97.359l16.011-31.746zm5.815.098l29.886 15.071-14.814 14.813-15.072-29.884zm-.098-5.815l31.746-16.011v32.021l-31.746-16.01zm39.215-52.714l-22.816 9.077-4.515-23.373a69.071 69.071 0 0 1 27.331 14.296zm-57.608-15.393a69.837 69.837 0 0 1 24.803-.103l4.945 25.598H96.241l4.453-25.495zm-5.441 1.238l-4.064 23.264-22.762-9.1a69.066 69.066 0 0 1 26.826-14.164zm-6.655 27.772L74.232 88.638 64.72 64.726l23.878 9.547zm-27.942-5.836l9.077 22.816-23.372 4.514a69.079 69.079 0 0 1 14.295-27.33zM44.101 113.37c0-4.137.365-8.189 1.06-12.125l25.597-4.946v34.2l-25.496-4.452a69.687 69.687 0 0 1-1.161-12.677zm2.399 18.116l23.265 4.064-9.1 22.763A69.1 69.1 0 0 1 46.5 131.486zm27.773 6.656l14.365 14.365-23.913 9.513 9.548-23.878zm-5.836 27.943l22.815-9.077 4.516 23.372a69.082 69.082 0 0 1-27.331-14.295zm57.609 15.393a69.757 69.757 0 0 1-12.676 1.16 69.73 69.73 0 0 1-12.127-1.059l-4.945-25.598h34.2l-4.452 25.497zm5.44-1.238l4.064-23.266 22.763 9.102a69.097 69.097 0 0 1-26.827 14.164zm6.655-27.773l14.364-14.365 9.515 23.913-23.879-9.548zm27.944 5.835l-9.077-22.816 23.371-4.515a69.074 69.074 0 0 1-14.294 27.331zm15.494-32.806l-25.597 4.946v-34.2l25.496 4.452a69.757 69.757 0 0 1 1.16 12.676c0 4.137-.364 8.188-1.059 12.126z" })
+      );
+    };
+    Dmd.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Dmd.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Dmd;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DOGE-alt.js
+var require_DOGE_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DOGE-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var DogeAlt = function DogeAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M99.24-.054H34.058v100.975H7.287v24.732h26.772v100.975h75.95s106.792 8.947 106.792-111.45C216.801-3.256 114.663-.054 99.24-.054zm9.022 184.779H76.834v-59.071h47.141v-24.732H76.834V41.849h29.972c11.204 0 67.582 4.509 67.668 74.148.088 69.638-58.139 68.728-66.212 68.728z" })
+      );
+    };
+    DogeAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    DogeAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = DogeAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/DOGE.js
+var require_DOGE = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/DOGE.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Doge = function Doge2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M116.338 74.87h-16.236v32h25.538v13.399h-25.538v32h17.023c4.375 0 35.918.494 35.87-37.232-.048-37.724-30.589-40.167-36.657-40.167z" }),
+        _react2.default.createElement("path", { d: "M113.609 0C50.864 0 0 50.864 0 113.608c0 62.745 50.864 113.609 113.609 113.609 62.743 0 113.607-50.864 113.607-113.609C227.216 50.864 176.352 0 113.609 0zm4.464 174.968H76.928V120.27H62.425v-13.399h14.502V52.17h35.312c8.354 0 63.684-1.735 63.684 62.425 0 65.221-57.85 60.373-57.85 60.373z" })
+      );
+    };
+    Doge.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Doge.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Doge;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/EMC-alt.js
+var require_EMC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/EMC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var EmcAlt = function EmcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M82.959 61.139L52.558 113.41l30.401 52.273h60.406l30.803-52.418-31.318-52.126H82.959zm58.774 80.191H84.666v-12.407h44.658V96.675h-10.248v22.941h-34.41v-12.411h21.999v-10.53H84.666V84.264h57.067v57.066z" }),
+        _react2.default.createElement("path", { d: "M113.411 0C50.776 0 0 50.776 0 113.41c0 62.635 50.776 113.411 113.411 113.411s113.41-50.775 113.41-113.411C226.821 50.776 176.046 0 113.411 0zm38.346 180.348H74.525L35.592 113.41l38.934-66.938h76.621l40.084 66.709-39.474 67.167z" })
+      );
+    };
+    EmcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    EmcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = EmcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/EMC.js
+var require_EMC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/EMC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Emc = function Emc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M168.53 15.763H56.781L0 113.389l56.781 97.625h112.64l57.567-97.96-58.458-97.291zm-11.351 173.862H69.083l-44.339-76.236 44.339-76.235h87.343l45.679 76.022-44.926 76.449z" }),
+        _react2.default.createElement("path", { d: "M71.571 88.983h32.084v15.357H71.571v18.098h50.184V88.983H136.7v47.028H71.571v18.099H154.8V70.882H71.571z" })
+      );
+    };
+    Emc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Emc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Emc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/EOS-alt.js
+var require_EOS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/EOS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var EosAlt = function EosAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M109.68 71.552V50.04L82.223 85.792l6.504 18.86zm-26.182 41.361l-5.002-14.501-9.543 37.477 14.544-22.976zm22.398 41.523v.001h15.074l13.923-40.858L113.5 79.785l-21.588 34.103zm51.922-18.909l-9.676-37.152-4.844 14.215zm-13.454-49.741L117.32 50.148v21.404l20.733 32.753zm-57.681 36.363l-20.439 32.288h31.574zm26.796 54.272l4.899-14.377h-9.858zM74.07 162.044l32.585 18.016-6.213-18.016zm46.228 18.042l32.632-18.042h-26.484zm8.741-25.649h31.716l-20.617-32.572z" }),
+        _react2.default.createElement("path", { d: "M113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227 227 176.184 227 113.5 176.184 0 113.5 0zm56.034 161.566l-54.18 29.957a3.84 3.84 0 0 1-3.71 0l-54.179-29.957a3.8 3.8 0 0 1-1.849-4.261l18.625-73.14c.127-.499.354-.968.668-1.376l35.555-46.297a3.83 3.83 0 0 1 6.083.016l35.132 46.298c.303.399.524.854.65 1.338l19.047 73.141a3.797 3.797 0 0 1-1.842 4.281z" })
+      );
+    };
+    EosAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    EosAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = EosAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/EOS.js
+var require_EOS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/EOS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Eos = function Eos2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M197.356 177.182L169.76 71.209a5.52 5.52 0 0 0-.942-1.938l-50.901-67.08a5.548 5.548 0 0 0-8.814-.024L57.588 69.245a5.481 5.481 0 0 0-.968 1.994L29.635 177.21a5.502 5.502 0 0 0 2.679 6.172l78.498 43.403a5.563 5.563 0 0 0 5.375 0l78.499-43.403a5.503 5.503 0 0 0 2.67-6.2zm-19.644-31.527l-21.038-33.234 7.018-20.596 14.02 53.83zM119.035 21.952l39.184 51.635-9.145 26.831-30.039-47.455V21.952zm-5.535 42.94l30.995 48.963-20.172 59.198h-21.839v-.003l-20.262-58.748 31.278-49.41zm-5.535-43.097v31.167L77.607 100.92l-9.423-27.326 39.781-51.799zM62.784 91.88l7.247 21.01h-.001l-21.072 33.289L62.784 91.88zm11.861 34.392l16.134 46.78H45.032l29.613-46.78zm-18.273 57.803h38.21l9.001 26.102-47.211-26.102zm57.097 20.83l-7.185-20.83h14.283l-7.098 20.83zm9.881 5.309l8.908-26.139h38.371l-47.279 26.139zm12.665-37.161l16.08-47.192 29.872 47.192h-45.952z" })
+      );
+    };
+    Eos.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Eos.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Eos;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ERC-alt.js
+var require_ERC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ERC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ErcAlt = function ErcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M129 98.1l18.3-6.1c-7.1-11.2-19.6-18.6-33.9-18.6-18.4 0-33.9 12.4-38.6 29.4l57.8-18.4-3.6 13.7z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zM77.3 130.7c6.5 13.5 20.2 22.8 36.2 22.8 15.3 0 28.7-8.6 35.4-21.3l15.3-5c-6.1 22.3-26.5 38.7-50.7 38.7-21.4 0-39.8-12.8-48-31.1l-7.8 2.7c9.3 21.6 30.8 36.7 55.8 36.7 29.9 0 54.7-21.5 59.8-49.9l12.7-4.1c-3.4 37.1-34.6 66.1-72.5 66.1-34.1 0-62.6-23.4-70.6-54.9l64.4-20.9-3.3 15.2 69.4-22.9c-5.1-28.5-29.9-50.1-59.9-50.1-32.4 0-58.8 25.3-60.7 57.1l8.5-2.7c3.2-26 25.3-46.1 52.2-46.1 23.6 0 43.6 15.5 50.2 37l-50.3 16.5 4.2-14.1-76.1 24.4c-.6-3.7-.9-7.4-.9-11.2 0-40.2 32.6-72.8 72.8-72.8 39 0 70.8 30.6 72.8 69.1l-96.7 31.5 3-15.8-15.2 5.1z" })
+      );
+    };
+    ErcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ErcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ErcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ERC.js
+var require_ERC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ERC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Erc = function Erc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.5 208.2c-39 0-72.4-23.5-86.9-57.1l12.2-4.2c12.8 28.6 41.4 48.5 74.7 48.5 37.8 0 69.5-25.6 79-60.3l-23.8 7.7c-10.5 19.7-31.3 33.2-55.2 33.2-24.8 0-46.3-14.5-56.3-35.5l23.7-8.3-4.7 24.6 150.6-49.1C223.8 47.7 174.2 0 113.5 0 50.8 0 0 50.8 0 113.5c0 5.9.5 11.8 1.3 17.5l118.6-38-6.5 22 78.3-25.7c-10.4-33.3-41.5-57.6-78.2-57.6-41.8 0-76.3 31.4-81.2 71.9L19 107.8c3-49.6 44.2-89 94.6-89 46.6 0 85.4 33.7 93.3 78.1L98.6 132.4l5.1-23.6L3.5 141.3c12.4 49.2 57 85.6 110 85.6 59.1 0 107.6-45.2 113-102.9l-19.8 6.4c-8 44.2-46.7 77.8-93.2 77.8zm0-157.2c22.2 0 41.7 11.6 52.8 29l-28.5 9.6 5.6-21.5-90 28.7C60.6 70.4 84.8 51 113.5 51z" })
+      );
+    };
+    Erc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Erc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Erc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ETC-alt.js
+var require_ETC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ETC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var EtcAlt = function EtcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zm.3 38.2l43 67.8-43-19.2-44.3 18.7 44.3-67.3zM114 96l44.9 20-44.9 25.1-46.2-25.6L114 96zm.2 92.6l-44.7-62.3 44.3 25.6 45.1-25.6-44.7 62.3z" })
+      );
+    };
+    EtcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    EtcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = EtcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ETC.js
+var require_ETC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ETC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Etc = function Etc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M47.1 101.6L114 73.4l64.8 28.9L113.9 0 47.1 101.6zm.2 31.3l66.7 38.7 68.1-38.7-67.5 93.9-67.3-93.9z" }),
+        _react2.default.createElement("path", { d: "M114.3 87.2l-69.6 29.3 69.6 38.7 67.7-37.8-67.7-30.2z" })
+      );
+    };
+    Etc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Etc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Etc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ETH-alt.js
+var require_ETH_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ETH-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var EthAlt = function EthAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M112.553 157V86.977l-68.395 29.96zm0-74.837V-.056L46.362 111.156zM116.962-.09v82.253l67.121 29.403zm0 87.067v70.025l68.443-40.045zm-4.409 140.429v-56.321L44.618 131.31zm4.409 0l67.935-96.096-67.935 39.775z" })
+      );
+    };
+    EthAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    EthAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = EthAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ETH.js
+var require_ETH = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ETH.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Eth = function Eth2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.313 0C50.732 0 0 50.732 0 113.313s50.732 113.313 113.313 113.313 113.313-50.732 113.313-113.313S175.894 0 113.313 0zm-1.469 188.386l-44.78-63.344 44.78 26.218v37.126zm0-46.41l-45.083-26.408 45.083-19.748v46.156zm0-49.329l-43.631 19.11 43.631-73.306v54.196zm2.906-54.218l44.244 73.6-44.244-19.382V38.429zm0 149.957V151.26l44.78-26.218-44.78 63.344zm0-46.409V95.821l45.116 19.762-45.116 26.394z" })
+      );
+    };
+    Eth.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Eth.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Eth;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FC2-alt.js
+var require_FC2_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FC2-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Fc2Alt = function Fc2Alt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M159.162 67.919h-47.428l2.949-19.923h55.754L177.079.015H57.127l-27.593 192.75H93.25l11.099-74.958h47.865l6.948-49.888zM55.995 181.128H41.168L66.188 7.531h14.826L55.995 181.128z" }),
+        _react2.default.createElement("path", { d: "M190.669 184.443c-.848-2.596-1.728-5.28-1.728-10.271v-16.348c0-1.296 0-3.706-18.879-22.113a2.974 2.974 0 0 0-4.202.051 2.973 2.973 0 0 0 .053 4.204c7.32 7.14 15.711 15.962 17.084 18.347v15.859c0 5.937 1.075 9.223 2.024 12.118.736 2.255 1.319 4.032 1.319 6.902 0 2.915-2.423 3.687-3.7 3.687-.885 0-1.675-.289-2.224-.813-.66-.623-.994-1.593-.994-2.874v-29.265c0-4.899-3.729-9.967-9.968-9.967v-5.874a2.895 2.895 0 0 0-2.896-2.894h-39.297a2.895 2.895 0 0 0-2.895 2.894v71.11h-2.479a2.023 2.023 0 0 0-2.022 2.024v3.533c0 1.117.905 2.022 2.022 2.022h50.046a2.021 2.021 0 0 0 2.022-2.022v-3.533a2.023 2.023 0 0 0-2.022-2.024h-2.479v-59.292c3.303 0 4.023 2.903 4.023 4.022v29.265c0 3.708 1.546 5.956 2.846 7.187 1.66 1.574 3.902 2.442 6.316 2.442 4.676 0 9.645-3.377 9.645-9.629.001-3.816-.819-6.323-1.615-8.748zm-28.005-9.917a2.022 2.022 0 0 1-2.022 2.021h-27.46a2.02 2.02 0 0 1-2.022-2.021v-20.774c0-1.115.904-2.021 2.022-2.021h27.46c1.116 0 2.022.906 2.022 2.021v20.774z" })
+      );
+    };
+    Fc2Alt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Fc2Alt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Fc2Alt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FC2.js
+var require_FC2 = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FC2.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Fc2 = function Fc22(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M70.407 162.212h9.262l15.63-108.447h-9.263zm74.636-18.364h-17.154c-.699 0-1.264.567-1.264 1.264v12.978c0 .696.564 1.263 1.264 1.263h17.154c.697 0 1.263-.566 1.263-1.263v-12.978a1.266 1.266 0 0 0-1.263-1.264z" }),
+        _react2.default.createElement("path", { d: "M113.533.289C50.99.289.289 50.99.289 113.533S50.99 226.777 113.533 226.777s113.244-50.701 113.244-113.244S176.076.289 113.533.289zm-3.656 122.366l-6.935 46.826H63.138L80.375 49.07h74.935l-4.148 29.975h-34.829l-1.844 12.446h29.63l-4.341 31.164h-29.901zm48.909 53.109c-1.508 0-2.909-.54-3.945-1.525-.813-.769-1.779-2.173-1.779-4.487v-18.284c0-.7-.449-2.514-2.513-2.514v37.042h1.549c.697 0 1.265.565 1.265 1.264v2.208c0 .698-.567 1.263-1.265 1.263h-31.264a1.264 1.264 0 0 1-1.266-1.263v-2.208c0-.698.566-1.264 1.266-1.264h1.548v-44.425c0-.997.81-1.807 1.809-1.807h24.549c1 0 1.81.81 1.81 1.807v3.67c3.897 0 6.227 3.166 6.227 6.227v18.284c0 .8.209 1.404.621 1.793.344.327.837.508 1.39.508.797 0 2.312-.481 2.312-2.301 0-1.796-.364-2.904-.825-4.314-.592-1.808-1.265-3.86-1.265-7.57v-9.905c-.857-1.493-6.098-7.003-10.672-11.463a1.858 1.858 0 0 1-.032-2.627 1.86 1.86 0 0 1 2.625-.031c11.793 11.501 11.793 13.005 11.793 13.815v10.211c0 3.119.551 4.795 1.079 6.417.498 1.514 1.011 3.081 1.011 5.468-.003 3.903-3.108 6.011-6.028 6.011z" })
+      );
+    };
+    Fc2.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Fc2.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Fc2;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FCT-alt.js
+var require_FCT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FCT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var FctAlt = function FctAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388 0C50.766 0 0 50.766 0 113.389s50.766 113.388 113.389 113.388 113.389-50.766 113.389-113.388S176.011 0 113.388 0zM40.579 89.697c2.313 7.646 8.269 16.236 23.363 16.236 32.566 0 50.376-26.46 50.376-26.46l-2.009-.867 15.139-20.709 1.425 25.851-2.646-.612s-20.864 34.806-62.996 34.806c-14.863 0-21.385-7.361-23.994-15.759a76.594 76.594 0 0 1 1.342-12.486zm-.943 22.504c4.196 5.123 10.401 10.645 18.38 12.109 9.031 1.654 28.314 1.16 49.076-12.476 20.76-13.637 28.496-30.634 28.496-30.634l-2.011-.864 15.14-20.711 1.425 25.85-2.646-.61s-6.107 14.755-24.629 30.937c-18.523 16.184-46.205 24.324-66.253 19.541-6.313-1.506-10.96-5.322-14.365-9.846a75.915 75.915 0 0 1-2.613-13.296zm10.357 31.047a75.93 75.93 0 0 1-5.633-11.52c4.755 5.164 11.815 10.32 21.515 11.35 16.374 1.742 29.819-1.934 50.376-14.248 20.558-12.313 27.683-24.83 27.683-24.83l-2.315-1.046 15.139-21.141 1.322 26.255-2.035-.711s-11.906 18.113-28.496 28.598c-16.589 10.482-35.924 20.455-58.518 17.811-7.842-.919-14.146-5.251-19.038-10.518zm6.773 9.572c6.482 3.652 14.84 6.695 24.706 6.695 17.021 0 33.813-7.252 48.545-17.021 14.73-9.77 26.943-25.492 26.943-25.492l-2.671-.994L169.632 95.4l1.297 26.256-2.977-1.297s-11.83 16.791-28.929 28.775c-17.097 11.982-32.821 18.93-54.498 18.93-6.235 0-12.436-2.281-18.109-5.527a76.697 76.697 0 0 1-9.65-9.717zm112.788 1.582l-1.146-.689s-14.038 15.053-32.209 22.213c-6.553 2.582-12.987 3.922-18.937 4.496a76.608 76.608 0 0 1-18.259-1.779c8.809.281 21.383-.768 34.295-6.686 23.814-10.914 30.607-20.686 30.607-20.686l-1.22-.84 7.402-6.486-.533 10.457zm17.124-39.515s-11.603 25.036-33.788 41.015c-22.187 15.979-39.081 21.17-52.107 21.17-4.391 0-8.879-.744-13.234-1.922a76.067 76.067 0 0 1-13.677-7.074c5.952 1.906 13.076 3.398 20.805 3.398 20.659 0 43.042-13.254 56.688-25.037 17.911-15.469 25.543-34.499 25.543-34.499l-3.46-1.426 15.063-20.762 1.323 25.851-3.156-.714z" })
+      );
+    };
+    FctAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    FctAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = FctAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FCT.js
+var require_FCT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FCT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Fct = function Fct2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M36.219 118.146c63.602 0 95.097-52.542 95.097-52.542l3.994.923-2.15-39.022-22.853 31.263 3.034 1.308s-26.885 39.943-76.046 39.943c-22.786 0-31.776-12.968-35.268-24.509A115.51 115.51 0 0 0 0 94.358c3.938 12.675 13.783 23.788 36.219 23.788z" }),
+        _react2.default.createElement("path", { d: "M26.233 144.417c30.266 7.219 72.052-5.068 100.014-29.497 27.96-24.429 37.178-46.705 37.178-46.705l3.995.922-2.151-39.021-22.854 31.264 3.035 1.305s-11.677 25.656-43.017 46.244c-31.34 20.586-60.45 21.329-74.083 18.831-12.045-2.211-21.411-10.544-27.746-18.28.725 6.892 2.059 13.6 3.944 20.075 5.141 6.827 12.156 12.588 21.685 14.862z" }),
+        _react2.default.createElement("path", { d: "M133.312 145.337c25.042-15.822 43.016-43.168 43.016-43.168l3.073 1.076-1.996-39.636-22.854 31.915 3.496 1.577s-10.754 18.895-41.787 37.483c-31.033 18.59-51.33 24.137-76.047 21.51-14.643-1.555-25.3-9.34-32.479-17.135a114.887 114.887 0 0 0 8.503 17.391c7.385 7.949 16.901 14.49 28.738 15.875 34.107 3.993 63.296-11.062 88.337-26.888z" }),
+        _react2.default.createElement("path", { d: "M150.634 165.233c25.811-18.092 43.671-43.438 43.671-43.438l4.493 1.959-1.958-39.638-23.16 31.11 4.032 1.498s-18.436 23.735-40.673 38.483c-22.238 14.75-47.587 25.695-73.282 25.695-14.891 0-27.51-4.594-37.295-10.105a116.15 116.15 0 0 0 14.568 14.668c8.564 4.9 17.926 8.342 27.336 8.342 32.723 0 56.459-10.482 82.268-28.574z" }),
+        _react2.default.createElement("path", { d: "M225.337 75.59L202.6 106.93l5.224 2.151s-11.521 28.732-38.561 52.082c-20.597 17.787-54.385 37.795-85.572 37.795-11.669 0-22.422-2.254-31.407-5.131a115.017 115.017 0 0 0 20.646 10.68c6.574 1.775 13.349 2.898 19.977 2.898 19.666 0 45.167-7.836 78.659-31.953 33.491-24.123 51.006-61.916 51.006-61.916l4.763 1.077-1.998-39.023z" }),
+        _react2.default.createElement("path", { d: "M188.197 168.458s-10.254 14.75-46.205 31.227c-19.491 8.936-38.472 10.516-51.769 10.092a115.467 115.467 0 0 0 27.562 2.686c8.981-.863 18.695-2.889 28.586-6.785 27.431-10.809 48.623-33.531 48.623-33.531l1.729 1.039.806-15.785-11.175 9.793 1.843 1.264z" })
+      );
+    };
+    Fct.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Fct.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Fct;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FLO-alt.js
+var require_FLO_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FLO-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var FloAlt = function FloAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zM88.116 64.519c1.307-8.311 13.149-18.763 22.287-25.852.715-.556 1.614-.857 2.514-.942.01-.01.01-.021.01-.021.163-.01.311-.021.474-.01.16-.01.33 0 .492.01v.021c.91.085 1.809.386 2.513.942 9.149 7.089 20.97 17.541 22.277 25.852 1.328 8.309-1.498 13.663-1.498 13.663-11.375 21.236-14.031 44.689-13.988 51.253-4.882 2.4-14.735 2.4-19.575 0 0-6.564-2.634-30.018-13.985-51.253.002-.001-2.827-5.354-1.521-13.663zm46.628 66.162c.492 3.123 0-.921 1.253 5.332-13.719 6.876-31.453 6.876-45.183 0 1.136-5.48.92-2.931 1.264-5.332 12.551 6.444 30.158 6.38 42.666 0zm-85.888 7.562c-1.242.467-1.692-.496-1.692-.496s-4.273-8.908-5.215-24.203c-.567-10.411.846-16.214.846-16.214s2.613-11.694 11.651-14.413c2.015-.729 12.551-2.453 17.929 0 6.596 3.009 10.954 5.566 18.74 16.534 7.775 10.963 9.403 29.657 9.403 29.657s-7.679-1.664-9.255-4.404c-1.583-2.755-2.762-6.897-11.726-14.19-4.443-3.62-8.769-1.317-8.769-1.317s-1.756 1.133-1.905 2.761c-.152 1.621-.174 5.268-2.549 9.113-7.583 11.72-15.507 16.422-17.458 17.172zm34.399 24.904c-2.528 1.869-6.521 1.671-9.318 1.161-2.761-.517-4.305-2.337-4.925-3.774-.612-1.692-.612-3.576-.149-5.976.45-2.351.832-4.213 2.953-9.552.206-.488.793-.467 1.094 0 2.591 3.711 4.433 4.886 4.433 4.886s1.692 1.586 4.025 0c2.316-1.565 8.023-10.218 8.023-10.218l7.014 3.087s-3.275 8.653-6.766 13.489c-3.516 4.822-3.877 5.035-6.384 6.897zm47.141 7.732c-3.696 7.138-13.772 16.605-15.036 17.547a3.755 3.755 0 0 1-1.554.666v.021h-.79v-.021a3.79 3.79 0 0 1-1.565-.666c-1.275-.942-11.329-10.409-15.047-17.547-2.783-5.395-4.712-7.732 0-15.89 4.712-8.157 7.219-10.388 7.219-10.388 9.789 1.154 9.789 1.154 19.575 0 0 0 2.485 2.23 7.198 10.388 4.713 8.158 2.794 10.495 0 15.89zm27.414-10.345c-.62 1.438-2.163 3.257-4.946 3.774-2.786.51-6.79.708-9.297-1.161-2.518-1.862-2.868-2.075-6.38-6.897-3.516-4.836-6.791-13.489-6.791-13.489l7.024-3.087s5.697 8.653 8.034 10.218c2.312 1.586 4.025 0 4.025 0s1.841-1.175 4.411-4.886c.322-.467.899-.488 1.105 0 2.131 5.339 2.507 7.201 2.967 9.552.461 2.4.461 4.284-.152 5.976zm27.063-46.989c-.952 15.294-5.236 24.203-5.236 24.203s-.429.963-1.671.496c-1.951-.751-9.896-5.452-17.458-17.171-2.376-3.845-2.397-7.492-2.545-9.113-.152-1.629-1.919-2.761-1.919-2.761s-4.327-2.303-8.77 1.317c-8.975 7.294-10.388 11.436-11.705 14.19-1.328 2.74-9.266 4.404-9.266 4.404s1.608-18.694 9.404-29.657c7.775-10.968 12.144-13.525 18.739-16.534 5.378-2.453 15.914-.729 17.918 0 9.028 2.719 11.662 14.413 11.662 14.413s1.393 5.802.847 16.213z" })
+      );
+    };
+    FloAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    FloAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = FloAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FLO.js
+var require_FLO = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FLO.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Flo = function Flo2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.402 0C50.768 0 .006 50.771.006 113.396c0 62.646 50.762 113.404 113.396 113.404 62.63 0 113.393-50.758 113.393-113.404C226.794 50.771 176.032 0 113.402 0zm0 211.091c-53.868 0-97.695-43.827-97.695-97.695 0-53.87 43.827-97.695 97.695-97.695 53.872 0 97.703 43.824 97.703 97.695-.001 53.868-43.831 97.695-97.703 97.695z" }),
+        _react2.default.createElement("path", { d: "M88.969 137.86c14.851 7.437 34.034 7.437 48.874 0-1.356-6.763-.824-2.389-1.356-5.767-13.53 6.901-32.575 6.97-46.151 0-.372 2.596-.138-.161-1.367 5.767z" }),
+        _react2.default.createElement("path", { d: "M102.825 130.744c5.235 2.596 15.893 2.596 21.174 0-.046-7.1 2.826-32.47 15.131-55.44 0 0 3.056-5.791 1.62-14.779-1.413-8.99-14.2-20.295-24.097-27.964-.762-.601-1.734-.927-2.719-1.019v-.023c-.176-.011-.36-.023-.533-.011-.176-.011-.337 0-.513.011 0 0 0 .012-.011.023-.973.092-1.946.418-2.719 1.019-9.884 7.669-22.695 18.974-24.108 27.964-1.413 8.988 1.647 14.779 1.647 14.779 12.278 22.971 15.128 48.34 15.128 55.44zM87.429 141.82s-6.173 9.36-8.678 11.053c-2.524 1.716-4.354 0-4.354 0s-1.992-1.271-4.795-5.285c-.326-.505-.961-.528-1.184 0-2.294 5.775-2.707 7.789-3.194 10.333-.502 2.596-.502 4.634.161 6.464.67 1.555 2.34 3.524 5.327 4.082 3.025.552 7.345.766 10.08-1.256 2.711-2.014 3.102-2.244 6.905-7.46 3.776-5.231 7.318-14.591 7.318-14.591l-7.586-3.34zm-20.144-32.966s4.68-2.491 9.486 1.424c9.697 7.889 10.972 12.37 12.684 15.349 1.704 2.964 10.011 4.764 10.011 4.764s-1.762-20.221-10.171-32.079c-8.422-11.864-13.136-14.629-20.271-17.885-5.817-2.654-17.214-.789-19.393 0-9.777 2.941-12.603 15.591-12.603 15.591s-1.528 6.277-.915 17.538c1.018 16.544 5.641 26.18 5.641 26.18s.487 1.042 1.831.536c2.11-.812 10.681-5.898 18.884-18.574 2.569-4.159 2.593-8.104 2.757-9.858.16-1.76 2.059-2.986 2.059-2.986zm56.714 38.297c-10.585 1.248-10.585 1.248-21.174 0 0 0-2.711 2.413-7.809 11.236-5.097 8.824-3.01 11.351 0 17.188 4.021 7.721 14.897 17.961 16.276 18.98a4.1 4.1 0 0 0 1.693.72v.023h.853v-.023a4.055 4.055 0 0 0 1.681-.72c1.367-1.019 12.266-11.259 16.264-18.98 3.022-5.836 5.097-8.364 0-17.188-5.096-8.824-7.784-11.236-7.784-11.236zm34.394.436c-.222-.528-.846-.505-1.195 0-2.78 4.014-4.772 5.285-4.772 5.285s-1.853 1.716-4.354 0c-2.528-1.693-8.69-11.053-8.69-11.053l-7.598 3.34s3.543 9.36 7.346 14.591c3.799 5.216 4.178 5.446 6.901 7.46 2.711 2.022 7.043 1.808 10.056 1.256 3.01-.559 4.68-2.527 5.35-4.082.662-1.831.662-3.868.165-6.464-.498-2.543-.904-4.557-3.209-10.333zm31.403-51.568s-2.849-12.649-12.615-15.591c-2.168-.789-13.565-2.654-19.382 0-7.135 3.255-11.86 6.02-20.27 17.885-8.433 11.858-10.172 32.079-10.172 32.079s8.586-1.8 10.022-4.764c1.425-2.98 2.953-7.46 12.661-15.349 4.806-3.916 9.486-1.424 9.486-1.424s1.911 1.225 2.076 2.987c.161 1.754.184 5.698 2.753 9.858 8.18 12.676 16.774 17.762 18.884 18.574 1.344.505 1.808-.536 1.808-.536s4.634-9.636 5.664-26.18c.59-11.262-.915-17.539-.915-17.539z" })
+      );
+    };
+    Flo.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Flo.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Flo;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FRK-alt.js
+var require_FRK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FRK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var FrkAlt = function FrkAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M92.525 226.777v-35.311h27.41V162.01h-27.41v-40.094h84.277V92.459H92.525V43.366h113.322V0H48.748v162.01H20.93v29.456h27.818v35.311z" })
+      );
+    };
+    FrkAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    FrkAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = FrkAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FRK.js
+var require_FRK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FRK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Frk = function Frk2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M83.948 173.413v-15.165H68.557v-16.295h15.391V52.32h86.917v23.993h-62.697v27.161h46.626v16.296h-46.626v22.184h15.166v16.295h-15.166v15.165H209.62c10.882-17.405 17.176-37.975 17.176-60.014C226.796 50.769 176.027 0 113.399 0S0 50.769 0 113.399c0 22.04 6.296 42.609 17.176 60.014h66.772zm-52.526 18.334c20.646 21.596 49.739 35.049 81.978 35.049 32.235 0 61.328-13.453 81.975-35.049H31.422z" })
+      );
+    };
+    Frk.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Frk.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Frk;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FTC-alt.js
+var require_FTC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FTC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var FtcAlt = function FtcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M209.689.015c-2.121-.625-32.981 18.277-47.352 29.174-14.368 10.898-41.179 32.162-42.191 34.381-1.013 2.217-1.109 6.22-2.313 16.297-1.206 10.078-5.4 14.466-5.4 14.466s-2.026-1.542-3.136-4.822c-1.11-3.279-1.832-12.442-2.507-12.633-.674-.194-18.742 16.637-18.742 16.637s-1.285 8.419-4.049 25.137c-2.766 16.717-7.009 23.708-7.925 23.805s-2.894-6.461-3.568-13.117c-.674-6.653-.192-22.422-.916-22.903-.724-.483-10.221 9.515-10.221 9.515s1.284 11.894 2.248 27.453c.965 15.558-.513 26.247-2.104 27.26-1.592 1.013-4.001-2.797-7.523-11.14-3.519-8.342-3.76-14.947-5.399-15.526-1.641-.579-5.063 7.57-6.075 15.673-1.013 8.099-.242 20.396-.242 20.396s-4.726-8.775-7.716-13.357c-2.99-4.58-9.933-13.743-10.799-13.068-.871.675 2.939 8.101 5.253 14.708 2.315 6.607 5.401 16.395 5.401 16.395s-8.053-7.86-11.717-10.464c-3.666-2.604-14.32-8.631-15.189-6.75-.867 1.879 6.461 7.427 9.645 10.607 3.183 3.182 9.982 10.463 9.982 10.463s-3.425 3.569-4.292 8.439c-.869 4.87 1.253 9.45 1.253 9.45s5.642-11.669 8.873-11.86c3.231-.193 4.436 6.413 3.472 10.751-.965 4.341-15.189 19.257-14.467 21.267.724 2.009 18.854-17.055 20.558-20.687 3.6 4.372 22.759 11.829 23.853 11.442 1.092-.384-7.395-6.234-10.738-9.386-3.342-3.149-7.199-12.472-5.849-13.692 1.35-1.223 3.085 6.234 12.793 10.928 9.709 4.694 24.561 5.722 24.817 5.078.257-.644-11.38-4.112-18.259-8.485-6.879-4.372-10.352-13.437-10.352-13.437s9.966 1.991 34.913 3.343c24.946 1.351 40.632-7.136 40.632-7.136s-21.861-.258-36.067-.9c-14.211-.643-34.59-2.442-34.59-2.442s5.384-8.006 19.722-10.897c14.335-2.895 37.307-1.319 39.362-1.64 2.059-.322 35.04-46.869 35.04-46.869s-20.381.834-18.967-2.638c3.144-7.717 20.767-5.979 23.402-6.235 2.635-.259 10.865-12.345 20.511-23.661 9.643-11.316 36.004-40.569 37.353-59.471C221.456 10.961 211.812.643 209.689.015zm-71.943 102.95c-16.202 19.159-53.362 56.192-53.362 56.192s24.816-33.817 43.334-55.549c18.516-21.732 55.804-62.622 55.804-62.622s-29.574 42.82-45.776 61.979z" })
+      );
+    };
+    FtcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    FtcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = FtcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/FTC.js
+var require_FTC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/FTC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ftc = function Ftc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.617.453C51.118.453.454 51.118.454 113.614c0 62.499 50.664 113.163 113.163 113.163 62.496 0 113.16-50.664 113.16-113.163 0-62.496-50.664-113.161-113.16-113.161zm70.26 57.216c-.89 12.451-18.255 31.721-24.604 39.175-6.354 7.454-11.775 15.415-13.512 15.586-1.736.168-13.344-.977-15.415 4.107-.932 2.287 12.494 1.737 12.494 1.737s-21.727 30.66-23.082 30.874c-1.356.211-16.486-.827-25.929 1.079-9.445 1.905-12.992 7.179-12.992 7.179s13.425 1.185 22.785 1.609c9.358.422 23.757.593 23.757.593s-10.332 5.591-26.765 4.7c-16.433-.89-22.997-2.201-22.997-2.201s2.287 5.97 6.819 8.851c4.532 2.88 12.197 5.165 12.028 5.59-.17.423-9.952-.254-16.348-3.346-6.396-3.091-7.539-8.003-8.428-7.198-.889.804 1.651 6.945 3.853 9.019 2.203 2.076 7.794 5.931 7.075 6.184-.721.255-13.341-4.657-15.713-7.538-1.123 2.394-13.066 14.951-13.542 13.627s8.894-11.149 9.529-14.008c.636-2.857-.158-7.21-2.287-7.082-2.126.125-5.844 7.813-5.844 7.813s-1.398-3.018-.825-6.226c.571-3.208 2.828-5.56 2.828-5.56s-4.48-4.796-6.575-6.891c-2.098-2.097-6.924-5.751-6.354-6.988.573-1.239 7.591 2.731 10.005 4.446 2.415 1.715 7.719 6.894 7.719 6.894s-2.033-6.448-3.557-10.801c-1.525-4.351-4.034-9.243-3.462-9.688.572-.445 5.145 5.591 7.114 8.608s5.083 8.798 5.083 8.798-.509-8.1.158-13.436c.667-5.337 2.922-10.705 4.002-10.323 1.08.381 1.239 4.732 3.556 10.228 2.32 5.495 3.908 8.005 4.956 7.337 1.049-.667 2.022-7.708 1.387-17.956-.635-10.248-1.481-18.083-1.481-18.083s6.257-6.587 6.733-6.269c.476.317.159 10.705.603 15.086.445 4.385 1.748 8.705 2.351 8.641.603-.063 3.398-4.668 5.22-15.68 1.82-11.012 2.667-16.559 2.667-16.559s11.901-11.087 12.346-10.959c.444.125.921 6.162 1.652 8.322.73 2.16 2.065 3.176 2.065 3.176s2.762-2.891 3.557-9.529c.794-6.638.856-9.275 1.523-10.736s18.328-15.468 27.794-22.647c9.465-7.179 29.792-19.629 31.191-19.217 1.398.414 7.751 7.211 6.862 19.662z" }),
+        _react2.default.createElement("path", { d: "M94.474 142.837s24.479-24.394 35.151-37.015c10.673-12.62 30.154-40.826 30.154-40.826s-24.563 26.935-36.76 41.25c-12.197 14.313-28.545 36.591-28.545 36.591z" })
+      );
+    };
+    Ftc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ftc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ftc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GAME-alt.js
+var require_GAME_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GAME-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GameAlt = function GameAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M296.979 324.193c45.862 0 84.316 32.218 93.982 75.204h32.392c-10.11-60.633-62.916-107.007-126.374-107.007-70.663 0-128.15 57.484-128.15 128.15 0 70.657 57.487 128.146 128.15 128.146 38.923 0 73.824-17.465 97.347-44.951v45.771h31.803V436.981H313.601v31.803h66.723c-16.695 28.728-47.792 48.105-83.344 48.105-53.127 0-96.347-43.226-96.347-96.349-.001-53.127 43.219-96.347 96.346-96.347z" }),
+        _react2.default.createElement("path", { d: "M297.64 123.421C133.323 123.421.116 256.628.116 420.945c0 164.316 133.207 297.523 297.524 297.523s297.523-133.207 297.523-297.523c0-164.318-133.206-297.524-297.523-297.524zm172.318 470.011h-172.48c-95.26 0-172.48-77.226-172.48-172.484 0-95.263 77.221-172.483 172.48-172.483s172.48 77.22 172.48 172.483v172.484z" })
+      );
+    };
+    GameAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GameAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GameAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GAME.js
+var require_GAME = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GAME.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Game = function Game2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M298.554 125.132C134.678 125.132 1.829 257.98 1.829 421.86s132.848 296.726 296.725 296.726H595.28V421.86c0-163.88-132.849-296.728-296.726-296.728zm221.32 517.889h-54.71v-78.737c-40.464 47.277-100.507 77.331-167.471 77.331-121.561 0-220.457-98.898-220.457-220.459s98.896-220.459 220.457-220.459c109.17 0 200.011 79.78 217.405 184.089h-55.725c-16.63-73.953-82.784-129.379-161.681-129.379-91.393 0-165.747 74.354-165.747 165.749 0 91.393 74.354 165.749 165.747 165.749 61.165 0 114.659-33.33 143.381-82.752h-114.78v-54.71h193.581v193.578z" })
+      );
+    };
+    Game.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Game.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Game;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GBYTE-alt.js
+var require_GBYTE_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GBYTE-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GbyteAlt = function GbyteAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", {
+          d: "M125 250C55.964 250 0 194.036 0 125S55.964 0 125 0s125 55.964 125 125-55.964 125-125 125zm0-50c41.421 0 75-33.579 75-75s-33.579-75-75-75-75 33.579-75 75 33.579 75 75 75zm0-12c-34.794 0-63-28.206-63-63s28.206-63 63-63 63 28.206 63 63-28.206 63-63 63z",
+          fillRule: "evenodd"
+        })
+      );
+    };
+    GbyteAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GbyteAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GbyteAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GDC-alt.js
+var require_GDC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GDC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GdcAlt = function GdcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M98.626 87.318c-5.299 0-9.609 4.312-9.609 9.608 0 5.3 4.311 9.611 9.609 9.611s9.608-4.311 9.608-9.611c.001-5.297-4.31-9.608-9.608-9.608zm29.526-10.133c5.299 0 9.609-4.31 9.609-9.609 0-5.298-4.311-9.61-9.609-9.61s-9.609 4.312-9.609 9.61c0 5.299 4.31 9.609 9.609 9.609zm0 62.275c5.299 0 9.609-4.311 9.609-9.61 0-5.299-4.311-9.609-9.609-9.609s-9.609 4.311-9.609 9.609c0 5.299 4.31 9.61 9.609 9.61z" }),
+        _react2.default.createElement("path", { d: "M113.389 0C50.767 0 0 50.767 0 113.389c0 62.622 50.767 113.388 113.389 113.388 62.623 0 113.388-50.767 113.388-113.388C226.777 50.767 176.011 0 113.389 0zM62.461 63.382h48.208c1.897-7.903 9.006-13.802 17.483-13.802 9.922 0 17.994 8.073 17.994 17.996s-8.072 17.995-17.994 17.995c-8.477 0-15.585-5.899-17.483-13.802H70.847v53.887h39.822c1.897-7.902 9.006-13.802 17.483-13.802 9.922 0 17.994 8.073 17.994 17.995 0 9.923-8.072 17.996-17.994 17.996-8.477 0-15.585-5.899-17.483-13.803H62.461v-70.66zm101.857 100.012h-48.209c-1.898 7.903-9.006 13.803-17.483 13.803-9.923 0-17.995-8.073-17.995-17.997 0-9.922 8.072-17.995 17.995-17.995 8.477 0 15.584 5.898 17.483 13.802h39.822V101.12h-39.822c-1.898 7.904-9.006 13.803-17.483 13.803-9.923 0-17.995-8.073-17.995-17.997 0-9.922 8.072-17.994 17.995-17.994 8.477 0 15.584 5.897 17.483 13.802h48.209v70.66z" }),
+        _react2.default.createElement("path", { d: "M98.626 149.592c-5.299 0-9.609 4.311-9.609 9.608 0 5.301 4.311 9.611 9.609 9.611s9.608-4.311 9.608-9.611c.001-5.298-4.31-9.608-9.608-9.608z" })
+      );
+    };
+    GdcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GdcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GdcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GDC.js
+var require_GDC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GDC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Gdc = function Gdc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M139.621 174.621c17.635 0 31.98-14.345 31.98-31.979s-14.346-31.979-31.98-31.979c-15.063 0-27.696 10.484-31.066 24.527H37.788V39.431h70.767c3.37 14.043 16.003 24.526 31.066 24.526 17.635 0 31.98-14.346 31.98-31.979S157.256 0 139.621 0c-15.063 0-27.696 10.482-31.066 24.526h-85.67v125.569h85.669c3.371 14.043 16.004 24.526 31.067 24.526zm0-49.055c9.418 0 17.078 7.66 17.078 17.076 0 9.417-7.66 17.077-17.078 17.077-9.414 0-17.076-7.66-17.076-17.077 0-9.416 7.662-17.076 17.076-17.076zm0-110.664c9.418 0 17.078 7.662 17.078 17.077 0 9.417-7.66 17.076-17.078 17.076-9.414 0-17.076-7.66-17.076-17.076s7.662-17.077 17.076-17.077z" }),
+        _react2.default.createElement("path", { d: "M203.89 76.686h-85.67c-3.371-14.047-16.003-24.527-31.067-24.527-17.633 0-31.979 14.344-31.979 31.977 0 17.635 14.346 31.98 31.979 31.98 15.064 0 27.696-10.483 31.067-24.529h70.768v95.762H118.22c-3.371-14.046-16.003-24.527-31.067-24.527-17.633 0-31.979 14.346-31.979 31.979 0 17.635 14.346 31.98 31.979 31.98 15.064 0 27.696-10.483 31.067-24.529h85.67V76.686zM87.153 101.214c-9.417 0-17.076-7.659-17.076-17.078 0-9.414 7.66-17.076 17.076-17.076s17.077 7.662 17.077 17.076c0 9.419-7.661 17.078-17.077 17.078zm0 110.665c-9.417 0-17.076-7.66-17.076-17.078 0-9.416 7.66-17.075 17.076-17.075s17.077 7.659 17.077 17.075c0 9.418-7.661 17.078-17.077 17.078z" })
+      );
+    };
+    Gdc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Gdc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Gdc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GEMZ-alt.js
+var require_GEMZ_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GEMZ-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GemzAlt = function GemzAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M61.354 106.638H164.52L113.339 31.45zm51.75 100.725l51.982-93.719H60.621zM109.103 25.26H66.04c0 .109.013.214.003.324L59.398 97.15l49.705-71.89zm8.495 0l48.842 71.749-6.449-71.433c-.009-.107.005-.209.005-.315h-42.398zm55.803 87.98l-51.038 92.082 102.217-103.04zm-121.848-7.363l7.486-80.617h-4.365L-.096 94.63zm-49.545-3.619l101.933 103.027-51.562-92.058zm172.267 3.631l52.507-11.242-55.64-69.387h-4.146z" })
+      );
+    };
+    GemzAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GemzAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GemzAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GEMZ.js
+var require_GEMZ = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GEMZ.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Gemz = function Gemz2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.369 0C50.757 0 0 50.757 0 113.369c0 62.611 50.757 113.369 113.369 113.369 62.611 0 113.369-50.758 113.369-113.369C226.738 50.757 175.98 0 113.369 0zm27.514 71.849c0 .061-.008.119-.003.181l3.701 40.998-28.032-41.179h24.334zm-26.78 3.553l29.375 43.153h-59.21l29.835-43.153zm-27.144-3.553h24.714l-28.527 41.26 3.813-41.074c.006-.063 0-.123 0-.186zm-6.525 0h2.505l-4.295 46.27L49 111.663l31.434-39.814zm-30.227 44.193l28.91 6.295 29.593 52.836-58.503-59.131zm33.64 6.534h59.958l-29.836 53.79-30.122-53.79zm35.436 52.617l29.293-52.849 29.374-6.289-58.667 59.138zm29.795-57.068L144.9 71.849h2.38l31.933 39.825-30.135 6.451z" })
+      );
+    };
+    Gemz.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Gemz.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Gemz;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GLD-alt.js
+var require_GLD_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GLD-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GldAlt = function GldAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zm60.3 126.7c0 8.9-12 48.1-57.7 48.1-26.6 0-49.2-16.8-57.9-40.3H45.5c-2 0-3.7-1.7-3.7-3.7v-3.1c0-2 1.7-3.7 3.7-3.7h9.8c-.7-4-1-8.1-.9-12.3.1-2.2.2-4.5.5-6.6h-9.4c-2 0-3.7-1.7-3.7-3.7v-3.1c0-2 1.7-3.7 3.7-3.7h11.7C65.1 70 88.1 52 115 51.6c19.5-.3 37 8.5 48.5 22.4.8 1 .8 2.5-.1 3.4l-10.1 10.7c-1.4 1.5-3.9 1.4-5.2-.3-7.5-9.5-19.1-15.6-32.2-15.6-15.9 0-29.7 9.1-36.5 22.3h9.9c2 0 3.7 1.7 3.7 3.7v3.1c0 2-1.7 3.7-3.7 3.7H75.8c-.6 3.1-.9 6.4-.8 9.7.1 3.2.6 6.3 1.4 9.2h12.9c2 0 3.7 1.7 3.7 3.7v3.1c0 2-1.7 3.7-3.7 3.7H81c7 11.3 19.3 19.1 33.3 19.6 17.1.7 31-9.2 37.1-23.7h-23.3c-2 0-3.7-1.7-3.7-3.7v-13c0-2 1.7-3.7 3.7-3.7H170c2 0 3.7 1.7 3.7 3.7v13.1z" })
+      );
+    };
+    GldAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GldAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GldAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GLD.js
+var require_GLD = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GLD.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Gld = function Gld2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M220.4 108h-71.7c-3.5 0-6.4 2.9-6.4 6.4v22.4c0 3.5 2.9 6.4 6.4 6.4h40c-10.6 24.8-34.4 41.8-63.9 40.7-24.1-.9-45.3-14.2-57.3-33.7h14.3c3.5 0 6.4-2.9 6.4-6.4v-5.4c0-3.5-2.9-6.4-6.4-6.4H59.6c-1.4-5.1-2.3-10.4-2.5-15.9-.2-5.8.3-11.3 1.4-16.7h23.4c3.5 0 6.4-2.9 6.4-6.4v-5.4c0-3.5-2.9-6.4-6.4-6.4H64.8c11.7-22.8 35.4-38.4 62.8-38.4 22.4 0 42.4 10.5 55.3 26.8 2.2 2.8 6.5 3.1 8.9.4l17.3-18.5c1.5-1.6 1.6-4.1.2-5.8-19.8-23.9-49.8-39-83.4-38.5C79.6 8 40.1 39 26.5 81.3H6.4c-3.5 0-6.4 2.9-6.4 6.4V93c0 3.5 2.9 6.4 6.4 6.4h16.1c-.5 3.8-.8 7.6-.9 11.4-.2 7.2.4 14.3 1.6 21.2H6.4c-3.5 0-6.4 2.9-6.4 6.4v5.4c0 3.5 2.9 6.4 6.4 6.4h21.7c15 40.5 53.9 69.3 99.5 69.3 78.6 0 99.2-67.4 99.2-82.7v-22.4c0-3.5-2.9-6.4-6.4-6.4z" })
+      );
+    };
+    Gld.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Gld.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Gld;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GNO-alt.js
+var require_GNO_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GNO-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GnoAlt = function GnoAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M138.092 88.931C131.782 82.621 123.21 79 114.281 79h-.06c-8.87 0-17.144 3.323-23.454 9.455l23.811 23.87 23.514-23.394z" }),
+        _react2.default.createElement("path", { d: "M114.4 0C51.8 0 1 50.8 1 113.4s50.8 113.4 113.4 113.4S227.8 176 227.8 113.4 177 0 114.4 0zM87.256 87.431C94.28 79.99 103.864 76 114.162 76h.06c10.417 0 20.418 4.288 27.382 12.026l1.071 1.102-28.097 27.933-28.453-28.506 1.131-1.124zm50.836 16.372c0 3.869-3.155 7.024-7.024 7.024-1.488 0-2.798-.417-3.929-1.19l9.762-9.762a6.941 6.941 0 0 1 1.191 3.928zm-35.538 6.429a6.817 6.817 0 0 1-4.286 1.488c-3.869 0-7.024-3.155-7.024-7.024 0-1.607.536-3.095 1.429-4.286l9.881 9.822zm-22.68 24.941c-14.167-.893-33.692-4.405-46.312-15.775-7.798-6.965-9.286-13.325-9.346-13.622L23.8 104h51.55l-.298 1.657a36.945 36.945 0 0 0-.357 5.115c0 7.858 2.262 15.415 6.607 21.904l1.905 2.767-3.333-.27zM114.46 147h-.06c-18.989 0-34.466-15.616-34.407-34.605 0-6.369 1.786-12.6 5.06-17.957l.595-1.032 3.155 3.145c-.595.893-1.131 1.84-1.488 2.912-2.5 6.846 1.071 14.403 7.977 16.903a13.367 13.367 0 0 0 11.846-1.489l7.322 7.381 8.393-8.394c.774.536 1.667.952 2.619 1.309 6.727 2.381 14.108-1.131 16.489-7.798 1.429-3.929.774-8.036-1.31-11.31l2.619-2.619.655 1.071a34.909 34.909 0 0 1 5 17.997C148.866 131.503 133.449 147 114.46 147zm80.837-27.601c-12.62 11.37-32.204 14.882-46.372 15.775l-3.333.238 1.845-2.798c4.345-6.488 6.607-14.048 6.607-21.846 0-1.786-.119-3.384-.357-5.11L153.45 104H205l-.417 1.776c-.059.298-1.547 6.658-9.286 13.623z" })
+      );
+    };
+    GnoAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GnoAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GnoAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GNO.js
+var require_GNO = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GNO.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Gno = function Gno2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M150.536 91.192l-3.278 3.278c2.608 4.098 3.427 9.239 1.639 14.156-2.98 8.345-12.219 12.741-20.639 9.76-1.192-.447-2.31-.969-3.278-1.639l-10.506 10.506-9.164-9.239a16.733 16.733 0 0 1-14.827 1.863c-8.643-3.129-13.113-12.592-9.984-21.16.447-1.341 1.118-2.533 1.863-3.651l-3.949-3.949-.745 1.267a43.02 43.02 0 0 0-6.333 22.427c-.075 23.768 19.297 43.214 43.065 43.214h.075c23.768 0 43.065-19.297 43.14-43.065a43.34 43.34 0 0 0-6.259-22.427l-.82-1.341z" }),
+        _react2.default.createElement("path", { d: "M87.205 99.909a8.924 8.924 0 0 0-1.788 5.365c0 4.843 3.949 8.792 8.792 8.792a8.532 8.532 0 0 0 5.365-1.863L87.205 99.909zm43.14 11.549c1.416.969 3.055 1.49 4.917 1.49 4.843 0 8.792-3.949 8.792-8.792 0-1.788-.522-3.502-1.49-4.917l-12.219 12.219zm-15.721 9.239L79.009 84.933l1.416-1.49c8.792-9.313 20.788-14.529 33.677-14.529h.075c13.039 0 25.556 5.588 34.273 15.274l1.341 1.49-35.167 35.019zM84.821 84.933l29.803 29.877 29.43-29.281c-7.898-7.898-18.627-12.443-29.803-12.443h-.075c-11.101 0-21.458 4.173-29.355 11.847zm-9.463 58.786l-4.172-.298c-17.733-1.118-42.171-5.514-57.967-19.744-9.76-8.717-11.623-16.988-11.698-17.36L1 103.783h64.523l-.373 2.384a48.483 48.483 0 0 0-.447 6.557c0 9.835 2.831 19.372 8.27 27.493l2.385 3.502zm78.084 0l2.31-3.502c5.439-8.121 8.27-17.584 8.27-27.344 0-2.235-.149-4.545-.447-6.706l-.298-2.384H227.8l-.522 2.533c-.075.373-1.937 8.643-11.623 17.36-15.796 14.231-40.308 18.627-58.041 19.744l-4.172.299z" })
+      );
+    };
+    Gno.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Gno.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Gno;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GNT-alt.js
+var require_GNT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GNT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GntAlt = function GntAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.766 44.195c-14.18 0-25.716 11.829-25.716 26.369s11.536 26.369 25.716 26.369c14.18 0 25.716-11.829 25.716-26.369s-11.537-26.369-25.716-26.369z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm33.946 70.564c0 17.52-12.979 31.999-29.648 33.991v23.474c16.669 1.992 29.648 16.471 29.648 33.991 0 18.877-15.064 34.234-33.581 34.234-18.516 0-33.581-15.357-33.581-34.234 0-17.52 12.979-31.999 29.648-33.991v-23.474c-16.669-1.992-29.648-16.471-29.648-33.991 0-18.877 15.064-34.234 33.581-34.234 7.72 0 14.835 2.677 20.514 7.158l18.845-18.845 5.561 5.562-18.833 18.833a34.478 34.478 0 0 1 7.494 21.526z" }),
+        _react2.default.createElement("path", { d: "M88.05 162.02c0 14.54 11.536 26.369 25.716 26.369 14.18 0 25.716-11.829 25.716-26.369s-11.536-26.369-25.716-26.369c-14.18.001-25.716 11.83-25.716 26.369z" })
+      );
+    };
+    GntAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GntAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GntAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GNT.js
+var require_GNT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GNT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Gnt = function Gnt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M160.287 60.688c0-10.771-3.717-20.67-9.904-28.448l24.89-24.89-7.35-7.35-24.905 24.905c-7.505-5.923-16.908-9.46-27.111-9.46-24.471 0-44.38 20.296-44.38 45.243 0 23.154 17.153 42.289 39.183 44.923v31.024c-22.03 2.633-39.183 21.769-39.183 44.923 0 24.947 19.909 45.243 44.38 45.243s44.38-20.296 44.38-45.243c0-23.154-17.153-42.289-39.183-44.923v-31.024c22.03-2.633 39.183-21.769 39.183-44.923zm-78.366 0c0-19.216 15.246-34.849 33.986-34.849s33.986 15.633 33.986 34.849-15.246 34.849-33.986 34.849-33.986-15.633-33.986-34.849zm67.972 120.869c0 19.216-15.246 34.849-33.986 34.849s-33.986-15.633-33.986-34.849 15.246-34.849 33.986-34.849 33.986 15.633 33.986 34.849z" })
+      );
+    };
+    Gnt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Gnt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Gnt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GOLOS-alt.js
+var require_GOLOS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GOLOS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GolosAlt = function GolosAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M100.982 56.833c-6.025-.744-10.249 1.52-12.793 3.042l-2.213-3.724c2.666-1.591 8.196-4.325 15.471-3.627 6.381.691 10.65 4.578 12.677 6.422.162.149.326.297.49.443l-2.859 3.25-.084-.074-.197-.176-.229-.206-.002-.002c-2.053-1.85-5.342-4.815-10.261-5.348zM113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227 227 176.184 227 113.5 176.184 0 113.5 0zM72.46 70.541C74.122 54.37 88.586 45.533 103.88 47.2c15.295 1.667 26.112 22.508 19.95 35.679-5.693 12.171-15.627 16.505-24.771 17.673-7.315.933-23.441 1.166-30.59 1.166l13.3-9.002c-3.657-2.001-10.639-9.237-9.309-22.175zm101.079 87.697c-.067.165-.237-.327-.545-1.221h-.001c-1.252-3.627-4.784-13.853-12.921-13.451-11.443.564-26.004 10.207-38.958 18.785h-.001l-.001.002-.002.001-.001.001c-5.486 3.633-10.684 7.074-15.234 9.554-15.294 8.337-29.093 8.17-36.574 5.335-7.48-2.834-12.469-6.001-14.297-15.005-.04-.198.274.01.91.428 2.572 1.695 10.401 6.853 21.2 2.573 13.467-5.335 18.454-23.836 18.454-34.846 0-.276-.842-.426-2.356-.694-3.96-.702-12.526-2.224-22.747-8.976-11.305-7.469-15.018-14.56-15.462-17.172 7.038 3.112 24.007 8.869 35.577 7.002 14.464-2.334 27.764-7.502 35.91-19.84 2.001-3.031 3.972-6.191 5.898-9.282l.002-.004.002-.002c5.913-9.486 11.403-18.292 16.042-20.556 6.409-3.126 18.257-2.436 24.625-2.066l1.145.066-.234.134-.203.117c-4.313 2.485-14.155 8.153-16.853 12.92l-.617 1.086-.009.015c-3.318 5.831-6.897 12.119-10.181 26.076-2.793 11.871-9.365 25.063-12.303 30.176 8.146-2.668 26.301-6.936 33.749-2.668 9.31 5.337 10.308 20.842 5.986 31.512z" })
+      );
+    };
+    GolosAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GolosAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GolosAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GOLOS.js
+var require_GOLOS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GOLOS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Golos = function Golos2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M85.102 92.093c15.794-2.007 32.953-9.462 42.787-30.392C138.532 39.05 119.848 3.211 93.43.344c-26.42-2.867-51.403 12.329-54.272 40.14-2.298 22.249 9.763 34.692 16.08 38.133L32.266 94.1c12.347 0 40.201-.402 52.836-2.007zm5.852-80.603c11.022 1.189 18.397 7.874 21.896 11.045.314.284.597.54.848.761l-4.939 5.59-.88-.785-.004-.003c-3.546-3.182-9.228-8.278-17.723-9.195-10.408-1.28-17.702 2.613-22.097 5.229h-.001l-3.819-6.404c4.602-2.736 14.154-7.438 26.719-6.238z" }),
+        _react2.default.createElement("path", { d: "M203.411 137.107c-12.865-7.341-44.222 0-58.293 4.587 5.073-8.792 16.425-31.481 21.25-51.896 5.672-24.001 11.852-34.813 17.585-44.84l.014-.026 1.066-1.866c4.659-8.198 21.659-17.945 29.109-22.219l.352-.202.402-.23c-.616-.034-1.276-.073-1.976-.113-10.998-.638-31.463-1.824-42.533 3.554-8.013 3.893-17.496 19.036-27.71 35.349l-.002.004c-3.329 5.316-6.734 10.755-10.192 15.97-14.071 21.216-37.044 30.104-62.026 34.118-19.986 3.212-49.295-6.69-61.451-12.042.766 4.492 7.179 16.688 26.706 29.532 17.652 11.612 32.45 14.226 39.29 15.434 2.618.463 4.07.72 4.07 1.195 0 18.932-8.614 50.749-31.874 59.924-18.653 7.357-32.176-1.511-36.62-4.425-1.098-.72-1.642-1.077-1.572-.736 3.158 15.482 11.774 20.931 24.695 25.805 12.922 4.874 36.756 5.16 63.175-9.176 7.861-4.266 16.841-10.186 26.32-16.436l.002-.001c22.374-14.751 47.524-31.334 67.291-32.304 14.055-.69 20.154 16.895 22.317 23.131v.002c.533 1.534.826 2.381.941 2.098 7.467-18.352 5.744-45.016-10.336-54.191z" })
+      );
+    };
+    Golos.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Golos.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Golos;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GRC-alt.js
+var require_GRC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GRC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var GrcAlt = function GrcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M215.33 97.578h-97.026v6.954h97.819c-.198-2.329-.443-4.655-.793-6.954z" }),
+        _react2.default.createElement("path", { d: "M223.802 87.603v.101H118.303v5.552h100.68l.313 1.795a109.383 109.383 0 0 1 1.558 18.363c0 50.049-35.403 94.266-84.177 105.139l-2.193.485-8.921-48.513 1.958-.494c15.059-3.818 27.95-13.52 35.857-26.849h-45.074v6.864h14.744a41.287 41.287 0 0 1-19.559 4.896c-22.891 0-41.453-18.559-41.453-41.454s18.562-41.454 41.453-41.454a41.298 41.298 0 0 1 23.618 7.375h84.451C207.092 33.483 164.179.199 113.489.199 50.926.202.202 50.914.202 113.49c0 62.567 50.724 113.287 113.287 113.287 62.563 0 113.288-50.72 113.288-113.287 0-8.907-1.029-17.579-2.975-25.887zM99.573 6.545c4.469-.563 9.031-.849 13.559-.849 43.954 0 83.104 26.285 99.742 66.964l1.215 2.98h-56.415l-.643-.735a58.434 58.434 0 0 0-47.934-19.744l-1.891.131-9.949-48.456 2.316-.291zm22.892 214.191c-3.063.261-6.199.396-9.329.4-47.576 0-90.103-31.862-103.418-77.49l-.6-2.049 54.214-16.47c-.891-3.769-1.41-7.679-1.41-11.713 0-21.47 13.3-39.867 32.078-47.461L82.774 14.545c-43.123 13.22-73.04 53.547-73.04 98.869 0 4.156.252 8.337.741 12.464l39.943-11.983v-.481c0-20.66 10.25-39.908 27.057-51.555-.211-.591-.376-1.207-.376-1.874a5.502 5.502 0 0 1 5.502-5.502 5.501 5.501 0 0 1 5.503 5.502 5.502 5.502 0 0 1-7.659 5.064C64.488 75.851 54.74 93.97 54.74 113.414c0 .667.009 1.333.034 1.996l.06 1.671L6.89 131.466l-.354-2.481a109.102 109.102 0 0 1-1.123-15.57C5.413 65.4 37.65 22.764 83.805 9.739l2.203-.62 12.089 55.349a51.01 51.01 0 0 1 15.035-2.261c5.847 0 11.527 1.008 16.953 2.915 1-1.194 2.448-1.996 4.131-1.996a5.468 5.468 0 0 1 5.47 5.468 5.468 5.468 0 0 1-5.47 5.47c-2.227 0-4.122-1.341-4.979-3.25-5.135-1.941-10.527-2.988-16.105-2.988-25.141 0-45.589 20.448-45.589 45.589 0 25.14 20.448 45.593 45.589 45.593 6.367 0 12.642-1.411 18.422-3.958.667-2.267 2.675-3.955 5.161-3.955 3.021 0 5.469 2.447 5.469 5.469s-2.447 5.469-5.469 5.469c-1.435 0-2.722-.582-3.692-1.486-5.367 2.259-11.099 3.558-16.937 3.899l8.682 56.092-2.303.198z" }),
+        _react2.default.createElement("path", { d: "M64.479 129.296l-6.887 2.094c5.815 17.984 20.021 32.074 37.994 37.724.945-1.663 2.666-2.836 4.717-2.836a5.503 5.503 0 0 1 0 11.005c-2.439 0-4.439-1.612-5.161-3.807-19.727-5.895-35.363-21.204-41.68-40.833l-38.977 11.84c13.439 42.698 53.699 72.333 98.646 72.333 2.228-.004 4.455-.076 6.653-.215l-8.055-52.045c-22.076-.603-40.693-15.208-47.25-35.26zm62.448-2.26a2.705 2.705 0 0 0 0 5.409 2.705 2.705 0 0 0 0-5.409zm-13.795-76.333c17.719 0 34.6 7.502 46.491 20.616h47.976c-16.625-37.351-53.355-61.302-94.467-61.302-3.566 0-7.157.186-10.697.548l8.253 40.183c.81-.029 1.625-.045 2.444-.045z" }),
+        _react2.default.createElement("path", { d: "M168.965 142.011c-7.935 15.446-21.861 26.902-38.433 31.679l7.385 40.133c39.622-9.759 69.606-42.55 76.882-81.922h-81.675c-.903 2.572-3.326 4.435-6.197 4.435-3.634 0-6.592-2.959-6.592-6.597s2.958-6.594 6.592-6.594c2.871 0 5.294 1.86 6.197 4.435h82.328c.358-2.563.636-5.136.802-7.744h-71.1c-.899 2.575-3.326 4.436-6.199 4.436-3.633 0-6.591-2.958-6.591-6.596 0-3.637 2.958-6.596 6.591-6.596 2.873 0 5.3 1.862 6.199 4.437h71.289c.014-.706.089-1.394.089-2.102 0-1.52-.105-3.039-.173-4.562h-98.056v30.01h52.272l-1.61 3.148z" }),
+        _react2.default.createElement("circle", { cx: "138.955", cy: "117.676", r: "2.705" }),
+        _react2.default.createElement("path", { d: "M117.123 104.531c-.903-2.574-3.326-4.435-6.199-4.435-3.632 0-6.591 2.958-6.591 6.597 0 3.635 2.958 6.594 6.591 6.594 2.873 0 5.295-1.86 6.199-4.435h1.181v-4.321h-1.181zm-6.199 4.865a2.703 2.703 0 0 1-2.701-2.703 2.703 2.703 0 0 1 2.701-2.706 2.704 2.704 0 0 1 0 5.409zm6.739 29.466c-.903-2.574-3.324-4.434-6.198-4.434-3.633 0-6.592 2.958-6.592 6.595s2.958 6.595 6.592 6.595c2.874 0 5.295-1.861 6.198-4.435h.641v-4.321h-.641zm-6.198 4.866a2.705 2.705 0 0 1 0-5.41c1.489 0 2.699 1.212 2.699 2.705s-1.21 2.705-2.699 2.705zm-7.161-50.472c-.899-2.573-3.325-4.434-6.195-4.434-3.638 0-6.59 2.958-6.59 6.595 0 3.638 2.953 6.595 6.59 6.595 2.871 0 5.296-1.859 6.195-4.434h14v-4.322h-14zm-6.195 4.866a2.7 2.7 0 0 1-2.699-2.705 2.7 2.7 0 0 1 2.699-2.705 2.707 2.707 0 0 1 2.701 2.705 2.708 2.708 0 0 1-2.701 2.705z" })
+      );
+    };
+    GrcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    GrcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = GrcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GRC.js
+var require_GRC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GRC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Grc = function Grc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("circle", { cx: "111.893", cy: "132.846", r: "1.914" }),
+        _react2.default.createElement("circle", { cx: "111.512", cy: "108.548", r: "1.914" }),
+        _react2.default.createElement("path", { d: "M123.259 153.379l-1.387.352 6.314 34.337 1.553-.343c34.521-7.7 59.58-38.994 59.58-74.419 0-4.362-.376-8.732-1.103-12.999l-.221-1.269h-71.261v3.061h68.675c.247 1.627.421 3.271.56 4.919h-69.234v3.06h69.402c.048 1.078.123 2.152.123 3.228 0 .501-.055.987-.063 1.489H135.74c-.638-1.823-2.354-3.14-4.388-3.14a4.674 4.674 0 0 0-4.667 4.668 4.673 4.673 0 0 0 4.667 4.667c2.033 0 3.75-1.318 4.388-3.141h50.323a72.463 72.463 0 0 1-.567 5.482h-58.272c-.638-1.821-2.354-3.138-4.386-3.138a4.67 4.67 0 0 0-4.665 4.668 4.673 4.673 0 0 0 4.665 4.667c2.032 0 3.748-1.316 4.386-3.139h57.811c-5.15 27.867-26.374 51.074-54.417 57.982l-5.227-28.404c11.729-3.382 21.586-11.491 27.201-22.423l1.142-2.228h-36.998v3.056h31.902c-5.597 9.439-14.721 16.305-25.379 19.007zm8.093-35.141a1.915 1.915 0 0 1-1.912-1.915c0-1.059.856-1.916 1.912-1.916 1.054 0 1.91.857 1.91 1.916a1.914 1.914 0 0 1-1.91 1.915zm-8.514 8.536a1.913 1.913 0 1 1 .001-3.825 1.913 1.913 0 0 1-.001 3.825zm-20.396-28.122a1.912 1.912 0 0 0-1.911 1.915 1.91 1.91 0 1 0 3.821 0 1.916 1.916 0 0 0-1.91-1.915z" }),
+        _react2.default.createElement("path", { d: "M127.153 146.666a3.824 3.824 0 0 0 2.612 1.05 3.869 3.869 0 0 0 3.872-3.869 3.873 3.873 0 0 0-3.872-3.872c-1.759 0-3.18 1.195-3.651 2.8-4.092 1.803-8.534 2.801-13.04 2.801-17.795 0-32.269-14.476-32.269-32.27 0-17.793 14.474-32.268 32.269-32.268 3.949 0 7.767.742 11.399 2.115.606 1.351 1.947 2.301 3.524 2.301a3.87 3.87 0 0 0 3.871-3.874 3.87 3.87 0 0 0-3.871-3.87c-1.19 0-2.217.568-2.925 1.414a36.035 36.035 0 0 0-11.999-2.065c-3.704 0-7.275.564-10.642 1.603l-8.556-39.177-1.56.438C59.648 49.142 36.83 79.32 36.83 113.304c0 3.682.27 7.392.794 11.021l.251 1.756L71.81 115.9l-.043-1.184c-.016-.468-.022-.94-.022-1.412 0-13.761 6.898-26.587 18.193-34.231a3.894 3.894 0 0 0 5.42-3.583 3.895 3.895 0 1 0-7.789 0c0 .469.117.906.267 1.324-11.896 8.245-19.151 21.868-19.151 36.491v.341l-28.271 8.481a75.348 75.348 0 0 1-.524-8.822c0-32.079 21.174-60.621 51.696-69.978l7.945 36.386C86.242 85.09 76.829 98.11 76.829 113.305c0 2.855.368 5.623.997 8.291l-38.37 11.658.424 1.449c9.424 32.294 39.523 54.847 73.198 54.847a78.413 78.413 0 0 0 6.603-.284l1.628-.141-6.145-39.701c4.133-.243 8.191-1.162 11.989-2.758zm-9.37 39.675a78.265 78.265 0 0 1-4.709.151c-31.813 0-60.308-20.976-69.821-51.198l27.588-8.376c4.472 13.89 15.539 24.726 29.5 28.896.511 1.556 1.927 2.696 3.652 2.696 2.151 0 3.893-1.744 3.893-3.896s-1.742-3.894-3.893-3.894c-1.452 0-2.67.829-3.337 2.009-12.722-4-22.777-13.973-26.892-26.701l4.874-1.481c4.642 14.192 17.818 24.528 33.443 24.955l5.702 36.839z" }),
+        _react2.default.createElement("path", { d: "M113.327.031C50.738.031 0 50.77 0 113.359c0 62.588 50.738 113.327 113.327 113.327s113.327-50.738 113.327-113.327S175.916.031 113.327.031zm0 193.511c-44.282 0-80.183-35.898-80.183-80.182 0-44.292 35.901-80.184 80.183-80.184 35.879 0 66.253 23.558 76.49 56.063h-59.774a29.227 29.227 0 0 0-16.716-5.219c-16.202 0-29.339 13.135-29.339 29.34 0 16.204 13.137 29.341 29.339 29.341 5.006 0 9.719-1.256 13.844-3.468h-10.436v-4.859h-.453c-.64 1.824-2.354 3.142-4.389 3.142-2.571 0-4.666-2.094-4.666-4.668s2.094-4.668 4.666-4.668c2.035 0 3.749 1.316 4.389 3.139h.453v-21.24h-.837c-.638 1.822-2.354 3.139-4.386 3.139a4.673 4.673 0 0 1-4.666-4.668 4.672 4.672 0 0 1 4.666-4.669c2.031 0 3.748 1.319 4.386 3.139h.837v-4.919h-9.91c-.637 1.822-2.354 3.138-4.383 3.138a4.67 4.67 0 0 1-4.666-4.669 4.67 4.67 0 0 1 4.666-4.667c2.03 0 3.747 1.319 4.383 3.138h9.91v-3.93h74.671v-.071a80.427 80.427 0 0 1 2.105 18.322c0 44.281-35.902 80.18-80.184 80.18z" }),
+        _react2.default.createElement("path", { d: "M110.219 72.077a41.36 41.36 0 0 1 33.926 13.972l.454.522h39.933l-.861-2.11c-11.776-28.793-39.486-47.396-70.597-47.396a77.14 77.14 0 0 0-9.596.599l-1.64.208 7.042 34.296 1.339-.091zm2.855-31.953c29.098 0 55.096 16.951 66.863 43.389H145.98a44.424 44.424 0 0 0-34.635-14.561l-5.841-28.44a73.828 73.828 0 0 1 7.57-.388z" })
+      );
+    };
+    Grc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Grc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Grc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/GRS.js
+var require_GRS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/GRS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Grs = function Grs2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M114.7 149.8c6.7 0 12.3-2.5 16.6-7.6 4.3-5.1 6.5-13 6.5-23.8 0-14.1-3.1-25.1-9.2-33.1-4.5-5.9-10.3-8.8-17.4-8.8-6.6 0-12.1 2.6-16.5 7.8-4.4 5.2-6.7 13.3-6.7 24.1 0 14 3 24.9 9 32.6 4.7 5.9 10.6 8.8 17.7 8.8zm45.5 52.3c-4.6-2-13.7-3.1-27.4-3.5-20-.5-35.3-1.6-46-3.1-4.2 4.5-7.3 8.7-9.4 12.6-2.1 3.9-3.2 7.5-3.2 10.8v.6l.1.3c12.2 4.5 25.4 7 39.2 7 19.3 0 37.5-4.8 53.5-13.4v-.2c0-.4.1-.9.1-1.3-.2-4.6-2.4-7.9-6.9-9.8z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4c0 44 25 82.1 61.7 100.9l.4-.6c1.1-1.5 2.3-3.1 3.7-4.9.6-.8 5.1-5.6 13.6-14.4-4.6-2.7-7.9-5.2-9.8-7.4-1.9-2.2-2.9-4.6-2.9-7.4 0-3.1 1.3-6.7 3.8-10.9S78.9 158.6 88 151c-7.4-3.6-13.2-8.7-17.2-15.2s-6-13.7-6-21.6c0-12.1 4.5-22.4 13.6-31.1 9.1-8.7 20.7-13 34.9-13 11.3 0 21.2 2.7 29.6 8.1 7.5-7.4 13.1-13.6 16.8-18.7 4.9-6.9 7.3-13.2 7.3-18.9 0-4.4-1.3-7.9-4-10.8-2.7-2.8-5.9-4.2-9.6-4.2-3.4 0-6.4 1-9.1 3-2.7 2-4.7 4.9-6 8.7h-1.9c.8-6.3 3-11.1 6.5-14.4 3.5-3.3 7.9-5 13.1-5 5.6 0 10.2 1.8 14 5.4 3.7 3.6 5.6 7.8 5.6 12.7 0 3.5-.8 7-2.4 10.5-2.5 5.5-6.6 11.3-12.2 17.4-8.4 9.2-13.7 14.7-15.8 16.6h18c3.7 0 6.2-.1 7.7-.4 1.5-.3 2.8-.8 4-1.6 1.2-.8 2.2-2 3.1-3.5h1.9l-6.7 17.3h-18.7c4.3 6.2 6.4 13.8 6.4 23 0 11.4-4.3 21.1-13 29.1-8.7 8.1-20.4 12.1-35 12.1-6 0-12.2-.9-18.5-2.7-3.9 3.4-6.5 6.3-7.9 8.8-1.4 2.5-2.1 4.7-2.1 6.5 0 1.5.7 3 2.2 4.4 1.5 1.4 4.3 2.4 8.6 3.1 2.5.4 8.7.7 18.6.9 18.3.4 30.1 1.1 35.5 1.9 8.2 1.2 14.8 4.2 19.8 9.2 4.9 5 7.4 11.1 7.4 18.4v.8c30.2-20.4 50.1-54.9 50.1-94.1C226.8 50.8 176 0 113.4 0z" })
+      );
+    };
+    Grs.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Grs.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Grs;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/HEAT-alt.js
+var require_HEAT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/HEAT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var HeatAlt = function HeatAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm-12.841 40.621h25.683l1.271 51.711H99.287l1.272-51.711zM72.152 156.099c-15.524-.194-27.435-13.921-25.372-29.359l5.614-42.004c1.797-13.443 13.001-23.548 26.441-24.106l-6.683 95.469zm24.827 30.08l1.753-71.289h29.335l1.753 71.289H96.979zm57.669-30.08l-6.683-95.468c13.439.558 24.644 10.662 26.441 24.106l5.614 42.004c2.063 15.437-9.848 29.164-25.372 29.358z" })
+      );
+    };
+    HeatAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    HeatAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = HeatAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/HEAT.js
+var require_HEAT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/HEAT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Heat = function Heat2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M87.931 226.282h50.938L136.15 115.71h-45.5zM91.51 80.724h43.78L133.317.518H93.483zm-31.721-49.17c-20.845.866-38.223 16.537-41.01 37.388l-8.707 65.149c-3.2 23.945 15.274 45.235 39.352 45.536L59.789 31.554zm156.939 102.537l-8.707-65.149c-2.787-20.851-20.165-36.523-41.01-37.388l10.365 148.073c24.078-.301 42.553-21.591 39.352-45.536z" })
+      );
+    };
+    Heat.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Heat.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Heat;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ICN-alt.js
+var require_ICN_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ICN-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var IcnAlt = function IcnAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zM77.815 172.709H60.022v-29.654h17.793v29.654zm29.654 0H89.676V83.746h17.793v88.963zm29.655 0h-17.793V113.4h17.793v59.309zm29.654 0h-17.793V54.091h17.793v118.618z" })
+      );
+    };
+    IcnAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    IcnAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = IcnAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ICN.js
+var require_ICN = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ICN.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Icn = function Icn2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M181.44 0h34.02v226.8h-34.02zm-56.7 113.4h34.02v113.4h-34.02zm-56.7-56.7h34.02v170.1H68.04zm-56.7 113.4h34.02v56.7H11.34z" })
+      );
+    };
+    Icn.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Icn.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Icn;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/IFC-alt.js
+var require_IFC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/IFC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var IfcAlt = function IfcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M174.257 166.804c-26.777 0-46.1-15.938-61.738-32.363-16.191 16.875-34.902 32.363-60.293 32.363C18.304 166.804 0 139.008 0 112.853c0-26.279 17.94-52.881 52.226-52.881 25.959 0 44.537 15.818 60.473 32.806 16.381-17.069 35.426-32.806 61.559-32.806 34.485 0 53.093 27.792 53.093 53.94-.002 26.285-18.239 52.892-53.094 52.892zm-42.559-53.129c14.46 15.362 26.598 24.954 42.559 24.954 18.392 0 24.917-13.314 24.917-24.717 0-9.569-5.247-25.764-24.917-25.764-15.985 0-29.262 11.466-42.559 25.527zM52.225 88.148c-22.89 0-24.05 20.579-24.05 24.705 0 9.575 5.065 25.776 24.05 25.776 15.271 0 28.248-11.273 41.307-25.1-13.196-14.317-25.613-25.381-41.307-25.381z" })
+      );
+    };
+    IfcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    IfcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = IfcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/IFC.js
+var require_IFC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/IFC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ifc = function Ifc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M153.61 96.912c-10.5 0-19.221 7.532-27.956 16.77 9.498 10.091 17.473 16.393 27.956 16.393 12.084 0 16.37-8.746 16.37-16.238 0-6.286-3.446-16.925-16.37-16.925zm-80.164 0c-15.038 0-15.799 13.52-15.799 16.229 0 6.29 3.328 16.934 15.799 16.934 10.032 0 18.557-7.406 27.134-16.49-8.668-9.406-16.824-16.673-27.134-16.673z" }),
+        _react2.default.createElement("path", { d: "M113.494 0C50.813 0 0 50.813 0 113.494s50.813 113.494 113.494 113.494 113.494-50.813 113.494-113.494S176.175 0 113.494 0zm40.116 148.584c-17.59 0-30.284-10.471-40.556-21.26-10.637 11.086-22.928 21.26-39.608 21.26-22.283 0-34.31-18.26-34.31-35.443 0-17.263 11.786-34.738 34.31-34.738 17.052 0 29.258 10.391 39.725 21.55 10.761-11.212 23.273-21.55 40.439-21.55 22.656 0 34.88 18.257 34.88 35.435 0 17.266-11.98 34.746-34.88 34.746z" })
+      );
+    };
+    Ifc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ifc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ifc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/INCNT-alt.js
+var require_INCNT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/INCNT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var IncntAlt = function IncntAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4c62.6 0 113.4-50.8 113.4-113.4S176 0 113.4 0zm0 29.3l29.481 8.475-5.198 15.445-24.283-6.931-24.283 6.931-5.198-15.445L113.4 29.3zm0 168.2L69.133 65.969 113.4 53.244l44.267 12.726L113.4 197.5z" })
+      );
+    };
+    IncntAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    IncntAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = IncntAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/INCNT.js
+var require_INCNT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/INCNT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Incnt = function Incnt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 32.286L53.711 49.445 113.4 226.8l59.689-177.355zm0-9.379l32.743 9.346 7.009-20.825L113.4 0 73.648 11.428l7.009 20.826z" })
+      );
+    };
+    Incnt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Incnt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Incnt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/IOC-alt.js
+var require_IOC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/IOC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var IocAlt = function IocAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M88.843 78.343v145.741a113.698 113.698 0 0 0 24.534 2.671c8.424 0 16.632-.927 24.533-2.671V78.343s-9.48-5.764-24.533-5.764c-15.055 0-24.534 5.764-24.534 5.764zM0 113.379c0 49.594 31.847 91.746 76.205 107.134v-43.618c-21.789-12.779-36.43-36.431-36.43-63.516 0-27.087 14.641-50.739 36.43-63.519V6.241C31.846 21.631 0 63.782 0 113.379zM150.549 6.241V49.86c21.789 12.78 36.431 36.432 36.431 63.519 0 27.085-14.642 50.736-36.431 63.516v43.618c44.357-15.388 76.204-57.54 76.204-107.134 0-49.597-31.847-91.748-76.204-107.138zm-61.706-3.57v41.31c7.675-2.715 15.928-4.206 24.534-4.206s16.857 1.491 24.533 4.206V2.671A113.772 113.772 0 0 0 113.377 0c-8.426 0-16.634.928-24.534 2.671z" })
+      );
+    };
+    IocAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    IocAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = IocAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/IOC.js
+var require_IOC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/IOC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ioc = function Ioc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.494 0C50.813 0 0 50.813 0 113.494c0 62.68 50.813 113.494 113.494 113.494s113.494-50.813 113.494-113.494S176.175 0 113.494 0zM89.335 72.212c-14.162 8.305-23.677 23.679-23.677 41.282 0 17.606 9.515 32.976 23.677 41.283v28.351c-28.83-10.003-49.528-37.4-49.528-69.633 0-32.235 20.698-59.63 49.528-69.631v28.348zm40.105 113.236a73.886 73.886 0 0 1-15.945 1.735c-5.477 0-10.81-.602-15.946-1.735V90.724s6.162-3.745 15.946-3.745c9.782 0 15.945 3.745 15.945 3.745v94.724zm0-117.058a47.717 47.717 0 0 0-15.945-2.732c-5.594 0-10.958.969-15.946 2.732V41.542a73.937 73.937 0 0 1 15.946-1.735c5.475 0 10.81.603 15.945 1.735V68.39zm8.215 114.738v-28.351c14.161-8.307 23.677-23.677 23.677-41.283 0-17.603-9.516-32.978-23.677-41.282V43.863c28.83 10.001 49.527 37.396 49.527 69.631 0 32.233-20.697 59.631-49.527 69.634z" })
+      );
+    };
+    Ioc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ioc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ioc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/IOTA-alt.js
+var require_IOTA_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/IOTA-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var IotaAlt = function IotaAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm45.392 73.794a8.182 8.182 0 1 1 6.063 9.856 8.18 8.18 0 0 1-6.063-9.856zm-1.182 19.698a6.617 6.617 0 1 1 12.873 3.067 6.617 6.617 0 0 1-12.873-3.067zm-8.061 33.826a4.26 4.26 0 1 1 1.975-8.29 4.26 4.26 0 0 1-1.975 8.29zm2.656 16.69a3.144 3.144 0 1 1-5.673-2.71 3.144 3.144 0 0 1 5.673 2.71zm-7.632-44.797a7.131 7.131 0 1 1 0-14.263 7.131 7.131 0 0 1 0 14.263zm10.253 36.541a3.599 3.599 0 1 1 6.495 3.102 3.599 3.599 0 0 1-6.495-3.102zm1.631-19.045a6.11 6.11 0 1 1 2.833-11.89 6.111 6.111 0 0 1-2.833 11.89zm-9.134-36.439a7.721 7.721 0 1 1 0-15.442 7.721 7.721 0 0 1 0 15.442zm-2.16-39.948a9.548 9.548 0 1 1 0 19.097 9.548 9.548 0 0 1 0-19.097zm-5.561 62.862a4.972 4.972 0 1 1-.001 9.943 4.972 4.972 0 0 1 .001-9.943zm-7.667 21.163a4.342 4.342 0 1 1 0-8.684 4.342 4.342 0 0 1 0 8.684zm4.057 13.177a3.452 3.452 0 1 1-6.717-1.6 3.452 3.452 0 0 1 6.717 1.6zm-13.047-13.177a4.03 4.03 0 1 1 0 8.058 4.03 4.03 0 0 1 0-8.058zm-4.753-39.361a3.722 3.722 0 1 1-2.125-7.133 3.722 3.722 0 0 1 2.125 7.133zm7.642 17.823a4.029 4.029 0 1 1-4.028-6.978 4.029 4.029 0 0 1 4.028 6.978zm-.616-19.363a3.452 3.452 0 1 1 1.972 6.617 3.452 3.452 0 0 1-1.972-6.617zm4.077-11.041a2.915 2.915 0 1 1 .455 5.815 2.915 2.915 0 1 1-.455-5.815zm-6.567-6.242a3.144 3.144 0 1 1 .49 6.269 3.144 3.144 0 0 1-.49-6.269zm-9.022-5.318a3.598 3.598 0 1 1 .563 7.175 3.598 3.598 0 0 1-.563-7.175zm2.129 32.704a4.342 4.342 0 1 1-7.521 4.342 4.342 4.342 0 0 1 7.521-4.342zm-32.331 32.659a3.72 3.72 0 1 1 5.407 5.115 3.72 3.72 0 0 1-5.407-5.115zm.277-10.343a3.453 3.453 0 1 1 5.017 4.747 3.453 3.453 0 0 1-5.017-4.747zm2.195 21.724a4.26 4.26 0 1 1 6.19 5.856 4.26 4.26 0 0 1-6.19-5.856zm14.488-38.279a4.971 4.971 0 1 1-4.971-8.61 4.971 4.971 0 0 1 4.971 8.61zm1.388 16.725a4.029 4.029 0 1 1-6.978-4.028 4.029 4.029 0 0 1 6.978 4.028zm-10.141 32.842a6.111 6.111 0 1 1 8.88 8.398 6.111 6.111 0 0 1-8.88-8.398zm7.235-19.125a4.341 4.341 0 1 1 4.34-7.52 4.341 4.341 0 0 1-4.34 7.52zm4.296 6.319a4.972 4.972 0 1 1 8.611 4.972 4.972 4.972 0 0 1-8.611-4.972zm6.361-59.263a4.26 4.26 0 1 1-8.164 2.434 4.26 4.26 0 0 1 8.164-2.434zm-7.9-20.202a5.162 5.162 0 1 1 .806 10.294 5.162 5.162 0 1 1-.806-10.294zm-4.744 19.525a6.112 6.112 0 1 1-11.714 3.49 6.112 6.112 0 0 1 11.714-3.49zm-9.542-20.832a5.59 5.59 0 1 1 .873 11.145 5.59 5.59 0 0 1-.873-11.145zm.332 39.872a7.13 7.13 0 1 1-12.351 7.131 7.13 7.13 0 1 1 12.351-7.131zm-15.433 27.565a2.916 2.916 0 1 1 4.806-3.302 2.916 2.916 0 0 1-4.806 3.302zm2.248 9.62a3.142 3.142 0 1 1-3.558-5.18 3.142 3.142 0 0 1 3.558 5.18zm6.165-53.847a6.617 6.617 0 1 1-12.682 3.78 6.617 6.617 0 0 1 12.682-3.78zm-9.661-21.688a6.913 6.913 0 1 1 1.079 13.783 6.913 6.913 0 0 1-1.079-13.783zM53.954 79.881a8.183 8.183 0 1 1 4.674 15.684 8.183 8.183 0 0 1-4.674-15.684zm-4.457 47.717c-4.567 2.637-10.406 1.072-13.043-3.495-2.637-4.567-1.072-10.406 3.495-13.043 4.567-2.637 10.406-1.072 13.043 3.495 2.636 4.567 1.071 10.406-3.495 13.043zm17.646-14.792a7.72 7.72 0 1 1 2.826-10.547 7.72 7.72 0 0 1-2.826 10.547zm2.956 29.208a3.599 3.599 0 1 1 5.933-4.074 3.599 3.599 0 0 1-5.933 4.074zm2.331 12.515a5.163 5.163 0 1 1 8.512-5.845 5.163 5.163 0 0 1-8.512 5.845zm6.011 13.025a5.59 5.59 0 1 1 9.217-6.328 5.59 5.59 0 0 1-9.217 6.328zm19.104 15.184a6.912 6.912 0 1 1-7.826-11.396 6.912 6.912 0 0 1 7.826 11.396zm13.955-11.904a6.617 6.617 0 1 1-9.615-9.093 6.617 6.617 0 0 1 9.615 9.093zm1.305-23.503a7.13 7.13 0 1 1 12.351 7.131 7.13 7.13 0 0 1-12.351-7.131zm15.224 36.589a8.183 8.183 0 1 1-11.889-11.246 8.183 8.183 0 0 1 11.889 11.246zm13.179-17.015a7.72 7.72 0 1 1-13.373-7.72 7.72 7.72 0 0 1 13.373 7.72zm2.308-20.331a2.916 2.916 0 1 1-5.264-2.513 2.916 2.916 0 0 1 5.264 2.513zm1.895-14.182a3.72 3.72 0 1 1-7.24-1.725 3.72 3.72 0 0 1 7.24 1.725zm18.1 44.895c-2.637 4.567-8.476 6.131-13.043 3.495-4.567-2.637-6.131-8.476-3.495-13.043 2.637-4.567 8.476-6.131 13.043-3.495 4.567 2.637 6.131 8.476 3.495 13.043zm7.483-46.71a5.162 5.162 0 1 1-9.317-4.449 5.162 5.162 0 1 1 9.317 4.449zm8.275-11.718a5.59 5.59 0 1 1-10.09-4.817 5.59 5.59 0 0 1 10.09 4.817zm6.857-14.92a6.912 6.912 0 1 1-12.475-5.957 6.912 6.912 0 0 1 12.475 5.957z" })
+      );
+    };
+    IotaAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    IotaAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = IotaAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/IOTA.js
+var require_IOTA = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/IOTA.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Iota = function Iota2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("circle", { cx: "131.285", cy: "135.797", r: "6.026" }),
+        _react2.default.createElement("circle", { cx: "144.732", cy: "123.277", r: "6.494" }),
+        _react2.default.createElement("circle", { cx: "156.2", cy: "105.551", r: "7.436" }),
+        _react2.default.createElement("circle", { cx: "163.636", cy: "81.51", r: "10.667" }),
+        _react2.default.createElement("circle", { cx: "167.749", cy: "52.294", r: "11.549" }),
+        _react2.default.createElement("circle", { cx: "164.518", cy: "18.372", r: "14.281" }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-76.597 145.77 148.278)",
+          cx: "145.778",
+          cy: "148.283",
+          rx: "5.164",
+          ry: "5.164"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-76.597 159.466 140.512)",
+          cx: "159.475",
+          cy: "140.518",
+          rx: "5.565",
+          ry: "5.565"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-76.597 172.547 128.015)",
+          cx: "172.556",
+          cy: "128.019",
+          rx: "6.372",
+          ry: "6.372"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-76.597 183.52 109.451)",
+          cx: "183.531",
+          cy: "109.454",
+          rx: "9.141",
+          ry: "9.141"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-76.597 192.754 85.914)",
+          cx: "192.763",
+          cy: "85.917",
+          rx: "9.897",
+          ry: "9.897"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-76.597 196.8 56.995)",
+          cx: "196.809",
+          cy: "56.996",
+          rx: "12.239",
+          ry: "12.239"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-64.475 158.122 161.141)",
+          cx: "158.118",
+          cy: "161.14",
+          rx: "4.363",
+          ry: "4.362"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-64.475 170.813 157.156)",
+          cx: "170.809",
+          cy: "157.156",
+          rx: "4.702",
+          ry: "4.702"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-64.475 183.837 149.153)",
+          cx: "183.83",
+          cy: "149.153",
+          rx: "5.383",
+          ry: "5.383"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-64.475 196.193 135.766)",
+          cx: "196.187",
+          cy: "135.766",
+          rx: "7.722",
+          ry: "7.722"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-64.475 207.993 117.962)",
+          cx: "207.988",
+          cy: "117.962",
+          rx: "8.361",
+          ry: "8.361"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-64.475 216.463 94.793)",
+          cx: "216.459",
+          cy: "94.793",
+          rx: "10.339",
+          ry: "10.339"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-30 132.584 92.34)",
+          cx: "132.593",
+          cy: "92.337",
+          rx: "6.026",
+          ry: "6.026"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-30 115.02 86.955)",
+          cx: "115.027",
+          cy: "86.951",
+          rx: "6.494",
+          ry: "6.494"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-30 93.937 85.886)",
+          cx: "93.942",
+          cy: "85.883",
+          rx: "7.436",
+          ry: "7.436"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-30 69.399 91.466)",
+          cx: "69.404",
+          cy: "91.464",
+          rx: "10.667",
+          ry: "10.667"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-30 42.041 102.511)",
+          cx: "42.046",
+          cy: "102.51",
+          rx: "11.549",
+          ry: "11.549"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-30 14.278 122.269)",
+          cx: "14.284",
+          cy: "122.269",
+          rx: "14.281",
+          ry: "14.281"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-16.596 136.172 73.548)",
+          cx: "136.16",
+          cy: "73.543",
+          rx: "5.164",
+          ry: "5.164"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-16.596 122.6 65.57)",
+          cx: "122.586",
+          cy: "65.563",
+          rx: "5.565",
+          ry: "5.565"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-16.596 105.234 60.49)",
+          cx: "105.222",
+          cy: "60.484",
+          rx: "6.372",
+          ry: "6.372"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-16.596 83.665 60.267)",
+          cx: "83.657",
+          cy: "60.262",
+          rx: "9.141",
+          ry: "9.141"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-16.596 58.663 64.042)",
+          cx: "58.657",
+          cy: "64.035",
+          rx: "9.897",
+          ry: "9.897"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-16.596 31.592 75)",
+          cx: "31.588",
+          cy: "74.992",
+          rx: "12.239",
+          ry: "12.239"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-4.44 141.232 56.37)",
+          cx: "141.125",
+          cy: "56.427",
+          rx: "4.362",
+          ry: "4.362"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-4.44 131.432 47.374)",
+          cx: "131.328",
+          cy: "47.429",
+          rx: "4.702",
+          ry: "4.702"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-4.474 117.963 40.176)",
+          cx: "117.887",
+          cy: "40.154",
+          rx: "5.383",
+          ry: "5.383"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-4.474 100.18 36.166)",
+          cx: "100.115",
+          cy: "36.146",
+          rx: "7.722",
+          ry: "7.722"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-4.474 78.844 34.846)",
+          cx: "78.797",
+          cy: "34.828",
+          rx: "8.361",
+          ry: "8.361"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-4.474 54.53 39.098)",
+          cx: "54.496",
+          cy: "39.076",
+          rx: "10.339",
+          ry: "10.339"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-60 94.518 114.329)",
+          cx: "94.517",
+          cy: "114.325",
+          rx: "6.026",
+          ry: "6.026"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-60 98.637 132.235)",
+          cx: "98.637",
+          cy: "132.231",
+          rx: "6.494",
+          ry: "6.494"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-60 108.254 151.03)",
+          cx: "108.254",
+          cy: "151.025",
+          rx: "7.436",
+          ry: "7.436"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-60 125.357 169.49)",
+          cx: "125.356",
+          cy: "169.486",
+          rx: "10.667",
+          ry: "10.667"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-60 148.602 187.662)",
+          cx: "148.601",
+          cy: "187.655",
+          rx: "11.549",
+          ry: "11.549"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-60 179.595 201.825)",
+          cx: "179.594",
+          cy: "201.818",
+          rx: "14.281",
+          ry: "14.281"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-46.597 76.46 120.638)",
+          cx: "76.457",
+          cy: "120.633",
+          rx: "5.164",
+          ry: "5.164"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-46.597 76.337 136.384)",
+          cx: "76.334",
+          cy: "136.378",
+          rx: "5.565",
+          ry: "5.565"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-46.597 80.62 153.962)",
+          cx: "80.618",
+          cy: "153.956",
+          rx: "6.372",
+          ry: "6.372"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-46.597 91.212 172.75)",
+          cx: "91.208",
+          cy: "172.743",
+          rx: "9.141",
+          ry: "9.141"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-46.597 106.98 192.515)",
+          cx: "106.976",
+          cy: "192.507",
+          rx: "9.897",
+          ry: "9.897"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-46.597 130.004 210.48)",
+          cx: "129.999",
+          cy: "210.471",
+          rx: "12.239",
+          ry: "12.239"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-34.477 59.151 124.887)",
+          cx: "59.153",
+          cy: "124.892",
+          rx: "4.363",
+          ry: "4.362"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-34.477 56.256 137.868)",
+          cx: "56.258",
+          cy: "137.875",
+          rx: "4.701",
+          ry: "4.701"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-34.477 56.675 153.145)",
+          cx: "56.678",
+          cy: "153.153",
+          rx: "5.383",
+          ry: "5.383"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-34.477 62.09 170.539)",
+          cx: "62.093",
+          cy: "170.548",
+          rx: "7.722",
+          ry: "7.722"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-34.477 71.607 189.659)",
+          cx: "71.611",
+          cy: "189.669",
+          rx: "8.361",
+          ry: "8.361"
+        }),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-34.477 87.436 208.578)",
+          cx: "87.441",
+          cy: "208.59",
+          rx: "10.339",
+          ry: "10.339"
+        })
+      );
+    };
+    Iota.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Iota.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Iota;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/JBS-alt.js
+var require_JBS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/JBS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var JbsAlt = function JbsAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389s113.389-50.766 113.389-113.389C226.777 50.766 176.011 0 113.388 0zm59.832 158.025c-1.039 2.237-1.804 5.078-4.15 6.335-2.35 1.256-5.625.327-7.045.817-1.42.492-1.911 3.332-4.149 3.44-2.24.11-6.608-2.456-8.519-4.914-1.913-2.456-1.039-5.842-4.097-6.662-3.058-.817-5.788.492-7.917.492-2.132 0-5.517-.819-7.318-.218-1.801.601-4.422 3.221-7.918 6.989-3.494 3.768-5.46 4.368-7.917 8.737-2.458 4.366-1.912 8.954-1.912 8.954-3.085-.763-5.352-3.248-6.908-5.461-1.555-2.211-3.439-7.945 1.146-17.856 4.587-9.91 13.27-11.875 13.27-11.875s2.95 4.996 11.55 4.996 12.531-4.75 12.531-4.75 3.522 2.375 8.108 6.142c4.588 3.769 5.816 7.128 5.816 7.128s7.454.326 10.483-2.377c3.032-2.702 1.229-8.271 1.229-8.271l-4.75 4.175s-3.03-6.059-6.146-10.319c-3.11-4.26-8.024-9.337-10.237-9.337-2.211 0-3.604 2.048-7.208 3.849-3.604 1.803-10.239 1.885-10.239 1.885s8.028-9.175 7.864-14.743c-.163-5.571-7.699-10.075-7.699-10.075s6.717 1.229 11.468 4.586c4.751 3.359 9.828 9.419 10.401 8.848.573-.574-5.406-9.666-5.815-10.402-.408-.738.165-4.261-2.703-6.555-2.866-2.293-8.109 1.065-8.109 1.065s.083-7.617-6.961-8.927c7.616-17.365-1.884-30.144-9.994-37.844-8.109-7.699-33.582-19.084-53.323 4.669-18.43 22.608-7.781 50.21 10.976 56.598-14.662-15.151-13.433-35.875-4.341-48.16 9.092-12.288 29.815-15.154 40.709-4.669 10.892 10.484 6.061 21.459 6.061 21.459s-15.072-2.866-16.218-1.309c-1.148 1.555-.328 4.505 1.965 7.863 2.292 3.358 6.88 5.815 9.665 6.962-2.785 1.229-9.828 1.885-14.088-1.475-4.258-3.357-10.074-15.972-9.174-18.511.901-2.541 11.712-3.685 14.088-3.522-6.471-10.977-19.084-5.897-24.654.41-5.57 6.306-6.553 16.625-2.867 26.619 3.686 9.995 14.334 19.167 27.686 16.3 13.35-2.866 14.087-16.3 14.087-16.3s2.704 2.624 2.459 6.635c-.246 4.014-6.964 25.557-32.683 23.509-25.721-2.048-38.499-22.524-42.02-38.416-3.522-15.892 1.474-34.402 20.887-49.31 19.413-14.907 45.541-9.993 59.794 4.587 14.252 14.581 11.14 30.937 12.615 33.064 1.474 2.131 4.013 1.175 6.634 3.877 2.621 2.703 4.833 10.157 6.798 13.434 1.967 3.275 8.274 10.565 13.598 19.985 5.325 9.421 8.846 18.784 8.846 21.078.003 2.295-2.617 4.533-3.655 6.771z" })
+      );
+    };
+    JbsAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    JbsAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = JbsAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/JBS.js
+var require_JBS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/JBS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Jbs = function Jbs2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M115.213 227.173s-.914-7.673 3.196-14.98 7.398-8.311 13.244-14.612c5.846-6.303 10.23-10.689 13.244-11.691 3.015-1.005 8.678.364 12.238.364 3.563 0 8.13-2.193 13.245-.821 5.114 1.37 3.653 7.033 6.851 11.142 3.196 4.11 10.504 8.404 14.248 8.222 3.746-.183 4.567-4.933 6.942-5.755 2.375-.821 7.855.73 11.782-1.369 3.929-2.103 5.206-6.852 6.941-10.596 1.736-3.744 6.119-7.489 6.119-11.326 0-3.835-5.891-19.5-14.795-35.255-8.906-15.758-19.455-27.951-22.745-33.431-3.287-5.479-6.986-17.948-11.371-22.47-4.384-4.521-8.631-2.92-11.097-6.483-2.467-3.562 2.74-30.918-21.1-55.306-23.836-24.389-67.542-32.61-100.013-7.675C9.671 40.066 1.314 71.029 7.205 97.61c5.892 26.58 27.264 60.831 70.285 64.256 43.02 3.424 54.255-32.608 54.666-39.321.411-6.713-4.109-11.098-4.109-11.098s-1.233 22.469-23.564 27.265c-22.333 4.796-40.144-10.551-46.309-27.265-6.166-16.714-4.521-33.978 4.795-44.527 9.316-10.549 30.417-19.044 41.239-.684-3.972-.274-22.058 1.644-23.565 5.89s8.221 25.347 15.345 30.963c7.124 5.618 18.906 4.521 23.565 2.466-4.659-1.918-12.33-6.027-16.167-11.646-3.836-5.617-5.206-10.549-3.288-13.151 1.918-2.604 27.127 2.19 27.127 2.19s8.084-18.358-10.138-35.895C98.863 29.516 64.2 34.312 48.993 54.863c-15.208 20.551-17.263 55.214 7.261 80.56-31.375-10.687-49.186-56.857-18.359-94.67 33.019-39.734 75.627-20.689 89.191-7.811 13.563 12.879 29.457 34.252 16.715 63.298 11.783 2.191 11.646 14.933 11.646 14.933s8.768-5.617 13.563-1.78c4.795 3.836 3.836 9.726 4.521 10.961.685 1.232 10.688 16.44 9.728 17.399-.959.959-9.453-9.18-17.399-14.797-7.946-5.616-19.181-7.672-19.181-7.672s12.604 7.535 12.879 16.852c.274 9.315-13.153 24.66-13.153 24.66s11.098-.136 17.126-3.149c6.027-3.015 8.358-6.438 12.057-6.438s11.92 8.493 17.126 15.617 10.275 17.263 10.275 17.263l7.946-6.986s3.015 9.315-2.055 13.836c-5.069 4.522-17.536 3.975-17.536 3.975s-2.055-5.617-9.729-11.92c-7.672-6.302-13.563-10.275-13.563-10.275s-6.577 7.947-20.963 7.947-19.317-8.359-19.317-8.359-14.522 3.288-22.194 19.866c-7.673 16.578-4.522 26.168-1.918 29.868 2.601 3.697 6.392 7.854 11.553 9.132z" })
+      );
+    };
+    Jbs.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Jbs.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Jbs;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/KMD-alt.js
+var require_KMD_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/KMD-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var KmdAlt = function KmdAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm54.991 164.274l-3.878 3.878c-17.035 7.13-34.055 14.299-51.113 21.374-17.058-7.074-34.078-14.243-51.113-21.374l-3.878-3.878-21.142-50.879 21.142-50.879 3.878-3.878c11.93-4.994 23.858-9.997 35.792-14.982l9.842-4.12 2.725-1.13 2.754-1.141 2.753 1.141 2.725 1.13 9.842 4.12c11.934 4.985 23.862 9.988 35.792 14.982l3.878 3.878 21.142 50.879-21.141 50.879z" }),
+        _react2.default.createElement("path", { d: "M113.4 68.322L81.528 81.524l-13.202 31.871 13.202 31.872 31.872 13.202 31.871-13.202 13.202-31.872-13.202-31.871L113.4 68.322zm22.536 67.61l-22.537 9.336-22.536-9.336-9.335-22.536 9.335-22.536 22.536-9.336 22.537 9.336 9.335 22.536-9.335 22.536z" })
+      );
+    };
+    KmdAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    KmdAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = KmdAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/KMD.js
+var require_KMD = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/KMD.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Kmd = function Kmd2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M195.309 37.615l-5.776-5.777c-17.77-7.438-35.536-14.89-53.312-22.316l-14.66-6.136-4.06-1.682-4.101-1.7-4.102 1.7-4.059 1.682L90.58 9.523c-17.776 7.426-35.543 14.878-53.312 22.316l-5.777 5.777L0 113.399l31.491 75.784 5.777 5.777c25.373 10.621 50.725 21.299 76.133 31.836 25.408-10.537 50.759-21.215 76.132-31.836l5.776-5.777 31.491-75.784-31.491-75.784zm-34.436 123.257L113.4 180.537l-47.473-19.664L46.263 113.4l19.664-47.472L113.4 46.262l47.472 19.665 19.665 47.472-19.664 47.473z" }),
+        _react2.default.createElement("path", { d: "M113.4 65.927L79.832 79.832 65.927 113.4l13.905 33.567 33.568 13.906 33.568-13.906 13.905-33.567-13.905-33.568z" })
+      );
+    };
+    Kmd.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Kmd.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Kmd;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/KOBO.js
+var require_KOBO = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/KOBO.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Kobo = function Kobo2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 6.4C50.8 6.4 0 54.3 0 113.4s50.8 107 113.4 107c62.6 0 113.4-47.9 113.4-107S176 6.4 113.4 6.4zm63.1 155.2H132l-33.2-51.4-2.3 51.4H57.8l5.3-104.9h39.2l-2.8 45.6 35.2-45.6h41.8l-39.6 48.8 39.6 56.1z" })
+      );
+    };
+    Kobo.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Kobo.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Kobo;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/KORE-alt.js
+var require_KORE_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/KORE-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var KoreAlt = function KoreAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.375-.032C50.744-.032-.028 50.742-.028 113.368c0 62.632 50.772 113.409 113.403 113.409 62.63 0 113.402-50.776 113.402-113.409 0-62.626-50.772-113.4-113.402-113.4zm64.8 113.4c0 20.784-9.813 39.24-25.027 51.092l-7.443-11.805c11.337-9.336 18.584-23.452 18.584-39.288 0-16.974-8.332-31.975-21.104-41.223l9.521-10.22c15.467 11.844 25.469 30.462 25.469 51.444zm-45.737-29.687c9.774 6.274 16.266 17.207 16.266 29.688 0 10.278-4.396 19.511-11.402 25.958l-22.885-36.302 18.021-19.344zm16.989-57.326L94.643 84.291l7.766-57.469H76.218c11.4-4.903 23.959-7.628 37.157-7.628 12.772.001 24.944 2.553 36.052 7.161zM55.952 143.39a64.435 64.435 0 0 1-7.377-30.022c0-17.056 6.618-32.551 17.396-44.12L55.952 143.39zm-36.753-30.022c0-36.922 21.26-68.862 52.199-84.297l-1.831 13.548c-23.659 14.675-39.419 40.864-39.419 70.75 0 21.847 8.449 41.691 22.22 56.535l-1.837 13.594c-19.228-17.244-31.332-42.269-31.332-70.13zm42.132 78.486h18.78l9.835-72.774.805.098 45.82 72.677h28.85c-14.913 9.911-32.797 15.696-52.045 15.696-19.245 0-37.136-5.786-52.045-15.697zm107.555-2.425l-5.858-9.296c20.366-15.166 33.573-39.416 33.573-66.765 0-26.303-12.217-49.74-31.273-64.99l7.49-8.039c21.191 17.267 34.73 43.563 34.73 73.029.001 31.249-15.228 58.93-38.662 76.061z" })
+      );
+    };
+    KoreAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    KoreAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = KoreAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/KORE.js
+var require_KORE = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/KORE.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Kore = function Kore2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M101.254 94.26l35.873-37.937a61.463 61.463 0 0 0-23.607-4.688 61.448 61.448 0 0 0-24.332 4.995h17.151l-5.085 37.63zM84.833 66.974l1.2-8.871c-20.26 10.106-34.182 31.021-34.182 55.199 0 18.243 7.926 34.631 20.517 45.921l1.203-8.901c-9.017-9.72-14.549-22.714-14.549-37.02 0-19.57 10.319-36.72 25.811-46.328zm41.17 26.889l-11.8 12.666 14.984 23.771c4.588-4.222 7.467-10.269 7.467-16.998 0-8.174-4.251-15.332-10.651-19.439z" }),
+        _react2.default.createElement("path", { d: "M146.858 113.302c0 10.369-4.745 19.612-12.168 25.726l4.873 7.73c9.962-7.762 16.39-19.848 16.39-33.456 0-13.741-6.551-25.932-16.678-33.686l-6.236 6.691c8.364 6.056 13.819 15.88 13.819 26.995z" }),
+        _react2.default.createElement("path", { d: "M152.443 65.48l-4.903 5.264c12.479 9.986 20.478 25.333 20.478 42.558 0 17.909-8.648 33.788-21.983 43.719l3.836 6.088c15.345-11.22 25.316-29.345 25.316-49.807-.001-19.296-8.866-36.515-22.744-47.822zm-81.356 47.822c0 7.099 1.75 13.78 4.831 19.658l6.562-48.549c-7.059 7.575-11.393 17.721-11.393 28.891z" }),
+        _react2.default.createElement("path", { d: "M113.409.042C50.798.042.042 50.798.042 113.41c0 62.611 50.756 113.367 113.367 113.367 62.612 0 113.368-50.756 113.368-113.367C226.777 50.798 176.021.042 113.409.042zm.111 187.521c-41.012 0-74.258-33.249-74.258-74.262 0-41.01 33.246-74.257 74.258-74.257 41.01 0 74.258 33.247 74.258 74.257 0 41.013-33.248 74.262-74.258 74.262z" }),
+        _react2.default.createElement("path", { d: "M98.704 117.105l-.526-.064-6.441 47.655H79.44a61.369 61.369 0 0 0 34.08 10.276 61.371 61.371 0 0 0 34.08-10.276h-18.892l-30.004-47.591z" })
+      );
+    };
+    Kore.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Kore.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Kore;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LBC-alt.js
+var require_LBC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LBC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var LbcAlt = function LbcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8c62.6 0 113.4-50.8 113.4-113.4C226.8 50.8 176 0 113.4 0zm73.3 133.1L180 132l1-6.1-69.6 42.9L37.3 132v-26.4l77.5-47.7 70.6 34v9.3l-74 45.4-51.3-25v-7.5l50.9 24.8 67.6-41.5v-1.2l-63.4-30.5-71.1 43.8v18.4l67 33.3 65.3-40.3-4.7-.9 1.3-6.7 16.6 3.1-2.9 16.7z" })
+      );
+    };
+    LbcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    LbcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = LbcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LBC.js
+var require_LBC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LBC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Lbc = function Lbc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M202 113.2l-1.8 10 7 1.3-97.2 60-99.9-49.6v-27.4l106.1-65.3 94.5 45.5v1.8L110 151.3l-75.9-36.9v11.2l76.4 37.2 110.3-67.7V81.3L115.6 30.7 0 101.8v39.4L110.5 196l103.7-64-1.4 9.1 9.9 1.6 4.1-24.8z" })
+      );
+    };
+    Lbc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Lbc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Lbc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LDOGE-alt.js
+var require_LDOGE_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LDOGE-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var LdogeAlt = function LdogeAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M211.784 97.719c3.955-6.885.731-9.521.731-9.521s3.078-15.819-3.221-15.819c0-3.516-9.374-15.964-10.254-9.667 0 0-17.722-14.061-36.616-3.662-18.896 10.4-17.577 29.586-17.577 29.586s-13.914.293-19.041-.585c-5.126-.879-15.233-6.006-15.233-6.006s9.375-7.323 6.737-17.869c6.592.732-5.565-14.5-7.03-16.844 0 0 4.249-42.038-6.737-45.846-10.985-3.805-23.581 21.24-24.607 21.24-1.025 0-5.909-2.539-12.841-2.929-6.932-.391-13.768 1.854-13.768 1.854S38.169-2.863 28.502 1.094c-9.667 3.958-6.834 41.063-6.542 46.24 0 0-9.081 10.106-8.935 13.475.147 3.369 2.051 4.101 2.051 4.101s-.879 6.298.292 9.228c1.172 2.929 15.818 16.405 16.844 19.041 1.026 2.637-.732 30.466 1.758 45.406 2.49 14.939 9.227 26.364 11.864 45.259s-1.465 37.936 0 39.254c1.465 1.317 16.404 1.317 18.456 0 2.05-1.318 3.808-18.456 3.955-28.415.146-9.96 0-24.314 0-24.314s10.691.879 12.01 3.516c1.318 2.636 1.172 16.99.732 26.511-.439 9.521-3.515 22.849-2.491 24.461 1.025 1.611 14.794 3.369 18.163 0 3.369-3.368 8.789-55.513 9.667-56.537.878-1.025 22.264-15.233 22.264-15.233s.293 8.055 2.636 11.425c2.344 3.369 17.138 16.259 17.431 19.772.292 3.516-14.647 27.977-13.036 29.002 1.611 1.024 19.188 2.636 22.558.586 3.368-2.051 9.08-15.819 10.398-21.385 1.317-5.565 2.783-18.016 2.783-18.016s16.698 8.349 17.575 10.546c.88 2.196.147 15.965-1.757 21.53-1.903 5.566-7.763 15.819-6.445 16.697 1.318.88 21.385 1.758 22.996.44 1.611-1.318 7.91-37.058 6.299-48.628-1.611-11.572-7.616-10.106-8.203-15.086-.584-4.981 1.319-30.174.147-37.644s-4.542-9.667-4.542-11.132c-.001-1.464 10.401-6.591 14.354-13.475zM45.592 61.591c-4.313 0-7.812-5.466-7.812-12.207 0-6.741 3.498-12.206 7.812-12.206s7.811 5.465 7.811 12.206c-.001 6.741-3.498 12.207-7.811 12.207zm14.01 37.373c-5.273 0-8.495-6.445-7.543-11.937 5.419.22 7.202-2.783 7.202-2.783 2.171 3.589 8.105 2.563 8.544 2.637.001 5.053-2.929 12.083-8.203 12.083zm-.341-18.577c-4.719 0-8.544-2.383-8.544-5.322s3.825-5.322 8.544-5.322c4.718 0 8.544 2.383 8.544 5.322.001 2.94-3.825 5.322-8.544 5.322zm20.116-18.796c-4.313 0-7.812-5.466-7.812-12.207 0-6.741 3.498-12.206 7.812-12.206s7.812 5.465 7.812 12.206-3.499 12.207-7.812 12.207z" })
+      );
+    };
+    LdogeAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    LdogeAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = LdogeAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LDOGE.js
+var require_LDOGE = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LDOGE.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ldoge = function Ldoge2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M81.026 96.324s-1.021 1.719-4.125 1.593c-.546 3.146 1.3 6.838 4.32 6.838 3.021 0 4.699-4.027 4.699-6.921-.251-.043-3.649.545-4.894-1.51z" }),
+        _react2.default.createElement("ellipse", { cx: "73.197", cy: "76.357", rx: "4.475", ry: "6.992" }),
+        _react2.default.createElement("ellipse", { cx: "81.026", cy: "91.066", rx: "4.894", ry: "3.049" }),
+        _react2.default.createElement("path", { d: "M113.387 0C50.764 0 0 50.764 0 113.387c0 62.621 50.765 113.387 113.387 113.387s113.387-50.767 113.387-113.387C226.774 50.764 176.009 0 113.387 0zm55.002 104.042c-2.266 3.943-8.223 6.88-8.223 7.718 0 .839 1.931 2.099 2.602 6.376.671 4.279-.42 18.71-.084 21.562s3.775 2.014 4.698 8.641c.923 6.628-2.685 27.097-3.607 27.854-.923.754-12.418.249-13.173-.254-.754-.504 2.602-6.375 3.692-9.563 1.09-3.188 1.511-11.074 1.007-12.332-.503-1.259-10.067-6.041-10.067-6.041s-.839 7.132-1.595 10.319c-.755 3.188-4.026 11.074-5.956 12.248-1.929 1.175-11.997.253-12.919-.335-.924-.587 7.634-14.598 7.466-16.611-.167-2.014-8.642-9.396-9.984-11.325s-1.511-6.544-1.511-6.544-12.248 8.138-12.751 8.726c-.503.587-3.607 30.453-5.537 32.383-1.93 1.93-9.816.923-10.403 0-.587-.924 1.175-8.557 1.426-14.011.252-5.453.336-13.675-.419-15.185-.755-1.511-6.879-2.014-6.879-2.014s.083 8.222 0 13.927c-.085 5.705-1.092 15.521-2.267 16.275-1.174.754-9.731.754-10.57 0-.839-.755 1.51-11.661 0-22.484-1.51-10.822-5.369-17.366-6.795-25.923-1.426-8.558-.419-24.498-1.006-26.008-.587-1.511-8.977-9.229-9.647-10.906-.671-1.678-.168-5.286-.168-5.286s-1.09-.42-1.175-2.349c-.083-1.93 5.118-7.718 5.118-7.718-.168-2.965-1.79-24.218 3.747-26.485 5.538-2.267 13.647 11.775 13.647 11.775s3.916-1.285 7.886-1.063c3.97.225 6.768 1.678 7.355 1.678s7.802-14.346 14.094-12.165c6.292 2.182 3.859 26.26 3.859 26.26.838 1.342 7.802 10.067 4.026 9.647 1.512 6.041-3.859 10.235-3.859 10.235s5.788 2.938 8.727 3.441c2.935.503 10.906.336 10.906.336s-.757-10.992 10.066-16.948c10.822-5.957 20.975 2.098 20.975 2.098.503-3.607 5.872 3.523 5.872 5.537 3.608 0 1.845 9.061 1.845 9.061s1.846 1.509-.419 5.453z" }),
+        _react2.default.createElement("ellipse", { cx: "92.548", cy: "76.357", rx: "4.474", ry: "6.992" })
+      );
+    };
+    Ldoge.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ldoge.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ldoge;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LSK-alt.js
+var require_LSK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LSK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var LskAlt = function LskAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M143.148 153.784l-10.263 8.212-10.758 2.781-7.911 4.159 2.253 9.107-1.258 2.807v4.149l5.311-2.806 21.859-10.334 13.818-7.585.912-10.256-4.184-6.926zm-42.271 11.412l-19.355-11.015-8.842-7.206-3.077 5.816.621 12.088 8.047 3.459 1.699 1.322 20.068 9.809 1.895.288 9.883 5.437.912.039v-4.915l1.125-2.51-2.123-8.582z" }),
+        _react2.default.createElement("path", { d: "M113.388 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389s113.389-50.766 113.389-113.389C226.777 50.766 176.011 0 113.388 0zm6.026 136.148l7.278-13.169 20.191 1.418-1.906 20.868-6.329 1.189-.366 1.928-6.423.184-2.844 3.853-7.523 1.102-2.568 2.845-3.395-1.651-2.477 4.127-.731-3.539 7.093-19.155zm-8.911 16.913h-.662l-4.129 1.928-1.926-4.771-5.139-2.019-1.651.644-.733 1.926-2.385-.735-4.037 2.112-1.926-3.212-7.982-4.006-.493-11.858 18.831-8.277 8.125-16.039 10.558 26.89-6.451 17.417zm16.191-32.572l-1.328-2.051 5.534-13.386v-6.906l11.092-15.138 11.654-4.084-2.521 24.78v14.588l-1.101 1.926-1.836 1.782-21.494-1.511zM141.4 63.246l3.763 7.155 7.508 6.232-11.197 3.925-6.275-5.259 1.093-8.387-9.614-9.237-5.355-13.62L141.4 63.246zm-24.528-23.541l7.692 19.386 9.103 8.745-1.108 8.494 6.97 5.84-11.113 15.165v7.225l-5.842 14.135 1.969 3.042-6.069 10.982-10.713-27.281-1.394-16.548 14.156-10.164 1.242-7.446-5.361-13.865-.075-18.005.543.295zm-6.572-2.148l1.927-.917 1.608.077.086 21.167 5.282 13.659-.963 5.765-13.382 9.608-35.082-11.519 40.524-37.84zm-6.399 51.657l1.37 16.26-8.814 17.404-18.436 8.102-1.575-5.076.643-6.146-8.08-41.999 34.892 11.455zm57.013 78.14l-16.342 8.963-21.877 10.343-6.971 3.685-5.29-.24-10.118-5.569-1.772-.267-21.217-10.372-1.603-1.246-10.302-4.431-.848-16.539 4.983-9.426 6.684-2.47.216 5.215-1.561.576 8.035 6.55 19.086 10.861 10.671 3.947 8.538-4.488 10.523-2.722 9.958-7.963 8.957-6.133-2.137-1.013.482-5.271 7.063 3.352 6.129 10.142-1.287 14.516z" })
+      );
+    };
+    LskAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    LskAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = LskAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LSK.js
+var require_LSK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LSK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Lsk = function Lsk2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M149.643 44.609l-1.615 12.383 9.268 7.766 16.535-5.797-11.088-9.202-5.555-10.566-29.648-28.336 7.908 20.111z" }),
+        _react2.default.createElement("path", { d: "M128.194 51.057l-1.834 10.995-20.904 15.008 2.059 24.435 15.818 40.284 8.961-16.217-2.907-4.492 8.627-20.872V89.53l16.409-22.395-10.291-8.622 1.636-12.543-13.439-12.913-11.361-28.626-.801-.436.109 26.588z" }),
+        _react2.default.createElement("path", { d: "M169.923 123.32l1.625-2.846V98.935l3.724-36.592-17.211 6.031-16.379 22.355v10.195l-8.17 19.769 1.959 3.029 31.739 2.229zm-50.938 50.938l5.014 2.437 3.793-4.199 11.109-1.627 4.199-5.69 9.483-.269.543-2.846 9.345-1.76 2.813-30.812-29.815-2.094-10.748 19.446-10.47 28.281 1.078 5.228zm-25.483-44.18l-27.806 12.219.728 17.509 11.786 5.916 2.844 4.741 5.961-3.116 3.522 1.084 1.084-2.843 2.439-.95 7.586 2.981 2.844 7.045 6.097-2.846h.978l9.522-25.721-15.589-39.705z" }),
+        _react2.default.createElement("path", { d: "M61.276 131.719l2.325 7.494 27.223-11.965 13.015-25.698-2.021-24.011-51.525-16.914 11.932 62.017zm61.715-71.763l1.42-8.512-7.799-20.168L116.483.02l-2.373-.114-2.846 1.355-59.839 55.875 51.805 17.008zm55.867 96.557l-10.434-4.947-.709 7.781 3.154 1.496-13.227 9.057-14.705 11.756-15.541 4.02-12.605 6.627-15.755-5.826-28.186-16.041-11.865-9.67 2.304-.852-.32-7.701-9.868 3.646-7.359 13.92 1.252 24.422 15.212 6.541 2.367 1.84 31.329 15.316 2.619.395 14.94 8.223 7.813.355 10.293-5.441 32.303-15.271 24.129-13.236 1.906-21.432-9.047-14.978zm-64.01 55.553v7.26l-1.346-.061-14.592-8.031-2.8-.422-29.63-14.484-2.511-1.953-11.882-5.109-.915-17.846 4.542-8.59 13.056 10.643 28.582 16.264 16.023 5.951 3.137 12.67-1.664 3.708zm64.194-23.691l-20.404 11.199-32.277 15.26-7.844 4.143v-6.125l1.859-4.146-3.328-13.445 11.68-6.141 15.889-4.109 15.154-12.123 14.439-9.885 6.18 10.229-1.348 15.143z" })
+      );
+    };
+    Lsk.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Lsk.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Lsk;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LTC-alt.js
+var require_LTC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LTC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var LtcAlt = function LtcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M94.718 184.145l12.778-60.835 64.578-44.271 7.57-36.156-64.591 44.452L133.398 0h-49.61L57.142 127.189l-27.167 18.698-6.308 34.894 25.972-17.806-13.358 63.768h158.917l8.829-42.598z" })
+      );
+    };
+    LtcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    LtcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = LtcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/LTC.js
+var require_LTC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/LTC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ltc = function Ltc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.441 0C50.789 0 0 50.79 0 113.443c0 62.654 50.789 113.441 113.441 113.441 62.654 0 113.443-50.787 113.443-113.441C226.885 50.79 176.096 0 113.441 0zm44.036 168.762H68.839l7.45-35.566-14.486 9.933 3.519-19.463 15.151-10.43 14.862-70.939h27.671l-10.232 48.71L148.8 66.213l-4.222 20.167-36.02 24.693-7.126 33.93H162.4l-4.923 23.759z" })
+      );
+    };
+    Ltc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ltc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ltc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MAID-alt.js
+var require_MAID_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MAID-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var MaidAlt = function MaidAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M132.587 150.202l-.022-30.772L80.25 89.2l132.213-74.367v-.022s-30.458-30.014-75.144-3.336C100.722 33.321 39.407 69.91 18.386 82.457l114.201 67.745z" }),
+        _react2.default.createElement("path", { d: "M96.434 89.284l24.71 14.214 51.526-30.353v153.872c2.313-1.198 39.792-21.126 39.792-53.019V24.012L96.434 89.284z" }),
+        _react2.default.createElement("path", { d: "M164.664 87.218l-24.126 14.327.063 62.714L10.997 87.384c-.262 4.507-1.647 37.959 14.935 50.596 15.143 11.553 110.677 68.038 138.732 84.572V87.218z" })
+      );
+    };
+    MaidAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    MaidAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = MaidAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MAID.js
+var require_MAID = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MAID.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Maid = function Maid2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.449.12C50.86.12.121 50.859.121 113.449c0 62.589 50.739 113.328 113.328 113.328 62.589 0 113.328-50.739 113.328-113.328C226.777 50.859 176.038.12 113.449.12zm21.229 177.059c-16.422-9.68-72.338-42.744-81.204-49.506-9.706-7.397-8.895-26.978-8.74-29.616l75.861 44.998-.037-36.71 14.12-8.385v79.219zm27.98-28.424c0 18.669-21.938 30.333-23.292 31.034V89.722l-30.16 17.766-14.462-8.318 67.914-38.207v87.792zm0-93.165l-77.39 43.53 30.623 17.695.014 18.011-66.846-39.653 69.616-41.547c26.153-15.615 43.982 1.953 43.982 1.953v.011z" })
+      );
+    };
+    Maid.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Maid.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Maid;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MCO-alt.js
+var require_MCO_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MCO-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var McoAlt = function McoAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M49.795 77.044V149.6l63.48 36.278 63.346-36.278V77.044l-63.346-36.233-63.48 36.233zm57.955 74.114l-11.816 10.95h-9.973L60.938 119.02l18.329-13.531 16.219 10.238v18.339l12.265 11.661v5.431zm-8.087-18.206l1.842-17.226-5.975-15.446h35.491l-5.841 15.446 1.707 17.182-27.224.044zm40.882 29.023h-9.839l-11.815-10.772-.045-5.519 12.221-11.618v-18.339l16.037-10.373 18.285 13.666-24.844 42.955zm6.559-65.879l-67.612-.045 6.289-27.598h54.72l6.603 27.643z" }),
+        _react2.default.createElement("path", { d: "M113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227 227 176.184 227 113.5 176.184 0 113.5 0zM183 153.25L113.275 193 44 153.25v-79.5L113.275 34 183 73.75v79.5z" })
+      );
+    };
+    McoAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    McoAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = McoAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MCO.js
+var require_MCO = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MCO.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Mco = function Mco2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "-15 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M98.182 0L0 56.75v113.5L98.182 227 197 170.25V56.75L98.182 0zm89.777 165.039l-89.777 51.793-89.968-51.793V61.453l89.968-51.73 89.777 51.73v103.586z" }),
+        _react2.default.createElement("path", { d: "M72.968 116.678l-22.986-14.616-25.978 19.319 35.465 61.515h14.135l16.746-15.632v-7.754l-17.382-16.65zm50.428 0v26.182l-17.319 16.586.064 7.881 16.745 15.379h13.944l35.211-61.325-25.915-19.511zm-73.095-28.09l95.825.064-9.359-39.464H59.215z" }),
+        _react2.default.createElement("path", { d: "M115.055 116.678l8.277-22.052H73.031l8.469 22.052-2.61 24.593 38.584-.063z" })
+      );
+    };
+    Mco.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Mco.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Mco;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MINT-alt.js
+var require_MINT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MINT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var MintAlt = function MintAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.116 0C50.344 0-.545 50.887-.545 113.66s50.888 113.661 113.661 113.661 113.661-50.888 113.661-113.661S175.889 0 113.116 0zm-8.56 153.278c-1.859 1.136-25.599 2.167-27.457 0-1.702-1.986-1.068-7.625-1.427-17.444H56.711L46.2 125.338h28.682c-.563-4.526-1.358-8.194-2.265-11.677H52.219l-10.511-10.496h27.586c-3.13-7.437-8.721-17.153-10.983-19.666-2.786-3.095-6.194-5.055-6.09-6.295.106-1.238.827-3.715 10.53-4.078 9.705-.36 12.698-.566 16.207 0 4.884.789 14.398 13.934 17.96 22.296 3.562 8.362 7.896 23.068 8.516 35.457.619 12.384.979 21.263-.878 22.399zm37.139 0c-1.858 1.136-25.599 2.167-27.457 0-1.857-2.167-.927-8.673-1.548-20.231-.621-11.561-2.477-17.96-4.541-25.186-2.066-7.227-9.91-21.265-12.697-24.362-2.789-3.095-6.194-5.055-6.089-6.295.102-1.238.822-3.715 10.529-4.078 9.701-.36 12.696-.566 16.205 0 4.885.789 14.399 13.934 17.961 22.296 3.561 8.362 7.896 23.068 8.516 35.457.62 12.384.979 21.263-.879 22.399zm38.021 0c-1.858 1.136-25.599 2.167-27.457 0s-.932-8.673-1.548-20.231c-.62-11.561-2.477-17.96-4.543-25.186-2.063-7.227-9.907-21.265-12.695-24.362-2.787-3.095-6.193-5.055-6.092-6.295.104-1.238.825-3.715 10.53-4.078 9.703-.36 12.696-.566 16.206 0 4.883.789 14.397 13.934 17.96 22.296 3.56 8.362 7.896 23.068 8.516 35.457.617 12.384.98 21.263-.877 22.399z" })
+      );
+    };
+    MintAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    MintAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = MintAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MINT.js
+var require_MINT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MINT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Mint = function Mint2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M225.963 141.436c-1.01-20.176-8.071-44.133-13.872-57.751-5.802-13.621-21.3-35.031-29.255-36.317-5.716-.924-10.592-.589-26.396 0-15.807.589-16.981 4.624-17.149 6.643-.171 2.018 5.38 5.211 9.919 10.254 4.541 5.042 17.316 27.908 20.681 39.678 3.365 11.771 6.39 22.194 7.399 41.022 1.009 18.83-.505 29.424 2.521 32.953 3.025 3.531 41.697 1.851 44.723 0 3.024-1.847 2.435-16.307 1.429-36.482z" }),
+        _react2.default.createElement("path", { d: "M150.164 83.685c-5.801-13.621-21.3-35.031-29.255-36.317-5.716-.924-10.593-.589-26.397 0-15.808.589-16.98 4.624-17.148 6.643-.17 2.018 5.378 5.211 9.918 10.254 4.54 5.042 17.317 27.908 20.681 39.678 3.363 11.771 6.389 22.194 7.399 41.022 1.008 18.83-.505 29.424 2.52 32.953 3.027 3.531 41.697 1.851 44.724 0 3.026-1.848 2.438-16.308 1.429-36.482-1.009-20.176-8.072-44.133-13.871-57.751z" }),
+        _react2.default.createElement("path", { d: "M89.67 83.685c-5.8-13.621-21.297-35.031-29.253-36.317-5.716-.924-10.593-.589-26.398 0-15.804.589-16.978 4.624-17.15 6.643-.169 2.018 5.382 5.211 9.92 10.254 3.682 4.092 12.789 19.917 17.892 32.029H-.257l17.122 17.095h33.223c1.475 5.673 2.771 11.648 3.688 19.021H7.058l17.121 17.096h30.888c.583 15.994-.449 25.18 2.324 28.413 3.026 3.531 41.694 1.851 44.721 0 3.026-1.848 2.438-16.308 1.429-36.482-1.01-20.177-8.07-44.134-13.871-57.752z" })
+      );
+    };
+    Mint.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Mint.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Mint;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MONA-alt.js
+var require_MONA_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MONA-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var MonaAlt = function MonaAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M140.539 102.841l15.232 13.297h4.768L149 102.841zm-17.068 15.717h-20.408l-4.163-7.316-4.615 2.624 18.686 32.846 19.423-32.805-4.568-2.705-4.355 7.356zm-10.406 17.577l-6.978-12.268h14.24l-7.262 12.268zm-46.926-19.997h4.768l15.235-13.297H77.68z" }),
+        _react2.default.createElement("path", { d: "M113.339 0C50.689 0-.099 50.788-.099 113.438c0 62.649 50.788 113.438 113.438 113.438 62.649 0 113.438-50.789 113.438-113.438C226.777 50.788 175.988 0 113.339 0zm.002 174.109c-37.296 0-67.529-21.096-67.529-47.12 0-11.862 6.3-22.696 16.671-30.98l9.653-43.242 18.858 29.756c6.997-1.714 14.512-2.654 22.347-2.654 7.833 0 15.351.94 22.348 2.654l18.856-29.756 9.65 43.242c10.374 8.284 16.675 19.118 16.675 30.98 0 26.024-30.235 47.12-67.529 47.12z" })
+      );
+    };
+    MonaAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    MonaAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = MonaAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MONA.js
+var require_MONA = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MONA.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Mona = function Mona2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M112.951 149.841l12.2-20.604h-23.92z" }),
+        _react2.default.createElement("path", { d: "M198.826 82.449L182.615 9.823l-31.669 49.976c-11.752-2.878-24.376-4.459-37.532-4.459-13.159 0-25.78 1.581-37.532 4.459L44.21 9.823 27.999 82.449C10.58 96.361 0 114.556 0 134.479c0 43.707 50.775 79.139 113.414 79.139 62.637 0 113.414-35.432 113.414-79.139 0-19.923-10.581-38.118-28.002-52.03zM50.348 115.714h-7.619l18.443-21.25h13.521l-24.345 21.25zm62.447 51.892L81.412 112.44l7.749-4.408 6.992 12.287h34.276l7.314-12.354 7.672 4.544-32.62 55.097zm63.683-51.892l-24.343-21.25h13.521l18.439 21.25h-7.617z" })
+      );
+    };
+    Mona.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Mona.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Mona;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MRC.js
+var require_MRC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MRC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Mrc = function Mrc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.397 0C50.769 0 0 50.769 0 113.396c0 62.623 50.77 113.396 113.397 113.396 62.629 0 113.397-50.772 113.397-113.396C226.794 50.769 176.026 0 113.397 0zm43.731 85.704c-9.181-14.467-25.328-24.077-43.731-24.077-28.591 0-51.771 23.177-51.771 51.769 0 20.077 11.44 37.477 28.152 46.06V90.821h13.59v35.11c.129 1.893 1.279 10.441 11.575 10.441 9.266 0 10.241-8.779 10.322-11.47l-.002-34.082h13.59v34.228c-.14 10.072-6.621 24.915-23.91 24.915-4.568 0-8.397-.932-11.575-2.455v16.676c3.246.637 6.597.979 10.029.979 16.981 0 32.054-8.178 41.493-20.809l31.158 23.046c-16.5 22.162-42.896 36.521-72.651 36.521-49.996 0-90.528-40.531-90.528-90.525 0-49.997 40.532-90.525 90.528-90.525 31.974 0 60.055 16.591 76.16 41.618l-32.429 21.215z" })
+      );
+    };
+    Mrc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Mrc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Mrc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MSC-alt.js
+var require_MSC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MSC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var MscAlt = function MscAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M101.323 84.538L78.563 33.87-.031 185.55l57.136-12.456c-3.926-8.192-6.127-17.368-6.127-27.061 0-30.402 21.634-55.747 50.345-61.495zM226.777 185.55L150.535 33.87l-23.878 50.788c28.424 5.969 49.767 31.177 49.767 61.375 0 9.743-2.222 18.966-6.184 27.192l56.537 12.325z" }),
+        _react2.default.createElement("circle", { cx: "113.701", cy: "146.032", r: "43.808" })
+      );
+    };
+    MscAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    MscAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = MscAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MSC.js
+var require_MSC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MSC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Msc = function Msc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.616.455C51.119.455.455 51.119.455 113.616s50.664 113.161 113.161 113.161 113.161-50.664 113.161-113.161S176.113.455 113.616.455zm-35.561 143.65l-36.107 7.871 49.667-95.857L106 88.141c-18.145 3.632-31.815 19.65-31.815 38.862a39.48 39.48 0 0 0 3.87 17.102zm35.767 10.582c-15.288 0-27.684-12.394-27.684-27.684 0-15.291 12.396-27.686 27.684-27.686 15.291 0 27.687 12.395 27.687 27.686s-12.396 27.684-27.687 27.684zm35.732-10.5a39.516 39.516 0 0 0 3.906-17.184c0-19.084-13.487-35.015-31.45-38.788l15.091-32.097 48.182 95.857-35.729-7.788z" })
+      );
+    };
+    Msc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Msc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Msc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MTR-alt.js
+var require_MTR_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MTR-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var MtrAlt = function MtrAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M178.758 32.115l2.621 10.259L.023 121.48l2.052 6.612 150.808-46.444v113.014h22.91V74.591l12.083-3.722 3.079 10.945 36.133-43.544z" }),
+        _react2.default.createElement("path", { d: "M35.59 194.662H58.5v-74.894l-22.91 7.056zm39.095 0h22.912v-86.974l-22.912 7.058zm39.099 0h22.911V95.676l-22.911 7.057z" })
+      );
+    };
+    MtrAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    MtrAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = MtrAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MTR.js
+var require_MTR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MTR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Mtr = function Mtr2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.364 0C50.755 0 0 50.755 0 113.363c0 62.61 50.755 113.365 113.364 113.365s113.364-50.755 113.364-113.365C226.728 50.755 175.973 0 113.364 0zM79.862 162.818H65.921v-41.28l13.941-4.292v45.572zm23.792 0H89.712v-48.629l13.942-4.293v52.922zm23.79 0h-13.941V106.88l13.941-4.293v60.231zm33.018-68.667l-1.874-6.659-7.352 2.263v73.063h-13.941v-68.77L45.528 122.31l-1.25-4.022 110.356-48.136-1.596-6.244 29.411 3.747-21.987 26.496z" })
+      );
+    };
+    Mtr.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Mtr.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Mtr;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MUE-alt.js
+var require_MUE_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MUE-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var MueAlt = function MueAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M184.741 34.274l-70.057 88.04-71.868-88.04L0 214.203h42.816l22.612-93.815 49.256 58.214 48.408-58.214 22.611 93.815h41.374z" }),
+        _react2.default.createElement("path", { d: "M104.276 71.558c11.908 0 22.552-17.68 37.526-29.227 14.974-11.546 42.037-27.241 40.412-29.587-1.624-2.346-37.887 20.387-46.186 27.242-8.298 6.855-21.288 19.846-26.339 19.124-5.052-.722-31.752-42.396-40.773-36.804-4.26 2.641-4.33 8.24-1.263 11.968 3.067 3.728 24.717 37.284 36.623 37.284z" })
+      );
+    };
+    MueAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    MueAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = MueAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/MUE.js
+var require_MUE = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/MUE.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Mue = function Mue2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.389 0C50.766 0 0 50.766 0 113.389s50.766 113.39 113.39 113.39c62.623 0 113.39-50.767 113.39-113.39C226.779 50.766 176.012 0 113.389 0zM90.45 59.588c4.521-2.803 17.904 18.085 20.436 18.446 2.532.362 9.042-6.148 13.202-9.585 4.159-3.435 22.335-14.829 23.147-13.653.815 1.175-12.749 9.043-20.254 14.83-7.505 5.788-12.841 14.648-18.809 14.648-5.967 0-16.818-16.819-18.355-18.687-1.537-1.868-1.502-4.676.633-5.999zm58.533 96.178l-11.331-47.019-24.263 29.177-24.687-29.177-11.332 47.019H55.909l21.461-90.18 36.019 44.126 35.113-44.126 21.219 90.18h-20.738z" })
+      );
+    };
+    Mue.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Mue.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Mue;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NBT.js
+var require_NBT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NBT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Nbt = function Nbt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M206.55 48.882l-41.694 134.989-11.344-36.633 36.344-117.493a115.308 115.308 0 0 0-4.811-4.163l-34.663 111.542-11.348-36.656 27.251-87.35C150.477 4.746 132.458 0 113.327 0 50.738 0 0 50.739 0 113.327c0 24.447 7.741 47.085 20.904 65.598L61.171 45.9l11.411 36.852-34.819 115.026a115.636 115.636 0 0 0 4.718 3.999L75.579 92.435l11.409 36.851-25.655 84.759c15.572 8.056 33.251 12.61 51.994 12.61 62.59 0 113.329-50.738 113.329-113.328 0-23.942-7.433-46.149-20.106-64.445zm-89.824 136.283c-5.41 0-9.448-3.646-10.656-7.595-1.206-3.948-41.484-134.963-41.484-134.963l15.182.002c4.324 0 8.168 2.56 9.311 6.172C90.222 52.393 131 185.165 131 185.165h-14.274zm28.791-.03c-5.137 0-9.722-3.924-11.203-8.922-1.483-4.999-40.443-133.605-40.443-133.605h14.687c4.88 0 8.723 2.821 9.982 6.941 1.256 4.121 41.041 135.591 41.041 135.591s-8.926-.005-14.064-.005z" })
+      );
+    };
+    Nbt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Nbt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Nbt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NEO-alt.js
+var require_NEO_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NEO-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NeoAlt = function NeoAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227 227 176.184 227 113.5 176.184 0 113.5 0zm-9.911 177L61 156.854V79.847l42.589 20.193V177zm1.082-84.803L62.758 72.324 124.411 50l41.913 19.874-61.653 22.323zM167 155.357l-43.671-20.69V93.489L167 77.677v77.68z" })
+      );
+    };
+    NeoAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NeoAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NeoAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NEO.js
+var require_NEO = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NEO.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Neo = function Neo2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M207.288 35.521L132.161 0 21.651 39.9l75.127 35.521 110.51-39.9zm-77.066 42.211v73.601l78.278 36.982V49.471l-78.278 28.261zM94.839 89.441V227L18.5 190.991V53.348" })
+      );
+    };
+    Neo.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Neo.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Neo;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NEOS-alt.js
+var require_NEOS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NEOS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NeosAlt = function NeosAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 595.279 595.281",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M297.619.001C133.249.001 0 133.25 0 297.618 0 461.991 133.249 595.24 297.619 595.24c164.37 0 297.62-133.249 297.62-297.622C595.239 133.25 461.989.001 297.619.001zm30.4 161.702v26.361l-45.637-26.361h45.637zm-57.998 0l57.998 33.504v34.216l-117.129-67.72h59.131zm-78.458 270.975h-29.631V161.703h29.631v270.975zm35.815 0h-29.631V161.703l130.273 74.864v34.222l-100.642-58.146v220.035zm39.841 0v-26.361l45.634 26.361h-45.634zm57.998 0l-57.998-33.505v-34.217l117.129 67.722h-59.131zm72.272 0l-130.27-74.864v-34.228l100.642 58.151V161.703h29.628v270.975zm35.814 0h-29.628V161.703h29.628v270.975z" })
+      );
+    };
+    NeosAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NeosAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NeosAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NEOS.js
+var require_NEOS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NEOS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Neos = function Neos2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 595.279 595.281",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M0 .001h64.997v595.28H0zm364.322 164.468L78.559.001v595.28h64.997V111.912l220.766 127.729zm0-90.865L237.103.001H107.389l256.933 148.774zm0-73.603H264.219l100.103 57.915zm165.961 0h64.996v595.28h-64.996z" }),
+        _react2.default.createElement("path", { d: "M451.722 483.371l-220.765-127.73v75.172l285.762 164.468V.001h-64.997zm-220.765 38.306l127.219 73.604h129.713L230.957 446.506zm0 73.604H331.06l-100.103-57.909z" })
+      );
+    };
+    Neos.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Neos.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Neos;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NEU-alt.js
+var require_NEU_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NEU-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NeuAlt = function NeuAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M160.53 98.028a5.86 5.86 0 1 0-1.98 11.376 3.526 3.526 0 0 1-.54-1.863 3.56 3.56 0 0 1 3.557-3.559 3.56 3.56 0 0 1 3.558 3.547 5.85 5.85 0 0 0 1.269-3.639 5.864 5.864 0 0 0-5.864-5.862z" }),
+        _react2.default.createElement("path", { d: "M113.327 0C50.739 0 0 50.739 0 113.327c0 62.589 50.739 113.328 113.328 113.328 62.589 0 113.328-50.738 113.328-113.328C226.655 50.739 175.917 0 113.327 0zm60.375 123.253s-5.378 1.512-11.989 1.064c-6.609-.447-12.156-3.754-12.379-3.642-.224.113 2.576 10.476 2.464 17.927-.112 7.449-4.257 16.244-4.761 16.076-.505-.167-.337-5.657-.952-8.795-.617-3.137-1.905-7.338-7.284-12.827-5.377-5.489-11.259-7.06-11.259-7.06 7.001 3.88 12.773 9.748 14.229 20.279 1.457 10.532-5.35 18.318-5.659 18.851-.308.531.281 1.119 1.234 1.119.952 0 17.673.028 19.55.028 1.878 0 3.866 1.989 3.866 3.978v4.58h-44.115c-4.665 0-11.933-1.26-18.361-5.798-6.429-4.538-8.781-11.89-8.781-11.89s.209 1.428.713 3.36 1.639 3.403 1.177 3.866c-.463.462-.588.756-5.504.125-4.916-.63-12.94-4.832-17.218-10.042-4.277-5.209-7.962-16.133-4.152-29.129 3.809-12.997 12.996-19.831 15.573-24.536 2.578-4.706 2.913-10.532-1.681-15.685-4.593-5.155-14.005-5.155-18.709-.672-4.706 4.482-4.314 12.043-4.314 12.043s-3.446-7.058-3.614-14.495c-.168-7.437 4.243-15.209 6.764-18.318 2.521-3.109 11.301-12.016 25.167-11.974 13.864.042 22.813 7.689 27.771 15.377 4.958 7.689 5.378 16.89 2.354 26.385-3.026 9.496-9.369 11.723-16.386 18.613-7.017 6.891-9.622 13.74-9.622 13.74s5.42-7.647 9.622-11.052c4.201-3.401 12.645-7.562 21.259-8.149 8.613-.589 14.369-3.194 14.873-3.612.504-.421.408-2.311.408-2.311s-3.419-3.417-4.65-6.219c-1.233-2.8-2.409-10.083 1.231-16.077 3.641-5.995 10.478-8.235 10.478-8.235s3.304 3.138 4.704 6.554c1.401 3.417 1.289 7.395 1.289 7.395s8.515 1.793 13.892 5.265c5.377 3.473 10.869 9.972 13.053 18.207 2.183 8.235-.281 15.686-.281 15.686z" })
+      );
+    };
+    NeuAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NeuAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NeuAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NEU.js
+var require_NEU = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NEU.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Neu = function Neu2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M225.152 102.948c-4.025-15.171-14.142-27.145-24.048-33.543-9.906-6.397-25.595-9.7-25.595-9.7s.209-7.329-2.372-13.624-8.67-12.075-8.67-12.075-12.593 4.127-19.301 15.172c-6.706 11.043-4.54 24.46-2.271 29.62 2.271 5.16 8.567 11.456 8.567 11.456s.179 3.482-.749 4.257c-.93.773-11.533 5.572-27.401 6.656s-31.426 8.747-39.167 15.017c-7.74 6.271-17.726 20.357-17.726 20.357s4.8-12.616 17.726-25.312c12.927-12.694 24.615-16.797 30.188-34.291 5.573-17.493 4.8-34.445-4.335-48.609C100.867 14.164 84.379.077 58.837 0 33.292-.077 17.115 16.333 12.47 22.06 7.825 27.787-.301 42.107.009 55.808s6.657 26.705 6.657 26.705-.72-13.931 7.948-22.188c8.668-8.257 26.007-8.257 34.47 1.238 8.462 9.496 7.846 20.228 3.097 28.896-4.749 8.67-21.673 21.261-28.692 45.205-7.018 23.944-.229 44.068 7.651 53.666 7.881 9.599 22.665 17.339 31.721 18.5 9.057 1.161 9.288.62 10.14-.231s-1.238-3.561-2.167-7.122c-.929-3.561-1.315-6.192-1.315-6.192s4.334 13.546 16.178 21.906c11.842 8.359 25.234 10.682 33.826 10.682h81.274v-8.438c0-3.666-3.665-7.327-7.123-7.327-3.456 0-34.262-.053-36.018-.053-1.755 0-2.839-1.083-2.272-2.063.569-.98 13.11-15.325 10.426-34.727-2.684-19.403-13.314-30.216-26.214-37.362 0 0 10.836 2.893 20.743 13.006 9.908 10.113 12.28 17.854 13.417 23.633 1.136 5.779.825 15.894 1.755 16.203s8.565-15.895 8.772-29.62c.206-13.727-4.953-32.818-4.54-33.025.412-.207 10.629 5.885 22.807 6.709 12.181.824 22.087-1.962 22.087-1.962s4.54-13.727.515-28.899zm-16.173.035a6.781 6.781 0 0 0-6.778-6.761 6.78 6.78 0 0 0-6.779 6.78c0 1.308.389 2.518 1.029 3.554-4.314-1.552-7.401-5.663-7.401-10.51 0-6.17 5.003-11.174 11.175-11.174s11.177 5.004 11.177 11.174a11.133 11.133 0 0 1-2.423 6.937z" })
+      );
+    };
+    Neu.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Neu.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Neu;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NLG-alt.js
+var require_NLG_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NLG-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NlgAlt = function NlgAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.271 0C50.713 0 0 50.713 0 113.271s50.713 113.271 113.271 113.271c62.557 0 113.271-50.714 113.271-113.271C226.542 50.713 175.828 0 113.271 0zm0 198.755c-47.211 0-85.483-38.272-85.483-85.483 0-47.211 38.272-85.482 85.483-85.482 23.713 0 45.168 9.656 60.653 25.249l-13.346 12.965c-12.102-12.115-28.829-19.611-47.308-19.611-36.937 0-66.879 29.944-66.879 66.879 0 36.938 29.943 66.88 66.879 66.88 33.838 0 61.804-25.134 66.256-57.751H113.27v-18.367h84.985c.325 3.034.497 6.116.497 9.238.002 47.21-38.271 85.483-85.481 85.483z" })
+      );
+    };
+    NlgAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NlgAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NlgAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NLG.js
+var require_NLG = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NLG.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Nlg = function Nlg2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.319 101.071v24.349h87.831c-5.901 43.238-42.974 76.556-87.831 76.556-48.964 0-88.657-39.691-88.657-88.657 0-48.963 39.693-88.657 88.657-88.657 24.496 0 46.67 9.936 62.714 25.996l17.69-17.188C173.195 12.801 144.753 0 113.319 0 50.735 0 0 50.734 0 113.318c0 62.584 50.735 113.319 113.319 113.319 62.583 0 113.318-50.735 113.318-113.319 0-4.14-.228-8.225-.659-12.248H113.319z" })
+      );
+    };
+    Nlg.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Nlg.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Nlg;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NMC-alt.js
+var require_NMC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NMC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NmcAlt = function NmcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M197.326 25.747c-8.835 6.71-11.862 17.344-11.862 17.344l-22.663 83.367L85.736 20.92s-17.179-.981-23.398 1.309c-6.218 2.292-14.562 8.347-18.054 21.654C40.794 57.19 0 206.195 0 206.195s19.796.682 26.016-2.756c6.217-3.436 12.433-7.198 16.196-20.369 2.576-9.013 22.417-83.119 22.417-83.119l77.23 106.244s18.572.539 24.787-2.263c7.446-3.355 13.826-11.537 16.28-20.862 2.455-9.327 43.851-162.358 43.851-162.358s-20.614-1.673-29.451 5.035zm-48.759 151.434L72.21 72.243l5.67-23.125 77.449 106.681-6.762 21.382z" })
+      );
+    };
+    NmcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NmcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NmcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NMC.js
+var require_NMC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NMC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Nmc = function Nmc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M86.591 87.017l49.202 67.616 4.357-13.777-49.903-68.741z" }),
+        _react2.default.createElement("path", { d: "M113.584 0C50.852 0 0 50.854 0 113.585s50.852 113.583 113.584 113.583c62.729 0 113.583-50.853 113.583-113.583S176.313 0 113.584 0zm44.35 158.43c-1.581 6.008-5.691 11.278-10.489 13.441-4.006 1.803-15.972 1.457-15.972 1.457L81.708 104.87s-12.785 47.752-14.444 53.56c-2.425 8.484-6.431 10.908-10.437 13.122-4.007 2.216-16.763 1.776-16.763 1.776S66.35 77.316 68.598 68.741c2.25-8.574 7.627-12.477 11.633-13.951 4.007-1.477 15.077-.844 15.077-.844l49.658 68.004 14.602-53.718s1.951-6.854 7.643-11.176c5.694-4.323 18.979-3.244 18.979-3.244s-26.674 98.607-28.256 104.618z" })
+      );
+    };
+    Nmc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Nmc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Nmc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NOTE-alt.js
+var require_NOTE_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NOTE-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NoteAlt = function NoteAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M106.329 0H18.546v214.547c0 6.781 5.497 12.277 12.278 12.277s12.278-5.496 12.278-12.277V24.554h63.228c19.824 0 77.348 21.877 77.348 88.858 0 66.98-56.382 88.857-75.813 88.857H73.18c-6.781 0-12.278 5.496-12.278 12.277s5.497 12.277 12.278 12.277h34.684c34.997 0 100.367-33.267 100.367-113.412C208.231 34.247 140.751 0 106.329 0z" }),
+        _react2.default.createElement("path", { d: "M99.577 163.288H71.953c-6.782 0-12.277 5.497-12.277 12.278s5.495 12.277 12.277 12.277h27.624c22.815 0 65.377-24.95 65.377-72.648 0-50.108-39.928-73.453-66.912-73.453H59.676v89.011c0 6.781 5.495 12.276 12.277 12.276 6.781 0 12.277-5.495 12.277-12.276V66.298h13.812c13.271 0 42.356 12.313 42.356 48.897 0 35.54-32.513 48.093-40.821 48.093z" })
+      );
+    };
+    NoteAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NoteAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NoteAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NOTE.js
+var require_NOTE = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NOTE.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Note = function Note2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.494 0C50.813 0 0 50.813 0 113.494s50.813 113.494 113.494 113.494 113.494-50.813 113.494-113.494S176.175 0 113.494 0zm-.525 89.487h-7.146v33.349a6.35 6.35 0 0 1-6.352 6.352 6.352 6.352 0 0 1-6.354-6.352V76.782h19.852c13.961 0 34.62 12.079 34.62 38.004 0 24.679-22.021 37.587-33.826 37.587H99.471a6.352 6.352 0 1 1 0-12.705h14.292c4.299 0 21.121-6.495 21.121-24.883.001-18.928-15.048-25.298-21.915-25.298zm5.083 83.055h-17.946a6.353 6.353 0 0 1 0-12.705h17.946c10.053 0 39.225-11.318 39.225-45.975 0-34.656-29.762-45.975-40.019-45.975H84.543v98.301a6.352 6.352 0 1 1-12.705 0V55.184h45.419c17.809 0 52.723 17.72 52.723 58.679 0 41.467-33.822 58.679-51.928 58.679z" })
+      );
+    };
+    Note.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Note.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Note;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NVC-alt.js
+var require_NVC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NVC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NvcAlt = function NvcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.66 0C50.887 0 0 50.887 0 113.66s50.887 113.661 113.66 113.661 113.661-50.888 113.661-113.661S176.433 0 113.66 0zM54.137 121.441v-10.18c0-6.337 14.667-11.473 32.763-11.473 18.092 0 32.76 5.136 32.76 11.473v10.18c-1.752 3.642-14.126 8.273-32.76 8.273-18.637.001-31.011-4.631-32.763-8.273zm74.082 15.843c-1.754 3.643-14.129 8.273-32.763 8.273-18.636 0-31.009-4.631-32.763-8.273v-5.916c6.506 1.904 14.927 3.014 24.208 3.014 18.673 0 33.872-4.489 36.965-10.917l.461-.958v-.823c2.478 1.614 3.892 3.459 3.892 5.421v10.179zm4.203 2.023l.463-.959v-1.588c.37.688.583 1.396.583 2.122v10.181c-1.753 3.642-14.126 8.274-32.76 8.274-18.637 0-31.012-4.633-32.764-8.274v-2.968c6.821 2.578 16.558 4.131 27.512 4.131 18.674-.001 33.872-4.49 36.966-10.919zm-6.734 24.719c-1.753 3.641-14.127 8.272-32.76 8.272-18.636 0-31.012-4.632-32.765-8.272v-10.181c0-1.739 1.138-3.381 3.113-4.856v1.136l.462.959c3.094 6.429 18.293 10.917 36.969 10.917 9.66 0 18.375-1.21 24.981-3.26v5.285zm38.109-11.607c0 6.337-14.668 11.473-32.761 11.473-.23 0-.452-.01-.681-.015v-6.888c2.564-1.163 4.583-2.497 5.943-3.961 11.076-.53 21.597-2.727 27.498-6.505v5.896zm0-12.202c-1.521 3.154-11.026 7.051-25.662 8.034v-9.369c0-.15-.022-.296-.033-.444 10.405-.672 20.111-2.832 25.695-6.404v8.183zm0-14.492c-1.57 3.263-11.699 7.314-27.2 8.12-.898-1.382-2.154-2.633-3.712-3.748v-2.993a8.838 8.838 0 0 0-.52-2.946c12.467-.149 24.832-2.393 31.432-6.617v8.184zm0-14.492c-1.751 3.641-14.127 8.275-32.761 8.275-.677 0-1.325-.02-1.981-.03-1.31-1.157-2.896-2.192-4.728-3.106v-5.11c0-.618-.078-1.218-.196-1.797 2.28.144 4.593.218 6.905.218 12.908 0 25.926-2.258 32.761-6.632v8.182zm0-14.49c-1.751 3.64-14.127 8.274-32.761 8.274-3.406 0-6.601-.159-9.563-.435-4.373-4.683-13.301-7.547-23.2-8.764v-7.262c6.836 4.375 19.852 6.635 32.764 6.635 12.908 0 25.926-2.259 32.761-6.635v8.187zm0-14.492c-1.751 3.642-14.127 8.275-32.761 8.275-18.636 0-31.009-4.633-32.764-8.275V72.07c0-6.337 14.669-11.473 32.764-11.473 18.093 0 32.761 5.136 32.761 11.473v10.181z" })
+      );
+    };
+    NvcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NvcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NvcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NVC.js
+var require_NVC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NVC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Nvc = function Nvc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M158.015.45c-36.594 0-66.254 10.386-66.254 23.201v20.586c3.545 7.364 28.568 16.732 66.254 16.732 37.682 0 62.706-9.369 66.248-16.732V23.651C224.263 10.836 194.6.45 158.015.45zM21.927 183.433l-.936-1.938v-2.299c-3.995 2.986-6.294 6.305-6.294 9.819v20.587c3.545 7.363 28.568 16.73 66.254 16.73 37.682 0 62.707-9.367 66.249-16.73v-10.685c-13.362 4.146-30.98 6.593-50.519 6.593-37.759 0-68.502-9.077-74.754-22.077z" }),
+        _react2.default.createElement("path", { d: "M30.429 173.343v5.999c3.543 7.365 28.566 16.732 66.253 16.732 37.682 0 62.706-9.367 66.25-16.732v-20.585c0-1.471-.433-2.902-1.182-4.295v3.215l-.931 1.941c-6.257 12.998-36.993 22.075-74.755 22.075-22.151 0-41.842-3.141-55.635-8.35zm104.584-49.855v-20.585c0-12.816-29.664-23.201-66.25-23.201-36.594 0-66.251 10.385-66.251 23.201v20.585c3.541 7.364 28.565 16.731 66.251 16.731 37.682 0 62.706-9.367 66.25-16.731z" }),
+        _react2.default.createElement("path", { d: "M144.449 123.978v1.663l-.933 1.938c-6.255 12.999-36.991 22.075-74.753 22.075-18.765 0-35.796-2.243-48.951-6.095v11.964c3.543 7.364 28.566 16.732 66.252 16.732 37.682 0 62.706-9.368 66.25-16.732V134.94c.001-3.971-2.856-7.7-7.865-10.962zM91.761 56.99v14.683c20.015 2.459 38.074 8.252 46.916 17.723a208.39 208.39 0 0 0 19.339.878c37.682 0 62.706-9.369 66.248-16.732V56.99c-13.821 8.847-40.142 13.415-66.248 13.415-26.113 0-52.433-4.568-66.255-13.415zm52.289 42.275c.239 1.176.399 2.385.399 3.637v10.33c3.702 1.849 6.908 3.943 9.557 6.285 1.332.021 2.641.061 4.01.061 37.682 0 62.706-9.369 66.248-16.732V86.297c-13.821 8.845-40.142 13.413-66.248 13.413a222.236 222.236 0 0 1-13.966-.445zm17.701 35.675v6.051c3.152 2.256 5.693 4.785 7.507 7.583 31.351-1.631 51.831-9.823 55.006-16.422V115.6c-13.349 8.543-38.35 13.081-63.562 13.381.66 1.89 1.049 3.862 1.049 5.959zm10.616 23.817v18.946c29.601-1.991 48.823-9.866 51.896-16.247v-16.549c-11.293 7.223-30.922 11.592-51.961 12.951.022.298.065.594.065.899zm-15.731 36.617v13.929c.461.008.913.027 1.379.027 36.585 0 66.248-10.387 66.248-23.199v-11.922c-11.938 7.64-33.211 12.081-55.61 13.152-2.748 2.961-6.827 5.657-12.017 8.013z" })
+      );
+    };
+    Nvc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Nvc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Nvc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NXT-alt.js
+var require_NXT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NXT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var NxtAlt = function NxtAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M103.611 151.382h-20.78L25.09 113.118H9.681c-5.346 0-9.681-4.335-9.681-9.682 0-5.346 4.335-9.68 9.681-9.68h21.241l57.741 38.263h14.948c5.346 0 9.681 4.336 9.681 9.682 0 5.347-4.335 9.681-9.681 9.681zm85.364 0h-30.67l-57.74-38.264h-15.41c-5.347 0-9.682-4.335-9.682-9.682 0-5.346 4.335-9.68 9.682-9.68h21.242l57.741 38.263h24.837c5.348 0 9.682 4.336 9.682 9.682-.001 5.347-4.335 9.681-9.682 9.681zm28.122-19.132a9.68 9.68 0 0 1-9.681-9.681v-9.451h-47.117c-5.347 0-9.682-4.335-9.682-9.682 0-5.346 4.335-9.68 9.682-9.68h66.479v28.813c-.001 5.347-4.335 9.681-9.681 9.681zM28.39 151.382H9.681c-5.346 0-9.681-4.334-9.681-9.681 0-5.346 4.335-9.682 9.681-9.682H28.39c5.347 0 9.682 4.336 9.682 9.682 0 5.347-4.335 9.681-9.682 9.681z" })
+      );
+    };
+    NxtAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    NxtAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = NxtAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/NXT.js
+var require_NXT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/NXT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Nxt = function Nxt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M179.909 156.554L93.515 99.3H70.459c-8.002 0-14.487-6.487-14.487-14.488 0-7.998 6.485-14.482 14.487-14.482h31.783l86.396 57.251h37.163c.067 0 .135.011.204.011.575-4.636.877-9.357.877-14.151 0-4.79-.302-9.507-.877-14.141h-43.112c-7.999 0-14.483-6.487-14.483-14.488 0-7.998 6.484-14.482 14.483-14.482h35.5C201.423 29.061 160.829 0 113.441 0 62.205 0 18.911 33.97 4.831 80.613l70.878 46.968h22.366c7.998 0 14.482 6.488 14.482 14.488 0 7.996-6.485 14.484-14.482 14.484H66.982L.016 112.175c-.004.423-.016.842-.016 1.265 0 62.653 50.79 113.442 113.441 113.442 47.388 0 87.982-29.061 104.952-70.329h-38.484z" })
+      );
+    };
+    Nxt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Nxt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Nxt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OK-alt.js
+var require_OK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var OkAlt = function OkAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M114.842 48.151c-36.162 0-65.476 29.314-65.476 65.478s29.314 65.478 65.476 65.478c36.161 0 65.478-29.314 65.478-65.478s-29.317-65.478-65.478-65.478zm-22.969 84.18c-4.387-.957-28.951-7.417-32.619-8.375-3.669-.955-7.577-4.234-5.104-10.491 2.472-6.256 9.649-23.403 12.361-29.543 2.712-6.142 13.357-4.463 17.386-3.429 3.767.965 22.809 5.583 26.796 6.699 3.988 1.117 9.411 4.465 7.258 10.367-2.153 5.904-9.49 23.05-12.202 29.11-2.711 6.061-9.489 6.62-13.876 5.662zm72.515-2.771c-1.614 4.307-7.655 18.781-7.655 18.781l-15.374-3.828s5.025-11.843 5.504-13.339c.479-1.495.896-3.409-1.375-4.066-2.273-.658-15.792-4.187-15.792-4.187l-7.058 17.047-15.672-4.068 18.961-45.1 15.552 3.947-9.63 22.311 27.873-17.825 18.543 4.695-21.832 13.129s5.982 2.333 7.417 4.486c1.436 2.155 2.154 3.71.538 8.017z" }),
+        _react2.default.createElement("path", { d: "M113.494 0C50.813 0 0 50.813 0 113.494s50.813 113.494 113.494 113.494 113.493-50.813 113.493-113.494S176.175 0 113.494 0zm1.349 196.81c-45.941 0-83.184-37.24-83.184-83.182s37.243-83.184 83.184-83.184c45.939 0 83.181 37.243 83.181 83.184s-37.242 83.182-83.181 83.182z" }),
+        _react2.default.createElement("path", { d: "M97.517 96.691c-1.958-.547-10.747-2.686-12.596-3.158-1.976-.508-5.066-.841-6.396 2.171-1.331 3.013-5.128 11.885-6.341 14.954-1.213 3.069.645 4.223 2.445 4.693 1.8.469 11.074 2.688 13.227 3.157 2.151.469 4.235.291 5.565-2.683 1.331-2.973 5.191-11.901 6.248-14.798 1.056-2.894-.198-3.788-2.152-4.336z" })
+      );
+    };
+    OkAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    OkAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = OkAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OK.js
+var require_OK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ok = function Ok2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M107.721 77.342c-5.435-1.521-31.388-7.814-36.522-9.131-5.491-1.409-20-3.697-23.697 4.673-3.696 8.37-13.479 31.741-16.848 40.268-3.37 8.526 1.957 12.995 6.956 14.3 5 1.305 38.48 10.109 44.459 11.414s15.218.543 18.914-7.718c3.696-8.262 13.696-31.631 16.631-39.676 2.935-8.044-4.458-12.609-9.893-14.13zM92.695 96.201c-1.44 3.947-6.703 16.117-8.516 20.17-1.813 4.053-4.653 4.295-7.585 3.655-2.934-.641-15.575-3.664-18.027-4.304-2.454-.642-4.985-2.213-3.333-6.396 1.652-4.182 6.828-16.276 8.642-20.381 1.813-4.106 6.025-3.653 8.718-2.961 2.52.645 14.5 3.561 17.167 4.307 2.664.746 4.373 1.964 2.934 5.91zm77.367 21.849l29.756-17.895-25.272-6.4-37.99 24.295 13.124-30.41-21.196-5.38-25.844 61.47 21.36 5.544 9.621-23.235s18.424 4.811 21.521 5.707c3.099.897 2.528 3.506 1.875 5.544-.651 2.038-7.5 18.18-7.5 18.18l20.952 5.219s8.234-19.729 10.436-25.599c2.201-5.87 1.223-7.99-.734-10.926-1.956-2.935-10.109-6.114-10.109-6.114z" }),
+        _react2.default.createElement("path", { d: "M113.375 0C50.76 0 0 50.76 0 113.375S50.76 226.75 113.375 226.75c62.614 0 113.374-50.76 113.374-113.375S175.989 0 113.375 0zm-.001 202.619c-49.287 0-89.242-39.955-89.242-89.244s39.955-89.244 89.242-89.244c49.288 0 89.244 39.955 89.244 89.244s-39.956 89.244-89.244 89.244z" })
+      );
+    };
+    Ok.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ok.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ok;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OMG-alt.js
+var require_OMG_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OMG-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var OmgAlt = function OmgAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M156.542 70.243c-11.727 0-21.234 9.515-21.234 21.253s9.508 21.253 21.234 21.253c11.719-.02 21.215-9.524 21.234-21.253 0-11.738-9.505-21.253-21.234-21.253zm-65.048 42.495c11.728 0 21.235-9.516 21.235-21.253h.011c-.02-11.734-9.523-21.238-21.246-21.253-11.727 0-21.234 9.515-21.234 21.253s9.507 21.253 21.234 21.253zm0 22.535c-11.727 0-21.234 9.515-21.234 21.253 0 11.736 9.507 21.252 21.234 21.252 11.719-.02 21.215-9.524 21.235-21.252 0-11.738-9.507-21.253-21.235-21.253z" }),
+        _react2.default.createElement("path", { d: "M113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227c62.685 0 113.5-50.816 113.5-113.5S176.185 0 113.5 0zM61.611 85.437C64.495 71.212 76.994 60.991 91.494 61h30.451v9.222h-8.637c10.118 10.399 11.509 26.492 3.331 38.479-8.176 11.985-23.662 16.543-37.02 10.896s-20.89-19.937-18.008-34.16zM91.496 187c-16.821 0-30.459-13.649-30.459-30.485 0-16.837 13.636-30.484 30.457-30.484h.002c16.822 0 30.458 13.647 30.458 30.484 0 16.836-13.636 30.485-30.458 30.485zm65.046-65.03c-16.82 0-30.459-13.647-30.459-30.484C126.083 74.65 139.722 61 156.542 61 173.364 61 187 74.649 187 91.485c0 16.837-13.636 30.485-30.458 30.485z" })
+      );
+    };
+    OmgAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    OmgAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = OmgAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OMG.js
+var require_OMG = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OMG.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Omg = function Omg2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M54.937 117.157c-30.304 0-54.87 24.589-54.87 54.921C.067 202.411 24.636 227 54.94 227c30.308 0 54.874-24.589 54.874-54.922 0-30.332-24.566-54.921-54.874-54.921h-.003zm0 93.23c-21.126 0-38.254-17.143-38.254-38.289s17.128-38.289 38.254-38.289c21.13 0 38.257 17.144 38.257 38.289-.036 21.13-17.144 38.253-38.257 38.289zM172.126 0c-30.304 0-54.873 24.59-54.873 54.922s24.569 54.921 54.873 54.921c30.308 0 54.874-24.589 54.874-54.921C227 24.589 202.434 0 172.126 0zm0 93.229c-21.126 0-38.253-17.143-38.253-38.288 0-21.146 17.127-38.289 38.253-38.289 21.13 0 38.257 17.143 38.257 38.289-.035 21.13-17.143 38.253-38.257 38.288zM54.937 0C28.814-.016 6.296 18.398 1.101 44.026c-5.193 25.624 8.378 51.364 32.443 61.54 24.066 10.173 51.964 1.964 66.695-19.631 14.736-21.595 12.225-50.587-6.002-69.322h15.561V0H54.937zm38.257 54.922c0 21.146-17.127 38.288-38.257 38.288-21.126 0-38.254-17.142-38.254-38.288s17.128-38.29 38.254-38.29c21.12.027 38.24 17.15 38.276 38.29h-.019z" })
+      );
+    };
+    Omg.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Omg.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Omg;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OMNI-alt.js
+var require_OMNI_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OMNI-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var OmniAlt = function OmniAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.39 62.245c-28.2 0-51.144 22.942-51.144 51.144 0 28.199 22.944 51.143 51.144 51.143s51.144-22.943 51.144-51.143c0-28.202-22.943-51.144-51.144-51.144z" }),
+        _react2.default.createElement("path", { d: "M113.389 0C50.767 0 .001 50.766.001 113.388c0 62.623 50.766 113.389 113.389 113.389s113.388-50.766 113.388-113.389C226.777 50.766 176.012 0 113.389 0zm63.61 49.478v21.82a76.67 76.67 0 0 0-21.979-21.82h21.979zm-127.611 0h22.374a76.658 76.658 0 0 0-22.374 22.421V49.478zm0 127.61v-22.211a76.664 76.664 0 0 0 22.053 22.211H49.388zm127.611 0h-21.658a76.703 76.703 0 0 0 21.658-21.609v21.609zm-63.609 6.436c-38.673 0-70.137-31.463-70.137-70.136s31.464-70.137 70.137-70.137 70.137 31.464 70.137 70.137-31.464 70.136-70.137 70.136z" })
+      );
+    };
+    OmniAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    OmniAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = OmniAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OMNI.js
+var require_OMNI = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OMNI.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Omni = function Omni2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M46.087 10.065H9.916v36.248a123.934 123.934 0 0 1 36.171-36.248zm170.135 35.277V10.065h-35.533a123.925 123.925 0 0 1 35.533 35.277zM181.21 216.37h35.013v-34.935a123.969 123.969 0 0 1-35.013 34.935zM9.916 180.465v35.905h35.652a123.933 123.933 0 0 1-35.652-35.905z" }),
+        _react2.default.createElement("path", { d: "M226.777 113.389C226.777 50.866 175.911 0 113.388 0S-.001 50.866-.001 113.389c0 62.523 50.867 113.388 113.389 113.388s113.389-50.865 113.389-113.388zm-113.389 82.682c-45.592 0-82.683-37.092-82.683-82.682 0-45.592 37.091-82.684 82.683-82.684 45.591 0 82.683 37.092 82.683 82.684 0 45.59-37.092 82.682-82.683 82.682z" })
+      );
+    };
+    Omni.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Omni.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Omni;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OPAL-alt.js
+var require_OPAL_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OPAL-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var OpalAlt = function OpalAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M111.046 0L65.654 26.206l45.392 26.209zm-50.25 81.45V29.035l-45.39 26.208zm0 58.318V87.354l-45.39 26.207zm0 58.319v-52.415l-45.39 26.207zM13.894 116.51v52.416l45.391-26.207zm0-58.317v52.414l45.391-26.206zm50.362-29.158V81.45l45.391-26.207zm46.79 197.742v-52.415L65.655 200.57zm-46.79-81.451v52.415l45.391-26.208zM114.679 0v52.415l45.393-26.209zm50.25 29.035V81.45l45.391-26.207zm0 58.319v52.414l45.391-26.207zm0 110.733l45.391-26.208-45.391-26.207zm46.902-29.161V116.51l-45.392 26.209zm-45.392-84.525l45.392 26.206V58.193zm-4.97-2.951V29.035l-45.391 26.208zm-46.79 145.327l45.39-26.207-45.39-26.208zm46.79-29.036v-52.415l-45.391 26.207z" })
+      );
+    };
+    OpalAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    OpalAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = OpalAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/OPAL.js
+var require_OPAL = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/OPAL.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Opal = function Opal2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.533.289C50.99.289.289 50.99.289 113.533S50.99 226.777 113.533 226.777s113.244-50.701 113.244-113.244S176.076.289 113.533.289zm-29.57 61.926l27.613 15.943-27.613 15.943V62.215zm-30.64 17.738l27.614 15.944-27.614 15.943V79.953zm0 35.479l27.614 15.943-27.614 15.945v-31.888zm28.534 49.628l-27.614-15.943 27.614-15.944v31.887zm0-35.479l-27.614-15.944 27.614-15.943v31.887zm0-35.48L54.242 78.158l27.614-15.943v31.886zm2.106 38.862l27.613 15.944-27.613 15.944v-31.888zm28.464 49.552l-27.614-15.943 27.614-15.944v31.887zm0-106.078L84.813 60.493l27.614-15.942v31.886zm32.782-14.222l27.615 15.943-27.615 15.943V62.215zm0 35.479l27.615 15.943-27.615 15.944V97.694zm-30.571-53.143l27.614 15.942-27.614 15.944V44.551zm0 137.964v-31.888l27.614 15.944-27.614 15.944zm28.465-17.664l-27.613-15.944 27.613-15.944v31.888zm0-70.75L115.49 78.158l27.613-15.943v31.886zm2.106 70.959v-31.888l27.615 15.944-27.615 15.944zm28.534-17.74l-27.615-15.944 27.615-15.943v31.887zm0-35.48l-27.615-15.943 27.615-15.944v31.887z" })
+      );
+    };
+    Opal.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Opal.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Opal;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PART-alt.js
+var require_PART_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PART-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var PartAlt = function PartAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227 227 176.184 227 113.5 176.184 0 113.5 0zm45.259 122.357c.61-.58 1.205-1.177 1.781-1.791 2.101-1.965 4.052-4.088 6.002-6.207 2.34-2.546 4.679-5.089 7.263-7.346 3.701-2.434 9.286.334 9.404 4.827.398 3.085-1.716 5.106-3.777 7.076-.759.727-1.512 1.445-2.129 2.21-4.031 4.89-8.461 9.448-13.029 13.832-3.338 3.177-9.574.947-10.174-3.651-.627-3.821 2.11-6.476 4.659-8.95zm-3.706-25.124c0-3.402 2.738-6.159 6.116-6.159 3.377 0 6.116 2.758 6.116 6.158 0 3.402-2.739 6.159-6.116 6.159-3.378 0-6.116-2.757-6.116-6.158zm-8.843-54.231c3.378 0 6.116 2.757 6.116 6.159 0 3.401-2.738 6.159-6.116 6.159s-6.116-2.758-6.116-6.158c0-3.403 2.738-6.16 6.116-6.16zm-5.578 34.968c2.22-2.274 4.347-4.648 6.474-7.022l.002-.001c3.795-4.235 7.592-8.472 11.924-12.152 3.082-1.67 8.013-.312 8.869 3.383 1.306 3.286-.791 6.539-3.092 8.726-5.039 5.009-9.938 10.158-14.838 15.307-1.787 2.177-4.932 2.759-7.457 1.584-3.648-1.519-4.632-7.035-1.882-9.825zm-31.195-33.739c4.043-1.772 7.054 1.371 9.643 4.074.322.336.637.666.947.978a181.92 181.92 0 0 1 14.281 13.639c2.59 2.843 1.541 8.047-1.979 9.63-2.707 1.487-6.012.366-8.087-1.702a512.392 512.392 0 0 1-5.556-5.477c-3.521-3.51-7.043-7.02-10.759-10.316-3.507-2.887-2.791-9.156 1.51-10.826zm-30.393-.742c3.378 0 6.116 2.758 6.116 6.16 0 3.401-2.738 6.159-6.116 6.159s-6.117-2.758-6.117-6.16c0-3.4 2.739-6.159 6.117-6.159zM49.117 74.92c3.378 0 6.117 2.758 6.117 6.159v.002c0 3.402-2.739 6.16-6.117 6.16s-6.116-2.76-6.116-6.162c0-3.401 2.738-6.159 6.116-6.159zm0 79.741c-3.378 0-6.116-2.757-6.116-6.159s2.738-6.159 6.116-6.159c3.378 0 6.117 2.757 6.117 6.159s-2.739 6.159-6.117 6.159zm7.908-37.321c-2.071 2.399-4.286 4.969-7.721 4.551-4.985-.193-7.488-7.175-3.862-10.557 2.415-2.328 4.645-4.883 6.877-7.438 3.819-4.374 7.639-8.749 12.38-11.985 5.381-2.091 10.634 4.74 7.274 9.447-2.327 3.057-5.066 5.762-7.807 8.469l-.001.001-.001.001-.001.001v.001c-1.933 1.909-3.868 3.819-5.658 5.854a42.11 42.11 0 0 0-1.48 1.655zm14.946 13.262c0 3.4-2.738 6.158-6.116 6.158s-6.116-2.758-6.116-6.158c0-3.402 2.738-6.16 6.116-6.16s6.116 2.757 6.116 6.16zM80.773 185c-3.378 0-6.117-2.757-6.117-6.158 0-3.402 2.738-6.158 6.117-6.158 3.377 0 6.116 2.756 6.116 6.158 0 3.401-2.739 6.158-6.116 6.158zm3.405-32.625c-.745.717-1.481 1.427-2.085 2.178-4.022 4.902-8.504 9.395-13.03 13.832-2.942 2.995-9.211 1.551-10.045-2.746-1.405-4.094 1.985-7.412 4.635-10.004l.104-.102c2.297-2.165 4.461-4.469 6.623-6.77 2.702-2.875 5.401-5.748 8.354-8.344 3.594-2.166 9.051.409 9.136 4.805.488 3.119-1.631 5.162-3.692 7.151zm-1.721-64.149c-3.06.475-5.068-1.637-7.022-3.693-.71-.747-1.413-1.486-2.157-2.092-4.9-4.083-9.382-8.629-13.821-13.207-2.515-2.607-1.765-7.39 1.101-9.415l.001-.001c3.209-1.95 7.178-.657 9.553 1.994 3.39 3.447 6.848 6.821 10.305 10.193l.002.002c1.986 1.938 3.971 3.874 5.942 5.823 3.574 3.33 1.081 10.375-3.904 10.396zm14.415-28.355c3.378 0 6.116 2.758 6.116 6.16s-2.738 6.158-6.116 6.158v.001c-3.378 0-6.117-2.757-6.117-6.159 0-3.402 2.739-6.16 6.117-6.16zm18.716 124.371c-3.031.359-5.007-1.742-6.935-3.794-.726-.773-1.445-1.538-2.212-2.162-4.867-4.062-9.382-8.533-13.747-13.134-2.631-2.832-1.561-8.1 1.99-9.662 2.964-1.616 6.441-.086 8.57 2.187 5.37 5.365 10.74 10.729 16.314 15.88 3.668 3.511 1.187 10.632-3.98 10.685zm14.569-16.09c-3.378 0-6.117-2.756-6.117-6.158 0-3.401 2.739-6.159 6.117-6.159 3.377 0 6.116 2.758 6.116 6.159 0 3.402-2.739 6.158-6.116 6.158zm17.596 16.849c-3.378 0-6.116-2.757-6.116-6.159 0-3.4 2.738-6.158 6.116-6.158s6.117 2.758 6.117 6.158c0 3.402-2.739 6.159-6.117 6.159zm20.533-19.04c-1.69 3.986-7.49 4.083-10.304 1.26-2.692-2.558-5.334-5.177-7.978-7.797l-.001-.001c-2.932-2.905-5.865-5.813-8.87-8.641-3.454-2.704-2.642-8.962 1.487-10.525 1.99-.688 4.516-.741 6.193.701 2.112 2.021 4.27 3.993 6.428 5.965 4.203 3.843 8.406 7.685 12.273 11.886 1.809 1.841 1.968 4.933.772 7.152zm9.569-12.827c-3.377 0-6.114-2.757-6.114-6.159 0-3.4 2.737-6.158 6.114-6.158 3.379 0 6.117 2.758 6.117 6.158.001 3.402-2.738 6.159-6.117 6.159zm.03-67.44c-3.377 0-6.115-2.758-6.115-6.16 0-3.4 2.738-6.159 6.115-6.159 3.379 0 6.116 2.758 6.116 6.16 0 3.401-2.737 6.159-6.116 6.159z" })
+      );
+    };
+    PartAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    PartAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = PartAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PART.js
+var require_PART = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PART.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Part = function Part2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 228",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M106.957 1.975c7.318-3.2 12.538 3.58 17.05 8.111 8.06 6.867 15.724 14.202 22.993 21.9 4.168 4.565 2.48 12.92-3.188 15.462-4.356 2.387-9.679.588-13.02-2.732-8.768-8.441-17.154-17.297-26.266-25.358-5.646-4.636-4.493-14.702 2.431-17.383zm79.844 23.384c4.961-2.681 12.899-.501 14.278 5.431 2.101 5.276-1.274 10.499-4.978 14.01-8.113 8.044-16 16.311-23.889 24.579-2.875 3.495-7.939 4.43-12.004 2.544-5.873-2.44-7.457-11.296-3.031-15.776 9.956-10.169 18.74-21.569 29.624-30.788zM28.266 27.002c5.167-3.13 11.557-1.055 15.38 3.2 8.594 8.717 17.464 17.141 26.161 25.72 5.753 5.345 1.74 16.657-6.285 16.692-6.717 1.038-10.283-5.639-14.778-9.288C40.856 56.77 33.64 49.472 26.492 42.12c-4.047-4.186-2.841-11.866 1.774-15.118zm6.666 51.527c8.663-3.354 17.119 7.612 11.711 15.17-6.39 8.372-14.709 15.1-21.683 23.005-4.117 4.254-7.957 10.793-14.812 9.963-8.026-.313-12.056-11.521-6.217-16.951 10.54-10.136 18.91-22.954 31-31.186l.001-.001zm175.653 24.251c5.959-3.909 14.95.537 15.14 7.75.877 6.78-5.822 10.36-9.508 14.91-6.492 7.852-13.621 15.169-20.976 22.209-5.374 5.102-15.415 1.521-16.38-5.863-1.258-7.629 5.873-12.367 10.369-17.246 7.44-6.936 13.726-15.117 21.355-21.76zM57.528 156.418c5.786-3.477 14.57.658 14.708 7.714 1.068 6.815-5.632 10.431-9.3 14.979-6.476 7.87-13.692 15.082-20.978 22.209-4.736 4.809-14.828 2.49-16.172-4.41-2.29-6.658 3.341-12.039 7.63-16.226 8.319-7.817 15.552-16.759 24.112-24.266zm102.854-.26c3.203-1.106 7.269-1.193 9.972 1.125 10.024 9.565 20.685 18.455 30.105 28.66 2.91 2.958 3.169 7.922 1.24 11.485-2.721 6.399-12.057 6.555-16.586 2.024-9.146-8.666-17.928-17.765-27.127-26.396-5.561-4.34-4.254-14.39 2.396-16.898zm-77.175 24.457c4.77-2.594 10.368-.137 13.795 3.512 8.646 8.613 17.291 17.228 26.266 25.496 5.906 5.639 1.91 17.072-6.408 17.158-6.717.797-10.213-5.897-14.726-9.564-7.836-6.521-15.104-13.7-22.13-21.086-4.238-4.549-2.516-13.006 3.203-15.516zM67.873 10.673c0 5.463-4.408 9.89-9.847 9.89-5.438 0-9.847-4.427-9.847-9.89 0-5.46 4.41-9.889 9.847-9.889 5.439 0 9.847 4.428 9.847 9.889zm28.702 26.304c0 5.462-4.409 9.89-9.847 9.89s-9.848-4.428-9.848-9.89c0-5.461 4.409-9.89 9.848-9.89 5.438 0 9.847 4.429 9.847 9.89zM19.694 61.14c0 5.463-4.409 9.89-9.848 9.89C4.41 71.03 0 66.603 0 61.14c0-5.46 4.409-9.888 9.846-9.888 5.439-.001 9.848 4.428 9.848 9.888zM176.005 9.89c0 5.46-4.407 9.888-9.846 9.888s-9.847-4.427-9.847-9.889S160.721 0 166.159 0s9.846 4.427 9.846 9.89zM227 58.66c0 5.461-4.408 9.89-9.846 9.89s-9.848-4.429-9.848-9.89 4.409-9.89 9.848-9.89c5.438 0 9.846 4.43 9.846 9.89zm-26.911 28.416c0 5.461-4.409 9.888-9.847 9.888s-9.846-4.427-9.846-9.888 4.408-9.888 9.846-9.888 9.847 4.427 9.847 9.888zm26.866 79.868c0 5.462-4.409 9.888-9.848 9.888-5.438 0-9.846-4.426-9.846-9.888s4.408-9.89 9.846-9.89c5.439.001 9.848 4.428 9.848 9.89zm-76.794 24.115c0 5.462-4.409 9.889-9.847 9.889s-9.848-4.427-9.848-9.889c0-5.461 4.41-9.891 9.848-9.891s9.847 4.43 9.847 9.891zm28.33 27.05c0 5.463-4.41 9.891-9.849 9.891-5.438 0-9.847-4.428-9.847-9.891 0-5.46 4.409-9.888 9.847-9.888 5.439.001 9.849 4.428 9.849 9.888zm-107.835 0c0 5.463-4.408 9.889-9.846 9.889-5.439 0-9.847-4.426-9.847-9.889 0-5.462 4.408-9.889 9.847-9.889 5.438.001 9.846 4.427 9.846 9.889zM46.64 140.653c0 5.462-4.408 9.888-9.846 9.888-5.439 0-9.847-4.426-9.847-9.888s4.408-9.89 9.847-9.89c5.438.001 9.846 4.428 9.846 9.89zm-26.946 28.743c0 5.462-4.409 9.89-9.848 9.89-5.437 0-9.846-4.428-9.846-9.89s4.409-9.889 9.846-9.889c5.439 0 9.848 4.427 9.848 9.889z" })
+      );
+    };
+    Part.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Part.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Part;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PIGGY-alt.js
+var require_PIGGY_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PIGGY-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var PiggyAlt = function PiggyAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("ellipse", {
+          transform: "rotate(-92.247 143.495 107.572)",
+          cx: "143.495",
+          cy: "107.569",
+          rx: "6.356",
+          ry: "3.307"
+        }),
+        _react2.default.createElement("path", { d: "M152.292 98.166c-1.547.059-2.708 2.521-2.591 5.493.117 2.974 1.466 5.336 3.014 5.273 1.548-.058 2.709-2.519 2.59-5.492-.115-2.975-1.465-5.339-3.013-5.274zm-62.391-28.54l-4.173 1.654c2.147-.012 8.396-1.202 16.549-.254 8.155.95 16.633 6.314 16.633 6.314l5.117-2.979s-4.583-3.97-15.651-5.496c-12.846-1.772-18.475.761-18.475.761z" }),
+        _react2.default.createElement("path", { d: "M113.485 0C50.876 0 .121 50.755.121 113.364s50.755 113.364 113.364 113.364 113.364-50.755 113.364-113.364S176.094 0 113.485 0zm52.323 137.844c-4.606 7.186-11.453 11.027-15.43 8.718-6.074 6.554-12.715 10.615-19.45 12.878-2.21 4.644-6.841 10.772-12.935 10.883-5.696.104-10.968-5.903-13.771-9.778-6.529-1.382-12.416-3.704-17.07-6.102a80.186 80.186 0 0 1-7.819-4.571c-2.634.298-5.713.285-7.602-.926-2.143-1.372-2.843-5.099-3.043-8.107-6.784-7.508-11.462-17.483-11.462-31.132 0-24.279 16.032-34.048 16.032-34.048.009-.009.021-.015.03-.02.419-3.289 1.724-8.093 5.675-10.903 4.328-3.077 10.271-.2 13.696 2.008 10.132-2.619 22.4-2.893 35.742 2.432 3.217-2.697 9.444-7.09 16.466-7.72 10.23-.915 14.506 5.806 15.116 9.928.454 3.056-2.456 14.185-3.985 19.724 4.848 7.609 7.358 16.186 7.228 24.862l3.906 4.093c3.946 2.53 3.351 10.489-1.324 17.781z" }),
+        _react2.default.createElement("path", { d: "M164.689 125.123c-1.136-.12-2.259 1.716-2.51 4.101-.25 2.389.468 4.419 1.601 4.536 1.135.117 2.26-1.717 2.508-4.104.252-2.385-.465-4.417-1.599-4.533zm-6.534 5.507c-1.3-.142-2.578 1.868-2.853 4.484-.275 2.614.556 4.843 1.854 4.978 1.305.138 2.58-1.87 2.854-4.485.275-2.612-.556-4.843-1.855-4.977z" })
+      );
+    };
+    PiggyAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    PiggyAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = PiggyAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PIGGY.js
+var require_PIGGY = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PIGGY.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Piggy = function Piggy2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M221.698 121.885l-7.878-8.257c.262-17.5-4.803-34.801-14.581-50.149 3.088-11.172 8.956-33.619 8.04-39.787-1.231-8.315-9.854-21.868-30.491-20.021-14.164 1.268-26.727 10.131-33.218 15.567-26.91-10.739-51.658-10.187-72.095-4.9-6.909-4.458-18.897-10.259-27.629-4.052-7.97 5.668-10.601 15.355-11.449 21.993-.019.01-.04.021-.059.038 0 0-32.339 19.709-32.339 68.684 0 27.526 9.439 47.654 23.121 62.796.405 6.067 1.816 13.588 6.139 16.356 3.809 2.438 10.022 2.464 15.333 1.866 5.137 3.421 10.445 6.476 15.775 9.222 9.389 4.837 21.264 9.519 34.431 12.305 5.655 7.816 16.291 19.938 27.783 19.728 12.288-.224 21.631-12.586 26.087-21.954 13.588-4.563 26.982-12.755 39.234-25.98 8.02 4.665 21.835-3.084 31.123-17.58 9.434-14.712 10.631-30.769 2.673-35.875zm-97.27-86.179s-17.103-10.815-33.553-12.73c-16.448-1.916-29.053.487-33.384.512l8.417-3.338s11.356-5.113 37.269-1.538c22.328 3.08 31.57 11.086 31.57 11.086l-10.319 6.008zm50.093 73.791c-3.682.148-6.893-5.471-7.171-12.547-.277-7.077 2.483-12.927 6.165-13.073 3.684-.146 6.895 5.474 7.17 12.551.281 7.074-2.479 12.925-6.164 13.069zm18.093-10.059c-3.121.127-5.842-4.637-6.079-10.639-.234-5.996 2.106-10.959 5.228-11.081 3.123-.126 5.844 4.639 6.078 10.639.239 5.999-2.104 10.962-5.227 11.081zm14.72 53.804c-.553 5.277-3.128 9.324-5.756 9.05-2.62-.272-4.296-4.766-3.742-10.044.554-5.276 3.131-9.326 5.753-9.045 2.621.27 4.297 4.771 3.745 10.039zm12.663-12.001c-.503 4.815-2.772 8.517-5.061 8.277-2.286-.237-3.733-4.332-3.229-9.149.507-4.811 2.773-8.517 5.063-8.273 2.288.237 3.732 4.333 3.227 9.145z" })
+      );
+    };
+    Piggy.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Piggy.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Piggy;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PINK-alt.js
+var require_PINK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PINK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var PinkAlt = function PinkAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M119.4 78.6c-17.1 0-31.1 13.9-31.1 31.1 0 17.1 13.9 31.1 31.1 31.1 17.1 0 31.1-13.9 31.1-31.1 0-17.2-13.9-31.1-31.1-31.1z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zm6 157.4c-11.9 0-22.7-4.4-31.1-11.5v33.5H71.7v-69.8c0-26.3 21.4-47.7 47.7-47.7 26.3 0 47.7 21.4 47.7 47.7.1 26.3-21.3 47.8-47.7 47.8z" })
+      );
+    };
+    PinkAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    PinkAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = PinkAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PINK.js
+var require_PINK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PINK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Pink = function Pink2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M116.6 0C65.8 0 24.5 41.3 24.5 92.1v134.6h32.2V162c16.1 13.8 37.1 22.2 59.9 22.2 50.8 0 92.1-41.3 92.1-92.1S167.4 0 116.6 0zm0 152.1c-33.1 0-59.9-26.9-59.9-59.9s26.9-59.9 59.9-59.9 59.9 26.9 59.9 59.9-26.8 59.9-59.9 59.9z" })
+      );
+    };
+    Pink.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Pink.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Pink;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PIVX-alt.js
+var require_PIVX_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PIVX-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var PivxAlt = function PivxAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M93.464 80.598l27.878-.133c10.446 0 17.366 6.254 17.366 16.966 0 10.845-6.853 17.299-17.499 17.299H94.795v38.191h7.785v-31.205h19.694c14.238 0 24.485-9.514 24.485-24.285 0-14.704-10.246-23.953-24.485-23.953h-28.81v7.12z" }),
+        _react2.default.createElement("path", { d: "M88.275 94.504h30.007v6.254H88.275z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm58.073 137.775c0 25.077-54.868 48.394-57.193 49.274l-.88.377-.88-.377c-1.257-.503-17.284-7.982-32.053-17.724-13.073-8.61-25.14-19.798-25.14-31.551V57.39L113.4 45.26l58.073 12.13v80.385z" })
+      );
+    };
+    PivxAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    PivxAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = PivxAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PIVX.js
+var require_PIVX = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PIVX.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Pivx = function Pivx2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M112.178.293L19.655 19.619v128.07c0 18.725 19.225 36.548 40.053 50.267 23.531 15.521 49.065 27.436 51.068 28.237l1.402.601 1.402-.601c3.705-1.402 91.121-38.551 91.121-78.504V19.619L112.178.293zM72.148 78.75h47.807v9.964H72.148V78.75zm54.168 43.355H94.939v49.715H82.536v-60.846h42.083c16.961 0 27.879-10.282 27.879-27.561 0-17.066-11.024-27.031-27.667-27.031l-44.415.212V45.253h45.899c22.685 0 39.009 14.734 39.009 38.161.001 23.533-16.324 38.691-39.008 38.691z" })
+      );
+    };
+    Pivx.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Pivx.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Pivx;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/POT-alt.js
+var require_POT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/POT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var PotAlt = function PotAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M128.394.015H46.13l-11.131 57.2H11.212L6.07 84.422h23.633L2 226.777h40.489l15.858-82.157h60.407c29.135 0 96.617-5.73 105.019-74.887C231.619 5.144 183.399.015 128.394.015zm54.201 66.411c-2.785 24.423-24.423 39.848-47.774 39.848H65.75l4.217-21.852h57.357l5.142-27.208H75.22l3.474-17.996h64.912c17.78.001 41.775 2.786 38.989 27.208z" })
+      );
+    };
+    PotAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    PotAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = PotAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/POT.js
+var require_POT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/POT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Pot = function Pot2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M130.231 74.484H96.212l-1.822 9.432h30.003l-2.694 14.258H91.638l-2.211 11.454h36.201c12.238 0 23.579-8.084 25.038-20.884 1.461-12.8-11.114-14.26-20.435-14.26z" }),
+        _react2.default.createElement("path", { d: "M113.616.455C51.119.455.455 51.119.455 113.616s50.664 113.161 113.161 113.161 113.161-50.664 113.161-113.161S176.113.455 113.616.455zm58.634 90.022c-4.404 36.246-39.771 39.25-55.043 39.25H85.548l-8.311 43.059H56.015l14.52-74.611H58.148l2.694-14.258h12.469l5.832-29.979h43.117c28.829-.001 54.102 2.687 49.99 36.539z" })
+      );
+    };
+    Pot.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Pot.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Pot;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PPC-alt.js
+var require_PPC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PPC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var PpcAlt = function PpcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8c62.6 0 113.4-50.8 113.4-113.4C226.8 50.8 176 0 113.4 0zm30.1 174.6s5.3-17.8 3-33.8c-2.4-16-16.7-35.4-27.5-44.1C108.3 87.9 87.5 78 87.5 78s18 13.8 24.3 20.4c6.2 6.6 14.8 17.5 18.9 31.8 4 14.3 3.4 39.2-4.9 44.4-8.3 5.2-30-3.8-37.2-9.9s-16.5-16-19.2-36.6c-2.7-20.6-2-68.7-2-68.7s38.6.2 67.8 18.6c29.2 18.4 31.9 33 31.9 56.6 0 23.7-23.6 40-23.6 40z" })
+      );
+    };
+    PpcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    PpcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = PpcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/PPC.js
+var require_PPC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/PPC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ppc = function Ppc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M164.6 223.8s10.4-34.6 5.8-65.7C165.8 127 138 89.3 117 72.3S55.7 36 55.7 36s35 26.8 47.1 39.6c12.1 12.8 28.8 34 36.7 61.9 7.9 27.8 6.5 76.2-9.5 86.3-16 10.2-58.3-7.4-72.4-19.2-14.1-11.8-32.1-31.1-37.3-71C15.1 93.6 16.6 0 16.6 0s75.1.4 131.8 36.2c56.8 35.8 62 64.2 62 110 0 45.9-45.8 77.6-45.8 77.6z" })
+      );
+    };
+    Ppc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ppc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ppc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/QRK-alt.js
+var require_QRK_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/QRK-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var QrkAlt = function QrkAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.407-.014C50.768-.014 0 50.747 0 113.366c0 62.621 50.769 113.411 113.407 113.411 62.609 0 113.385-50.79 113.385-113.411 0-62.619-50.776-113.38-113.385-113.38zm0 211.068c-53.952 0-97.679-43.751-97.679-97.688 0-53.936 43.728-97.656 97.679-97.656 53.926 0 97.664 43.72 97.664 97.656 0 53.937-43.738 97.688-97.664 97.688z" }),
+        _react2.default.createElement("path", { d: "M183.604 72.842c-8.124-14.083-26.134-18.907-40.226-10.776-3.196 1.847-5.889 4.222-8.09 6.929-.004-.003-.011-.003-.015-.007-4.825 6.903-12.82 11.43-21.875 11.43-9.064 0-17.054-4.527-21.879-11.43-.007.004-.02.007-.026.011-2.201-2.704-4.892-5.079-8.09-6.925-14.083-8.128-32.092-3.307-40.221 10.777-8.132 14.078-3.303 32.087 10.78 40.219 3.026 1.741 6.241 2.845 9.494 3.429 8.594.577 16.749 5.294 21.363 13.318 4.52 7.863 4.58 17.061.989 24.688.029.021.056.051.088.068-1.235 3.247-1.943 6.758-1.943 10.438 0 16.261 13.182 29.447 29.445 29.447 16.257 0 29.438-13.187 29.438-29.447 0-3.493-.652-6.828-1.773-9.942-3.794-7.729-3.79-17.149.853-25.155 4.539-7.834 12.455-12.476 20.839-13.194.005-.038.014-.076.017-.111 3.443-.553 6.851-1.698 10.054-3.546 14.081-8.134 18.906-26.141 10.778-40.221zM113.4 135.274c-12.094 0-21.894-9.806-21.894-21.896s9.8-21.89 21.894-21.89c12.085 0 21.893 9.8 21.893 21.89s-9.808 21.896-21.893 21.896z" })
+      );
+    };
+    QrkAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    QrkAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = QrkAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/QRK.js
+var require_QRK = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/QRK.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Qrk = function Qrk2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.377.023C50.76.023 0 50.784 0 113.4s50.76 113.377 113.377 113.377S226.754 176.016 226.754 113.4 175.993.023 113.377.023zm59.232 113.057c-3.191 1.842-6.588 2.984-10.021 3.535-.003.036-.011.073-.015.11-8.356.717-16.246 5.343-20.771 13.151-4.627 7.979-4.631 17.367-.85 25.071 1.118 3.103 1.768 6.428 1.768 9.908 0 16.206-13.137 29.35-29.339 29.35-16.209 0-29.347-13.144-29.347-29.35 0-3.667.706-7.166 1.936-10.402-.031-.018-.058-.048-.087-.067 3.578-7.602 3.518-16.769-.986-24.607-4.598-7.996-12.726-12.697-21.292-13.272-3.242-.583-6.445-1.682-9.462-3.418-14.036-8.104-18.849-26.054-10.745-40.085 8.103-14.037 26.052-18.842 40.087-10.741 3.188 1.84 5.87 4.208 8.063 6.903l.026-.011c4.809 6.879 12.772 11.392 21.806 11.392 9.025 0 16.993-4.513 21.801-11.392.004.004.012.004.015.008 2.194-2.698 4.877-5.066 8.063-6.907 14.044-8.104 31.993-3.295 40.091 10.74 8.103 14.033 3.292 31.98-10.741 40.084z" }),
+        _react2.default.createElement("path", { d: "M113.381 91.58c-12.054 0-21.821 9.767-21.821 21.816 0 12.05 9.767 21.823 21.821 21.823 12.045 0 21.82-9.772 21.82-21.823 0-12.049-9.774-21.816-21.82-21.816z" })
+      );
+    };
+    Qrk.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Qrk.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Qrk;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/QTUM-alt.js
+var require_QTUM_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/QTUM-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var QtumAlt = function QtumAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement(
+          "g",
+          { fill: "currentColor", fillRule: "evenodd" },
+          _react2.default.createElement("circle", { fill: "currentColor", cx: "125", cy: "125", r: "125" }),
+          _react2.default.createElement("path", {
+            d: "M192.29 172.777c2.092 0 3.899.736 5.423 2.208 1.525 1.472 2.287 3.29 2.287 5.455 0 2.079-.762 3.875-2.287 5.39-1.524 1.516-3.331 2.274-5.422 2.274-2.178 0-4.007-.758-5.488-2.273-1.48-1.516-2.221-3.312-2.221-5.39 0-.693.087-1.386.261-2.079a5.755 5.755 0 0 1 .784-1.818l-13.458-11.56-27.57 19.743c.175.346.283.67.327.974.044.303.065.627.065.974 0 1.472-.522 2.727-1.568 3.766-1.045 1.04-2.264 1.559-3.658 1.559-1.307 0-2.44-.368-3.397-1.104-.959-.736-1.568-1.71-1.83-2.922H105.27c-.261 1.212-.871 2.186-1.83 2.922a5.221 5.221 0 0 1-3.266 1.104c-1.48 0-2.744-.52-3.789-1.559s-1.568-2.294-1.568-3.766c0-.347.044-.671.13-.974.088-.303.175-.628.262-.974l-24.172-17.275a5.617 5.617 0 0 1-1.503.844c-.566.217-1.198.325-1.895.325-1.48 0-2.744-.52-3.789-1.559s-1.568-2.294-1.568-3.766c0-.953.24-1.818.719-2.598a5.073 5.073 0 0 1 1.894-1.818l-9.277-28.185h-.26c-1.482 0-2.745-.52-3.79-1.558-1.045-1.04-1.568-2.295-1.568-3.767s.523-2.727 1.568-3.766c1.045-1.04 2.308-1.56 3.79-1.56h.391l9.146-27.924h-.13c-.697-.433-1.285-1.039-1.764-1.818a4.862 4.862 0 0 1-.719-2.598c0-1.472.523-2.727 1.568-3.766 1.045-1.04 2.309-1.56 3.79-1.56.696 0 1.328.11 1.894.326a4.277 4.277 0 0 1 1.503.974l24.172-17.405c-.087-.26-.174-.562-.261-.909a4.246 4.246 0 0 1-.13-1.039c0-1.472.522-2.727 1.567-3.766 1.045-1.04 2.308-1.559 3.79-1.559 1.219 0 2.308.39 3.266 1.169.958.78 1.568 1.732 1.829 2.857h29.268c.262-1.212.871-2.186 1.83-2.922.958-.736 2.09-1.104 3.397-1.104 1.394 0 2.613.52 3.658 1.559 1.046 1.039 1.568 2.294 1.568 3.766 0 .347-.021.693-.065 1.04a2.07 2.07 0 0 1-.327.908l24.173 17.405a4.169 4.169 0 0 1 1.568-.974 5.437 5.437 0 0 1 1.829-.325c1.48 0 2.744.52 3.79 1.558 1.044 1.04 1.567 2.295 1.567 3.767 0 .953-.24 1.818-.719 2.598-.479.78-1.067 1.385-1.763 1.818l9.146 28.055h.392c1.394 0 2.613.52 3.658 1.558 1.046 1.04 1.568 2.295 1.568 3.767s-.522 2.728-1.568 3.767c-1.045 1.039-2.264 1.558-3.658 1.558h-.392l-10.453 32.081 13.589 11.69a7.281 7.281 0 0 1 2.286-1.364 7.73 7.73 0 0 1 2.679-.455zm-19.206-78.319l-1.699 25.847a6.74 6.74 0 0 1 2.287 1.493c.653.65 1.067 1.45 1.24 2.403h4.443a5.01 5.01 0 0 1 .85-1.818c.392-.52.893-.953 1.502-1.299l-8.623-26.626zM170.6 92.77l-.13-.13c-.436-.087-.872-.303-1.307-.65a14.229 14.229 0 0 1-1.176-1.039l-8.885 3.767c0 .173.022.346.065.52.044.172.065.302.065.389 0 .78-.174 1.515-.522 2.208-.349.693-.784 1.255-1.307 1.688l10.976 20.782c.087-.087.152-.13.196-.13h.196L170.6 92.77zm-29.922 27.535l9.8-20.652a6.1 6.1 0 0 1-1.307-1.493 4.63 4.63 0 0 1-.653-1.884l-23.65-2.987c-.174.346-.37.671-.588.974a6.703 6.703 0 0 1-.718.844l14.634 25.328c.261-.087.523-.152.784-.195.261-.044.522-.065.784-.065.174 0 .348.021.522.065.175.043.305.065.392.065zm12.152-19.483l-9.669 20.652a4.06 4.06 0 0 1 1.045 1.234c.262.476.48.974.654 1.493h19.73c.087-.52.26-1.017.522-1.493a4.06 4.06 0 0 1 1.046-1.234l-10.976-20.782a6.07 6.07 0 0 1-.719.195 3.045 3.045 0 0 1-.588.065 2.16 2.16 0 0 1-.522-.065 2.16 2.16 0 0 0-.523-.065zm-16.855 20.911L121.34 96.406c-.26 0-.5.022-.718.065a3.692 3.692 0 0 1-.719.065c-.261 0-.5-.022-.718-.065a3.045 3.045 0 0 0-.588-.065l-14.765 25.327c.348.347.653.715.914 1.104.262.39.436.845.523 1.364h29.268c.175-.52.37-.974.588-1.364.218-.39.501-.757.85-1.104zm-34.365-1.298l14.635-25.328a6.618 6.618 0 0 1-.719-.844 5.243 5.243 0 0 1-.588-1.104l-23.65 3.117a4.63 4.63 0 0 1-.653 1.884 6.1 6.1 0 0 1-1.307 1.493l9.8 20.652c.174 0 .348-.022.523-.065a2.16 2.16 0 0 1 .522-.065c.262 0 .501.021.719.065.218.043.457.108.718.195zm-4.834 1.039l-9.669-20.652a2.16 2.16 0 0 0-.523.065 2.16 2.16 0 0 1-.522.065c-.262 0-.501-.021-.719-.065a3.046 3.046 0 0 0-.588-.065L73.78 121.604c.436.346.784.736 1.046 1.168.261.433.479.91.653 1.43h19.6c.087-.607.282-1.126.587-1.56a5.642 5.642 0 0 1 1.111-1.168zm-21.298 5.325c-.174.52-.392.996-.653 1.429-.262.432-.61.822-1.046 1.168l10.976 20.912c.174-.087.37-.13.588-.13h1.633l9.8-20.652a5.642 5.642 0 0 1-1.11-1.169c-.306-.433-.545-.952-.72-1.558H75.48zm23.65 3.896l-9.8 20.652a6.1 6.1 0 0 1 1.307 1.493 4.63 4.63 0 0 1 .653 1.884l23.65 2.987c.174-.346.37-.693.588-1.04.218-.345.457-.649.719-.908l-14.635-25.198a2.332 2.332 0 0 1-.653.195 4.789 4.789 0 0 1-.784.065 2.16 2.16 0 0 1-.522-.065 2.16 2.16 0 0 0-.523-.065zm4.704-1.428l14.634 25.197v.13c.261-.087.5-.152.719-.195.217-.043.457-.065.718-.065.262 0 .523.022.784.065.261.043.48.065.653.065l14.635-25.197a7.251 7.251 0 0 1-.915-1.104 3.436 3.436 0 0 1-.523-1.364H105.27c-.087.52-.261.974-.523 1.364-.26.39-.566.757-.914 1.104zm36.848 1.432a2.184 2.184 0 0 0-.394.061 2.764 2.764 0 0 1-.653.065c-.261 0-.5-.021-.718-.065a6.07 6.07 0 0 1-.72-.195l-14.503 25.198c.262.26.48.563.654.909l.522 1.039 23.78-2.987c.088-.693.284-1.32.589-1.884a5.065 5.065 0 0 1 1.241-1.493l-9.798-20.648zm2.35-1.173l9.8 20.652h1.633c.218 0 .414.043.588.13l11.237-21.041a2.994 2.994 0 0 1-1.045-1.04 7.158 7.158 0 0 1-.653-1.428h-19.73c-.175.606-.414 1.125-.719 1.558a5.642 5.642 0 0 1-1.11 1.17zm23.907-41.04a1.307 1.307 0 0 0-.06-.327 1.431 1.431 0 0 1-.066-.455c0-.346.043-.693.13-1.039.088-.346.175-.65.262-.91l-24.042-17.403c-.087 0-.13.021-.13.065v.064l9.908 21.902c.138-.054.276-.081.414-.081h.522c.871 0 1.655.195 2.352.584a6.76 6.76 0 0 1 1.83 1.494l8.88-3.895zM137.674 69.26l-13.589 18.703c.262.346.501.736.719 1.169.218.433.327.909.327 1.429l23.78 3.117a6.7 6.7 0 0 1 .653-1.234c.262-.39.61-.715 1.046-.974l-9.93-21.95a2.16 2.16 0 0 0-.523.064 2.16 2.16 0 0 1-.523.065 3.56 3.56 0 0 1-.98-.13 30.673 30.673 0 0 0-.98-.26zm-32.404-3.637a3.656 3.656 0 0 1-.392 1.104 9.49 9.49 0 0 1-.653.974l13.72 18.573v.13c.26-.173.565-.281.914-.324a8.47 8.47 0 0 1 1.045-.065c.349 0 .675.021.98.065.305.043.588.108.85.194l13.85-18.573a6.818 6.818 0 0 1-.654-1.039 5.057 5.057 0 0 1-.392-1.039H105.27zm-5.096 4.026a2.16 2.16 0 0 1-.522-.065 1.797 1.797 0 0 0-.392-.064l-9.93 21.95c.348.26.653.584.914.974s.479.8.653 1.234l23.78-3.117c.088-.52.218-.996.393-1.43a3.45 3.45 0 0 1 .784-1.168l-13.72-18.703c-.261.086-.566.173-.914.26a4.32 4.32 0 0 1-1.046.13zm-3.397-1.298L72.605 85.756c.087.26.174.541.26.844.088.303.132.628.132.974v.52c0 .173-.044.303-.131.39l9.016 3.896c.435-.606 1.023-1.104 1.763-1.494a5.111 5.111 0 0 1 2.418-.584h.457c.13 0 .283.043.457.13l9.93-21.95c-.086 0-.13-.022-.13-.065v-.065zm-24.956 22.6a4.54 4.54 0 0 1-1.046.973 5.566 5.566 0 0 1-1.437.715l1.96 27.665h.261l10.976-20.782a4.015 4.015 0 0 1-1.372-1.688 5.122 5.122 0 0 1-.457-2.078v-.52c0-.173.043-.346.13-.52l-9.015-3.766zm-4.966 65.59l1.83-25.977h-.131a6.39 6.39 0 0 1-2.09-1.493 5.666 5.666 0 0 1-1.307-2.273h-4.704a5.01 5.01 0 0 1-.85 1.818c-.391.52-.892.953-1.502 1.299l8.754 26.626zm-1.698-32.34a5.666 5.666 0 0 1 1.306-2.274 6.085 6.085 0 0 1 2.222-1.493l-1.83-25.977-8.623 26.496a6.075 6.075 0 0 1 1.437 1.364c.436.563.697 1.19.784 1.883h4.704zm4.181 34.158c.523.174.98.39 1.372.65.392.26.762.606 1.11 1.039l9.016-3.767a1.042 1.042 0 0 1-.13-.454v-.455c0-.78.152-1.515.457-2.208a4.015 4.015 0 0 1 1.372-1.688l-10.976-20.782h-.261l-1.96 27.665zm3.577 4.135c.054.137.082.274.082.411v.52c0 .346-.044.692-.131 1.039-.087.346-.174.65-.261.909l24.172 17.274.13-.13-9.93-21.95c-.174.087-.348.13-.522.13h-.523c-.871 0-1.655-.195-2.352-.584a6.743 6.743 0 0 1-1.83-1.494l-8.835 3.875zm26.343 18.98a2.16 2.16 0 0 0 .394-.06 2.16 2.16 0 0 1 .522-.065c.349 0 .697.043 1.046.13.348.086.653.173.914.26l11.368-15.587 2.352-3.117a5.162 5.162 0 0 1-.784-1.299 6.857 6.857 0 0 1-.392-1.428l-23.65-2.988h-.13a6.7 6.7 0 0 1-.654 1.234c-.261.39-.566.715-.915.974l9.929 21.947zm22.64-16.964a3.191 3.191 0 0 1-.949.279 8.469 8.469 0 0 1-2.09 0 2.099 2.099 0 0 1-.915-.325l-13.72 18.833c.262.26.48.584.654.974a6.8 6.8 0 0 1 .392 1.104h29.268c.087-.346.218-.693.392-1.04.175-.345.392-.692.654-1.038l-13.686-18.787zm18.781 16.968l.262-.779 9.538-21.17a9.772 9.772 0 0 1-.915-1.04 5.074 5.074 0 0 1-.653-1.169l-23.78 2.988c0 .52-.11.995-.327 1.428-.218.433-.5.866-.85 1.3l13.72 18.702c.349-.086.675-.173.98-.26.305-.086.632-.13.98-.13.174 0 .349.022.523.066.174.043.348.064.522.064zm2.483 1.17l26.394-19.093-11.499-4.936v.13a5.815 5.815 0 0 1-1.829 1.429c-.697.346-1.48.52-2.352.52h-.522c-.175 0-.305-.044-.392-.13l-9.67 21.3-.26.65v.13h.13zm15.94-26.367l11.63 5.066-1.96-30.783h-.262l-11.106 20.912c.523.52.958 1.104 1.307 1.753a4.46 4.46 0 0 1 .522 2.143c0 .173-.021.325-.065.455-.043.13-.065.281-.065.454zm12.283-25.846l1.699 26.106 8.623-26.626a4.859 4.859 0 0 1-1.502-1.299 5.01 5.01 0 0 1-.85-1.818h-4.573a4.213 4.213 0 0 1-1.176 2.208c-.61.606-1.35 1.082-2.221 1.429z",
+            fill: "currentColor",
+            fillRule: "nonzero"
+          })
+        )
+      );
+    };
+    QtumAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    QtumAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = QtumAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/QTUM.js
+var require_QTUM = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/QTUM.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Qtum = function Qtum2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M226.436 196.094c3.136 0 5.848 1.107 8.134 3.32 2.287 2.214 3.43 4.948 3.43 8.203 0 3.125-1.143 5.827-3.43 8.106-2.286 2.278-4.998 3.418-8.134 3.418-3.266 0-6.01-1.14-8.231-3.418-2.222-2.279-3.332-4.98-3.332-8.106 0-1.041.13-2.083.392-3.125.261-1.041.653-1.953 1.176-2.734l-20.188-17.383-41.354 29.688c.261.52.425 1.009.49 1.464.065.456.098.944.098 1.465 0 2.214-.784 4.102-2.352 5.664-1.568 1.563-3.397 2.344-5.488 2.344-1.96 0-3.658-.553-5.096-1.66-1.437-1.107-2.352-2.572-2.744-4.395H95.905c-.392 1.823-1.307 3.288-2.744 4.395-1.437 1.107-3.07 1.66-4.9 1.66-2.22 0-4.116-.781-5.683-2.344-1.568-1.562-2.352-3.45-2.352-5.664 0-.52.065-1.009.196-1.465.13-.455.26-.944.392-1.464l-36.26-25.977a8.42 8.42 0 0 1-2.253 1.27c-.85.325-1.797.488-2.842.488-2.221 0-4.116-.781-5.684-2.344-1.568-1.563-2.352-3.45-2.352-5.664 0-1.432.36-2.734 1.078-3.906a7.617 7.617 0 0 1 2.842-2.735l-13.915-42.382h-.392c-2.222 0-4.116-.782-5.684-2.344-1.568-1.563-2.352-3.45-2.352-5.664 0-2.214.784-4.102 2.352-5.664 1.568-1.563 3.462-2.344 5.684-2.344h.588l13.72-41.992h-.197c-1.045-.651-1.927-1.563-2.646-2.735-.718-1.172-1.078-2.474-1.078-3.906 0-2.213.784-4.101 2.352-5.664 1.568-1.563 3.463-2.344 5.684-2.344 1.045 0 1.993.163 2.842.489.85.325 1.6.813 2.254 1.464l36.259-26.172c-.131-.39-.262-.846-.392-1.367a6.4 6.4 0 0 1-.196-1.562c0-2.214.784-4.102 2.352-5.664C84.145 25.78 86.04 25 88.26 25c1.83 0 3.463.586 4.9 1.758 1.437 1.172 2.352 2.604 2.744 4.297h43.902c.392-1.823 1.307-3.288 2.744-4.395 1.438-1.107 3.136-1.66 5.096-1.66 2.09 0 3.92.781 5.488 2.344 1.568 1.562 2.352 3.45 2.352 5.664 0 .52-.033 1.041-.098 1.562a3.114 3.114 0 0 1-.49 1.367l36.259 26.172a6.251 6.251 0 0 1 2.352-1.464 8.137 8.137 0 0 1 2.743-.489c2.222 0 4.116.781 5.684 2.344 1.568 1.563 2.352 3.45 2.352 5.664 0 1.432-.36 2.734-1.078 3.906-.718 1.172-1.6 2.084-2.646 2.735l13.72 42.187h.588c2.09 0 3.92.781 5.488 2.344 1.568 1.562 2.352 3.45 2.352 5.664 0 2.214-.784 4.102-2.352 5.664-1.568 1.563-3.398 2.344-5.488 2.344h-.588l-15.68 48.242 20.384 17.578a10.916 10.916 0 0 1 3.43-2.05c1.24-.456 2.58-.684 4.017-.684zM197.626 78.32l-2.548 38.867c1.306.521 2.45 1.27 3.43 2.247.98.976 1.6 2.18 1.861 3.613h6.664c.261-1.042.686-1.953 1.274-2.734.588-.782 1.34-1.433 2.254-1.954L197.625 78.32zm-3.724-2.539l-.196-.195c-.654-.13-1.307-.456-1.96-.977a21.36 21.36 0 0 1-1.764-1.562l-13.328 5.664c0 .26.033.52.098.781.066.26.098.456.098.586a7.304 7.304 0 0 1-.784 3.32c-.522 1.042-1.176 1.888-1.96 2.54l16.464 31.25c.13-.13.228-.196.294-.196h.294l2.744-41.21zm-44.883 41.406l14.7-31.054a9.166 9.166 0 0 1-1.96-2.246 6.973 6.973 0 0 1-.98-2.832l-35.475-4.493c-.261.521-.555 1.01-.882 1.465-.327.456-.686.88-1.078 1.27l21.951 38.086c.392-.13.784-.228 1.176-.293a7.165 7.165 0 0 1 1.176-.098c.262 0 .523.033.784.098.262.065.458.097.588.097zm18.228-29.296l-14.504 31.054a6.101 6.101 0 0 1 1.568 1.856c.392.716.719 1.465.98 2.246h29.595c.13-.781.392-1.53.784-2.246a6.101 6.101 0 0 1 1.568-1.856l-16.464-31.25c-.392.13-.75.228-1.078.293-.326.065-.62.098-.882.098a3.25 3.25 0 0 1-.784-.098 3.232 3.232 0 0 0-.783-.097zm-25.284 31.445l-21.95-38.086c-.393 0-.752.033-1.079.098a5.525 5.525 0 0 1-1.078.097c-.392 0-.751-.032-1.078-.097a4.557 4.557 0 0 0-.882-.098L93.75 119.336c.523.52.98 1.074 1.372 1.66.392.586.653 1.27.784 2.05h43.902c.262-.78.556-1.464.882-2.05a7.513 7.513 0 0 1 1.274-1.66zm-51.546-1.953l21.951-38.086c-.392-.39-.75-.814-1.077-1.27a7.891 7.891 0 0 1-.882-1.66l-35.475 4.688a6.973 6.973 0 0 1-.98 2.832 9.166 9.166 0 0 1-1.96 2.246l14.7 31.054c.26 0 .522-.032.783-.097.262-.065.523-.098.784-.098.392 0 .752.033 1.078.098a9.09 9.09 0 0 1 1.078.293zm-7.251 1.562L68.662 87.891c-.261 0-.523.032-.784.097a3.232 3.232 0 0 1-.784.098c-.392 0-.751-.033-1.078-.098a4.557 4.557 0 0 0-.882-.097l-16.463 31.25a6.615 6.615 0 0 1 1.568 1.757c.392.651.718 1.368.98 2.149h29.399c.13-.912.424-1.693.882-2.344a8.476 8.476 0 0 1 1.666-1.758zm-31.947 8.008a10.777 10.777 0 0 1-.98 2.149 6.615 6.615 0 0 1-1.568 1.757l16.463 31.446a1.95 1.95 0 0 1 .882-.196h2.45l14.7-31.054a8.476 8.476 0 0 1-1.666-1.758c-.458-.651-.817-1.432-1.078-2.344H51.219zm35.474 5.86l-14.7 31.054a9.166 9.166 0 0 1 1.96 2.246c.523.847.85 1.79.98 2.832l35.476 4.492c.26-.52.555-1.041.882-1.562a7.65 7.65 0 0 1 1.077-1.367l-21.95-37.89c-.262.13-.589.227-.98.292a7.165 7.165 0 0 1-1.177.098c-.261 0-.522-.033-.784-.098a3.232 3.232 0 0 0-.784-.097zm7.056-2.149l21.951 37.89v.196c.392-.13.752-.228 1.078-.293a5.525 5.525 0 0 1 1.078-.098c.392 0 .784.033 1.176.098.392.065.719.098.98.098l21.951-37.89a10.998 10.998 0 0 1-1.372-1.661c-.392-.586-.653-1.27-.784-2.05H95.905c-.13.78-.392 1.464-.784 2.05-.392.586-.85 1.14-1.372 1.66zm55.273 2.154a3.268 3.268 0 0 0-.59.092 4.136 4.136 0 0 1-.98.098c-.393 0-.752-.033-1.079-.098a9.086 9.086 0 0 1-1.078-.293l-21.755 37.89c.392.391.719.847.98 1.368l.784 1.562 35.67-4.492c.131-1.041.425-1.985.883-2.832a7.612 7.612 0 0 1 1.862-2.246l-14.697-31.049zm3.525-1.763l14.7 31.054h2.45c.326 0 .62.065.881.196l16.856-31.64a4.496 4.496 0 0 1-1.568-1.563 10.777 10.777 0 0 1-.98-2.149H155.29c-.261.912-.62 1.693-1.078 2.344a8.476 8.476 0 0 1-1.666 1.758zm35.86-61.716a1.97 1.97 0 0 0-.091-.491 2.157 2.157 0 0 1-.098-.684 6.4 6.4 0 0 1 .196-1.562c.13-.521.261-.977.392-1.368l-36.063-26.171c-.13 0-.196.032-.196.097v.098l14.863 32.935a1.68 1.68 0 0 1 .62-.123h.784c1.307 0 2.483.293 3.528.88a10.12 10.12 0 0 1 2.744 2.245l13.321-5.856zm-43.896-28.91l-20.383 28.126c.392.52.751 1.106 1.078 1.757.327.652.49 1.368.49 2.149l35.67 4.687c.262-.65.589-1.27.98-1.855a4.838 4.838 0 0 1 1.569-1.465L149.019 40.82c-.261 0-.522.033-.784.098a3.232 3.232 0 0 1-.784.098 5.346 5.346 0 0 1-1.47-.196c-.457-.13-.947-.26-1.47-.39zm-48.606-5.468c-.13.651-.327 1.204-.588 1.66-.261.456-.588.944-.98 1.465l20.58 27.93v.195c.391-.26.849-.423 1.371-.488a12.673 12.673 0 0 1 1.568-.098c.523 0 1.013.033 1.47.098a7.21 7.21 0 0 1 1.274.293l20.775-27.93a10.256 10.256 0 0 1-.98-1.563 7.617 7.617 0 0 1-.588-1.562H95.905zm-7.644 6.055c-.261 0-.522-.033-.784-.098a2.689 2.689 0 0 0-.588-.098L71.994 73.828c.523.39.98.879 1.372 1.465.392.586.718 1.204.98 1.855l35.67-4.687a10.31 10.31 0 0 1 .589-2.148 5.202 5.202 0 0 1 1.175-1.758L91.201 40.43c-.392.13-.85.26-1.372.39a6.464 6.464 0 0 1-1.568.196zm-5.095-1.953l-36.26 26.171c.131.391.262.814.393 1.27.13.456.196.944.196 1.465v.781c0 .26-.066.456-.196.586l13.523 5.86c.654-.912 1.536-1.66 2.646-2.247a7.651 7.651 0 0 1 3.626-.879h.686c.196 0 .425.065.686.196l14.895-33.008c-.13 0-.195-.033-.195-.098v-.097zM45.73 73.047c-.392.52-.915 1.009-1.568 1.465a8.34 8.34 0 0 1-2.156 1.074l2.94 41.601h.392l16.463-31.25a6.035 6.035 0 0 1-2.058-2.539c-.457-1.041-.686-2.083-.686-3.125v-.78c0-.261.066-.522.196-.782L45.73 73.047zm-7.448 98.633l2.744-39.063h-.196a9.586 9.586 0 0 1-3.136-2.246 8.525 8.525 0 0 1-1.96-3.418H28.68c-.26 1.042-.686 1.953-1.274 2.734-.587.782-1.339 1.433-2.253 1.954l13.131 40.039zm-2.548-48.633a8.525 8.525 0 0 1 1.96-3.418c.915-.977 2.025-1.725 3.332-2.246L38.283 78.32l-12.935 39.844c.784.52 1.502 1.204 2.155 2.05a5.726 5.726 0 0 1 1.176 2.833h7.056zm6.272 51.367c.784.26 1.47.586 2.058.977.588.39 1.143.911 1.666 1.562l13.523-5.664c-.13-.26-.196-.488-.196-.684v-.683a8.17 8.17 0 0 1 .686-3.32 6.035 6.035 0 0 1 2.058-2.54l-16.463-31.25h-.392l-2.94 41.602zm5.365 6.218c.082.206.123.412.123.618v.781a6.4 6.4 0 0 1-.196 1.563c-.13.52-.262.976-.392 1.367l36.259 25.976.195-.195-14.895-33.008c-.261.13-.523.196-.784.196h-.784c-1.307 0-2.482-.293-3.528-.88a10.12 10.12 0 0 1-2.744-2.245l-13.254 5.827zm39.515 28.542c.197-.012.393-.043.59-.092.262-.065.523-.098.784-.098.523 0 1.046.065 1.568.196.523.13.98.26 1.372.39l17.052-23.437 3.527-4.688c-.522-.65-.914-1.302-1.175-1.953a10.331 10.331 0 0 1-.588-2.148l-35.475-4.492h-.196c-.262.65-.588 1.27-.98 1.855a5.907 5.907 0 0 1-1.372 1.465l14.893 33.002zm33.96-25.51c-.474.22-.949.359-1.423.418a12.672 12.672 0 0 1-3.136 0 3.143 3.143 0 0 1-1.372-.488l-20.579 28.32a4.8 4.8 0 0 1 .98 1.465c.261.586.457 1.14.588 1.66h43.902c.131-.52.327-1.042.588-1.562.262-.521.588-1.042.98-1.563l-20.528-28.25zm28.172 25.516l.392-1.172 14.308-31.836a14.649 14.649 0 0 1-1.372-1.563 7.636 7.636 0 0 1-.98-1.757l-35.671 4.492c0 .781-.163 1.497-.49 2.148a11.059 11.059 0 0 1-1.274 1.953l20.58 28.125c.522-.13 1.012-.26 1.47-.39.457-.13.947-.196 1.47-.196.26 0 .522.033.783.098.262.065.523.098.784.098zm3.724 1.757l39.59-28.71-17.247-7.422V175a8.725 8.725 0 0 1-2.744 2.148c-1.045.521-2.22.782-3.528.782h-.784c-.26 0-.457-.065-.587-.196l-14.504 32.032-.392.976v.195h.196zm23.911-39.648l17.444 7.617-2.94-46.289h-.392l-16.66 31.446c.784.78 1.438 1.66 1.96 2.636.523.977.784 2.051.784 3.223 0 .26-.032.488-.098.683a2.157 2.157 0 0 0-.098.684zm18.424-38.867l2.547 39.258 12.936-40.04a7.269 7.269 0 0 1-2.254-1.953c-.588-.78-1.013-1.692-1.274-2.734h-6.86c-.261 1.302-.849 2.409-1.764 3.32-.914.912-2.025 1.628-3.331 2.149z" })
+      );
+    };
+    Qtum.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Qtum.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Qtum;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RADS-alt.js
+var require_RADS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RADS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var RadsAlt = function RadsAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("circle", { cx: "146.51", cy: "145.51", r: "8.137" }),
+        _react2.default.createElement("circle", { cx: "82.29", cy: "145.51", r: "8.137" }),
+        _react2.default.createElement("path", { d: "M114.4 0C51.8 0 1 50.8 1 113.4s50.8 113.4 113.4 113.4S227.8 176 227.8 113.4 177 0 114.4 0zM82.29 54.3c14.906 0 26.99 12.084 26.99 26.99 0 14.906-12.084 26.99-26.99 26.99-14.906 0-26.99-12.084-26.99-26.99 0-14.906 12.084-26.99 26.99-26.99zm26.991 91.21c0 14.906-12.084 26.99-26.99 26.99-14.906 0-26.99-12.084-26.99-26.99 0-14.906 12.084-26.99 26.99-26.99 20.561 0 37.229-16.668 37.229-37.229 0-14.906 12.084-26.99 26.99-26.99 14.906 0 26.99 12.084 26.99 26.99 0 14.906-12.084 26.99-26.99 26.99-20.561 0-37.229 16.668-37.229 37.229zm37.229 26.99c-14.906 0-26.99-12.084-26.99-26.99 0-14.906 12.084-26.99 26.99-26.99 14.906 0 26.99 12.084 26.99 26.99 0 14.906-12.084 26.99-26.99 26.99z" }),
+        _react2.default.createElement("circle", { cx: "146.51", cy: "81.29", r: "8.137" }),
+        _react2.default.createElement("circle", { cx: "82.29", cy: "81.29", r: "8.137" })
+      );
+    };
+    RadsAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    RadsAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = RadsAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RADS.js
+var require_RADS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RADS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Rads = function Rads2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M176.011 103.577c28.602 0 51.788-23.186 51.788-51.788S204.613 0 176.011 0s-51.788 23.186-51.788 51.788c0 39.452-31.982 71.434-71.434 71.434C24.186 123.223 1 146.41 1 175.012S24.186 226.8 52.788 226.8s51.788-23.186 51.788-51.788c.001-39.453 31.983-71.435 71.435-71.435zm0-67.401c8.622 0 15.612 6.99 15.612 15.612S184.633 67.4 176.011 67.4s-15.612-6.99-15.612-15.612 6.99-15.612 15.612-15.612zM52.788 190.624c-8.623 0-15.612-6.99-15.612-15.612s6.99-15.612 15.612-15.612S68.4 166.39 68.4 175.012c.001 8.622-6.989 15.612-15.612 15.612z" }),
+        _react2.default.createElement("path", { d: "M176.012 123.223c-28.602 0-51.788 23.186-51.788 51.788S147.41 226.8 176.012 226.8s51.788-23.186 51.788-51.788-23.186-51.789-51.788-51.789zm0 67.401c-8.622 0-15.612-6.99-15.612-15.612s6.99-15.612 15.612-15.612 15.612 6.99 15.612 15.612-6.99 15.612-15.612 15.612zM52.788 103.577c28.602 0 51.788-23.186 51.788-51.788S81.39 0 52.788 0 1 23.186 1 51.788s23.186 51.789 51.788 51.789zm0-67.401c8.622 0 15.612 6.99 15.612 15.612S61.41 67.4 52.788 67.4s-15.612-6.99-15.612-15.612 6.99-15.612 15.612-15.612z" })
+      );
+    };
+    Rads.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Rads.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Rads;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RBIES-alt.js
+var require_RBIES_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RBIES-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var RbiesAlt = function RbiesAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.283-.21C50.602-.21-.211 50.603-.211 113.284c0 62.68 50.813 113.493 113.494 113.493s113.494-50.813 113.494-113.493C226.777 50.603 175.964-.21 113.283-.21zm49.616 66.048l5.5-5.64a1.399 1.399 0 0 1 2.002 1.952l-5.5 5.639a1.396 1.396 0 0 1-1.977.025 1.399 1.399 0 0 1-.025-1.976zM130.32 48.211l2.172-7.692a1.399 1.399 0 0 1 2.692.761l-2.171 7.69a1.402 1.402 0 0 1-1.726.966 1.401 1.401 0 0 1-.967-1.725zm-37.971-8.658a1.4 1.4 0 0 1 1.726.965l2.171 7.692a1.399 1.399 0 0 1-2.691.759l-2.171-7.69a1.398 1.398 0 0 1 .965-1.726zm-36.158 20.62a1.4 1.4 0 0 1 1.978.025l5.5 5.64a1.398 1.398 0 1 1-2.001 1.951l-5.5-5.639a1.396 1.396 0 0 1 .023-1.977zm-13.882 76.511l-7.552 1.864a1.398 1.398 0 0 1-1.691-1.022 1.397 1.397 0 0 1 1.022-1.694l7.552-1.863a1.399 1.399 0 0 1 .669 2.715zm2.399-37.86a1.4 1.4 0 0 1-1.747.924l-7.55-2.319a1.398 1.398 0 1 1 .82-2.672l7.55 2.318a1.4 1.4 0 0 1 .927 1.749zm68.575 72.617l-62.368-65.449 24.253-20.574 13.453-4.344h49.327l13.453 4.344 24.252 20.574-62.37 65.449zm68.576-72.617a1.4 1.4 0 0 1 .927-1.749l7.55-2.318a1.399 1.399 0 1 1 .821 2.672l-7.551 2.319a1.397 1.397 0 0 1-1.747-.924zm11.644 38.703a1.4 1.4 0 0 1-1.692 1.022l-7.551-1.864a1.4 1.4 0 0 1 .67-2.715l7.551 1.863a1.4 1.4 0 0 1 1.022 1.694z" }),
+        _react2.default.createElement("path", { d: "M149.534 88.985a.66.66 0 0 0-.192-.106c-.015-.006-.025-.02-.04-.024l-11.846-3.823c-.003-.002-.009-.002-.013-.004a.837.837 0 0 0-.223-.035l-.022-.002H89.369l-.024.002a.902.902 0 0 0-.218.035l-.015.004-11.844 3.823c-.013.004-.022.013-.036.02a.762.762 0 0 0-.208.117c-.013.009-.029.011-.042.022L57.289 105.72l-.022.024a1.281 1.281 0 0 0-.112.124c-.018.024-.032.05-.048.076-.012.021-.025.043-.035.065-.013.028-.022.059-.032.087a.667.667 0 0 0-.023.072c-.006.028-.01.059-.014.089-.002.02-.008.039-.01.061l.002.013-.002.021c0 .03.005.052.007.074.002.026.003.055.007.081a.638.638 0 0 0 .024.091.897.897 0 0 0 .022.069c.012.03.026.057.041.085.012.021.022.043.036.065.016.026.037.048.057.074.013.016.023.033.038.048l55.452 58.192a.815.815 0 0 0 .169.131c.004.004.006.011.013.013.01.007.022.009.031.013a.908.908 0 0 0 .143.062c.019.004.037.011.056.015a.804.804 0 0 0 .194.028h.004a.966.966 0 0 0 .193-.028c.02-.004.037-.011.056-.015a.671.671 0 0 0 .14-.062c.011-.004.023-.006.034-.013l.013-.013a.81.81 0 0 0 .168-.131l55.453-58.192c.013-.015.023-.032.036-.048.02-.026.041-.047.058-.074.015-.021.023-.043.035-.065a.554.554 0 0 0 .041-.085c.01-.024.015-.048.023-.069a.671.671 0 0 0 .022-.091c.004-.026.006-.054.008-.081.002-.021.006-.043.006-.065l-.002-.022.002-.021c-.002-.022-.007-.042-.01-.061a.636.636 0 0 0-.014-.089l-.021-.072c-.011-.028-.02-.056-.033-.087a3.597 3.597 0 0 0-.034-.063c-.017-.028-.031-.054-.05-.078a1.243 1.243 0 0 0-.048-.059c-.02-.021-.04-.043-.063-.065l-.021-.024-19.692-16.706c-.016-.014-.036-.019-.053-.029zm-.034 3.175l7.569 13.36h-9.661l2.092-13.36zm-12.113-5.389l10.715 3.46-2.284 14.585-15.397-12.063 6.966-5.982zm-6.896 18.75H115.55l12.978-11.141 1.963 11.141zm-.187-10.726l13.69 10.726h-11.8l-1.89-10.726zm.044 12.403l-9.166 29.296-6.842-29.296h16.008zm1.759 0h12.626l-21.439 28.168 8.813-28.168zm2.825-20.531l-5.98 5.135-11.677-5.135h17.657zm-7.392 6.347l-14.257 12.24-14.256-12.24 14.256-6.269 14.257 6.269zm-33.167 12.507H82.572l13.691-10.726-1.89 10.726zm3.667-11.143l12.979 11.143H96.076l1.964-11.143zm-3.58 12.82l8.813 28.168-21.44-28.168H94.46zm1.759 0h16.008l-6.841 29.296-9.167-29.296zm13.073-20.531l-11.677 5.135-5.981-5.135h17.658zm-20.113.104l6.967 5.982-15.398 12.063-2.284-14.585 10.715-3.46zm-12.11 5.389l2.092 13.36h-9.663l7.571-13.36zm-2.601 1.184l-6.897 12.177h-7.453l14.35-12.177zM59.79 107.198h7.826l20.343 29.561-28.169-29.561zm9.865 0h9.905l11.883 31.664-21.788-31.664zm25.706 37.328l-12.428-33.112 21.812 28.655 6.663 21.298-16.047-16.841zm17.922 17.214l-6.912-22.093 6.912-29.6 6.913 29.598-6.913 22.095zm1.876-.373l6.664-21.298 21.811-28.655-12.427 33.11-16.048 16.843zm31.849-54.169h9.905l-21.788 31.664 11.883-31.664zm-8.399 29.561l20.341-29.561h7.827l-28.168 29.561zm27.842-31.238h-7.453L152.1 93.344l14.351 12.177z" })
+      );
+    };
+    RbiesAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    RbiesAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = RbiesAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RBIES.js
+var require_RBIES = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RBIES.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Rbies = function Rbies2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.121 110.328l20.165-17.31-20.165-8.867-20.164 8.867zm30.621-26.286h-24.974l16.516 7.262zm-57.367 26.665l2.674-15.171-19.365 15.171zm53.371 2.372l-12.466 39.843 30.324-39.843zM91.561 94.946l-2.778 15.761h21.135zm7.403 57.976l-12.466-39.843H68.64zm60.174-43.21l3.232-20.631-15.155-4.892-9.856 8.461zm15.914.995l-10.708-18.898-2.959 18.898zm-63.425 2.372H88.985l12.965 41.436zm12.668 41.436l12.963-41.436h-22.64zm64.026-43.808l-20.299-17.221 9.757 17.221zm-31.762 0l-19.365-15.171 2.676 15.171zm-40.234 0h21.134l-2.776-15.759zm-51.466 0L61.9 91.809l-10.707 18.898zm60.341 48.865l-9.426 30.121 22.698-23.818 17.577-46.832zm35.621-46.493l-16.807 44.784 30.815-44.784zm-47.7 4.03l-9.777 41.867 9.777 31.248 9.777-31.25z" }),
+        _react2.default.createElement("path", { d: "M148.005 76.131H78.239l-19.027 6.143-34.303 29.102 88.213 92.568 88.212-92.568-34.301-29.102-19.028-6.143zm44.347 34.891c.031.029.06.06.089.092.023.026.047.053.068.082a1.594 1.594 0 0 1 .118.201c.018.04.031.081.046.122.011.033.023.067.031.101.01.041.015.083.02.125.003.029.012.057.014.086 0 .01-.003.021-.002.031 0 .01.003.019.003.031 0 .032-.007.061-.01.094-.003.037-.005.076-.011.112-.008.045-.021.085-.032.127-.012.034-.02.068-.034.1a.944.944 0 0 1-.056.121c-.017.029-.03.059-.049.09-.026.038-.055.07-.083.106-.018.022-.033.047-.053.068l-78.431 82.306a1.294 1.294 0 0 1-.257.2c-.016.01-.032.012-.047.02a1.137 1.137 0 0 1-.199.088c-.026.008-.053.018-.078.023a1.35 1.35 0 0 1-.275.039h-.005a1.216 1.216 0 0 1-.275-.039c-.026-.006-.052-.016-.079-.023a1.329 1.329 0 0 1-.202-.088c-.014-.008-.03-.01-.044-.02-.007-.002-.01-.008-.019-.014a1.325 1.325 0 0 1-.239-.186l-78.429-82.306c-.02-.021-.035-.046-.054-.069-.029-.035-.059-.067-.081-.105-.019-.031-.034-.061-.05-.09-.021-.041-.042-.08-.059-.121-.012-.032-.021-.066-.031-.1a1.112 1.112 0 0 1-.033-.126c-.006-.038-.008-.078-.01-.115-.003-.031-.01-.06-.01-.092 0-.012.002-.021.003-.031 0-.011-.003-.021-.002-.031.002-.03.009-.057.013-.086.006-.042.011-.084.019-.125a.744.744 0 0 1 .033-.101c.013-.041.027-.083.045-.122.015-.032.033-.062.05-.093.022-.037.043-.073.067-.108a1.784 1.784 0 0 1 .157-.174c.012-.012.02-.024.033-.034l27.854-23.63c.017-.015.041-.019.058-.031.091-.07.189-.126.294-.166.019-.007.032-.021.051-.028l16.752-5.407c.006-.003.015-.002.021-.004.101-.03.204-.045.308-.049.012-.001.024-.004.035-.004h67.649c.011 0 .021.003.03.003.106.004.214.02.315.05l.018.004 16.754 5.407c.021.007.037.025.058.034.098.036.188.088.273.152.022.016.051.022.072.04l27.854 23.63a.152.152 0 0 1 .034.033z" }),
+        _react2.default.createElement("path", { d: "M107.476 84.042H82.501l8.46 7.262zm41.464 70.844l39.843-41.807H177.71zm-78.744-35.843l17.576 46.832 22.697 23.818-9.424-30.121zM88.884 92.65l-9.855-8.461-15.156 4.892 3.232 20.631zm-30.663.836l-20.296 17.221h10.54zm-20.76 19.593l39.842 41.807-28.771-41.807zm13.953 0l30.816 44.784-16.807-44.784zm-39.625 37.864l-10.68 2.641a1.975 1.975 0 0 0-1.447 2.393 1.98 1.98 0 0 0 1.918 1.504c.158 0 .316-.02.476-.061l10.68-2.635a1.982 1.982 0 0 0 1.446-2.396 1.981 1.981 0 0 0-2.393-1.446zm3.031-52.18L4.14 95.485a1.977 1.977 0 0 0-1.16 3.78l10.678 3.28a1.977 1.977 0 0 0 1.162-3.782zm25.295-41.424a1.976 1.976 0 1 0 2.831-2.759l-7.778-7.976a1.979 1.979 0 0 0-2.832 2.761l7.779 7.974zm45.104-26.616a1.979 1.979 0 0 0 1.902 1.442c.178 0 .359-.026.538-.077a1.977 1.977 0 0 0 1.366-2.44l-3.07-10.878a1.978 1.978 0 0 0-3.807 1.075l3.071 10.878zm139.916 122.861l-10.68-2.641a1.98 1.98 0 0 0-2.394 1.445 1.98 1.98 0 0 0 1.445 2.396l10.682 2.635c.156.041.317.061.474.061.888 0 1.696-.604 1.919-1.504a1.973 1.973 0 0 0-1.446-2.392zm-1.871-54.32a1.976 1.976 0 1 0-1.161-3.78l-10.68 3.278a1.979 1.979 0 0 0 .579 3.868c.192 0 .39-.027.581-.087l10.681-3.279zm-38.551-41.327c.514 0 1.027-.2 1.415-.598l7.779-7.975a1.979 1.979 0 1 0-2.832-2.761l-7.777 7.976a1.973 1.973 0 0 0 .035 2.795 1.97 1.97 0 0 0 1.38.563zm-46.128-25.849c.18.05.36.077.537.077.864 0 1.657-.571 1.904-1.442l3.07-10.878a1.979 1.979 0 0 0-1.366-2.441 1.98 1.98 0 0 0-2.44 1.366l-3.071 10.878a1.978 1.978 0 0 0 1.366 2.44z" })
+      );
+    };
+    Rbies.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Rbies.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Rbies;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RBT-alt.js
+var require_RBT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RBT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var RbtAlt = function RbtAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M92.96 112.597h23.571c19.892 0 19.892-7.922 19.892-14.29 0-14.297-10.25-14.297-14.626-14.297H20.654a94.324 94.324 0 0 0-.532 9.927c0 25.943 10.501 49.423 27.52 66.419l-.015.008 66.427 66.412 23.536-23.53-44.63-90.649z" }),
+        _react2.default.createElement("path", { d: "M207.983 93.938C207.983 42.053 165.926 0 114.053 0 76.205 0 43.681 22.427 28.802 54.674h92.994c30.369 0 43.964 21.916 43.964 43.634 0 20.027-9.892 34.146-27.326 40.247l21.058 42.789 20.981-20.979-.008-.008c17.012-16.996 27.518-40.476 27.518-66.419z" })
+      );
+    };
+    RbtAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    RbtAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = RbtAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RBT.js
+var require_RBT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RBT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Rbt = function Rbt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.494 0C50.813 0 0 50.813 0 113.494s50.813 113.494 113.494 113.494 113.494-50.813 113.494-113.494S176.175 0 113.494 0zm0 200.452l-43.556-43.546.011-.006c-11.159-11.145-18.045-26.541-18.045-43.551 0-2.204.123-4.368.349-6.51h66.319c2.87 0 9.591 0 9.591 9.375 0 4.175 0 9.369-13.043 9.369H99.664l29.264 59.439-15.434 15.43zm43.552-43.546l-13.758 13.756-13.807-28.058c11.432-4.001 17.918-13.258 17.918-26.39 0-14.241-8.915-28.612-28.828-28.612H57.595c9.755-21.144 31.082-35.849 55.898-35.849 34.014 0 61.591 27.574 61.591 61.596 0 17.01-6.89 32.406-18.043 43.551l.005.006z" })
+      );
+    };
+    Rbt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Rbt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Rbt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RBY-alt.js
+var require_RBY_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RBY-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var RbyAlt = function RbyAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M139.519 102.232c0-17.341-14.73-21.445-24.054-21.445H86.096v11.934h27.876c7.085 0 10.256 4.755 10.256 9.976 0 5.222-2.517 9.603-9.51 9.603H86.095v12.773h24.427l14.638 20.793h18.087l-16.782-22.843c.002 0 13.054-3.449 13.054-20.791z" }),
+        _react2.default.createElement("path", { d: "M113.327 0C50.738 0 0 50.738 0 113.327s50.738 113.327 113.327 113.327 113.326-50.738 113.326-113.327S175.916 0 113.327 0zm-4.947 37.519a75.768 75.768 0 0 1 4.947-.179c2.516 0 5.001.129 7.452.368v12.937a63.647 63.647 0 0 0-7.452-.438c-1.666 0-3.313.084-4.947.211V37.519zm-10.255 150.27c-34.682-7.043-60.784-37.704-60.784-74.462s26.103-67.419 60.784-74.461v13.197c-27.516 6.805-47.918 31.647-47.918 61.265s20.402 54.459 47.918 61.265v13.196zm22.654 1.157a77.082 77.082 0 0 1-7.452.367c-1.664 0-3.31-.071-4.947-.179v-12.899c1.634.127 3.282.212 4.947.212 2.522 0 5.008-.154 7.452-.44v12.939zm10.258-1.729v-13.29c20.147-5.88 36.124-21.535 42.456-41.486h-13.886c-7.511 18.166-25.398 30.954-46.28 30.954-27.651 0-50.066-22.417-50.066-50.067s22.415-50.067 50.066-50.067c18.894 0 35.337 10.47 43.86 25.919h14.465c-7.266-17.529-22.2-31.065-40.615-36.442v-13.3c33.42 7.983 58.276 38.026 58.276 73.89s-24.856 65.906-58.276 73.889z" })
+      );
+    };
+    RbyAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    RbyAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = RbyAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RBY.js
+var require_RBY = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RBY.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Rby = function Rby2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M90.828 205.09c-41.115-10.168-71.603-47.289-71.603-91.545s30.487-81.377 71.603-91.546V2.278C39.004 12.801 0 58.618 0 113.544S39.004 214.288 90.828 224.81v-19.72zm15.324-185.549c2.442-.189 4.903-.315 7.393-.315 3.769 0 7.484.226 11.137.655V.55C121.016.192 117.303 0 113.544 0c-2.487 0-4.946.108-7.393.267v19.274z" }),
+        _react2.default.createElement("path", { d: "M140.006 3.133v19.874c27.52 8.035 49.837 28.262 60.692 54.453h-21.613c-12.739-23.085-37.309-38.729-65.541-38.729-41.318 0-74.813 33.497-74.813 74.813s33.496 74.813 74.813 74.813c31.203 0 57.932-19.107 69.156-46.253h20.75c-9.464 29.813-33.337 53.206-63.444 61.994v19.857c49.941-11.928 87.083-56.82 87.083-110.412 0-53.589-37.142-98.483-87.083-110.41zm-8.778 159.033l-21.873-31.069H72.854V112.01h42.77c10.449 0 14.211-6.546 14.211-14.35 0-7.801-4.736-14.907-15.324-14.907H72.855V64.922h43.885c13.933 0 35.944 6.13 35.944 32.043s-19.506 31.068-19.506 31.068l25.078 34.133h-27.028z" }),
+        _react2.default.createElement("path", { d: "M124.681 207.204a95.446 95.446 0 0 1-11.137.659c-2.49 0-4.951-.126-7.393-.315v19.274c2.446.159 4.906.267 7.393.267 3.759 0 7.472-.192 11.137-.551v-19.334z" })
+      );
+    };
+    Rby.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Rby.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Rby;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RDD-alt.js
+var require_RDD_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RDD-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var RddAlt = function RddAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.5 0C50.9 0 .1 50.8.1 113.4c0 62.6 50.8 113.4 113.4 113.4S226.9 176 226.9 113.4C226.9 50.8 176.1 0 113.5 0zm18.1 56.6c-1.2 1.8-2.2 3.7-3 5.7-1.3-.7-2.4-1.3-3.2-1.6-.4-.2-.9-.2-1.3 0s-.8.5-.9 1l-1.5 4.1c-.3.8 0 1.6.7 2 3 1.8 11 6.8 18.5 14.4 7.5 7.5 12.7 16 14.7 19.4.2.4.6.7 1.1.8h.4c.3 0 .7-.1 1-.3l4-2.8c.7-.5.9-1.3.6-2-.2-.6-.6-1.4-1.1-2.3 2.1-.6 4-1.4 5.9-2.4.4 1.2.8 2.5 1.2 3.7L127 133.1l-8.7-79.8c4.7.6 9.1 1.7 13.3 3.3zm-6.8 78.4l-27 23.9-27.2-57 48.9-15.5 5.3 48.6zm-14.2-82.2c1.8 0 3.6.1 5.3.2l3.4 31-49.7 15.8L60.1 80c10.8-16.4 29.4-27.2 50.5-27.2zm-52 29.6l8.7 18.2-16.7 5.3c1-8.6 3.8-16.5 8-23.5zm-8.5 30.9c0-1.6.1-3.3.2-4.9l18-5.7L96 160.6l-9.4 8.3c-21.5-9.3-36.5-30.7-36.5-55.6zm39 56.6l8-7.1 5 10.4c-4.5-.7-8.9-1.8-13-3.3zm21.5 3.9c-1.9 0-3.8-.1-5.7-.3L99 161.1l26.2-23.2 3.6 33.1c-5.8 1.8-11.9 2.8-18.2 2.8zm20.4-3.6l-3.7-34.2 42-37.2c1.1 4.6 1.8 9.5 1.8 14.5 0 26.2-16.7 48.5-40.1 56.9zM154.2 92h-.6c-2.4-3.5-5.8-8.1-9.9-12.2-4.4-4.4-8.9-7.8-12.3-10.1.4-11.5 10.5-20.8 22.8-20.8 12.6 0 22.8 9.7 22.8 21.6 0 11.8-10.2 21.5-22.8 21.5z" })
+      );
+    };
+    RddAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    RddAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = RddAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RDD.js
+var require_RDD = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RDD.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Rdd = function Rdd2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M167.1 57.1c7.4 7.4 13.4 15.5 17.7 21.8h1.2c22.5 0 40.8-17.2 40.8-38.5S208.6 1.9 186 1.9c-22 0-40 16.5-40.7 37.1 5.9 4.2 14 10.3 21.8 18.1zm-97.4 161c7.4 2.8 15.1 4.8 23.1 5.9L84 205.5l-14.3 12.6zm53.9-153.4l-6-55.4c-3.1-.3-6.3-.4-9.6-.4-37.7 0-70.8 19.3-90.2 48.5l17 35.4 88.8-28.1zM85.4 198.5l48.2-42.6-9.5-86.8-87.4 27.7z" }),
+        _react2.default.createElement("path", { d: "M211.8 86.6c-.7-2.2-1.4-4.5-2.2-6.7-3.3 1.8-6.8 3.3-10.5 4.3.9 1.8 1.6 3.2 2 4.2.6 1.3.1 2.8-1.1 3.6l-7.2 5c-.5.4-1.1.5-1.7.5-.2 0-.4 0-.7-.1-.8-.2-1.5-.7-2-1.4-3.4-6-12.9-21.3-26.2-34.6C148.8 48 134.7 39 129.3 35.8c-1.3-.7-1.8-2.3-1.3-3.6l2.7-7.3c.3-.8.9-1.4 1.7-1.8.8-.3 1.6-.3 2.4 0 1.4.6 3.3 1.5 5.7 2.9 1.3-3.7 3.1-7.1 5.3-10.3-7.6-2.8-15.5-4.8-23.8-5.9l15.5 142.6 74.3-65.8zM87.3 202.5l10.6 22.1c3.4.3 6.8.5 10.2.5 11.3 0 22.2-1.7 32.5-5l-6.4-59.1-46.9 41.5zm50.7-44.9l6.6 61.1c41.7-15 71.5-54.9 71.5-101.7 0-8.9-1.1-17.6-3.1-25.8l-75 66.4zM15.2 61.7C7.7 74.3 2.7 88.5.8 103.7l29.9-9.5-15.5-32.5zm17.4 36.4L.4 108.3c-.2 2.9-.4 5.8-.4 8.7 0 44.5 26.9 82.7 65.3 99.3L82 201.5 32.6 98.1z" })
+      );
+    };
+    Rdd.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Rdd.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Rdd;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/REP-alt.js
+var require_REP_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/REP-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var RepAlt = function RepAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M375.947 488.644c-1.13-.645-11.263-6.648-17.966-18.839-3.093-5.616-4.868-13.2-6.745-21.23-1.938-8.281-4.133-17.663-7.448-22.703-6.82-10.365-16.334-21.108-35.067-25.275.693-.551 1.396-1.093 2.029-1.661 6.038-5.407 9.548-12.125 11.568-18.603 21.646 7.28 33.46 21.542 40.856 32.788 5.582 8.483 8.278 20.004 10.655 30.164 1.373 5.866 2.928 12.51 4.48 15.341 3.053 5.547 7.587 8.828 8.863 9.685l35.452 16.094-113.217-202.893v79.131c.16 3.741.172 18.574-8.974 26.767-2.697 2.411-6.897 5.025-12.716 8.638-9.482 5.893-22.46 13.959-29.454 21.918-8.03 9.145-11.28 20.262-11.871 42.046-6.877-3.396-14.916-6.415-22.943-7.288 1.145-20.694 5.328-36.347 17.381-50.07 9.257-10.544 23.93-19.661 34.642-26.313 3.695-2.297 8.295-5.154 9.477-6.215.69-.987 1.412-5.362 1.27-8.632a13.7 13.7 0 0 1-.017-.573v-79.409L172.986 484.409l25.334-11.5c1.923-.947 10.735-4.988 20.614-4.988 12.887 0 29.697 10.456 36.785 15.986 14.727 11.488 24.543 16.339 30.781 18.273-.542.434-1.113.868-1.612 1.318-5.995 5.365-9.5 12.03-11.528 18.457-9.445-3.961-19.998-10.455-31.914-19.752-7.867-6.136-18.75-11.083-22.512-11.083-4.194 0-8.94 1.9-10.416 2.631-.117.057-.302.148-.422.199l-37.039 16.808 115.172 71.669v-40.64c-.16-3.738-.171-18.571 8.974-26.767 2.697-2.408 6.897-5.027 12.715-8.641 9.479-5.884 22.46-13.953 29.454-21.915 2.491-2.836 4.463-5.912 6.072-9.308.337.69.611 1.432.984 2.105 4.255 7.744 9.577 13.577 14.151 17.658-1.198 1.654-2.408 3.299-3.772 4.856-9.26 10.541-23.933 19.661-34.645 26.315-3.695 2.294-8.296 5.153-9.477 6.215-.691.987-1.41 5.359-1.268 8.629.006.172.015.405.015.576v40.881l115.12-71.636-47.671-21.642a10.581 10.581 0 0 1-.934-.469z" }),
+        _react2.default.createElement("path", { d: "M297.64 122.755C132.822 122.755-.786 256.253-.786 420.95c0 164.679 133.608 298.185 298.426 298.185 164.814 0 298.427-133.506 298.427-298.185 0-164.697-133.613-298.195-298.427-298.195zm154.445 393.653l-149.172 92.814c-1.563.971-3.339 1.461-5.108 1.461s-3.544-.49-5.108-1.461l-149.172-92.814c-4.377-2.722-5.847-8.412-3.333-12.92l149.172-267.322a9.664 9.664 0 0 1 16.882 0l149.172 267.322c2.514 4.508 1.044 10.199-3.333 12.92z" })
+      );
+    };
+    RepAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    RepAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = RepAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/REP.js
+var require_REP = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/REP.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Rep = function Rep2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M544.886 550.434L310.882 131.085a15.158 15.158 0 1 0-26.485 0L50.394 550.434c-3.945 7.068-1.641 15.991 5.232 20.27l234 145.596a15.193 15.193 0 0 0 16.027 0l234-145.596c6.873-4.279 9.177-13.202 5.233-20.27zM369.773 428.671c5.198 7.903 8.644 22.625 11.682 35.619 2.947 12.594 5.731 24.491 10.581 33.299 10.516 19.126 26.409 28.539 28.186 29.552.477.271.969.52 1.469.745l74.783 33.953-180.593 112.368v-64.124c0-.267-.013-.636-.022-.902-.226-5.13.904-11.989 1.988-13.543 1.856-1.664 9.067-6.145 14.866-9.746 16.803-10.438 39.82-24.739 54.345-41.279 2.143-2.442 4.042-5.024 5.916-7.621-7.173-6.398-15.519-15.55-22.196-27.7-.582-1.057-1.016-2.218-1.544-3.307-2.524 5.326-5.616 10.161-9.525 14.608-10.969 12.489-31.333 25.146-46.206 34.381-9.123 5.668-15.714 9.77-19.943 13.554-14.348 12.85-14.33 36.121-14.078 41.986v63.747L98.81 561.839l58.105-26.37c.189-.082.477-.223.664-.313 2.312-1.148 9.756-4.125 16.334-4.125 5.903 0 22.974 7.757 35.316 17.383 18.692 14.586 35.245 24.775 50.061 30.984 3.181-10.082 8.68-20.533 18.085-28.951.787-.705 1.681-1.382 2.527-2.069-9.785-3.037-25.186-10.638-48.285-28.661-11.121-8.68-37.493-25.084-57.706-25.084-15.493 0-29.318 6.345-32.335 7.826l-39.744 18.039L279.44 202.217v124.568c0 .267.013.633.025.899.223 5.129-.907 11.992-1.992 13.543-1.854 1.666-9.069 6.145-14.865 9.746-16.803 10.438-39.82 24.739-54.342 41.281-18.905 21.522-25.468 46.085-27.265 78.538 12.592 1.374 25.201 6.104 35.991 11.436.923-34.168 6.024-51.614 18.621-65.957 10.969-12.489 31.333-25.142 46.206-34.378 9.123-5.67 15.714-9.77 19.946-13.556 14.342-12.85 14.326-36.116 14.075-41.986V202.217l177.6 318.271-55.608-25.245c-2.002-1.338-9.115-6.487-13.904-15.19-2.435-4.438-4.875-14.857-7.028-24.059-3.729-15.941-7.96-34.011-16.717-47.323-11.597-17.636-30.136-40.012-64.091-51.435-3.168 10.167-8.674 20.7-18.146 29.182-.992.89-2.097 1.743-3.184 2.607 29.384 6.534 44.313 23.389 55.011 39.646z" })
+      );
+    };
+    Rep.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Rep.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Rep;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RISE-alt.js
+var require_RISE_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RISE-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var RiseAlt = function RiseAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8c62.6 0 113.4-50.8 113.4-113.4C226.8 50.8 176 0 113.4 0zM89.5 45c6 0 10.8 4.8 10.8 10.8 0 6-4.8 10.8-10.8 10.8-6 0-10.8-4.8-10.8-10.8 0-6 4.9-10.8 10.8-10.8zm-7 40.7l49.9-38c4.3-3.3 10.4-2.4 13.7 1.9s2.4 10.4-1.9 13.7l-49.9 38c-1.8 1.3-3.9 2-5.9 2-3 0-5.9-1.3-7.8-3.9-3.3-4.2-2.4-10.4 1.9-13.7zm0 38.9l49.9-38c4.3-3.3 10.4-2.4 13.7 1.9 3.3 4.3 2.4 10.4-1.9 13.7l-49.9 38c-1.8 1.3-3.9 2-5.9 2-3 0-5.9-1.3-7.8-3.9-3.3-4.3-2.4-10.4 1.9-13.7zm11.8 55.2c-1.8 1.3-3.9 2-5.9 2-3 0-5.9-1.3-7.8-3.9-3.3-4.3-2.4-10.4 1.9-13.7l49.9-38c4.3-3.3 10.4-2.4 13.7 1.9 3.3 4.3 2.4 10.4-1.9 13.7l-49.9 38zm43.1 1.9c-6 0-10.8-4.8-10.8-10.8 0-6 4.8-10.8 10.8-10.8 6 0 10.8 4.8 10.8 10.8 0 6-4.9 10.8-10.8 10.8z" })
+      );
+    };
+    RiseAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    RiseAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = RiseAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/RISE.js
+var require_RISE = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/RISE.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Rise = function Rise2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("circle", { cx: "73.8", cy: "17.9", r: "17.9" }),
+        _react2.default.createElement("circle", { cx: "153.2", cy: "208.9", r: "17.9" }),
+        _react2.default.createElement("path", { d: "M71.9 96.7c3.4 0 6.9-1.1 9.8-3.3l82.8-63c7.1-5.4 8.5-15.6 3.1-22.8C162.2.5 152-.9 144.8 4.5L62 67.5c-7 5.5-8.4 15.7-3 22.8 3.2 4.2 8.1 6.4 12.9 6.4zm0 64.5c3.4 0 6.9-1.1 9.8-3.3l82.8-63c7.1-5.4 8.5-15.6 3.1-22.8-5.4-7.1-15.6-8.5-22.8-3.1L62 132c-7.1 5.4-8.5 15.6-3.1 22.8 3.3 4.2 8.2 6.4 13 6.4zm95.7-23.4c-5.4-7.1-15.6-8.5-22.8-3.1l-82.8 63c-7.1 5.4-8.5 15.6-3.1 22.8 3.2 4.2 8 6.4 12.9 6.4 3.4 0 6.9-1.1 9.8-3.3l82.8-63c7.3-5.5 8.7-15.7 3.2-22.8z" })
+      );
+    };
+    Rise.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Rise.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Rise;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SALT-alt.js
+var require_SALT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SALT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SaltAlt = function SaltAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", {
+          d: "M125 250C55.964 250 0 194.036 0 125S55.964 0 125 0s125 55.964 125 125-55.964 125-125 125zm.5-200L55 200h141L125.5 50zm0 41l43.5 92H82l43.5-92z",
+          fillRule: "evenodd"
+        })
+      );
+    };
+    SaltAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SaltAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SaltAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SALT.js
+var require_SALT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SALT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Salt = function Salt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", {
+          d: "M125 13l106 225H19L125 13zm0 61.5l-65.404 138h130.808L125 74.5z",
+          fillRule: "evenodd"
+        })
+      );
+    };
+    Salt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Salt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Salt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SAR-alt.js
+var require_SAR_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SAR-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SarAlt = function SarAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.439 0C50.788 0 0 50.789 0 113.438c0 62.65 50.788 113.438 113.439 113.438 62.649 0 113.438-50.788 113.438-113.438C226.877 50.789 176.088 0 113.439 0zm0 191.552l-51.45-137.8 32.09 32.63 19.36-32.63 19.361 32.63 32.09-32.63-51.451 137.8z" })
+      );
+    };
+    SarAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SarAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SarAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SAR.js
+var require_SAR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SAR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Sar = function Sar2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.411 53.739L94.055 86.361 61.973 53.739l51.438 137.767 51.438-137.767-32.083 32.622z" }),
+        _react2.default.createElement("path", { d: "M113.411 0C50.776 0 0 50.777 0 113.41c0 62.637 50.776 113.411 113.411 113.411 62.634 0 113.41-50.773 113.41-113.411C226.821 50.777 176.045 0 113.411 0zm96.449 130.633c-1.934 10.84-5.739 21.538-11.55 31.634-5.808 10.093-13.145 18.76-21.545 25.88l1.145 7.393c-17.758 13.968-40.155 22.296-64.499 22.296-24.29 0-46.642-8.294-64.381-22.202l1.135-7.394c-8.411-7.108-15.761-15.765-21.584-25.849-5.824-10.089-9.645-20.781-11.596-31.621l-6.971-2.714a105.09 105.09 0 0 1-1.028-14.645c0-43.872 27.058-81.419 65.395-96.878l5.851 4.692c10.362-3.731 21.532-5.768 33.179-5.768s22.817 2.037 33.18 5.768l5.85-4.692c38.337 15.461 65.395 53.007 65.395 96.878 0 4.919-.348 9.757-1.005 14.495l-6.971 2.727z" })
+      );
+    };
+    Sar.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Sar.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Sar;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SCOT-alt.js
+var require_SCOT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SCOT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ScotAlt = function ScotAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388 44.226c-38.136 0-69.162 31.024-69.162 69.162 0 38.141 31.026 69.163 69.162 69.163 38.137 0 69.162-31.022 69.162-69.163.001-38.138-31.025-69.162-69.162-69.162zm32.998 72.911h17.376v12.797h-10.865c.573 2.45.972 5.009.972 7.826 0 20.013-16.2 34.971-41.255 34.971-16.63 0-30.237-6.534-40.173-19.169l17.709-18.96c6.696 7.582 16.419 13.058 23.978 13.058 7.126 0 12.74-4 12.74-9.059 0-3.298-2.243-6.007-6.169-8.667H63.013v-12.797h33.865c-3.304-2.039-6.222-4.167-8.713-6.399H63.013V97.941h15.828c-1.347-3.375-2.08-6.932-2.08-10.744 0-17.485 15.118-32.232 37.151-32.232 14.902 0 28.509 6.535 37.797 18.542l-17.713 17.487c-6.479-6.323-12.959-10.324-19.869-10.324-5.832 0-10.367 2.316-10.367 6.741 0 4.211 4.102 6.109 10.367 9.267l2.532 1.264h47.103v12.797h-24.485c2.706 2.033 5.147 4.132 7.109 6.398z" }),
+        _react2.default.createElement("path", { d: "M113.389 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389 62.622 0 113.388-50.766 113.388-113.389C226.777 50.766 176.011 0 113.389 0zm-.001 199.978c-47.745 0-86.59-38.845-86.59-86.59s38.845-86.59 86.59-86.59c47.746 0 86.59 38.845 86.59 86.59s-38.843 86.59-86.59 86.59z" })
+      );
+    };
+    ScotAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ScotAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ScotAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SCOT.js
+var require_SCOT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SCOT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Scot = function Scot2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M179.353 93.16h-61.681l-3.317-1.656c-8.203-4.134-13.575-6.619-13.575-12.134 0-5.794 5.939-8.827 13.575-8.827 9.051 0 17.536 5.24 26.021 13.519l23.193-22.899c-12.162-15.722-29.98-24.279-49.496-24.279-28.852 0-48.649 19.31-48.649 42.208 0 4.991.96 9.649 2.723 14.069H47.423v16.758h32.936c3.262 2.923 7.083 5.709 11.41 8.379H47.423v16.758h75.538c5.142 3.482 8.081 7.031 8.081 11.35 0 6.623-7.354 11.862-16.687 11.862-9.898 0-22.629-7.172-31.398-17.099l-23.19 24.827c13.011 16.544 30.83 25.102 52.607 25.102 32.811 0 54.023-19.587 54.023-45.795 0-3.688-.521-7.038-1.272-10.247h14.229v-16.758H156.6c-2.571-2.969-5.768-5.716-9.31-8.379h32.063V93.16z" }),
+        _react2.default.createElement("path", { d: "M113.388 0C50.867 0 0 50.867 0 113.388s50.867 113.389 113.389 113.389 113.389-50.867 113.389-113.389S175.911 0 113.388 0zm0 203.958c-49.939 0-90.568-40.626-90.568-90.569 0-49.941 40.628-90.567 90.568-90.567s90.567 40.626 90.567 90.567c.001 49.943-40.627 90.569-90.567 90.569z" })
+      );
+    };
+    Scot.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Scot.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Scot;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SDC-alt.js
+var require_SDC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SDC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SdcAlt = function SdcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.564 0L15.367 56.695v113.387l98.197 56.695 98.196-56.695V56.695L113.564 0zm78.221 156.726l-78.221 45.161-78.222-45.161V66.405l78.222-45.162 78.221 45.162v90.321z" }),
+        _react2.default.createElement("path", { d: "M52.49 76.306v12.932l90.851 51.441-29.777 17.194-40.103-23.154v-26.81L52.49 96.028v50.799l61.074 35.261 61.072-35.261v-14.714L85.294 81.582l28.27-16.322 40.101 23.153v25.028l20.971 11.885v-49.02l-61.072-35.26z" })
+      );
+    };
+    SdcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SdcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SdcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SDC.js
+var require_SDC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SDC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Sdc = function Sdc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M61.965 82.459v59.258l51.318 29.628 51.318-29.628V82.459l-51.318-29.63-51.318 29.63zm91.385 38.656l-13.758-7.797v-16.42l-26.31-15.19-18.547 10.708 58.615 33.151v9.653l-40.067 23.134-40.069-23.134v-33.327l13.759 7.796v17.589l26.31 15.19 19.535-11.281-59.604-33.749v-8.484l40.069-23.134 40.067 23.134v32.161z" }),
+        _react2.default.createElement("path", { d: "M113.283-.211C50.602-.211-.211 50.602-.211 113.283s50.813 113.494 113.494 113.494 113.494-50.813 113.494-113.494S175.964-.211 113.283-.211zm64.424 150.689l-64.424 37.195-64.424-37.195v-74.39l64.424-37.196 64.424 37.196v74.39z" })
+      );
+    };
+    Sdc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Sdc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Sdc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SIA-alt.js
+var require_SIA_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SIA-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SiaAlt = function SiaAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M147.5 116.5c-8.9-8.9-23.3-8.9-32.2 0-8.9 8.9-8.9 23.3 0 32.2 2.9 2.9 6.3 4.8 9.9 5.8 3.3.9 6.8.9 7.1.9h15.1c1.7 0 3.7-.8 4.9-2s2-3.2 2-4.9V133c0-.3 0-2.2-.9-6.6-.8-3.7-3-7-5.9-9.9z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zM77.3 72.5l.3.3-.3-.3zm91.8 90.8c0 1.7-1 3.6-2.2 4.9-1.2 1.2-3 2.1-4.7 2.1 0 0-31.6.1-33.8-.1-8.5-.8-17.1-4.6-23.5-11.1-2-2-3.8-4.2-5.2-6.6-6.8-10.9-7.5-24.5-2.1-36 2.8-6.1 1.8-13.4-2.9-18.6-.2-.2-.3-.4-.5-.6L70.9 74.1c-1.7-1.5-4-2.1-6.2-1.9-.5.1-1 .1-1.5.1-4.4 0-7.9-3.5-7.9-7.9s3.5-7.9 7.9-7.9 7.9 3.5 7.9 7.9c0 .5-.1 1-.1 1.5-.2 2.1.4 4.3 2 6.1l23.1 23.1c.2.2.5.4.7.7 5.2 4.7 12.5 5.6 18.6 2.9 11.5-5.4 25.1-4.7 36 2.1 2.3 1.5 4.6 3.2 6.6 5.2 6.5 6.5 10.1 14.2 10.8 22.7 0 .3.4 2.5.4 4-.1 1.5-.1 30.6-.1 30.6z" })
+      );
+    };
+    SiaAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SiaAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SiaAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SIA.js
+var require_SIA = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SIA.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Sia = function Sia2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M39.8 35.8c.2.2.4.4.7.6l-.7-.6m4-3.9l.6.6c-.2-.2-.4-.5-.6-.6 0-.1 0 0 0 0" }),
+        _react2.default.createElement("path", { d: "M191.4 88.3c-21.7-13.6-48.8-15-71.7-4.3-12.1 5.5-26.7 3.5-37.1-5.8-.5-.4-.9-.8-1.4-1.3l-46-46c-3.1-3.4-4.4-7.9-3.9-12.2.2-.9.3-1.9.3-2.9C31.5 7 24.4 0 15.7 0S0 7.1 0 15.7c0 8.7 7 15.7 15.7 15.7 1 0 2-.1 2.9-.3 4.4-.3 8.9.9 12.4 3.9l46.2 46.2c.4.4.7.8 1 1.2 9.3 10.4 11.2 25 5.7 37.1-10.8 22.8-9.4 50 4.3 71.7 2.9 4.7 6.4 9.1 10.4 13.1 12.9 12.9 30 20.5 46.9 22 4.4.4 67.4.2 67.4.2 3.4 0 6.9-1.7 9.3-4.1 2.4-2.4 4.4-6.3 4.4-9.7v-61c0-3-.7-7.4-.7-8-1.5-16.9-8.7-32.2-21.6-45.1-3.9-3.9-8.3-7.4-12.9-10.3zm4 51.1c1.8 8.7 1.9 12.5 1.9 13.1v30.9c0 3.4-1.5 7.4-3.9 9.8-2.4 2.4-6.4 3.9-9.8 3.9h-30c-.6 0-7.6-.1-14.1-1.9-7.3-2-14.1-5.9-19.8-11.6-17.7-17.7-17.7-46.4 0-64.1 17.7-17.7 46.5-17.7 64.1 0 5.6 5.8 10.1 12.5 11.6 19.9z" })
+      );
+    };
+    Sia.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Sia.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Sia;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SJCX-alt.js
+var require_SJCX_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SJCX-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SjcxAlt = function SjcxAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.389 0C50.767 0 .001 50.766.001 113.389c0 62.622 50.766 113.388 113.389 113.388s113.388-50.766 113.388-113.388C226.777 50.766 176.012 0 113.389 0zm64.699 135.255c6.573 3.838 8.79 12.28 4.951 18.854-3.84 6.575-12.28 8.79-18.855 4.951a13.842 13.842 0 0 1-1.753-1.237l-35.504 20.498c.097.662.164 1.336.164 2.026 0 7.612-6.174 13.782-13.787 13.78-7.613 0-13.782-6.175-13.782-13.787 0-.694.069-1.37.167-2.036l-35.714-20.619c-.532.423-1.088.828-1.694 1.176-6.589 3.816-15.023 1.566-18.836-5.024-3.815-6.588-1.563-15.02 5.024-18.833a14.162 14.162 0 0 1 1.737-.834V92.938a13.764 13.764 0 0 1-1.836-.862c-6.607-3.782-8.894-12.206-5.111-18.811 3.783-6.607 12.206-8.895 18.812-5.11.524.299 1.011.636 1.48.991l36.125-20.855a13.86 13.86 0 0 1-.139-1.857c0-7.611 6.171-13.785 13.784-13.785s13.785 6.174 13.785 13.785c0 .632-.058 1.248-.141 1.857l36.381 21.003c.448-.332.912-.649 1.41-.929 6.62-3.757 15.035-1.436 18.79 5.188 3.758 6.622 1.434 15.032-5.188 18.79-.625.355-1.269.637-1.92.885v41.218c.56.235 1.112.493 1.65.809z" }),
+        _react2.default.createElement("path", { d: "M171.564 90.864c1.808 0 3.599-.475 5.178-1.372a10.432 10.432 0 0 0 4.944-6.343 10.428 10.428 0 0 0-.99-7.979 10.528 10.528 0 0 0-9.146-5.326c-1.809 0-3.6.475-5.18 1.372-4.114 2.335-6.05 7.048-5.063 11.444L136.386 96.8c-4.794-5.796-11.983-9.464-20.016-9.621V56.49c4.311-1.311 7.458-5.321 7.458-10.055 0-5.792-4.714-10.508-10.508-10.508-5.795 0-10.509 4.716-10.509 10.508 0 4.734 3.146 8.745 7.458 10.055v31.284c-4.18.897-8.1 2.772-11.409 5.514a22.136 22.136 0 0 0-9.944 2.611L65.46 82.464c1.004-4.392-.912-9.116-5.019-11.467a10.499 10.499 0 0 0-5.212-1.39c-3.763 0-7.26 2.027-9.127 5.286a10.44 10.44 0 0 0-1.023 7.978 10.43 10.43 0 0 0 4.92 6.362 10.5 10.5 0 0 0 5.213 1.392c2.711 0 5.274-1.064 7.201-2.875l21.144 12.108c-4.03 4.042-6.531 9.612-6.531 15.754a22.19 22.19 0 0 0 4.119 12.88l-18.612 10.772c-1.923-1.787-4.474-2.843-7.165-2.843a10.52 10.52 0 0 0-5.258 1.416 10.44 10.44 0 0 0-4.888 6.387 10.44 10.44 0 0 0 1.059 7.974 10.546 10.546 0 0 0 9.101 5.244c1.84 0 3.659-.489 5.257-1.417 4.096-2.367 5.989-7.1 4.965-11.489l19.841-11.484c3.82 3.052 8.652 4.893 13.913 4.893 1.469 0 2.918-.142 4.338-.422a26.155 26.155 0 0 0 6.569 2.341l-.006 30.426c-4.31 1.311-7.458 5.318-7.459 10.051 0 2.806 1.092 5.448 3.077 7.433a10.447 10.447 0 0 0 7.432 3.079c5.793 0 10.507-4.716 10.507-10.505.001-4.732-3.145-8.743-7.455-10.058l.007-29.848a26.734 26.734 0 0 0 7.698-1.282 18.45 18.45 0 0 0 6.932 1.332c5.166 0 9.844-2.114 13.22-5.525l16.7 9.754c-1.042 4.384.833 9.125 4.921 11.51a10.501 10.501 0 0 0 5.292 1.435c3.725 0 7.203-1.997 9.081-5.208a10.444 10.444 0 0 0 1.089-7.971 10.439 10.439 0 0 0-4.864-6.402 10.505 10.505 0 0 0-5.292-1.436c-2.676 0-5.215 1.04-7.133 2.813l-16.268-9.498a18.502 18.502 0 0 0 1.874-8.09 18.578 18.578 0 0 0-8.137-15.391 26.84 26.84 0 0 0-1.772-4.554l24.624-13.97a10.52 10.52 0 0 0 7.231 2.905zm-2.181-14.343a4.388 4.388 0 0 1 2.168-.576c1.586 0 3.058.856 3.838 2.233a4.38 4.38 0 0 1 .416 3.35 4.374 4.374 0 0 1-2.073 2.658 4.382 4.382 0 0 1-2.167.574 4.424 4.424 0 0 1-3.841-2.233 4.409 4.409 0 0 1 1.659-6.006zM59.045 82.304a4.418 4.418 0 0 1-3.833 2.219c-.76 0-1.515-.201-2.183-.584a4.374 4.374 0 0 1-2.062-2.667 4.373 4.373 0 0 1 .429-3.346 4.425 4.425 0 0 1 3.833-2.217c.761 0 1.516.201 2.181.583a4.412 4.412 0 0 1 1.635 6.012zm-1.463 68.444a4.398 4.398 0 0 1-2.201.592 4.421 4.421 0 0 1-3.819-2.197 4.378 4.378 0 0 1-.446-3.345 4.376 4.376 0 0 1 2.05-2.677 4.402 4.402 0 0 1 2.201-.596c1.571 0 3.036.844 3.821 2.2a4.412 4.412 0 0 1-1.606 6.023zm109.749-5.814a4.427 4.427 0 0 1 3.813-2.185c.774 0 1.54.207 2.216.603a4.384 4.384 0 0 1 2.04 2.684 4.384 4.384 0 0 1-.458 3.343 4.429 4.429 0 0 1-3.812 2.186 4.4 4.4 0 0 1-2.216-.601 4.415 4.415 0 0 1-1.583-6.03zm-58.416-98.5a4.412 4.412 0 0 1 4.406-4.405 4.412 4.412 0 0 1 4.406 4.405 4.412 4.412 0 0 1-4.406 4.409 4.411 4.411 0 0 1-4.406-4.409zm8.799 133.913a4.408 4.408 0 0 1-4.406 4.402h-.002c-1.176 0-2.283-.456-3.115-1.29s-1.29-1.94-1.29-3.117a4.411 4.411 0 0 1 4.407-4.406 4.412 4.412 0 0 1 4.406 4.411zm23.767-58.474a9.775 9.775 0 0 1-.177 1.873c-.012.063-.017.127-.027.188a10.412 10.412 0 0 1-.58 1.909l-.001.003a10.522 10.522 0 0 1-3.93 4.777c-.376.249-.772.467-1.181.666l-.215.104c-.421.195-.854.368-1.305.508l-.015.002c-.427.129-.868.225-1.314.3a10.541 10.541 0 0 1-1.74.155c-2.427 0-4.655-.83-6.433-2.214a18.035 18.035 0 0 1-3.812 1.505c-.036.009-.068.022-.103.033a18.515 18.515 0 0 1-4.809.646 18.34 18.34 0 0 1-8.372-2.021l-.037-.021a18.235 18.235 0 0 1-1.191-.668c-.044-.028-.092-.054-.138-.08a20.33 20.33 0 0 1-1.237-.838 14.141 14.141 0 0 1-7.054 1.022c-.089-.009-.174-.027-.26-.039a13.682 13.682 0 0 1-1.275-.221c-.052-.009-.102-.025-.153-.037a13.317 13.317 0 0 1-1.382-.399 14.237 14.237 0 0 1-8.213-7.362c-.048-.1-.098-.197-.143-.297-.104-.232-.195-.473-.288-.714a13.381 13.381 0 0 1-.557-1.817 13.89 13.89 0 0 1-.126-.58c-.052-.271-.09-.547-.126-.825-.021-.158-.047-.313-.061-.473a13.967 13.967 0 0 1-.069-1.348c0-.548.039-1.085.098-1.618.02-.162.05-.317.074-.478.055-.375.122-.746.206-1.111.038-.166.083-.328.126-.492.1-.367.212-.728.339-1.08.049-.138.095-.27.146-.4.168-.43.355-.844.563-1.253.023-.045.043-.093.067-.141a14.219 14.219 0 0 1 2.995-3.88 14.117 14.117 0 0 1 8.844-3.708c.246-.011.488-.036.739-.036.866 0 1.711.089 2.536.239.371-.425.768-.828 1.176-1.217l.348-.326c.384-.346.779-.685 1.191-.999.148-.114.305-.22.457-.328.292-.208.589-.413.896-.605.228-.146.457-.287.691-.421.237-.137.48-.259.723-.384.451-.237.913-.452 1.386-.647a18.312 18.312 0 0 1 7.081-1.437c.803 0 1.589.068 2.364.167.015.002.028.002.043.007.587.077 1.165.18 1.733.311l.079.017a17.987 17.987 0 0 1 1.739.498c.525.18 1.039.378 1.541.603l.115.052c.497.226.983.47 1.456.738.036.021.073.039.108.062.476.272.938.562 1.385.875.028.019.056.037.082.058.456.322.896.66 1.32 1.021l.049.041c.437.374.856.767 1.257 1.177h.003a18.54 18.54 0 0 1 4.09 6.498c.166.454.321.908.453 1.375.038.132.063.27.099.402.095.367.19.733.263 1.107.103.532.186 1.067.24 1.613 4.195 1.377 7.223 5.314 7.223 9.963z" })
+      );
+    };
+    SjcxAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SjcxAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SjcxAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SJCX.js
+var require_SJCX = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SJCX.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Sjcx = function Sjcx2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M31.902 154.305a6.196 6.196 0 0 0-3.091.836c-1.43.828-2.453 2.164-2.878 3.762s-.205 3.265.625 4.695a6.214 6.214 0 0 0 5.365 3.089 6.173 6.173 0 0 0 3.091-.833 6.197 6.197 0 0 0 2.256-8.457 6.226 6.226 0 0 0-5.368-3.092zm87.579-134.948a6.197 6.197 0 0 0-6.188-6.188 6.197 6.197 0 0 0-6.189 6.188 6.194 6.194 0 0 0 6.189 6.189 6.193 6.193 0 0 0 6.188-6.189zm75.609 53.826a6.158 6.158 0 0 0 3.042-.809 6.138 6.138 0 0 0 2.913-3.734 6.145 6.145 0 0 0-.583-4.702 6.208 6.208 0 0 0-5.392-3.136 6.192 6.192 0 0 0-5.373 9.243 6.21 6.21 0 0 0 5.393 3.138zM34.771 61.287a6.175 6.175 0 0 0-3.064-.818 6.215 6.215 0 0 0-5.382 3.114 6.147 6.147 0 0 0-.602 4.7 6.143 6.143 0 0 0 2.896 3.746 6.183 6.183 0 0 0 3.066.821 6.214 6.214 0 0 0 5.382-3.116 6.199 6.199 0 0 0-2.296-8.447zm162.839 94.181a6.16 6.16 0 0 0-3.112-.848 6.222 6.222 0 0 0-5.354 3.07c-1.72 2.945-.723 6.742 2.224 8.466a6.18 6.18 0 0 0 3.11.845 6.22 6.22 0 0 0 5.354-3.069 6.145 6.145 0 0 0 .644-4.694 6.158 6.158 0 0 0-2.866-3.77zm-90.526 51.951c0 1.651.644 3.206 1.812 4.376s2.724 1.813 4.375 1.813h.003a6.192 6.192 0 0 0 6.187-6.185c.001-3.414-2.774-6.192-6.187-6.192s-6.19 2.774-6.19 6.188z" }),
+        _react2.default.createElement("path", { d: "M204.251 144.095a19.543 19.543 0 0 0-2.314-1.133V85.074a19.608 19.608 0 0 0 2.695-1.242c9.299-5.277 12.563-17.092 7.286-26.39-5.274-9.3-17.091-12.564-26.39-7.286-.699.394-1.352.841-1.981 1.305l-51.089-29.497c.114-.855.195-1.72.195-2.607 0-10.69-8.668-19.357-19.36-19.357-10.691 0-19.359 8.667-19.359 19.357 0 .89.082 1.753.196 2.61L43.396 51.256a19.481 19.481 0 0 0-2.079-1.396c-9.278-5.313-21.107-2.102-26.42 7.178-5.313 9.277-2.102 21.105 7.178 26.418.839.479 1.704.867 2.578 1.211v57.906c-.826.336-1.645.71-2.438 1.171-9.252 5.355-12.414 17.197-7.056 26.45 5.355 9.254 17.199 12.414 26.453 7.056.851-.491 1.632-1.058 2.379-1.652l50.158 28.958c-.14.935-.235 1.886-.235 2.859-.002 10.69 8.663 19.362 19.355 19.362 10.689.003 19.36-8.662 19.361-19.354 0-.969-.094-1.914-.229-2.845l49.859-28.787c.77.63 1.579 1.22 2.465 1.737 9.231 5.391 21.087 2.28 26.479-6.954 5.392-9.231 2.279-21.088-6.953-26.479zm2.98 24.158a14.816 14.816 0 0 1-12.754 7.317c-2.603 0-5.174-.697-7.432-2.016-5.738-3.352-8.372-10.006-6.909-16.165l-23.454-13.698c-4.741 4.791-11.311 7.762-18.565 7.762a25.91 25.91 0 0 1-9.735-1.873 37.55 37.55 0 0 1-10.813 1.803l-.008 41.918c6.053 1.845 10.472 7.477 10.469 14.122 0 8.134-6.618 14.754-14.755 14.754a14.665 14.665 0 0 1-10.438-4.324 14.658 14.658 0 0 1-4.322-10.438c.001-6.646 4.422-12.275 10.477-14.114l.009-42.73a36.995 36.995 0 0 1-9.228-3.288 31.45 31.45 0 0 1-6.093.592c-7.387 0-14.172-2.583-19.538-6.871l-27.864 16.13c1.439 6.163-1.22 12.809-6.972 16.137a14.756 14.756 0 0 1-7.384 1.986 14.806 14.806 0 0 1-12.781-7.364 14.66 14.66 0 0 1-1.487-11.197 14.667 14.667 0 0 1 6.864-8.97 14.756 14.756 0 0 1 7.383-1.987c3.781 0 7.362 1.479 10.062 3.99L68.102 134.6c-3.629-5.118-5.784-11.351-5.784-18.087 0-8.629 3.513-16.449 9.172-22.124L41.797 77.382c-2.705 2.542-6.305 4.037-10.112 4.037-2.561 0-5.093-.677-7.323-1.954-3.419-1.958-5.875-5.131-6.908-8.936s-.524-7.784 1.436-11.204A14.802 14.802 0 0 1 31.707 51.9c2.56 0 5.091.675 7.322 1.952 5.767 3.303 8.457 9.936 7.047 16.103L79.02 88.823a31.116 31.116 0 0 1 13.963-3.667c4.647-3.85 10.153-6.483 16.024-7.744V33.477c-6.054-1.841-10.473-7.472-10.473-14.12 0-8.137 6.62-14.757 14.758-14.757 8.136 0 14.756 6.62 14.756 14.757 0 6.648-4.419 12.279-10.473 14.12v43.101c11.279.221 21.376 5.372 28.109 13.51l34.999-19.856c-1.386-6.174 1.331-12.794 7.112-16.074a14.762 14.762 0 0 1 7.272-1.925 14.79 14.79 0 0 1 12.845 7.478 14.66 14.66 0 0 1 1.389 11.209 14.646 14.646 0 0 1-6.943 8.907 14.753 14.753 0 0 1-7.271 1.925c-3.833 0-7.45-1.512-10.158-4.079L150.35 97.292a37.161 37.161 0 0 1 2.486 6.396 26.085 26.085 0 0 1 11.429 21.616c0 4.072-.963 7.917-2.631 11.358l22.845 13.341c2.695-2.489 6.262-3.952 10.019-3.952 2.605 0 5.175.696 7.433 2.018a14.653 14.653 0 0 1 6.831 8.992 14.66 14.66 0 0 1-1.531 11.192z" }),
+        _react2.default.createElement("path", { d: "M142.703 111.317a24.84 24.84 0 0 0-.339-2.264c-.101-.525-.236-1.041-.369-1.556-.049-.188-.087-.379-.139-.565a26.1 26.1 0 0 0-.636-1.931l-.028-.081a26.02 26.02 0 0 0-5.717-9.042h-.001a25.873 25.873 0 0 0-1.768-1.656c-.023-.021-.046-.038-.068-.059a26.595 26.595 0 0 0-1.853-1.434c-.038-.028-.077-.054-.116-.08a26.092 26.092 0 0 0-1.944-1.23c-.051-.03-.103-.058-.154-.086a25.765 25.765 0 0 0-2.044-1.037l-.163-.073a26.373 26.373 0 0 0-2.161-.846c-.05-.015-.1-.034-.148-.05a25.631 25.631 0 0 0-2.295-.649l-.111-.026a26.01 26.01 0 0 0-2.496-.442 25.622 25.622 0 0 0-3.32-.238c-3.262 0-6.368.634-9.241 1.733-.236.092-.471.188-.705.285-.664.276-1.312.578-1.946.908-.341.175-.683.35-1.015.54a26.814 26.814 0 0 0-2.226 1.443c-.215.152-.434.297-.642.459a26.485 26.485 0 0 0-2.161 1.861 26.15 26.15 0 0 0-1.653 1.71 19.823 19.823 0 0 0-3.563-.336c-.35 0-.69.035-1.036.051a19.847 19.847 0 0 0-12.422 5.207c-.015.016-.031.029-.048.045a19.986 19.986 0 0 0-4.156 5.403c-.034.067-.062.135-.095.198a19.985 19.985 0 0 0-.79 1.759c-.073.185-.138.372-.206.562a19.655 19.655 0 0 0-.477 1.517c-.063.231-.124.458-.177.692a19.548 19.548 0 0 0-.289 1.562c-.034.224-.077.442-.103.67a20.286 20.286 0 0 0-.139 2.271c0 .641.037 1.269.096 1.893.02.225.058.441.086.663.05.391.104.778.177 1.159.052.274.114.544.177.815a19.874 19.874 0 0 0 .517 1.826c.083.245.173.487.265.725.129.339.258.674.403 1.001.064.142.136.279.203.419a19.983 19.983 0 0 0 9.594 9.553 19.367 19.367 0 0 0 1.988.803c.619.213 1.248.391 1.891.542.073.016.142.039.216.053.586.13 1.185.231 1.789.309.123.016.242.042.366.055.713.076 1.436.123 2.169.123 2.744 0 5.358-.556 7.738-1.559a27.02 27.02 0 0 0 1.738 1.177c.063.039.13.073.193.112.547.332 1.104.646 1.674.939.016.01.034.016.051.026a25.737 25.737 0 0 0 11.758 2.841c2.339 0 4.597-.33 6.752-.909.049-.013.095-.034.145-.046.901-.248 1.79-.529 2.65-.87a24.698 24.698 0 0 0 2.703-1.245 14.642 14.642 0 0 0 9.034 3.112 14.978 14.978 0 0 0 2.444-.218 14.631 14.631 0 0 0 1.869-.425 14.557 14.557 0 0 0 1.83-.71c.103-.048.202-.097.303-.146a14.527 14.527 0 0 0 1.657-.936c.003-.002.006-.005.01-.005a14.77 14.77 0 0 0 5.51-6.705s0-.004.002-.004c.352-.856.627-1.753.812-2.683.018-.086.024-.175.04-.263.068-.379.134-.762.173-1.157.049-.482.075-.974.075-1.472 0-6.532-4.254-12.058-10.138-13.988z" })
+      );
+    };
+    Sjcx.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Sjcx.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Sjcx;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SLG-alt.js
+var require_SLG_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SLG-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SlgAlt = function SlgAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M58.319 91.972v45.332h94.655zm55.051-40.378l-44.415 28.81h88.649zm0 123.458l44.232-28.806H68.955zm54.819-40.375V89.345H73.534z" }),
+        _react2.default.createElement("path", { d: "M113.389 0C50.766 0 0 50.764 0 113.389c0 62.621 50.767 113.388 113.39 113.388 62.622 0 113.389-50.767 113.389-113.388C226.778 50.764 176.011 0 113.389 0zm63.742 141.775a4.467 4.467 0 0 1-2.03 3.744v.003l-61.722 40.194-61.964-40.19-.015-.013a4.536 4.536 0 0 1-.665-.532c-.012-.012-.025-.021-.037-.034a4.444 4.444 0 0 1-.538-.646 4.458 4.458 0 0 1-.778-2.389l-.003-.088c0-.016-.003-.032-.003-.05v-56.9c0-1.57.812-2.949 2.038-3.747v-.003l61.964-40.195L175.1 81.128l.013.011a4.392 4.392 0 0 1 .701.568c.2.199.382.418.542.653l.017.023c.313.466.541.996.662 1.567v.001c.055.258.083.526.091.798 0 .027.003.053.003.08l.002.045v56.901z" })
+      );
+    };
+    SlgAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SlgAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SlgAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SLG.js
+var require_SLG = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SLG.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Slg = function Slg2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M213.435 68.76c-.002-.042-.008-.083-.008-.126a7.162 7.162 0 0 0-.141-1.25l-.002-.002a6.936 6.936 0 0 0-1.06-2.491 7.137 7.137 0 0 0-.85-1.022l-.051-.048a6.937 6.937 0 0 0-1.049-.842.14.14 0 0 1-.018-.017L113.582 0 16.53 62.955l.001.006a6.985 6.985 0 0 0-3.192 5.867v89.124c0 .026.005.053.005.078 0 .044.006.092.006.137.014.422.058.837.143 1.237l.006.02a6.938 6.938 0 0 0 1.039 2.445c.01.015.021.027.029.04.249.363.531.7.843 1.011.019.019.04.034.058.053.32.311.668.59 1.041.833.008.007.014.015.023.021l97.051 62.949 96.676-62.956v-.004a6.996 6.996 0 0 0 3.18-5.864V68.829c-.002-.024-.004-.046-.004-.069zM27.344 79.948l148.258 71.003H27.344V79.948zm23.832-4.116h148.256v71.003L51.176 75.832zm131.677-14.005H44.004l69.564-45.124 69.285 45.124zm-69.285 148.245l-69.564-45.116h138.848l-69.284 45.116z" })
+      );
+    };
+    Slg.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Slg.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Slg;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SLS-alt.js
+var require_SLS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SLS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SlsAlt = function SlsAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zm0 185.2c-38.9 0-70.4-31.5-70.4-70.4C43 85.7 60.7 60.7 85.9 50 71.7 61.7 71 75.7 72.7 86.2c2.1 12.7 9.3 22.3 22.1 28.2 12.7 6 24.7 8.8 33.6 15.3 17.2 12.5 13 34.5 2.5 46.6-3.3 3.8-8.1 6.6-13.2 8.8-1.4 0-2.9.1-4.3.1zm15.5-1.7c9.8-4.1 23.9-12.9 25-37.3 1.5-32.6-19.4-40.1-42.2-46.4-22.7-6.2-30-22.2-23.8-37.6C94 46.8 115 47 126.4 54s16.8 26 16.8 26l4.1-1.2-2.5-27c23.1 11.6 38.9 35.4 38.9 63 .1 33.5-23.4 61.6-54.8 68.7z" })
+      );
+    };
+    SlsAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SlsAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SlsAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SLS.js
+var require_SLS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SLS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Sls = function Sls2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M120.4 226.6c8.2-3.4 15.9-8 21.3-14.1 17-19.5 23.8-54.9-4-75-14.4-10.4-33.7-15.1-54.2-24.7s-32.2-25-35.6-45.5C45.1 50.4 46.2 27.8 69.1 9 28.5 26.2 0 66.5 0 113.4 0 176 50.8 226.8 113.4 226.8c2.4 0 4.7-.1 7-.2z" }),
+        _react2.default.createElement("path", { d: "M164.1 11.9l4 43.6-6.6 1.9s-8.7-30.7-27-42-52.1-11.6-62 13.2c-9.9 24.8 1.8 50.5 38.4 60.5s70.3 22.1 67.9 74.7c-1.8 39.4-24.5 53.5-40.3 60.1 50.6-11.4 88.4-56.6 88.4-110.6-.1-44.3-25.6-82.8-62.8-101.4z" })
+      );
+    };
+    Sls.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Sls.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Sls;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SNRG-alt.js
+var require_SNRG_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SNRG-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SnrgAlt = function SnrgAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8c62.6 0 113.4-50.8 113.4-113.4C226.8 50.8 176 0 113.4 0zm60.2 149.6L114 188.4l-60.7-39.7v-22.3L114 166l46.5-30.2-15.2-9.9-31.9 21-17.5-11.4 49.2-31.9 28.5 18.3v27.7zm0-49.4l-60.7-39.6-46.6 30.2 15.2 9.9 31.9-21 17.5 11.4L81.7 123l-28.5-18.3V77.1l59.6-38.8L173.6 78v22.2z" })
+      );
+    };
+    SnrgAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SnrgAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SnrgAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SNRG.js
+var require_SNRG = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SNRG.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Snrg = function Snrg2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M112.5 0l-90 58.6v41.7l43 27.6 74.3-48.2-26.4-17.1-48.1 31.7-23-14.9 70.2-45.6 91.7 59.8V60z" }),
+        _react2.default.createElement("path", { d: "M87 147l26.3 17.2 48.2-31.7 23 14.9-70.3 45.6-91.7-59.8v33.6l91.7 60 90-58.7v-41.6l-42.9-27.7z" })
+      );
+    };
+    Snrg.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Snrg.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Snrg;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/START-alt.js
+var require_START_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/START-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var StartAlt = function StartAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M146.82 73.769c-.505-.429-1.413-.959-2.73-1.593-1.316-.632-2.91-1.207-4.781-1.727-1.869-.521-3.945-.945-6.223-1.287-.384-.057-.791-.082-1.181-.126l.704-9.853a4.186 4.186 0 0 0-3.946-4.418c-2.293-.134-4.288 1.633-4.422 3.946l-.713 10.019a53.51 53.51 0 0 0-6.732.671l.732-10.217a4.19 4.19 0 0 0-3.948-4.418 4.197 4.197 0 0 0-4.42 3.946l-.927 12.969c-3.337 1.269-6.293 2.858-8.843 4.795-3.238 2.463-5.766 5.407-7.589 8.837-1.819 3.429-2.73 7.181-2.73 11.244 0 2.931.456 5.505 1.365 7.716.91 2.216 2.112 4.17 3.605 5.858a25.793 25.793 0 0 0 5.086 4.439 78.426 78.426 0 0 0 5.805 3.518 167.54 167.54 0 0 0 5.804 3.054c1.896.939 3.59 1.947 5.083 3.008 1.492 1.06 2.694 2.226 3.605 3.49s1.369 2.73 1.369 4.4c0 1.85-.395 3.555-1.181 5.112-.782 1.557-1.934 2.924-3.45 4.099-1.519 1.173-3.406 2.097-5.653 2.776-2.251.677-4.872 1.015-7.855 1.015-3.39 0-6.3-.363-8.729-1.086-2.43-.722-4.529-1.499-6.299-2.335-1.772-.834-3.252-1.601-4.438-2.301-1.19-.701-2.214-1.052-3.072-1.052-.508 0-.977.23-1.406.68-.43.452-.824 1.039-1.174 1.762-.357.72-.662 1.524-.913 2.402a38.143 38.143 0 0 0-.646 2.574c-.177.829-.315 1.61-.417 2.333-.1.725-.152 1.266-.152 1.626 0 1.358.353 2.373 1.063 3.051.707.673 1.794 1.388 3.263 2.131 1.467.743 3.277 1.455 5.425 2.133 1.573.495 3.374.919 5.284 1.305l-.739 10.351a4.19 4.19 0 0 0 4.302 4.424 4.188 4.188 0 0 0 4.063-3.95l.701-9.796c.957.043 1.889.107 2.895.107 1.29 0 2.544-.053 3.788-.123l-.666 9.338a4.19 4.19 0 1 0 8.364.474l.78-10.902a48.358 48.358 0 0 0 4.316-1.094c4.98-1.528 9.231-3.646 12.747-6.328 3.517-2.687 6.235-5.844 8.16-9.483 1.922-3.632 2.883-7.57 2.883-11.816 0-2.845-.456-5.36-1.366-7.547-.91-2.192-2.127-4.134-3.642-5.823a26.86 26.86 0 0 0-5.201-4.476 80.463 80.463 0 0 0-5.916-3.553 277.88 277.88 0 0 0-5.923-3.113c-1.946-.989-3.678-2.016-5.195-3.082-1.519-1.059-2.734-2.212-3.646-3.452-.909-1.246-1.363-2.679-1.363-4.304 0-1.396.289-2.783.873-4.163.579-1.374 1.478-2.62 2.693-3.722 1.213-1.109 2.77-2.001 4.668-2.678 1.896-.677 4.21-1.015 6.941-1.015 2.633 0 4.983.282 7.06.843 2.073.566 3.881 1.18 5.426 1.832 1.543.653 2.845 1.265 3.907 1.829 1.063.563 1.947.841 2.658.841.455 0 .881-.224 1.287-.673.406-.452.772-1.028 1.102-1.727.327-.7.607-1.466.833-2.303a31.109 31.109 0 0 0 .913-4.705c.074-.678.114-1.196.114-1.561 0-.721-.114-1.32-.342-1.798-.223-.47-.591-.921-1.098-1.348z" }),
+        _react2.default.createElement("path", { d: "M113.389 0C50.766 0 0 50.766 0 113.388c0 62.623 50.766 113.389 113.389 113.389 62.622 0 113.388-50.766 113.388-113.389C226.777 50.766 176.011 0 113.389 0zm-.001 199.423c-47.516 0-86.034-38.521-86.034-86.032 0-47.516 38.519-86.036 86.034-86.036 47.518 0 86.034 38.52 86.034 86.036.001 47.511-38.516 86.032-86.034 86.032z" })
+      );
+    };
+    StartAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    StartAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = StartAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/START.js
+var require_START = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/START.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Start = function Start2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388 0C50.765 0 0 50.767 0 113.392c0 62.618 50.765 113.385 113.389 113.385 62.626 0 113.389-50.768 113.389-113.385C226.777 50.767 176.014 0 113.388 0zm45.814 67.375a42.965 42.965 0 0 1-.448 2.947 40.592 40.592 0 0 1-.754 3.255 18.506 18.506 0 0 1-1.099 3.035c-.434.921-.916 1.682-1.452 2.275-.534.594-1.097.888-1.696.888-.937 0-2.104-.368-3.502-1.109-1.401-.745-3.118-1.549-5.151-2.411-2.035-.858-4.418-1.667-7.148-2.413-2.738-.74-5.836-1.112-9.306-1.112-3.6 0-6.649.445-9.149 1.338-2.502.892-4.553 2.068-6.152 3.53-1.602 1.451-2.787 3.095-3.55 4.903-.769 1.819-1.149 3.648-1.149 5.487 0 2.142.599 4.031 1.796 5.673 1.202 1.633 2.803 3.152 4.805 4.55 1.999 1.403 4.282 2.756 6.849 4.06a372.327 372.327 0 0 1 7.807 4.104 105.927 105.927 0 0 1 7.795 4.682 35.28 35.28 0 0 1 6.855 5.899c1.998 2.227 3.601 4.785 4.801 7.674 1.198 2.883 1.799 6.197 1.799 9.948 0 5.595-1.267 10.786-3.8 15.572-2.536 4.797-6.118 8.959-10.753 12.498-4.634 3.536-10.237 6.326-16.801 8.34a63.836 63.836 0 0 1-5.689 1.442l-1.028 14.367a5.519 5.519 0 0 1-5.826 5.202 5.522 5.522 0 0 1-5.199-5.825l.878-12.308a86.7 86.7 0 0 1-4.993.162c-1.324 0-2.554-.084-3.815-.142l-.924 12.91a5.518 5.518 0 0 1-5.824 5.202 5.523 5.523 0 0 1-5.201-5.825l.974-13.642c-2.52-.509-4.891-1.067-6.966-1.721-2.832-.893-5.217-1.83-7.151-2.809-1.934-.981-3.367-1.922-4.299-2.81-.936-.894-1.401-2.231-1.401-4.021 0-.476.068-1.187.201-2.143.132-.951.315-1.98.548-3.074.236-1.099.516-2.235.851-3.394a18.856 18.856 0 0 1 1.202-3.167c.463-.951.981-1.726 1.549-2.319.566-.593 1.183-.896 1.852-.896 1.131 0 2.48.461 4.05 1.387 1.563.922 3.513 1.932 5.848 3.03 2.333 1.103 5.1 2.128 8.303 3.078 3.199.953 7.036 1.433 11.501 1.433 3.934 0 7.387-.446 10.354-1.338 2.962-.897 5.449-2.113 7.45-3.659 2.001-1.548 3.519-3.352 4.549-5.402 1.036-2.054 1.555-4.3 1.555-6.738 0-2.199-.602-4.132-1.804-5.799-1.201-1.667-2.786-3.203-4.752-4.601-1.966-1.396-4.199-2.725-6.698-3.965a222.1 222.1 0 0 1-7.649-4.022 103.987 103.987 0 0 1-7.652-4.638 34.048 34.048 0 0 1-6.703-5.849c-1.966-2.226-3.553-4.8-4.75-7.723-1.199-2.912-1.799-6.305-1.799-10.168 0-5.355 1.201-10.298 3.598-14.819 2.402-4.521 5.736-8.399 10.002-11.646 3.361-2.553 7.257-4.647 11.656-6.319l1.222-17.092c.172-3.05 2.804-5.378 5.825-5.202a5.522 5.522 0 0 1 5.202 5.824l-.964 13.465a70.424 70.424 0 0 1 8.872-.883l.94-13.204c.177-3.05 2.806-5.378 5.827-5.202a5.52 5.52 0 0 1 5.201 5.824l-.928 12.985c.514.059 1.051.092 1.555.166 3.003.45 5.738 1.01 8.202 1.697 2.466.685 4.567 1.441 6.301 2.274 1.736.834 2.934 1.536 3.601 2.1.667.562 1.151 1.157 1.451 1.778.3.628.451 1.418.451 2.369-.002.483-.055 1.164-.153 2.057z" })
+      );
+    };
+    Start.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Start.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Start;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/STEEM-alt.js
+var require_STEEM_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/STEEM-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SteemAlt = function SteemAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zM92.1 138.3c-.7 7.2-17.4 24.2-19.1 23-1.9-.5 5.1-12 2.5-21.6-3-11.2-20.9-40.1-20.9-52.8 0-9.3 15.3-22 16.6-21.4 1.4.2-2 9.1-.1 19.2 1.5 8.6 21.8 42.1 21 53.6zm44.1 6.8c-.8 9.2-22.2 30.8-24.4 29.4-2.4-.7 6.5-15.3 3.2-27.6-3.8-14.2-26.7-51.1-26.7-67.4 0-11.9 19.6-28.1 21.1-27.3 1.7.3-2.6 11.6-.2 24.4 2.1 11.1 28.1 53.9 27 68.5zm33.7-6.8c-.6 7.2-17.4 24.2-19.1 23-1.9-.5 5.1-12 2.5-21.6-3-11.2-20.9-40.1-20.9-52.8 0-9.3 15.4-22 16.6-21.4 1.4.2-2 9.1-.1 19.2 1.5 8.6 21.9 42.1 21 53.6z" })
+      );
+    };
+    SteemAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SteemAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SteemAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/STEEM.js
+var require_STEEM = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/STEEM.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Steem = function Steem2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M37.1 24.5C34.8 23.4 6.4 46.9 6.4 64.2c0 23.6 33.2 77.2 38.8 97.9 4.8 17.8-8.2 39.1-4.6 40.1 3.3 2.1 34.3-29.3 35.5-42.7C77.7 138.2 39.9 76 36.9 60c-3.6-18.7 2.7-35.1.2-35.5zm71-24.5c-2.9-1.4-39.2 28.5-39.2 50.6 0 30.2 42.3 98.5 49.5 124.9 6.1 22.7-10.4 49.9-5.9 51.1 4.2 2.7 43.7-37.3 45.2-54.4 2-27.2-46.2-106.4-50-126.9-4.4-23.8 3.6-44.7.4-45.3zm73.3 24.5c-2.2-1.1-30.7 22.4-30.7 39.7 0 23.6 33.2 77.2 38.8 97.9 4.8 17.8-8.2 39.1-4.6 40.1 3.3 2.1 34.3-29.3 35.5-42.7C222 138.2 184.2 76 181.2 60c-3.5-18.7 2.7-35.1.2-35.5z" })
+      );
+    };
+    Steem.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Steem.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Steem;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/STR-alt.js
+var require_STR_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/STR-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var StrAlt = function StrAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M58.019 178.357a3.072 3.072 0 0 0-4.285.72L23.351 221.75a3.072 3.072 0 1 0 5.005 3.563l30.383-42.671a3.071 3.071 0 0 0-.72-4.285zm7.349 14.001a3.074 3.074 0 0 0-4.287.705L44.182 216.62a3.07 3.07 0 0 0 .706 4.287 3.072 3.072 0 0 0 4.287-.704l16.899-23.556a3.074 3.074 0 0 0-.706-4.289zM204.398 40.38c0-20.482-6.998-40.282-6.998-40.282s-26.116-1.792-47.964 9.984c-21.85 11.776-30.128 26.799-34.225 33.712S102.58 65.472 102.58 65.472s-18.69-.34-33.456 7.853C54.36 81.517 45.313 96.88 45.313 96.88s9.815-2.816 19.203-2.559c9.388.257 18.776 4.18 18.776 4.18s-2.219 3.328-1.792 8.192c.188 2.138 3.044 5.18 6.976 8.491a85.965 85.965 0 0 0-1.811 2.454c-14.018 19.806-17.22 41.635-7.151 48.763 10.07 7.126 29.596-3.15 43.613-22.952.447-.632.883-1.268 1.307-1.903 3.57 2.249 6.629 3.735 8.53 3.639 5.036-.257 9.388-5.548 9.388-5.548s9.603 12.162 12.034 18.308c2.433 6.145 3.329 17.154 3.329 17.154s10.753-12.674 14.149-31.396-4.933-31.974-4.933-31.974 9.474-11.605 19.203-23.383c9.73-11.779 18.264-27.483 18.264-47.966zm-84.581 98.473c-9.284 12.569-22.522 18.536-29.572 13.33-7.049-5.207-5.235-19.616 4.049-32.186.037-.051.076-.099.114-.15 3.75 2.803 7.731 5.59 11.074 8.013 4.403 3.193 9.669 7.301 14.527 10.717-.067.092-.124.184-.192.276zm35.508-64.42c-11.549 0-20.911-9.362-20.911-20.91 0-11.549 9.362-20.91 20.911-20.91 11.548 0 20.909 9.361 20.909 20.91 0 11.548-9.361 20.91-20.909 20.91z" })
+      );
+    };
+    StrAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    StrAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = StrAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/STR.js
+var require_STR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/STR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Str = function Str2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M130.607 70.618c-8.484 0-15.362 6.876-15.362 15.36 0 8.483 6.878 15.36 15.362 15.36 8.481 0 15.359-6.877 15.359-15.36.001-8.484-6.877-15.36-15.359-15.36zm-44.749 64.08c-.027.039-.057.072-.084.11-6.819 9.232-8.152 19.818-2.972 23.642 5.177 3.823 14.9-.558 21.722-9.792.049-.066.091-.134.14-.202-3.568-2.508-7.437-5.525-10.671-7.873-2.456-1.778-5.379-3.824-8.135-5.885z" }),
+        _react2.default.createElement("path", { d: "M113.313 0C50.732 0 0 50.732 0 113.313c0 34.818 15.709 65.963 40.42 86.749l15.562-21.855a2.256 2.256 0 1 1 3.674 2.618l-15.721 22.078c1.546 1.2 3.126 2.357 4.734 3.478a2.29 2.29 0 0 1 .295-.597l12.413-17.304a2.258 2.258 0 0 1 3.668 2.632l-12.413 17.303a2.193 2.193 0 0 1-.354.383c17.618 11.285 38.563 17.828 61.036 17.828 62.581 0 113.313-50.732 113.313-113.313S175.894 0 113.313 0zm39.925 111.559c-7.147 8.649-14.107 17.176-14.107 17.176s6.119 9.731 3.624 23.486c-2.493 13.752-10.394 23.063-10.394 23.063s-.657-8.088-2.447-12.602c-1.785-4.515-8.838-13.449-8.838-13.449s-3.196 3.889-6.895 4.077c-1.398.069-3.645-1.021-6.268-2.674-.311.468-.63.935-.959 1.397-10.296 14.547-24.64 22.095-32.036 16.862-7.397-5.238-5.047-21.272 5.252-35.819.435-.618.879-1.215 1.33-1.804-2.888-2.433-4.986-4.669-5.124-6.238-.314-3.574 1.315-6.017 1.315-6.017s-6.895-2.882-13.792-3.072c-6.895-.19-14.107 1.879-14.107 1.879s6.646-11.285 17.493-17.303c10.846-6.019 24.576-5.768 24.576-5.768s6.268-10.845 9.279-15.923c3.009-5.08 9.091-16.114 25.14-24.764 16.048-8.651 35.233-7.335 35.233-7.335s5.14 14.543 5.14 29.591c0 15.047-6.268 26.583-13.415 35.237z" })
+      );
+    };
+    Str.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Str.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Str;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/STRAT-alt.js
+var require_STRAT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/STRAT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var StratAlt = function StratAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 595.279 595.281",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M298.505 333.021c26.896-14.914 125.938-69.84 153.45-85.093-28.294-15.649-122.33-67.851-155.143-86.067-23.739 13.309-123.746 69.392-153.452 86.05 32.507 18.225 146.622 82.222 152.199 85.35.895.507 1.829.38 2.946-.24z" }),
+        _react2.default.createElement("path", { d: "M297.661 0C133.268 0 0 133.268 0 297.66c0 164.396 133.268 297.665 297.662 297.665 164.393 0 297.662-133.269 297.662-297.665C595.323 133.268 462.054 0 297.661 0zM141.184 298.623c3.185 1.756 151 84.338 153.418 85.659 2.227 1.219 2.763.889 3.822.245 5.757-3.503 153.201-85.603 154.267-86.177 6.461-3.464 13.38-3.704 18.516-.627 4.494 2.689 7.07 7.498 7.07 13.195v31.515c0 12.636-10.016 18.948-13.784 21.317-5.819 3.676-153.534 86.554-154.699 87.187-3.348 1.812-7.774 3.731-13.004 3.731-3.566 0-7.503-.889-11.724-3.315-5.008-2.872-164.579-92.507-166.191-93.412l10.22-18.191c6.58 3.698 161.269 90.587 166.362 93.51 1.179.679 1.535.884 4.397-.667 6.699-3.628 148.303-83.266 153.527-86.496 4.027-2.54 4.027-3.39 4.027-3.663v-22.861c-26.98 14.942-144.72 80.719-148.148 82.787-5.406 3.287-14.078 6.005-24.645.239-2.515-1.367-150.365-83.973-153.487-85.693-8.956-4.921-14.091-13.483-14.091-23.488v-45.505h.003c0-.017-.003-.034-.003-.054-.006-5.7 2.92-10.742 7.822-13.49 3.33-1.872 138.604-77.729 163.055-91.439a17.8 17.8 0 0 1 8.705-2.273c3.304 0 6.557.877 9.667 2.603 77.061 42.778 160.489 89.066 163.54 90.69 5.246 2.803 8.405 7.839 8.451 13.479.048 5.996-3.461 11.684-9.161 14.84-3.799 2.108-129.634 71.888-160.488 89.007-3.736 2.073-7.861 3.167-11.935 3.167a23.23 23.23 0 0 1-11.337-2.979c-5.338-2.991-109.908-61.635-147.453-82.69v24.644c0 3.046 1.874 4.43 3.281 5.205z" })
+      );
+    };
+    StratAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    StratAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = StratAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/STRAT.js
+var require_STRAT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/STRAT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Strat = function Strat2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 595.279 595.281",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M583.452 297.74c-8.46-5.065-19.863-4.672-30.501 1.035-1.759.944-244.654 136.193-254.136 141.963-1.75 1.063-2.625 1.603-6.298-.403-3.984-2.172-247.491-138.222-252.74-141.109-2.319-1.28-5.403-3.56-5.403-8.579v-40.598C96.223 284.73 268.49 381.339 277.28 386.267c5.721 3.212 12.181 4.911 18.681 4.911 6.708 0 13.5-1.808 19.656-5.218 50.836-28.199 258.129-143.155 264.393-146.628 9.388-5.204 15.171-14.574 15.089-24.453-.077-9.288-5.28-17.587-13.924-22.197-5.024-2.68-142.465-78.933-269.411-149.405-5.122-2.839-10.479-4.286-15.921-4.286a29.344 29.344 0 0 0-14.347 3.743 4857232.06 4857232.06 0 0 0-268.61 150.63C4.808 197.894-.011 206.201 0 215.588c0 .034.006.063.006.094H0v74.964c0 16.48 8.461 30.582 23.214 38.693 5.147 2.837 248.71 138.915 252.851 141.172 17.408 9.492 31.692 5.024 40.599-.397 5.65-3.405 199.61-111.763 244.061-136.38v37.657c0 .46 0 1.853-6.64 6.036-8.608 5.326-241.883 136.511-252.916 142.49-4.718 2.559-5.303 2.217-7.241 1.104-8.39-4.82-263.222-147.959-274.067-154.053L3.027 396.941c2.654 1.495 265.532 149.152 273.78 153.888 6.955 3.996 13.44 5.462 19.312 5.462 8.621 0 15.913-3.166 21.423-6.15 1.919-1.04 245.263-137.573 254.85-143.621 6.21-3.91 22.708-14.313 22.708-35.128v-51.919c-.001-9.38-4.244-17.304-11.648-21.733zM296.156 73.922c54.056 30.012 208.972 115.999 255.583 141.785-45.32 25.127-208.483 115.616-252.792 140.188-1.841 1.018-3.379 1.217-4.848.393-9.197-5.161-197.183-110.585-250.734-140.606 48.937-27.446 213.689-119.836 252.791-141.76z" })
+      );
+    };
+    Strat.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Strat.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Strat;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SWIFT-alt.js
+var require_SWIFT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SWIFT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SwiftAlt = function SwiftAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4 0 176 50.8 226.8 113.4 226.8S226.8 176 226.8 113.4C226.8 50.8 176 0 113.4 0zM81.3 57.6l30 17.3-30 17.3V57.6zM48 76.9l30 17.3-30 17.3V76.9zm0 38.6l30 17.3-30 17.3v-34.6zm31 53.9L49 152l30-17.3v34.7zm0-38.6l-30-17.3 30-17.3v34.6zm0-38.5L49 75l30-17.3v34.6zm2.3 42.2l30 17.3-30 17.3v-34.6zm30.9 53.8l-30-17.3 30-17.3v34.6zm0-115.2l-30-17.3 30-17.3v34.6zm35.6-15.5l30 17.3-30 17.3V57.6zm0 38.6l30 17.3-30 17.3V96.2zm-33.2-57.7l30 17.3-30 17.3V38.5zm0 149.8v-34.6l30 17.3-30 17.3zm30.9-19.2l-30-17.3 30-17.3v34.6zm0-38.3l-30-17.3 30-17.3v34.6zm0-38.5l-30-17.3 30-17.3v34.6zm2.3 77.1v-34.6l30 17.3-30 17.3zm31-19.3l-30-17.3 30-17.3v34.6zm0-38.5l-30-17.3 30-17.3v34.6z" })
+      );
+    };
+    SwiftAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SwiftAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SwiftAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SWIFT.js
+var require_SWIFT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SWIFT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Swift = function Swift2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M112.1 0L66.7 26.2l45.4 26.2zM61.8 81.5V29L16.4 55.2zm0 58.3V87.4l-45.4 26.2zm100.7 0V87.4l-45.4 26.2zM61.8 198.1v-52.4l-45.4 26.2zm-46.9-81.6v52.4l45.4-26.2zm0-58.3v52.4l45.4-26.2zM65.3 29v52.5l45.4-26.3zm46.8 197.8v-52.4l-45.4 26.2zm-46.8-81.5v52.4l45.4-26.2zM115.7 0v52.4l45.4-26.2zM166 29v52.5l45.3-26.3zm0 58.4v52.4l45.3-26.2zm0 110.7l45.3-26.2-45.3-26.2zm46.9-29.2v-52.4l-45.4 26.2zm-45.4-84.5l45.4 26.2V58.2zm-5-2.9V29l-45.4 26.2zm-46.8 145.3l45.4-26.2-45.4-26.2zm46.8-29.1v-52.4l-45.4 26.2z" })
+      );
+    };
+    Swift.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Swift.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Swift;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SYNC-alt.js
+var require_SYNC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SYNC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SyncAlt = function SyncAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M119.638 59.08c15.701 2.59 21.365 15.217 21.365 15.217h24.443s-7.447-21.366-25.414-31.079-39.659-9.389-60.214 6.959c-20.559 16.35-17.968 51.151-17.968 51.151l72.519 58.516s-6.152 9.469-23.312 7.851c-17.158-1.619-22.66-15.702-22.66-15.702H63.793c0 3.508 7.608 21.691 22.662 29.945 15.053 8.257 33.346 13.598 58.758-2.103 25.414-15.703 22.177-54.064 22.177-54.064L94.872 66.85s9.065-10.36 24.766-7.77zm25.25 71.385v15.217L84.027 96.635V81.419l60.861 49.046z" }),
+        _react2.default.createElement("path", { d: "M113.379 0C50.251 0 26.725 57.786 26.725 72.516L47.283 89.35c0-26.654 19.154-67.498 68.795-67.498 42.301 0 66.202 38.469 66.202 67.498h-37.067l58.921 47.428V89.35c0-38.2-26.872-89.35-90.755-89.35zm-.665 204.924c-42.303 0-66.206-38.47-66.206-67.499h37.069L24.656 89.999v47.426c0 38.202 26.87 89.353 90.753 89.353 63.13 0 86.655-57.787 86.655-72.518l-20.558-16.835c.001 26.654-19.154 67.499-68.792 67.499z" })
+      );
+    };
+    SyncAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SyncAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SyncAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SYNC.js
+var require_SYNC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SYNC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Sync = function Sync2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M94.466 103.013l38.213 30.797v-9.555L94.466 93.459z" }),
+        _react2.default.createElement("path", { d: "M113.533.289C50.99.289.289 50.99.289 113.534c0 62.542 50.701 113.243 113.244 113.243s113.244-50.701 113.244-113.243C226.777 50.99 176.076.289 113.533.289zm.637 184.438c-40.111 0-56.982-32.115-56.982-56.102V98.846l36.995 29.779H70.908c0 18.227 15.008 42.381 41.569 42.381 31.167 0 43.194-25.646 43.194-42.381l12.907 10.569c.001 9.251-14.77 45.533-54.408 45.533zm32.637-63.419s2.032 24.086-13.924 33.945c-15.956 9.858-27.441 6.505-36.893 1.32-9.452-5.183-14.229-16.599-14.229-18.801h15.45s3.454 8.843 14.227 9.856c10.774 1.018 14.636-4.927 14.636-4.927L80.542 105.96s-1.627-21.851 11.281-32.115c12.907-10.266 26.525-10.468 37.809-4.371 11.279 6.098 15.956 19.513 15.956 19.513H130.24s-3.557-7.928-13.415-9.554c-9.859-1.625-15.552 4.878-15.552 4.878l45.534 36.997zm23.071 6.911L132.884 98.44h23.273c0-18.227-15.008-42.381-41.566-42.381-31.169 0-43.196 25.646-43.196 42.381L58.488 87.871c0-9.25 14.771-45.533 54.408-45.533 40.112 0 56.982 32.116 56.982 56.103v29.778z" })
+      );
+    };
+    Sync.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Sync.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Sync;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SYS-alt.js
+var require_SYS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SYS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var SysAlt = function SysAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M123.412 31.733v2.705c1.906.354 3.354 2.015 3.354 4.02a4.1 4.1 0 0 1-4.098 4.097 4.102 4.102 0 0 1-4.097-4.097 4.097 4.097 0 0 1 3.351-4.02v-2.896a82.19 82.19 0 0 0-6.843-.394v9.222c3.112.577 5.48 3.3 5.48 6.575a6.705 6.705 0 0 1-6.7 6.698 6.705 6.705 0 0 1-6.698-6.698c0-3.275 2.368-5.998 5.48-6.575v-9.245c-2.33.02-4.635.135-6.915.345v2.968c1.903.354 3.353 2.015 3.353 4.02a4.102 4.102 0 0 1-4.098 4.097 4.102 4.102 0 0 1-4.098-4.097 4.097 4.097 0 0 1 3.353-4.02v-2.813C63.1 36.176 31.103 71.036 31.103 113.388c0 45.447 36.842 82.283 82.288 82.283 45.447 0 82.283-36.836 82.283-82.283 0-42.054-31.545-76.708-72.262-81.655zm-27.278 6.554L113.657 64.4l17.45-26.007a76.533 76.533 0 0 1 15.595 5.485l-25.446 37.917v13.813a19.366 19.366 0 0 0-7.431-1.478c-2.694 0-5.262.547-7.596 1.539h-.002v-13.62L80.485 43.695a76.416 76.416 0 0 1 15.649-5.408zm-58.476 89.346h14.799s2.902 11.234 7.105 17.688c4.203 6.452 11.091 13.411 11.091 13.411l14.572-17.615v-20.01H36.709a77.782 77.782 0 0 1-.386-7.719c0-28.572 15.562-53.491 38.659-66.803l25.902 37.332v13.269H85.007V86.528L71.959 68.26s-10.875 7.829-14.898 17.29c-4.022 9.459-5.219 21.204-5.219 21.204H95.62a19.352 19.352 0 0 0-1.26 6.84c0 5.775 2.529 10.946 6.524 14.515v16.596l-27.717 34.423c-18.23-11.175-31.438-29.727-35.509-51.495zm51.598 56.445H82.71a78.338 78.338 0 0 1-3.77-1.758l2.5-3.041h7.815v4.799zm0-6.887h-6.103l5.334-6.492s.285.132.768.336v6.156zm11.544 12.207a75.673 75.673 0 0 1-9.458-2.168v-1.067h9.458v3.235zm0-5.32h-9.458v-4.799h9.458v4.799zm0-6.887h-9.458v-5.308a78.51 78.51 0 0 0 9.458 2.99v2.318zm11.547 13.23a76.955 76.955 0 0 1-9.458-.71v-3.548h9.458v4.258zm0-6.343h-9.458v-4.799h9.458v4.799zm0-6.887h-9.458v-1.836c2.981.643 6.203 1.116 9.458 1.23v.606zm-19.8-11.277l13.629-17.485v-24.443c-3.195-2.357-5.292-6.118-5.292-10.391 0-7.144 5.794-12.938 12.94-12.938 7.148 0 12.941 5.794 12.941 12.938 0 4.375-2.186 8.229-5.51 10.569v23.335l13.919 18.706s-10.73 4.495-21.35 4.495-21.277-4.786-21.277-4.786zm31.341 23.797a76.95 76.95 0 0 1-9.454.71v-4.258h9.454v3.548zm0-5.633h-9.454v-4.799h9.454v4.799zm0-6.887h-9.454v-.577c3.269-.045 6.482-.475 9.454-1.087v1.664zm11.549 10.046a76.743 76.743 0 0 1-9.458 2.164v-3.238h9.458v1.074zm0-3.159h-9.458v-4.799h9.458v4.799zm0-6.887h-9.458v-2.133a71.42 71.42 0 0 0 9.458-3.006v5.139zm8.628 6.887h-6.542v-4.799h7.749l2.429 3.112a75.993 75.993 0 0 1-3.636 1.687zm-6.542-6.887v-6.007c.671-.299 1.059-.485 1.059-.485l5.064 6.492h-6.123zm19.472-18.459s6.89-6.959 11.092-13.411c4.204-6.454 7.106-17.688 7.106-17.688h13.927c-4.028 21.538-17.005 39.915-34.937 51.13l-27.418-34.058v-16.596c3.994-3.569 6.523-8.74 6.523-14.515 0-2.409-.458-4.709-1.259-6.84h43.778s-1.197-11.745-5.22-21.204c-4.023-9.461-14.897-17.29-14.897-17.29l-13.049 18.269v10.658h-15.877v-13.27l25.655-36.972c22.754 13.393 38.034 38.129 38.034 66.443a77.48 77.48 0 0 1-.387 7.719h-47.644v20.01l14.573 17.615z" }),
+        _react2.default.createElement("path", { d: "M109.251 46.945a4.616 4.616 0 0 0 4.608 4.613c2.545 0 4.61-2.07 4.61-4.613a4.615 4.615 0 0 0-4.61-4.611 4.615 4.615 0 0 0-4.608 4.611zm-7.089-8.487a2.824 2.824 0 0 0 2.82 2.823 2.822 2.822 0 0 0 0-5.644 2.823 2.823 0 0 0-2.82 2.821z" }),
+        _react2.default.createElement("path", { d: "M113.388 0C50.766 0 0 50.766 0 113.388c0 62.624 50.766 113.389 113.389 113.389s113.388-50.766 113.388-113.389C226.776 50.766 176.011 0 113.388 0zm.002 201.578c-48.708 0-88.191-39.484-88.191-88.19 0-48.707 39.483-88.191 88.191-88.191 48.707 0 88.19 39.484 88.19 88.191.001 48.706-39.483 88.19-88.19 88.19z" }),
+        _react2.default.createElement("path", { d: "M119.846 38.458a2.826 2.826 0 0 0 2.821 2.823 2.822 2.822 0 0 0 0-5.644 2.825 2.825 0 0 0-2.821 2.821z" })
+      );
+    };
+    SysAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    SysAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = SysAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/SYS.js
+var require_SYS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/SYS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Sys = function Sys2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M123.502 157.245v-30.002c4.272-3.01 7.083-7.962 7.083-13.589 0-9.184-7.448-16.636-16.639-16.636-9.187 0-16.636 7.452-16.636 16.636 0 5.493 2.695 10.331 6.803 13.359v31.431L86.59 180.923s13.704 6.152 27.357 6.152c13.655 0 27.45-5.779 27.45-5.779l-17.895-24.051z" }),
+        _react2.default.createElement("path", { d: "M113.388 0C50.763 0-.001 50.765-.001 113.389c0 62.622 50.765 113.388 113.39 113.388 62.624 0 113.389-50.767 113.389-113.388C226.777 50.765 176.012 0 113.388 0zm.604 22.032a5.936 5.936 0 0 1 5.929 5.93 5.934 5.934 0 0 1-5.929 5.93c-3.269 0-5.925-2.662-5.925-5.93s2.656-5.93 5.925-5.93zm-.604 197.151c-58.43 0-105.799-47.361-105.799-105.794 0-54.453 41.14-99.273 94.03-105.126v3.618c-2.448.455-4.31 2.591-4.31 5.168a5.274 5.274 0 0 0 5.269 5.268 5.274 5.274 0 0 0 5.268-5.268c0-2.577-1.863-4.714-4.31-5.168V8.065c2.93-.271 5.894-.419 8.891-.445v11.888c-4.001.742-7.047 4.241-7.047 8.454 0 4.75 3.863 8.611 8.612 8.611 4.751 0 8.615-3.862 8.615-8.611 0-4.212-3.045-7.711-7.047-8.454V7.651c2.961.057 5.902.208 8.798.506v3.724c-2.445.455-4.31 2.591-4.31 5.168 0 2.905 2.364 5.268 5.27 5.268s5.267-2.363 5.267-5.268c0-2.577-1.862-4.714-4.31-5.168V8.402c52.349 6.363 92.908 50.918 92.908 104.987 0 58.433-47.361 105.794-105.795 105.794zm-10.81-205.761a3.63 3.63 0 0 1 0 7.257 3.632 3.632 0 0 1-3.626-3.631 3.631 3.631 0 0 1 3.626-3.626zm22.74 0a3.63 3.63 0 0 1 0 7.257 3.633 3.633 0 0 1-3.627-3.631 3.632 3.632 0 0 1 3.627-3.626z" }),
+        _react2.default.createElement("path", { d: "M104.178 90.609h.002a24.904 24.904 0 0 1 9.766-1.981c3.386 0 6.612.682 9.556 1.901v-17.76l32.717-48.751c-6.334-3.042-13.056-5.406-20.05-7.053l-22.438 33.438L91.202 16.83a98.296 98.296 0 0 0-20.121 6.951l33.096 49.314v17.514z" }),
+        _react2.default.createElement("path", { d: "M97.31 132.316c-5.136-4.59-8.388-11.238-8.388-18.663 0-3.097.588-6.055 1.62-8.793H34.254s1.539-15.1 6.71-27.263c5.173-12.165 19.155-22.231 19.155-22.231l16.776 23.489v13.703H97.31v-17.06l-33.304-48C34.309 44.613 14.3 76.652 14.3 113.388c0 3.351.171 6.663.497 9.926h62.378v25.727l-18.735 22.65s-8.856-8.95-14.26-17.246c-5.404-8.297-9.135-22.741-9.135-22.741H16.018c5.233 27.988 22.216 51.841 45.655 66.209l35.637-44.258v-21.339zm114.666-9.001c.326-3.264.495-6.575.495-9.926 0-36.404-19.645-68.208-48.9-85.427l-32.986 47.536v17.059H151V78.855l16.775-23.489s13.982 10.066 19.155 22.231c5.172 12.164 6.711 27.263 6.711 27.263h-56.288a24.902 24.902 0 0 1 1.619 8.793c0 7.424-3.251 14.073-8.388 18.663v21.34l35.252 43.787c23.056-14.419 39.74-38.047 44.918-65.738h-17.903s-3.733 14.444-9.137 22.741c-5.403 8.296-14.26 17.246-14.26 17.246l-18.735-22.65v-25.727h61.257zm-82.4 72.11h12.159v-6.608a91.425 91.425 0 0 1-12.159 3.863v2.745zm-14.846 0h12.156v-2.142c-3.82.785-7.953 1.341-12.156 1.399v.743zm0 2.682h12.156v6.17H114.73zm14.846 0h12.159v6.17h-12.159zm14.842-10.408v7.726h7.873l-6.513-8.351s-.499.241-1.36.625zm0 10.408v6.17h8.411a100.191 100.191 0 0 0 4.675-2.168l-3.123-4.002h-9.963zm-75.322 3.908a98.007 98.007 0 0 0 4.847 2.262h8.415v-6.17H72.31l-3.214 3.908zm30.791-6.59h12.16v-.779c-4.184-.147-8.327-.755-12.16-1.582v2.361zm29.689 15.697a99.676 99.676 0 0 0 12.159-2.782v-1.381h-12.159v4.163zm-55.064-15.697h7.846v-7.917a29.856 29.856 0 0 1-.987-.434l-6.859 8.351zm40.218 17.007a99.41 99.41 0 0 0 12.156-.911v-4.563H114.73v5.474zm-29.689-14.325h12.16v6.17h-12.16zm14.846 0h12.16v6.17h-12.16zm0 13.414c3.982.547 8.039.854 12.16.911v-5.474h-12.16v4.563zm-14.846-16.096h12.16v-2.979a101.442 101.442 0 0 1-12.16-3.846v6.825zm0 12.906a98.156 98.156 0 0 0 12.16 2.788v-4.16h-12.16v1.372z" })
+      );
+    };
+    Sys.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Sys.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Sys;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/TRIG-alt.js
+var require_TRIG_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/TRIG-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var TrigAlt = function TrigAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M135.653 100.404h-3.757v-1.665c0-10.4-8.297-18.86-18.495-18.86s-18.495 8.461-18.495 18.86v1.665h-3.757a5.054 5.054 0 0 0-5.054 5.054v28.909a6.855 6.855 0 0 0 6.855 6.855h40.903a6.855 6.855 0 0 0 6.855-6.855v-28.909a5.056 5.056 0 0 0-5.055-5.054zm-17.513 32.505h-9.48l1.774-13.473a6.223 6.223 0 0 1 2.965-11.696 6.224 6.224 0 0 1 2.966 11.696l1.775 13.473zm6.629-32.505H102.03v-1.665c0-6.47 5.1-11.734 11.369-11.734s11.37 5.264 11.37 11.734v1.665z" }),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4S226.8 176 226.8 113.4 176 0 113.4 0zm61.189 119.203c-4.411 22.697-11.367 38.264-28.673 54.043-14.251 13.021-32.513 19.553-32.515 19.554-.003-.001-18.265-6.533-32.515-19.554-17.306-15.779-24.262-31.345-28.673-54.043-4.411-22.697 5.175-56.218 5.175-56.218s4.581-1.654 8.08-4.517c3.499-2.863 6.765-7.168 6.765-7.168h82.337s3.266 4.305 6.765 7.168c3.499 2.863 8.08 4.517 8.08 4.517s9.585 33.521 5.174 56.218z" })
+      );
+    };
+    TrigAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    TrigAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = TrigAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/TRIG.js
+var require_TRIG = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/TRIG.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Trig = function Trig2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M123.351 100.469c0-5.496-4.455-9.951-9.951-9.951s-9.951 4.455-9.951 9.951a9.947 9.947 0 0 0 5.209 8.75l-2.837 21.542h15.157l-2.837-21.542a9.948 9.948 0 0 0 5.21-8.75zM113.4 57.366c-10.023 0-18.178 8.417-18.178 18.762v2.662h36.357v-2.662c-.001-10.345-8.156-18.762-18.179-18.762z" }),
+        _react2.default.createElement("path", { d: "M202.96 18.962s-7.324-2.645-12.919-7.223S179.224.278 179.224.278H47.576s-5.222 6.884-10.817 11.461-12.919 7.223-12.919 7.223-15.327 53.595-8.274 89.886c7.053 36.291 18.175 61.18 45.846 86.409 22.785 20.819 51.984 31.263 51.989 31.264.004-.001 29.203-10.446 51.989-31.264 27.67-25.229 38.792-50.118 45.846-86.409 7.051-36.29-8.276-89.886-8.276-89.886zm-45.9 114.132c0 6.053-4.907 10.96-10.96 10.96H80.7c-6.053 0-10.96-4.907-10.96-10.96V86.871a8.08 8.08 0 0 1 8.08-8.08h6.008v-2.662c0-16.628 13.266-30.156 29.572-30.156 16.306 0 29.572 13.528 29.572 30.156v2.662h6.008a8.08 8.08 0 0 1 8.08 8.08v46.223z" })
+      );
+    };
+    Trig.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Trig.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Trig;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/TX-alt.js
+var require_TX_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/TX-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var TxAlt = function TxAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.395 34.301c-43.558 0-78.997 35.437-78.997 78.997 0 43.559 35.439 78.996 78.997 78.996 43.559 0 78.995-35.438 78.995-78.996 0-43.56-35.436-78.997-78.995-78.997zm0 152.009c-40.261 0-73.014-32.753-73.014-73.013 0-40.259 32.753-73.012 73.014-73.012 40.259 0 73.013 32.753 73.013 73.012 0 40.26-32.754 73.013-73.013 73.013z" }),
+        _react2.default.createElement("path", { d: "M172.488 114.839c.013-.513.02-1.025.02-1.541 0-24.801-15.354-46.082-37.055-54.84-3.244-9.048-11.895-15.521-22.058-15.521-10.165 0-18.813 6.472-22.059 15.521-21.7 8.758-37.053 30.04-37.053 54.84 0 .299.007.596.011.894-5.178 4.297-8.477 10.78-8.477 18.036 0 12.939 10.49 23.43 23.43 23.43.945 0 1.873-.062 2.787-.17 10.669 10.459 25.275 16.924 41.361 16.924 16.051 0 30.624-6.435 41.288-16.853.692.063 1.396.099 2.104.099 12.94 0 23.429-10.49 23.429-23.43 0-6.902-2.982-13.103-7.728-17.389zm-35.662-48.473c0-.47-.02-.935-.045-1.397 17.317 8.414 29.453 25.868 30.255 46.186a23.334 23.334 0 0 0-10.249-2.357c-.801 0-1.595.04-2.376.12-1.421-13.402-9.29-24.899-20.436-31.345a23.313 23.313 0 0 0 2.851-11.207zm-23.431-17.08c9.433 0 17.08 7.646 17.08 17.081 0 9.432-7.647 17.081-17.08 17.081-9.435 0-17.081-7.649-17.081-17.081.001-9.435 7.647-17.081 17.081-17.081zM90.01 64.969a23.33 23.33 0 0 0 2.804 12.603c-11.17 6.459-19.051 17.997-20.445 31.439a23.375 23.375 0 0 0-12.607 1.792c.927-20.17 13.03-37.467 30.248-45.834zm-20.763 84.337c-9.432 0-17.08-7.646-17.08-17.079s7.648-17.08 17.08-17.08c9.434 0 17.081 7.647 17.081 17.08s-7.647 17.079-17.081 17.079zm44.148 17.688c-13.425 0-25.705-4.966-35.129-13.138a23.537 23.537 0 0 0 9.967-7.906c6.968 5.384 15.694 8.598 25.162 8.598a41.048 41.048 0 0 0 24.681-8.219 23.496 23.496 0 0 0 10.214 7.731c-9.393 8.054-21.581 12.934-34.895 12.934zm43.392-17.688c-9.434 0-17.08-7.646-17.08-17.079s7.646-17.08 17.08-17.08c9.433 0 17.08 7.647 17.08 17.08s-7.648 17.079-17.08 17.079z" }),
+        _react2.default.createElement("path", { d: "M113.395 0C50.769 0 0 50.769 0 113.395c0 62.627 50.769 113.396 113.396 113.396s113.395-50.769 113.395-113.396C226.79 50.769 176.022 0 113.395 0zm0 197.674c-46.524 0-84.375-37.851-84.375-84.376 0-46.526 37.851-84.375 84.375-84.375s84.375 37.85 84.375 84.375-37.85 84.376-84.375 84.376z" })
+      );
+    };
+    TxAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    TxAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = TxAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/TX.js
+var require_TX = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/TX.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Tx = function Tx2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.433 0C50.885 0 0 50.884 0 113.432c0 62.546 50.886 113.433 113.433 113.433 62.545 0 113.43-50.887 113.43-113.433C226.863 50.884 175.978 0 113.433 0zm0 219.633c-58.559 0-106.201-47.642-106.201-106.2 0-58.56 47.642-106.201 106.201-106.201 58.558 0 106.199 47.641 106.199 106.201 0 58.558-47.641 106.2-106.199 106.2z" }),
+        _react2.default.createElement("circle", { cx: "113.433", cy: "50.338", r: "22.962" }),
+        _react2.default.createElement("circle", { cx: "54.081", cy: "138.882", r: "22.962" }),
+        _react2.default.createElement("path", { d: "M58.277 107.669c1.875-18.072 12.472-33.582 27.488-42.265a31.363 31.363 0 0 1-3.771-16.944C58.846 59.707 42.575 82.965 41.33 110.08a31.375 31.375 0 0 1 12.752-2.698c1.424 0 2.822.104 4.195.287zm110.294-.125a31.828 31.828 0 0 1 3.194-.162c4.943 0 9.619 1.142 13.78 3.169-1.077-27.315-17.394-50.779-40.674-62.091a31.373 31.373 0 0 1-3.771 16.944c14.982 8.665 25.561 24.122 27.471 42.14zm-21.959 50.294c-9.259 6.936-20.747 11.05-33.179 11.05-12.729 0-24.459-4.321-33.828-11.559a31.603 31.603 0 0 1-13.399 10.629c12.67 10.987 29.179 17.662 47.228 17.662 17.898 0 34.281-6.562 46.911-17.386a31.596 31.596 0 0 1-13.733-10.396z" }),
+        _react2.default.createElement("circle", { cx: "171.765", cy: "138.88", r: "22.962" }),
+        _react2.default.createElement("path", { d: "M113.433 15.276c-54.125 0-98.158 44.032-98.158 98.156 0 54.125 44.033 98.156 98.158 98.156 54.122 0 98.155-44.031 98.155-98.156 0-54.124-44.034-98.156-98.155-98.156zm58.332 155.104c-.953 0-1.897-.051-2.829-.133-14.335 14.007-33.928 22.655-55.503 22.655-21.628 0-41.262-8.689-55.604-22.753a31.53 31.53 0 0 1-3.747.23c-17.396 0-31.5-14.103-31.5-31.498 0-9.754 4.435-18.471 11.396-24.247-.006-.401-.015-.801-.015-1.202 0-33.34 20.641-61.95 49.814-73.726 4.362-12.165 15.99-20.866 29.655-20.866 13.663 0 25.292 8.702 29.653 20.866 29.173 11.776 49.815 40.385 49.815 73.726 0 .693-.009 1.383-.026 2.071 6.38 5.763 10.391 14.1 10.391 23.378 0 17.396-14.103 31.499-31.5 31.499z" })
+      );
+    };
+    Tx.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Tx.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Tx;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/UBQ-alt.js
+var require_UBQ_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/UBQ-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var UbqAlt = function UbqAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.4 0C50.8 0 0 50.8 0 113.4s50.8 113.4 113.4 113.4c62.6 0 113.4-50.8 113.4-113.4S176 0 113.4 0zm21.401 57.602l41.932 25.274-41.932 24.329V57.602zM43.495 74.963L118.266 32.8v63.773l-74.771 43.22v-64.83zm48.504 94.235l-41.932-25.274 41.932-24.329v49.603zm91.306-17.361L108.534 194v-63.773l74.771-43.22v64.83z" })
+      );
+    };
+    UbqAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    UbqAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = UbqAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/UBQ.js
+var require_UBQ = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/UBQ.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ubq = function Ubq2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.8 226.8",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M120.246 0L15.047 59.321v91.212l105.199-60.808zM83.291 191.905v-69.789l-58.996 34.231zm23.263-54.83V226.8l105.199-59.321V76.267zm36.955-102.18v69.789l58.996-34.231z" })
+      );
+    };
+    Ubq.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ubq.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ubq;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/UNITY-alt.js
+var require_UNITY_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/UNITY-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var UnityAlt = function UnityAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M215.38 78.482v66.236c7.228-10.03 11.397-21.239 11.397-33.118 0-11.882-4.17-23.1-11.397-33.118zm-71.061.292c9.58 9.072 37.525 43.724 54.897 65.569V61.9c-20.798-16.197-51.505-26.503-85.84-26.503-16.063 0-31.304 2.278-45.146 6.315 26.197 1.374 51.155 13.433 76.089 37.062z" }),
+        _react2.default.createElement("path", { d: "M133.204 90.496c-23.366-22.138-46.25-32.892-69.957-32.892-30.119 0-38.077 11.069-38.077 16.93-.046 5.828-.081 11.115 4.191 15.434 4.499 4.519 15.535 9.908 42.543 9.908 23.73 0 40.897 5.389 51.041 16.017 6.943 7.281 10.226 16.425 9.718 27.181 0 8.433-8.172 36.705-45.191 42.63 8.331 1.311 16.976 2.074 25.904 2.074 31.912 0 60.703-8.88 81.308-23.142-20.044-25.42-52.034-65.186-61.48-74.14z" }),
+        _react2.default.createElement("path", { d: "M73.111 170.7c41.021 0 43.364-27.322 43.388-27.605.136-3.077.463-10.064-5.241-16.05-6.875-7.194-20.483-11.005-39.353-11.005-26.514 0-44.188-4.8-53.995-14.688-6.505-6.546-8.262-13.976-8.735-19.827-5.908 9.23-9.211 19.387-9.211 30.076 0 13.551 5.332 26.253 14.575 37.291 13.178 12.49 32.95 21.808 58.572 21.808z" })
+      );
+    };
+    UnityAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    UnityAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = UnityAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/UNITY.js
+var require_UNITY = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/UNITY.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Unity = function Unity2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.38-.018C50.752-.018-.018 50.752-.018 113.38s50.77 113.397 113.398 113.397 113.397-50.77 113.397-113.397S176.008-.018 113.38-.018zm-70.921 140.54C35.826 132.601 32 123.486 32 113.763c0-7.671 2.37-14.959 6.609-21.583.339 4.199 1.601 9.531 6.269 14.229 7.037 7.096 19.72 10.541 38.746 10.541 13.54 0 23.304 2.734 28.239 7.896 4.093 4.297 3.859 9.311 3.76 11.518-.016.204-1.697 19.81-31.133 19.81-18.386-.002-32.575-6.689-42.031-15.652zm70.925 27.905c-6.407 0-12.61-.548-18.588-1.488 26.566-4.251 32.429-24.54 32.429-30.591.364-7.719-1.99-14.28-6.974-19.505-7.278-7.626-19.598-11.493-36.626-11.493-19.381 0-27.3-3.867-30.529-7.11-3.065-3.1-3.042-6.893-3.008-11.075 0-4.206 5.71-12.149 27.323-12.149 17.013 0 33.434 7.718 50.201 23.603 6.778 6.427 29.735 34.961 44.118 53.203-14.786 10.232-35.447 16.605-58.346 16.605zm61.599-31.167c-12.467-15.677-32.52-40.542-39.395-47.052-17.893-16.957-35.802-25.609-54.601-26.596 9.933-2.896 20.87-4.532 32.396-4.532 24.64 0 46.675 7.395 61.6 19.019v59.161zm11.598.268v-47.53c5.186 7.188 8.18 15.238 8.18 23.765-.001 8.524-2.995 16.567-8.18 23.765z" })
+      );
+    };
+    Unity.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Unity.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Unity;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/USDT-alt.js
+var require_USDT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/USDT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var UsdtAlt = function UsdtAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M127.329 100.328v16.979a278.765 278.765 0 0 1-29.027-.064v-13.556h-.003v-3.307c-26.678 1.284-46.427 5.897-46.427 11.392 0 6.491 27.542 11.749 61.518 11.749 33.974 0 61.518-5.258 61.518-11.749-.001-5.576-20.321-10.239-47.579-11.444z" }),
+        _react2.default.createElement("path", { d: "M113.389-.001C50.767-.001 0 50.763 0 113.387c0 62.621 50.767 113.39 113.389 113.39 62.622 0 113.388-50.769 113.388-113.39 0-62.624-50.767-113.388-113.388-113.388zm13.938 132.639v50.016H98.298V132.57c-31.075-1.798-54.321-9.026-54.321-17.674 0-8.646 23.246-15.873 54.321-17.674V83.207H58.779V54.179H166.85v29.028h-39.523l.002 13.948c31.654 1.684 55.474 8.989 55.474 17.741-.001 8.754-23.82 16.06-55.476 17.742z" })
+      );
+    };
+    UsdtAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    UsdtAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = UsdtAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/USDT.js
+var require_USDT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/USDT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Usdt = function Usdt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M226.883 107.66c0-14.245-38.761-26.13-90.27-28.872l-.004-22.697h64.315V8.855H25.06v47.236h64.31v22.808C38.799 81.829.97 93.59.97 107.66c0 14.072 37.829 25.834 88.4 28.759v81.504h47.239V136.53c51.513-2.736 90.274-14.625 90.274-28.87zm-112.957 14.033c-55.288 0-100.109-8.557-100.109-19.119 0-8.943 32.139-16.451 75.553-18.54v5.383h.005v22.059c7.827.439 16.053.669 24.551.669 7.825 0 15.424-.199 22.688-.563v-27.63c44.355 1.961 77.423 9.548 77.423 18.622-.001 10.562-44.823 19.119-100.111 19.119z" })
+      );
+    };
+    Usdt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Usdt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Usdt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VIOR-alt.js
+var require_VIOR_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VIOR-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ViorAlt = function ViorAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M149.205 73.092h-18.732l-17.055 45.487-17.053-45.487H77.631l35.787 86.96z" }),
+        _react2.default.createElement("path", { d: "M25.952 149.171c0-41.624 34.529-86.975 87.76-86.975a87.855 87.855 0 0 1 74.493 41.011 77.346 77.346 0 0 0 4.69-26.571c0-32.539-20.127-60.503-48.701-72.343A113.337 113.337 0 0 0 113.417.061C50.814.059.059 50.811.059 113.418c0 37.402 18.12 70.572 46.055 91.217-12.59-15.054-20.162-34.383-20.162-55.464z" }),
+        _react2.default.createElement("path", { d: "M184.236 24.906c10.817 14.459 17.233 32.347 17.233 51.729 0 48.056-41.442 86.974-87.757 86.974a87.867 87.867 0 0 1-74.49-40.997 77.303 77.303 0 0 0-4.696 26.559c0 36.507 25.335 67.266 59.51 75.948a114 114 0 0 0 19.381 1.658c62.608 0 113.359-50.753 113.359-113.359.001-35.812-16.609-67.74-42.54-88.512z" })
+      );
+    };
+    ViorAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ViorAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ViorAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VIOR.js
+var require_VIOR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VIOR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Vior = function Vior2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.408.039C50.796.039.039 50.796.039 113.408s50.757 113.369 113.369 113.369 113.369-50.757 113.369-113.369S176.02.039 113.408.039zM37.701 113.535c0-41.812 33.896-75.705 75.706-75.705 7.125 0 14.019.985 20.555 2.827 19.082 7.906 32.524 26.583 32.524 48.313a51.663 51.663 0 0 1-3.132 17.745 58.679 58.679 0 0 0-49.75-27.389c-35.55 0-58.611 30.288-58.611 58.086 0 14.079 5.058 26.986 13.466 37.04-18.657-13.785-30.758-35.938-30.758-60.917zm99.605-26.931l-23.899 58.075-23.9-58.075h12.512l11.388 30.377 11.39-30.377h12.509zm-23.899 102.637c-4.412 0-8.737-.382-12.943-1.107-22.825-5.798-39.745-26.341-39.745-50.721a51.58 51.58 0 0 1 3.138-17.737 58.68 58.68 0 0 0 49.747 27.38c30.932 0 58.607-25.991 58.607-58.085 0-12.945-4.285-24.891-11.51-34.547 17.318 13.873 28.411 35.196 28.411 59.112.001 41.81-33.893 75.705-75.705 75.705z" })
+      );
+    };
+    Vior.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Vior.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Vior;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VNL-alt.js
+var require_VNL_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VNL-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var VnlAlt = function VnlAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388 0C50.765 0 0 50.766 0 113.387c0 62.624 50.765 113.39 113.389 113.39 62.623 0 113.389-50.766 113.389-113.39C226.777 50.766 176.011 0 113.388 0zm71.091 104.163c-.886 2.325-3.139 7.873-4.135 10.199-.997 2.326-2.621 3.09-4.946 3.09h-17.882l-2.27 6.314h15.315c3.543 0 4.541 2.436 3.654 4.762-.886 2.325-3.137 7.874-4.135 10.198-.996 2.326-2.62 3.091-4.946 3.091h-16.378l-8.825 24.548s-8.86 6.792-25.769 6.792c-16.906 0-25.618-6.497-25.618-6.497l-8.941-24.843H61.781c-2.325 0-3.95-.765-4.947-3.091-.997-2.324-3.249-7.873-4.134-10.198-.886-2.326.11-4.762 3.654-4.762h16.751l-2.272-6.314H51.519c-2.326 0-3.95-.764-4.946-3.09-.997-2.326-3.249-7.874-4.134-10.199-.886-2.326.11-4.763 3.654-4.763h18.243L53.255 68.614h23.774c8.564 0 13.584 5.316 15.355 10.189 1.772 4.872 21.707 60.246 21.707 60.246s19.492-53.898 21.854-60.395c2.361-6.497 10.188-10.04 15.503-10.04h23.626l-11.069 30.787h16.818c3.545 0 4.541 2.437 3.656 4.762z" })
+      );
+    };
+    VnlAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    VnlAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = VnlAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VNL.js
+var require_VNL = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VNL.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Vnl = function Vnl2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M220.837 82.343H194.1l17.598-48.948h-37.563c-8.453 0-20.896 5.633-24.649 15.963-3.757 10.329-34.747 96.021-34.747 96.021S83.045 57.341 80.227 49.594c-2.816-7.748-10.798-16.199-24.415-16.199H18.014l17.619 48.948H6.628c-5.634 0-7.218 3.875-5.81 7.572 1.408 3.697 4.988 12.518 6.574 16.215 1.583 3.698 4.166 4.913 7.863 4.913h30.708l3.613 10.039H22.944c-5.634 0-7.219 3.872-5.81 7.57 1.407 3.697 4.988 12.518 6.573 16.214 1.585 3.698 4.167 4.915 7.865 4.915h28.335l14.216 39.498s13.852 10.33 40.731 10.33c26.882 0 40.97-10.8 40.97-10.8l14.031-39.028h26.039c3.697 0 6.28-1.217 7.865-4.915 1.584-3.696 5.165-12.517 6.572-16.214 1.409-3.698-.174-7.57-5.811-7.57h-24.348l3.605-10.039h28.432c3.697 0 6.28-1.215 7.865-4.913 1.583-3.697 5.165-12.518 6.574-16.215 1.409-3.696-.177-7.572-5.811-7.572z" })
+      );
+    };
+    Vnl.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Vnl.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Vnl;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VPN-alt.js
+var require_VPN_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VPN-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var VpnAlt = function VpnAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M.164 103.869h43.419l47.245 47.245v-47.245h33.973v94.946H92.404zm137.518-43.138v24.127h43.986c12.432 0 16.704 7.42 16.704 14.68 0 7.259-4.948 14.848-17.661 14.848h-43.029v30.036h52.141c19.798 0 36.954-13.499 36.954-44.377 0-30.882-23.232-39.315-36.954-39.315l-52.141.001z" }),
+        _react2.default.createElement("path", { d: "M172.65 172.996c11.151 4.055 17.849 9.242 17.849 14.902 0 12.987-35.257 23.511-78.745 23.511-43.49 0-78.744-10.523-78.744-23.511 0-5.66 6.697-10.848 17.845-14.902-19.872 5.32-32.47 13.197-32.47 21.99 0 16.028 41.802 29.022 93.369 29.022s93.37-12.994 93.37-29.022c0-8.793-12.601-16.67-32.474-21.99zM85.093 80.793a1.53 1.53 0 0 1-1.529 1.533h-19.55a1.532 1.532 0 0 1-1.532-1.533V61.248c0-.845.685-1.532 1.532-1.532h19.549c.844 0 1.529.688 1.529 1.532v19.545zm39.597 9.436a2.218 2.218 0 0 1-2.214 2.222H94.173a2.219 2.219 0 0 1-2.218-2.222V61.932c0-1.225.991-2.216 2.218-2.216h28.303c1.223 0 2.214.991 2.214 2.216v28.297zm-11.894-39.098c0 .78-.634 1.415-1.412 1.415H93.366a1.414 1.414 0 0 1-1.411-1.415V33.115c0-.779.632-1.41 1.411-1.41h18.018c.778 0 1.412.631 1.412 1.41v18.016zm-29.475 0c0 .78-.632 1.415-1.409 1.415H63.893a1.415 1.415 0 0 1-1.411-1.415V33.115c0-.779.633-1.41 1.411-1.41h18.019a1.41 1.41 0 0 1 1.409 1.41v18.016zM78.26 26.586c0 .591-.48 1.068-1.068 1.068H63.551a1.068 1.068 0 0 1-1.068-1.068V12.948c0-.592.479-1.069 1.068-1.069h13.641a1.07 1.07 0 0 1 1.068 1.069v13.638zM57.027 47.121c0 .62-.502 1.122-1.122 1.122H41.611a1.12 1.12 0 0 1-1.12-1.122V32.823c0-.615.5-1.117 1.12-1.117h14.294c.62 0 1.122.502 1.122 1.117v14.298zM51.289 24.73a.73.73 0 0 1-.729.734h-9.339a.732.732 0 0 1-.73-.734v-9.336a.73.73 0 0 1 .73-.731h9.339a.73.73 0 0 1 .729.731v9.336zM35.766 12.834a.73.73 0 0 1-.73.732h-9.339a.73.73 0 0 1-.73-.732V3.498c0-.404.326-.73.73-.73h9.339c.404 0 .73.326.73.73v9.336z" })
+      );
+    };
+    VpnAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    VpnAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = VpnAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VPN.js
+var require_VPN = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VPN.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Vpn = function Vpn2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.408.039C50.796.039.039 50.796.039 113.408s50.757 113.369 113.369 113.369 113.369-50.757 113.369-113.369S176.02.039 113.408.039zM99.272 60.525c0-.511.416-.924.927-.924h11.835c.512 0 .928.414.928.924V72.36a.93.93 0 0 1-.928.93h-11.835a.93.93 0 0 1-.927-.93V60.525zm0 18.93c0-.805.651-1.456 1.457-1.456h18.592c.803 0 1.454.651 1.454 1.456v18.588c0 .806-.651 1.459-1.454 1.459h-18.592a1.457 1.457 0 0 1-1.457-1.459V79.455zM79.911 47.278a.7.7 0 0 1 .701-.702h8.961c.386 0 .702.313.702.702v8.959a.704.704 0 0 1-.702.702h-8.961a.702.702 0 0 1-.701-.702v-8.959zm0 13.247c0-.511.416-.924.927-.924h11.836c.511 0 .925.414.925.924V72.36c0 .512-.414.93-.925.93H80.838a.93.93 0 0 1-.927-.93V60.525zm0 18.481c0-.555.451-1.006 1.006-1.006H93.76c.553 0 1.005.451 1.005 1.006v12.839c0 .558-.452 1.008-1.005 1.008H80.917c-.555 0-1.006-.45-1.006-1.008V79.006zM65.466 48.885c0-.265.213-.48.479-.48h6.135a.48.48 0 0 1 .479.48v6.132a.481.481 0 0 1-.479.483h-6.135a.48.48 0 0 1-.479-.483v-6.132zm0 11.449c0-.404.328-.733.735-.733h9.39c.407 0 .737.329.737.733v9.391c0 .408-.33.737-.737.737h-9.39a.735.735 0 0 1-.735-.737v-9.391zM55.268 41.07a.48.48 0 0 1 .479-.479h6.134c.265 0 .479.214.479.479v6.133a.48.48 0 0 1-.479.482h-6.134a.48.48 0 0 1-.479-.482V41.07zm12.228 65.934l31.035 31.034v-31.034h22.317v62.369H99.566l-60.592-62.369h28.522zm44.782 78.919c-33.875 0-61.334-8.536-61.334-19.065 0-5.776 8.277-10.949 21.329-14.444-7.323 2.662-11.721 6.071-11.721 9.789 0 8.531 23.158 15.444 51.726 15.444 28.566 0 51.726-6.913 51.726-15.444 0-3.718-4.399-7.127-11.725-9.789 13.055 3.495 21.332 8.668 21.332 14.444 0 10.528-27.46 19.065-61.333 19.065zm51.283-52.281H129.31v-19.729h28.266c8.351 0 11.601-4.986 11.601-9.753 0-4.771-2.807-9.645-10.973-9.645H129.31V78.667h34.251c9.013 0 24.274 5.54 24.274 25.825.001 20.283-11.27 29.15-24.274 29.15z" })
+      );
+    };
+    Vpn.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Vpn.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Vpn;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VRC-alt.js
+var require_VRC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VRC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var VrcAlt = function VrcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M167.272 2.863l-53.384 111.909L59.315 2.863H0l113.49 221.052L226.984 2.863z" }),
+        _react2.default.createElement("path", { d: "M113.49 63.762c9.934 0 17.993-8.058 17.993-17.994s-8.059-17.994-17.993-17.994c-9.935 0-17.99 8.058-17.99 17.994s8.055 17.994 17.99 17.994zm81.524 49.626c-9.934 0-17.994 8.057-17.994 17.99 0 9.938 8.061 17.995 17.994 17.995 9.938 0 17.991-8.057 17.991-17.995.001-9.933-8.053-17.99-17.991-17.99z" })
+      );
+    };
+    VrcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    VrcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = VrcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VRC.js
+var require_VRC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VRC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Vrc = function Vrc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.619 0C50.868 0 0 50.866 0 113.619s50.868 113.619 113.619 113.619c62.753 0 113.619-50.866 113.619-113.619S176.372 0 113.619 0zm0 79.677c6.03 0 10.921 4.89 10.921 10.92 0 6.029-4.891 10.918-10.921 10.918S102.7 96.627 102.7 90.598c0-6.031 4.889-10.921 10.919-10.921zm49.477 73.797c-6.03 0-10.922-4.89-10.922-10.919 0-6.03 4.892-10.921 10.922-10.921 6.028 0 10.918 4.891 10.918 10.921 0 6.03-4.889 10.919-10.918 10.919zm-49.477 45.241L44.741 64.558H80.74l33.119 67.918 32.4-67.918h36.239l-68.879 134.157z" })
+      );
+    };
+    Vrc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Vrc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Vrc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VTC-alt.js
+var require_VTC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VTC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var VtcAlt = function VtcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M215.439 31.87c-7.453-9.837-16.496-18.284-16.496-18.284L80.594 182.888l20.103 26.661s2.982 3.642 7.554 3.642c4.57 0 6.822-3.444 6.822-3.444L227.166 51.348s-4.274-9.64-11.727-19.478zM77.071 178.217l27.88-39.893-31.215-40.669H16.695l-.295.33zm-64.449-76.001L0 116.337h23.268z" })
+      );
+    };
+    VtcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    VtcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = VtcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/VTC.js
+var require_VTC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/VTC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Vtc = function Vtc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M210.49 54.537l-91.335 129.297s-1.766 2.699-5.347 2.699c-3.584 0-5.921-2.855-5.921-2.855L92.13 162.781l94.899-135.729C167.221 10.185 141.549 0 113.494 0 50.813 0 0 50.813 0 113.494s50.813 113.494 113.494 113.494 113.494-50.813 113.494-113.494c0-21.591-6.03-41.774-16.498-58.957zm-181.532 56.08l9.892-11.069 8.347 11.069H28.958zm12.856-14.385l.23-.259h44.709l24.468 31.878-21.854 31.27-47.553-62.889z" })
+      );
+    };
+    Vtc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Vtc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Vtc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/WAVES-alt.js
+var require_WAVES_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/WAVES-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var WavesAlt = function WavesAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M297.64 123.42C133.323 123.42.116 256.627.116 420.944S133.323 718.468 297.64 718.468s297.523-133.206 297.523-297.523S461.957 123.42 297.64 123.42zM176.11 333.021l92.467-92.467c16.004-16.001 42.197-16.001 58.204 0l92.651 92.655c5.339 5.338 5.339 14.056 0 19.403l-27.859 27.859-18.68 17.268a14.335 14.335 0 0 1-19.537 0l-37.349-34.547c-10.25-9.498-26.026-9.498-36.29 0L242.38 397.74a14.349 14.349 0 0 1-19.548 0l-18.672-17.279-28.05-28.045c-5.336-5.338-5.336-14.056 0-19.395zm295.861 123.111l-145.202 145.21c-16.007 15.999-42.194 15.999-58.192 0L123.375 456.141c-26.293-26.291-6.025-34.49 13.282-52.356l20.915-19.349a14.352 14.352 0 0 1 19.546 0l37.343 34.547c10.261 9.498 26.034 9.498 36.298 0l37.34-34.547a14.34 14.34 0 0 1 19.537 0l37.35 34.547a26.67 26.67 0 0 0 36.289 0l37.344-34.547c5.543-5.122 14.07-5.185 19.548 0l22.777 21.584c18.461 17.484 36.196 24.943 11.027 50.112z" })
+      );
+    };
+    WavesAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    WavesAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = WavesAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/WAVES.js
+var require_WAVES = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/WAVES.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Waves = function Waves2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M488.968 287.71l-145.55-145.549c-25.145-25.143-66.289-25.143-91.434 0l-145.25 145.253c-8.386 8.385-8.386 22.08 0 30.465l44.058 44.055 29.332 27.145a22.54 22.54 0 0 0 30.705 0l58.658-54.272c16.122-14.919 40.901-14.919 57.012 0l58.67 54.272a22.519 22.519 0 0 0 30.688 0l29.344-27.127 43.768-43.765c8.381-8.397 8.381-22.091-.001-30.477z" }),
+        _react2.default.createElement("path", { d: "M23.894 471.66l228.091 228.097c25.131 25.13 66.271 25.13 91.417 0l228.093-228.108c39.541-39.537 11.682-51.258-17.323-78.722l-35.78-33.906c-8.603-8.143-21.998-8.049-30.705 0l-58.658 54.269c-16.121 14.919-40.891 14.919-57.012 0l-58.67-54.269a22.525 22.525 0 0 0-30.693 0l-58.658 54.269c-16.122 14.919-40.902 14.919-57.021 0l-58.659-54.269a22.544 22.544 0 0 0-30.708 0l-32.853 30.395c-30.329 28.061-62.167 40.94-20.861 82.244z" })
+      );
+    };
+    Waves.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Waves.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Waves;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XAI-alt.js
+var require_XAI_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XAI-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XaiAlt = function XaiAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M44.149 7.611l14.093 14.093-14.094 14.094-14.093-14.093zm83.787 8.373L113.845 1.891 62.042 53.692l14.099 14.091zm-20.978 82.611l84.5-84.5L177.369 0 92.856 84.509zM219.16 43.847L205.065 57.94l-14.094-14.094 14.093-14.093zm-60.177 31.985l51.8 51.798 14.095-14.091-51.804-51.805zm-16.725 16.717l-14.087 14.1 84.5 84.502 14.095-14.091zm40.668 126.283l-14.097-14.095 14.093-14.095 14.097 14.094zm-83.789-8.356l14.092 14.093 51.802-51.802-14.098-14.09zm20.98-82.611l-84.501 84.499 14.091 14.096 84.51-84.509zM7.921 182.613l14.092-14.096 14.095 14.09-14.092 14.097zm60.169-31.986L16.293 98.829 2.198 112.921l51.803 51.805zm30.814-30.817l-84.502-84.5L.307 49.401l84.509 84.509z" })
+      );
+    };
+    XaiAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XaiAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XaiAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XAI.js
+var require_XAI = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XAI.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xai = function Xai2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.366 0C50.756 0 0 50.756 0 113.366c0 62.612 50.756 113.368 113.367 113.368 62.612 0 113.368-50.756 113.368-113.368C226.734 50.756 175.978 0 113.366 0zm58.073 75.955l-7.748 7.75-7.749-7.75 7.749-7.75 7.748 7.75zm3.147 38.324l-7.749 7.747-28.481-28.481 7.747-7.752 28.483 28.486zM156.21 59.6l-46.46 46.461-7.754-7.746 46.467-46.466 7.747 7.751zm-42.675-6.711l7.749 7.75-28.478 28.48-7.752-7.748 28.481-28.482zm-38.319 3.146l7.75 7.748-7.75 7.751-7.749-7.751 7.749-7.748zm-16.357 15.23l46.462 46.459-7.747 7.755-46.465-46.466 7.75-7.748zm1.039 34.926l28.48 28.48-7.747 7.752-28.482-28.486 7.749-7.746zm-4.604 46.069l7.749-7.75 7.749 7.75-7.749 7.748-7.749-7.748zm15.229 16.358l46.463-46.463 7.753 7.746-46.468 46.466-7.748-7.749zm42.675 6.71l-7.75-7.752 28.481-28.479 7.751 7.746-28.482 28.485zm38.32-3.149l-7.75-7.749 7.75-7.748 7.75 7.748-7.75 7.749zm16.358-15.228l-46.463-46.462 7.746-7.752 46.467 46.467-7.75 7.747z" })
+      );
+    };
+    Xai.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xai.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xai;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XBS-alt.js
+var require_XBS_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XBS-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XbsAlt = function XbsAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M177.174 49.819c7.424 2.874 14.387 6.273 20.76 10.168a104.697 104.697 0 0 1 8.815 6.002c-.588-13.332-5.014-24.543-13.108-32.638-7.986-7.983-19.217-12.471-32.616-13.08a105.401 105.401 0 0 1 5.98 8.787c3.896 6.373 7.295 13.336 10.169 20.761zm-31.195-35.804C136.142 5.012 125.092.219 113.649.219S91.155 5.011 81.317 14.015c10.526 1.411 21.44 4.637 32.333 9.461 10.894-4.824 21.807-8.05 32.329-9.461zM50.125 49.82c2.874-7.425 6.273-14.388 10.167-20.762a106.384 106.384 0 0 1 5.98-8.787c-13.399.609-24.63 5.097-32.614 13.08-8.096 8.094-12.521 19.306-13.108 32.638a105.573 105.573 0 0 1 8.814-6.002c6.374-3.895 13.335-7.293 20.761-10.167zm121.618 121.616a151.518 151.518 0 0 0 4.811-16.087 199.232 199.232 0 0 1-10.057 10.841 198.084 198.084 0 0 1-10.852 10.061 151.167 151.167 0 0 0 16.098-4.815zm-72.675 16.105a155.3 155.3 0 0 0 14.582 7.857 156.537 156.537 0 0 0 14.583-7.857c-4.804.355-9.67.54-14.583.54s-9.78-.185-14.582-.54zm-17.751 25.132c9.838 9.003 20.89 13.796 32.333 13.796s22.493-4.793 32.332-13.796c-10.522-1.409-21.438-4.638-32.332-9.462-10.893 4.824-21.807 8.052-32.333 9.462zm95.855-35.806c-2.874 7.426-6.271 14.387-10.167 20.763a104.683 104.683 0 0 1-5.98 8.784c13.399-.607 24.63-5.094 32.616-13.078 8.095-8.097 12.521-19.306 13.108-32.638a105.352 105.352 0 0 1-8.815 6.004c-6.374 3.894-13.337 7.291-20.762 10.165zM16.322 91.474a105.577 105.577 0 0 1-1.988-10.477C5.324 90.84.525 101.896.525 113.342c0 11.446 4.798 22.505 13.809 32.347a105.72 105.72 0 0 1 1.988-10.478c1.754-7.261 4.272-14.588 7.491-21.87-3.219-7.281-5.738-14.606-7.491-21.867zm196.644-10.477a106.176 106.176 0 0 1-1.988 10.478c-1.754 7.261-4.274 14.585-7.49 21.869 3.216 7.282 5.736 14.609 7.49 21.87.862 3.568 1.52 7.061 1.988 10.478 9.01-9.842 13.808-20.901 13.808-32.347-.001-11.448-4.799-22.507-13.808-32.348zm-157.41 90.439a150.587 150.587 0 0 0 16.098 4.814 196.95 196.95 0 0 1-20.909-20.902 151 151 0 0 0 4.811 16.088zm-5.431 5.431c-7.426-2.874-14.387-6.272-20.761-10.165a105.829 105.829 0 0 1-8.814-6.004c.588 13.332 5.013 24.541 13.108 32.638 7.984 7.984 19.214 12.471 32.614 13.078a105.652 105.652 0 0 1-5.98-8.784c-3.894-6.376-7.293-13.337-10.167-20.763zm-18.633-63.524a151.513 151.513 0 0 0 7.975 14.779 196.637 196.637 0 0 1-.554-14.779c0-4.978.187-9.912.554-14.778a151.614 151.614 0 0 0-7.975 14.778zm175.107-38.5c-3.646-3.134-7.754-6.107-12.31-8.891-4.387-2.68-9.078-5.108-14.015-7.287 2.485 7.848 4.424 16.117 5.781 24.685 5.099 7.016 9.577 14.235 13.366 21.545 1.954-5.032 3.552-10.065 4.759-15.063 1.254-5.189 2.056-10.198 2.419-14.989zm-26.324 93.179c4.937-2.178 9.628-4.605 14.015-7.287 4.556-2.783 8.664-5.759 12.31-8.891-.36-4.793-1.165-9.801-2.418-14.991-1.207-4.996-2.805-10.03-4.759-15.062-3.789 7.309-8.268 14.527-13.366 21.544-1.358 8.568-3.297 16.838-5.782 24.687zm15.531-54.679a151.305 151.305 0 0 0-7.977-14.779c.368 4.867.554 9.8.554 14.779 0 4.978-.186 9.912-.552 14.781a151.558 151.558 0 0 0 7.975-14.781zM143.66 40.938c8.561 1.357 16.824 3.294 24.667 5.78-2.178-4.938-4.606-9.629-7.287-14.016-2.779-4.547-5.748-8.652-8.874-12.291-9.564.714-19.7 3.191-29.945 7.189 7.245 3.775 14.429 8.239 21.439 13.338zM83.641 185.75c-8.562-1.357-16.826-3.296-24.668-5.781 2.176 4.938 4.606 9.63 7.286 14.017 2.778 4.547 5.747 8.651 8.875 12.29 9.564-.715 19.699-3.191 29.946-7.189-7.245-3.773-14.432-8.239-21.439-13.337zM58.972 46.718c7.84-2.485 16.106-4.422 24.667-5.78 7.007-5.099 14.194-9.563 21.439-13.337-10.248-3.999-20.382-6.476-29.946-7.189-3.128 3.639-6.096 7.744-8.875 12.291-2.679 4.386-5.109 9.077-7.285 14.015zm12.679 3.72a151.664 151.664 0 0 0-16.095 4.811 151.228 151.228 0 0 0-4.811 16.089 195.838 195.838 0 0 1 10.058-10.841 196.082 196.082 0 0 1 10.848-10.059zm-24.628 8.227c-4.938 2.178-9.629 4.607-14.014 7.287-4.556 2.784-8.666 5.757-12.31 8.891.361 4.791 1.164 9.8 2.416 14.988 1.208 4.998 2.807 10.033 4.759 15.063 3.791-7.309 8.267-14.528 13.366-21.545 1.357-8.566 3.295-16.836 5.783-24.684zm-26.324 93.179c3.644 3.132 7.754 6.107 12.31 8.891 4.385 2.682 9.076 5.109 14.014 7.287-2.487-7.85-4.426-16.119-5.782-24.687-5.099-7.017-9.576-14.235-13.366-21.544-1.952 5.031-3.551 10.065-4.759 15.062-1.253 5.191-2.056 10.2-2.417 14.991zm155.854-80.508c-1.34-5.556-2.943-10.934-4.811-16.088a151.883 151.883 0 0 0-16.098-4.811 197.257 197.257 0 0 1 10.852 10.059c3.518 3.52 6.875 7.14 10.057 10.84zM113.65 31.288a155.467 155.467 0 0 0-14.584 7.858 197.41 197.41 0 0 1 29.167 0 156.062 156.062 0 0 0-14.583-7.858zm54.677 148.683c-7.843 2.482-16.108 4.421-24.669 5.778-7.008 5.099-14.192 9.562-21.437 13.336 10.246 3.998 20.38 6.475 29.944 7.189 3.126-3.641 6.095-7.743 8.874-12.29 2.681-4.386 5.11-9.077 7.288-14.013zm-19.723-51.343c0-6.761-2.759-12.889-7.209-17.316a22.47 22.47 0 0 0 5.338-14.558c0-12.448-10.127-22.577-22.575-22.577H85.246a7.574 7.574 0 0 0-7.574 7.573v63.797a7.574 7.574 0 0 0 7.574 7.576h38.912c.342 0 .676-.033 1.006-.076 13.014-.531 23.44-11.277 23.44-24.419zM92.821 89.325h31.337c4.096 0 7.429 3.332 7.429 7.428s-3.333 7.428-7.429 7.428H92.821V89.325zm31.337 48.6c-.284 0-.563.02-.839.05H92.821V119.33h31.337c5.125 0 9.297 4.172 9.297 9.298s-4.172 9.297-9.297 9.297z" })
+      );
+    };
+    XbsAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XbsAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XbsAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XBS.js
+var require_XBS = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XBS.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xbs = function Xbs2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M125.183 102.635a5.198 5.198 0 0 0-5.19-5.191H98.099v10.382h21.894a5.198 5.198 0 0 0 5.19-5.191z" }),
+        _react2.default.createElement("path", { d: "M113.386 0C50.765 0 0 50.765 0 113.386s50.766 113.387 113.387 113.387 113.387-50.766 113.387-113.387S176.008 0 113.386 0zm55.152 58.338c5.656 5.655 8.748 13.488 9.16 22.802a74.444 74.444 0 0 0-6.158-4.194c-4.453-2.72-9.319-5.096-14.505-7.104-2.009-5.186-4.384-10.051-7.104-14.504a73.64 73.64 0 0 0-4.179-6.139c9.362.426 17.209 3.561 22.786 9.139zm-4.06 45.562a105.895 105.895 0 0 1 5.575 10.326 106.187 106.187 0 0 1-5.573 10.326 137.606 137.606 0 0 0-.002-20.652zm8.102 16.228c1.363 3.516 2.48 7.034 3.323 10.525.875 3.624 1.438 7.124 1.691 10.473-2.548 2.188-5.419 4.267-8.602 6.212a83.177 83.177 0 0 1-9.792 5.09c1.738-5.481 3.093-11.261 4.041-17.246 3.561-4.903 6.69-9.948 9.339-15.054zm-9.338-26.858c-.949-5.985-2.303-11.763-4.041-17.246a82.886 82.886 0 0 1 9.792 5.092c3.183 1.944 6.054 4.021 8.602 6.211-.254 3.347-.816 6.846-1.691 10.473-.843 3.492-1.96 7.008-3.323 10.523-2.65-5.106-5.779-10.151-9.339-15.053zm-13.668-15.967a137.789 137.789 0 0 0-7.58-7.027c3.884.934 7.644 2.058 11.245 3.36a105.392 105.392 0 0 1 3.36 11.241 136.055 136.055 0 0 0-7.025-7.574zm7.025 66.271a105.717 105.717 0 0 1-3.36 11.241 105.315 105.315 0 0 1-11.248 3.362 137.14 137.14 0 0 0 14.608-14.603zm-10.837-85.689c1.872 3.063 3.568 6.341 5.09 9.792-5.479-1.736-11.253-3.091-17.233-4.04-4.897-3.563-9.919-6.681-14.979-9.317 7.158-2.794 14.24-4.525 20.922-5.024 2.182 2.543 4.259 5.41 6.2 8.589zm-25.065 84.082a5.648 5.648 0 0 1-.704.051H92.805a5.29 5.29 0 0 1-5.291-5.291V92.152a5.291 5.291 0 0 1 5.291-5.291h27.188c8.697 0 15.772 7.076 15.772 15.774 0 3.873-1.404 7.422-3.73 10.171a17.023 17.023 0 0 1 5.038 12.1c0 9.18-7.284 16.691-16.376 17.061zm2.144 24.098a108.563 108.563 0 0 1-10.189 5.49 108.066 108.066 0 0 1-10.189-5.49 137.728 137.728 0 0 0 20.378 0zm-20.38-103.678a108.2 108.2 0 0 1 10.19-5.491 108.808 108.808 0 0 1 10.189 5.491c-3.357-.25-6.758-.377-10.189-.377-3.432 0-6.832.127-10.19.377zm10.191-27.199c7.993 0 15.715 3.349 22.589 9.639-7.354.985-14.979 3.239-22.589 6.61-7.612-3.371-15.238-5.625-22.591-6.61 6.874-6.29 14.595-9.639 22.591-9.639zm-5.99 19.132c-5.063 2.636-10.082 5.755-14.979 9.317-5.982.948-11.756 2.303-17.234 4.04 1.521-3.451 3.218-6.728 5.091-9.792 1.94-3.179 4.015-6.046 6.198-8.589 6.684.499 13.765 2.23 20.924 5.024zm-30.934 96.829a137.494 137.494 0 0 0 7.581 7.028 105.779 105.779 0 0 1-11.248-3.362 105.554 105.554 0 0 1-3.36-11.241 137.57 137.57 0 0 0 7.027 7.575zm-7.027-66.272a105.694 105.694 0 0 1 3.36-11.241 106.042 106.042 0 0 1 11.246-3.36 137.428 137.428 0 0 0-14.606 14.601zM56.762 58.338c5.578-5.578 13.425-8.713 22.788-9.139a74.045 74.045 0 0 0-4.178 6.139c-2.721 4.454-5.096 9.318-7.105 14.504-5.187 2.01-10.05 4.384-14.505 7.104a73.591 73.591 0 0 0-6.157 4.194c.409-9.314 3.502-17.147 9.157-22.802zm4.059 66.214a106.403 106.403 0 0 1-5.573-10.326 106.158 106.158 0 0 1 5.573-10.324 137.021 137.021 0 0 0-.387 10.324c0 3.479.13 6.924.387 10.326zm1.239 10.629c.947 5.985 2.302 11.765 4.04 17.246a83.177 83.177 0 0 1-9.792-5.09c-3.183-1.945-6.054-4.023-8.599-6.212.253-3.348.813-6.849 1.689-10.473a82.536 82.536 0 0 1 3.325-10.524c2.647 5.106 5.774 10.151 9.337 15.053zm0-41.91c-3.563 4.902-6.69 9.946-9.338 15.052-1.365-3.515-2.482-7.031-3.325-10.525-.876-3.625-1.437-7.124-1.689-10.471 2.545-2.189 5.417-4.267 8.599-6.211a82.886 82.886 0 0 1 9.792-5.092c-1.736 5.483-3.091 11.262-4.039 17.247zm-18.8 43.553c-6.296-6.874-9.648-14.601-9.648-22.599 0-7.997 3.352-15.723 9.648-22.598a73.832 73.832 0 0 0 1.389 7.319c1.225 5.073 2.985 10.191 5.234 15.279-2.249 5.089-4.009 10.208-5.234 15.279a74.196 74.196 0 0 0-1.389 7.32zm13.502 33.29c-5.655-5.655-8.748-13.487-9.157-22.803a72.95 72.95 0 0 0 6.157 4.194c4.455 2.72 9.318 5.095 14.505 7.104 2.009 5.187 4.384 10.051 7.105 14.504a73.545 73.545 0 0 0 4.178 6.139c-9.363-.424-17.21-3.558-22.788-9.138zm22.779.455a82.818 82.818 0 0 1-5.091-9.793c5.479 1.735 11.254 3.091 17.235 4.038 4.896 3.563 9.917 6.683 14.978 9.318-7.159 2.793-14.24 4.525-20.924 5.023-2.184-2.541-4.258-5.409-6.198-8.586zm33.111 22.695c-7.996 0-15.717-3.348-22.591-9.64 7.353-.984 14.979-3.239 22.591-6.61 7.61 3.371 15.237 5.626 22.589 6.61-6.874 6.293-14.597 9.64-22.589 9.64zm5.987-19.133c5.061-2.635 10.082-5.754 14.978-9.316 5.982-.947 11.756-2.303 17.235-4.037a83.177 83.177 0 0 1-5.09 9.792c-1.941 3.176-4.019 6.043-6.201 8.585-6.681-.498-13.762-2.229-20.922-5.024zm49.899-4.017c-5.577 5.58-13.424 8.714-22.786 9.139a73.31 73.31 0 0 0 4.179-6.139c2.721-4.453 5.096-9.317 7.104-14.504 5.187-2.01 10.053-4.384 14.506-7.104a73.953 73.953 0 0 0 6.158-4.194c-.413 9.315-3.505 17.147-9.161 22.802zm13.503-33.29a73.544 73.544 0 0 0-1.389-7.319c-1.227-5.073-2.985-10.191-5.234-15.279 2.249-5.088 4.008-10.206 5.234-15.279a73.508 73.508 0 0 0 1.389-7.32c6.295 6.876 9.647 14.602 9.647 22.599s-3.352 15.724-9.647 22.598z" }),
+        _react2.default.createElement("path", { d: "M119.993 118.409H98.099v13.024h21.308c.192-.021.389-.032.586-.032a6.503 6.503 0 0 0 6.495-6.495 6.503 6.503 0 0 0-6.495-6.497z" })
+      );
+    };
+    Xbs.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xbs.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xbs;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XCP-alt.js
+var require_XCP_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XCP-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XcpAlt = function XcpAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M193.424 50.858h-46.207l-80.195 80.196H46.316l-14.883-14.882v-18.88l14.93-14.929H65.9L76.372 92.8a3.727 3.727 0 0 0 2.702 1.163 3.717 3.717 0 0 0 2.801-1.282L98.641 75.96v-.015a3.734 3.734 0 0 0 .033-5.251v-.007L78.92 50.93H33.342L0 84.272v44.92l33.295 33.295H80.04l80.196-80.196h20.168l15.058 15.059v19.197l-14.618 14.619h-22.675l-8.661-8.66h-.007a3.728 3.728 0 0 0-5.26-.063h-.015L124.61 142.06v45.794a3.744 3.744 0 0 0 3.742 3.742h23.929a3.743 3.743 0 0 0 3.736-3.719l.026-18.836.012-.012a6.44 6.44 0 0 1 6.436-6.43h31.372l33.032-33.033V84.331l-33.471-33.473z" })
+      );
+    };
+    XcpAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XcpAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XcpAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XCP.js
+var require_XCP = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XCP.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xcp = function Xcp2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.367.044C50.756.044 0 50.8 0 113.411c0 62.611 50.756 113.367 113.367 113.367 62.611 0 113.367-50.756 113.367-113.367C226.733 50.8 175.978.044 113.367.044zM184.63 126.48l-20.964 20.964h-19.911a4.086 4.086 0 0 0-4.083 4.081l-.008.007-.018 11.954a2.374 2.374 0 0 1-2.37 2.36h-15.187a2.375 2.375 0 0 1-2.375-2.375v-29.064l12.45-12.45h.009a2.366 2.366 0 0 1 3.337.04h.005l5.497 5.496h14.39l9.278-9.277v-12.185l-9.557-9.556h-12.8l-50.896 50.896H61.761L40.629 126.24V97.733l21.162-21.161h28.926l12.536 12.539v.004a2.36 2.36 0 0 1 .676 1.653c0 .655-.267 1.25-.695 1.679v.01l-10.641 10.611a2.361 2.361 0 0 1-1.778.814 2.362 2.362 0 0 1-1.714-.738l-6.647-6.623h-12.4l-9.475 9.474v11.983l9.445 9.444h13.142l50.896-50.896h29.325L184.63 97.77v28.71z" })
+      );
+    };
+    Xcp.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xcp.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xcp;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XEM-alt.js
+var require_XEM_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XEM-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XemAlt = function XemAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M78.6 106.173c.496-.27.938-.521 1.376-.792 15.509-9.309 24.78-25.579 24.857-43.568l-.002-.136c0-24.766 12.935-46.864 33.7-58.891a234.48 234.48 0 0 0-25.167-1.37c-38.646 0-77.097 9.6-111.201 27.76C.558 30.03.448 30.217.325 30.434c-.268.463-.345.634-.321 1.471a236.574 236.574 0 0 0 4.699 40.272 236.944 236.944 0 0 0 2.028 8.924c7.849 18.838 26.752 31.479 47.11 31.479 8.668 0 17.231-2.216 24.759-6.407zm60.941 14.769a34.435 34.435 0 0 0-1.2-.704l-.469-.271c-7.336-4.057-15.862-6.252-24.488-6.252-8.671 0-17.201 2.195-24.669 6.354-.513.319-1.191.715-1.869 1.082-10.016 5.57-21.439 8.522-33.004 8.522-11.689 0-23.277-3.117-33.5-8.91 18.95 42.441 50.367 79.015 89.329 103.742.933.596 1.578.855 3.852.855 2.059 0 2.56-.208 3.57-.846a236.294 236.294 0 0 0 30.049-22.641 235.178 235.178 0 0 0 6.766-6.265c6.745-8.873 10.457-19.835 10.457-30.899-.002-17.833-9.513-34.604-24.824-43.767zm86.903-90.511c-.121-.208-.231-.4-1.838-1.256a236.18 236.18 0 0 0-35.429-15.295 237.211 237.211 0 0 0-8.469-2.676 51.714 51.714 0 0 0-7.798-.6c-27.901 0-50.641 22.532-50.979 50.356v.653c.008 17.994 9.207 34.302 24.616 43.628l.224.137c.471.255 1.063.593 1.617.93 20.194 12.09 32.823 34.165 33.062 57.717 27.873-38.406 43.886-84.932 45.31-132.138.023-.832-.04-.978-.316-1.456z" })
+      );
+    };
+    XemAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XemAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XemAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XEM.js
+var require_XEM = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XEM.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xem = function Xem2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.494 0C50.813 0 0 50.813 0 113.494s50.813 113.494 113.494 113.494 113.494-50.813 113.494-113.494S176.175 0 113.494 0zM56.229 109.718a125.808 125.808 0 0 1-1.088-4.792 127.089 127.089 0 0 1-2.523-21.623c-.013-.45.028-.541.173-.79.066-.117.125-.217.986-.675 18.31-9.751 38.957-14.905 59.706-14.905 4.469 0 8.995.246 13.513.735-11.149 6.458-18.094 18.323-18.094 31.62l.001.073c-.042 9.659-5.02 18.396-13.346 23.393a27.4 27.4 0 0 1-14.033 3.865c-10.93 0-21.079-6.787-25.295-16.901zm79.023 61.48a124.58 124.58 0 0 1-3.634 3.365 126.985 126.985 0 0 1-16.133 12.155c-.544.343-.812.454-1.917.454-1.221 0-1.567-.14-2.068-.459-20.919-13.277-37.788-32.914-47.962-55.701 5.488 3.11 11.709 4.784 17.987 4.784 6.21 0 12.343-1.586 17.72-4.577.364-.196.729-.408 1.005-.58 4.009-2.232 8.588-3.412 13.245-3.412 4.631 0 9.209 1.18 13.148 3.358l.252.146c.207.116.416.236.644.377 8.221 4.921 13.327 13.926 13.327 23.5-.001 5.942-1.993 11.828-5.614 16.59zm14.789-16.957c-.129-12.646-6.91-24.496-17.752-30.988a20.19 20.19 0 0 0-.869-.5l-.119-.074c-8.273-5.007-13.214-13.764-13.217-23.424v-.35c.182-14.94 12.391-27.038 27.371-27.038 1.383 0 2.79.108 4.188.322 1.556.46 3.085.944 4.546 1.437a126.747 126.747 0 0 1 19.021 8.212c.863.459.923.563.988.674.147.256.183.334.17.782-.765 25.345-9.362 50.326-24.327 70.947z" })
+      );
+    };
+    Xem.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xem.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xem;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XMR.js
+var require_XMR = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XMR.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xmr = function Xmr2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M39.722 149.021v-95.15l73.741 73.741 73.669-73.669v95.079h33.936a113.219 113.219 0 0 0 5.709-35.59c0-62.6-50.746-113.347-113.347-113.347C50.83.085.083 50.832.083 113.432c0 12.435 2.008 24.396 5.709 35.59h33.93z" }),
+        _react2.default.createElement("path", { d: "M162.54 172.077v-60.152l-49.495 49.495-49.148-49.148v59.806h-47.48c19.864 32.786 55.879 54.7 97.013 54.7 41.135 0 77.149-21.914 97.013-54.7H162.54z" })
+      );
+    };
+    Xmr.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xmr.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xmr;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XPM-alt.js
+var require_XPM_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XPM-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XpmAlt = function XpmAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M12.874 0h43.405v94.721c0 39.543 34.764 39.176 34.764 39.176V0h43.589v133.896s35.864 2.022 35.864-39.727V0h43.407v95.271c0 55.729-43.038 74.673-79.271 74.673v14.531h27.956v19.679h-27.956v22.623H90.919v-22.623H64.188v-19.679h26.668V169.76c-11.584 0-77.982-2.759-77.982-78.535V0z" })
+      );
+    };
+    XpmAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XpmAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XpmAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XPM.js
+var require_XPM = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XPM.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xpm = function Xpm2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.379 0C50.761 0 0 50.761 0 113.377c0 62.617 50.761 113.379 113.379 113.379 62.616 0 113.377-50.763 113.377-113.379C226.757 50.761 175.995 0 113.379 0zm53.008 113.145c0 29.39-22.699 39.381-41.806 39.381v7.662h14.742v10.377h-14.742v11.933h-23.053v-11.933H87.433v-10.377h14.063v-7.759c-6.111 0-41.125-1.456-41.125-41.418V62.903h22.891v49.952c0 20.854 18.331 20.659 18.331 20.659V62.903h22.988v70.611s18.914 1.066 18.914-20.949V62.903h22.892v50.242z" })
+      );
+    };
+    Xpm.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xpm.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xpm;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XRP-alt.js
+var require_XRP_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XRP-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XrpAlt = function XrpAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M196.224 139.515c-7.59-4.162-15.848-6.09-23.981-6.026l.069-.039c-11.158.128-20.311-8.55-20.442-19.38-.129-10.686 8.565-19.467 19.505-19.832v-.005l-.02-.01c8.276-.04 16.649-2.145 24.277-6.547 22.81-13.165 30.309-41.787 16.749-63.93-13.563-22.144-43.047-29.423-65.857-16.258-22.81 13.164-30.308 41.787-16.747 63.93 5.648 9.227 2.526 21.152-6.978 26.638-9.369 5.407-21.433 2.534-27.188-6.383l-.005.002v.025c-4.147-6.951-10.189-12.956-17.913-17.192-23.103-12.672-52.417-4.764-65.47 17.667-13.053 22.426-4.903 50.882 18.201 63.553 23.105 12.672 52.415 4.763 65.469-17.667.079-.135.149-.275.226-.411v.033l.005.002c5.545-9.054 17.555-12.191 27.047-6.985 9.628 5.281 13.021 17.136 7.583 26.48-13.055 22.431-4.904 50.885 18.199 63.555 23.104 12.673 52.417 4.763 65.47-17.667 13.051-22.428 4.904-50.881-18.199-63.553z" })
+      );
+    };
+    XrpAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XrpAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XrpAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XRP.js
+var require_XRP = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XRP.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xrp = function Xrp2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.48.183C50.908.183.183 50.908.183 113.48c0 62.572 50.725 113.297 113.297 113.297 62.572 0 113.297-50.726 113.297-113.297C226.777 50.908 176.052.183 113.48.183zm47.419 163.777c-7.365 12.656-23.905 17.119-36.941 9.97-13.037-7.149-17.635-23.205-10.268-35.862 3.068-5.272 1.153-11.96-4.28-14.941-5.356-2.937-12.132-1.166-15.261 3.941h-.002v-.021c-.044.078-.083.155-.128.232-7.365 12.656-23.904 17.12-36.94 9.97-13.038-7.149-17.636-23.207-10.271-35.86 7.367-12.657 23.905-17.12 36.944-9.969 4.357 2.39 7.765 5.779 10.107 9.7v-.014l.002-.002c3.248 5.032 10.055 6.654 15.341 3.603 5.362-3.095 7.125-9.824 3.936-15.03-7.651-12.494-3.42-28.645 9.451-36.072 12.869-7.428 29.506-3.321 37.159 9.172 7.651 12.495 3.422 28.645-9.451 36.073a27.612 27.612 0 0 1-13.697 3.694l.012.005v.002c-6.175.207-11.081 5.161-11.007 11.191.073 6.11 5.239 11.008 11.533 10.936l-.039.021a27.627 27.627 0 0 1 13.533 3.401c13.034 7.151 17.632 23.206 10.267 35.86z" })
+      );
+    };
+    Xrp.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xrp.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xrp;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XTZ-alt.js
+var require_XTZ_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XTZ-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XtzAlt = function XtzAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.5 0C50.816 0 0 50.816 0 113.5S50.816 227 113.5 227 227 176.184 227 113.5 176.184 0 113.5 0zm56.797 178.054c-3.156 6.377-7.857 11.146-14.294 14.303-6.249 3.096-13.18 4.644-20.604 4.644-10.892 0-18.873-2.6-23.823-7.863-5.013-5.2-7.488-10.835-7.488-16.902 0-2.229.434-4.086 1.3-5.572s2.042-2.724 3.59-3.591c1.484-.867 3.341-1.3 5.568-1.3 2.227 0 4.084.433 5.569 1.3 1.484.867 2.722 2.043 3.589 3.591.866 1.548 1.299 3.343 1.299 5.572 0 2.663-.619 4.83-1.918 6.501-1.299 1.672-2.785 2.786-4.517 3.281 1.484 2.105 3.897 3.592 7.115 4.459 3.219.865 6.497 1.361 9.777 1.361 4.517 0 8.601-1.239 12.252-3.652 3.649-2.416 6.373-6.068 8.106-10.773 1.731-4.768 2.599-10.154 2.599-16.222 0-6.563-.929-12.197-2.847-16.842-1.856-4.643-4.642-8.11-8.293-10.4-3.649-2.291-7.61-3.406-11.817-3.406-2.785 0-6.25 1.177-10.458 3.468l-7.673 3.838v-3.715l34.467-45.939h-47.709v47.735c0 3.962.867 7.183 2.599 9.782 1.733 2.539 4.395 3.839 7.982 3.839 2.785 0 5.446-.929 7.983-2.786a28.794 28.794 0 0 0 6.62-6.811c.247-.495.495-.928.866-1.176s.743-.372 1.114-.372c.619 0 1.423.31 2.289.929.805.929 1.238 1.981 1.238 3.22a20.884 20.884 0 0 1-.434 2.414c-1.979 4.396-4.703 7.802-8.168 10.092-3.465 2.354-7.302 3.469-11.51 3.469-10.333 0-17.45-2.043-21.41-6.068-3.96-4.086-5.939-9.597-5.939-16.531V84.192H63v-8.916h24.381V55.092l-5.57-5.572V45h16.15l6.063 3.158v27.18l62.993-.186 6.249 6.254-38.612 38.634c2.353-.928 4.766-1.486 7.303-1.733 4.208 0 8.91 1.301 14.17 3.962 5.26 2.663 9.282 6.255 12.128 10.773 2.847 4.582 4.703 8.916 5.507 13.126.867 4.21 1.238 7.925 1.238 11.146 0 7.429-1.547 14.363-4.703 20.74z" })
+      );
+    };
+    XtzAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XtzAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XtzAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XTZ.js
+var require_XTZ = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XTZ.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xtz = function Xtz2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 227 227",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M133.449 227c-16.238 0-28.141-3.884-35.521-11.743-7.473-7.767-11.164-16.181-11.164-25.243 0-3.327.646-6.102 1.938-8.321s3.045-4.068 5.352-5.362c2.213-1.295 4.982-1.942 8.305-1.942 3.32 0 6.09.647 8.303 1.942 2.215 1.294 4.061 3.051 5.352 5.362s1.938 4.994 1.938 8.321c0 3.977-.922 7.212-2.859 9.709s-4.152 4.161-6.736 4.901c2.215 3.143 5.813 5.363 10.609 6.657 4.799 1.295 9.689 2.034 14.58 2.034 6.734 0 12.824-1.85 18.268-5.455 5.443-3.606 9.502-9.063 12.086-16.09 2.584-7.119 3.875-15.163 3.875-24.226 0-9.801-1.383-18.215-4.242-25.15-2.77-6.935-6.922-12.112-12.365-15.533s-11.348-5.085-17.621-5.085c-4.152 0-9.32 1.756-15.594 5.178l-11.441 5.731v-5.548l51.391-68.607H86.764v71.29c0 5.918 1.291 10.726 3.875 14.608 2.584 3.791 6.551 5.733 11.902 5.733 4.15 0 8.119-1.388 11.902-4.161 3.781-2.774 7.104-6.195 9.871-10.171.371-.74.738-1.388 1.293-1.757.553-.37 1.107-.555 1.66-.555.922 0 2.123.462 3.414 1.387 1.199 1.387 1.846 2.959 1.846 4.809a30.961 30.961 0 0 1-.646 3.605c-2.953 6.565-7.012 11.65-12.18 15.071-5.166 3.515-10.887 5.178-17.16 5.178-15.408 0-26.02-3.051-31.924-9.061-5.904-6.103-8.857-14.332-8.857-24.688V58.53H25.5V45.215h36.352V15.072L53.549 6.75V0h24.08l9.043 4.716v40.591l93.926-.276 9.32 9.339-57.574 57.697c3.506-1.387 7.105-2.219 10.887-2.589 6.273 0 13.287 1.942 21.129 5.918 7.844 3.976 13.84 9.338 18.084 16.088 4.244 6.844 7.012 13.315 8.213 19.604 1.291 6.287 1.844 11.835 1.844 16.643 0 11.097-2.307 21.452-7.012 30.977-4.705 9.523-11.717 16.643-21.313 21.359-9.318 4.622-19.652 6.935-30.725 6.935h-.002V227z" })
+      );
+    };
+    Xtz.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xtz.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xtz;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XVG-alt.js
+var require_XVG_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XVG-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XvgAlt = function XvgAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.417 0C50.779 0 0 50.779 0 113.417s50.779 113.417 113.417 113.417 113.417-50.779 113.417-113.417S176.055 0 113.417 0zM72.944 157.51L38.787 72.683 107.1 184.638 72.944 157.51zm36.916 17.574L41.548 63.128 84.942 99.52 70.406 67.409l27.312 22.906-12.361-23.773 24.503 20.549v87.993zm7.113-87.993l24.504-20.549-12.362 23.773 27.313-22.906-14.536 32.111 43.395-36.393-68.313 111.956V87.091zm36.918 70.419l-34.157 27.128 68.313-111.955-34.156 84.827z" })
+      );
+    };
+    XvgAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XvgAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XvgAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XVG.js
+var require_XVG = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XVG.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xvg = function Xvg2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M89.428 62.451L47.981 27.69 70.04 76.42 4.189 21.193l103.664 169.892V57.558L70.668 26.375zM51.832 164.417l51.832 41.167L0 35.693zM156.459 76.42l22.06-48.73-41.449 34.761 18.761-36.076-37.185 31.183v133.527L222.309 21.193zm18.209 87.997l51.831-128.724-103.662 169.891z" })
+      );
+    };
+    Xvg.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xvg.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xvg;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XZC-alt.js
+var require_XZC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XZC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var XzcAlt = function XzcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement(
+          "title",
+          null,
+          "ZCoin (XZC) Flat-alt"
+        ),
+        _react2.default.createElement("path", {
+          d: "M125 250C55.964 250 0 194.036 0 125S55.964 0 125 0s125 55.964 125 125-55.964 125-125 125zm22.71-98.77h28.244v24.704h-84.86L196.438 70.5c3.435-3.438 4.453-8.659 2.671-13.116C197.201 52.93 192.875 50 187.913 50H62.087C55.344 50 50 55.348 50 62.097v89.134l52.29-52.335H74.046v-24.83h84.733L53.562 179.5c-3.435 3.438-4.453 8.659-2.671 13.116C52.799 197.07 57.125 200 62.087 200h125.826c6.616 0 12.087-5.348 12.087-12.097V98.896l-52.29 52.335z",
+          fillRule: "evenodd"
+        })
+      );
+    };
+    XzcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    XzcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = XzcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/XZC.js
+var require_XZC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/XZC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Xzc = function Xzc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          width: size,
+          height: size,
+          viewBox: "0 0 250 250",
+          xmlns: "http://www.w3.org/2000/svg",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M159.565 164.846h42.366v37.055H74.641L232.656 43.75c5.153-5.157 6.68-12.988 4.008-19.673C233.802 17.393 227.313 13 219.87 13H31.13C21.015 13 13 21.022 13 31.145v133.701l78.435-78.501H49.07V49.099h127.099L18.344 207.25c-5.153 5.157-6.68 12.988-4.008 19.673C17.198 233.607 23.687 238 31.13 238h188.74c9.924 0 18.13-8.022 18.13-18.145V86.345l-78.435 78.501z" })
+      );
+    };
+    Xzc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Xzc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Xzc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/YBC-alt.js
+var require_YBC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/YBC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var YbcAlt = function YbcAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M86.182 157.237h54.731v66.147a113.77 113.77 0 0 1-27.63 3.393C50.602 226.777-.21 175.964-.21 113.283c0-47.096 28.688-87.49 69.54-104.666v131.809l16.852 16.811z" }),
+        _react2.default.createElement("path", { d: "M157.237 86.14v131.809c40.854-17.176 69.54-57.569 69.54-104.666 0-62.681-50.813-113.494-113.494-113.494-9.529 0-18.782 1.182-27.626 3.393V69.33h54.73l16.85 16.81z" })
+      );
+    };
+    YbcAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    YbcAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = YbcAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/YBC.js
+var require_YBC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/YBC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Ybc = function Ybc2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.448.122C50.862.122.123 50.861.123 113.451c0 62.588 50.739 113.326 113.326 113.326 62.59 0 113.329-50.738 113.329-113.326C226.777 50.861 176.039.122 113.448.122zm17.643 183.634a72.546 72.546 0 0 1-17.642 2.167c-40.025 0-72.471-32.448-72.471-72.472 0-30.076 18.319-55.869 44.405-66.837v84.169l10.76 10.734h34.948v42.239zm10.426-3.471V96.118l-10.763-10.734H95.809V43.143a72.634 72.634 0 0 1 17.64-2.167c40.026 0 72.474 32.448 72.474 72.475 0 30.072-18.32 55.866-44.406 66.834z" })
+      );
+    };
+    Ybc.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Ybc.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Ybc;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ZEC-alt.js
+var require_ZEC_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ZEC-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ZecAlt = function ZecAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M297.582 123.305C133.231 123.305 0 256.581 0 421.006c0 164.407 133.231 297.689 297.582 297.689 164.349 0 297.582-133.282 297.582-297.689 0-164.425-133.233-297.701-297.582-297.701zm104.83 224.116c-1.869 9.971-13.072 18.691-20.545 27.423-23.654 28.043-47.312 55.464-71.589 83.513-9.336 11.219-18.672 21.19-29.254 32.403h121.388v61.078h-74.701c1.245 17.454 1.866 33.655 3.111 51.109h-62.873v-50.482H193.25c0-19.948-2.487-39.888 1.246-58.584 1.867-9.977 13.072-18.702 19.918-27.425 23.654-28.047 47.309-55.47 71.586-83.511 9.338-10.595 18.677-20.565 29.258-32.411H198.851v-61.073h69.096v-51.105h60.384v49.857h75.322c.003 20.564 2.492 40.511-1.241 59.208z" })
+      );
+    };
+    ZecAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ZecAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ZecAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ZEC.js
+var require_ZEC = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ZEC.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Zec = function Zec2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 123.305 595.279 595.28",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M297.606 718.517C133.506 718.517 0 585.015 0 420.914 0 256.81 133.506 123.305 297.606 123.305c164.098 0 297.605 133.505 297.605 297.609 0 164.101-133.508 297.603-297.605 297.603zm0-566.181c-148.092 0-268.573 120.482-268.573 268.577 0 148.092 120.481 268.575 268.573 268.575 148.091 0 268.569-120.482 268.569-268.575 0-148.095-120.478-268.577-268.569-268.577z" }),
+        _react2.default.createElement("path", { d: "M278.497 500.175h138.006v69.357h-84.927c1.416 19.818 2.12 38.221 3.539 58.036h-71.482v-57.325h-84.927c0-22.651-2.829-45.294 1.415-66.525 2.125-11.326 14.862-21.238 22.649-31.143 26.89-31.849 53.788-62.987 81.388-94.833 10.614-12.03 21.232-23.353 33.262-36.803H185.077v-69.356h78.556v-58.032h68.648v56.617h85.637c0 23.353 2.83 46.002-1.415 67.234-2.122 11.323-14.862 21.229-23.356 31.14-26.89 31.849-53.785 62.984-81.388 94.835-10.616 12.738-21.23 24.061-33.262 36.798z" })
+      );
+    };
+    Zec.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Zec.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Zec;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ZEIT-alt.js
+var require_ZEIT_alt = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ZEIT-alt.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var ZeitAlt = function ZeitAlt2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M113.388.001C50.766.001 0 50.767 0 113.389c0 62.623 50.766 113.388 113.388 113.388 62.623 0 113.389-50.765 113.389-113.388C226.777 50.767 176.01.001 113.388.001zm55.273 58.117c10.684 10.684 17.622 23.692 20.829 37.397l-30.091 30.089-.127-75.504a78.731 78.731 0 0 1 9.389 8.018zm-55.274-22.895c15.111 0 29.215 4.291 41.173 11.717v42.552L101.081 36.19a78.63 78.63 0 0 1 12.306-.967zm22.946 97.083c-.743-2.014-6.042-1.166-6.995-2.755-.955-1.591-3.921-4.663-8.479-5.405-4.558-.743-6.888 2.438-9.325.742-2.438-1.696.847-3.181-2.438-3.922-3.287-.741.104-5.087-2.333-3.391-2.437 1.695-4.239 1.588-4.239-1.379 0-2.966 3.816-5.299 6.572-4.132 2.754 1.166 4.132 2.755 2.967 3.71-1.165.953.53 2.437 2.438 3.283 1.907.85 5.723 1.38 4.557.105-1.165-1.27-5.193-.952-5.086-2.542.105-1.59-2.014-5.086-.584-6.041 1.431-.955 3.974-5.829 6.201-6.358 2.226-.531.213-2.651 2.12-2.437 1.906.21 4.662.182 4.874-.703.212-.888 3.18.596 3.286-.994.105-1.589-3.18-5.299-3.498-7.312-.317-2.014 1.377-5.829.954-7.418-.423-1.591-5.829-5.3-3.921-6.465 1.907-1.166 6.146 1.165 6.676 3.074.53 1.906 2.119 10.597 4.133 9.854 2.014-.742 1.062-4.021 3.075-3.97 1.394.035 2.379-.971 2.503-2.228a38.407 38.407 0 0 1 8.786 12.576c-.872-.938-1.649-1.468-2.176-1.292-1.622.541.529 3.923 1.271 4.982.743 1.059 1.908 2.542 1.061 2.861-.848.318-1.613 1.696-1.283 3.179.33 1.484.436 5.179-.942 6.299-1.378 1.119-3.285 6.208-1.695 8.537 1.59 2.334 2.605.425 4.218 1.062.561.22.782.673.898 1.132-4.228 13.366-15.587 23.554-29.609 26.114.908-.997 1.682-2.808 2.874-3.508 1.803-1.061 5.298-5.724 7.205-6.678 1.905-.95 6.676-6.566 5.934-8.58zM86.099 90.763c1.589 0 3.178-5.505 5.404-2.17s-.742 3.971-.317 5.667c.424 1.696 2.309 3.814.518 6.676-1.79 2.862-.518 9.326 3.297 13.299 3.814 3.976 1.031 4.399 6.08 6.307 5.047 1.906 5.683 1.802 7.062 2.756 1.378.953 1.166 2.438 2.967 2.966 1.801.53 3.285 1.696 2.278 3.076-1.005 1.375-2.914 3.707-.211 6.676 2.703 2.967 5.14 3.392 4.611 7.632-.47 3.738-.769 6.747.405 7.761-1.574.196-3.177.3-4.805.3-21.162 0-38.318-17.156-38.318-38.319 0-10.208 3.993-19.483 10.5-26.351-.257 1.762-.347 3.724.529 3.724zm8.75-10.914a38.143 38.143 0 0 1 18.538-4.778c1.853 0 3.676.137 5.459.39-5.937 1.28-13.014 4.282-15.05 4.282-1.398-.001-5.201-.278-8.947.106zM58.115 58.118C68.8 47.433 81.808 40.495 95.513 37.289l30.088 30.089-75.504.126a79.076 79.076 0 0 1 8.018-9.386zM35.222 113.39c0-15.111 4.292-29.216 11.715-41.172h42.554l-53.302 53.478a78.75 78.75 0 0 1-.967-12.306zm22.894 55.271c-10.684-10.684-17.624-23.691-20.828-37.396l30.089-30.09.126 75.505a78.815 78.815 0 0 1-9.387-8.019zm55.274 22.894c-15.111 0-29.217-4.29-41.173-11.716v-42.553l53.48 53.302c-4.011.636-8.12.966-12.307.967zm55.271-22.894c-10.686 10.685-23.692 17.623-37.397 20.829l-30.09-30.09 75.506-.125a79.072 79.072 0 0 1-8.019 9.386zm11.178-14.1h-42.552l53.301-53.479c.634 4.009.966 8.118.967 12.307-.002 15.11-4.292 29.216-11.716 41.172z" })
+      );
+    };
+    ZeitAlt.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    ZeitAlt.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = ZeitAlt;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/icons/ZEIT.js
+var require_ZEIT = __commonJS({
+  "node_modules/react-cryptocoins/dist/icons/ZEIT.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    var _extends = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    var _react = require_react();
+    var _react2 = _interopRequireDefault(_react);
+    var _propTypes = require_prop_types();
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    function _objectWithoutProperties(obj, keys) {
+      var target = {};
+      for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+      }
+      return target;
+    }
+    var Zeit = function Zeit2(props) {
+      var color = props.color, size = props.size, otherProps = _objectWithoutProperties(props, ["color", "size"]);
+      return _react2.default.createElement(
+        "svg",
+        _extends({
+          xmlns: "http://www.w3.org/2000/svg",
+          width: size,
+          height: size,
+          viewBox: "0 0 226.777 226.777",
+          fill: color
+        }, otherProps),
+        _react2.default.createElement("path", { d: "M173.112 16.995C155.766 6.225 135.305 0 113.387 0c-6.074 0-12.037.483-17.854 1.403l77.578 77.32V16.995zM223.78 87.46c-4.649-19.881-14.716-38.75-30.215-54.25a114.29 114.29 0 0 0-13.615-11.631l.182 109.527L223.78 87.46zm1.593 8.075l-77.317 77.578h61.728c10.769-17.346 16.993-37.808 16.994-59.725a114.441 114.441 0 0 0-1.405-17.853zM139.319 223.78c19.879-4.649 38.749-14.716 54.247-30.214a114.396 114.396 0 0 0 11.633-13.616l-109.53.183 43.65 43.647zm-85.655-13.998c17.345 10.771 37.806 16.995 59.726 16.995a114.34 114.34 0 0 0 17.853-1.403l-77.578-77.319v61.727zM2.997 139.32c4.648 19.878 14.715 38.747 30.214 54.246a114.488 114.488 0 0 0 13.616 11.633l-.183-109.53L2.997 139.32zm13.997-85.655C6.226 71.009 0 91.47 0 113.389c.001 6.074.483 12.036 1.403 17.854l77.32-77.578H16.994zM87.459 2.997c-19.88 4.651-38.75 14.715-54.25 30.213a114.549 114.549 0 0 0-11.63 13.617l109.527-.184L87.459 2.997zM99.474 64.58c2.954 0 13.218-4.355 21.83-6.211a56.165 56.165 0 0 0-7.917-.567 55.324 55.324 0 0 0-26.893 6.932c5.435-.557 10.952-.154 12.98-.154zm38.587 88.701c-2.767 1.384-7.84 8.147-10.453 9.685-1.728 1.018-2.851 3.644-4.169 5.091 20.341-3.717 36.819-18.495 42.951-37.882-.169-.666-.49-1.324-1.304-1.643-2.338-.924-3.812 1.845-6.118-1.538-2.306-3.382.462-10.76 2.46-12.387 1.998-1.623 1.845-6.984 1.366-9.137-.479-2.151.632-4.149 1.862-4.611 1.229-.461-.461-2.614-1.537-4.15s-4.196-6.442-1.845-7.225c.764-.255 1.894.513 3.157 1.872a55.662 55.662 0 0 0-12.747-18.241c-.178 1.821-1.608 3.28-3.63 3.229-2.921-.072-1.538 4.685-4.46 5.761-2.921 1.076-5.226-11.53-5.996-14.297-.768-2.767-6.916-6.148-9.684-4.457-2.769 1.69 5.072 7.07 5.688 9.377.615 2.306-1.845 7.84-1.383 10.762.461 2.92 5.227 8.301 5.073 10.608-.154 2.305-4.46.153-4.766 1.439-.308 1.287-4.306 1.327-7.073 1.021-2.767-.31.155 2.766-3.074 3.535-3.229.768-6.918 7.839-8.993 9.224-2.074 1.383.999 6.456.847 8.762-.154 2.308 5.688 1.846 7.378 3.689 1.69 1.846-3.844 1.076-6.61-.153-2.767-1.229-5.227-3.383-3.535-4.766 1.69-1.383-.308-3.689-4.305-5.38-3.996-1.692-9.532 1.691-9.532 5.995 0 4.305 2.615 4.459 6.151 1.999 3.534-2.46-1.385 3.844 3.381 4.92 4.766 1.074 0 3.228 3.537 5.688 3.536 2.46 6.917-2.152 13.527-1.076 6.611 1.076 10.915 5.535 12.299 7.841s9.069 1.076 10.147 3.997c1.077 2.919-5.842 11.066-8.61 12.448z" }),
+        _react2.default.createElement("path", { d: "M57.802 113.388c0 30.699 24.887 55.587 55.586 55.587 2.36 0 4.686-.149 6.969-.434-1.702-1.473-1.268-5.837-.589-11.263.769-6.149-2.767-6.764-6.687-11.068-3.921-4.306-1.153-7.688.307-9.686 1.461-1.998-.693-3.69-3.305-4.458-2.614-.77-2.305-2.921-4.305-4.305-1.997-1.383-2.921-1.23-10.244-3.997-7.321-2.766-3.284-3.381-8.818-9.147-5.534-5.765-7.379-15.142-4.783-19.293 2.597-4.151-.137-7.225-.751-9.685-.615-2.46 3.689-3.382.461-8.222-3.229-4.838-5.535 3.148-7.84 3.148-1.271 0-1.141-2.847-.769-5.403-9.44 9.963-15.232 23.419-15.232 38.226z" })
+      );
+    };
+    Zeit.propTypes = {
+      color: _propTypes2.default.string,
+      size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+    };
+    Zeit.defaultProps = {
+      color: "currentColor",
+      size: "24"
+    };
+    exports.default = Zeit;
+  }
+});
+
+// node_modules/react-cryptocoins/dist/index.js
+var require_dist = __commonJS({
+  "node_modules/react-cryptocoins/dist/index.js"(exports) {
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+    exports.Zeit = exports.ZeitAlt = exports.Zec = exports.ZecAlt = exports.Ybc = exports.YbcAlt = exports.Xzc = exports.XzcAlt = exports.Xvg = exports.XvgAlt = exports.Xtz = exports.XtzAlt = exports.Xrp = exports.XrpAlt = exports.Xpm = exports.XpmAlt = exports.Xmr = exports.Xem = exports.XemAlt = exports.Xcp = exports.XcpAlt = exports.Xbs = exports.XbsAlt = exports.Xai = exports.XaiAlt = exports.Waves = exports.WavesAlt = exports.Vtc = exports.VtcAlt = exports.Vrc = exports.VrcAlt = exports.Vpn = exports.VpnAlt = exports.Vnl = exports.VnlAlt = exports.Vior = exports.ViorAlt = exports.Usdt = exports.UsdtAlt = exports.Unity = exports.UnityAlt = exports.Ubq = exports.UbqAlt = exports.Tx = exports.TxAlt = exports.Trig = exports.TrigAlt = exports.Sys = exports.SysAlt = exports.Sync = exports.SyncAlt = exports.Swift = exports.SwiftAlt = exports.Strat = exports.StratAlt = exports.Str = exports.StrAlt = exports.Steem = exports.SteemAlt = exports.Start = exports.StartAlt = exports.Snrg = exports.SnrgAlt = exports.Sls = exports.SlsAlt = exports.Slg = exports.SlgAlt = exports.Sjcx = exports.SjcxAlt = exports.Sia = exports.SiaAlt = exports.Sdc = exports.SdcAlt = exports.Scot = exports.ScotAlt = exports.Sar = exports.SarAlt = exports.Salt = exports.SaltAlt = exports.Rise = exports.RiseAlt = void 0;
+    exports.Rep = exports.RepAlt = exports.Rdd = exports.RddAlt = exports.Rby = exports.RbyAlt = exports.Rbt = exports.RbtAlt = exports.Rbies = exports.RbiesAlt = exports.Rads = exports.RadsAlt = exports.Qtum = exports.QtumAlt = exports.Qrk = exports.QrkAlt = exports.Ppc = exports.PpcAlt = exports.Pot = exports.PotAlt = exports.Pivx = exports.PivxAlt = exports.Pink = exports.PinkAlt = exports.Piggy = exports.PiggyAlt = exports.Part = exports.PartAlt = exports.Opal = exports.OpalAlt = exports.Omni = exports.OmniAlt = exports.Omg = exports.OmgAlt = exports.Ok = exports.OkAlt = exports.Nxt = exports.NxtAlt = exports.Nvc = exports.NvcAlt = exports.Note = exports.NoteAlt = exports.Nmc = exports.NmcAlt = exports.Nlg = exports.NlgAlt = exports.Neu = exports.NeuAlt = exports.Neos = exports.NeosAlt = exports.Neo = exports.NeoAlt = exports.Nbt = exports.Mue = exports.MueAlt = exports.Mtr = exports.MtrAlt = exports.Msc = exports.MscAlt = exports.Mrc = exports.Mona = exports.MonaAlt = exports.Mint = exports.MintAlt = exports.Mco = exports.McoAlt = exports.Maid = exports.MaidAlt = exports.Ltc = exports.LtcAlt = exports.Lsk = exports.LskAlt = exports.Ldoge = exports.LdogeAlt = exports.Lbc = exports.LbcAlt = exports.Kore = exports.KoreAlt = exports.Kobo = exports.Kmd = exports.KmdAlt = exports.Jbs = exports.JbsAlt = exports.Iota = exports.IotaAlt = exports.Ioc = exports.IocAlt = exports.Incnt = exports.IncntAlt = exports.Ifc = exports.IfcAlt = exports.Icn = exports.IcnAlt = exports.Heat = exports.HeatAlt = exports.Grs = exports.Grc = exports.GrcAlt = exports.Golos = exports.GolosAlt = void 0;
+    exports.Gnt = exports.GntAlt = exports.Gno = exports.GnoAlt = exports.Gld = exports.GldAlt = exports.Gemz = exports.GemzAlt = exports.Gdc = exports.GdcAlt = exports.GbyteAlt = exports.Game = exports.GameAlt = exports.Ftc = exports.FtcAlt = exports.Frk = exports.FrkAlt = exports.Flo = exports.FloAlt = exports.Fct = exports.FctAlt = exports.Fc2 = exports.Fc2Alt = exports.Eth = exports.EthAlt = exports.Etc = exports.EtcAlt = exports.Erc = exports.ErcAlt = exports.Eos = exports.EosAlt = exports.Emc = exports.EmcAlt = exports.Doge = exports.DogeAlt = exports.Dmd = exports.DmdAlt = exports.Dgx = exports.Dgd = exports.Dgb = exports.DgbAlt = exports.Dct = exports.DctAlt = exports.Dcr = exports.DcrAlt = exports.Dash = exports.DashAlt = exports.Dao = exports.DaoAlt = exports.Cloak = exports.CloakAlt = exports.Clam = exports.ClamAlt = exports.Bts = exports.BtsAlt = exports.Btm = exports.BtmAlt = exports.Btcd = exports.BtcdAlt = exports.Btc = exports.BtcAlt = exports.Bta = exports.Bsd = exports.BsdAlt = exports.Brx = exports.BrxAlt = exports.Brk = exports.BrkAlt = exports.Bft = exports.BftAlt = exports.Bcn = exports.BcnAlt = exports.Bch = exports.BchAlt = exports.Bc = exports.BcAlt = exports.Bay = exports.BayAlt = exports.Bat = exports.BatAlt = exports.Banx = exports.BanxAlt = exports.Aur = exports.AurAlt = exports.Ark = exports.ArkAlt = exports.Ardr = exports.ArdrAlt = exports.Arch = exports.ArchAlt = exports.Anc = exports.AncAlt = exports.Amp = exports.AmpAlt = exports.Aeon = exports.AeonAlt = exports.Adc = exports.AdcAlt = exports.Ada = exports.AdaAlt = void 0;
+    var _ADAAlt = require_ADA_alt();
+    var _ADAAlt2 = _interopRequireDefault(_ADAAlt);
+    var _ADA = require_ADA();
+    var _ADA2 = _interopRequireDefault(_ADA);
+    var _ADCAlt = require_ADC_alt();
+    var _ADCAlt2 = _interopRequireDefault(_ADCAlt);
+    var _ADC = require_ADC();
+    var _ADC2 = _interopRequireDefault(_ADC);
+    var _AEONAlt = require_AEON_alt();
+    var _AEONAlt2 = _interopRequireDefault(_AEONAlt);
+    var _AEON = require_AEON();
+    var _AEON2 = _interopRequireDefault(_AEON);
+    var _AMPAlt = require_AMP_alt();
+    var _AMPAlt2 = _interopRequireDefault(_AMPAlt);
+    var _AMP = require_AMP();
+    var _AMP2 = _interopRequireDefault(_AMP);
+    var _ANCAlt = require_ANC_alt();
+    var _ANCAlt2 = _interopRequireDefault(_ANCAlt);
+    var _ANC = require_ANC();
+    var _ANC2 = _interopRequireDefault(_ANC);
+    var _ARCHAlt = require_ARCH_alt();
+    var _ARCHAlt2 = _interopRequireDefault(_ARCHAlt);
+    var _ARCH = require_ARCH();
+    var _ARCH2 = _interopRequireDefault(_ARCH);
+    var _ARDRAlt = require_ARDR_alt();
+    var _ARDRAlt2 = _interopRequireDefault(_ARDRAlt);
+    var _ARDR = require_ARDR();
+    var _ARDR2 = _interopRequireDefault(_ARDR);
+    var _ARKAlt = require_ARK_alt();
+    var _ARKAlt2 = _interopRequireDefault(_ARKAlt);
+    var _ARK = require_ARK();
+    var _ARK2 = _interopRequireDefault(_ARK);
+    var _AURAlt = require_AUR_alt();
+    var _AURAlt2 = _interopRequireDefault(_AURAlt);
+    var _AUR = require_AUR();
+    var _AUR2 = _interopRequireDefault(_AUR);
+    var _BANXAlt = require_BANX_alt();
+    var _BANXAlt2 = _interopRequireDefault(_BANXAlt);
+    var _BANX = require_BANX();
+    var _BANX2 = _interopRequireDefault(_BANX);
+    var _BATAlt = require_BAT_alt();
+    var _BATAlt2 = _interopRequireDefault(_BATAlt);
+    var _BAT = require_BAT();
+    var _BAT2 = _interopRequireDefault(_BAT);
+    var _BAYAlt = require_BAY_alt();
+    var _BAYAlt2 = _interopRequireDefault(_BAYAlt);
+    var _BAY = require_BAY();
+    var _BAY2 = _interopRequireDefault(_BAY);
+    var _BCAlt = require_BC_alt();
+    var _BCAlt2 = _interopRequireDefault(_BCAlt);
+    var _BC = require_BC();
+    var _BC2 = _interopRequireDefault(_BC);
+    var _BCHAlt = require_BCH_alt();
+    var _BCHAlt2 = _interopRequireDefault(_BCHAlt);
+    var _BCH = require_BCH();
+    var _BCH2 = _interopRequireDefault(_BCH);
+    var _BCNAlt = require_BCN_alt();
+    var _BCNAlt2 = _interopRequireDefault(_BCNAlt);
+    var _BCN = require_BCN();
+    var _BCN2 = _interopRequireDefault(_BCN);
+    var _BFTAlt = require_BFT_alt();
+    var _BFTAlt2 = _interopRequireDefault(_BFTAlt);
+    var _BFT = require_BFT();
+    var _BFT2 = _interopRequireDefault(_BFT);
+    var _BRKAlt = require_BRK_alt();
+    var _BRKAlt2 = _interopRequireDefault(_BRKAlt);
+    var _BRK = require_BRK();
+    var _BRK2 = _interopRequireDefault(_BRK);
+    var _BRXAlt = require_BRX_alt();
+    var _BRXAlt2 = _interopRequireDefault(_BRXAlt);
+    var _BRX = require_BRX();
+    var _BRX2 = _interopRequireDefault(_BRX);
+    var _BSDAlt = require_BSD_alt();
+    var _BSDAlt2 = _interopRequireDefault(_BSDAlt);
+    var _BSD = require_BSD();
+    var _BSD2 = _interopRequireDefault(_BSD);
+    var _BTA = require_BTA();
+    var _BTA2 = _interopRequireDefault(_BTA);
+    var _BTCAlt = require_BTC_alt();
+    var _BTCAlt2 = _interopRequireDefault(_BTCAlt);
+    var _BTC = require_BTC();
+    var _BTC2 = _interopRequireDefault(_BTC);
+    var _BTCDAlt = require_BTCD_alt();
+    var _BTCDAlt2 = _interopRequireDefault(_BTCDAlt);
+    var _BTCD = require_BTCD();
+    var _BTCD2 = _interopRequireDefault(_BTCD);
+    var _BTMAlt = require_BTM_alt();
+    var _BTMAlt2 = _interopRequireDefault(_BTMAlt);
+    var _BTM = require_BTM();
+    var _BTM2 = _interopRequireDefault(_BTM);
+    var _BTSAlt = require_BTS_alt();
+    var _BTSAlt2 = _interopRequireDefault(_BTSAlt);
+    var _BTS = require_BTS();
+    var _BTS2 = _interopRequireDefault(_BTS);
+    var _CLAMAlt = require_CLAM_alt();
+    var _CLAMAlt2 = _interopRequireDefault(_CLAMAlt);
+    var _CLAM = require_CLAM();
+    var _CLAM2 = _interopRequireDefault(_CLAM);
+    var _CLOAKAlt = require_CLOAK_alt();
+    var _CLOAKAlt2 = _interopRequireDefault(_CLOAKAlt);
+    var _CLOAK = require_CLOAK();
+    var _CLOAK2 = _interopRequireDefault(_CLOAK);
+    var _DAOAlt = require_DAO_alt();
+    var _DAOAlt2 = _interopRequireDefault(_DAOAlt);
+    var _DAO = require_DAO();
+    var _DAO2 = _interopRequireDefault(_DAO);
+    var _DASHAlt = require_DASH_alt();
+    var _DASHAlt2 = _interopRequireDefault(_DASHAlt);
+    var _DASH = require_DASH();
+    var _DASH2 = _interopRequireDefault(_DASH);
+    var _DCRAlt = require_DCR_alt();
+    var _DCRAlt2 = _interopRequireDefault(_DCRAlt);
+    var _DCR = require_DCR();
+    var _DCR2 = _interopRequireDefault(_DCR);
+    var _DCTAlt = require_DCT_alt();
+    var _DCTAlt2 = _interopRequireDefault(_DCTAlt);
+    var _DCT = require_DCT();
+    var _DCT2 = _interopRequireDefault(_DCT);
+    var _DGBAlt = require_DGB_alt();
+    var _DGBAlt2 = _interopRequireDefault(_DGBAlt);
+    var _DGB = require_DGB();
+    var _DGB2 = _interopRequireDefault(_DGB);
+    var _DGD = require_DGD();
+    var _DGD2 = _interopRequireDefault(_DGD);
+    var _DGX = require_DGX();
+    var _DGX2 = _interopRequireDefault(_DGX);
+    var _DMDAlt = require_DMD_alt();
+    var _DMDAlt2 = _interopRequireDefault(_DMDAlt);
+    var _DMD = require_DMD();
+    var _DMD2 = _interopRequireDefault(_DMD);
+    var _DOGEAlt = require_DOGE_alt();
+    var _DOGEAlt2 = _interopRequireDefault(_DOGEAlt);
+    var _DOGE = require_DOGE();
+    var _DOGE2 = _interopRequireDefault(_DOGE);
+    var _EMCAlt = require_EMC_alt();
+    var _EMCAlt2 = _interopRequireDefault(_EMCAlt);
+    var _EMC = require_EMC();
+    var _EMC2 = _interopRequireDefault(_EMC);
+    var _EOSAlt = require_EOS_alt();
+    var _EOSAlt2 = _interopRequireDefault(_EOSAlt);
+    var _EOS = require_EOS();
+    var _EOS2 = _interopRequireDefault(_EOS);
+    var _ERCAlt = require_ERC_alt();
+    var _ERCAlt2 = _interopRequireDefault(_ERCAlt);
+    var _ERC = require_ERC();
+    var _ERC2 = _interopRequireDefault(_ERC);
+    var _ETCAlt = require_ETC_alt();
+    var _ETCAlt2 = _interopRequireDefault(_ETCAlt);
+    var _ETC = require_ETC();
+    var _ETC2 = _interopRequireDefault(_ETC);
+    var _ETHAlt = require_ETH_alt();
+    var _ETHAlt2 = _interopRequireDefault(_ETHAlt);
+    var _ETH = require_ETH();
+    var _ETH2 = _interopRequireDefault(_ETH);
+    var _FC2Alt = require_FC2_alt();
+    var _FC2Alt2 = _interopRequireDefault(_FC2Alt);
+    var _FC = require_FC2();
+    var _FC2 = _interopRequireDefault(_FC);
+    var _FCTAlt = require_FCT_alt();
+    var _FCTAlt2 = _interopRequireDefault(_FCTAlt);
+    var _FCT = require_FCT();
+    var _FCT2 = _interopRequireDefault(_FCT);
+    var _FLOAlt = require_FLO_alt();
+    var _FLOAlt2 = _interopRequireDefault(_FLOAlt);
+    var _FLO = require_FLO();
+    var _FLO2 = _interopRequireDefault(_FLO);
+    var _FRKAlt = require_FRK_alt();
+    var _FRKAlt2 = _interopRequireDefault(_FRKAlt);
+    var _FRK = require_FRK();
+    var _FRK2 = _interopRequireDefault(_FRK);
+    var _FTCAlt = require_FTC_alt();
+    var _FTCAlt2 = _interopRequireDefault(_FTCAlt);
+    var _FTC = require_FTC();
+    var _FTC2 = _interopRequireDefault(_FTC);
+    var _GAMEAlt = require_GAME_alt();
+    var _GAMEAlt2 = _interopRequireDefault(_GAMEAlt);
+    var _GAME = require_GAME();
+    var _GAME2 = _interopRequireDefault(_GAME);
+    var _GBYTEAlt = require_GBYTE_alt();
+    var _GBYTEAlt2 = _interopRequireDefault(_GBYTEAlt);
+    var _GDCAlt = require_GDC_alt();
+    var _GDCAlt2 = _interopRequireDefault(_GDCAlt);
+    var _GDC = require_GDC();
+    var _GDC2 = _interopRequireDefault(_GDC);
+    var _GEMZAlt = require_GEMZ_alt();
+    var _GEMZAlt2 = _interopRequireDefault(_GEMZAlt);
+    var _GEMZ = require_GEMZ();
+    var _GEMZ2 = _interopRequireDefault(_GEMZ);
+    var _GLDAlt = require_GLD_alt();
+    var _GLDAlt2 = _interopRequireDefault(_GLDAlt);
+    var _GLD = require_GLD();
+    var _GLD2 = _interopRequireDefault(_GLD);
+    var _GNOAlt = require_GNO_alt();
+    var _GNOAlt2 = _interopRequireDefault(_GNOAlt);
+    var _GNO = require_GNO();
+    var _GNO2 = _interopRequireDefault(_GNO);
+    var _GNTAlt = require_GNT_alt();
+    var _GNTAlt2 = _interopRequireDefault(_GNTAlt);
+    var _GNT = require_GNT();
+    var _GNT2 = _interopRequireDefault(_GNT);
+    var _GOLOSAlt = require_GOLOS_alt();
+    var _GOLOSAlt2 = _interopRequireDefault(_GOLOSAlt);
+    var _GOLOS = require_GOLOS();
+    var _GOLOS2 = _interopRequireDefault(_GOLOS);
+    var _GRCAlt = require_GRC_alt();
+    var _GRCAlt2 = _interopRequireDefault(_GRCAlt);
+    var _GRC = require_GRC();
+    var _GRC2 = _interopRequireDefault(_GRC);
+    var _GRS = require_GRS();
+    var _GRS2 = _interopRequireDefault(_GRS);
+    var _HEATAlt = require_HEAT_alt();
+    var _HEATAlt2 = _interopRequireDefault(_HEATAlt);
+    var _HEAT = require_HEAT();
+    var _HEAT2 = _interopRequireDefault(_HEAT);
+    var _ICNAlt = require_ICN_alt();
+    var _ICNAlt2 = _interopRequireDefault(_ICNAlt);
+    var _ICN = require_ICN();
+    var _ICN2 = _interopRequireDefault(_ICN);
+    var _IFCAlt = require_IFC_alt();
+    var _IFCAlt2 = _interopRequireDefault(_IFCAlt);
+    var _IFC = require_IFC();
+    var _IFC2 = _interopRequireDefault(_IFC);
+    var _INCNTAlt = require_INCNT_alt();
+    var _INCNTAlt2 = _interopRequireDefault(_INCNTAlt);
+    var _INCNT = require_INCNT();
+    var _INCNT2 = _interopRequireDefault(_INCNT);
+    var _IOCAlt = require_IOC_alt();
+    var _IOCAlt2 = _interopRequireDefault(_IOCAlt);
+    var _IOC = require_IOC();
+    var _IOC2 = _interopRequireDefault(_IOC);
+    var _IOTAAlt = require_IOTA_alt();
+    var _IOTAAlt2 = _interopRequireDefault(_IOTAAlt);
+    var _IOTA = require_IOTA();
+    var _IOTA2 = _interopRequireDefault(_IOTA);
+    var _JBSAlt = require_JBS_alt();
+    var _JBSAlt2 = _interopRequireDefault(_JBSAlt);
+    var _JBS = require_JBS();
+    var _JBS2 = _interopRequireDefault(_JBS);
+    var _KMDAlt = require_KMD_alt();
+    var _KMDAlt2 = _interopRequireDefault(_KMDAlt);
+    var _KMD = require_KMD();
+    var _KMD2 = _interopRequireDefault(_KMD);
+    var _KOBO = require_KOBO();
+    var _KOBO2 = _interopRequireDefault(_KOBO);
+    var _KOREAlt = require_KORE_alt();
+    var _KOREAlt2 = _interopRequireDefault(_KOREAlt);
+    var _KORE = require_KORE();
+    var _KORE2 = _interopRequireDefault(_KORE);
+    var _LBCAlt = require_LBC_alt();
+    var _LBCAlt2 = _interopRequireDefault(_LBCAlt);
+    var _LBC = require_LBC();
+    var _LBC2 = _interopRequireDefault(_LBC);
+    var _LDOGEAlt = require_LDOGE_alt();
+    var _LDOGEAlt2 = _interopRequireDefault(_LDOGEAlt);
+    var _LDOGE = require_LDOGE();
+    var _LDOGE2 = _interopRequireDefault(_LDOGE);
+    var _LSKAlt = require_LSK_alt();
+    var _LSKAlt2 = _interopRequireDefault(_LSKAlt);
+    var _LSK = require_LSK();
+    var _LSK2 = _interopRequireDefault(_LSK);
+    var _LTCAlt = require_LTC_alt();
+    var _LTCAlt2 = _interopRequireDefault(_LTCAlt);
+    var _LTC = require_LTC();
+    var _LTC2 = _interopRequireDefault(_LTC);
+    var _MAIDAlt = require_MAID_alt();
+    var _MAIDAlt2 = _interopRequireDefault(_MAIDAlt);
+    var _MAID = require_MAID();
+    var _MAID2 = _interopRequireDefault(_MAID);
+    var _MCOAlt = require_MCO_alt();
+    var _MCOAlt2 = _interopRequireDefault(_MCOAlt);
+    var _MCO = require_MCO();
+    var _MCO2 = _interopRequireDefault(_MCO);
+    var _MINTAlt = require_MINT_alt();
+    var _MINTAlt2 = _interopRequireDefault(_MINTAlt);
+    var _MINT = require_MINT();
+    var _MINT2 = _interopRequireDefault(_MINT);
+    var _MONAAlt = require_MONA_alt();
+    var _MONAAlt2 = _interopRequireDefault(_MONAAlt);
+    var _MONA = require_MONA();
+    var _MONA2 = _interopRequireDefault(_MONA);
+    var _MRC = require_MRC();
+    var _MRC2 = _interopRequireDefault(_MRC);
+    var _MSCAlt = require_MSC_alt();
+    var _MSCAlt2 = _interopRequireDefault(_MSCAlt);
+    var _MSC = require_MSC();
+    var _MSC2 = _interopRequireDefault(_MSC);
+    var _MTRAlt = require_MTR_alt();
+    var _MTRAlt2 = _interopRequireDefault(_MTRAlt);
+    var _MTR = require_MTR();
+    var _MTR2 = _interopRequireDefault(_MTR);
+    var _MUEAlt = require_MUE_alt();
+    var _MUEAlt2 = _interopRequireDefault(_MUEAlt);
+    var _MUE = require_MUE();
+    var _MUE2 = _interopRequireDefault(_MUE);
+    var _NBT = require_NBT();
+    var _NBT2 = _interopRequireDefault(_NBT);
+    var _NEOAlt = require_NEO_alt();
+    var _NEOAlt2 = _interopRequireDefault(_NEOAlt);
+    var _NEO = require_NEO();
+    var _NEO2 = _interopRequireDefault(_NEO);
+    var _NEOSAlt = require_NEOS_alt();
+    var _NEOSAlt2 = _interopRequireDefault(_NEOSAlt);
+    var _NEOS = require_NEOS();
+    var _NEOS2 = _interopRequireDefault(_NEOS);
+    var _NEUAlt = require_NEU_alt();
+    var _NEUAlt2 = _interopRequireDefault(_NEUAlt);
+    var _NEU = require_NEU();
+    var _NEU2 = _interopRequireDefault(_NEU);
+    var _NLGAlt = require_NLG_alt();
+    var _NLGAlt2 = _interopRequireDefault(_NLGAlt);
+    var _NLG = require_NLG();
+    var _NLG2 = _interopRequireDefault(_NLG);
+    var _NMCAlt = require_NMC_alt();
+    var _NMCAlt2 = _interopRequireDefault(_NMCAlt);
+    var _NMC = require_NMC();
+    var _NMC2 = _interopRequireDefault(_NMC);
+    var _NOTEAlt = require_NOTE_alt();
+    var _NOTEAlt2 = _interopRequireDefault(_NOTEAlt);
+    var _NOTE = require_NOTE();
+    var _NOTE2 = _interopRequireDefault(_NOTE);
+    var _NVCAlt = require_NVC_alt();
+    var _NVCAlt2 = _interopRequireDefault(_NVCAlt);
+    var _NVC = require_NVC();
+    var _NVC2 = _interopRequireDefault(_NVC);
+    var _NXTAlt = require_NXT_alt();
+    var _NXTAlt2 = _interopRequireDefault(_NXTAlt);
+    var _NXT = require_NXT();
+    var _NXT2 = _interopRequireDefault(_NXT);
+    var _OKAlt = require_OK_alt();
+    var _OKAlt2 = _interopRequireDefault(_OKAlt);
+    var _OK = require_OK();
+    var _OK2 = _interopRequireDefault(_OK);
+    var _OMGAlt = require_OMG_alt();
+    var _OMGAlt2 = _interopRequireDefault(_OMGAlt);
+    var _OMG = require_OMG();
+    var _OMG2 = _interopRequireDefault(_OMG);
+    var _OMNIAlt = require_OMNI_alt();
+    var _OMNIAlt2 = _interopRequireDefault(_OMNIAlt);
+    var _OMNI = require_OMNI();
+    var _OMNI2 = _interopRequireDefault(_OMNI);
+    var _OPALAlt = require_OPAL_alt();
+    var _OPALAlt2 = _interopRequireDefault(_OPALAlt);
+    var _OPAL = require_OPAL();
+    var _OPAL2 = _interopRequireDefault(_OPAL);
+    var _PARTAlt = require_PART_alt();
+    var _PARTAlt2 = _interopRequireDefault(_PARTAlt);
+    var _PART = require_PART();
+    var _PART2 = _interopRequireDefault(_PART);
+    var _PIGGYAlt = require_PIGGY_alt();
+    var _PIGGYAlt2 = _interopRequireDefault(_PIGGYAlt);
+    var _PIGGY = require_PIGGY();
+    var _PIGGY2 = _interopRequireDefault(_PIGGY);
+    var _PINKAlt = require_PINK_alt();
+    var _PINKAlt2 = _interopRequireDefault(_PINKAlt);
+    var _PINK = require_PINK();
+    var _PINK2 = _interopRequireDefault(_PINK);
+    var _PIVXAlt = require_PIVX_alt();
+    var _PIVXAlt2 = _interopRequireDefault(_PIVXAlt);
+    var _PIVX = require_PIVX();
+    var _PIVX2 = _interopRequireDefault(_PIVX);
+    var _POTAlt = require_POT_alt();
+    var _POTAlt2 = _interopRequireDefault(_POTAlt);
+    var _POT = require_POT();
+    var _POT2 = _interopRequireDefault(_POT);
+    var _PPCAlt = require_PPC_alt();
+    var _PPCAlt2 = _interopRequireDefault(_PPCAlt);
+    var _PPC = require_PPC();
+    var _PPC2 = _interopRequireDefault(_PPC);
+    var _QRKAlt = require_QRK_alt();
+    var _QRKAlt2 = _interopRequireDefault(_QRKAlt);
+    var _QRK = require_QRK();
+    var _QRK2 = _interopRequireDefault(_QRK);
+    var _QTUMAlt = require_QTUM_alt();
+    var _QTUMAlt2 = _interopRequireDefault(_QTUMAlt);
+    var _QTUM = require_QTUM();
+    var _QTUM2 = _interopRequireDefault(_QTUM);
+    var _RADSAlt = require_RADS_alt();
+    var _RADSAlt2 = _interopRequireDefault(_RADSAlt);
+    var _RADS = require_RADS();
+    var _RADS2 = _interopRequireDefault(_RADS);
+    var _RBIESAlt = require_RBIES_alt();
+    var _RBIESAlt2 = _interopRequireDefault(_RBIESAlt);
+    var _RBIES = require_RBIES();
+    var _RBIES2 = _interopRequireDefault(_RBIES);
+    var _RBTAlt = require_RBT_alt();
+    var _RBTAlt2 = _interopRequireDefault(_RBTAlt);
+    var _RBT = require_RBT();
+    var _RBT2 = _interopRequireDefault(_RBT);
+    var _RBYAlt = require_RBY_alt();
+    var _RBYAlt2 = _interopRequireDefault(_RBYAlt);
+    var _RBY = require_RBY();
+    var _RBY2 = _interopRequireDefault(_RBY);
+    var _RDDAlt = require_RDD_alt();
+    var _RDDAlt2 = _interopRequireDefault(_RDDAlt);
+    var _RDD = require_RDD();
+    var _RDD2 = _interopRequireDefault(_RDD);
+    var _REPAlt = require_REP_alt();
+    var _REPAlt2 = _interopRequireDefault(_REPAlt);
+    var _REP = require_REP();
+    var _REP2 = _interopRequireDefault(_REP);
+    var _RISEAlt = require_RISE_alt();
+    var _RISEAlt2 = _interopRequireDefault(_RISEAlt);
+    var _RISE = require_RISE();
+    var _RISE2 = _interopRequireDefault(_RISE);
+    var _SALTAlt = require_SALT_alt();
+    var _SALTAlt2 = _interopRequireDefault(_SALTAlt);
+    var _SALT = require_SALT();
+    var _SALT2 = _interopRequireDefault(_SALT);
+    var _SARAlt = require_SAR_alt();
+    var _SARAlt2 = _interopRequireDefault(_SARAlt);
+    var _SAR = require_SAR();
+    var _SAR2 = _interopRequireDefault(_SAR);
+    var _SCOTAlt = require_SCOT_alt();
+    var _SCOTAlt2 = _interopRequireDefault(_SCOTAlt);
+    var _SCOT = require_SCOT();
+    var _SCOT2 = _interopRequireDefault(_SCOT);
+    var _SDCAlt = require_SDC_alt();
+    var _SDCAlt2 = _interopRequireDefault(_SDCAlt);
+    var _SDC = require_SDC();
+    var _SDC2 = _interopRequireDefault(_SDC);
+    var _SIAAlt = require_SIA_alt();
+    var _SIAAlt2 = _interopRequireDefault(_SIAAlt);
+    var _SIA = require_SIA();
+    var _SIA2 = _interopRequireDefault(_SIA);
+    var _SJCXAlt = require_SJCX_alt();
+    var _SJCXAlt2 = _interopRequireDefault(_SJCXAlt);
+    var _SJCX = require_SJCX();
+    var _SJCX2 = _interopRequireDefault(_SJCX);
+    var _SLGAlt = require_SLG_alt();
+    var _SLGAlt2 = _interopRequireDefault(_SLGAlt);
+    var _SLG = require_SLG();
+    var _SLG2 = _interopRequireDefault(_SLG);
+    var _SLSAlt = require_SLS_alt();
+    var _SLSAlt2 = _interopRequireDefault(_SLSAlt);
+    var _SLS = require_SLS();
+    var _SLS2 = _interopRequireDefault(_SLS);
+    var _SNRGAlt = require_SNRG_alt();
+    var _SNRGAlt2 = _interopRequireDefault(_SNRGAlt);
+    var _SNRG = require_SNRG();
+    var _SNRG2 = _interopRequireDefault(_SNRG);
+    var _STARTAlt = require_START_alt();
+    var _STARTAlt2 = _interopRequireDefault(_STARTAlt);
+    var _START = require_START();
+    var _START2 = _interopRequireDefault(_START);
+    var _STEEMAlt = require_STEEM_alt();
+    var _STEEMAlt2 = _interopRequireDefault(_STEEMAlt);
+    var _STEEM = require_STEEM();
+    var _STEEM2 = _interopRequireDefault(_STEEM);
+    var _STRAlt = require_STR_alt();
+    var _STRAlt2 = _interopRequireDefault(_STRAlt);
+    var _STR = require_STR();
+    var _STR2 = _interopRequireDefault(_STR);
+    var _STRATAlt = require_STRAT_alt();
+    var _STRATAlt2 = _interopRequireDefault(_STRATAlt);
+    var _STRAT = require_STRAT();
+    var _STRAT2 = _interopRequireDefault(_STRAT);
+    var _SWIFTAlt = require_SWIFT_alt();
+    var _SWIFTAlt2 = _interopRequireDefault(_SWIFTAlt);
+    var _SWIFT = require_SWIFT();
+    var _SWIFT2 = _interopRequireDefault(_SWIFT);
+    var _SYNCAlt = require_SYNC_alt();
+    var _SYNCAlt2 = _interopRequireDefault(_SYNCAlt);
+    var _SYNC = require_SYNC();
+    var _SYNC2 = _interopRequireDefault(_SYNC);
+    var _SYSAlt = require_SYS_alt();
+    var _SYSAlt2 = _interopRequireDefault(_SYSAlt);
+    var _SYS = require_SYS();
+    var _SYS2 = _interopRequireDefault(_SYS);
+    var _TRIGAlt = require_TRIG_alt();
+    var _TRIGAlt2 = _interopRequireDefault(_TRIGAlt);
+    var _TRIG = require_TRIG();
+    var _TRIG2 = _interopRequireDefault(_TRIG);
+    var _TXAlt = require_TX_alt();
+    var _TXAlt2 = _interopRequireDefault(_TXAlt);
+    var _TX = require_TX();
+    var _TX2 = _interopRequireDefault(_TX);
+    var _UBQAlt = require_UBQ_alt();
+    var _UBQAlt2 = _interopRequireDefault(_UBQAlt);
+    var _UBQ = require_UBQ();
+    var _UBQ2 = _interopRequireDefault(_UBQ);
+    var _UNITYAlt = require_UNITY_alt();
+    var _UNITYAlt2 = _interopRequireDefault(_UNITYAlt);
+    var _UNITY = require_UNITY();
+    var _UNITY2 = _interopRequireDefault(_UNITY);
+    var _USDTAlt = require_USDT_alt();
+    var _USDTAlt2 = _interopRequireDefault(_USDTAlt);
+    var _USDT = require_USDT();
+    var _USDT2 = _interopRequireDefault(_USDT);
+    var _VIORAlt = require_VIOR_alt();
+    var _VIORAlt2 = _interopRequireDefault(_VIORAlt);
+    var _VIOR = require_VIOR();
+    var _VIOR2 = _interopRequireDefault(_VIOR);
+    var _VNLAlt = require_VNL_alt();
+    var _VNLAlt2 = _interopRequireDefault(_VNLAlt);
+    var _VNL = require_VNL();
+    var _VNL2 = _interopRequireDefault(_VNL);
+    var _VPNAlt = require_VPN_alt();
+    var _VPNAlt2 = _interopRequireDefault(_VPNAlt);
+    var _VPN = require_VPN();
+    var _VPN2 = _interopRequireDefault(_VPN);
+    var _VRCAlt = require_VRC_alt();
+    var _VRCAlt2 = _interopRequireDefault(_VRCAlt);
+    var _VRC = require_VRC();
+    var _VRC2 = _interopRequireDefault(_VRC);
+    var _VTCAlt = require_VTC_alt();
+    var _VTCAlt2 = _interopRequireDefault(_VTCAlt);
+    var _VTC = require_VTC();
+    var _VTC2 = _interopRequireDefault(_VTC);
+    var _WAVESAlt = require_WAVES_alt();
+    var _WAVESAlt2 = _interopRequireDefault(_WAVESAlt);
+    var _WAVES = require_WAVES();
+    var _WAVES2 = _interopRequireDefault(_WAVES);
+    var _XAIAlt = require_XAI_alt();
+    var _XAIAlt2 = _interopRequireDefault(_XAIAlt);
+    var _XAI = require_XAI();
+    var _XAI2 = _interopRequireDefault(_XAI);
+    var _XBSAlt = require_XBS_alt();
+    var _XBSAlt2 = _interopRequireDefault(_XBSAlt);
+    var _XBS = require_XBS();
+    var _XBS2 = _interopRequireDefault(_XBS);
+    var _XCPAlt = require_XCP_alt();
+    var _XCPAlt2 = _interopRequireDefault(_XCPAlt);
+    var _XCP = require_XCP();
+    var _XCP2 = _interopRequireDefault(_XCP);
+    var _XEMAlt = require_XEM_alt();
+    var _XEMAlt2 = _interopRequireDefault(_XEMAlt);
+    var _XEM = require_XEM();
+    var _XEM2 = _interopRequireDefault(_XEM);
+    var _XMR = require_XMR();
+    var _XMR2 = _interopRequireDefault(_XMR);
+    var _XPMAlt = require_XPM_alt();
+    var _XPMAlt2 = _interopRequireDefault(_XPMAlt);
+    var _XPM = require_XPM();
+    var _XPM2 = _interopRequireDefault(_XPM);
+    var _XRPAlt = require_XRP_alt();
+    var _XRPAlt2 = _interopRequireDefault(_XRPAlt);
+    var _XRP = require_XRP();
+    var _XRP2 = _interopRequireDefault(_XRP);
+    var _XTZAlt = require_XTZ_alt();
+    var _XTZAlt2 = _interopRequireDefault(_XTZAlt);
+    var _XTZ = require_XTZ();
+    var _XTZ2 = _interopRequireDefault(_XTZ);
+    var _XVGAlt = require_XVG_alt();
+    var _XVGAlt2 = _interopRequireDefault(_XVGAlt);
+    var _XVG = require_XVG();
+    var _XVG2 = _interopRequireDefault(_XVG);
+    var _XZCAlt = require_XZC_alt();
+    var _XZCAlt2 = _interopRequireDefault(_XZCAlt);
+    var _XZC = require_XZC();
+    var _XZC2 = _interopRequireDefault(_XZC);
+    var _YBCAlt = require_YBC_alt();
+    var _YBCAlt2 = _interopRequireDefault(_YBCAlt);
+    var _YBC = require_YBC();
+    var _YBC2 = _interopRequireDefault(_YBC);
+    var _ZECAlt = require_ZEC_alt();
+    var _ZECAlt2 = _interopRequireDefault(_ZECAlt);
+    var _ZEC = require_ZEC();
+    var _ZEC2 = _interopRequireDefault(_ZEC);
+    var _ZEITAlt = require_ZEIT_alt();
+    var _ZEITAlt2 = _interopRequireDefault(_ZEITAlt);
+    var _ZEIT = require_ZEIT();
+    var _ZEIT2 = _interopRequireDefault(_ZEIT);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : { default: obj };
+    }
+    exports.AdaAlt = _ADAAlt2.default;
+    exports.Ada = _ADA2.default;
+    exports.AdcAlt = _ADCAlt2.default;
+    exports.Adc = _ADC2.default;
+    exports.AeonAlt = _AEONAlt2.default;
+    exports.Aeon = _AEON2.default;
+    exports.AmpAlt = _AMPAlt2.default;
+    exports.Amp = _AMP2.default;
+    exports.AncAlt = _ANCAlt2.default;
+    exports.Anc = _ANC2.default;
+    exports.ArchAlt = _ARCHAlt2.default;
+    exports.Arch = _ARCH2.default;
+    exports.ArdrAlt = _ARDRAlt2.default;
+    exports.Ardr = _ARDR2.default;
+    exports.ArkAlt = _ARKAlt2.default;
+    exports.Ark = _ARK2.default;
+    exports.AurAlt = _AURAlt2.default;
+    exports.Aur = _AUR2.default;
+    exports.BanxAlt = _BANXAlt2.default;
+    exports.Banx = _BANX2.default;
+    exports.BatAlt = _BATAlt2.default;
+    exports.Bat = _BAT2.default;
+    exports.BayAlt = _BAYAlt2.default;
+    exports.Bay = _BAY2.default;
+    exports.BcAlt = _BCAlt2.default;
+    exports.Bc = _BC2.default;
+    exports.BchAlt = _BCHAlt2.default;
+    exports.Bch = _BCH2.default;
+    exports.BcnAlt = _BCNAlt2.default;
+    exports.Bcn = _BCN2.default;
+    exports.BftAlt = _BFTAlt2.default;
+    exports.Bft = _BFT2.default;
+    exports.BrkAlt = _BRKAlt2.default;
+    exports.Brk = _BRK2.default;
+    exports.BrxAlt = _BRXAlt2.default;
+    exports.Brx = _BRX2.default;
+    exports.BsdAlt = _BSDAlt2.default;
+    exports.Bsd = _BSD2.default;
+    exports.Bta = _BTA2.default;
+    exports.BtcAlt = _BTCAlt2.default;
+    exports.Btc = _BTC2.default;
+    exports.BtcdAlt = _BTCDAlt2.default;
+    exports.Btcd = _BTCD2.default;
+    exports.BtmAlt = _BTMAlt2.default;
+    exports.Btm = _BTM2.default;
+    exports.BtsAlt = _BTSAlt2.default;
+    exports.Bts = _BTS2.default;
+    exports.ClamAlt = _CLAMAlt2.default;
+    exports.Clam = _CLAM2.default;
+    exports.CloakAlt = _CLOAKAlt2.default;
+    exports.Cloak = _CLOAK2.default;
+    exports.DaoAlt = _DAOAlt2.default;
+    exports.Dao = _DAO2.default;
+    exports.DashAlt = _DASHAlt2.default;
+    exports.Dash = _DASH2.default;
+    exports.DcrAlt = _DCRAlt2.default;
+    exports.Dcr = _DCR2.default;
+    exports.DctAlt = _DCTAlt2.default;
+    exports.Dct = _DCT2.default;
+    exports.DgbAlt = _DGBAlt2.default;
+    exports.Dgb = _DGB2.default;
+    exports.Dgd = _DGD2.default;
+    exports.Dgx = _DGX2.default;
+    exports.DmdAlt = _DMDAlt2.default;
+    exports.Dmd = _DMD2.default;
+    exports.DogeAlt = _DOGEAlt2.default;
+    exports.Doge = _DOGE2.default;
+    exports.EmcAlt = _EMCAlt2.default;
+    exports.Emc = _EMC2.default;
+    exports.EosAlt = _EOSAlt2.default;
+    exports.Eos = _EOS2.default;
+    exports.ErcAlt = _ERCAlt2.default;
+    exports.Erc = _ERC2.default;
+    exports.EtcAlt = _ETCAlt2.default;
+    exports.Etc = _ETC2.default;
+    exports.EthAlt = _ETHAlt2.default;
+    exports.Eth = _ETH2.default;
+    exports.Fc2Alt = _FC2Alt2.default;
+    exports.Fc2 = _FC2.default;
+    exports.FctAlt = _FCTAlt2.default;
+    exports.Fct = _FCT2.default;
+    exports.FloAlt = _FLOAlt2.default;
+    exports.Flo = _FLO2.default;
+    exports.FrkAlt = _FRKAlt2.default;
+    exports.Frk = _FRK2.default;
+    exports.FtcAlt = _FTCAlt2.default;
+    exports.Ftc = _FTC2.default;
+    exports.GameAlt = _GAMEAlt2.default;
+    exports.Game = _GAME2.default;
+    exports.GbyteAlt = _GBYTEAlt2.default;
+    exports.GdcAlt = _GDCAlt2.default;
+    exports.Gdc = _GDC2.default;
+    exports.GemzAlt = _GEMZAlt2.default;
+    exports.Gemz = _GEMZ2.default;
+    exports.GldAlt = _GLDAlt2.default;
+    exports.Gld = _GLD2.default;
+    exports.GnoAlt = _GNOAlt2.default;
+    exports.Gno = _GNO2.default;
+    exports.GntAlt = _GNTAlt2.default;
+    exports.Gnt = _GNT2.default;
+    exports.GolosAlt = _GOLOSAlt2.default;
+    exports.Golos = _GOLOS2.default;
+    exports.GrcAlt = _GRCAlt2.default;
+    exports.Grc = _GRC2.default;
+    exports.Grs = _GRS2.default;
+    exports.HeatAlt = _HEATAlt2.default;
+    exports.Heat = _HEAT2.default;
+    exports.IcnAlt = _ICNAlt2.default;
+    exports.Icn = _ICN2.default;
+    exports.IfcAlt = _IFCAlt2.default;
+    exports.Ifc = _IFC2.default;
+    exports.IncntAlt = _INCNTAlt2.default;
+    exports.Incnt = _INCNT2.default;
+    exports.IocAlt = _IOCAlt2.default;
+    exports.Ioc = _IOC2.default;
+    exports.IotaAlt = _IOTAAlt2.default;
+    exports.Iota = _IOTA2.default;
+    exports.JbsAlt = _JBSAlt2.default;
+    exports.Jbs = _JBS2.default;
+    exports.KmdAlt = _KMDAlt2.default;
+    exports.Kmd = _KMD2.default;
+    exports.Kobo = _KOBO2.default;
+    exports.KoreAlt = _KOREAlt2.default;
+    exports.Kore = _KORE2.default;
+    exports.LbcAlt = _LBCAlt2.default;
+    exports.Lbc = _LBC2.default;
+    exports.LdogeAlt = _LDOGEAlt2.default;
+    exports.Ldoge = _LDOGE2.default;
+    exports.LskAlt = _LSKAlt2.default;
+    exports.Lsk = _LSK2.default;
+    exports.LtcAlt = _LTCAlt2.default;
+    exports.Ltc = _LTC2.default;
+    exports.MaidAlt = _MAIDAlt2.default;
+    exports.Maid = _MAID2.default;
+    exports.McoAlt = _MCOAlt2.default;
+    exports.Mco = _MCO2.default;
+    exports.MintAlt = _MINTAlt2.default;
+    exports.Mint = _MINT2.default;
+    exports.MonaAlt = _MONAAlt2.default;
+    exports.Mona = _MONA2.default;
+    exports.Mrc = _MRC2.default;
+    exports.MscAlt = _MSCAlt2.default;
+    exports.Msc = _MSC2.default;
+    exports.MtrAlt = _MTRAlt2.default;
+    exports.Mtr = _MTR2.default;
+    exports.MueAlt = _MUEAlt2.default;
+    exports.Mue = _MUE2.default;
+    exports.Nbt = _NBT2.default;
+    exports.NeoAlt = _NEOAlt2.default;
+    exports.Neo = _NEO2.default;
+    exports.NeosAlt = _NEOSAlt2.default;
+    exports.Neos = _NEOS2.default;
+    exports.NeuAlt = _NEUAlt2.default;
+    exports.Neu = _NEU2.default;
+    exports.NlgAlt = _NLGAlt2.default;
+    exports.Nlg = _NLG2.default;
+    exports.NmcAlt = _NMCAlt2.default;
+    exports.Nmc = _NMC2.default;
+    exports.NoteAlt = _NOTEAlt2.default;
+    exports.Note = _NOTE2.default;
+    exports.NvcAlt = _NVCAlt2.default;
+    exports.Nvc = _NVC2.default;
+    exports.NxtAlt = _NXTAlt2.default;
+    exports.Nxt = _NXT2.default;
+    exports.OkAlt = _OKAlt2.default;
+    exports.Ok = _OK2.default;
+    exports.OmgAlt = _OMGAlt2.default;
+    exports.Omg = _OMG2.default;
+    exports.OmniAlt = _OMNIAlt2.default;
+    exports.Omni = _OMNI2.default;
+    exports.OpalAlt = _OPALAlt2.default;
+    exports.Opal = _OPAL2.default;
+    exports.PartAlt = _PARTAlt2.default;
+    exports.Part = _PART2.default;
+    exports.PiggyAlt = _PIGGYAlt2.default;
+    exports.Piggy = _PIGGY2.default;
+    exports.PinkAlt = _PINKAlt2.default;
+    exports.Pink = _PINK2.default;
+    exports.PivxAlt = _PIVXAlt2.default;
+    exports.Pivx = _PIVX2.default;
+    exports.PotAlt = _POTAlt2.default;
+    exports.Pot = _POT2.default;
+    exports.PpcAlt = _PPCAlt2.default;
+    exports.Ppc = _PPC2.default;
+    exports.QrkAlt = _QRKAlt2.default;
+    exports.Qrk = _QRK2.default;
+    exports.QtumAlt = _QTUMAlt2.default;
+    exports.Qtum = _QTUM2.default;
+    exports.RadsAlt = _RADSAlt2.default;
+    exports.Rads = _RADS2.default;
+    exports.RbiesAlt = _RBIESAlt2.default;
+    exports.Rbies = _RBIES2.default;
+    exports.RbtAlt = _RBTAlt2.default;
+    exports.Rbt = _RBT2.default;
+    exports.RbyAlt = _RBYAlt2.default;
+    exports.Rby = _RBY2.default;
+    exports.RddAlt = _RDDAlt2.default;
+    exports.Rdd = _RDD2.default;
+    exports.RepAlt = _REPAlt2.default;
+    exports.Rep = _REP2.default;
+    exports.RiseAlt = _RISEAlt2.default;
+    exports.Rise = _RISE2.default;
+    exports.SaltAlt = _SALTAlt2.default;
+    exports.Salt = _SALT2.default;
+    exports.SarAlt = _SARAlt2.default;
+    exports.Sar = _SAR2.default;
+    exports.ScotAlt = _SCOTAlt2.default;
+    exports.Scot = _SCOT2.default;
+    exports.SdcAlt = _SDCAlt2.default;
+    exports.Sdc = _SDC2.default;
+    exports.SiaAlt = _SIAAlt2.default;
+    exports.Sia = _SIA2.default;
+    exports.SjcxAlt = _SJCXAlt2.default;
+    exports.Sjcx = _SJCX2.default;
+    exports.SlgAlt = _SLGAlt2.default;
+    exports.Slg = _SLG2.default;
+    exports.SlsAlt = _SLSAlt2.default;
+    exports.Sls = _SLS2.default;
+    exports.SnrgAlt = _SNRGAlt2.default;
+    exports.Snrg = _SNRG2.default;
+    exports.StartAlt = _STARTAlt2.default;
+    exports.Start = _START2.default;
+    exports.SteemAlt = _STEEMAlt2.default;
+    exports.Steem = _STEEM2.default;
+    exports.StrAlt = _STRAlt2.default;
+    exports.Str = _STR2.default;
+    exports.StratAlt = _STRATAlt2.default;
+    exports.Strat = _STRAT2.default;
+    exports.SwiftAlt = _SWIFTAlt2.default;
+    exports.Swift = _SWIFT2.default;
+    exports.SyncAlt = _SYNCAlt2.default;
+    exports.Sync = _SYNC2.default;
+    exports.SysAlt = _SYSAlt2.default;
+    exports.Sys = _SYS2.default;
+    exports.TrigAlt = _TRIGAlt2.default;
+    exports.Trig = _TRIG2.default;
+    exports.TxAlt = _TXAlt2.default;
+    exports.Tx = _TX2.default;
+    exports.UbqAlt = _UBQAlt2.default;
+    exports.Ubq = _UBQ2.default;
+    exports.UnityAlt = _UNITYAlt2.default;
+    exports.Unity = _UNITY2.default;
+    exports.UsdtAlt = _USDTAlt2.default;
+    exports.Usdt = _USDT2.default;
+    exports.ViorAlt = _VIORAlt2.default;
+    exports.Vior = _VIOR2.default;
+    exports.VnlAlt = _VNLAlt2.default;
+    exports.Vnl = _VNL2.default;
+    exports.VpnAlt = _VPNAlt2.default;
+    exports.Vpn = _VPN2.default;
+    exports.VrcAlt = _VRCAlt2.default;
+    exports.Vrc = _VRC2.default;
+    exports.VtcAlt = _VTCAlt2.default;
+    exports.Vtc = _VTC2.default;
+    exports.WavesAlt = _WAVESAlt2.default;
+    exports.Waves = _WAVES2.default;
+    exports.XaiAlt = _XAIAlt2.default;
+    exports.Xai = _XAI2.default;
+    exports.XbsAlt = _XBSAlt2.default;
+    exports.Xbs = _XBS2.default;
+    exports.XcpAlt = _XCPAlt2.default;
+    exports.Xcp = _XCP2.default;
+    exports.XemAlt = _XEMAlt2.default;
+    exports.Xem = _XEM2.default;
+    exports.Xmr = _XMR2.default;
+    exports.XpmAlt = _XPMAlt2.default;
+    exports.Xpm = _XPM2.default;
+    exports.XrpAlt = _XRPAlt2.default;
+    exports.Xrp = _XRP2.default;
+    exports.XtzAlt = _XTZAlt2.default;
+    exports.Xtz = _XTZ2.default;
+    exports.XvgAlt = _XVGAlt2.default;
+    exports.Xvg = _XVG2.default;
+    exports.XzcAlt = _XZCAlt2.default;
+    exports.Xzc = _XZC2.default;
+    exports.YbcAlt = _YBCAlt2.default;
+    exports.Ybc = _YBC2.default;
+    exports.ZecAlt = _ZECAlt2.default;
+    exports.Zec = _ZEC2.default;
+    exports.ZeitAlt = _ZEITAlt2.default;
+    exports.Zeit = _ZEIT2.default;
+  }
+});
+export default require_dist();
+//# sourceMappingURL=react-cryptocoins.js.map
