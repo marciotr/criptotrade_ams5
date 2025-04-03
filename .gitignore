@@ -1,2 +1,13 @@
 bin/
 obj/
+
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

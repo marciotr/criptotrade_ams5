@@ -63,10 +63,6 @@ public class UserService : IUserService
 
     public UserDTO? UpdateUser(int id, UserDTO userDto)
     {
-<<<<<<< HEAD
-=======
-        var hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
         var user = _userRepository.GetById(id);
         if (user == null) return null;
         
@@ -74,17 +70,12 @@ public class UserService : IUserService
         user.Email = userDto.Email;
         user.Phone = userDto.Phone;
         user.Address = userDto.Address;
-<<<<<<< HEAD
         user.Photo = userDto.Photo;
 
         if (!string.IsNullOrEmpty(userDto.Password))
         {
             user.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
         }
-=======
-        user.Password = hashedPassword;
-        user.Photo = userDto.Photo;
->>>>>>> 1eca3b2d26f6e3c41c581351e076587792c19d9f
         
         _userRepository.Update(user);
         
