@@ -68,9 +68,14 @@ public class UserService : IUserService
         
         user.Name = userDto.Name;
         user.Email = userDto.Email;
-        user.Phone = userDto.Phone;
+        user.Phone = userDto.Phone ?? user.Phone;
         user.Address = userDto.Address;
-        user.Photo = userDto.Photo;
+        
+        // Only update photo if it's provided
+        if (!string.IsNullOrEmpty(userDto.Photo))
+        {
+            user.Photo = userDto.Photo;
+        }
 
         if (!string.IsNullOrEmpty(userDto.Password))
         {
@@ -81,11 +86,11 @@ public class UserService : IUserService
         
         return new UserDTO
         {
+            Id = user.Id,
             Name = user.Name,
             Email = user.Email,
             Phone = user.Phone,
             Address = user.Address,
-            Password = user.Password,
             Photo = user.Photo
         };
     }
@@ -97,8 +102,6 @@ public class UserService : IUserService
         _userRepository.Delete(id);
         return true;
     }
-
-
 
     public UserDTO? ValidateUser(string email, string password)
     {

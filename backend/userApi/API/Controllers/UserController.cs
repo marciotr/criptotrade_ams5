@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -44,5 +48,38 @@ public class UserController : ControllerBase
     {
         var result = _userService.DeleteUser(id);
         return result ? NoContent() : NotFound();
+    }
+
+    [HttpGet("{id}/photo")]
+    public IActionResult GetUserPhoto(int id)
+    {
+        var user = _userService.GetUserDetails(id);
+        if (user == null || string.IsNullOrEmpty(user.Photo))
+            return NotFound();
+
+        return Ok(new { photo = user.Photo });
+    }
+
+    [HttpPost("{id}/photo")]
+    public async Task<IActionResult> UploadPhoto(int id, IFormFile photo)
+    {
+        if (photo == null || photo.Length == 0)
+            return BadRequest("No file uploaded");
+
+        var user = _userService.GetUserDetails(id);
+        if (user == null)
+            return NotFound();
+
+        using var ms = new MemoryStream();
+        await photo.CopyToAsync(ms);
+        var fileBytes = ms.ToArray();
+        string base64String = Convert.ToBase64String(fileBytes);
+
+        string photoData = $"data:{photo.ContentType};base64,{base64String}";
+        
+        user.Photo = photoData;
+        var updatedUser = _userService.UpdateUser(id, user);
+        
+        return Ok(new { photo = updatedUser.Photo });
     }
 }

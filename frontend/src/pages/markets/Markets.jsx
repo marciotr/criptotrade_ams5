@@ -1,21 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Star, ArrowUp, ArrowDown, TrendingUp } from 'lucide-react';
+import { Search, Star, ArrowUp, ArrowDown, TrendingUp, Loader } from 'lucide-react';
 import CryptoIcon from '../../components/common/CryptoIcons';
-import { 
-  marketData, 
-  trendingPairs,
-  marketFilters 
-} from '../../data/mockData';
+import { marketFilters } from '../../data/mockData';
 import { useNavigate } from 'react-router-dom';
+import { marketApi } from '../../services/api/api';
 
 export function Markets() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all'); 
-  const [favorites, setFavorites] = useState(
-    marketData.filter(coin => coin.favorite).map(coin => coin.id)
-  );
+  const [favorites, setFavorites] = useState(() => {
+    const storedFavorites = localStorage.getItem('cryptoFavorites');
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
+  const [tickers, setTickers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const tickersResponse = await marketApi.getAllTickers();
+        const tickersData = tickersResponse.data;
+        
+        requestAnimationFrame(() => {
+          setTickers(tickersData);
+          setIsLoading(false);
+        });
+      } catch (error) {
+        console.error('Error fetching tickers:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+    const interval = setInterval(fetchData, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Salvar favoritos no localStorage quando mudar
+  useEffect(() => {
+    localStorage.setItem('cryptoFavorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const processedMarketData = useMemo(() => {
+    if (!tickers?.length) return [];
+
+    return tickers
+      .filter(ticker => ticker.symbol.endsWith('USDT'))
+      .map(ticker => ({
+        id: ticker.symbol,
+        name: ticker.symbol.replace('USDT', ''),
+        symbol: ticker.symbol,
+        price: Number(ticker.lastPrice),
+        change: Number(ticker.priceChangePercent),
+        volume: Number(ticker.volume),
+        marketCap: Number(ticker.quoteVolume) || Number(ticker.volume) * Number(ticker.lastPrice),
+        favorite: favorites.includes(ticker.symbol)
+      }));
+  }, [tickers, favorites]);
 
   const toggleFavorite = (coinId) => {
     if (favorites.includes(coinId)) {
@@ -25,24 +69,44 @@ export function Markets() {
     }
   };
 
-  const handleCoinClick = (coinId) => {
+  const handleCoinClick = useCallback((coin, event) => {
     // Prevent navigation when clicking the favorite star
-    const isStarClick = event.target.closest('.favorite-star');
-    if (isStarClick) return;
+    if (event.target.closest('.favorite-star')) return;
     
-    const coinPath = String(coinId).toLowerCase();
+    const coinPath = coin.name.toLowerCase();
     navigate(`/price/${coinPath}`);
-  };
+  }, [navigate]);
 
-  const filteredData = marketData.filter(coin => {
-    const matchesSearch = coin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         coin.symbol.toLowerCase().includes(searchTerm.toLowerCase());
+  // Aplicar filtros aos dados processados
+  const filteredData = useMemo(() => {
+    return processedMarketData.filter(coin => {
+      const matchesSearch = 
+        coin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      if (filter === 'favorites') return matchesSearch && favorites.includes(coin.id);
+      if (filter === 'gainers') return matchesSearch && coin.change > 0;
+      if (filter === 'losers') return matchesSearch && coin.change < 0;
+      return matchesSearch;
+    });
+  }, [processedMarketData, searchTerm, filter, favorites]);
+
+  // Obter as moedas em tendência (top 3 por volume)
+  const trendingPairs = useMemo(() => {
+    if (!processedMarketData.length) return [];
     
-    if (filter === 'favorites') return matchesSearch && favorites.includes(coin.id);
-    if (filter === 'gainers') return matchesSearch && coin.change > 0;
-    if (filter === 'losers') return matchesSearch && coin.change < 0;
-    return matchesSearch;
-  });
+    return [...processedMarketData]
+      .sort((a, b) => b.volume - a.volume)
+      .slice(0, 3);
+  }, [processedMarketData]);
+
+  if (isLoading && !tickers.length) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader className="w-10 h-10 text-brand-primary animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 space-y-8 min-h-screen bg-background">
@@ -55,27 +119,31 @@ export function Markets() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {trendingPairs.map((pair, index) => (
             <motion.div
-              key={pair.pair}
+              key={pair.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-background-primary p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-background-primary p-4 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+              onClick={(e) => handleCoinClick(pair, e)}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <CryptoIcon symbol={pair.base} size={24} />
+                  <CryptoIcon symbol={pair.id} size={24} />
                   <div>
-                    <span className="font-bold text-text-primary block">{pair.pair}</span>
-                    <span className="text-sm text-text-secondary">24h Volume</span>
+                    <span className="font-bold text-text-primary block">{pair.name}/USDT</span>
+                    <span className="text-sm text-text-secondary">24h Volume: ${pair.volume.toLocaleString()}</span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-text-primary">${pair.price.toLocaleString()}</p>
+                  <p className="font-semibold text-text-primary">${pair.price.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 6
+                  })}</p>
                   <p className={`text-sm flex items-center justify-end ${
                     pair.change > 0 ? 'text-feedback-success' : 'text-feedback-error'
                   }`}>
                     {pair.change > 0 ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
-                    {Math.abs(pair.change)}%
+                    {Math.abs(pair.change).toFixed(2)}%
                   </p>
                 </div>
               </div>
@@ -121,69 +189,98 @@ export function Markets() {
         animate={{ opacity: 1 }}
         className="max-w-7xl mx-auto bg-background-primary rounded-xl shadow-lg overflow-hidden"
       >
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-background-secondary border-b border-border-primary">
-                <th className="px-6 py-4 text-left text-sm font-medium text-text-tertiary">Name</th>
-                <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">Price</th>
-                <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">24h Change</th>
-                <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">Volume</th>
-                <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">Market Cap</th>
-                <th className="px-6 py-4 text-center text-sm font-medium text-text-tertiary">Favorite</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.map((coin, index) => (
-                <motion.tr
-                  key={coin.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="border-t border-border-primary hover:bg-background-secondary transition-colors cursor-pointer"
-                  onClick={() => handleCoinClick(coin.id)}
-                >
-                  <td className="px-6 py-4">
-                    <div className="flex items-center space-x-3">
-                      <CryptoIcon symbol={coin.symbol} size={20} />
-                      <span className="font-semibold text-gray-700 dark:text-gray-300">{coin.name}</span>
-                      <span className="text-gray-500 dark:text-gray-400">{coin.symbol}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-right font-semibold text-gray-700 dark:text-gray-300">
-                    ${coin.price.toLocaleString()}
-                  </td>
-                  <td className={`px-6 py-4 text-right ${
-                    coin.change > 0 ? 'text-green-500' : 'text-red-500'
-                  }`}>
-                    <div className="flex items-center justify-end">
-                      {coin.change > 0 ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
-                      {Math.abs(coin.change)}%
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-right text-gray-700 dark:text-gray-300">{coin.volume}</td>
-                  <td className="px-6 py-4 text-right text-gray-700 dark:text-gray-300">{coin.marketCap}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex justify-center">
-                      <Star
-                        className={`favorite-star cursor-pointer ${
-                          favorites.includes(coin.id)
-                            ? 'fill-yellow-500 text-yellow-500'
-                            : 'text-gray-400 hover:text-yellow-500'
-                        }`}
-                        size={20}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleFavorite(coin.id);
-                        }}
-                      />
-                    </div>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {isLoading ? (
+          <div className="py-12 flex justify-center">
+            <Loader className="w-8 h-8 text-brand-primary animate-spin" />
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-background-secondary border-b border-border-primary">
+                  <th className="px-6 py-4 text-left text-sm font-medium text-text-tertiary">Name</th>
+                  <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">Price</th>
+                  <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">24h Change</th>
+                  <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">Volume</th>
+                  <th className="px-6 py-4 text-right text-sm font-medium text-text-tertiary">Market Cap</th>
+                  <th className="px-6 py-4 text-center text-sm font-medium text-text-tertiary">Favorite</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredData.length > 0 ? (
+                  filteredData.map((coin, index) => (
+                    <motion.tr
+                      key={coin.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.02 }}
+                      className="border-t border-border-primary hover:bg-background-secondary transition-colors cursor-pointer"
+                      onClick={(e) => handleCoinClick(coin, e)}
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center space-x-3">
+                          <CryptoIcon symbol={coin.id} size={20} />
+                          <span className="font-semibold text-text-primary">{coin.name}</span>
+                          <span className="text-text-tertiary">{coin.symbol}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-right font-semibold text-text-primary">
+                        ${coin.price.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: coin.price < 1 ? 6 : 2
+                        })}
+                      </td>
+                      <td className={`px-6 py-4 text-right ${
+                        coin.change > 0 ? 'text-feedback-success' : 'text-feedback-error'
+                      }`}>
+                        <div className="flex items-center justify-end">
+                          {coin.change > 0 ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
+                          {Math.abs(coin.change).toFixed(2)}%
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-right text-text-secondary">
+                        ${coin.volume.toLocaleString(undefined, {
+                          maximumFractionDigits: 0
+                        })}
+                      </td>
+                      <td className="px-6 py-4 text-right text-text-secondary">
+                        ${coin.marketCap.toLocaleString(undefined, {
+                          maximumFractionDigits: 0
+                        })}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex justify-center">
+                          <Star
+                            className={`favorite-star cursor-pointer ${
+                              favorites.includes(coin.id)
+                                ? 'fill-yellow-500 text-yellow-500'
+                                : 'text-gray-400 hover:text-yellow-500'
+                            }`}
+                            size={20}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(coin.id);
+                            }}
+                          />
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="6" className="px-6 py-12 text-center text-text-tertiary">
+                      {searchTerm 
+                        ? "No coins found matching your search" 
+                        : filter === 'favorites' 
+                          ? "You don't have any favorite coins yet" 
+                          : "No data available"}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
       </motion.div>
     </div>
   );

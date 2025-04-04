@@ -82,6 +82,25 @@ export function Dashboard() {
     setCryptoData(processedCryptoData);
   }, [processedCryptoData]);
 
+  const getIntervalFromTimeRange = (range) => {
+    switch (range) {
+      case '1H':
+        return { interval: '1m', limit: 60 }; // 60 pontos x 1 minuto = 1 hora
+      case '24H':
+        return { interval: '15m', limit: 96 }; // 96 pontos x 15 minutos = 24 horas
+      case '7D':
+      case '1W':
+        return { interval: '1h', limit: 168 }; // 168 pontos x 1 hora = 1 semana
+      case '30D':
+      case '1M':
+        return { interval: '4h', limit: 180 }; // 180 pontos x 4 horas = 30 dias (aprox. 1 mês)
+      case '1Y':
+        return { interval: '1d', limit: 365 }; // 365 pontos x 1 dia = 1 ano
+      default:
+        return { interval: '15m', limit: 96 };
+    }
+  };
+
   useEffect(() => {
     const fetchCryptoData = async () => {
       try {
@@ -108,31 +127,14 @@ export function Dashboard() {
     fetchCryptoData();
   }, [processedCryptoData]);
 
-  const getIntervalFromTimeRange = (range) => {
-    switch (range) {
-      case '1H':
-        return '1m';
-      case '24H':
-        return '15m';
-      case '7D':
-        return '4h';
-      case '30D':
-        return '1d';
-      case '1Y':
-        return '1w';
-      default:
-        return '15m';
-    }
-  };
-
   const fetchCoinData = useCallback(async (symbol) => {
     try {
       const formattedSymbol = symbol.replace(/USDT+$/, '') + 'USDT';
-      const interval = getIntervalFromTimeRange(timeRange);
+      const { interval, limit } = getIntervalFromTimeRange(timeRange);
       
       const [tickerData, klinesData] = await Promise.all([
         marketApi.getTickerBySymbol(formattedSymbol),
-        marketApi.getKlines(formattedSymbol, interval, 100)
+        marketApi.getKlines(formattedSymbol, interval, limit)
       ]);
 
       const formattedKlines = klinesData.data.map(([timestamp, open, high, low, close, volume]) => ({
@@ -175,27 +177,20 @@ export function Dashboard() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [fetchCoinData]);
 
   useEffect(() => {
     if (selectedCoin?.id) {
       fetchCoinData(selectedCoin.id);
     }
-  }, [selectedCoin?.id]);
-
-  useEffect(() => {
-    if (selectedCoin?.id && timeRange) {
-      const timeoutId = setTimeout(() => {
-        fetchCoinData(selectedCoin.id);
-      }, 300);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [timeRange]);
+  }, [selectedCoin?.id, fetchCoinData]);
 
   const handleTimeRangeChange = useCallback((newRange) => {
     setTimeRange(newRange);
-  }, []);
+    if (selectedCoin?.id) {
+      fetchCoinData(selectedCoin.id);
+    }
+  }, [selectedCoin?.id, fetchCoinData]);
 
   const getTopMovers = useMemo(() => {
     if (!tickers?.length) return { gainers: [], losers: [] };
@@ -211,7 +206,6 @@ export function Dashboard() {
         normalizedVolume: parseFloat(ticker.volume)
       }));
 
-    // Filter out invalid values
     const validTickers = processedTickers.filter(
       t => !isNaN(t.change) && !isNaN(t.price) && t.price > 0
     );
@@ -262,7 +256,7 @@ export function Dashboard() {
   const visibleMarketData = cryptoData.slice(0, visibleCount);
 
   const handleShowMore = useCallback(() => {
-    navigate('/markets'); // Redirect to markets page instead of showing more items
+    navigate('/markets'); 
   }, [navigate]);
 
   return (
@@ -286,6 +280,7 @@ export function Dashboard() {
               isOpen={dropdownOpen}
               onToggle={() => setDropdownOpen(!dropdownOpen)}
               onSelect={handleCoinSelection}
+              price={selectedCryptoData?.lastPrice}
             />
             <TimeRangeSelector 
               timeRange={timeRange}
@@ -305,8 +300,9 @@ export function Dashboard() {
         </div>
 
         <MarketOverview 
+          key="market-overview"
           data={visibleMarketData}
-          isLoading={isLoading}
+          isLoading={false} 
           visibleCount={visibleCount}
           onShowMore={handleShowMore}
         />

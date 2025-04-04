@@ -11,6 +11,16 @@ export const userApi = {
   getProfile: (id) => api.get(`/User/${id}`),
   updateProfile: (id, data) => api.put(`/User/${id}`, data),
   deleteAccount: (id) => api.delete(`/User/${id}`),
+  updatePhoto: (id, file) => {
+    const formData = new FormData();
+    formData.append('photo', file);
+    
+    return api.post(`/User/${id}/photo`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+  },
 };
 
 export const marketApi = {

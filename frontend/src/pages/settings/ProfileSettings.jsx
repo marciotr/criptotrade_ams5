@@ -29,7 +29,8 @@ export function ProfileSettings() {
     email: user?.email || '',
     phone: user?.phone || '',
     website: user?.website || '',
-    bio: user?.bio || ''
+    bio: user?.bio || '',
+    photo: user?.photo || ''
   });
   const [notification, setNotification] = useState(null);
 
@@ -200,7 +201,7 @@ export function ProfileSettings() {
         email: formData.email,
         phone: formData.phone,
         address: fullAddress, 
-        photo: user?.photo || '',
+        photo: user?.photo,
         website: formData.website,
         bio: formData.bio,
         username: formData.username
@@ -226,8 +227,7 @@ export function ProfileSettings() {
   const handleUpdatePhoto = async (file) => {
     try {
       setIsLoading(true);
-      // Aqui você implementaria a lógica de upload da foto
-      // const response = await userApi.updatePhoto(user.id, file);
+      await userApi.updatePhoto(user.id, file);
       
       setNotification({
         type: 'success',
@@ -241,6 +241,7 @@ export function ProfileSettings() {
       });
     } finally {
       setIsLoading(false);
+      setIsPhotoModalOpen(false);
     }
   };
 
@@ -268,7 +269,7 @@ export function ProfileSettings() {
         <div className="flex flex-col lg:flex-row items-start space-y-4 lg:space-y-0 lg:space-x-6">
           <div className="flex-shrink-0 relative group">
             <img
-              src="https://img.freepik.com/fotos-gratis/retrato-de-um-homem-sorridente-satisfeito-trabalhando_171337-12116.jpg"
+              src={formData.photo}
               alt="User Avatar"
               className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover"
             />

@@ -19,13 +19,17 @@ export function ModalUpdatePhoto({ onClose, onUpdate, currentPhoto }) {
     }
   };
 
+  const handleUpload = (file) => {
+    onUpdate(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedFile) return;
 
     try {
       setIsLoading(true);
-      await onUpdate(selectedFile);
+      handleUpload(selectedFile);
       onClose();
     } catch (error) {
       console.error('Error updating photo:', error);

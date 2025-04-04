@@ -11,8 +11,6 @@ const CryptoIcon = ({ symbol, size = 24 }) => {
   // Multiple fallback URLs
   const iconUrls = [
     `https://assets.coincap.io/assets/icons/${cleanSymbol}@2x.png`,
-    `https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/128/color/${cleanSymbol}.png`,
-    `https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@master/128/color/${cleanSymbol}.png`
   ];
 
   const handleError = (e) => {
