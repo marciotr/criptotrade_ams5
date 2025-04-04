@@ -47,7 +47,8 @@ export function ProfileSettings() {
           email: userData.email || '',
           phone: userData.phone || '',
           website: userData.website || '',
-          bio: userData.bio || ''
+          bio: userData.bio || '',
+          photo: userData.photo || ''
         });
 
         // Quebra o endereço completo em partes

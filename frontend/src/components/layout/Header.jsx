@@ -76,7 +76,7 @@ export function Header({ onSidebarOpen }) {
                   className="flex items-center space-x-2 p-1 sm:p-2 rounded-lg hover:bg-background-secondary"
                 >
                   <img
-                    src="https://placehold.co/600x400"
+                    src={user.photo}
                     alt="User Avatar"
                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                   />
