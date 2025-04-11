@@ -18,6 +18,7 @@ import { PricePage } from './pages/price/PricePage';
 import { AuthProvider } from './store/auth/AuthContext';
 import { PrivateRoute } from './components/auth/PrivateRoute';
 import { useAuth } from './store/auth/useAuth';
+import Users from './pages/admin/users/Users'; 
 
 function Layout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -109,6 +110,13 @@ function App() {
                   <Route path="/price/:coinId" element={
                     <PrivateRoute>
                       <PricePage />
+                    </PrivateRoute>
+                  } />
+                  
+                  {/* Admin Routes */}
+                  <Route path="/admin/users" element={
+                    <PrivateRoute>
+                      <Users />
                     </PrivateRoute>
                   } />
 

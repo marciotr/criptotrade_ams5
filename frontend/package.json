@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.7",
     "axios": "^1.8.4",
     "clsx": "^2.1.0",
     "cryptocurrency-icons": "^0.18.1",
