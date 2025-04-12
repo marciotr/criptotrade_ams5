@@ -37,6 +37,13 @@ namespace userApi.Migrations
                 type: "TEXT",
                 nullable: false,
                 defaultValue: "");
+                
+            migrationBuilder.AddColumn<string>(
+                name: "Role",
+                table: "Users",
+                type: "TEXT",
+                nullable: false,
+                defaultValue: "user");
         }
 
         /// <inheritdoc />
@@ -56,6 +63,10 @@ namespace userApi.Migrations
 
             migrationBuilder.DropColumn(
                 name: "Photo",
+                table: "Users");
+                
+            migrationBuilder.DropColumn(
+                name: "Role",
                 table: "Users");
         }
     }

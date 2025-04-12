@@ -205,7 +205,9 @@ export function ProfileSettings() {
         photo: user?.photo,
         website: formData.website,
         bio: formData.bio,
-        username: formData.username
+        username: formData.username,
+        password: null, 
+        role: user.role 
       };
 
       await userApi.updateProfile(user.id, updatedUserData);

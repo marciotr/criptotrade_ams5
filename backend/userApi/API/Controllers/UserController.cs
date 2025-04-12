@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using userApi.API.DTOs; 
 
 [ApiController]
 [Route("api/[controller]")]
@@ -18,6 +19,10 @@ public class UserController : ControllerBase
      [HttpPost]
     public IActionResult RegisterUser(UserDTO userDto)
     {
+        var newUser = new User 
+        {
+            Role = userDto.Role ?? "user" 
+        };
         var result = _userService.RegisterUser(userDto);
         return Ok(result);
     }
@@ -37,10 +42,53 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, UserDTO userDto)
+    public IActionResult UpdateUser(int id, UpdateUserDTO updateDto)
     {
-        var updatedUser = _userService.UpdateUser(id, userDto);
-        return updatedUser != null ? Ok(updatedUser) : NotFound();
+        try
+        {
+            // Adicione logging para debug
+            Console.WriteLine($"Recebendo atualização para usuário {id}");
+            Console.WriteLine($"Role recebida: {updateDto.Role}");
+            
+            var existingUser = _userService.GetUserDetails(id);
+            if (existingUser == null)
+                return NotFound();
+
+            // Mapear os campos do DTO para o usuário existente
+            if (updateDto.Name != null)
+                existingUser.Name = updateDto.Name;
+            
+            if (updateDto.Email != null)
+                existingUser.Email = updateDto.Email;
+            
+            if (updateDto.Phone != null)
+                existingUser.Phone = updateDto.Phone;
+            
+            if (updateDto.Address != null)
+                existingUser.Address = updateDto.Address;
+                
+            // IMPORTANTE: Garantir que a Role seja atualizada
+            if (updateDto.Role != null)
+            {
+                Console.WriteLine($"Atualizando role para: {updateDto.Role}");
+                existingUser.Role = updateDto.Role;
+            }
+            
+            if (updateDto.Photo != null)
+                existingUser.Photo = updateDto.Photo;
+                
+            var result = _userService.UpdateUser(id, existingUser);
+            
+            // Verificar se a role foi atualizada
+            Console.WriteLine($"Role após atualização: {result.Role}");
+            
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao atualizar usuário: {ex.Message}");
+            return StatusCode(500, $"Erro interno: {ex.Message}");
+        }
     }
 
     [HttpDelete("{id}")]

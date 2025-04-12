@@ -7,29 +7,30 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-     public UserDTO RegisterUser(UserDTO userDto)
+    public UserDTO RegisterUser(UserDTO userDto)
     {
-        var hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
-
-        var user = new User 
+        var user = new User
         {
-            Name = userDto.Name, 
-            Email = userDto.Email, 
-            Phone = userDto.Phone,
-            Address = userDto.Address,
-            Password = hashedPassword,
-            Photo = userDto.Photo
+            Name = userDto.Name,
+            Email = userDto.Email,
+            Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
+            Phone = userDto.Phone ?? "", 
+            Address = userDto.Address ?? "",
+            Photo = userDto.Photo ?? "",
+            Role = userDto.Role ?? "user"
         };
+        
         _userRepository.Add(user);
-
+        
         return new UserDTO
         {
+            Id = user.Id,
             Name = user.Name,
             Email = user.Email,
             Phone = user.Phone,
             Address = user.Address,
-            Password = user.Password,
-            Photo = user.Photo
+            Photo = user.Photo,
+            Role = user.Role
         };
     }
 
@@ -43,7 +44,8 @@ public class UserService : IUserService
             Phone = user.Phone,
             Address = user.Address,
             Password = user.Password,
-            Photo = user.Photo
+            Photo = user.Photo,
+            Role = user.Role
         } : null;
     }
 
@@ -57,7 +59,8 @@ public class UserService : IUserService
             Phone = user.Phone,
             Address = user.Address,
             Password = user.Password,
-            Photo = user.Photo
+            Photo = user.Photo,
+            Role = user.Role
         }).ToList();
     }
 
@@ -66,32 +69,34 @@ public class UserService : IUserService
         var user = _userRepository.GetById(id);
         if (user == null) return null;
         
-        user.Name = userDto.Name;
-        user.Email = userDto.Email;
+        user.Name = userDto.Name ?? user.Name;
+        user.Email = userDto.Email ?? user.Email;
         user.Phone = userDto.Phone ?? user.Phone;
-        user.Address = userDto.Address;
+        user.Address = userDto.Address ?? user.Address;
+        user.Role = userDto.Role ?? user.Role;
         
-        // Only update photo if it's provided
-        if (!string.IsNullOrEmpty(userDto.Photo))
-        {
-            user.Photo = userDto.Photo;
-        }
-
+        // Pra atualizar a senha apenas se uma nova senha for inserida pelo user
         if (!string.IsNullOrEmpty(userDto.Password))
         {
             user.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
         }
         
+        // mesma coisa pra foto
+        if (!string.IsNullOrEmpty(userDto.Photo))
+        {
+            user.Photo = userDto.Photo;
+        }
+        
         _userRepository.Update(user);
         
-        return new UserDTO
-        {
+        return new UserDTO {
             Id = user.Id,
             Name = user.Name,
             Email = user.Email,
             Phone = user.Phone,
             Address = user.Address,
-            Photo = user.Photo
+            Photo = user.Photo,
+            Role = user.Role 
         };
     }
 
@@ -115,7 +120,8 @@ public class UserService : IUserService
             Email = user.Email,
             Phone = user.Phone,
             Address = user.Address,
-            Photo = user.Photo
+            Photo = user.Photo,
+            Role = user.Role
         };
     }
 
