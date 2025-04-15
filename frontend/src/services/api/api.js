@@ -1,21 +1,21 @@
-import api from './config';
+import { userApiConfig, cryptoApiConfig } from './config';
 
 export const authApi = {
-  login: (credentials) => api.post('/auth/login', credentials),
-  register: (userData) => api.post('/User', userData),
-  verifyToken: () => api.get('/auth/verify'),
+  login: (credentials) => userApiConfig.post('/auth/login', credentials),
+  register: (userData) => userApiConfig.post('/User', userData),
+  verifyToken: () => userApiConfig.get('/auth/verify'),
 };
 
 export const userApi = {
-  getUsers: () => api.get('/User'),
-  getProfile: (id) => api.get(`/User/${id}`),
-  updateProfile: (id, data) => api.put(`/User/${id}`, data),
-  deleteAccount: (id) => api.delete(`/User/${id}`),
+  getUsers: () => userApiConfig.get('/User'),
+  getProfile: (id) => userApiConfig.get(`/User/${id}`),
+  updateProfile: (id, data) => userApiConfig.put(`/User/${id}`, data),
+  deleteAccount: (id) => userApiConfig.delete(`/User/${id}`),
   updatePhoto: (id, file) => {
     const formData = new FormData();
     formData.append('photo', file);
     
-    return api.post(`/User/${id}/photo`, formData, {
+    return userApiConfig.post(`/User/${id}/photo`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -23,37 +23,38 @@ export const userApi = {
   },
 };
 
+// Use cryptoApiConfig para todas as chamadas de criptomoeda
 export const marketApi = {
-  getPrices: () => api.get('/crypto/prices'),
-  getAllTickers: () => api.get('/crypto/tickers'),
-  getTickerBySymbol: (symbol) => api.get(`/crypto/ticker/${symbol}`),
-  getOrderBook: (symbol, limit = 100) => api.get(`/crypto/orderbook/${symbol}`, {
+  getPrices: () => cryptoApiConfig.get('/crypto/prices'),
+  getAllTickers: () => cryptoApiConfig.get('/crypto/tickers'),
+  getTickerBySymbol: (symbol) => cryptoApiConfig.get(`/crypto/ticker/${symbol}`),
+  getOrderBook: (symbol, limit = 100) => cryptoApiConfig.get(`/crypto/orderbook/${symbol}`, {
     params: { limit }
   }),
-  getRecentTrades: (symbol, limit = 500) => api.get(`/crypto/trades/${symbol}`, {
+  getRecentTrades: (symbol, limit = 500) => cryptoApiConfig.get(`/crypto/trades/${symbol}`, {
     params: { limit }
   }),
-  getCoinData: (symbol) => api.get(`/market/coin/${symbol}`),
-  getHistory: (symbol, timeframe) => api.get(`/market/history/${symbol}`, { 
+  getCoinData: (symbol) => cryptoApiConfig.get(`/market/coin/${symbol}`),
+  getHistory: (symbol, timeframe) => cryptoApiConfig.get(`/market/history/${symbol}`, { 
     params: { timeframe } 
   }),
-  getAllCryptos: () => api.get('/Crypto'),
-  getCryptoBySymbol: (symbol) => api.get(`/Crypto/${symbol}`),
+  getAllCryptos: () => userApiConfig.get('/Crypto'), // Esta ainda usa a userApi, está correto?
+  getCryptoBySymbol: (symbol) => userApiConfig.get(`/Crypto/${symbol}`), // Essa também
   getCryptoIcon: (symbol) => `https://bin.bnbstatic.com/image/crypto/${symbol.toLowerCase()}.png`,
   getKlines: (symbol, interval = '15m', limit = 100) => 
-    api.get(`/crypto/klines/${symbol}`, {
+    cryptoApiConfig.get(`/crypto/klines/${symbol}`, {
       params: { interval, limit }
     }),
 };
 
 export const transactionApi = {
-  getAll: () => api.get('/transactions'),
-  create: (data) => api.post('/transactions', data),
-  getById: (id) => api.get(`/transactions/${id}`),
-  update: (id, data) => api.put(`/transactions/${id}`, data),
+  getAll: () => userApiConfig.get('/transactions'),
+  create: (data) => userApiConfig.post('/transactions', data),
+  getById: (id) => userApiConfig.get(`/transactions/${id}`),
+  update: (id, data) => userApiConfig.put(`/transactions/${id}`, data),
 };
 
 export const settingsApi = {
-  get: () => api.get('/settings'),
-  update: (data) => api.put('/settings', data),
+  get: () => userApiConfig.get('/settings'),
+  update: (data) => userApiConfig.put('/settings', data),
 };

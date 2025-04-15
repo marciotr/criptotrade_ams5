@@ -53,8 +53,7 @@ public class UserController : ControllerBase
             var existingUser = _userService.GetUserDetails(id);
             if (existingUser == null)
                 return NotFound();
-
-            // Mapear os campos do DTO para o usuário existente
+                
             if (updateDto.Name != null)
                 existingUser.Name = updateDto.Name;
             
@@ -67,7 +66,6 @@ public class UserController : ControllerBase
             if (updateDto.Address != null)
                 existingUser.Address = updateDto.Address;
                 
-            // IMPORTANTE: Garantir que a Role seja atualizada
             if (updateDto.Role != null)
             {
                 Console.WriteLine($"Atualizando role para: {updateDto.Role}");

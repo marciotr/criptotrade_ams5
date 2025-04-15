@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using userApi.Application.Interfaces;
-using userApi.API.DTOs;
+using cryptoApi.Application.Interfaces;
+using cryptoApi.DTOs;
 
-namespace userApi.API.Controllers
+namespace cryptoApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

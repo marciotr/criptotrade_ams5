@@ -1,6 +1,6 @@
-using userApi.API.DTOs;
+using cryptoApi.DTOs;
 
-namespace userApi.Application.Interfaces
+namespace cryptoApi.Application.Interfaces
 {
     public interface ICryptoService
     {

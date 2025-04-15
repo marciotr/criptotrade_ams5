@@ -4,12 +4,13 @@ import { useTheme } from '../../../context/ThemeContext';
 import { 
   Edit, Trash2, Users as UsersIcon, Loader, UserCog, 
   PlusCircle, AlertCircle, UserPlus, Search, RefreshCcw, Phone,
-  ChevronDown, Shield, User, Check
+  ChevronDown, Shield, User, Check, MapPin
 } from 'lucide-react';
 import { Modal } from '../../../components/common/Modal';
 import { motion, AnimatePresence } from 'framer-motion';
 import InputMask from 'react-input-mask';
 import { NotificationToast } from '../../../components/common/NotificationToast';
+import { PreviewModal } from '../../../components/Users/PreviewModal';
 
 const Users = () => {
   const { theme } = useTheme();
@@ -35,6 +36,10 @@ const Users = () => {
   const editRoleDropdownRef = useRef(null); // Novo ref para o dropdown na tela de edição
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
   const [editRoleDropdownOpen, setEditRoleDropdownOpen] = useState(false); // Novo estado para controlar o dropdown de edição
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  const [previewUser, setPreviewUser] = useState(null);
+  const [previewLoading, setPreviewLoading] = useState(false); // Certifique-se de que o estado de loading específico para o preview existe
+  const [refreshLoading, setRefreshLoading] = useState(false); // Adicione um estado específico para o botão de refresh
 
   useEffect(() => {
     fetchUsers();
@@ -43,6 +48,8 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
+      setRefreshLoading(true); // Inicia a animação do botão refresh
+      
       const response = await userApi.getUsers();
       setUsers(response.data);
       setError(null);
@@ -52,6 +59,7 @@ const Users = () => {
       showNotification('error', 'Failed to fetch users');
     } finally {
       setLoading(false);
+      setRefreshLoading(false); // Para a animação do botão refresh
     }
   };
 
@@ -386,6 +394,50 @@ const handleUpdateUser = async (e) => {
     }
   };
 
+  // Modifique a função handlePreviewUser para corrigir o problema com o ID
+const handlePreviewUser = async (id) => {
+  try {
+    setPreviewLoading(true);
+    console.log("Fetching user details for preview, ID:", id);
+    
+    const response = await userApi.getProfile(id);
+    console.log("Preview user data received:", response.data);
+    
+    if (!response.data) {
+      throw new Error("Received empty data from server");
+    }
+    
+    // CORREÇÃO: Use o ID original que foi passado para a função em vez do ID da resposta
+    const userData = {
+      ...response.data,
+      id: id  // Forçar o uso do ID original que foi passado para a função
+    };
+    
+    console.log("User data with corrected ID:", userData);
+    setPreviewUser(userData);
+    setIsPreviewModalOpen(true);
+  } catch (err) {
+    console.error('Error fetching user details for preview:', err);
+    
+    // Mensagens de erro mais detalhadas para depuração
+    if (err.response) {
+      console.error('Server response error:', {
+        status: err.response.status,
+        data: err.response.data
+      });
+      showNotification('error', `Failed to fetch user details: Server error ${err.response.status}`);
+    } else if (err.request) {
+      console.error('No response received from server:', err.request);
+      showNotification('error', 'Failed to fetch user details: No response from server');
+    } else {
+      console.error('Error setting up request:', err.message);
+      showNotification('error', `Failed to fetch user details: ${err.message}`);
+    }
+  } finally {
+    setPreviewLoading(false);
+  }
+};
+
   return (
     <div className="relative p-4 lg:p-6 space-y-6">
       {/* Notification Toast */}
@@ -414,10 +466,16 @@ const handleUpdateUser = async (e) => {
         <div className="flex items-center gap-3">
           <button 
             onClick={fetchUsers}
+            disabled={refreshLoading}
             className="p-2 rounded-full hover:bg-background-secondary transition-colors"
             title="Refresh"
           >
-            <RefreshCcw className="h-5 w-5 text-text-secondary" />
+            <RefreshCcw 
+              style={refreshLoading ? { animation: 'spin 1s linear infinite' } : {}}
+              className={`h-5 w-5 text-text-secondary ${
+                refreshLoading ? 'animate-spin' : ''
+              }`} 
+            />
           </button>
           <button 
             onClick={openAddModal}
@@ -509,7 +567,13 @@ const handleUpdateUser = async (e) => {
                           )}
                         </div>
                         <div>
-                          <div className="text-sm font-medium text-text-primary">{user.name}</div>
+                          {/* Mude esta linha para um botão */}
+                          <button
+                            onClick={() => handlePreviewUser(user.id)}
+                            className="text-sm font-medium text-text-primary hover:text-brand-primary transition-colors cursor-pointer"
+                          >
+                            {user.name}
+                          </button>
                           <div className="text-xs text-text-tertiary">{user.email}</div>
                         </div>
                       </div>
@@ -944,6 +1008,155 @@ const handleUpdateUser = async (e) => {
               </div>
             </div>
           </Modal>
+        )}
+      </AnimatePresence>
+
+      {/* PreviewModal para visualização de usuário */}
+      <AnimatePresence>
+        {isPreviewModalOpen && previewUser && (
+          <PreviewModal
+            title={`${previewUser.name}'s Profile`}
+            onClose={() => setIsPreviewModalOpen(false)}
+            width="max-w-4xl"
+            footer={
+              <div className="flex justify-end gap-2">
+                <button
+                  onClick={() => {
+                    setIsPreviewModalOpen(false);
+                    handleSelectUser(previewUser.id);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-md hover:bg-brand-secondary transition-colors"
+                >
+                  <Edit size={16} /> Edit User
+                </button>
+              </div>
+            }
+          >
+            <div className="p-4 space-y-6">
+              {/* Cabeçalho com foto e informações básicas */}
+              <div className="flex items-start gap-4">
+                <div className="h-24 w-24 rounded-full overflow-hidden bg-background-secondary flex-shrink-0 border border-border-primary">
+                  {previewUser.photo ? (
+                    <img
+                      src={previewUser.photo}
+                      alt={previewUser.name}
+                      className="h-full w-full object-cover"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://via.placeholder.com/96';
+                      }}
+                    />
+                  ) : (
+                    <div className="h-full w-full flex items-center justify-center text-text-tertiary font-medium text-3xl">
+                      {previewUser.name?.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+                
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-text-primary flex items-center gap-2">
+                    {previewUser.name}
+                    <span className={`px-2 py-0.5 text-xs rounded-full ${
+                      previewUser.role === 'admin' 
+                        ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' 
+                        : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                    }`}>
+                      {previewUser.role || 'user'}
+                    </span>
+                  </h3>
+                  <p className="text-text-secondary">{previewUser.email}</p>
+                  <div className="mt-2 text-sm text-text-tertiary">
+                    User ID: <span className="font-mono">{previewUser.id}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Informações detalhadas */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div className="space-y-4">
+                  <h4 className="font-medium text-text-primary border-b border-border-primary pb-2">
+                    Personal Information
+                  </h4>
+                  
+                  <div>
+                    <div className="mb-3">
+                      <p className="text-xs text-text-tertiary mb-1">Full Name</p>
+                      <p className="text-text-primary">{previewUser.name || 'Not provided'}</p>
+                    </div>
+                    
+                    <div className="mb-3">
+                      <p className="text-xs text-text-tertiary mb-1">Email</p>
+                      <p className="text-text-primary">{previewUser.email || 'Not provided'}</p>
+                    </div>
+                    
+                    <div className="mb-3">
+                      <p className="text-xs text-text-tertiary mb-1">Phone</p>
+                      <div className="flex items-center">
+                        <Phone size={16} className="text-text-tertiary mr-2" />
+                        <p className="text-text-primary">{previewUser.phone || 'Not provided'}</p>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <p className="text-xs text-text-tertiary mb-1">Address</p>
+                      <div className="flex items-start">
+                        <MapPin size={16} className="text-text-tertiary mr-2 mt-0.5 flex-shrink-0" />
+                        <p className="text-text-primary break-words">
+                          {previewUser.address || 'Not provided'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <h4 className="font-medium text-text-primary border-b border-border-primary pb-2">
+                    Account Information
+                  </h4>
+                  
+                  <div>
+                    <div className="mb-3">
+                      <p className="text-xs text-text-tertiary mb-1">Role</p>
+                      <div className="flex items-center">
+                        {previewUser.role === 'admin' ? (
+                          <Shield size={16} className="text-purple-500 mr-2" />
+                        ) : (
+                          <User size={16} className="text-blue-500 mr-2" />
+                        )}
+                        <p className="text-text-primary capitalize">{previewUser.role || 'user'}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-3">
+                      <p className="text-xs text-text-tertiary mb-1">Status</p>
+                      <p className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        previewUser.isActive !== false 
+                          ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                          : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                      }`}>
+                        {previewUser.isActive !== false ? 'Active' : 'Inactive'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Ações rápidas */}
+              <div className="border-t border-border-primary pt-4 mt-6">
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => {
+                      setIsPreviewModalOpen(false);
+                      openDeleteModal(previewUser);
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+                  >
+                    <Trash2 size={16} /> Delete User
+                  </button>
+                </div>
+              </div>
+            </div>
+          </PreviewModal>
         )}
       </AnimatePresence>
     </div>

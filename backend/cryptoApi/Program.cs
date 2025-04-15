@@ -1,7 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using cryptoApi.Infrastructure.ExternalServices;
+using cryptoApi.Application.Interfaces;
+using cryptoApi.Application.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"] ?? throw new ArgumentNullException("Jwt:Key is missing"));
 
+// Configurar autenticação JWT
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -27,16 +30,19 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// Adicionar serviços básicos
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+// Configurar Swagger
 builder.Services.AddSwaggerGen(options =>
 {
-        options.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "User API",
+        Title = "Crypto API",
         Version = "v1",
-        Description = "API para gerenciamento de usuários",
+        Description = "API para consumo de dados de criptomoedas",
         Contact = new OpenApiContact
         {
             Name = "Cauan Ortiz",
@@ -44,7 +50,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
-    // Add JWT Bearer Authentication to Swagger UI
+    // Adicionar suporte para JWT no Swagger
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -52,7 +58,7 @@ builder.Services.AddSwaggerGen(options =>
         Type = SecuritySchemeType.Http,
         BearerFormat = "JWT",
         Scheme = "bearer",
-        Description = "Enter your JWT token."
+        Description = "Insira seu token JWT."
     });
 
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -66,18 +72,22 @@ builder.Services.AddSwaggerGen(options =>
                     Id = "Bearer"
                 }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
     });
 });
 
-builder.Services.AddApplicationServices();
-
-// Register services
+// Registrar serviços específicos da API de criptomoedas
 builder.Services.AddHttpClient();
+builder.Services.AddSingleton<BinanceApiClient>();
+builder.Services.AddScoped<ICryptoService, CryptoService>();
+builder.Services.AddScoped<ICryptoHistoryService, CryptoHistoryService>();
+builder.Services.AddScoped<ICryptoMarketService, CryptoMarketService>();
 
+// Adicionar cache em memória para melhorar performance com dados externos
+builder.Services.AddMemoryCache();
 
-// Adicione a configuração do CORS aqui
+// Configurar CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
@@ -85,32 +95,32 @@ builder.Services.AddCors(options =>
         builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
-            .AllowAnyHeader()
-            .WithExposedHeaders("Authorization");
+            .AllowAnyHeader();
     });
 });
 
 var app = builder.Build();
 
+// Configurar o pipeline de HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "User API V1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Crypto API V1");
         options.RoutePrefix = string.Empty;
     });
 }
 
 app.UseHttpsRedirection();
 
-// Adicione o middleware do CORS antes do Authentication e Authorization
+// Aplicar CORS
 app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers()
-   .RequireCors("AllowAll");
+// Mapear controladores
+app.MapControllers();
 
 app.Run();

@@ -1,4 +1,4 @@
-namespace userApi.API.DTOs
+namespace cryptoApi.DTOs
 {
     public class CryptoPriceDTO
     {

@@ -15,6 +15,8 @@ export function AuthForm({ type }) {
     email: '',
     password: '',
     name: '',
+    phone: '',  // Valor padrão para campos obrigatórios
+    address: '',  // Valor padrão para campos obrigatórios
   });
 
   const handleSubmit = async (e) => {
@@ -34,22 +36,43 @@ export function AuthForm({ type }) {
           showNotification('Credenciais inválidas.', 'error');
         }
       } else {
-        const response = await authApi.register(formData);
+        // Adicionando role padrão para o novo usuário
+        const registerData = {
+          ...formData,
+          role: 'user'
+        };
         
-        if (response.data && response.data.token) {
-          localStorage.setItem('token', response.data.token);
-          localStorage.setItem('user', JSON.stringify(response.data.user));
+        const response = await authApi.register(registerData);
+        
+        if (response.data) {
+          // Mostrar notificação de sucesso após o registro
+          showNotification(`Bem-vindo(a) ${formData.name}! Sua conta foi criada com sucesso.`, 'success');
           
-          showNotification('Conta criada com sucesso! Bem-vindo!', 'success');
+          // Faça login automático após o registro
+          await login({
+            email: formData.email,
+            password: formData.password
+          });
+          
           navigate('/dashboard', { replace: true });
         }
       }
     } catch (error) {
       console.error('Erro de autenticação:', error);
-      showNotification(
-        error.message || 'Falha na autenticação. Tente novamente.',
-        'error'
-      );
+      
+      // Melhor tratamento de erros para capturar erros da API
+      if (error.response?.data?.errors) {
+        const errorMessages = Object.values(error.response.data.errors)
+          .flat()
+          .join(', ');
+          
+        showNotification(`Erro no registro: ${errorMessages}`, 'error');
+      } else {
+        showNotification(
+          error.response?.data?.message || 'Falha na autenticação. Tente novamente.',
+          'error'
+        );
+      }
     } finally {
       setIsLoading(false);
     }
@@ -96,6 +119,7 @@ export function AuthForm({ type }) {
               className="w-full pl-12 pr-4 py-3 rounded-lg border border-border-primary bg-background-secondary text-text-primary placeholder-text-tertiary focus:ring-2 focus:ring-brand-primary transition-all"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
             />
           </motion.div>
         )}
@@ -112,6 +136,7 @@ export function AuthForm({ type }) {
             className="w-full pl-12 pr-4 py-3 rounded-lg border border-border-primary bg-background-secondary text-text-primary placeholder-text-tertiary focus:ring-2 focus:ring-brand-primary transition-all"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            required
           />
         </motion.div>
         <motion.div
@@ -129,6 +154,7 @@ export function AuthForm({ type }) {
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           />
         </motion.div>
+
 
         <motion.button
           whileHover={{ scale: 1.02 }}

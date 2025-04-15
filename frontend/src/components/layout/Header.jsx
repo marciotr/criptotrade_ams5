@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sun, Moon, Menu, User, LogOut, Plus, CreditCard } from 'lucide-react';
+import { Sun, Moon, Menu, User, LogOut, Plus } from 'lucide-react'; // Removido FileText
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 import { useNotification } from '../../context/NotificationContext';
@@ -42,7 +42,7 @@ export function Header({ onSidebarOpen }) {
               <img
                 src={theme === 'light' ? logoBranca : logoPreta}
                 alt="Logo"
-                className="h-10 sm:h-14" // Changed from h-8 sm:h-12 to h-10 sm:h-14
+                className="h-10 sm:h-14"
               />
             </Link>
           </div>
@@ -58,6 +58,7 @@ export function Header({ onSidebarOpen }) {
               </Link>
             )}
             
+            {/* Removido o link para API Docs */}
 
             <button
               onClick={toggleTheme}

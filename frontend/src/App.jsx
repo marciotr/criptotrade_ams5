@@ -19,6 +19,7 @@ import { AuthProvider } from './store/auth/AuthContext';
 import { PrivateRoute } from './components/auth/PrivateRoute';
 import { useAuth } from './store/auth/useAuth';
 import Users from './pages/admin/users/Users'; 
+import { ApiDocsPage } from './pages/ApiDocs/ApiDocsPage';
 
 function Layout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -32,6 +33,17 @@ function Layout({ children }) {
       </main>
     </div>
   );
+}
+
+// Crie um componente de rota protegida para admin
+function AdminRoute({ children }) {
+  const { user } = useAuth();
+  
+  if (!user || user.role !== 'admin') {
+    return <Navigate to="/dashboard" />;
+  }
+  
+  return children;
 }
 
 function App() {
@@ -118,6 +130,13 @@ function App() {
                     <PrivateRoute>
                       <Users />
                     </PrivateRoute>
+                  } />
+
+                  {/* API Docs Route */}
+                  <Route path="/api-docs" element={
+                    <AdminRoute>
+                      <ApiDocsPage />
+                    </AdminRoute>
                   } />
 
                   {/* Default Route */}

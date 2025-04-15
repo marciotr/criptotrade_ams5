@@ -1,8 +1,8 @@
-using userApi.Application.Interfaces;
-using userApi.Infrastructure.ExternalServices;
-using userApi.API.DTOs;
+using cryptoApi.Application.Interfaces;
+using cryptoApi.Infrastructure.ExternalServices;
+using cryptoApi.DTOs;
 
-namespace userApi.Application.Services
+namespace cryptoApi.Application.Services
 {
     public class CryptoService : ICryptoService
     {

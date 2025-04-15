@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const api = axios.create({
+// API para serviços de usuários
+export const userApiConfig = axios.create({
   baseURL: 'http://localhost:5294/api',
   timeout: 10000,
   headers: {
@@ -8,23 +9,42 @@ const api = axios.create({
   }
 });
 
-api.interceptors.request.use(config => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+// API para serviços de criptomoedas
+export const cryptoApiConfig = axios.create({
+  baseURL: 'http://localhost:5101/api',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
   }
-  return config;
 });
 
-api.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
+// Configuração comum para ambas as APIs
+const setupInterceptors = (apiInstance) => {
+  apiInstance.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-    return Promise.reject(error);
-  }
-);
+    return config;
+  });
 
-export default api;
+  apiInstance.interceptors.response.use(
+    response => response,
+    error => {
+      if (error.response?.status === 401) {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }
+      return Promise.reject(error);
+    }
+  );
+
+  return apiInstance;
+};
+
+// Aplicar interceptadores a ambas as APIs
+setupInterceptors(userApiConfig);
+setupInterceptors(cryptoApiConfig);
+
+// Para compatibilidade com código existente
+export default userApiConfig;

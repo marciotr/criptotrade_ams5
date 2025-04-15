@@ -1,8 +1,8 @@
 using System.Net.Http.Json;
 using System.Text.Json;
-using userApi.API.DTOs;
+using cryptoApi.DTOs; 
 
-namespace userApi.Infrastructure.ExternalServices
+namespace cryptoApi.Infrastructure.ExternalServices
 {
     public class BinanceApiClient
     {
@@ -64,12 +64,13 @@ namespace userApi.Infrastructure.ExternalServices
         {
             try
             {
-                var response = await _httpClient.GetFromJsonAsync<dynamic>($"/api/v3/depth?symbol={symbol.ToUpper()}&limit={limit}");
-                return response;
+                var response = await _httpClient.GetStringAsync($"/api/v3/depth?symbol={symbol}&limit={limit}");
+                var result = JsonSerializer.Deserialize<dynamic>(response);
+                return result ?? new {}; // Retorna um objeto vazio em vez de null
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error getting order book for {symbol}: {ex.Message}");
+                Console.WriteLine($"Error calling Binance API: {ex.Message}");
                 throw;
             }
         }
@@ -128,6 +129,38 @@ namespace userApi.Infrastructure.ExternalServices
             catch (Exception ex)
             {
                 throw new Exception($"Error fetching klines data: {ex.Message}", ex);
+            }
+        }
+
+        // Adicione ao BinanceApiClient.cs
+        public async Task<dynamic> GetKlinesAsync(string symbol, string interval, int limit = 500, 
+                                                 long? startTime = null, long? endTime = null)
+        {
+            try
+            {
+                var queryParams = new List<string>
+                {
+                    $"symbol={symbol}",
+                    $"interval={interval}",
+                    $"limit={limit}"
+                };
+                
+                if (startTime.HasValue)
+                    queryParams.Add($"startTime={startTime}");
+                    
+                if (endTime.HasValue)
+                    queryParams.Add($"endTime={endTime}");
+                    
+                var queryString = string.Join("&", queryParams);
+                var response = await _httpClient.GetStringAsync($"/api/v3/klines?{queryString}");
+                
+                var result = JsonSerializer.Deserialize<dynamic>(response);
+                return result;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error calling Binance API: {ex.Message}");
+                throw;
             }
         }
     }
