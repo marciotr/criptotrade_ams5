@@ -194,7 +194,7 @@ const handleSelectUser = async (id) => {
       phone: userData.phone || '',
       address: userData.address || '',
       role: userData.role || '',
-      password: '' // Don't populate password for security
+      password: ''
     });
     
     console.log("Selected user after setting:", userData);
@@ -208,7 +208,6 @@ const handleSelectUser = async (id) => {
   }
 };
 
-// Corrigir a função handleUpdateUser para enviar apenas os campos esperados pelo backend
 const handleUpdateUser = async (e) => {
   e.preventDefault();
   try {
@@ -238,15 +237,16 @@ const handleUpdateUser = async (e) => {
       email: formData.email,
       phone: formData.phone ? formData.phone.replace(/[^0-9+]/g, '') : '', // Limpar caracteres especiais do telefone
       address: formData.address,
+      password: formData.password || undefined, 
       // Não incluir o ID no corpo da requisição, apenas na URL
     };
+
+    console.log("Data to send:", dataToSend);
     
-    // Incluir role se disponível
     if (formData.role) {
       dataToSend.role = formData.role;
     }
     
-    // Remover senha vazia (não enviar senha se não foi alterada)
     if (formData.password && formData.password.trim() !== '') {
       dataToSend.password = formData.password;
     }

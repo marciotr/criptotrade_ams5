@@ -196,6 +196,7 @@ export function ProfileSettings() {
         .filter(Boolean) 
         .join(', '); 
 
+      // Cria o objeto de dados sem incluir a senha
       const updatedUserData = {
         id: user.id,
         name: formData.fullName,
@@ -206,7 +207,6 @@ export function ProfileSettings() {
         website: formData.website,
         bio: formData.bio,
         username: formData.username,
-        password: null, 
         role: user.role 
       };
 

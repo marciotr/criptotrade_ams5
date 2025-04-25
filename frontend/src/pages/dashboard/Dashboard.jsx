@@ -260,20 +260,24 @@ export function Dashboard() {
   }, [navigate]);
 
   return (
-    <div className="relative p-4 lg:p-6 space-y-6">
-      <StatsCards stats={statsData} />
+    <div className="relative p-4 lg:p-6 space-y-6 transition-colors duration-200 max-w-[1920px] mx-auto">
+      <StatsCards 
+        stats={statsData}
+        className="mb-6" 
+      />
 
-      <div className="fixed bottom-0 right-0 pointer-events-none opacity-[0.02] z-0">
+      <div className="fixed bottom-0 right-0 pointer-events-none opacity-5 z-0 transition-opacity duration-300">
         <img
           src={theme === 'light' ? logoBranca : logoPreta}
           alt=""
-          className="w-[600px] h-[600px] object-contain"
+          className="w-[500px] h-[500px] object-contain"
         />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 p-4 lg:p-6 rounded-xl bg-background-primary border border-border-primary shadow-lg">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 space-y-4 sm:space-y-0">
+        <div className="lg:col-span-2 p-5 lg:p-6 rounded bg-background-primary border border-border-primary 
+                      shadow-md hover:shadow-lg transition-all duration-300">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 space-y-3 sm:space-y-0">
             <CoinSelector 
               selectedCoin={selectedCoin}
               coins={availableCoins}
@@ -290,7 +294,7 @@ export function Dashboard() {
             />
           </div>
           
-          <div className="h-[400px] w-full">
+          <div className="h-[420px] lg:h-[460px] w-full">
             <CryptoChart 
               data={selectedCoin?.data}
               isLoading={isLoading}
@@ -305,16 +309,37 @@ export function Dashboard() {
           isLoading={false} 
           visibleCount={visibleCount}
           onShowMore={handleShowMore}
+          className="p-5 lg:p-6 rounded bg-background-primary border border-border-primary 
+                    shadow-md hover:shadow-lg transition-all duration-300"
         />
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
-        <TopMovers data={getTopMovers.gainers} type="gainers" />
-        <TopMovers data={getTopMovers.losers} type="losers" />
+        <TopMovers 
+          data={getTopMovers.gainers} 
+          type="gainers"
+          className="p-4 lg:p-5 rounded bg-background-primary border border-border-primary 
+                    shadow-sm hover:shadow-md transition-all duration-300"
+        />
+        <TopMovers 
+          data={getTopMovers.losers} 
+          type="losers"
+          className="p-4 lg:p-5 rounded bg-background-primary border border-border-primary 
+                    shadow-sm hover:shadow-md transition-all duration-300"
+        />
       </div>
 
-      <RecentTransactions transactions={transactions} />
-      <LatestNews news={news} />
+      <RecentTransactions 
+        transactions={transactions}
+        className="p-4 lg:p-5 rounded bg-background-primary border border-border-primary 
+                  shadow-sm hover:shadow-md transition-all duration-300"
+      />
+      <LatestNews 
+        news={news}
+        className="p-4 lg:p-5 rounded bg-background-primary border border-border-primary 
+                  shadow-sm hover:shadow-md transition-all duration-300"
+      />
     </div>
   );
 }
+
