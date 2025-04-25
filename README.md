@@ -37,5 +37,5 @@ O projeto será desenvolvido utilizando as seguintes tecnologias:
 Este projeto é de uso acadêmico e não deve ser utilizado para fins comerciais.
 
 ---
-👨‍💻 **Desenvolvido por:** Márcio Torres, Enrico Meira, Cauã Ortiz, Filipe Fogaça, Beatriz Alamino  
+👨‍💻 **Desenvolvido por:** Márcio Torres, Enrico Meira, Cauan Ortiz, Filipe Fogaça, Beatriz Alamino  
 🎓 **Projeto acadêmico - Fatec Sorocaba**
