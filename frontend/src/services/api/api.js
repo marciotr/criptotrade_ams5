@@ -1,4 +1,4 @@
-import { userApiConfig, cryptoApiConfig } from './config';
+import { userApiConfig, cryptoApiConfig, walletApiConfig } from './config';
 
 export const authApi = {
   login: (credentials) => userApiConfig.post('/auth/login', credentials),
@@ -45,6 +45,17 @@ export const marketApi = {
     cryptoApiConfig.get(`/crypto/klines/${symbol}`, {
       params: { interval, limit }
     }),
+};
+
+// Novo serviço para chamadas à API de Carteira
+export const walletApi = {
+  getAllWallets: () => walletApiConfig.get('/Wallet'),
+  getWalletById: (id) => walletApiConfig.get(`/Wallet/${id}`),
+  getUserWallets: (userId) => walletApiConfig.get(`/Wallet/user/${userId}`),
+  createWallet: (walletData) => walletApiConfig.post('/Wallet', walletData),
+  updateWallet: (walletData) => walletApiConfig.put(`/Wallet/${walletData.id}`, walletData),
+  getWalletTransactions: (walletId) => walletApiConfig.get(`/Wallet/${walletId}/transactions`),
+  addTransaction: (walletId, transactionData) => walletApiConfig.post(`/Wallet/${walletId}/transactions`, transactionData),
 };
 
 export const transactionApi = {

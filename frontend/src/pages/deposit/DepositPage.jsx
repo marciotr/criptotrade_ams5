@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CreditCard, DollarSign, Wallet, ChevronDown, TrendingUp, ArrowDown, Search } from 'lucide-react';
+import { CreditCard, DollarSign, Wallet, ChevronDown, TrendingUp, ArrowDown, Search, AlertCircle } from 'lucide-react';
 import { CryptoCard } from '../../components/common/CryptoCard';
 import { PaymentMethodButton } from './components/PaymentMethodButton';
 import CryptoIcon from '../../components/common/CryptoIcons';
-import { availableCoins} from '../../data/mockData';
+import { availableCoins } from '../../data/mockData';
+import { walletApi, marketApi } from '../../services/api/api';
+import { AuthContext } from '../../store/auth/AuthContext';
+import { useNotification } from '../../hooks/useNotification'; // Importando o hook personalizado
 
 const hotCryptos = [
   { id: 'BTC', name: 'Bitcoin', symbol: 'BTC', price: 47234.12, change: 5.23, trending: true },
@@ -14,7 +17,6 @@ const hotCryptos = [
   { id: 'BNB', name: 'Binance Coin', symbol: 'BNB', price: 312.78, change: 3.45, trending: true },
 ];
 
-// Add after the existing hotCryptos array
 const buyRecommendations = [
   { id: 'SOL', name: 'Solana', symbol: 'SOL', price: 98.45, change: 12.3, trending: true, reason: 'Strong growth potential' },
   { id: 'ETH', name: 'Ethereum', symbol: 'ETH', price: 3456.78, change: -2.14, trending: true, reason: 'Major network upgrade coming' },
@@ -89,7 +91,6 @@ const inputVariants = {
   exit: { opacity: 0, y: -10 }
 };
 
-// Add these animation variants before the component
 const tabVariants = {
   selected: {
     backgroundColor: 'var(--brand-primary-light)',
@@ -121,9 +122,117 @@ export function DepositPage() {
   const [filteredCoins, setFilteredCoins] = useState(availableCoins);
   const [currencySearchQuery, setCurrencySearchQuery] = useState('');
   const [filteredCurrencies, setFilteredCurrencies] = useState(['USD', 'EUR', 'GBP', 'JPY', 'BRL']);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userWallets, setUserWallets] = useState([]);
+  const [selectedWallet, setSelectedWallet] = useState(null);
+  const { user } = useContext(AuthContext);
+  const { showNotification } = useNotification(); // Hook personalizado de notificação
 
-  // Calcular aproximadamente quanto crypto o usuário ganhará
   const estimatedCrypto = amount ? (parseFloat(amount) / selectedCoin.data[0].price).toFixed(6) : '0';
+
+  useEffect(() => {
+    if (user?.id) {
+      fetchUserWallets();
+    }
+  }, [user]);
+
+  const fetchUserWallets = async () => {
+    try {
+      const response = await walletApi.getUserWallets(user.id);
+      setUserWallets(response.data);
+      const existingWallet = response.data.find(wallet => 
+        wallet.currency === selectedCoin.id
+      );
+      if (existingWallet) {
+        setSelectedWallet(existingWallet);
+      } else {
+        setSelectedWallet(null);
+      }
+    } catch (error) {
+      console.error("Error fetching user wallets:", error);
+      showNotification({
+        message: "Failed to load wallets",
+        type: "error"
+      });
+    }
+  };
+
+  const handleContinue = async () => {
+    if (!user) {
+      showNotification({
+        message: "Please login to continue",
+        type: "error"
+      });
+      return;
+    }
+
+    if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
+      showNotification({
+        message: "Please enter a valid amount",
+        type: "error"
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      if (selectedWallet) {
+        await walletApi.addTransaction(selectedWallet.id, {
+          type: activeTab === 'buy' ? 0 : 1,
+          amount: parseFloat(estimatedCrypto),
+          currency: selectedCoin.id,
+          description: `${activeTab === 'buy' ? 'Bought' : 'Sold'} ${estimatedCrypto} ${selectedCoin.id} with ${amount} ${selectedCurrency} via ${paymentMethod.name}`,
+          status: 1
+        });
+
+        showNotification({
+          message: `Successfully ${activeTab === 'buy' ? 'bought' : 'sold'} ${estimatedCrypto} ${selectedCoin.id}`,
+          type: "success"
+        });
+      } else {
+        const newWallet = await walletApi.createWallet({
+          userId: user.id,
+          currency: selectedCoin.id,
+          balance: parseFloat(estimatedCrypto)
+        });
+
+        await walletApi.addTransaction(newWallet.data.id, {
+          type: 0,
+          amount: parseFloat(estimatedCrypto),
+          currency: selectedCoin.id,
+          description: `Initial deposit of ${estimatedCrypto} ${selectedCoin.id} with ${amount} ${selectedCurrency} via ${paymentMethod.name}`,
+          status: 1
+        });
+
+        showNotification({
+          message: `Successfully created wallet and deposited ${estimatedCrypto} ${selectedCoin.id}`,
+          type: "success"
+        });
+        fetchUserWallets();
+      }
+
+      setAmount('');
+      
+    } catch (error) {
+      console.error("Transaction error:", error);
+      showNotification({
+        message: error.response?.data?.message || "Transaction failed",
+        type: "error"
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (userWallets.length > 0) {
+      const existingWallet = userWallets.find(wallet => 
+        wallet.currency === selectedCoin.id
+      );
+      setSelectedWallet(existingWallet || null);
+    }
+  }, [selectedCoin, userWallets]);
 
   const filterCoins = (query) => {
     const filtered = availableCoins.filter(coin => 
@@ -143,20 +252,40 @@ export function DepositPage() {
 
   return (
     <div className="p-2 sm:p-6 mt-12 sm:mt-16">
-      {/* Add container div with max-width */}
       <div className="max-w-5xl mx-auto">
         <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-text-primary px-2 sm:px-0">
           Deposit / Buy Crypto
         </h1>
         
+        {selectedWallet && (
+          <div className="mb-4 p-4 bg-background-secondary rounded-lg border border-border-primary">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <div className="mr-3">
+                  <CryptoIcon symbol={selectedWallet.currency} size={24} />
+                </div>
+                <div>
+                  <h3 className="font-medium text-text-primary">{selectedWallet.currency} Wallet</h3>
+                  <p className="text-sm text-text-secondary">Current Balance: {selectedWallet.balance} {selectedWallet.currency}</p>
+                </div>
+              </div>
+              <button 
+                onClick={fetchUserWallets}
+                className="text-brand-primary hover:text-brand-primary-dark text-sm"
+              >
+                Refresh
+              </button>
+            </div>
+          </div>
+        )}
+        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-          {/* Form Section */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="lg:col-span-2 bg-background-primary rounded-xl shadow-lg overflow-hidden"
           >
-            {/* Tabs */}
+            {/* Tabs and Form Section */}
             <div className="relative flex h-14 sm:h-16 mb-4 bg-background-secondary rounded-t-xl">
               <motion.div 
                 className="absolute bottom-0 h-1 bg-brand-primary"
@@ -233,7 +362,6 @@ export function DepositPage() {
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                       />
-                      {/* Currency Selector */}
                       <div className="relative w-full sm:w-auto">
                         <button 
                           className="w-full sm:w-auto flex items-center justify-between min-w-[100px] px-3 sm:px-4 py-2.5 sm:py-3 bg-background-secondary border border-border-primary rounded-lg sm:rounded-l-none sm:rounded-r-lg text-text-primary focus:outline-none"
@@ -242,8 +370,6 @@ export function DepositPage() {
                           <span>{selectedCurrency}</span>
                           <ChevronDown size={16} className={`ml-2 transition-transform duration-200 ${methodDropdownOpen ? 'transform rotate-180' : ''}`} />
                         </button>
-                        
-                        {/* Currency Dropdown */}
                         <AnimatePresence>
                           {methodDropdownOpen && (
                             <motion.div
@@ -303,7 +429,6 @@ export function DepositPage() {
                     </div>
                   </motion.div>
 
-                  {/* Exchange Arrow */}
                   <motion.div 
                     variants={inputVariants}
                     className="flex justify-center my-4"
@@ -316,7 +441,6 @@ export function DepositPage() {
                     <ArrowDown size={20} className="text-text-tertiary" />
                   </motion.div>
 
-                  {/* Receive Amount */}
                   <motion.div variants={inputVariants} className="mb-4">
                     <label className="block text-sm font-medium text-text-primary mb-2">
                       {activeTab === 'buy' ? 'I will receive approximately' : 'I will receive'}
@@ -340,7 +464,6 @@ export function DepositPage() {
                           </div>
                           <ChevronDown size={16} className={`ml-2 transition-transform duration-200 ${cryptoDropdownOpen ? 'transform rotate-180' : ''}`} />
                         </button>
-                        
                         <AnimatePresence>
                           {cryptoDropdownOpen && (
                             <motion.div
@@ -405,7 +528,6 @@ export function DepositPage() {
                     </div>
                   </motion.div>
 
-                  {/* Payment Methods */}
                   <motion.div variants={inputVariants}>
                     <label className="block text-sm font-medium text-text-primary mb-2">
                       {activeTab === 'buy' ? 'Payment Method' : 'Payout Method'}
@@ -422,15 +544,29 @@ export function DepositPage() {
                     </div>
                   </motion.div>
 
-                  {/* Continue Button */}
                   <motion.button
                     variants={inputVariants}
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
-                    className="w-full py-2.5 sm:py-3 bg-brand-primary text-background-primary rounded-lg hover:opacity-90 transition-colors font-medium mt-6"
+                    className={`w-full py-2.5 sm:py-3 bg-brand-primary text-background-primary rounded-lg hover:opacity-90 transition-colors font-medium mt-6 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    onClick={handleContinue}
+                    disabled={isLoading}
                   >
-                    {activeTab === 'buy' ? 'Continue to Buy' : 'Continue to Sell'}
+                    {isLoading ? 'Processing...' : (activeTab === 'buy' ? 'Continue to Buy' : 'Continue to Sell')}
                   </motion.button>
+
+                  {!selectedWallet && (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-4 p-3 bg-background-secondary rounded-lg flex items-start"
+                    >
+                      <AlertCircle size={16} className="text-brand-primary mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-sm text-text-secondary">
+                        You don't have a {selectedCoin.id} wallet yet. A new wallet will be created automatically when you make your first purchase.
+                      </p>
+                    </motion.div>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -536,7 +672,6 @@ export function DepositPage() {
             </motion.div>
           </motion.div>
 
-          {/* Mobile Hot Cryptos */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

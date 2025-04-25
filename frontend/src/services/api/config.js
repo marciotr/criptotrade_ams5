@@ -18,6 +18,15 @@ export const cryptoApiConfig = axios.create({
   }
 });
 
+// API para serviços de carteira
+export const walletApiConfig = axios.create({
+  baseURL: 'http://localhost:5275/api',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
+
 // Configuração comum para ambas as APIs
 const setupInterceptors = (apiInstance) => {
   apiInstance.interceptors.request.use(config => {
@@ -42,9 +51,10 @@ const setupInterceptors = (apiInstance) => {
   return apiInstance;
 };
 
-// Aplicar interceptadores a ambas as APIs
+// Aplicar interceptadores a todas as APIs
 setupInterceptors(userApiConfig);
 setupInterceptors(cryptoApiConfig);
+setupInterceptors(walletApiConfig);
 
 // Para compatibilidade com código existente
 export default userApiConfig;
