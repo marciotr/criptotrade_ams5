@@ -74,7 +74,13 @@ public class UserController : ControllerBase
             
             if (updateDto.Photo != null)
                 existingUser.Photo = updateDto.Photo;
-                
+            
+            if (updateDto.Password != null)
+            {
+                Console.WriteLine("Senha será atualizada");
+                existingUser.Password = updateDto.Password;
+            }
+            
             var result = _userService.UpdateUser(id, existingUser);
             
             // Verificar se a role foi atualizada
@@ -127,5 +133,15 @@ public class UserController : ControllerBase
         var updatedUser = _userService.UpdateUser(id, user);
         
         return Ok(new { photo = updatedUser.Photo });
+    }
+
+    [HttpGet("health")]
+    public IActionResult Health()
+    {
+        return Ok(new { 
+            status = "healthy",
+            service = "user",
+            timestamp = DateTime.UtcNow
+        });
     }
 }

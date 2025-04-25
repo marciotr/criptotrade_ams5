@@ -40,6 +40,16 @@ public class AuthController : ControllerBase
         return Ok(new { message = "Rota protegida acessada!", user = email });
     }
 
+    [HttpGet("health")]
+    public IActionResult Health()
+    {
+        return Ok(new { 
+            status = "healthy",
+            service = "auth",
+            timestamp = DateTime.UtcNow
+        });
+    }
+
     private string GenerateJwtToken(UserDTO user)
     {
         var jwtKey = _configuration["Jwt:Key"];

@@ -90,5 +90,15 @@ namespace cryptoApi.Controllers
                 return BadRequest($"Error fetching klines: {ex.Message}");
             }
         }
+
+        [HttpGet("health")]
+        public IActionResult Health()
+        {
+            return Ok(new { 
+                status = "healthy",
+                service = "crypto",
+                timestamp = DateTime.UtcNow
+            });
+        }
     }
 }

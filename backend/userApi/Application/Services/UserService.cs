@@ -39,11 +39,11 @@ public class UserService : IUserService
         var user = _userRepository.GetById(id);
         return user != null ? new UserDTO 
         { 
+            Id = user.Id,  
             Name = user.Name, 
             Email = user.Email,
             Phone = user.Phone,
             Address = user.Address,
-            Password = user.Password,
             Photo = user.Photo,
             Role = user.Role
         } : null;
@@ -58,7 +58,6 @@ public class UserService : IUserService
             Email = user.Email,
             Phone = user.Phone,
             Address = user.Address,
-            Password = user.Password,
             Photo = user.Photo,
             Role = user.Role
         }).ToList();
@@ -69,19 +68,26 @@ public class UserService : IUserService
         var user = _userRepository.GetById(id);
         if (user == null) return null;
         
-        user.Name = userDto.Name ?? user.Name;
-        user.Email = userDto.Email ?? user.Email;
-        user.Phone = userDto.Phone ?? user.Phone;
-        user.Address = userDto.Address ?? user.Address;
-        user.Role = userDto.Role ?? user.Role;
+        // Atualizar campos somente se não forem nulos
+        if (userDto.Name != null) user.Name = userDto.Name;
+        if (userDto.Email != null) user.Email = userDto.Email;
+        if (userDto.Phone != null) user.Phone = userDto.Phone;
+        if (userDto.Address != null) user.Address = userDto.Address;
+        if (userDto.Role != null) user.Role = userDto.Role;
         
-        // Pra atualizar a senha apenas se uma nova senha for inserida pelo user
+        // Log mais detalhado para debug de senha
+        Console.WriteLine($"Password na UserDTO: {(userDto.Password != null ? "Presente" : "Null")}");
+        
         if (!string.IsNullOrEmpty(userDto.Password))
         {
+            Console.WriteLine("Atualizando senha do usuário");
             user.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
         }
+        else
+        {
+            Console.WriteLine("Senha não fornecida, mantendo a senha atual");
+        }
         
-        // mesma coisa pra foto
         if (!string.IsNullOrEmpty(userDto.Photo))
         {
             user.Photo = userDto.Photo;
@@ -116,6 +122,7 @@ public class UserService : IUserService
 
         return new UserDTO
         {
+            Id = user.Id, 
             Name = user.Name,
             Email = user.Email,
             Phone = user.Phone,

@@ -8,5 +8,7 @@ namespace userApi.API.DTOs
         public string? Address { get; set; }
         public string? Photo { get; set; }
         public string? Role { get; set; }
+
+        public string? Password { get; set; }
     }
 }
