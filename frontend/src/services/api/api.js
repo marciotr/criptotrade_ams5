@@ -49,6 +49,7 @@ export const marketApi = {
 
 // Novo serviço para chamadas à API de Carteira
 export const walletApi = {
+  // Métodos existentes
   getAllWallets: () => walletApiConfig.get('/Wallet'),
   getWalletById: (id) => walletApiConfig.get(`/Wallet/${id}`),
   getUserWallets: (userId) => walletApiConfig.get(`/Wallet/user/${userId}`),
@@ -56,6 +57,12 @@ export const walletApi = {
   updateWallet: (walletData) => walletApiConfig.put(`/Wallet/${walletData.id}`, walletData),
   getWalletTransactions: (walletId) => walletApiConfig.get(`/Wallet/${walletId}/transactions`),
   addTransaction: (walletId, transactionData) => walletApiConfig.post(`/Wallet/${walletId}/transactions`, transactionData),
+  
+  // Novos métodos para carteiras separadas
+  getUserFiatWallets: (userId) => walletApiConfig.get(`/Wallet/user/${userId}/fiat`),
+  getUserCryptoWallets: (userId) => walletApiConfig.get(`/Wallet/user/${userId}/crypto`),
+  depositFiat: (data) => walletApiConfig.post('/Wallet/deposit/fiat', data),
+  transferBetweenWallets: (data) => walletApiConfig.post('/Wallet/transfer', data),
 };
 
 export const transactionApi = {

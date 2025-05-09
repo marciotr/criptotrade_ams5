@@ -20,6 +20,7 @@ import { PrivateRoute } from './components/auth/PrivateRoute';
 import { useAuth } from './store/auth/useAuth';
 import Users from './pages/admin/users/Users'; 
 import { ApiDocsPage } from './pages/ApiDocs/ApiDocsPage';
+import { FiatDepositPage } from './pages/deposit/FiatDepositPage';
 
 
 function Layout({ children }) {
@@ -123,6 +124,11 @@ function App() {
                   <Route path="/price/:coinId" element={
                     <PrivateRoute>
                       <PricePage />
+                    </PrivateRoute>
+                  } />
+                  <Route path="/deposit/fiat" element={
+                    <PrivateRoute>
+                      <FiatDepositPage />
                     </PrivateRoute>
                   } />
                   

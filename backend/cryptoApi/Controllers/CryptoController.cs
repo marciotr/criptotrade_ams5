@@ -92,7 +92,7 @@ namespace cryptoApi.Controllers
         }
 
         [HttpGet("health")]
-        public IActionResult Health()
+    public IActionResult Health()
         {
             return Ok(new { 
                 status = "healthy",

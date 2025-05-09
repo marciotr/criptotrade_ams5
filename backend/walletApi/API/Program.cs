@@ -91,13 +91,6 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
-    // Ensure database is created
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbContext = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
-        dbContext.Database.EnsureCreated();
-    }
 }
 
 app.UseHttpsRedirection();
