@@ -285,6 +285,7 @@ export function Dashboard() {
               onToggle={() => setDropdownOpen(!dropdownOpen)}
               onSelect={handleCoinSelection}
               price={selectedCryptoData?.lastPrice}
+              align="left"        // <-- dropdown opens to right here
             />
             <TimeRangeSelector 
               timeRange={timeRange}
@@ -342,4 +343,3 @@ export function Dashboard() {
     </div>
   );
 }
-

@@ -21,6 +21,8 @@ import { useAuth } from './store/auth/useAuth';
 import Users from './pages/admin/users/Users'; 
 import { ApiDocsPage } from './pages/ApiDocs/ApiDocsPage';
 import { FiatDepositPage } from './pages/deposit/FiatDepositPage';
+import { Wallet } from './pages/wallets/Wallet';
+import { Currency } from './pages/currency/Currency';
 
 
 function Layout({ children }) {
@@ -145,6 +147,20 @@ function App() {
                       <ApiDocsPage />
                     </AdminRoute>
                   } />
+
+                  <Route path="/wallet" element={
+                      <PrivateRoute>
+                        <Wallet />
+                      </PrivateRoute>
+                    } />
+
+                    <Route path="/currency" element={
+                      <PrivateRoute>
+                        <Currency/>
+                      </PrivateRoute>
+                    } />
+
+                  
 
                   {/* Default Route */}
                   <Route path="/" element={<Navigate to="/signin" replace />} />

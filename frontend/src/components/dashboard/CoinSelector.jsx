@@ -12,7 +12,8 @@ export const CoinSelector = React.memo(({
   isOpen, 
   onToggle, 
   onSelect,
-  price
+  price,
+  align = 'right'          // <-- new prop, default right
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAll, setShowAll] = useState(false);
@@ -111,8 +112,12 @@ export const CoinSelector = React.memo(({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 mt-2 w-64 rounded-md shadow-lg bg-background-primary border border-border-primary z-10"
-            style={{ transformOrigin: 'top left' }}
+            className={
+              `absolute top-full mt-2 w-64 rounded-md shadow-lg bg-background-primary 
+               border border-border-primary z-10 
+               ${align === 'right' ? 'right-0' : 'left-0'}`
+            }
+            style={{ transformOrigin: align === 'right' ? 'top right' : 'top left' }}
           >
             {/* Search Input */}
             <div className="p-2 border-b border-border-primary">
