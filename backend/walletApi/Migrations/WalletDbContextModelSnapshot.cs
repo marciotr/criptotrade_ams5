@@ -7,7 +7,7 @@ using walletApi.Infrastructure.Data;
 
 #nullable disable
 
-namespace walletApi.Infrastructure.Migrations
+namespace walletApi.Migrations
 {
     [DbContext(typeof(WalletDbContext))]
     partial class WalletDbContextModelSnapshot : ModelSnapshot
@@ -17,46 +17,41 @@ namespace walletApi.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
-            modelBuilder.Entity("walletApi.Domain.Entities.Transaction", b =>
+            modelBuilder.Entity("walletApi.Domain.Entities.WalletCrypto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Amount")
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Balance")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Currency")
+                    b.Property<string>("Symbol")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WalletId")
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WalletId");
+                    b.HasIndex("UserId", "Symbol")
+                        .IsUnique();
 
-                    b.ToTable("Transactions");
+                    b.ToTable("WalletCryptos");
                 });
 
-            modelBuilder.Entity("walletApi.Domain.Entities.Wallet", b =>
+            modelBuilder.Entity("walletApi.Domain.Entities.WalletFiat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,9 +67,6 @@ namespace walletApi.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
@@ -83,27 +75,10 @@ namespace walletApi.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Currency", "Type");
+                    b.HasIndex("UserId", "Currency")
+                        .IsUnique();
 
-                    b.HasIndex("UserId", "Type");
-
-                    b.ToTable("Wallets");
-                });
-
-            modelBuilder.Entity("walletApi.Domain.Entities.Transaction", b =>
-                {
-                    b.HasOne("walletApi.Domain.Entities.Wallet", "Wallet")
-                        .WithMany("Transactions")
-                        .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Wallet");
-                });
-
-            modelBuilder.Entity("walletApi.Domain.Entities.Wallet", b =>
-                {
-                    b.Navigation("Transactions");
+                    b.ToTable("WalletFiats");
                 });
 #pragma warning restore 612, 618
         }

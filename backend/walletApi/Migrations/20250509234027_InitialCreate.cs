@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace walletApi.Infrastructure.Migrations
+namespace walletApi.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -12,7 +12,25 @@ namespace walletApi.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Wallets",
+                name: "WalletCryptos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Symbol = table.Column<string>(type: "TEXT", nullable: false),
+                    Address = table.Column<string>(type: "TEXT", nullable: false),
+                    Balance = table.Column<decimal>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WalletCryptos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WalletFiats",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -21,53 +39,34 @@ namespace walletApi.Infrastructure.Migrations
                     Currency = table.Column<string>(type: "TEXT", nullable: false),
                     Balance = table.Column<decimal>(type: "TEXT", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Wallets", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    WalletId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Type = table.Column<int>(type: "INTEGER", nullable: false),
-                    Amount = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Currency = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    TransactionHash = table.Column<string>(type: "TEXT", nullable: false),
-                    Status = table.Column<int>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transactions_Wallets_WalletId",
-                        column: x => x.WalletId,
-                        principalTable: "Wallets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_WalletFiats", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_WalletId",
-                table: "Transactions",
-                column: "WalletId");
+                name: "IX_WalletCryptos_UserId_Symbol",
+                table: "WalletCryptos",
+                columns: new[] { "UserId", "Symbol" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WalletFiats_UserId_Currency",
+                table: "WalletFiats",
+                columns: new[] { "UserId", "Currency" },
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Transactions");
+                name: "WalletCryptos");
 
             migrationBuilder.DropTable(
-                name: "Wallets");
+                name: "WalletFiats");
         }
     }
 }
