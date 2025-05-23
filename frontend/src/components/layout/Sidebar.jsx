@@ -16,29 +16,19 @@ import {
   UserCog,
   Currency
 } from 'lucide-react';
-import { useAuth } from '../../store/auth/useAuth'; // Importar o contexto de autenticação
+import { useAuth } from '../../store/auth/useAuth'; // Importa o contexto de autenticação
+import { adminRoutes } from '../../routes/adminRoutes'; // Importa as rotas de admin
+import { sidebarRoutes } from '../../routes/sidebarRoutes'; // Importa as rotas do sidebar
 
 export function Sidebar({ isOpen, onClose }) {
   const { user } = useAuth(); // Obter o usuário atual
   const isAdmin = user?.role === 'admin'; // Verificar se o usuário é admin
   const [adminMenuOpen, setAdminMenuOpen] = useState(true); // Estado para o submenu de admin
   
-  const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-    { icon: Wallet, label: 'Portfolio', path: '/portfolio' },
-    { icon: LineChart, label: 'Markets', path: '/markets' },
-    { icon: History, label: 'Transaction History', path: '/history' },
-    { icon: Users, label: 'Referrals', path: '/referrals' },
-    { icon: BookOpen, label: 'Learn', path: '/learn' },
-    { icon: Settings, label: 'Settings', path: '/settings' },
-  ];
+  const menuItems = sidebarRoutes;
 
   // Opções de administrador separadas
-  const adminItems = [
-    { icon: UserCog, label: 'User Management', path: '/admin/users' },
-    { icon: FileText, label: 'API', path: '/api-docs' },
-    { icon: Currency, label: 'Currency', path: '/currency' },
-  ];
+  const adminItems = adminRoutes;
 
   return (
     <AnimatePresence>
