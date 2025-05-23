@@ -1,10 +1,13 @@
+using System;
 
-    public class CurrencyDTO
+namespace CurrencyAPI.Application.DTOs
+{
+    public class CurrencyDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public string Backing { get; set; } = null!;
-        public bool Status { get; set; }
+        public Guid Id { get; set; }
+        public string Symbol { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Backing { get; set; } = string.Empty;
+        public List<HistoryDto> Histories { get; set; } = new();
     }
-
+}

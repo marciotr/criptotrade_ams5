@@ -1,9 +1,18 @@
-public interface ICurrencyRepository
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CurrencyAPI.Domain.Entities;
+
+namespace CurrencyAPI.Domain.Interfaces
 {
-    IEnumerable<Currency> GetAll();
-    Currency? GetById(int id);
-    void Add(Currency currency);
-    void Update(Currency currency);
-    void Delete(Currency currency);
-    void SaveChanges();
+    public interface ICurrencyRepository
+    {
+        Task<Currency?> GetByIdAsync(Guid id);
+        Task<Currency?> GetBySymbolAsync(string symbol);
+        Task<IEnumerable<Currency>> GetAllAsync();
+        Task AddAsync(Currency currency);
+        Task UpdateAsync(Currency currency);
+        Task DeleteAsync(Guid id);
+        Task<bool> ExistsAsync(Guid id);
+    }
 }

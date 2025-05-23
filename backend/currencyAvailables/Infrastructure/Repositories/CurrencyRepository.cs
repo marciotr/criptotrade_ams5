@@ -1,39 +1,68 @@
-public class CurrencyRepository : ICurrencyRepository
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using CurrencyAPI.Domain.Entities;
+using CurrencyAPI.Domain.Interfaces;
+using CurrencyAPI.Infrastructure.Data;
+
+namespace CurrencyAPI.Infrastructure.Repositories
 {
-    private readonly CurrencyDbContext _context;
-
-    public CurrencyRepository(CurrencyDbContext context)
+    public class CurrencyRepository : ICurrencyRepository
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
-    public IEnumerable<Currency> GetAll()
-    {
-        return _context.Currencies.ToList();
-    }
+        public CurrencyRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
-    public Currency? GetById(int id)
-    {
-        return _context.Currencies.Find(id);
-    }
+        public async Task<Currency?> GetByIdAsync(Guid id)
+        {
+            return await _context.Currencies
+                .Include(c => c.Histories)
+                .FirstOrDefaultAsync(c => c.Id == id);
+        }
 
-    public void Add(Currency currency)
-    {
-        _context.Currencies.Add(currency);
-    }
+        public async Task<Currency?> GetBySymbolAsync(string symbol)
+        {
+            return await _context.Currencies
+                .Include(c => c.Histories)
+                .FirstOrDefaultAsync(c => c.Symbol == symbol.ToUpper());
+        }
 
-    public void Update(Currency currency)
-    {
-        _context.Currencies.Update(currency);
-    }
+        public async Task<IEnumerable<Currency>> GetAllAsync()
+        {
+            return await _context.Currencies
+                .Include(c => c.Histories)
+                .ToListAsync();
+        }
 
-    public void Delete(Currency currency)
-    {
-        _context.Currencies.Remove(currency);
-    }
+        public async Task AddAsync(Currency currency)
+        {
+            await _context.Currencies.AddAsync(currency);
+            await _context.SaveChangesAsync();
+        }
 
-    public void SaveChanges()
-    {
-        _context.SaveChanges();
+        public async Task UpdateAsync(Currency currency)
+        {
+            _context.Currencies.Update(currency);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var currency = await _context.Currencies.FindAsync(id);
+            if (currency != null)
+            {
+                _context.Currencies.Remove(currency);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<bool> ExistsAsync(Guid id)
+        {
+            return await _context.Currencies.AnyAsync(c => c.Id == id);
+        }
     }
 }

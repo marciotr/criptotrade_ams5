@@ -18,6 +18,11 @@ using Microsoft.EntityFrameworkCore;
                 entity.Property(c => c.Description).HasMaxLength(255);
                 entity.Property(c => c.Backing).IsRequired();
                 entity.Property(c => c.Status).IsRequired();
+
+                entity.HasMany(c => c.Histories)
+                      .WithOne()
+                      .HasForeignKey(h => h.CurrencyId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<History>(entity =>

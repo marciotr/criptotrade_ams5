@@ -1,10 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CurrencyAPI.Domain.Entities;
 
-public interface ICurrencyService{
-    IEnumerable<CurrencyDTO> GetAllCurrencies();
-    CurrencyDTO? GetCurrencyById(int id);
-    CurrencyDTO RegisterCurrency(CurrencyDTO currencyDto);
-    CurrencyDTO? UpdateCurrency(int id, CurrencyDTO currencyDto);
-    bool DeleteCurrency(int id);
+namespace CurrencyAPI.Application.Interfaces
+{
+    public interface ICurrencyService
+    {
+        Task<IEnumerable<Currency>> GetAllAsync();
+        Task<Currency?> GetByIdAsync(Guid id);
+        Task<Currency?> GetBySymbolAsync(string symbol);
+        Task AddAsync(Currency currency);
+        Task UpdateAsync(Currency currency);
+        Task DeleteAsync(Guid id);
+    }
 }
-
-
