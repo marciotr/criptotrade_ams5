@@ -13,7 +13,8 @@ import {
   FileText,
   Shield,
   ChevronDown,
-  UserCog
+  UserCog,
+  Currency
 } from 'lucide-react';
 import { useAuth } from '../../store/auth/useAuth'; // Importar o contexto de autenticação
 
@@ -35,7 +36,8 @@ export function Sidebar({ isOpen, onClose }) {
   // Opções de administrador separadas
   const adminItems = [
     { icon: UserCog, label: 'User Management', path: '/admin/users' },
-    { icon: FileText, label: 'API', path: '/api-docs' }
+    { icon: FileText, label: 'API', path: '/api-docs' },
+    { icon: Currency, label: 'Currency', path: '/currency' },
   ];
 
   return (
