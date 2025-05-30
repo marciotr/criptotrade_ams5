@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using CurrencyAPI.Application.Interfaces;
-using CurrencyAPI.Application.DTOs;
-using CurrencyAPI.Domain.Entities;
+using CurrencyAvailables.Application.Interfaces;
+using CurrencyAvailables.Application.DTOs;
+using CurrencyAvailables.Domain.Entities;
 
-namespace CurrencyAPI.API.Controllers
+namespace CurrencyAvailables.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -24,8 +24,8 @@ namespace CurrencyAPI.API.Controllers
             {
                 Id = h.Id,
                 CurrencyId = h.CurrencyId,
-                Price = h.Price,
-                Date = h.Date
+                Datetime = h.Datetime,
+                Value = h.Value
             });
 
             return Ok(result);
@@ -39,8 +39,8 @@ namespace CurrencyAPI.API.Controllers
             {
                 Id = h.Id,
                 CurrencyId = h.CurrencyId,
-                Price = h.Price,
-                Date = h.Date
+                Datetime = h.Datetime,
+                Value = h.Value
             });
 
             return Ok(result);
@@ -49,7 +49,11 @@ namespace CurrencyAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] HistoryDto dto)
         {
-            var history = new History(dto.CurrencyId, dto.Price, dto.Date);
+            var history = new History(dto.CurrencyId, dto.Datetime, dto.Value);
+            if (history.CurrencyId == Guid.Empty)
+            {
+                return BadRequest("Currency ID is required.");
+            }
             await _service.AddAsync(history);
             return Created("", dto);
         }

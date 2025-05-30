@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using CurrencyAPI.Domain.Entities;
-using CurrencyAPI.Domain.Interfaces;
-using CurrencyAPI.Infrastructure.Data;
+using CurrencyAvailables.Domain.Entities;
+using CurrencyAvailables.Domain.Interfaces;
+using CurrencyAvailables.Infrastructure.Data;
 
-namespace CurrencyAPI.Infrastructure.Repositories
+namespace CurrencyAvailables.Infrastructure.Repositories
 {
     public class CurrencyRepository : ICurrencyRepository
     {
-        private readonly AppDbContext _context;
+        private readonly CurrencyDbContext _context;
 
-        public CurrencyRepository(AppDbContext context)
+        public CurrencyRepository(CurrencyDbContext context)
         {
             _context = context;
         }

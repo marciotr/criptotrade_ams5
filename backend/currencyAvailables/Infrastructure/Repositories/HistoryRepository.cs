@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using CurrencyAPI.Domain.Entities;
-using CurrencyAPI.Domain.Interfaces;
-using CurrencyAPI.Infrastructure.Data;
+using CurrencyAvailables.Domain.Entities;
+using CurrencyAvailables.Domain.Interfaces;
+using CurrencyAvailables.Infrastructure.Data;
 
-namespace CurrencyAPI.Infrastructure.Repositories
+namespace CurrencyAvailables.Infrastructure.Repositories
 {
     public class HistoryRepository : IHistoryRepository
     {
-        private readonly AppDbContext _context;
+        private readonly CurrencyDbContext _context;
 
-        public HistoryRepository(AppDbContext context)
+        public HistoryRepository(CurrencyDbContext context)
         {
             _context = context;
         }
@@ -27,15 +27,15 @@ namespace CurrencyAPI.Infrastructure.Repositories
         {
             return await _context.Histories
                 .Where(h => h.CurrencyId == currencyId)
-                .OrderByDescending(h => h.Date)
+                .OrderByDescending(h => h.Datetime)
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<History>> GetByDateRangeAsync(Guid currencyId, DateTime from, DateTime to)
         {
             return await _context.Histories
-                .Where(h => h.CurrencyId == currencyId && h.Date >= from && h.Date <= to)
-                .OrderBy(h => h.Date)
+                .Where(h => h.CurrencyId == currencyId && h.Datetime >= from && h.Datetime <= to)
+                .OrderBy(h => h.Datetime)
                 .ToListAsync();
         }
 

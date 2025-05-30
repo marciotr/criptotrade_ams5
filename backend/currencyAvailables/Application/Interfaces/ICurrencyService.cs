@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CurrencyAPI.Domain.Entities;
+using CurrencyAvailables.Domain.Entities;
 
-namespace CurrencyAPI.Application.Interfaces
+namespace CurrencyAvailables.Application.Interfaces
 {
     public interface ICurrencyService
     {

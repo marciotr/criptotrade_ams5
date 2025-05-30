@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using CurrencyAvailables.Domain.Entities;
+using CurrencyAvailables.Domain.Interfaces;
 
+namespace CurrencyAvailables.Infrastructure.Data
+{
     public class CurrencyDbContext : DbContext
     {
         public CurrencyDbContext(DbContextOptions<CurrencyDbContext> options) : base(options) { }
@@ -15,7 +19,8 @@ using Microsoft.EntityFrameworkCore;
             {
                 entity.HasKey(c => c.Id);
                 entity.Property(c => c.Name).IsRequired().HasMaxLength(100);
-                entity.Property(c => c.Description).HasMaxLength(255);
+                entity.Property(c => c.Symbol).IsRequired().HasMaxLength(100);
+                // entity.Property(c => c.Description).HasMaxLength(255);
                 entity.Property(c => c.Backing).IsRequired();
                 entity.Property(c => c.Status).IsRequired();
 
@@ -28,9 +33,10 @@ using Microsoft.EntityFrameworkCore;
             modelBuilder.Entity<History>(entity =>
             {
                 entity.HasKey(h => h.Id);
-                entity.Property(h => h.DateTime).IsRequired();
+                entity.Property(h => h.Datetime).IsRequired();
                 entity.Property(h => h.Value).HasColumnType("decimal(18,2)").IsRequired();
             });
         }
     }
+}
 

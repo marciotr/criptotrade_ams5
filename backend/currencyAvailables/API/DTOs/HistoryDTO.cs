@@ -1,12 +1,12 @@
 using System;
 
-namespace CurrencyAPI.Application.DTOs
+namespace CurrencyAvailables.Application.DTOs
 {
     public class HistoryDto
     {
         public Guid Id { get; set; }
         public Guid CurrencyId { get; set; }
-        public decimal Price { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Datetime { get; set; }
+        public decimal Value { get; set; }
     }
 }

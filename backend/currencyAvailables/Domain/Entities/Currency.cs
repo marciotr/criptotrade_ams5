@@ -7,18 +7,19 @@ namespace CurrencyAvailables.Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Symbol { get; set; } = null!;
+        // public string Description { get; set; } = null!;
         public string Backing { get; set; } = null!;
-        public bool Status { get; set; }
+        public string Status { get; set; } = null!;
         
         private readonly List<History> _histories = new();
         public IReadOnlyCollection<History> Histories => _histories.AsReadOnly();
 
-        public Currency(string name, string description, string backing, bool status)
+        public Currency(string name, string description, string backing, string status)
         {
             Id = Guid.NewGuid();
             SetName(name);
-            SetDescription(description);
+            // SetDescription(description);
             SetBacking(backing);
             SetStatus(status);
         }
@@ -27,11 +28,22 @@ namespace CurrencyAvailables.Domain.Entities
         {
             if (history == null)
                 throw new ArgumentNullException(nameof(history));
+            
+            if (history.CurrencyId != Id)
+                throw new InvalidOperationException("History currency ID mismatch.");
 
             _histories.Add(history);
         }
 
-        public void setName(string name)
+        private void SetSymbol(string symbol)
+        {
+            if (string.IsNullOrWhiteSpace(symbol))
+                throw new ArgumentException("Symbol is required.");
+
+            Symbol = symbol.ToUpper();
+        }
+
+        public void SetName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Name cannot be null or empty.", nameof(name));
@@ -39,13 +51,13 @@ namespace CurrencyAvailables.Domain.Entities
             Name = name;
         }
 
-        public void SetDescription(string description)
-        {
-            if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException("Description cannot be null or empty.", nameof(description));
+        // public void SetDescription(string description)
+        // {
+        //     if (string.IsNullOrWhiteSpace(description))
+        //         throw new ArgumentException("Description cannot be null or empty.", nameof(description));
 
-            Description = description;
-        }
+        //     Description = description;
+        // }
 
         public void SetBacking(string backing)
         {
@@ -55,7 +67,7 @@ namespace CurrencyAvailables.Domain.Entities
             Backing = backing;
         }
 
-        public void SetStatus(bool status)
+        public void SetStatus(string status)
         {
             Status = status;
         }

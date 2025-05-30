@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CurrencyAPI.Application.Interfaces;
-using CurrencyAPI.Domain.Entities;
-using CurrencyAPI.Domain.Interfaces;
+using CurrencyAvailables.Application.Interfaces;
+using CurrencyAvailables.Domain.Entities;
+using CurrencyAvailables.Domain.Interfaces;
 
-namespace CurrencyAPI.Application.Services
+namespace CurrencyAvailables.Application.Services
 {
     public class HistoryService : IHistoryService
     {

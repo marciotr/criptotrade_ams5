@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using CurrencyAPI.Application.Interfaces;
-using CurrencyAPI.Application.DTOs;
-using CurrencyAPI.Domain.Entities;
+using CurrencyAvailables.Application.Interfaces;
+using CurrencyAvailables.Application.DTOs;
+using CurrencyAvailables.Domain.Entities;
 
-namespace CurrencyAPI.API.Controllers
+namespace CurrencyAvailables.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -30,8 +30,8 @@ namespace CurrencyAPI.API.Controllers
                 {
                     Id = h.Id,
                     CurrencyId = h.CurrencyId,
-                    Price = h.Price,
-                    Date = h.Date
+                    Datetime = h.Datetime,
+                    Value = h.Value
                 }).ToList()
             });
 
@@ -56,7 +56,7 @@ namespace CurrencyAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CurrencyDto dto)
         {
-            var currency = new Currency(dto.Symbol, dto.Name, dto.Backing);
+            var currency = new Currency(dto.Symbol, dto.Name, dto.Backing, dto.Status);
             await _service.AddAsync(currency);
             return CreatedAtAction(nameof(GetById), new { id = currency.Id }, dto);
         }
@@ -67,7 +67,7 @@ namespace CurrencyAPI.API.Controllers
             var existing = await _service.GetByIdAsync(id);
             if (existing == null) return NotFound();
 
-            var updated = new Currency(dto.Symbol, dto.Name, dto.Backing); // ou atualize campos diretamente
+            var updated = new Currency(dto.Symbol, dto.Name, dto.Backing, dto.Status); // ou atualize campos diretamente
             typeof(Currency).GetProperty("Id")?.SetValue(updated, id); // ajustar ID manualmente
 
             await _service.UpdateAsync(updated);

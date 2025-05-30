@@ -1,4 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CurrencyAvailables.Domain.Interfaces;
+using CurrencyAvailables.Infrastructure.Data;
+using CurrencyAvailables.Infrastructure.Repositories;
+using CurrencyAvailables.Application.Interfaces;
+using CurrencyAvailables.Application.Services;
+
+
 
     public static class DependencyInjection
     {

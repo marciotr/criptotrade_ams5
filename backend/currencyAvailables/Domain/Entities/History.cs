@@ -1,10 +1,13 @@
-namespace Domain.Entities
-{
+using System;
+using System.Collections.Generic;
+
+namespace CurrencyAvailables.Domain.Entities
+{ 
     public class History
     {
         public Guid Id { get; set; }
-        public int CurrencyId { get; set; }
-        public DateTime DateTime { get; set; }
+        public Guid CurrencyId { get; set; }
+        public DateTime Datetime { get; set; }
         public decimal Value { get; set; }
 
         public Currency Currency { get; set; } = null!;
@@ -30,7 +33,7 @@ namespace Domain.Entities
             if (dateTime == default)
                 throw new ArgumentException("DateTime cannot be default.", nameof(dateTime));
 
-            DateTime = dateTime;
+            Datetime = dateTime;
         }
 
         private void setValue(decimal value)

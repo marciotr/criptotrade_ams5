@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CurrencyAPI.Domain.Entities;
+using CurrencyAvailables.Domain.Entities;
 
-namespace CurrencyAPI.Domain.Interfaces
+namespace CurrencyAvailables.Domain.Interfaces
 {
     public interface IHistoryRepository
     {
