@@ -33,7 +33,7 @@ namespace currencyAvailables.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false).Annotation("Sqlite:Autoincrement", true),
                     CurrencyId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    DateTimeAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>

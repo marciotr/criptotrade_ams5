@@ -62,7 +62,7 @@ namespace currencyAvailables.Infrastructure.Migrations
                     b.Property<Guid>("CurrencyId")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateTime")
+                    b.Property<DateTime>("DateTimeAt")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Value")
@@ -77,20 +77,17 @@ namespace currencyAvailables.Infrastructure.Migrations
 
             modelBuilder.Entity("CurrencyAvailables.domain.Entities.History", b =>
                 {
-                   b.hasOne("CurrencyAvailables.domain.Entities.Currency", null)
+                    b.HasOne("CurrencyAvailables.domain.Entities.Currency", null)
                         .WithMany("Histories")
                         .HasForeignKey("CurrencyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.navigation("currency);")
                 });
 
             modelBuilder.Entity("CurrencyAvailables.domain.Entities.Currency", b =>
                 {
-                    b.navigation("Histories");
+                    b.Navigation("Histories");
                 });
-
 
 #pragma warning restore 612, 618
         }

@@ -7,16 +7,16 @@ namespace CurrencyAvailables.Domain.Entities
     {
         public Guid Id { get; set; }
         public Guid CurrencyId { get; set; }
-        public DateTime Datetime { get; set; }
+        public DateTime DateTimeAt { get; set; } // Renomeado de Datetime para DateTimeAt
         public decimal Value { get; set; }
 
         public Currency Currency { get; set; } = null!;
 
-        public History(Guid currencyId, DateTime dateTime, decimal value)
+        public History(Guid currencyId, DateTime dateTimeAt, decimal value)
         {
             Id = Guid.NewGuid();
             setCurrencyId(currencyId);
-            setDateTime(dateTime);
+            setDateTime(dateTimeAt);
             setValue(value);
         }
 
@@ -28,12 +28,12 @@ namespace CurrencyAvailables.Domain.Entities
             CurrencyId = currencyId;
         }
 
-        private void setDateTime(DateTime dateTime)
+        private void setDateTime(DateTime dateTimeAt)
         {
-            if (dateTime == default)
-                throw new ArgumentException("DateTime cannot be default.", nameof(dateTime));
+            if (dateTimeAt == default)
+                throw new ArgumentException("DateTime cannot be default.", nameof(dateTimeAt));
 
-            Datetime = dateTime;
+            DateTimeAt = dateTimeAt;
         }
 
         private void setValue(decimal value)

@@ -30,7 +30,7 @@ namespace CurrencyAvailables.API.Controllers
                 {
                     Id = h.Id,
                     CurrencyId = h.CurrencyId,
-                    Datetime = h.Datetime,
+                    DateTimeAt = h.DateTimeAt,
                     Value = h.Value
                 }).ToList()
             });

@@ -15,11 +15,12 @@ namespace CurrencyAvailables.Domain.Entities
         private readonly List<History> _histories = new();
         public IReadOnlyCollection<History> Histories => _histories.AsReadOnly();
 
-        public Currency(string name, string description, string backing, string status)
+        public Currency(string name, string symbol, /*string description, */ string backing, string status)
         {
             Id = Guid.NewGuid();
             SetName(name);
             // SetDescription(description);
+            SetSymbol(symbol);
             SetBacking(backing);
             SetStatus(status);
         }

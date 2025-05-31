@@ -33,7 +33,8 @@ namespace CurrencyAvailables.Infrastructure.Data
             modelBuilder.Entity<History>(entity =>
             {
                 entity.HasKey(h => h.Id);
-                entity.Property(h => h.Datetime).IsRequired();
+                entity.Property(h => h.CurrencyId).IsRequired();
+                entity.Property(h => h.DateTimeAt).IsRequired();
                 entity.Property(h => h.Value).HasColumnType("decimal(18,2)").IsRequired();
             });
         }

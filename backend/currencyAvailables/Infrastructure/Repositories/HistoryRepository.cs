@@ -27,15 +27,15 @@ namespace CurrencyAvailables.Infrastructure.Repositories
         {
             return await _context.Histories
                 .Where(h => h.CurrencyId == currencyId)
-                .OrderByDescending(h => h.Datetime)
+                .OrderByDescending(h => h.DateTimeAt)
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<History>> GetByDateRangeAsync(Guid currencyId, DateTime from, DateTime to)
         {
             return await _context.Histories
-                .Where(h => h.CurrencyId == currencyId && h.Datetime >= from && h.Datetime <= to)
-                .OrderBy(h => h.Datetime)
+                .Where(h => h.CurrencyId == currencyId && h.DateTimeAt >= from && h.DateTimeAt <= to)
+                .OrderBy(h => h.DateTimeAt)
                 .ToListAsync();
         }
 
