@@ -24,7 +24,7 @@ namespace CurrencyAvailables.API.Controllers
             {
                 Id = h.Id,
                 CurrencyId = h.CurrencyId,
-                Datetime = h.Datetime,
+                DateTimeAt = h.DateTimeAt,
                 Value = h.Value
             });
 
@@ -39,7 +39,7 @@ namespace CurrencyAvailables.API.Controllers
             {
                 Id = h.Id,
                 CurrencyId = h.CurrencyId,
-                Datetime = h.Datetime,
+                DateTimeAt = h.DateTimeAt,
                 Value = h.Value
             });
 
@@ -49,7 +49,7 @@ namespace CurrencyAvailables.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] HistoryDto dto)
         {
-            var history = new History(dto.CurrencyId, dto.Datetime, dto.Value);
+            var history = new History(dto.CurrencyId, dto.DateTimeAt, dto.Value);
             if (history.CurrencyId == Guid.Empty)
             {
                 return BadRequest("Currency ID is required.");
