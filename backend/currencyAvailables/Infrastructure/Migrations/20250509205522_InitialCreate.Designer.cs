@@ -22,18 +22,23 @@ namespace currencyAvailables.Infrastructure.Migrations
 
             modelBuilder.Entity("Currency", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Backing")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Symbol")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("TEXT");
+
+                    // b.Property<string>("Description")
+                    //     .IsRequired()
+                    //     .HasMaxLength(255)
+                    //     .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -50,9 +55,12 @@ namespace currencyAvailables.Infrastructure.Migrations
 
             modelBuilder.Entity("History", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CurrencyId")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
@@ -62,8 +70,28 @@ namespace currencyAvailables.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CurrencyId");
+
                     b.ToTable("Histories");
                 });
+
+            modelBuilder.Entity("CurrencyAvailables.domain.Entities.History", b =>
+                {
+                   b.hasOne("CurrencyAvailables.domain.Entities.Currency", null)
+                        .WithMany("Histories")
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.navigation("currency);")
+                });
+
+            modelBuilder.Entity("CurrencyAvailables.domain.Entities.Currency", b =>
+                {
+                    b.navigation("Histories");
+                });
+
+
 #pragma warning restore 612, 618
         }
     }
