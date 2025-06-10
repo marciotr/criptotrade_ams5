@@ -14,6 +14,8 @@ using CurrencyAvailables.Application.Services;
         {
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<ICurrencyService, CurrencyService>();
+            services.AddScoped<IHistoryRepository, HistoryRepository>();
+            services.AddScoped<IHistoryService, HistoryService>();
 
             services.AddDbContext<CurrencyDbContext>(options =>
                 options.UseSqlite("Data Source=Infrastructure/Data/currencydb.sqlite"));

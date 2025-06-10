@@ -9,32 +9,19 @@ namespace CurrencyAvailables.API.Controllers
     [Route("api/[controller]")]
     public class HistoryController : ControllerBase
     {
-        private readonly IHistoryService _service;
+        private readonly IHistoryService _historyService;
+        private readonly ICurrencyService _currencyService;
 
-        public HistoryController(IHistoryService service)
+        public HistoryController(IHistoryService historyService, ICurrencyService currencyService)
         {
-            _service = service;
-        }
-
-        [HttpGet("{currencyId:guid}")]
-        public async Task<IActionResult> GetByCurrency(Guid currencyId)
-        {
-            var histories = await _service.GetByCurrencyIdAsync(currencyId);
-            var result = histories.Select(h => new HistoryDto
-            {
-                Id = h.Id,
-                CurrencyId = h.CurrencyId,
-                DateTimeAt = h.DateTimeAt,
-                Value = h.Value
-            });
-
-            return Ok(result);
+            _historyService = historyService;
+            _currencyService = currencyService;
         }
 
         [HttpGet("{currencyId:guid}/range")]
         public async Task<IActionResult> GetByDateRange(Guid currencyId, [FromQuery] DateTime from, [FromQuery] DateTime to)
         {
-            var histories = await _service.GetByDateRangeAsync(currencyId, from, to);
+            var histories = await _historyService.GetByDateRangeAsync(currencyId, from, to);
             var result = histories.Select(h => new HistoryDto
             {
                 Id = h.Id,
@@ -49,20 +36,31 @@ namespace CurrencyAvailables.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] HistoryDto dto)
         {
-            var history = new History(dto.CurrencyId, dto.DateTimeAt, dto.Value);
-            if (history.CurrencyId == Guid.Empty)
+            if (!await _currencyService.ExistsAsync(dto.CurrencyId))
             {
-                return BadRequest("Currency ID is required.");
+                return BadRequest($"Currency with Id {dto.CurrencyId} does not exist.");
             }
-            await _service.AddAsync(history);
-            return Created("", dto);
+
+            var history = new History(dto.CurrencyId, dto.DateTimeAt, dto.Value);
+
+            await _historyService.AddAsync(history);
+            return CreatedAtAction(nameof(GetById), new { id = history.Id }, history);
         }
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _service.DeleteAsync(id);
+            await _historyService.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var history = await _historyService.GetByCurrencyIdAsync(id);
+            if (history == null) return NotFound();
+
+            return Ok(history);
         }
     }
 }

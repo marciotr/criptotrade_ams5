@@ -13,5 +13,6 @@ namespace CurrencyAvailables.Application.Interfaces
         Task AddAsync(Currency currency);
         Task UpdateAsync(Currency currency);
         Task DeleteAsync(Guid id);
+        Task<bool> ExistsAsync(Guid id);
     }
 }

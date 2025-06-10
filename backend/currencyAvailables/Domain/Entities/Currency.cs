@@ -6,8 +6,8 @@ namespace CurrencyAvailables.Domain.Entities
     public class Currency
     {
         public Guid Id { get; set; }
-        public string Name { get; set; } = null!;
         public string Symbol { get; set; } = null!;
+        public string Name { get; set; } = null!;
         // public string Description { get; set; } = null!;
         public string Backing { get; set; } = null!;
         public string Status { get; set; } = null!;
@@ -15,12 +15,12 @@ namespace CurrencyAvailables.Domain.Entities
         private readonly List<History> _histories = new();
         public IReadOnlyCollection<History> Histories => _histories.AsReadOnly();
 
-        public Currency(string name, string symbol, /*string description, */ string backing, string status)
+        public Currency(string symbol, string name, /*string description, */ string backing, string status)
         {
             Id = Guid.NewGuid();
-            SetName(name);
             // SetDescription(description);
             SetSymbol(symbol);
+            SetName(name);
             SetBacking(backing);
             SetStatus(status);
         }
