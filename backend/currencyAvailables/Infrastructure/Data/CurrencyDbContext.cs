@@ -20,12 +20,11 @@ namespace CurrencyAvailables.Infrastructure.Data
                 entity.HasKey(c => c.Id);
                 entity.Property(c => c.Name).IsRequired().HasMaxLength(100);
                 entity.Property(c => c.Symbol).IsRequired().HasMaxLength(100);
-                // entity.Property(c => c.Description).HasMaxLength(255);
                 entity.Property(c => c.Backing).IsRequired();
                 entity.Property(c => c.Status).IsRequired();
 
                 entity.HasMany(c => c.Histories)
-                      .WithOne()
+                      .WithOne(h => h.Currency)
                       .HasForeignKey(h => h.CurrencyId)
                       .OnDelete(DeleteBehavior.Cascade);
             });
