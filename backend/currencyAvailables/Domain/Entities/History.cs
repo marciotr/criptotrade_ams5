@@ -7,10 +7,11 @@ namespace CurrencyAvailables.Domain.Entities
     {
         public Guid Id { get; set; }
         public Guid CurrencyId { get; set; }
+        public Currency Currency { get; set; } = null!;
         public DateTime DateTimeAt { get; set; } // Renomeado de Datetime para DateTimeAt
         public decimal Value { get; set; }
 
-        public Currency Currency { get; set; } = null!;
+
 
         public History(Guid currencyId, DateTime dateTimeAt, decimal value)
         {
