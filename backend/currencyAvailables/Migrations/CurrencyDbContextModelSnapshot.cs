@@ -54,9 +54,6 @@ namespace currencyAvailables.Migrations
                     b.Property<Guid>("CurrencyId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CurrencyId1")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("DateTimeAt")
                         .HasColumnType("TEXT");
 
@@ -67,22 +64,14 @@ namespace currencyAvailables.Migrations
 
                     b.HasIndex("CurrencyId");
 
-                    b.HasIndex("CurrencyId1");
-
                     b.ToTable("Histories");
                 });
 
             modelBuilder.Entity("CurrencyAvailables.Domain.Entities.History", b =>
                 {
-                    b.HasOne("CurrencyAvailables.Domain.Entities.Currency", null)
+                    b.HasOne("CurrencyAvailables.Domain.Entities.Currency", "Currency")
                         .WithMany("Histories")
                         .HasForeignKey("CurrencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CurrencyAvailables.Domain.Entities.Currency", "Currency")
-                        .WithMany()
-                        .HasForeignKey("CurrencyId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
