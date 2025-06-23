@@ -11,13 +11,13 @@ export function CurrencyPreferencesSettings() {
       transition={{ duration: 0.3 }}
       className="p-4 lg:p-6 rounded-xl bg-background-primary shadow-lg"
     >
-      <h2 className="text-xl font-bold text-text-primary">Currency Preferences</h2>
-      <p className="text-text-secondary mb-4">Configure your currency preferences.</p>
+      <h2 className="text-xl font-bold text-text-primary">Preferências de Moeda</h2>
+      <p className="text-text-secondary mb-4">Configure suas preferências de moeda.</p>
       
       <div className="space-y-6">
         <div>
           <label className="block text-text-primary flex items-center mb-2">
-            <DollarSign className="mr-2" /> Preferred Currency
+            <DollarSign className="mr-2" /> Moeda Preferida
           </label>
           <select className="block w-full px-3 py-2 bg-background-primary border border-border-primary rounded-md shadow-sm focus:outline-none focus:ring-brand-primary text-text-primary">
             <option>USD</option>
@@ -28,7 +28,7 @@ export function CurrencyPreferencesSettings() {
         </div>
         <div>
           <label className="block text-text-primary flex items-center mb-2">
-            <Eye className="mr-2" /> Display Currency
+            <Eye className="mr-2" /> Moeda de Exibição
           </label>
           <select className="block w-full px-3 py-2 bg-background-primary border border-border-primary rounded-md shadow-sm focus:outline-none focus:ring-brand-primary text-text-primary">
             <option>BTC</option>
@@ -38,7 +38,7 @@ export function CurrencyPreferencesSettings() {
           </select>
         </div>
         <button className="mt-4 px-4 py-2 bg-brand-primary text-background-primary rounded-lg flex items-center hover:opacity-90 transition-colors">
-          <DollarSign className="mr-2" /> Save
+          <DollarSign className="mr-2" /> Salvar
         </button>
       </div>
     </motion.div>
