@@ -8,7 +8,7 @@ export const CustomTooltip = ({ active, payload, label }) => {
           {payload[0]?.payload?.fullDate || label}
         </p>
         <p className="font-semibold text-text-primary">
-          {`Price: $${parseFloat(payload[0]?.value).toLocaleString()}`}
+          {`Preço: R$${parseFloat(payload[0]?.value).toLocaleString()}`}
         </p>
         {payload[0]?.payload?.volume && (
           <p className="text-text-tertiary">

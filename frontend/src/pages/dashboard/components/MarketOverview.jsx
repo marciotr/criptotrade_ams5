@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, ArrowDown, ChevronRight, ArrowUpDown } from 'lucide-react';
-import CryptoIcon from '../common/CryptoIcons';
+import CryptoIcon from '../../../components/common/CryptoIcons'
 import { FixedSizeList as List } from 'react-window';
 
 export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
@@ -11,10 +11,10 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
   });
 
   const sortOptions = useMemo(() => [
-    { key: 'currentPrice', label: 'Highest Price' },
-    { key: 'priceChange', label: 'Best Performers' },
-    { key: 'volume', label: 'Highest Volume' },
-    { key: 'name', label: 'Name' }
+    { key: 'currentPrice', label: 'Maior Preço' },
+    { key: 'priceChange', label: 'Melhor Desempenho' },
+    { key: 'volume', label: 'Maior Volume' },
+    { key: 'name', label: 'Nome' }
   ], []);
 
   const handleSort = useCallback((key) => {
@@ -103,7 +103,7 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
               </span>
             </p>
             <p className="text-sm text-text-secondary">
-              Vol: ${typeof coin.volume === 'number' ? 
+              Vol: R${typeof coin.volume === 'number' ? 
                 coin.volume.toLocaleString() : 
                 parseFloat(coin.volume || 0).toLocaleString()}
             </p>
@@ -111,7 +111,7 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
         </div>
         <div className="text-right">
           <p className="font-semibold text-text-primary">
-            ${typeof coin.currentPrice === 'number' ? 
+            R${typeof coin.currentPrice === 'number' ? 
               coin.currentPrice.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 8
@@ -158,8 +158,8 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
       className="p-4 lg:p-6 rounded-xl bg-background-primary border border-border-primary shadow-lg"
     >
       <div className="flex flex-col space-y-4 mb-6">
-        <h2 className="text-xl font-bold text-text-primary">Top 10 by {
-          sortOptions.find(opt => opt.key === sortConfig.key)?.label || 'Price'
+        <h2 className="text-xl font-bold text-text-primary">Top 10 por {
+          sortOptions.find(opt => opt.key === sortConfig.key)?.label || 'Preço'
         }</h2>
         <div className="flex flex-wrap gap-2">
           {sortOptions.map((option) => (
@@ -203,13 +203,13 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
               onClick={onShowMore}
               className="mt-4 w-full py-2 px-4 text-sm font-medium text-brand-primary bg-background-secondary rounded-lg flex items-center justify-center hover:bg-background-tertiary transition-colors"
             >
-              View All Markets
+              Ver Todos os Mercados
               <ChevronRight size={16} className="ml-2" />
             </motion.button>
           </>
         ) : (
           <div className="text-center py-4 text-text-secondary">
-            No data available
+            Dados não disponíveis
           </div>
         )}
       </div>

@@ -18,6 +18,10 @@ namespace CurrencyAvailables.Infrastructure.Data
             modelBuilder.Entity<Currency>(entity =>
             {
                 entity.HasKey(c => c.Id);
+
+                entity.Property(c => c.Id)
+                    .ValueGeneratedNever();
+          
                 entity.Property(c => c.Name).IsRequired().HasMaxLength(100);
                 entity.Property(c => c.Symbol).IsRequired().HasMaxLength(100);
                 // entity.Property(c => c.Description).HasMaxLength(255);

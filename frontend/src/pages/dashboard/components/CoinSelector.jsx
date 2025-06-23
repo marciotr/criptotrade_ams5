@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Search } from 'lucide-react';
-import CryptoIcon from '../common/CryptoIcons';
+import CryptoIcon from '../../../components/common/CryptoIcons';
 
 const POPULAR_COINS = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'ADA', 'DOGE', 'DOT', 'MATIC', 'LINK'];
 const INITIAL_LIMIT = 15; 
@@ -13,7 +13,7 @@ export const CoinSelector = React.memo(({
   onToggle, 
   onSelect,
   price,
-  align = 'right'          // <-- new prop, default right
+  align = 'right'          
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAll, setShowAll] = useState(false);
@@ -89,11 +89,11 @@ export const CoinSelector = React.memo(({
         className="flex items-center space-x-2 focus:outline-none"
       >
         <div className="flex items-center space-x-2">
-          <CryptoIcon symbol={selectedCoin.id} size={28} />
+          {selectedCoin?.id && <CryptoIcon symbol={selectedCoin.id} size={28} />}
           <div className="flex items-center">
-            <h2 className="text-xl font-bold text-text-primary">{selectedCoin.name}</h2>
+            <h2 className="text-xl font-bold text-text-primary">{selectedCoin?.name || 'Selecionar Moeda'}</h2>
             {formattedPrice && (
-              <span className="ml-2 text-lg font-medium text-text-secondary">${formattedPrice}</span>
+              <span className="ml-2 text-lg font-medium text-text-secondary">R${formattedPrice}</span>
             )}
           </div>
           <motion.div
@@ -127,7 +127,7 @@ export const CoinSelector = React.memo(({
                   type="text"
                   value={searchTerm}
                   onChange={handleSearchChange}
-                  placeholder="Search coins..."
+                  placeholder="Buscar moedas..."
                   className="w-full pl-10 pr-4 py-2 text-sm bg-background-secondary rounded-lg border border-border-primary focus:outline-none focus:border-brand-primary text-text-primary placeholder-text-tertiary"
                   autoFocus
                 />
@@ -145,7 +145,7 @@ export const CoinSelector = React.memo(({
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.2, delay: index * 0.03 }}
                       className={`flex items-center w-full px-4 py-2 text-sm text-left hover:bg-background-secondary ${
-                        selectedCoin.id === coin.id ? 'bg-background-secondary' : ''
+                        selectedCoin?.id === coin.id ? 'bg-background-secondary' : ''
                       }`}
                       onClick={() => onSelect(coin)}
                     >
@@ -164,13 +164,13 @@ export const CoinSelector = React.memo(({
                       onClick={handleShowMore}
                       className="w-full py-2 px-4 text-sm text-center text-brand-primary hover:bg-background-secondary transition-colors"
                     >
-                      Show all coins ({sortedCoins.length})
+                      Mostrar todas as moedas ({sortedCoins.length})
                     </button>
                   )}
                 </>
               ) : (
                 <div className="text-center py-4 text-text-tertiary">
-                  No coins found
+                  Nenhuma moeda encontrada
                 </div>
               )}
             </div>

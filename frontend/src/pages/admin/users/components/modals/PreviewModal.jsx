@@ -13,12 +13,16 @@ export function PreviewModal({
   onDownload,
   onOpenExternal,
   footer,
+  isOpen, // Adicionar isOpen como prop
   previewUser,
   users,
   setIsPreviewModalOpen,
   openDeleteModal,
   showNotification
 }) {
+  // Não renderizar nada se não estiver aberto
+  if (!isOpen) return null;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-4 backdrop-blur-sm">
       <motion.div
@@ -78,7 +82,7 @@ export function PreviewModal({
           ) : children}
         </div>
 
-        {/* Footer com design harmonizado */}
+        {/* Footer com design melhorado */}
         {footer && (
           <div className="p-4 border-t border-border-primary bg-background-secondary">
             {footer}

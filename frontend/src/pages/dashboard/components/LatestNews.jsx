@@ -9,7 +9,7 @@ export const LatestNews = React.memo(({ news }) => {
       animate={{ opacity: 1, y: 0 }}
       className="p-4 lg:p-6 rounded-xl bg-background-primary border border-border-primary shadow-lg"
     >
-      <h2 className="text-xl font-bold mb-6 text-text-primary">Latest News</h2>
+      <h2 className="text-xl font-bold mb-6 text-text-primary">Últimas Notícias</h2>
       <div className="space-y-4">
         {news.map((article) => (
           <div 

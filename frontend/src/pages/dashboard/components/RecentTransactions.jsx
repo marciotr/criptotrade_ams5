@@ -9,15 +9,15 @@ export const RecentTransactions = React.memo(({ transactions }) => {
       animate={{ opacity: 1, y: 0 }}
       className="p-4 lg:p-6 rounded-xl bg-background-primary border border-border-primary shadow-lg"
     >
-      <h2 className="text-xl font-bold mb-6 text-text-primary">Recent Transactions</h2>
+      <h2 className="text-xl font-bold mb-6 text-text-primary">Transações Recentes</h2>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="text-left">
-              <th className="pb-4 text-text-tertiary">Type</th>
-              <th className="pb-4 text-text-tertiary">Amount</th>
-              <th className="pb-4 text-text-tertiary">Currency</th>
-              <th className="pb-4 text-text-tertiary">Date</th>
+              <th className="pb-4 text-text-tertiary">Tipo</th>
+              <th className="pb-4 text-text-tertiary">Valor</th>
+              <th className="pb-4 text-text-tertiary">Moeda</th>
+              <th className="pb-4 text-text-tertiary">Data</th>
               <th className="pb-4 text-text-tertiary">Status</th>
             </tr>
           </thead>
@@ -32,25 +32,28 @@ export const RecentTransactions = React.memo(({ transactions }) => {
               >
                 <td className="py-4 text-text-secondary">
                   <div className="flex items-center space-x-2">
-                    {transaction.type === 'Deposit' ? (
+                    {transaction.type === 'Deposit' || transaction.type === 'Depósito' ? (
                       <ArrowUp className="text-feedback-success" size={16} />
                     ) : (
                       <ArrowDown className="text-feedback-error" size={16} />
                     )}
-                    <span>{transaction.type}</span>
+                    <span>{transaction.type === 'Deposit' ? 'Depósito' : 
+                           transaction.type === 'Withdrawal' ? 'Saque' : transaction.type}</span>
                   </div>
                 </td>
                 <td className="py-4 text-text-secondary">
-                  ${transaction.amount.toLocaleString()}
+                  R${transaction.amount.toLocaleString()}
                 </td>
                 <td className="py-4 text-text-secondary">{transaction.currency}</td>
                 <td className="py-4 text-text-secondary">{transaction.date}</td>
                 <td className={`py-4 ${
-                  transaction.status === 'Completed' ? 'text-feedback-success' : 
-                  transaction.status === 'Pending' ? 'text-feedback-warning' : 
+                  transaction.status === 'Completed' || transaction.status === 'Concluído' ? 'text-feedback-success' : 
+                  transaction.status === 'Pending' || transaction.status === 'Pendente' ? 'text-feedback-warning' : 
                   'text-feedback-error'
                 }`}>
-                  {transaction.status}
+                  {transaction.status === 'Completed' ? 'Concluído' :
+                   transaction.status === 'Pending' ? 'Pendente' :
+                   transaction.status === 'Failed' ? 'Falhou' : transaction.status}
                 </td>
               </motion.tr>
             ))}

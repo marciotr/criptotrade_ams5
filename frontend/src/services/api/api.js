@@ -1,4 +1,4 @@
-import { userApiConfig, cryptoApiConfig, walletApiConfig } from './config';
+import { userApiConfig, cryptoApiConfig, walletApiConfig, currencyApiConfig } from './config';
 
 export const authApi = {
   login: (credentials) => userApiConfig.post('/auth/login', credentials),
@@ -75,4 +75,12 @@ export const transactionApi = {
 export const settingsApi = {
   get: () => userApiConfig.get('/settings'),
   update: (data) => userApiConfig.put('/settings', data),
+};  
+
+export const currencyApi = {
+  getAllCurrencies: () => currencyApiConfig.get('/Currency'),
+  getCurrencyById: (id) => currencyApiConfig.get(`/Currency/${id}`),
+  createCurrency: (currencyData) => currencyApiConfig.post('/Currency', currencyData),
+  updateCurrency: (id, currencyData) => currencyApiConfig.put(`/Currency/${id}`, currencyData),
+  deleteCurrency: (id) => currencyApiConfig.delete(`/Currency/${id}`),
 };

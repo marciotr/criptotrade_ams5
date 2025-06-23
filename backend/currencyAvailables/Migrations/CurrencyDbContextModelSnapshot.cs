@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace currencyAvailables.Infrastructure.Migrations
+namespace currencyAvailables.Migrations
 {
     [DbContext(typeof(CurrencyDbContext))]
     partial class CurrencyDbContextModelSnapshot : ModelSnapshot
@@ -20,7 +20,6 @@ namespace currencyAvailables.Infrastructure.Migrations
             modelBuilder.Entity("CurrencyAvailables.Domain.Entities.Currency", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Backing")

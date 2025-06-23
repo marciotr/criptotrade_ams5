@@ -1,17 +1,17 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp, ArrowDown } from 'lucide-react';
-import CryptoIcon from '../common/CryptoIcons';
+import CryptoIcon from '../../../components/common/CryptoIcons'
 
 export const TopMovers = React.memo(({ data, type }) => {
-  const title = type === 'gainers' ? 'Top Gainers' : 'Top Losers';
+  const title = type === 'gainers' ? 'Maiores Altas' : 'Maiores Baixas';
 
-  // Improved data processing with better number handling
+  // Processamento de dados aprimorado com melhor tratamento de números
   const processedData = useMemo(() => {
     if (!Array.isArray(data) || data.length === 0) return [];
 
     const numericData = data.map(coin => {
-      // Handle volume string format (e.g., "44.071,369" -> 44071.369)
+      // Tratar formato de string de volume (ex: "44.071,369" -> 44071.369)
       const normalizedVolume = typeof coin.volume === 'string' 
         ? parseFloat(coin.volume.replace('.', '').replace(',', '.'))
         : Number(coin.volume);
@@ -27,7 +27,7 @@ export const TopMovers = React.memo(({ data, type }) => {
       };
     });
 
-    // Sort based on price change
+    // Ordenar com base na mudança de preço
     const sortedData = [...numericData].sort((a, b) => {
       if (type === 'gainers') {
         return b.numericChange - a.numericChange;
@@ -36,11 +36,11 @@ export const TopMovers = React.memo(({ data, type }) => {
       }
     });
 
-    // Take top 5
+    // Pegar os 5 primeiros
     return sortedData.slice(0, 5);
   }, [data, type]);
 
-  // Format volume with proper number handling
+  // Formatar volume com tratamento adequado de números
   const formatVolume = (volume) => {
     if (typeof volume === 'undefined' || volume === null) return '0';
     
@@ -111,7 +111,7 @@ export const TopMovers = React.memo(({ data, type }) => {
         
         {processedData.length === 0 && (
           <div className="text-center py-4 text-text-tertiary">
-            No data available
+            Dados não disponíveis
           </div>
         )}
       </div>

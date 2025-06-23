@@ -23,23 +23,22 @@ import { ApiDocsPage } from './pages/ApiDocs/ApiDocsPage';
 import { FiatDepositPage } from './pages/deposit/FiatDepositPage';
 import { Wallet } from './pages/wallets/Wallet';
 import { Currency } from './pages/currency/Currency';
+import AdminDashboard from './pages/admin/dashboard/AdminDashboard'; // Importe o componente AdminDashboard
 
 
 function Layout({ children }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-background-primary transition-colors duration-200">
-      <Header onSidebarOpen={() => setIsSidebarOpen(true)} />
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-      <main className="pt-16">
+      <Header />
+      <Sidebar />
+      <main className="pt-16 pl-24">
         {children}
       </main>
     </div>
   );
 }
 
-// Crie um componente de rota protegida para admin
+// Componente de rota protegida para admin
 function AdminRoute({ children }) {
   const { user } = useAuth();
   
@@ -140,6 +139,11 @@ function App() {
                       <Users />
                     </PrivateRoute>
                   } />
+                  <Route path="/admin" element={
+                    <AdminRoute>
+                      <AdminDashboard />
+                    </AdminRoute>
+                  } />
 
                   {/* API Docs Route */}
                   <Route path="/api-docs" element={
@@ -159,8 +163,6 @@ function App() {
                         <Currency/>
                       </PrivateRoute>
                     } />
-
-                  
 
                   {/* Default Route */}
                   <Route path="/" element={<Navigate to="/signin" replace />} />

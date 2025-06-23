@@ -27,6 +27,14 @@ export const walletApiConfig = axios.create({
   }
 });
 
+export const currencyApiConfig = axios.create({
+  baseURL: 'http://localhost:5169/api',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
+
 // Configuração comum para ambas as APIs
 const setupInterceptors = (apiInstance) => {
   apiInstance.interceptors.request.use(config => {
@@ -55,6 +63,7 @@ const setupInterceptors = (apiInstance) => {
 setupInterceptors(userApiConfig);
 setupInterceptors(cryptoApiConfig);
 setupInterceptors(walletApiConfig);
+setupInterceptors(currencyApiConfig);
 
 // Para compatibilidade com código existente
 export default userApiConfig;

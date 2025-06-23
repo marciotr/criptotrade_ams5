@@ -1,368 +1,325 @@
+// src/pages/currency/Currency.jsx
 import React, { useState, useEffect } from 'react';
-import { marketApi } from '../../services/api/api';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Coins, Plus, RefreshCcw, Search, Loader, Edit2, Trash2 } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
+import { currencyApi, marketApi } from '../../services/api/api';
 import CryptoIcon from '../../components/common/CryptoIcons';
-import { Search, Plus, Edit2, Trash2, AlertCircle } from 'lucide-react'; // <-- importe AlertCircle
-import { CoinSelector } from '../../components/dashboard/CoinSelector';
-import { ImportCryptoModal } from '../../components/common/ImportCryptoModal';
-import { Modal } from '../../components/common/Modal';
+import { NotificationToast } from '../../components/common/NotificationToast';
+import { CoinSelector } from '../dashboard/components/CoinSelector';
+import { AddCurrencyModal } from './components/modals/AddCurrencyModal';
+import { EditCurrencyModal } from './components/modals/EditCurrencyModal';
+import { DeleteCurrencyModal } from './components/modals/DeleteCurrencyModal';
+import { ImportCurrencyModal } from './components/modals/ImportCurrencyModal';
 
 export function Currency() {
-  const initialCurrencies = [
-    { id: 1, name: 'BTC', description: 'Bitcoin', backing: 'Network', status: 'active' },
-    { id: 2, name: 'ETH', description: 'Ethereum', backing: 'Network', status: 'inactive' },
-  ];
-
-  const [currencies, setCurrencies] = useState(initialCurrencies);
+  const { theme } = useTheme();
+  const [currencies, setCurrencies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [refreshLoading, setRefreshLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [notification, setNotification] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [isAddOpen, setAddOpen] = useState(false);
+  const [isEditOpen, setEditOpen] = useState(false);
+  const [isDeleteOpen, setDeleteOpen] = useState(false);
+  const [isImportOpen, setImportOpen] = useState(false);
+
   const [cryptos, setCryptos] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCrypto, setSelectedCrypto] = useState({ id: '', name: '', color: '#F7931A', data: [] });
-  const [importModalOpen, setImportModalOpen] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState(null);
   const [importCoin, setImportCoin] = useState(null);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [currencyToEdit, setCurrencyToEdit] = useState(null);
-  const [currencyToDelete, setCurrencyToDelete] = useState(null);
-  const [formData, setFormData] = useState({ name: '', description: '', backing: '', status: '' });
+  const [formData, setFormData] = useState({ symbol: '', name: '', backing: '', status: 'active' });
+  const [actionLoading, setActionLoading] = useState(false);
 
-  // fetch cryptos
   useEffect(() => {
-    const loadCryptos = async () => {
-      try {
-        const resp = await marketApi.getAllTickers();
-        const list = resp.data
-          .filter(t => t.symbol.endsWith('USDT'))
-          .map(t => ({
-            id: t.symbol,
-            name: t.symbol.replace('USDT', ''),
-            color: '#F7931A',
-            data: []
-          }));
-        setCryptos(list);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    loadCryptos();
+    fetchCurrencies();
+    loadAvailableCryptos();
   }, []);
 
-  const filteredCurrencies = currencies.filter(c =>
-    c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.description.toLowerCase().includes(searchTerm.toLowerCase())
+  const notify = (type, message) => {
+    setNotification({ type, message });
+    setTimeout(() => setNotification(null), 3000);
+  };
+
+  const fetchCurrencies = async () => {
+    try {
+      setLoading(true);
+      setRefreshLoading(true);
+      const { data } = await currencyApi.getAllCurrencies();
+      setCurrencies(data);
+      setError(null);
+    } catch {
+      setError('Failed to fetch currencies');
+      notify('error', 'Failed to fetch currencies');
+    } finally {
+      setLoading(false);
+      setRefreshLoading(false);
+    }
+  };
+
+  const loadAvailableCryptos = async () => {
+    try {
+      const { data } = await marketApi.getAllTickers();
+      setCryptos(
+        data
+          .filter(t => t.symbol.endsWith('USDT'))
+          .map(t => ({
+            id: t.symbol.replace('USDT', ''),
+            name: t.symbol.replace('USDT', ''),
+            symbol: t.symbol.replace('USDT', ''),
+            backing: 'USDT'
+          }))
+      );
+    } catch {}
+  };
+
+  const filtered = currencies.filter(c =>
+    c.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    c.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleAdd = () => {
-    setFormData({ name: '', description: '', backing: '', status: 'active' });
-    setIsAddModalOpen(true);
+  const openAdd = () => {
+    setFormData({ symbol: '', name: '', backing: '', status: 'active' });
+    setAddOpen(true);
   };
-
-  const handleEdit = id => {
-    const cur = currencies.find(c => c.id === id);
-    setCurrencyToEdit(cur);
-    setFormData(cur);
-    setIsEditModalOpen(true);
-  };
-  const handleDelete = id => {
-    const cur = currencies.find(c => c.id === id);
-    setCurrencyToDelete(cur);
-    setIsDeleteModalOpen(true);
-  };
-  const handleImportSelect = coin => {
-    setImportCoin(coin);
-    setImportModalOpen(true);
-  };
-
-  const handleConfirmImport = coin => {
-    setCurrencies(prev => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        name: coin.name,
-        description: coin.name,
-        backing: 'Network',
-        status: 'active'
-      }
-    ]);
-  };
-
-  const saveEdit = () => {
-    setCurrencies(prev =>
-      prev.map(c => c.id === currencyToEdit.id ? { ...c, ...formData } : c)
-    );
-    setIsEditModalOpen(false);
-  };
-  const confirmDelete = () => {
-    setCurrencies(prev => prev.filter(c => c.id !== currencyToDelete.id));
-    setIsDeleteModalOpen(false);
-  };
-
-  const handleCreateCurrency = (e) => {
+  const handleAdd = async e => {
     e.preventDefault();
-    setCurrencies(prev => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        name: formData.name,
-        description: formData.description,
-        backing: formData.backing,
-        status: formData.status
-      }
-    ]);
-    setIsAddModalOpen(false);
+    setActionLoading(true);
+    await currencyApi.createCurrency(formData);
+    notify('success', 'Currency created');
+    setAddOpen(false);
+    fetchCurrencies();
+    setActionLoading(false);
+  };
+
+  const openEdit = currency => {
+    setSelectedCurrency(currency);
+    setFormData(currency);
+    setEditOpen(true);
+  };
+  const handleEdit = async e => {
+    e.preventDefault();
+    setActionLoading(true);
+    await currencyApi.updateCurrency(selectedCurrency.id, formData);
+    notify('success', 'Currency updated');
+    setEditOpen(false);
+    fetchCurrencies();
+    setActionLoading(false);
+  };
+
+  const openDelete = currency => {
+    setSelectedCurrency(currency);
+    setDeleteOpen(true);
+  };
+  const handleDelete = async () => {
+    setActionLoading(true);
+    await currencyApi.deleteCurrency(selectedCurrency.id);
+    notify('success', 'Currency deleted');
+    setDeleteOpen(false);
+    fetchCurrencies();
+    setActionLoading(false);
+  };
+
+  const handleImport = coin => {
+    setImportCoin(coin);
+    setImportOpen(true);
+  };
+  const confirmImport = async () => {
+    setActionLoading(true);
+    await currencyApi.createCurrency({
+      symbol: importCoin.symbol,
+      name: importCoin.name,
+      backing: importCoin.backing,
+      status: 'active'
+    });
+    notify('success', 'Currency imported');
+    setImportOpen(false);
+    fetchCurrencies();
+    setActionLoading(false);
   };
 
   return (
-    <div className="relative p-4 lg:p-6 space-y-6">
-      <motion.div
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6"
-      >
-        <h1 className="text-2xl font-bold text-text-primary flex items-center gap-2">
-          <CryptoIcon symbol="USD" size={24} className="text-brand-primary" />
-          Currency Management
-        </h1>
-        <button
-          onClick={handleAdd}
-          className="flex items-center space-x-2 px-4 py-2 bg-brand-primary hover:bg-brand-secondary text-white rounded-md transition-colors duration-200 shadow-sm"
-        >
-          <Plus className="h-4 w-4" />
-          <span>Add Currency</span>
-        </button>
-      </motion.div>
+    <div className="flex items-center justify-center min-h-screen bg-background-primary p-6">
+      <div className="w-full max-w-4xl space-y-8">
+        <AnimatePresence>
+          {notification && (
+            <NotificationToast
+              type={notification.type}
+              message={notification.message}
+              onClose={() => setNotification(null)}
+            />
+          )}
+        </AnimatePresence>
 
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="p-4 lg:p-6 rounded-xl bg-background-primary border border-border-primary shadow-lg"
-      >
-        <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
-          <h2 className="text-lg font-semibold text-text-primary flex items-center gap-2">
-          <CryptoIcon symbol="USD" size={24} className="text-brand-primary" />All Currencies
-            <span className="ml-2 text-sm font-normal text-text-tertiary">
-              ({filteredCurrencies.length})
-            </span>
-          </h2>
-          <div className="flex flex-wrap items-center gap-4">
-            {/* Barra de pesquisa do currency */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <h1 className="text-3xl font-extrabold flex items-center gap-2 text-text-primary">
+            <Coins className="text-brand-primary h-8 w-8" /> Currency Management
+          </h1>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={fetchCurrencies}
+              disabled={refreshLoading}
+              className="p-2 rounded-full hover:bg-background-secondary transition"
+            >
+              <RefreshCcw
+                className={
+                  refreshLoading
+                    ? 'h-6 w-6 text-brand-primary animate-spin'
+                    : 'h-6 w-6 text-text-secondary'
+                }
+              />
+            </button>
+            <button
+              onClick={openAdd}
+              className="flex items-center gap-2 bg-brand-primary hover:bg-brand-primary-dark text-background-primary px-5 py-2 rounded-2xl shadow-md transition"
+            >
+              <Plus className="h-5 w-5" /> Add Currency
+            </button>
+          </div>
+        </motion.div>
+
+        {error && (
+          <div className="p-4 bg-red-100 text-red-700 rounded-lg">{error}</div>
+        )}
+
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="bg-background-primary border border-border-primary rounded-2xl shadow-lg p-6"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
+            <h2 className="text-xl font-semibold flex items-center gap-2 text-text-primary">
+              <Coins className="h-5 w-5 text-brand-primary" /> All Currencies
+              <span className="text-text-tertiary">({filtered.length})</span>
+            </h2>
             <div className="relative w-full md:w-64">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-text-secondary" />
-              </div>
+              <Search className="absolute inset-y-0 left-3 text-text-tertiary m-auto" />
               <input
                 type="text"
                 placeholder="Search currencies..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-border-primary rounded-md bg-background-secondary text-text-primary focus:ring-2 focus:ring-brand-primary"
+                className="w-full pl-10 p-2 border border-border-primary rounded-full bg-background-secondary text-text-primary focus:ring-2 focus:ring-brand-primary transition"
               />
             </div>
-
-            {/* Dropdown de selecionar moedas */}
             <CoinSelector
-              selectedCoin={selectedCrypto}
+              selectedCoin={null}
               coins={cryptos}
               isOpen={dropdownOpen}
-              onToggle={() => setDropdownOpen(o => !o)}
-              onSelect={handleImportSelect}
-              price={null}
-              align="right"   
+              onToggle={() => setDropdownOpen(!dropdownOpen)}
+              onSelect={handleImport}
+              align="right"
             />
           </div>
-        </div>
 
-        {/* table */}
-        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-border-primary scrollbar-track-background-secondary rounded-md">
-          <table className="min-w-full bg-background-primary border border-border-primary rounded-md text-text-primary">
-            <thead className="bg-background-secondary">
-              <tr className="text-left">
-                <th className="px-4 py-2 border-b border-border-primary text-text-secondary">ID</th>
-                <th className="px-4 py-2 border-b border-border-primary text-text-secondary">Name</th>
-                <th className="px-4 py-2 border-b border-border-primary text-text-secondary">Description</th>
-                <th className="px-4 py-2 border-b border-border-primary text-text-secondary">Backing</th>
-                <th className="px-4 py-2 border-b border-border-primary text-text-secondary">Status</th>
-                <th className="px-4 py-2 border-b border-border-primary text-text-secondary">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border-primary">
-              {filteredCurrencies.map(c => (
-                <tr key={c.id} className="hover:bg-background-secondary">
-                  <td className="px-4 py-2 text-text-primary">{c.id}</td>
-                  <td className="px-4 py-2 text-text-primary">{c.name}</td>
-                  <td className="px-4 py-2 text-text-primary">{c.description}</td>
-                  <td className="px-4 py-2 text-text-primary">{c.backing}</td>
-                  <td className="px-4 py-2 capitalize text-text-primary">{c.status}</td>
-                  <td className="px-4 py-2 space-x-2">
-                    <button onClick={() => handleEdit(c.id)} className="text-text-secondary hover:text-brand-primary">
-                      <Edit2 size={16} />
-                    </button>
-                    <button onClick={() => handleDelete(c.id)} className="text-text-secondary hover:text-red-500">
-                      <Trash2 size={16} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {filteredCurrencies.length === 0 && (
-                <tr>
-                  <td colSpan="6" className="px-4 py-6 text-center text-text-secondary">
-                    No currencies found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </motion.div>
-
-      <AnimatePresence>
-        {importModalOpen && (
-          <ImportCryptoModal
-            coin={importCoin}
-            onClose={() => setImportModalOpen(false)}
-            onConfirm={handleConfirmImport}
-          />
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {isEditModalOpen && currencyToEdit && (
-          <Modal onClose={() => setIsEditModalOpen(false)} width="max-w-md">
-            <h2 className="text-lg font-semibold mb-4 text-text-primary">
-              Edit Status for {currencyToEdit.name}
-            </h2>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm text-text-secondary mb-1">
-                  Status
-                </label>
-                <select
-                  value={formData.status}
-                  onChange={e =>
-                    setFormData(f => ({ ...f, status: e.target.value }))
-                  }
-                  className="w-full p-2 border border-border-primary rounded-md bg-background-secondary text-text-primary focus:ring-2 focus:ring-brand-primary"
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </div>
-              <div className="flex justify-end space-x-2">
-                <button
-                  onClick={() => setIsEditModalOpen(false)}
-                  className="px-4 py-2 border border-border-primary text-text-primary hover:bg-background-secondary rounded-md"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={saveEdit}
-                  className="px-4 py-2 bg-brand-primary hover:bg-brand-secondary text-white rounded-md"
-                >
-                  Save
-                </button>
-              </div>
+          {loading ? (
+            <div className="flex justify-center py-16">
+              <Loader className="h-10 w-10 text-brand-primary animate-spin" />
             </div>
-          </Modal>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {isDeleteModalOpen && currencyToDelete && (
-          <Modal onClose={() => setIsDeleteModalOpen(false)} width="max-w-sm">
-            <div className="text-center">
-              <div className="bg-red-100 p-3 rounded-full inline-flex items-center justify-center mb-4">
-                <AlertCircle className="h-10 w-10 text-red-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-text-primary mb-2">Delete Currency</h3>
-              <p className="text-sm text-text-secondary">
-                Are you sure you want to delete <strong>{currencyToDelete.name}</strong>?
-              </p>
-              <div className="flex justify-center space-x-2 mt-4">
-                <button
-                  onClick={() => setIsDeleteModalOpen(false)}
-                  className="px-4 py-2 border border-border-primary text-text-primary hover:bg-background-secondary rounded-md transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={confirmDelete}
-                  className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md transition-colors"
-                >
-                  Delete
-                </button>
-              </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-border-primary text-text-primary">
+                <thead className="bg-background-secondary">
+                  <tr>
+                    {['ID','Symbol','Name','Backing','Status','Actions'].map(h => (
+                      <th
+                        key={h}
+                        className="px-6 py-3 text-left text-xs font-medium text-text-tertiary uppercase tracking-wider"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="bg-background-primary divide-y divide-border-primary">
+                  {filtered.map(c => (
+                    <motion.tr
+                      key={c.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="hover:bg-background-secondary"
+                    >
+                      <td className="px-6 py-4 text-sm font-medium text-text-primary">{c.id}</td>
+                      <td className="px-6 py-4 text-sm flex items-center space-x-2">
+                        <CryptoIcon symbol={c.symbol} size={20} />
+                        <span>{c.symbol}</span>
+                      </td>
+                      <td className="px-6 py-4 text-sm text-text-tertiary">{c.name}</td>
+                      <td className="px-6 py-4 text-sm text-text-tertiary">{c.backing}</td>
+                      <td className="px-6 py-4 text-sm">
+                        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                          c.status === 'active'
+                            ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                            : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                        }`}>
+                          {c.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 flex space-x-2">
+                        <button onClick={() => openEdit(c)} className="p-2 rounded-full hover:bg-background-secondary transition">
+                          <Edit2 size={16} className="text-text-tertiary" />
+                        </button>
+                        <button onClick={() => openDelete(c)} className="p-2 rounded-full hover:bg-red-100 transition">
+                          <Trash2 size={16} className="text-red-500" />
+                        </button>
+                      </td>
+                    </motion.tr>
+                  ))}
+                  {filtered.length === 0 && (
+                    <tr>
+                      <td colSpan={6} className="py-16 text-center text-text-tertiary">
+                        No currencies found
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
-          </Modal>
-        )}
-      </AnimatePresence>
+          )}
+        </motion.div>
 
-      <AnimatePresence>
-        {isAddModalOpen && (
-          <Modal onClose={() => setIsAddModalOpen(false)} width="max-w-md">
-            <h2 className="text-lg font-semibold mb-4 text-text-primary">Add Currency</h2>
-            <form onSubmit={handleCreateCurrency} className="space-y-4">
-              <div>
-                <label className="block text-sm text-text-secondary mb-1">Name</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={e => setFormData(f => ({ ...f, name: e.target.value }))}
-                  className="w-full p-2 border border-border-primary rounded-md bg-background-secondary text-text-primary focus:ring-2 focus:ring-brand-primary"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-text-secondary mb-1">Description</label>
-                <input
-                  type="text"
-                  value={formData.description}
-                  onChange={e => setFormData(f => ({ ...f, description: e.target.value }))}
-                  className="w-full p-2 border border-border-primary rounded-md bg-background-secondary text-text-primary focus:ring-2 focus:ring-brand-primary"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-text-secondary mb-1">Backing</label>
-                <input
-                  type="text"
-                  value={formData.backing}
-                  onChange={e => setFormData(f => ({ ...f, backing: e.target.value }))}
-                  className="w-full p-2 border border-border-primary rounded-md bg-background-secondary text-text-primary focus:ring-2 focus:ring-brand-primary"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-text-secondary mb-1">Status</label>
-                <select
-                  value={formData.status}
-                  onChange={e => setFormData(f => ({ ...f, status: e.target.value }))}
-                  className="w-full p-2 border border-border-primary rounded-md bg-background-secondary text-text-primary focus:ring-2 focus:ring-brand-primary"
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </div>
-              <div className="flex justify-end space-x-2 mt-4">
-                <button
-                  type="button"
-                  onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 border border-border-primary text-text-primary hover:bg-background-secondary rounded-md"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-brand-primary hover:bg-brand-secondary text-white rounded-md"
-                >
-                  Create
-                </button>
-              </div>
-            </form>
-          </Modal>
-        )}
-      </AnimatePresence>
+        <AddCurrencyModal
+          isOpen={isAddOpen}
+          onClose={() => setAddOpen(false)}
+          formData={formData}
+          setFormData={setFormData}
+          onSubmit={handleAdd}
+          loading={actionLoading}
+        />
+        <EditCurrencyModal
+          isOpen={isEditOpen}
+          onClose={() => setEditOpen(false)}
+          currency={selectedCurrency}
+          formData={formData}
+          setFormData={setFormData}
+          onSubmit={handleEdit}
+          loading={actionLoading}
+        />
+        <DeleteCurrencyModal
+          isOpen={isDeleteOpen}
+          onClose={() => setDeleteOpen(false)}
+          onConfirm={handleDelete}
+          loading={actionLoading}
+          currency={selectedCurrency}
+        />
+        <ImportCurrencyModal
+          isOpen={isImportOpen}
+          onClose={() => setImportOpen(false)}
+          coin={importCoin}
+          onConfirm={confirmImport}
+          loading={actionLoading}
+        />
+      </div>
     </div>
   );
 }
