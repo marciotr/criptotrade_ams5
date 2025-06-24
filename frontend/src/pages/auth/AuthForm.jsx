@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, User, Github, Facebook, Chrome, Bitcoin, DollarSign, ArrowRight, CheckCircle, Wallet, Zap, AlertCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,14 +6,19 @@ import { useNotification } from '../../context/NotificationContext';
 import { useAuth } from '../../store/auth/useAuth';
 import { authApi } from '../../services/api/api';
 import WelcomeScreen from '../../components/WelcomeScreen';
+import { DecorativeElements } from './DecorativeElements';
 
-// Componente para as partículas flutuantes
+// Componente para as partículas flutuantes (ajustado para dispositivos móveis)
 const FloatingCoins = () => {
-  const coins = Array.from({ length: 20 }, (_, i) => ({
+  // Reduzir o número de partículas em telas pequenas para melhor performance
+  const isMobile = window.innerWidth < 768;
+  const particleCount = isMobile ? 10 : 20;
+  
+  const coins = Array.from({ length: particleCount }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 0.6 + 0.2,
+    size: Math.random() * (isMobile ? 0.4 : 0.6) + (isMobile ? 0.15 : 0.2), // Tamanhos menores em mobile
     duration: Math.random() * 8 + 10,
     type: Math.random() > 0.5 ? 'bitcoin' : 'dollar'
   }));
@@ -52,14 +57,14 @@ const FloatingCoins = () => {
 const AnimatedLogo = () => {
   return (
     <motion.div 
-      className="flex items-center justify-center mb-6"
+      className="flex items-center justify-center mb-4 sm:mb-6"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
     >
       <div className="relative">
         <motion.div 
-          className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-primary to-purple-600 flex items-center justify-center"
+          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-brand-primary to-purple-600 flex items-center justify-center"
           animate={{ 
             boxShadow: ["0 0 0 rgba(126, 34, 206, 0.4)", "0 0 20px rgba(126, 34, 206, 0.7)", "0 0 0 rgba(126, 34, 206, 0.4)"],
           }}
@@ -69,10 +74,10 @@ const AnimatedLogo = () => {
             ease: "easeInOut"
           }}
         >
-          <Bitcoin className="text-white" size={28} />
+          <Bitcoin className="text-white" size={24} />
         </motion.div>
         <motion.div
-          className="absolute -right-1 -top-1 w-5 h-5 rounded-full bg-amber-400"
+          className="absolute -right-1 -top-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-amber-400"
           animate={{
             scale: [1, 1.2, 1],
           }}
@@ -84,66 +89,6 @@ const AnimatedLogo = () => {
         />
       </div>
     </motion.div>
-  );
-};
-
-// Componente animado para os cartões de criptomoedas
-const CryptoCards = () => {
-  const cards = [
-    { name: 'Bitcoin', symbol: 'BTC', price: '186.430', change: '+2.4%', color: 'from-amber-500 to-orange-600' },
-    { name: 'Ethereum', symbol: 'ETH', price: '9.875', change: '+1.8%', color: 'from-blue-500 to-indigo-600' },
-    { name: 'Solana', symbol: 'SOL', price: '437', change: '+5.2%', color: 'from-purple-500 to-fuchsia-600' },
-  ];
-
-  return (
-    <div className="absolute -right-20 top-1/2 -translate-y-1/2 space-y-6 hidden lg:block">
-      {cards.map((card, index) => (
-        <motion.div
-          key={card.name}
-          className={`bg-gradient-to-r ${card.color} p-4 rounded-l-xl w-48 shadow-lg`}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ 
-            opacity: 1, 
-            x: 0,
-            y: [0, -5, 5, 0],
-          }}
-          transition={{
-            y: {
-              repeat: Infinity,
-              duration: 5,
-              delay: index * 0.8,
-            },
-            opacity: { duration: 0.8, delay: 0.3 + index * 0.2 },
-            x: { duration: 0.8, delay: 0.3 + index * 0.2 }
-          }}
-        >
-          <div className="flex justify-between items-center mb-2">
-            <h4 className="font-bold text-white">{card.name}</h4>
-            <span className="text-xs font-bold bg-white/20 text-white px-1.5 py-0.5 rounded-md">
-              {card.symbol}
-            </span>
-          </div>
-          <div className="font-mono text-lg font-bold text-white">
-            R$ {card.price}
-          </div>
-          <div className="flex justify-between items-center mt-1">
-            <div className="w-16 h-6">
-              <svg viewBox="0 0 100 30" className="w-full h-full">
-                <path
-                  d={`M0,15 Q25,${5 + Math.random() * 20} 50,${10 + Math.random() * 10} T100,15`}
-                  fill="none"
-                  stroke="rgba(255,255,255,0.5)"
-                  strokeWidth="1"
-                />
-              </svg>
-            </div>
-            <span className="text-white text-sm font-medium bg-white/10 px-1.5 py-0.5 rounded">
-              {card.change}
-            </span>
-          </div>
-        </motion.div>
-      ))}
-    </div>
   );
 };
 
@@ -163,6 +108,23 @@ export function AuthForm({ type }) {
   });
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [loginMethod, setLoginMethod] = useState('email');
+  const containerRef = useRef(null);
+
+  // Detectar tamanho da tela para ajustes responsivos
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        // Ajustar altura mínima para telas pequenas
+        const viewportHeight = window.innerHeight;
+        containerRef.current.style.minHeight = `${viewportHeight}px`;
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Avaliar força da senha quando ela mudar
   useEffect(() => {
@@ -251,7 +213,6 @@ export function AuthForm({ type }) {
   };
 
   const handleWelcomeComplete = () => {
-    // Quando a tela de boas-vindas for concluída, redirecionar para a dashboard
     navigate('/dashboard', { replace: true });
   };
 
@@ -274,92 +235,34 @@ export function AuthForm({ type }) {
   }
 
   return (
-    <div className="relative w-screen h-screen flex items-center justify-center overflow-hidden bg-background-primary">
+    <div 
+      ref={containerRef}
+      className="fixed inset-0 flex items-center justify-center overflow-auto bg-background-primary px-4 py-6 md:py-10"
+    >
       <FloatingCoins />
       
       {/* Fundo com gradiente mais expansivo */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-background-primary to-purple-900/10 z-0"></div>
-      
-      {/* Círculos decorativos espalhados */}
-      <div className="absolute top-16 left-16 w-24 h-24 rounded-full bg-brand-primary/5 blur-xl"></div>
-      <div className="absolute bottom-32 right-16 w-40 h-40 rounded-full bg-purple-600/5 blur-xl"></div>
+      <div className="fixed inset-0 bg-gradient-to-br from-brand-primary/10 via-background-primary to-purple-900/10 z-0"></div>
       
       {/* Container principal mantido no centro */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="z-10 w-full max-w-md relative mx-auto"
+        className="z-10 w-full max-w-md relative my-auto"
       >
-        {/* Cartões de cripto agora com maior distância para aparecer melhor */}
-        <div className="hidden lg:block absolute -right-32 top-1/2 -translate-y-1/2">
-          <CryptoCards />
-        </div>
+        {/* Elementos decorativos importados do componente separado */}
+        <DecorativeElements />
         
-        {/* Cartões de cripto à esquerda (versão espelhada) */}
-        <div className="hidden xl:block absolute -left-32 top-1/2 -translate-y-1/2 scale-90 opacity-80">
-          <div className="space-y-6">
-            {[
-              { name: 'Polkadot', symbol: 'DOT', price: '37,18', change: '+2.7%', color: 'from-pink-500 to-red-600' },
-              { name: 'Cardano', symbol: 'ADA', price: '2,31', change: '+0.6%', color: 'from-blue-400 to-blue-600' },
-            ].map((card, index) => (
-              <motion.div
-                key={card.name}
-                className={`bg-gradient-to-r ${card.color} p-4 rounded-r-xl w-48 shadow-lg`}
-                initial={{ opacity: 0, x: -100 }}
-                animate={{ 
-                  opacity: 1, 
-                  x: 0,
-                  y: [0, -5, 5, 0],
-                }}
-                transition={{
-                  y: {
-                    repeat: Infinity,
-                    duration: 5,
-                    delay: index * 0.8,
-                  },
-                  opacity: { duration: 0.8, delay: 0.3 + index * 0.2 },
-                  x: { duration: 0.8, delay: 0.3 + index * 0.2 }
-                }}
-              >
-                <div className="flex justify-between items-center mb-2">
-                  <h4 className="font-bold text-white">{card.name}</h4>
-                  <span className="text-xs font-bold bg-white/20 text-white px-1.5 py-0.5 rounded-md">
-                    {card.symbol}
-                  </span>
-                </div>
-                <div className="font-mono text-lg font-bold text-white">
-                  R$ {card.price}
-                </div>
-                <div className="flex justify-between items-center mt-1">
-                  <div className="w-16 h-6">
-                    <svg viewBox="0 0 100 30" className="w-full h-full">
-                      <path
-                        d={`M0,15 Q25,${5 + Math.random() * 20} 50,${10 + Math.random() * 10} T100,15`}
-                        fill="none"
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="1"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-white text-sm font-medium bg-white/10 px-1.5 py-0.5 rounded">
-                    {card.change}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="backdrop-blur-xl bg-background-primary/80 border border-border-primary rounded-2xl overflow-hidden shadow-2xl">
-          <div className="p-8">
+        <div className="backdrop-blur-xl bg-background-primary/80 border border-border-primary rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl">
+          <div className="p-5 sm:p-8">
             <AnimatedLogo />
             
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl font-bold text-center bg-gradient-to-r from-brand-primary to-purple-400 bg-clip-text text-transparent mb-2"
+              className="text-xl xs:text-2xl sm:text-3xl font-bold text-center bg-gradient-to-r from-brand-primary to-purple-400 bg-clip-text text-transparent mb-1 sm:mb-2"
             >
               {type === 'signin' ? 'Acessar Investimentos' : 'Comece a Investir'}
             </motion.h2>
@@ -368,7 +271,7 @@ export function AuthForm({ type }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.8 }}
               transition={{ delay: 0.3 }}
-              className="text-center text-text-secondary mb-8"
+              className="text-center text-text-secondary mb-5 sm:mb-8 text-xs xs:text-sm"
             >
               {type === 'signin' 
                 ? 'Acesse sua carteira digital de forma segura' 
@@ -377,27 +280,27 @@ export function AuthForm({ type }) {
 
             {/* Seletor de método de login */}
             {type === 'signin' && (
-              <div className="bg-background-secondary rounded-lg p-1 flex mb-6">
+              <div className="bg-background-secondary rounded-lg p-1 flex mb-5 sm:mb-6">
                 <button 
                   onClick={() => setLoginMethod('email')}
-                  className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
+                  className={`flex-1 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
                     loginMethod === 'email' 
                       ? 'bg-brand-primary text-white shadow-md' 
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
-                  <Mail size={16} className="inline mr-2 -mt-1" />
+                  <Mail size={12} className="inline mr-1 sm:mr-2 -mt-0.5" />
                   Email
                 </button>
                 <button 
                   onClick={() => setLoginMethod('wallet')}
-                  className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
+                  className={`flex-1 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
                     loginMethod === 'wallet' 
                       ? 'bg-brand-primary text-white shadow-md' 
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
-                  <Wallet size={16} className="inline mr-2 -mt-1" />
+                  <Wallet size={12} className="inline mr-1 sm:mr-2 -mt-0.5" />
                   Carteira Cripto
                 </button>
               </div>
@@ -412,7 +315,7 @@ export function AuthForm({ type }) {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                   onSubmit={handleSubmit} 
-                  className="space-y-5"
+                  className="space-y-3 sm:space-y-5"
                 >
                   {type === 'signup' && (
                     <motion.div
@@ -423,12 +326,12 @@ export function AuthForm({ type }) {
                     >
                       <div className="relative">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-primary group-focus-within:text-brand-primary text-opacity-70 group-focus-within:text-opacity-100 transition-colors">
-                          <User size={18} />
+                          <User size={14} className="sm:w-[18px] sm:h-[18px]" />
                         </div>
                         <input
                           type="text"
                           placeholder="Nome Completo"
-                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-border-primary bg-background-secondary text-text-primary placeholder-text-tertiary focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
+                          className="w-full text-xs sm:text-base pl-9 sm:pl-12 pr-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-border-primary bg-background-secondary text-text-primary placeholder-text-terciary focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
@@ -445,12 +348,12 @@ export function AuthForm({ type }) {
                   >
                     <div className="relative">
                       <div className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-primary group-focus-within:text-brand-primary text-opacity-70 group-focus-within:text-opacity-100 transition-colors">
-                        <Mail size={18} />
+                        <Mail size={14} className="sm:w-[18px] sm:h-[18px]" />
                       </div>
                       <input
                         type="email"
                         placeholder="Email"
-                        className="w-full pl-12 pr-4 py-3 rounded-xl border border-border-primary bg-background-secondary text-text-primary placeholder-text-tertiary focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
+                        className="w-full text-xs sm:text-base pl-9 sm:pl-12 pr-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-border-primary bg-background-secondary text-text-primary placeholder-text-terciary focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         required
@@ -466,12 +369,12 @@ export function AuthForm({ type }) {
                   >
                     <div className="relative">
                       <div className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-primary group-focus-within:text-brand-primary text-opacity-70 group-focus-within:text-opacity-100 transition-colors">
-                        <Lock size={18} />
+                        <Lock size={14} className="sm:w-[18px] sm:h-[18px]" />
                       </div>
                       <input
                         type="password"
                         placeholder="Senha"
-                        className="w-full pl-12 pr-4 py-3 rounded-xl border border-border-primary bg-background-secondary text-text-primary placeholder-text-tertiary focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
+                        className="w-full text-xs sm:text-base pl-9 sm:pl-12 pr-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-border-primary bg-background-secondary text-text-primary placeholder-text-terciary focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
                         value={formData.password}
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                         required
@@ -479,8 +382,8 @@ export function AuthForm({ type }) {
                     </div>
 
                     {type === 'signup' && formData.password && (
-                      <div className="mt-2">
-                        <div className="flex w-full h-1 mt-1 mb-1 bg-background-tertiary rounded-full overflow-hidden">
+                      <div className="mt-1 sm:mt-2">
+                        <div className="flex w-full h-1 mt-1 mb-1 bg-background-terciary rounded-full overflow-hidden">
                           <motion.div 
                             className={`h-full ${
                               passwordStrength <= 1 
@@ -495,10 +398,10 @@ export function AuthForm({ type }) {
                             animate={{ width: `${passwordStrength * 25}%` }}
                           />
                         </div>
-                        <p className="text-xs text-text-tertiary flex items-center">
-                          {passwordStrength <= 1 && <AlertCircle size={12} className="mr-1 text-red-500" />}
-                          {passwordStrength === 2 && <AlertCircle size={12} className="mr-1 text-yellow-500" />}
-                          {passwordStrength >= 3 && <CheckCircle size={12} className="mr-1 text-green-500" />}
+                        <p className="text-xs text-text-terciary flex items-center">
+                          {passwordStrength <= 1 && <AlertCircle size={10} className="mr-1 text-red-500" />}
+                          {passwordStrength === 2 && <AlertCircle size={10} className="mr-1 text-yellow-500" />}
+                          {passwordStrength >= 3 && <CheckCircle size={10} className="mr-1 text-green-500" />}
                           {passwordStrength <= 1 
                             ? 'Senha fraca' 
                             : passwordStrength === 2 
@@ -518,7 +421,7 @@ export function AuthForm({ type }) {
                     >
                       <Link 
                         to="/forgot-password" 
-                        className="text-sm text-brand-primary hover:text-brand-primary/80 hover:underline"
+                        className="text-xs text-brand-primary hover:text-brand-primary/80 hover:underline"
                       >
                         Esqueceu a senha?
                       </Link>
@@ -528,7 +431,7 @@ export function AuthForm({ type }) {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full py-3 bg-gradient-to-r from-brand-primary to-purple-600 text-white rounded-xl font-semibold shadow-lg shadow-brand-primary/20 flex items-center justify-center gap-2 transition-all hover:shadow-brand-primary/30 disabled:opacity-70"
+                    className="w-full py-2 sm:py-3 bg-gradient-to-r from-brand-primary to-purple-600 text-white rounded-lg sm:rounded-xl font-semibold shadow-lg shadow-brand-primary/20 flex items-center justify-center gap-2 transition-all hover:shadow-brand-primary/30 disabled:opacity-70"
                     type="submit"
                     disabled={isLoading}
                   >
@@ -537,14 +440,14 @@ export function AuthForm({ type }) {
                         <motion.div
                           animate={{ rotate: 360 }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                          className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                          className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full"
                         />
-                        <span>Processando...</span>
+                        <span className="text-xs sm:text-sm">Processando...</span>
                       </div>
                     ) : (
                       <>
-                        {type === 'signin' ? 'Entrar' : 'Criar Conta'}
-                        <ArrowRight size={18} className="ml-1" />
+                        <span className="text-xs sm:text-sm">{type === 'signin' ? 'Entrar' : 'Criar Conta'}</span>
+                        <ArrowRight size={14} className="sm:w-[18px] sm:h-[18px]" />
                       </>
                     )}
                   </motion.button>
@@ -556,17 +459,17 @@ export function AuthForm({ type }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="text-center py-4"
+                  className="text-center py-2 sm:py-4"
                 >
-                  <div className="inline-block p-4 rounded-full bg-background-secondary mb-4">
-                    <Wallet size={32} className="text-brand-primary" />
+                  <div className="inline-block p-2.5 sm:p-4 rounded-full bg-background-secondary mb-3 sm:mb-4">
+                    <Wallet size={18} className="text-brand-primary sm:w-6 sm:h-6" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2 text-text-primary">Conectar Carteira</h3>
-                  <p className="text-text-secondary text-sm mb-6">
+                  <h3 className="text-sm sm:text-lg font-semibold mb-1 sm:mb-2 text-text-primary">Conectar Carteira</h3>
+                  <p className="text-text-secondary text-xs mb-3 sm:mb-6">
                     Conecte sua carteira digital para acessar sua conta
                   </p>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     {[
                       { name: "MetaMask", icon: "🦊", color: "bg-amber-500" },
                       { name: "Coinbase", icon: "💰", color: "bg-blue-500" },
@@ -577,12 +480,12 @@ export function AuthForm({ type }) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 + 0.2 }}
-                        className="flex items-center w-full p-3 rounded-xl border border-border-primary bg-background-secondary hover:bg-background-tertiary text-text-primary transition-colors"
+                        className="flex items-center w-full p-1.5 sm:p-3 rounded-lg sm:rounded-xl border border-border-primary bg-background-secondary hover:bg-background-terciary text-text-primary transition-colors"
                       >
-                        <span className={`w-8 h-8 rounded-full ${wallet.color} flex items-center justify-center text-lg`}>
+                        <span className={`w-5 h-5 sm:w-8 sm:h-8 rounded-full ${wallet.color} flex items-center justify-center text-xs sm:text-lg`}>
                           {wallet.icon}
                         </span>
-                        <span className="flex-1 text-center font-medium">{wallet.name}</span>
+                        <span className="flex-1 text-center font-medium text-xs sm:text-base">{wallet.name}</span>
                       </motion.button>
                     ))}
                   </div>
@@ -592,16 +495,16 @@ export function AuthForm({ type }) {
 
             {loginMethod === 'email' && (
               <>
-                <div className="relative my-6">
+                <div className="relative my-4 sm:my-6">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-border-primary"></div>
                   </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-3 bg-background-primary text-text-tertiary">Ou continue com</span>
+                  <div className="relative flex justify-center text-xs">
+                    <span className="px-2 bg-background-primary text-text-terciary text-xs">Ou continue com</span>
                   </div>
                 </div>
 
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-2 sm:gap-4">
                   {socialButtons.map((button, index) => (
                     <motion.button
                       key={button.label}
@@ -610,9 +513,9 @@ export function AuthForm({ type }) {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 + 0.4 }}
-                      className={`${button.color} text-white p-3 rounded-lg flex items-center justify-center hover:opacity-90 transition-all shadow-lg`}
+                      className={`${button.color} text-white p-1.5 sm:p-3 rounded-md sm:rounded-lg flex items-center justify-center hover:opacity-90 transition-all shadow-lg`}
                     >
-                      <button.icon size={20} />
+                      <button.icon size={14} className="sm:w-5 sm:h-5" />
                     </motion.button>
                   ))}
                 </div>
@@ -623,7 +526,7 @@ export function AuthForm({ type }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="text-center text-text-secondary mt-8"
+              className="text-center text-text-secondary mt-5 sm:mt-8 text-xs"
             >
               {type === 'signin' ? "Novo na plataforma? " : 'Já possui conta? '}
               <Link
@@ -638,7 +541,7 @@ export function AuthForm({ type }) {
 
         {/* Elementos decorativos */}
         <motion.div
-          className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-brand-primary to-purple-600 rounded-full"
+          className="absolute -bottom-4 -left-4 w-6 h-6 sm:w-12 sm:h-12 bg-gradient-to-br from-brand-primary to-purple-600 rounded-full"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.7, 1, 0.7],
@@ -651,7 +554,7 @@ export function AuthForm({ type }) {
         />
         
         <motion.div
-          className="absolute -top-4 -right-4 w-8 h-8 bg-amber-400 rounded-full"
+          className="absolute -top-4 -right-4 w-5 h-5 sm:w-8 sm:h-8 bg-amber-400 rounded-full"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.7, 1, 0.7],
@@ -665,79 +568,14 @@ export function AuthForm({ type }) {
         />
       </motion.div>
       
-      {/* Elementos decorativos adicionais no fundo (global) */}
-      <div className="hidden lg:block">
-        <motion.div
-          className="absolute top-16 right-16 w-16 h-16 bg-gradient-to-br from-brand-primary/30 to-purple-600/30 rounded-full blur-sm"
-          animate={{
-            y: [0, -15, 0],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
-        <motion.div
-          className="absolute bottom-32 left-64 w-10 h-10 bg-amber-400/20 rounded-full blur-sm"
-          animate={{
-            y: [0, 10, 0],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-        
-        <motion.div 
-          className="absolute top-36 left-24 text-brand-primary/20"
-          style={{ fontSize: '64px' }}
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 15, 0],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <Bitcoin />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute bottom-48 right-48 text-purple-500/20"
-          style={{ fontSize: '48px' }}
-          animate={{
-            y: [0, 15, 0],
-            rotate: [0, -10, 0],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        >
-          <DollarSign />
-        </motion.div>
-      </div>
-      
       {/* Price Ticker na parte inferior */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="absolute bottom-0 left-0 right-0 bg-background-primary/90 backdrop-blur-md border-t border-border-primary py-2 px-4 overflow-hidden"
+        className="fixed bottom-0 left-0 right-0 bg-background-primary/90 backdrop-blur-md border-t border-border-primary py-1 px-2 sm:px-4 overflow-hidden z-10"
       >
-        <div className="flex gap-6 items-center">
+        <div className="flex items-center h-5 sm:h-7">
           <motion.div 
             animate={{ x: ["0%", "-100%"] }} 
             transition={{ 
@@ -745,7 +583,7 @@ export function AuthForm({ type }) {
               duration: 30, 
               ease: "linear" 
             }}
-            className="flex gap-6 whitespace-nowrap"
+            className="flex gap-2 sm:gap-4 whitespace-nowrap"
           >
             {[
               { name: "Bitcoin", price: "186.430", change: "+2.4%", color: "text-amber-500" },
@@ -757,12 +595,12 @@ export function AuthForm({ type }) {
               { name: "Dogecoin", price: "0,42", change: "+8.9%", color: "text-yellow-400" },
               { name: "Polkadot", price: "37,18", change: "+2.7%", color: "text-pink-500" },
             ].flatMap(coin => [
-              <div className="flex items-center gap-2" key={coin.name}>
-                <span className={`font-bold ${coin.color}`}>{coin.name}</span>
-                <span className="text-text-primary">R$ {coin.price}</span>
-                <span className="text-green-400 text-sm">{coin.change}</span>
+              <div className="flex items-center gap-1" key={coin.name}>
+                <span className={`font-medium ${coin.color} text-[10px] sm:text-xs`}>{coin.name}</span>
+                <span className="text-text-primary text-[10px] sm:text-xs">R$ {coin.price}</span>
+                <span className="text-green-400 text-[9px] sm:text-xs">+{coin.change}</span>
               </div>,
-              <span className="text-text-tertiary">|</span>
+              <span className="text-text-terciary text-[10px] sm:text-xs">|</span>
             ]).slice(0, -1)}
           </motion.div>
         </div>
