@@ -31,7 +31,7 @@ function Layout({ children }) {
     <div className="min-h-screen bg-background-primary transition-colors duration-200">
       <Header />
       <Sidebar />
-      <main className="pt-16 pl-24">
+      <main className="pt-16 pl-0 md:pl-24">
         {children}
       </main>
     </div>
