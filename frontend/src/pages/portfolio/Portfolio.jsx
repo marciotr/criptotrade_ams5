@@ -54,7 +54,7 @@ const Achievement = ({ title, description, icon: Icon, completed }) => (
   >
     <div className="flex items-center">
       <div className={`p-2 rounded-lg ${completed ? 'bg-green-500/20' : 'bg-background-secondary'}`}>
-        <Icon size={20} className={completed ? 'text-green-500' : 'text-text-terciary'} />
+        <Icon size={20} className={completed ? 'text-green-500' : 'text-text-tertiary'} />
       </div>
       <div className="ml-3">
         <h4 className={`font-medium ${completed ? 'text-feedback-success' : 'text-text-primary'}`}>{title}</h4>
@@ -357,11 +357,11 @@ export function Portfolio() {
               
               <div className="mt-4 flex justify-between items-center">
                 <div>
-                  <span className="text-text-terciary text-sm">Valor inicial:</span>
+                  <span className="text-text-tertiary text-sm">Valor inicial:</span>
                   <span className="ml-2 text-text-primary font-medium">$10,000.00</span>
                 </div>
                 <div>
-                  <span className="text-text-terciary text-sm">Ganho total:</span>
+                  <span className="text-text-tertiary text-sm">Ganho total:</span>
                   <span className="ml-2 text-feedback-success font-medium">+$15,670.84 (156.7%)</span>
                 </div>
               </div>
@@ -411,7 +411,7 @@ export function Portfolio() {
                 <div className="mt-3 w-full bg-background-secondary rounded-full h-2.5">
                   <div className="bg-brand-primary h-2.5 rounded-full" style={{ width: '70%' }}></div>
                 </div>
-                <div className="flex justify-between mt-1 text-xs text-text-terciary">
+                <div className="flex justify-between mt-1 text-xs text-text-tertiary">
                   <span>70% concluído</span>
                   <span>Faltam: $3,750.00</span>
                 </div>
@@ -463,7 +463,7 @@ export function Portfolio() {
                     </PieChart>
                   </ResponsiveContainer>
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                    <p className="text-text-terciary text-xs">Total</p>
+                    <p className="text-text-tertiary text-xs">Total</p>
                     <p className="text-text-primary font-bold text-xl">${totalValue.toLocaleString()}</p>
                   </div>
                 </div>
@@ -530,13 +530,13 @@ export function Portfolio() {
               <table className="w-full">
                 <thead>
                   <tr className="text-left">
-                    <th className="pb-4 text-text-terciary">Ativo</th>
-                    <th className="pb-4 text-text-terciary">Quantidade</th>
-                    <th className="pb-4 text-text-terciary">Preço Atual</th>
-                    <th className="pb-4 text-text-terciary">Valor</th>
-                    <th className="pb-4 text-text-terciary">Var 24h</th>
-                    <th className="pb-4 text-text-terciary">Alocação</th>
-                    <th className="pb-4 text-text-terciary">Ações</th>
+                    <th className="pb-4 text-text-tertiary">Ativo</th>
+                    <th className="pb-4 text-text-tertiary">Quantidade</th>
+                    <th className="pb-4 text-text-tertiary">Preço Atual</th>
+                    <th className="pb-4 text-text-tertiary">Valor</th>
+                    <th className="pb-4 text-text-tertiary">Var 24h</th>
+                    <th className="pb-4 text-text-tertiary">Alocação</th>
+                    <th className="pb-4 text-text-tertiary">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -550,7 +550,7 @@ export function Portfolio() {
                           <CryptoIcon symbol={asset.symbol} size={24} />
                           <div>
                             <span className="font-semibold text-text-primary">{asset.asset}</span>
-                            <p className="text-xs text-text-terciary">{asset.symbol}</p>
+                            <p className="text-xs text-text-tertiary">{asset.symbol}</p>
                           </div>
                         </div>
                       </td>
@@ -573,7 +573,7 @@ export function Portfolio() {
                             }}
                           ></div>
                         </div>
-                        <span className="text-xs text-text-terciary">{asset.allocation}%</span>
+                        <span className="text-xs text-text-tertiary">{asset.allocation}%</span>
                       </td>
                       <td className="py-4">
                         <div className="flex items-center space-x-1">
