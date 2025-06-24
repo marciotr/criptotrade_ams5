@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Search } from 'lucide-react';
+import { ChevronDown, Search, Loader } from 'lucide-react';
 import CryptoIcon from '../../../components/common/CryptoIcons';
 
 const POPULAR_COINS = ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'ADA', 'DOGE', 'DOT', 'MATIC', 'LINK'];
@@ -14,10 +14,12 @@ export function CoinSelector({
   onSelect,
   price,
   align = "left",
-  isMobile = false
+  isMobile = false,
+  isLoading = false
 }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAll, setShowAll] = useState(false);
+  const [localLoading, setLocalLoading] = useState(false);
 
   const sortedCoins = useMemo(() => {
     if (!coins?.length) return [];
@@ -74,6 +76,18 @@ export function CoinSelector({
     onToggle();
   }, [isOpen, onToggle]);
 
+  const handleCoinSelect = useCallback((coin) => {
+    setLocalLoading(true);
+    // Fecha o dropdown imediatamente
+    onToggle();
+    // Chama o onSelect com um pequeno delay pra permitir a animação de loading
+    onSelect(coin);
+    // Simula o tempo de carregamento pra não piscar a tela
+    setTimeout(() => {
+      setLocalLoading(false);
+    }, 800);
+  }, [onToggle, onSelect]);
+
   const formattedPrice = useMemo(() => {
     if (!price) return null;
     
@@ -95,13 +109,31 @@ export function CoinSelector({
   const dropdownWidth = isMobile ? "w-[250px]" : "w-[320px]";
   const dropdownMaxHeight = isMobile ? "240px" : "320px";
 
+  // Estado de carregamento 
+  const loading = isLoading || localLoading;
+
   return (
     <div className="relative z-20">
       <button 
         onClick={handleDropdownToggle} 
-        className={`flex items-center ${buttonStyles} rounded-lg bg-background-secondary hover:bg-background-tertiary transition-colors focus:outline-none`}
+        disabled={loading}
+        className={`flex items-center ${buttonStyles} rounded-lg bg-background-secondary hover:bg-background-tertiary transition-colors focus:outline-none relative overflow-hidden`}
       >
-        <div className="flex items-center space-x-1 sm:space-x-2">
+        {/* Overlay de loading */}
+        <AnimatePresence>
+          {loading && (
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-background-secondary flex items-center justify-center z-10"
+            >
+              <Loader size={isMobile ? 16 : 20} className="text-brand-primary animate-spin" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <div className={`flex items-center space-x-1 sm:space-x-2 ${loading ? 'opacity-50' : ''}`}>
           {selectedCoin?.name && (
             <CryptoIcon 
               symbol={selectedCoin.name} 
@@ -137,7 +169,7 @@ export function CoinSelector({
                        ${align === 'right' ? 'right-0' : 'left-0'}`}
             style={{ transformOrigin: align === 'right' ? 'top right' : 'top left' }}
           >
-            {/* Search Input */}
+            {/* Input Searcg */}
             <div className="p-2 border-b border-border-primary">
               <div className="relative">
                 <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-tertiary" />
@@ -152,7 +184,7 @@ export function CoinSelector({
               </div>
             </div>
 
-            {/* Coins List */}
+            {/* Lista de Moedas */}
             <div className="overflow-y-auto py-1" style={{ maxHeight: dropdownMaxHeight }}>
               {filteredCoins.length > 0 ? (
                 <>
@@ -165,7 +197,7 @@ export function CoinSelector({
                       className={`flex items-center w-full px-3 py-2 text-xs sm:text-sm text-left hover:bg-background-secondary transition-colors ${
                         selectedCoin?.id === coin.id ? 'bg-background-secondary' : ''
                       }`}
-                      onClick={() => onSelect(coin)}
+                      onClick={() => handleCoinSelect(coin)}
                     >
                       <div className="flex items-center space-x-2">
                         <CryptoIcon symbol={coin.name} size={isMobile ? 16 : 20} />

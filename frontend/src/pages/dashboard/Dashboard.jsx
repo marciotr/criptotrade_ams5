@@ -335,6 +335,13 @@ export function Dashboard() {
   }, [processedCryptoData]);
 
   const fetchCoinData = useCallback(async (symbol) => {
+    // Crio uma variável local de loading para o gráfico
+    // Para evitar a tela ficar piscando pra cada vez que a moeda é selecionada
+    const chartComponent = document.querySelector('.crypto-chart-container');
+    if (chartComponent) {
+      chartComponent.classList.add('loading');
+    }
+    
     try {
       const formattedSymbol = symbol.replace(/USDT+$/, '') + 'USDT';
       const { interval, limit } = getIntervalFromTimeRange(timeRange);
@@ -360,29 +367,41 @@ export function Dashboard() {
           ...prev,
           data: formattedKlines
         }));
+        
+        // Remove classe de loading quando os dados chegarem
+        if (chartComponent) {
+          chartComponent.classList.remove('loading');
+        }
       });
 
     } catch (error) {
       console.error('Erro ao buscar dados da moeda:', error);
+      // Remove classe de loading mesmo em caso de erro
+      if (chartComponent) {
+        chartComponent.classList.remove('loading');
+      }
     }
   }, [timeRange]);
 
   const handleCoinSelection = useCallback(async (coin) => {
-    setIsLoading(true);
+    // Não seto mais isLoading para true aqui, apenas atualizo a moeda selecionada
     setDropdownOpen(false);
 
     try {
+      // Atualizamos primeiro a moeda selecionada (sem os dados)
       setSelectedCoin(prev => ({
         ...prev,
-        ...coin,
-        data: []
+        id: coin.id,
+        name: coin.name,
+        color: coin.color,
+        // Mantenho os dados anteriores para evitar que o gráfico desapareça
+        // O gráfico vai atualizar quando os novos dados chegarem
       }));
       
-      await fetchCoinData(coin.id);
+      // Busca os dados por trás da aplicação sem afetar o estado de loading
+      fetchCoinData(coin.id);
     } catch (error) {
       console.error('Erro ao selecionar moeda:', error);
-    } finally {
-      setIsLoading(false);
     }
   }, [fetchCoinData]);
 
@@ -466,7 +485,6 @@ export function Dashboard() {
     navigate('/markets'); 
   }, [navigate]);
 
-  // Define constantes de animação
   const containerAnimation = {
     hidden: { opacity: 0 },
     show: {
@@ -484,9 +502,7 @@ export function Dashboard() {
   };
 
   return (
-    <>
-      {/* Remover o MobileSideNav pois já temos o componente Sidebar */}
-      
+    <>      
       <motion.div 
         className="relative px-3 py-4 sm:p-4 lg:p-6 transition-colors duration-200 max-w-[2000px] mx-auto overflow-x-hidden"
         initial="hidden"
