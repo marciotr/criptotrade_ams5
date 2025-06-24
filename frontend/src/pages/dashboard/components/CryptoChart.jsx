@@ -2,14 +2,20 @@ import React from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { CustomTooltip } from './CustomTooltip';
 
-export const CryptoChart = React.memo(({ data, isLoading, color }) => {
+export const CryptoChart = React.memo(({ data, isLoading, color, height, isMobile }) => {
   if (isLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-brand-primary rounded-full border-t-transparent animate-spin"></div>
+        <div className="w-6 h-6 sm:w-8 sm:h-8 border-4 border-brand-primary rounded-full border-t-transparent animate-spin"></div>
       </div>
     );
   }
+
+  // Formatadores responsivos
+  const tickFormatter = (value) => `$${isMobile ? value : value.toLocaleString()}`;
+  
+  // Reduzir a densidade de pontos no eixo X em telas menores
+  const tickCount = isMobile ? 4 : 8;
 
   return (
     <div className="w-full h-full">
@@ -27,16 +33,18 @@ export const CryptoChart = React.memo(({ data, isLoading, color }) => {
           <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
           <XAxis 
             dataKey="time"
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: isMobile ? 10 : 12 }}
             tickLine={false}
             axisLine={false}
+            interval={Math.floor(data?.length / tickCount) || 0}
           />
           <YAxis 
-            tickFormatter={(value) => `$${value.toLocaleString()}`}
-            tick={{ fontSize: 12 }}
+            tickFormatter={tickFormatter}
+            tick={{ fontSize: isMobile ? 10 : 12 }}
             tickLine={false}
             axisLine={false}
             domain={['auto', 'auto']}
+            width={isMobile ? 40 : 60}
           />
           <Tooltip content={<CustomTooltip />} />
           <Area
@@ -55,6 +63,7 @@ export const CryptoChart = React.memo(({ data, isLoading, color }) => {
   return (
     prevProps.isLoading === nextProps.isLoading &&
     prevProps.color === nextProps.color &&
+    prevProps.isMobile === nextProps.isMobile &&
     JSON.stringify(prevProps.data) === JSON.stringify(nextProps.data)
   );
 });
