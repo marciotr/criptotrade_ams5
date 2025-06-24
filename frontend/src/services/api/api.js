@@ -25,9 +25,22 @@ export const userApi = {
 
 // Use cryptoApiConfig para todas as chamadas de criptomoeda
 export const marketApi = {
+  // Métodos existentes
   getPrices: () => cryptoApiConfig.get('/crypto/prices'),
   getAllTickers: () => cryptoApiConfig.get('/crypto/tickers'),
   getTickerBySymbol: (symbol) => cryptoApiConfig.get(`/crypto/ticker/${symbol}`),
+  
+  // Novos métodos para gainers, losers e trending
+  getGainers: (limit = 5) => cryptoApiConfig.get('/crypto/gainers', { 
+    params: { limit } 
+  }),
+  getLosers: (limit = 5) => cryptoApiConfig.get('/crypto/losers', { 
+    params: { limit } 
+  }),
+  getTrending: (limit = 5) => cryptoApiConfig.get('/crypto/trending', { 
+    params: { limit } 
+  }),
+  
   getOrderBook: (symbol, limit = 100) => cryptoApiConfig.get(`/crypto/orderbook/${symbol}`, {
     params: { limit }
   }),
@@ -38,8 +51,8 @@ export const marketApi = {
   getHistory: (symbol, timeframe) => cryptoApiConfig.get(`/market/history/${symbol}`, { 
     params: { timeframe } 
   }),
-  getAllCryptos: () => userApiConfig.get('/Crypto'), // Esta ainda usa a userApi, está correto?
-  getCryptoBySymbol: (symbol) => userApiConfig.get(`/Crypto/${symbol}`), // Essa também
+  getAllCryptos: () => userApiConfig.get('/Crypto'),
+  getCryptoBySymbol: (symbol) => userApiConfig.get(`/Crypto/${symbol}`),
   getCryptoIcon: (symbol) => `https://bin.bnbstatic.com/image/crypto/${symbol.toLowerCase()}.png`,
   getKlines: (symbol, interval = '15m', limit = 100) => 
     cryptoApiConfig.get(`/crypto/klines/${symbol}`, {
