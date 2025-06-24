@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, ArrowDown, Search, Filter, Download, ChevronLeft, ChevronRight, AlertTriangle, 
          CheckCircle, Clock, RefreshCw, TrendingUp, Sparkles, Calendar, Wallet, Zap, 
-         BarChart2, Share2, Bookmark, PieChart } from 'lucide-react';
+         BarChart2, Share2, Bookmark, PieChart, ChevronDown } from 'lucide-react';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { useNavigate } from 'react-router-dom';
@@ -13,9 +13,9 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 
-// Novos componentes
+// Componentes reutilizáveis
 
-// 1. Componente de mini gráfico para visualização rápida
+// Mini gráfico - Ajustado para ser responsivo
 const MiniChart = ({ data = [], height = 30, width = 80, color = "#3498db" }) => {
   // Dados de fallback caso não sejam fornecidos
   const chartData = data.length > 0 ? data : [4, 7, 5, 9, 6, 8, 7, 8, 10, 7];
@@ -60,7 +60,7 @@ const MiniChart = ({ data = [], height = 30, width = 80, color = "#3498db" }) =>
   );
 };
 
-// 2. Componente de badge de conquista com tema dourado
+// Badge de conquista adaptado para mobile
 const AchievementBadge = ({ label, icon, isNew = false }) => (
   <motion.div
     whileHover={{ y: -4, scale: 1.05 }}
@@ -70,51 +70,51 @@ const AchievementBadge = ({ label, icon, isNew = false }) => (
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 border-2 border-white"
+        className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-red-500 border-2 border-white"
       />
     )}
     <div className="text-white">{icon}</div>
     {label && (
-      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-        <p className="text-xs font-medium text-amber-700 dark:text-amber-400">{label}</p>
+      <div className="absolute -bottom-5 sm:-bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+        <p className="text-[8px] sm:text-xs font-medium text-amber-700 dark:text-amber-400">{label}</p>
       </div>
     )}
   </motion.div>
 );
 
-// 3. Componente para dicas contextuais
+// Dica contextual responsiva
 const FinancialInsight = ({ insight }) => (
   <motion.div 
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
-    className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-3 rounded-lg border border-blue-100 dark:border-blue-800"
+    className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-2 sm:p-3 rounded-lg border border-blue-100 dark:border-blue-800"
   >
     <div className="flex items-start">
-      <div className="p-1.5 bg-blue-100 dark:bg-blue-800 rounded-full mr-3">
-        <Sparkles size={16} className="text-blue-600 dark:text-blue-400" />
+      <div className="p-1 sm:p-1.5 bg-blue-100 dark:bg-blue-800 rounded-full mr-2 sm:mr-3">
+        <Sparkles size={14} className="text-blue-600 dark:text-blue-400" />
       </div>
       <div>
-        <p className="text-sm text-blue-800 dark:text-blue-300 font-medium">Insight Financeiro</p>
-        <p className="text-xs text-blue-700/80 dark:text-blue-400/80 mt-0.5">{insight}</p>
+        <p className="text-xs sm:text-sm text-blue-800 dark:text-blue-300 font-medium">Insight Financeiro</p>
+        <p className="text-[10px] sm:text-xs text-blue-700/80 dark:text-blue-400/80 mt-0.5">{insight}</p>
       </div>
     </div>
   </motion.div>
 );
 
-// 4. Componente para exibição de transações recorrentes
+// Badge de transação recorrente
 const RecurringTransactionBadge = () => (
-  <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400">
-    <RefreshCw size={12} className="mr-1" />
+  <div className="inline-flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[8px] sm:text-xs font-medium bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400">
+    <RefreshCw size={10} className="mr-0.5 sm:mr-1" />
     Recorrente
   </div>
 );
 
-// Componente atualizado para um item de transação virtualizado
+// Item de transação adaptado para mobile
 const VirtualizedTransactionRow = ({ data, index, style }) => {
   const transaction = data.items[index];
-  const { onViewDetails } = data;
+  const { onViewDetails, isMobile } = data;
   
-  // Gerar dados de gráfico simulados para cada transação
+  // Gerar dados de gráfico simulados
   const graphData = useMemo(() => {
     return Array(10).fill().map(() => Math.floor(Math.random() * 10) + 1);
   }, []);
@@ -129,20 +129,21 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
       onClick={() => onViewDetails(transaction)}
       whileHover={{ backgroundColor: "rgba(var(--background-secondary), 0.8)" }}
     >
-      <div className="flex items-center h-full">
+      {/* Versão para desktop */}
+      <div className="hidden sm:flex items-center h-full">
         <div className="px-4 py-4 w-32 sm:w-40">
           <div className="flex items-center space-x-2">
             <div className={`p-1.5 rounded-full transition-transform group-hover:scale-110 
-              ${transaction.type === 'Deposit' ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}
+              ${transaction.type === 'Depósito' ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}
             >
-              {transaction.type === 'Deposit' ? (
+              {transaction.type === 'Depósito' ? (
                 <ArrowUp className="text-feedback-success" size={16} />
               ) : (
                 <ArrowDown className="text-feedback-error" size={16} />
               )}
             </div>
             <div>
-              <span className="text-xs sm:text-sm text-text-primary">{transaction.type}</span>
+              <span className="text-sm text-text-primary">{transaction.type}</span>
               {isRecurring && (
                 <div className="mt-1">
                   <RecurringTransactionBadge />
@@ -152,14 +153,14 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
           </div>
         </div>
         
-        <div className="px-4 py-4 w-28 sm:w-32 text-xs sm:text-sm font-medium text-text-primary">
+        <div className="px-4 py-4 w-28 sm:w-32 text-sm font-medium text-text-primary">
           <div className="flex flex-col">
             <span>${transaction.amount.toLocaleString()}</span>
             {/* Mini gráfico de tendência */}
             <div className="opacity-0 group-hover:opacity-100 transition-opacity mt-1">
               <MiniChart 
                 data={graphData} 
-                color={transaction.type === 'Deposit' ? "#10b981" : "#ef4444"} 
+                color={transaction.type === 'Depósito' ? "#10b981" : "#ef4444"} 
                 height={20} 
                 width={60}
               />
@@ -167,7 +168,7 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
           </div>
         </div>
         
-        <div className="px-4 py-4 w-24 text-xs sm:text-sm text-text-primary flex items-center">
+        <div className="px-4 py-4 w-24 text-sm text-text-primary flex items-center">
           <div className="flex items-center space-x-1.5">
             <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
               <span className="text-[8px] font-bold text-white">
@@ -178,20 +179,20 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
           </div>
         </div>
         
-        <div className="hidden sm:block px-4 py-4 w-32 text-xs sm:text-sm text-text-primary">
+        <div className="px-4 py-4 w-32 text-sm text-text-primary">
           <div className="flex items-center">
-            {transaction.method === 'Credit Card' && (
+            {transaction.method === 'Cartão de Crédito' && (
               <div className="w-6 h-4 mr-2 rounded bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
               </div>
             )}
-            {transaction.method === 'Bank Transfer' && (
+            {transaction.method === 'Transferência Bancária' && (
               <Wallet size={14} className="mr-2 text-gray-500" />
             )}
             {transaction.method === 'PayPal' && (
               <div className="mr-2 text-blue-600 font-bold text-xs">P</div>
             )}
-            {transaction.method === 'Crypto' && (
+            {transaction.method === 'Cripto' && (
               <div className="p-0.5 bg-orange-500 text-white mr-2 rounded-full">
                 <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none">
                   <path d="M9 8l3 8.5L15 8l4.5 16H4.5L9 8z" strokeLinecap="round" strokeLinejoin="round" />
@@ -202,15 +203,15 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
           </div>
         </div>
         
-        <div className="hidden sm:block px-4 py-4 w-32 text-xs sm:text-sm text-text-tertiary">
+        <div className="px-4 py-4 w-32 text-sm text-text-tertiary">
           {new Date(transaction.date).toLocaleDateString()}
         </div>
         
-        <div className="px-4 py-4 w-28 sm:w-32">
+        <div className="px-4 py-4 w-32">
           <TransactionStatus status={transaction.status} />
         </div>
         
-        <div className="hidden sm:flex px-4 py-4 text-xs text-text-tertiary flex-1 items-center justify-between">
+        <div className="px-4 py-4 text-xs text-text-tertiary flex-1 items-center justify-between hidden sm:flex">
           <span className="font-mono">{transaction.txId}</span>
           
           {/* Botões de ação rápida (aparecem no hover) */}
@@ -224,17 +225,76 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
           </div>
         </div>
       </div>
+
+      {/* Versão para mobile - layout compacto */}
+      <div className="flex sm:hidden items-center h-full">
+        <div className="flex-1 flex items-center px-3 py-3">
+          <div className={`p-1.5 rounded-full mr-2
+            ${transaction.type === 'Depósito' ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}
+          >
+            {transaction.type === 'Depósito' ? (
+              <ArrowUp className="text-feedback-success" size={15} />
+            ) : (
+              <ArrowDown className="text-feedback-error" size={15} />
+            )}
+          </div>
+          
+          <div className="flex-1">
+            <div className="flex justify-between items-start">
+              <div>
+                <div className="flex items-center">
+                  <span className="text-xs font-medium text-text-primary">{transaction.type}</span>
+                  {isRecurring && (
+                    <span className="ml-1.5">
+                      <RecurringTransactionBadge />
+                    </span>
+                  )}
+                </div>
+                <span className="text-[10px] text-text-tertiary block mt-0.5">
+                  {new Date(transaction.date).toLocaleDateString()}
+                </span>
+              </div>
+              
+              <div className="text-right">
+                <span className="text-xs font-semibold text-text-primary">
+                  ${transaction.amount.toLocaleString()}
+                </span>
+                <div className="flex items-center justify-end mt-1">
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mr-1">
+                    <span className="text-[6px] font-bold text-white">
+                      {transaction.currency.charAt(0)}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-text-tertiary">{transaction.currency}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex justify-between items-center mt-1">
+              <TransactionStatus status={transaction.status} />
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <MiniChart 
+                  data={graphData} 
+                  color={transaction.type === 'Depósito' ? "#10b981" : "#ef4444"} 
+                  height={15} 
+                  width={50}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 };
 
-// Componente para resumo de estatísticas atualizado com interatividade
+// Card de estatísticas responsivo
 const StatCard = ({ label, value, icon, trend, color, onClick }) => (
   <motion.div
     whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0,0,0,0.1)" }}
     whileTap={{ scale: 0.98 }}
     onClick={onClick}
-    className="bg-background-primary p-4 rounded-xl shadow-md border border-border-primary cursor-pointer relative overflow-hidden"
+    className="bg-background-primary p-3 sm:p-4 rounded-xl shadow-md border border-border-primary cursor-pointer relative overflow-hidden"
   >
     {/* Background pattern */}
     <div className="absolute inset-0 opacity-5">
@@ -248,28 +308,28 @@ const StatCard = ({ label, value, icon, trend, color, onClick }) => (
     
     <div className="flex justify-between items-start relative z-10">
       <div>
-        <p className="text-text-tertiary text-sm">{label}</p>
-        <p className="text-text-primary text-xl font-bold mt-1">{value}</p>
+        <p className="text-text-tertiary text-xs sm:text-sm">{label}</p>
+        <p className="text-text-primary text-base sm:text-xl font-bold mt-0.5 sm:mt-1">{value}</p>
         {trend && (
-          <div className={`flex items-center mt-2 text-xs ${color}`}>
-            <TrendingUp size={14} className="mr-1" />
+          <div className={`flex items-center mt-1 sm:mt-2 text-[9px] sm:text-xs ${color}`}>
+            <TrendingUp size={12} className="mr-1" />
             <span>{trend}</span>
           </div>
         )}
       </div>
-      <div className={`p-2 rounded-lg ${color.replace('text', 'bg').replace('500', '100')} ${color}`}>
+      <div className={`p-1.5 sm:p-2 rounded-lg ${color.replace('text', 'bg').replace('500', '100')} ${color}`}>
         {icon}
       </div>
     </div>
     
     {/* Indicator for interaction */}
     <div className="absolute bottom-2 right-2 opacity-30">
-      <ChevronRight size={16} className="text-text-tertiary" />
+      <ChevronRight size={14} className="text-text-tertiary" />
     </div>
   </motion.div>
 );
 
-// Modal de análise detalhada com gráficos reais em português
+// Modal de análise responsivo
 const AnalyticsModal = ({ isOpen, onClose, data }) => {
   // Processar dados para o gráfico de barras (volume de transações por mês)
   const monthlyVolumeData = useMemo(() => {
@@ -358,18 +418,18 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
           onClick={onClose}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="bg-background-primary rounded-xl shadow-xl max-w-5xl w-full p-6 max-h-[90vh] overflow-y-auto"
+            className="bg-background-primary rounded-xl shadow-xl w-full max-w-5xl p-3 sm:p-6 max-h-[90vh] overflow-y-auto"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-bold text-text-primary">Análise de Transações</h3>
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <h3 className="text-base sm:text-lg font-bold text-text-primary">Análise de Transações</h3>
               <button 
                 onClick={onClose}
                 className="p-2 rounded-full hover:bg-background-secondary text-text-tertiary hover:text-text-primary transition-colors"
@@ -378,24 +438,25 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
               </button>
             </div>
             
-            {/* Gráfico de volume mensal */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-background-secondary p-4 rounded-lg">
-                <h4 className="text-sm font-medium text-text-tertiary mb-2">Volume Mensal de Transações</h4>
-                <div className="h-64">
+            {/* Gráficos responsivos */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 mb-4 sm:mb-6">
+              <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
+                <h4 className="text-xs sm:text-sm font-medium text-text-tertiary mb-2">Volume Mensal de Transações</h4>
+                <div className="h-48 sm:h-64">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                       data={monthlyVolumeData}
-                      margin={{ top: 10, right: 10, left: 10, bottom: 20 }}
+                      margin={{ top: 5, right: 5, left: 5, bottom: 15 }}
                     >
                       <CartesianGrid strokeDasharray="3 3" className="stroke-border-primary" />
                       <XAxis 
                         dataKey="name" 
-                        className="text-xs text-text-tertiary"
+                        className="text-[9px] sm:text-xs text-text-tertiary"
                         tick={{ fill: 'currentColor' }}
+                        tickMargin={5}
                       />
                       <YAxis 
-                        className="text-xs text-text-tertiary"
+                        className="text-[9px] sm:text-xs text-text-tertiary"
                         tick={{ fill: 'currentColor' }}
                         tickFormatter={(value) => `R$${value.toLocaleString()}`}
                       />
@@ -403,10 +464,11 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
                         formatter={(value) => [`R$${value.toLocaleString()}`, undefined]}
                         contentStyle={{
                           backgroundColor: 'var(--background-primary)',
-                          borderColor: 'var(--border-primary)'
+                          borderColor: 'var(--border-primary)',
+                          fontSize: '12px'
                         }}
                       />
-                      <Legend />
+                      <Legend wrapperStyle={{ fontSize: '10px' }} />
                       <Bar dataKey="depositos" name="Depósitos" fill="#10b981" radius={[4, 4, 0, 0]} />
                       <Bar dataKey="saques" name="Saques" fill="#ef4444" radius={[4, 4, 0, 0]} />
                     </BarChart>
@@ -414,11 +476,11 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
                 </div>
               </div>
               
-              {/* Gráficos de pizza lado a lado */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-background-secondary p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-text-tertiary mb-2">Tipos de Transações</h4>
-                  <div className="h-56">
+              {/* Gráficos de pizza responsivos */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
+                  <h4 className="text-xs sm:text-sm font-medium text-text-tertiary mb-2">Tipos de Transações</h4>
+                  <div className="h-40 sm:h-56">
                     <ResponsiveContainer width="100%" height="100%">
                       <RechartsPC>
                         <Pie
@@ -426,11 +488,19 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
                           cx="50%"
                           cy="50%"
                           labelLine={false}
-                          outerRadius={80}
+                          outerRadius="70%"
                           dataKey="value"
                           nameKey="name"
-                          label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                          className="text-xs"
+                          label={({ name, percent }) => (
+                            <text 
+                              className="text-[8px] sm:text-xs" 
+                              x={0} y={0} 
+                              textAnchor="middle"
+                              fill="currentColor"
+                            >
+                              {`${name}: ${(percent * 100).toFixed(0)}%`}
+                            </text>
+                          )}
                         >
                           {transactionTypesData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
@@ -440,7 +510,8 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
                           formatter={(value) => [`${value} transações`, undefined]}
                           contentStyle={{
                             backgroundColor: 'var(--background-primary)',
-                            borderColor: 'var(--border-primary)'
+                            borderColor: 'var(--border-primary)',
+                            fontSize: '12px'
                           }}
                         />
                       </RechartsPC>
@@ -448,9 +519,9 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
                   </div>
                 </div>
                 
-                <div className="bg-background-secondary p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-text-tertiary mb-2">Métodos de Pagamento</h4>
-                  <div className="h-56">
+                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
+                  <h4 className="text-xs sm:text-sm font-medium text-text-tertiary mb-2">Métodos de Pagamento</h4>
+                  <div className="h-40 sm:h-56">
                     <ResponsiveContainer width="100%" height="100%">
                       <RechartsPC>
                         <Pie
@@ -458,11 +529,19 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
                           cx="50%"
                           cy="50%"
                           labelLine={false}
-                          outerRadius={80}
+                          outerRadius="70%"
                           dataKey="value"
                           nameKey="name"
-                          label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                          className="text-xs"
+                          label={({ name, percent }) => (
+                            <text 
+                              className="text-[8px] sm:text-xs" 
+                              x={0} y={0} 
+                              textAnchor="middle"
+                              fill="currentColor"
+                            >
+                              {`${name.substring(0, 5)}... ${(percent * 100).toFixed(0)}%`}
+                            </text>
+                          )}
                         >
                           {paymentMethodsData.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
@@ -472,7 +551,8 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
                           formatter={(value) => [`${value} transações`, undefined]}
                           contentStyle={{
                             backgroundColor: 'var(--background-primary)',
-                            borderColor: 'var(--border-primary)'
+                            borderColor: 'var(--border-primary)',
+                            fontSize: '12px'
                           }}
                         />
                       </RechartsPC>
@@ -482,37 +562,37 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
               </div>
             </div>
             
-            {/* Métricas adicionais */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div className="bg-background-secondary p-4 rounded-lg">
-                <h4 className="text-sm font-medium text-text-tertiary mb-1">Média por Transação</h4>
-                <p className="text-lg font-bold text-text-primary">
+            {/* Métricas adicionais responsivas */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
+                <h4 className="text-xs font-medium text-text-tertiary mb-1">Média por Transação</h4>
+                <p className="text-sm sm:text-lg font-bold text-text-primary">
                   R${(data.reduce((sum, tx) => sum + tx.amount, 0) / data.length).toFixed(2)}
                 </p>
               </div>
-              <div className="bg-background-secondary p-4 rounded-lg">
-                <h4 className="text-sm font-medium text-text-tertiary mb-1">Maior Transação</h4>
-                <p className="text-lg font-bold text-text-primary">
+              <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
+                <h4 className="text-xs font-medium text-text-tertiary mb-1">Maior Transação</h4>
+                <p className="text-sm sm:text-lg font-bold text-text-primary">
                   R${Math.max(...data.map(tx => tx.amount)).toLocaleString()}
                 </p>
               </div>
-              <div className="bg-background-secondary p-4 rounded-lg">
-                <h4 className="text-sm font-medium text-text-tertiary mb-1">Total de Transações</h4>
-                <p className="text-lg font-bold text-text-primary">
+              <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
+                <h4 className="text-xs font-medium text-text-tertiary mb-1">Total de Transações</h4>
+                <p className="text-sm sm:text-lg font-bold text-text-primary">
                   {data.length}
                 </p>
               </div>
             </div>
             
             <FinancialInsight 
-              insight="Com base no seu histórico de transações, você poderia economizar aproximadamente 2,5% em taxas agrupando seus saques." 
+              insight="Com base no seu histórico, você poderia economizar aproximadamente 2,5% em taxas agrupando seus saques." 
             />
             
-            <div className="mt-6 flex justify-end">
+            <div className="mt-4 sm:mt-6 flex justify-end">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-4 py-2 bg-brand-primary text-white rounded-lg"
+                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-primary text-white text-sm rounded-lg"
                 onClick={onClose}
               >
                 Fechar
@@ -525,23 +605,23 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
   );
 };
 
-// Componente TransactionStatus em português
+// Componente de status de transação responsivo
 const TransactionStatus = ({ status }) => {
   let statusConfig = {
     completed: {
-      icon: <CheckCircle size={16} />,
+      icon: <CheckCircle size={12} />,
       color: "text-green-500",
       bgColor: "bg-green-100 dark:bg-green-900/30",
       label: "Concluída"
     },
     pending: {
-      icon: <Clock size={16} />,
+      icon: <Clock size={12} />,
       color: "text-yellow-500",
       bgColor: "bg-yellow-100 dark:bg-yellow-900/30",
       label: "Pendente"
     },
     failed: {
-      icon: <AlertTriangle size={16} />,
+      icon: <AlertTriangle size={12} />,
       color: "text-red-500",
       bgColor: "bg-red-100 dark:bg-red-900/30",
       label: "Falhou"
@@ -552,15 +632,15 @@ const TransactionStatus = ({ status }) => {
 
   return (
     <div className="flex items-center">
-      <div className={`flex items-center px-2 py-1 rounded-full ${config.bgColor}`}>
-        <span className={`mr-1 ${config.color}`}>{config.icon}</span>
-        <span className={`text-xs font-medium ${config.color}`}>{config.label}</span>
+      <div className={`flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full ${config.bgColor}`}>
+        <span className={`mr-0.5 sm:mr-1 ${config.color}`}>{config.icon}</span>
+        <span className={`text-[8px] sm:text-xs font-medium ${config.color}`}>{config.label}</span>
       </div>
     </div>
   );
 };
 
-// Função para gerar dados mock em português
+// Função para gerar dados mock
 const generateMockTransactions = (count) => {
   const types = ['Depósito', 'Saque'];
   const statuses = ['completed', 'pending', 'failed'];
@@ -585,7 +665,7 @@ const generateMockTransactions = (count) => {
   });
 };
 
-// Componente principal - TransactionHistory atualizado em português
+// Componente principal - TransactionHistory totalmente responsivo
 export function TransactionHistory() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
@@ -598,7 +678,17 @@ export function TransactionHistory() {
   const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
   const [activeInsight, setActiveInsight] = useState(0);
   const [viewMode, setViewMode] = useState('list'); // 'list' ou 'calendar'
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const itemsPerPage = 20;
+
+  // Detectar tamanho da tela
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 640;
 
   // Simular dados reais com um conjunto maior para testar performance
   const [transactions, setTransactions] = useState([]);
@@ -623,7 +713,7 @@ export function TransactionHistory() {
     return () => clearInterval(timer);
   }, []);
 
-  // Lista de insights financeiros em português
+  // Lista de insights financeiros
   const financialInsights = [
     "Seu volume de depósitos aumentou 24% em comparação com o mês passado.",
     "Considere consolidar seus pequenos saques para economizar em taxas de transação.",
@@ -685,15 +775,15 @@ export function TransactionHistory() {
   const renderTransactionsContent = () => {
     if (filteredTransactions.length === 0) {
       return (
-        <div className="py-16 flex flex-col items-center justify-center">
+        <div className="py-8 sm:py-16 flex flex-col items-center justify-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
           >
-            <AlertTriangle size={48} className="text-text-tertiary mb-3" />
+            <AlertTriangle size={isMobile ? 36 : 48} className="text-text-tertiary mb-3" />
           </motion.div>
-          <p className="text-text-secondary text-center mb-2">Nenhuma transação encontrada</p>
-          <p className="text-text-tertiary text-center text-sm">Tente ajustar sua busca ou critérios de filtro</p>
+          <p className="text-text-secondary text-center text-sm sm:text-base mb-1 sm:mb-2">Nenhuma transação encontrada</p>
+          <p className="text-text-tertiary text-center text-xs sm:text-sm">Tente ajustar sua busca ou critérios de filtro</p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -702,7 +792,7 @@ export function TransactionHistory() {
               setDebouncedSearchTerm('');
               setFilterStatus('all');
             }}
-            className="mt-4 px-4 py-2 bg-background-secondary text-text-primary rounded-lg border border-border-primary hover:border-brand-primary transition-colors"
+            className="mt-3 sm:mt-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-background-secondary text-text-primary text-xs sm:text-sm rounded-lg border border-border-primary hover:border-brand-primary transition-colors"
           >
             Limpar Filtros
           </motion.button>
@@ -716,7 +806,7 @@ export function TransactionHistory() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="p-3 sm:p-6 space-y-6 min-h-screen bg-background"
+      className="p-3 sm:p-6 space-y-4 sm:space-y-6 min-h-screen bg-background"
     >
       {/* Header animado com badges de conquistas */}
       <div className="max-w-7xl mx-auto">
@@ -725,7 +815,7 @@ export function TransactionHistory() {
             <motion.h2 
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="text-2xl font-bold text-text-primary"
+              className="text-xl sm:text-2xl font-bold text-text-primary"
             >
               Histórico de Transações
             </motion.h2>
@@ -733,26 +823,27 @@ export function TransactionHistory() {
               initial={{ y: -10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-text-secondary mt-1"
+              className="text-xs sm:text-sm text-text-secondary mt-1"
             >
               Acompanhe e gerencie todas as transações da sua conta
             </motion.p>
           </div>
           
+          {/* Badges responsivos - escondidos em telas muito pequenas */}
           <motion.div 
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="mt-4 sm:mt-0 flex space-x-3"
+            className="mt-3 sm:mt-0 flex space-x-2 sm:space-x-3"
           >
-            <AchievementBadge icon={<Zap size={18} className="text-white" />} label="Power" isNew />
-            <AchievementBadge icon={<TrendingUp size={18} className="text-white" />} label="Trader" />
-            <AchievementBadge icon={<RefreshCw size={18} className="text-white" />} label="Ativo" />
+            {!isMobile && <AchievementBadge icon={<Zap size={isMobile ? 14 : 18} className="text-white" />} label="Power" isNew />}
+            <AchievementBadge icon={<TrendingUp size={isMobile ? 14 : 18} className="text-white" />} label="Trader" />
+            {!isMobile && <AchievementBadge icon={<RefreshCw size={isMobile ? 14 : 18} className="text-white" />} label="Ativo" />}
             <motion.div 
               whileHover={{ scale: 1.1 }}
-              className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-700 border border-amber-300 flex items-center justify-center cursor-pointer"
+              className="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-700 border border-amber-300 flex items-center justify-center cursor-pointer"
             >
-              <span className="text-xs font-medium text-white">+3</span>
+              <span className="text-[10px] sm:text-xs font-medium text-white">+3</span>
             </motion.div>
           </motion.div>
         </div>
@@ -778,52 +869,52 @@ export function TransactionHistory() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Cards de estatísticas interativos */}
+      {/* Cards de estatísticas responsivos */}
       <motion.div 
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
       >
         <StatCard 
-          label="Volume Total de Transações" 
+          label="Volume Total" 
           value={`R$${transactionStats.totalVolume.toLocaleString()}`} 
-          icon={<RefreshCw size={20} />}
-          trend="+5,2% desde o mês passado"
+          icon={<RefreshCw size={isMobile ? 16 : 20} />}
+          trend="+5,2% este mês"
           color="text-blue-500"
           onClick={() => setShowAnalyticsModal(true)}
         />
         <StatCard 
-          label="Total de Depósitos" 
+          label="Depósitos" 
           value={transactionStats.deposits} 
-          icon={<ArrowUp size={20} />}
+          icon={<ArrowUp size={isMobile ? 16 : 20} />}
           trend="23 neste mês"
           color="text-green-500"
           onClick={() => setFilterStatus('completed')}
         />
         <StatCard 
-          label="Total de Saques" 
+          label="Saques" 
           value={transactionStats.withdrawals} 
-          icon={<ArrowDown size={20} />}
+          icon={<ArrowDown size={isMobile ? 16 : 20} />}
           color="text-red-500"
           onClick={() => setFilterStatus('completed')}
         />
         <StatCard 
-          label="Transações Pendentes" 
+          label="Pendentes" 
           value={transactionStats.pending} 
-          icon={<Clock size={20} />}
+          icon={<Clock size={isMobile ? 16 : 20} />}
           color="text-yellow-500"
           onClick={() => setFilterStatus('pending')}
         />
       </motion.div>
 
-      {/* Pesquisa e filtros com visualização alternativa */}
+      {/* Pesquisa e filtros responsivos */}
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-4"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 sm:mb-4 gap-3 sm:gap-4"
         >
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <div className="relative w-full sm:w-64">
@@ -835,15 +926,15 @@ export function TransactionHistory() {
                   setSearchTerm(e.target.value);
                   handleSearchChange(e.target.value);
                 }}
-                className="w-full pl-10 pr-4 py-2 text-sm border rounded-lg bg-background-primary border-border-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all"
+                className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg bg-background-primary border-border-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all"
               />
-              <Search size={16} className="absolute left-3 top-2.5 text-text-tertiary" />
+              <Search size={isMobile ? 14 : 16} className="absolute left-2.5 sm:left-3 top-1.5 sm:top-2.5 text-text-tertiary" />
             </div>
 
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="w-full sm:w-auto px-4 py-2 text-sm border rounded-lg bg-background-primary text-text-primary border-border-primary focus:outline-none focus:ring-2 focus:ring-brand-primary"
+              className="w-full sm:w-auto px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm border rounded-lg bg-background-primary text-text-primary border-border-primary focus:outline-none focus:ring-2 focus:ring-brand-primary"
             >
               <option value="all">Todos os Status</option>
               <option value="completed">Concluídas</option>
@@ -852,13 +943,13 @@ export function TransactionHistory() {
             </select>
           </div>
 
-          <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+          <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
             {/* Toggle para alternar entre visualizações */}
-            <div className="flex p-1 bg-background-secondary rounded-lg">
+            <div className="flex p-0.5 sm:p-1 bg-background-secondary rounded-lg">
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setViewMode('list')}
-                className={`px-3 py-1.5 text-sm font-medium rounded-md ${
+                className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-md ${
                   viewMode === 'list' 
                     ? 'bg-background-primary text-text-primary shadow-sm' 
                     : 'text-text-tertiary'
@@ -869,13 +960,13 @@ export function TransactionHistory() {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setViewMode('calendar')}
-                className={`px-3 py-1.5 text-sm font-medium rounded-md flex items-center ${
+                className={`px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-md flex items-center ${
                   viewMode === 'calendar' 
                     ? 'bg-background-primary text-text-primary shadow-sm' 
                     : 'text-text-tertiary'
                 }`}
               >
-                <Calendar size={14} className="mr-1" />
+                <Calendar size={isMobile ? 12 : 14} className="mr-1" />
                 Calendário
               </motion.button>
             </div>
@@ -883,16 +974,16 @@ export function TransactionHistory() {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-center px-4 py-2 text-sm font-medium text-background-primary bg-brand-primary rounded-lg hover:bg-brand-primary/90 transition-colors"
+              className="flex items-center justify-center px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-background-primary bg-brand-primary rounded-lg hover:bg-brand-primary/90 transition-colors"
             >
-              <Download size={16} className="mr-2" />
-              Exportar
+              <Download size={isMobile ? 14 : 16} className="mr-1 sm:mr-2" />
+              <span className="hidden xs:inline">Exportar</span>
             </motion.button>
           </div>
         </motion.div>
       </div>
 
-      {/* Tabela de transações com virtualização */}
+      {/* Tabela de transações com virtualização responsiva */}
       <AnimatePresence mode="wait">
         <motion.div
           key={viewMode}
@@ -904,32 +995,33 @@ export function TransactionHistory() {
         >
           {viewMode === 'list' ? (
             <>
-              {/* Cabeçalho da tabela */}
-              <div className="bg-background-secondary border-b border-border-primary">
+              {/* Cabeçalho da tabela - visível apenas em desktop */}
+              <div className="hidden sm:block bg-background-secondary border-b border-border-primary">
                 <div className="flex items-center">
-                  <div className="px-4 py-4 w-32 sm:w-40 text-left text-xs sm:text-sm font-medium text-text-tertiary">Tipo</div>
-                  <div className="px-4 py-4 w-28 sm:w-32 text-left text-xs sm:text-sm font-medium text-text-tertiary">Valor</div>
-                  <div className="px-4 py-4 w-24 text-left text-xs sm:text-sm font-medium text-text-tertiary">Moeda</div>
-                  <div className="hidden sm:block px-4 py-4 w-32 text-left text-xs sm:text-sm font-medium text-text-tertiary">Método</div>
-                  <div className="hidden sm:block px-4 py-4 w-32 text-left text-xs sm:text-sm font-medium text-text-tertiary">Data</div>
-                  <div className="px-4 py-4 w-28 sm:w-32 text-left text-xs sm:text-sm font-medium text-text-tertiary">Status</div>
-                  <div className="hidden sm:block px-4 py-4 text-left text-xs sm:text-sm font-medium text-text-tertiary">ID da Transação</div>
+                  <div className="px-4 py-3 w-40 text-left text-xs font-medium text-text-tertiary">Tipo</div>
+                  <div className="px-4 py-3 w-32 text-left text-xs font-medium text-text-tertiary">Valor</div>
+                  <div className="px-4 py-3 w-24 text-left text-xs font-medium text-text-tertiary">Moeda</div>
+                  <div className="px-4 py-3 w-32 text-left text-xs font-medium text-text-tertiary">Método</div>
+                  <div className="px-4 py-3 w-32 text-left text-xs font-medium text-text-tertiary">Data</div>
+                  <div className="px-4 py-3 w-32 text-left text-xs font-medium text-text-tertiary">Status</div>
+                  <div className="px-4 py-3 flex-1 text-left text-xs font-medium text-text-tertiary">ID da Transação</div>
                 </div>
               </div>
 
-              {/* Lista virtualizada */}
+              {/* Lista virtualizada responsiva */}
               {filteredTransactions.length > 0 ? (
-                <div style={{ height: 'calc(100vh - 380px)', minHeight: '300px' }}>
+                <div style={{ height: isMobile ? 'calc(100vh - 350px)' : 'calc(100vh - 380px)', minHeight: isMobile ? '250px' : '300px' }}>
                   <AutoSizer>
                     {({ height, width }) => (
                       <List
                         height={height}
                         itemCount={filteredTransactions.length}
-                        itemSize={64} // altura de cada linha
+                        itemSize={isMobile ? 80 : 64} // altura ajustada para mobile
                         width={width}
                         itemData={{
                           items: filteredTransactions,
                           onViewDetails: handleViewTransactionDetails,
+                          isMobile
                         }}
                       >
                         {VirtualizedTransactionRow}
@@ -942,37 +1034,38 @@ export function TransactionHistory() {
               )}
             </>
           ) : (
-            // Visualização de calendário
-            <div className="p-4 min-h-[500px] flex items-center justify-center">
+            // Visualização de calendário responsiva
+            <div className="p-4 min-h-[300px] sm:min-h-[500px] flex items-center justify-center">
               <div className="text-center">
-                <Calendar size={64} className="mx-auto text-text-tertiary opacity-30 mb-3" />
-                <h3 className="text-text-primary font-medium">Calendário</h3>
-                <p className="text-text-tertiary text-sm mt-1">
+                <Calendar size={isMobile ? 40 : 64} className="mx-auto text-text-tertiary opacity-30 mb-2 sm:mb-3" />
+                <h3 className="text-sm sm:text-base text-text-primary font-medium">Calendário</h3>
+                <p className="text-[10px] sm:text-sm text-text-tertiary mt-1">
                   Visualize suas transações em um calendário interativo.
                 </p>
               </div>
             </div>
           )}
 
-          {/* Paginação */}
+          {/* Paginação responsiva */}
           {filteredTransactions.length > 0 && viewMode === 'list' && (
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between px-4 py-4 border-t border-border-primary gap-4">
-              <p className="text-xs text-text-secondary">
+            <div className="flex flex-col xs:flex-row xs:items-center justify-between px-3 sm:px-4 py-3 sm:py-4 border-t border-border-primary gap-2 sm:gap-4">
+              <p className="text-[10px] sm:text-xs text-text-secondary">
                 Mostrando {Math.min(filteredTransactions.length, 1)}-{Math.min(currentPage * itemsPerPage, filteredTransactions.length)} de {filteredTransactions.length} transações
               </p>
               
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1 sm:space-x-2">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="p-1.5 rounded-lg border border-border-primary hover:border-brand-primary disabled:opacity-50 disabled:border-border-primary"
+                  className="p-1 sm:p-1.5 rounded-lg border border-border-primary hover:border-brand-primary disabled:opacity-50 disabled:border-border-primary"
                 >
-                  <ChevronLeft size={18} className="text-text-primary" />
+                  <ChevronLeft size={isMobile ? 16 : 18} className="text-text-primary" />
                 </button>
                 
+                {/* Números de página - visíveis apenas em telas maiores */}
                 <div className="hidden sm:flex items-center space-x-1">
                   {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                    // Lógica para exibir os números de página ao redor da página atual
+                    // Lógica para exibir os números de página
                     let pageNum;
                     if (totalPages <= 5) {
                       pageNum = i + 1;
@@ -1016,16 +1109,17 @@ export function TransactionHistory() {
                   )}
                 </div>
                 
-                <div className="sm:hidden text-sm text-text-primary">
-                  Página {currentPage} de {totalPages}
+                {/* Indicador de página simples para mobile */}
+                <div className="text-[10px] sm:hidden text-text-primary px-2">
+                  {currentPage} / {totalPages}
                 </div>
                 
                 <button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages || totalPages === 0}
-                  className="p-1.5 rounded-lg border border-border-primary hover:border-brand-primary disabled:opacity-50 disabled:border-border-primary"
+                  className="p-1 sm:p-1.5 rounded-lg border border-border-primary hover:border-brand-primary disabled:opacity-50 disabled:border-border-primary"
                 >
-                  <ChevronRight size={18} className="text-text-primary" />
+                  <ChevronRight size={isMobile ? 16 : 18} className="text-text-primary" />
                 </button>
               </div>
             </div>
@@ -1033,25 +1127,25 @@ export function TransactionHistory() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Modal de detalhes da transação - Versão aprimorada */}
+      {/* Modal de detalhes da transação - Responsivo */}
       <AnimatePresence>
         {isTransactionDetailsOpen && selectedTransaction && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4"
             onClick={() => setIsTransactionDetailsOpen(false)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-background-primary rounded-xl shadow-xl max-w-md w-full overflow-hidden border border-border-primary"
+              className="bg-background-primary rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-border-primary"
               onClick={e => e.stopPropagation()}
             >
-              {/* Header estilizado */}
-              <div className={`p-6 ${
+              {/* Header estilizado responsivo */}
+              <div className={`p-4 sm:p-6 ${
                 selectedTransaction.type === 'Depósito' 
                   ? 'bg-gradient-to-r from-green-500 to-emerald-600' 
                   : 'bg-gradient-to-r from-red-500 to-rose-600'
@@ -1060,41 +1154,41 @@ export function TransactionHistory() {
                   <div>
                     <div className="flex items-center">
                       {selectedTransaction.type === 'Depósito' ? (
-                        <ArrowUp className="mr-2" size={20} />
+                        <ArrowUp className="mr-2" size={isMobile ? 16 : 20} />
                       ) : (
-                        <ArrowDown className="mr-2" size={20} />
+                        <ArrowDown className="mr-2" size={isMobile ? 16 : 20} />
                       )}
-                      <h3 className="text-xl font-bold">{selectedTransaction.type}</h3>
+                      <h3 className="text-lg sm:text-xl font-bold">{selectedTransaction.type}</h3>
                     </div>
-                    <p className="opacity-90 text-sm mt-1">Transação #{selectedTransaction.id}</p>
+                    <p className="opacity-90 text-xs sm:text-sm mt-0.5 sm:mt-1">Transação #{selectedTransaction.id}</p>
                   </div>
                   <button 
                     onClick={() => setIsTransactionDetailsOpen(false)}
-                    className="p-1.5 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+                    className="p-1 sm:p-1.5 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
                   >
                     ✕
                   </button>
                 </div>
                 
-                <div className="mt-4">
-                  <p className="text-sm opacity-80">Valor</p>
+                <div className="mt-3 sm:mt-4">
+                  <p className="text-xs sm:text-sm opacity-80">Valor</p>
                   <div className="flex items-baseline">
-                    <span className="text-3xl font-bold">R${selectedTransaction.amount.toLocaleString()}</span>
-                    <span className="ml-2">{selectedTransaction.currency}</span>
+                    <span className="text-2xl sm:text-3xl font-bold">R${selectedTransaction.amount.toLocaleString()}</span>
+                    <span className="ml-2 text-sm sm:text-base">{selectedTransaction.currency}</span>
                   </div>
                 </div>
               </div>
                 
-              <div className="p-6 space-y-5">
-                <div className="flex justify-between items-center pb-4 border-b border-border-primary">
-                  <span className="text-text-tertiary">Status</span>
+              <div className="p-4 sm:p-6 space-y-3 sm:space-y-5">
+                <div className="flex justify-between items-center pb-3 sm:pb-4 border-b border-border-primary">
+                  <span className="text-xs sm:text-sm text-text-tertiary">Status</span>
                   <TransactionStatus status={selectedTransaction.status} />
                 </div>
                 
-                <div className="bg-background-secondary p-4 rounded-lg">
+                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-text-tertiary">Data</span>
-                    <span className="text-text-primary">
+                    <span className="text-xs sm:text-sm text-text-tertiary">Data</span>
+                    <span className="text-xs sm:text-sm text-text-primary">
                       {new Date(selectedTransaction.date).toLocaleDateString('pt-BR', { 
                         year: 'numeric', 
                         month: 'short', 
@@ -1104,10 +1198,10 @@ export function TransactionHistory() {
                   </div>
                 </div>
                 
-                <div className="bg-background-secondary p-4 rounded-lg">
+                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-text-tertiary">Horário</span>
-                    <span className="text-text-primary">
+                    <span className="text-xs sm:text-sm text-text-tertiary">Horário</span>
+                    <span className="text-xs sm:text-sm text-text-primary">
                       {new Date().toLocaleTimeString('pt-BR', { 
                         hour: '2-digit', 
                         minute: '2-digit'
@@ -1116,23 +1210,23 @@ export function TransactionHistory() {
                   </div>
                 </div>
                 
-                <div className="bg-background-secondary p-4 rounded-lg">
+                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-text-tertiary">Método</span>
-                    <div className="flex items-center text-text-primary">
+                    <span className="text-xs sm:text-sm text-text-tertiary">Método</span>
+                    <div className="flex items-center text-xs sm:text-sm text-text-primary">
                       {selectedTransaction.method === 'Cartão de Crédito' && (
-                        <div className="w-6 h-4 mr-2 rounded bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-                          <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                        <div className="w-5 sm:w-6 h-3 sm:h-4 mr-1.5 sm:mr-2 rounded bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
+                          <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-yellow-400"></div>
                         </div>
                       )}
                       {selectedTransaction.method === 'Transferência Bancária' && (
-                        <Wallet size={14} className="mr-2 text-gray-500" />
+                        <Wallet size={isMobile ? 12 : 14} className="mr-1.5 sm:mr-2 text-gray-500" />
                       )}
                       {selectedTransaction.method === 'PayPal' && (
-                        <div className="mr-2 text-blue-600 font-bold text-xs">P</div>
+                        <div className="mr-1.5 sm:mr-2 text-blue-600 font-bold text-xs">P</div>
                       )}
                       {selectedTransaction.method === 'Cripto' && (
-                        <div className="p-0.5 bg-orange-500 text-white mr-2 rounded-full">
+                        <div className="p-0.5 bg-orange-500 text-white mr-1.5 sm:mr-2 rounded-full">
                           <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none">
                             <path d="M9 8l3 8.5L15 8l4.5 16H4.5L9 8z" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
@@ -1143,7 +1237,7 @@ export function TransactionHistory() {
                   </div>
                 </div>
                 
-                <div className="bg-background-secondary p-4 rounded-lg">
+                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
                   <div>
                     <span className="text-text-tertiary block mb-2">ID da Transação</span>
                     <div className="flex items-center justify-between">
@@ -1174,11 +1268,11 @@ export function TransactionHistory() {
                 />
               </div>
               
-              <div className="px-6 pb-6 flex justify-between">
+              <div className="px-4 sm:px-6 pb-6 flex justify-between">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-4 py-2 border border-border-primary text-text-primary rounded-lg hover:bg-background-secondary transition-colors"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 border border-border-primary text-text-primary rounded-lg hover:bg-background-secondary transition-colors"
                   onClick={() => setIsTransactionDetailsOpen(false)}
                 >
                   Fechar
@@ -1187,7 +1281,7 @@ export function TransactionHistory() {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-4 py-2 bg-brand-primary text-white rounded-lg"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-primary text-white rounded-lg"
                 >
                   <Share2 size={16} className="mr-2 inline" />
                   Compartilhar
