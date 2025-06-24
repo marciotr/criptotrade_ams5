@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using cryptoApi.Application.Interfaces;
 using cryptoApi.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Globalization;
 
 namespace cryptoApi.Controllers
 {
@@ -59,12 +64,12 @@ namespace cryptoApi.Controllers
             [FromQuery] int limit = 500)
         {
             // Valid intervals according to Binance API docs
-            var validIntervals = new[] { 
+            var validIntervals = new[] {
                 "1m", "3m", "5m", "15m", "30m",
                 "1h", "2h", "4h", "6h", "8h", "12h",
                 "1d", "3d", "1w", "1M"
             };
-            
+
             if (string.IsNullOrWhiteSpace(symbol))
             {
                 return BadRequest("Symbol cannot be empty");
@@ -80,7 +85,7 @@ namespace cryptoApi.Controllers
                 return BadRequest("Limit must be between 1 and 1000");
             }
 
-            try 
+            try
             {
                 var klines = await _cryptoService.GetKlinesAsync(symbol, interval, limit);
                 return Ok(klines);
@@ -92,13 +97,87 @@ namespace cryptoApi.Controllers
         }
 
         [HttpGet("health")]
-    public IActionResult Health()
+        public IActionResult Health()
         {
-            return Ok(new { 
+            return Ok(new
+            {
                 status = "healthy",
                 service = "crypto",
                 timestamp = DateTime.UtcNow
             });
         }
+
+        [HttpGet("gainers")]
+        public async Task<IActionResult> GetTopGainers([FromQuery] int limit = 10)
+        {
+            try
+            {
+                var tickers = await _cryptoService.Get24hTickersAsync();
+                if (tickers == null || !tickers.Any())
+                    return Ok(new List<CryptoTickerDTO>());
+
+                // Filtra pares que terminam em USDT com variação positiva já como decimal
+                var gainers = tickers
+                    .Where(t => t.Symbol?.EndsWith("USDT") == true && t.PriceChangePercent > 0)
+                    .OrderByDescending(t => t.PriceChangePercent)
+                    .Take(limit)
+                    .ToList();
+
+                return Ok(gainers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error fetching gainers: {ex.Message}");
+            }
+        }
+
+        [HttpGet("losers")]
+        public async Task<IActionResult> GetTopLosers([FromQuery] int limit = 10)
+        {
+            try
+            {
+                var tickers = await _cryptoService.Get24hTickersAsync();
+                if (tickers == null || !tickers.Any())
+                    return Ok(new List<CryptoTickerDTO>());
+
+                // Filtra pares USDT com variação negativa diretamente em decimal
+                var losers = tickers
+                    .Where(t => t.Symbol?.EndsWith("USDT") == true && t.PriceChangePercent < 0)
+                    .OrderBy(t => t.PriceChangePercent)
+                    .Take(limit)
+                    .ToList();
+
+                return Ok(losers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error fetching losers: {ex.Message}");
+            }
+        }
+
+        [HttpGet("trending")]
+        public async Task<IActionResult> GetTrending([FromQuery] int limit = 10)
+        {
+            try
+            {
+                var tickers = await _cryptoService.Get24hTickersAsync();
+                if (tickers == null || !tickers.Any())
+                    return Ok(new List<CryptoTickerDTO>());
+
+                // Ordena diretamente pelo volume cotado (QuoteVolume) como decimal
+                var trending = tickers
+                    .Where(t => t.Symbol?.EndsWith("USDT") == true)
+                    .OrderByDescending(t => t.QuoteVolume)
+                    .Take(limit)
+                    .ToList();
+
+                return Ok(trending);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error fetching trending: {ex.Message}");
+            }
+        }
+
     }
 }
