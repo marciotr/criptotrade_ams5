@@ -562,10 +562,6 @@ export function Dashboard() {
           
           {/* Botões de ações no header */}
           <div className="flex items-center">
-            <button className="p-2.5 sm:p-2 rounded-lg bg-background-secondary text-text-primary mr-2 hidden sm:flex hover:bg-background-tertiary relative">
-              <Bell size={isMobile ? 18 : 20} />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
             
             <button className="px-3 sm:px-4 py-2 rounded-lg bg-brand-primary text-white flex items-center font-medium hover:bg-opacity-90 transition-all text-xs sm:text-sm">
               <Zap size={isMobile ? 14 : 16} className="mr-1 sm:mr-1.5" />
