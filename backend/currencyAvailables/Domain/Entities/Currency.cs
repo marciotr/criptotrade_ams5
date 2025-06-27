@@ -5,20 +5,20 @@ namespace CurrencyAvailables.Domain.Entities
 { 
     public class Currency
     {
-        public Guid Id { get; set; }
-        public string Symbol { get; set; } = null!;
-        public string Name { get; set; } = null!;
-        // public string Description { get; set; } = null!;
-        public string Backing { get; set; } = null!;
-        public string Status { get; set; } = null!;
+        public Guid Id { get; private set; }
+        public string Symbol { get; private set; } = null!;
+        public string Name { get; private set; } = null!;
+        public string Backing { get; private set; } = null!;
+        public string Status { get; private set; } = null!;
         
         private readonly List<History> _histories = new();
         public IReadOnlyCollection<History> Histories => _histories.AsReadOnly();
 
-        public Currency(string symbol, string name, /*string description, */ string backing, string status)
+        protected Currency() { } // Construtor vazio para EF Core
+
+        public Currency(string symbol, string name, string backing, string status)
         {
             Id = Guid.NewGuid();
-            // SetDescription(description);
             SetSymbol(symbol);
             SetName(name);
             SetBacking(backing);
@@ -36,14 +36,27 @@ namespace CurrencyAvailables.Domain.Entities
             _histories.Add(history);
         }
 
-        private void SetSymbol(string symbol)
+        public void AddHistories(IEnumerable<History> histories)
+        {
+            if (histories == null)
+                throw new ArgumentNullException(nameof(histories));
+
+            foreach (var history in histories)
+            {
+                AddHistory(history);
+            }
+        }
+
+        // Alterando de private para public
+        public void SetSymbol(string symbol)
         {
             if (string.IsNullOrWhiteSpace(symbol))
-                throw new ArgumentException("Symbol is required.");
+                throw new ArgumentException("Symbol is required.", nameof(symbol));
 
             Symbol = symbol.ToUpper();
         }
 
+        // Alterando de private para public
         public void SetName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -52,14 +65,7 @@ namespace CurrencyAvailables.Domain.Entities
             Name = name;
         }
 
-        // public void SetDescription(string description)
-        // {
-        //     if (string.IsNullOrWhiteSpace(description))
-        //         throw new ArgumentException("Description cannot be null or empty.", nameof(description));
-
-        //     Description = description;
-        // }
-
+        // Alterando de private para public
         public void SetBacking(string backing)
         {
             if (string.IsNullOrWhiteSpace(backing))
@@ -68,8 +74,12 @@ namespace CurrencyAvailables.Domain.Entities
             Backing = backing;
         }
 
+        // Alterando de private para public
         public void SetStatus(string status)
         {
+            if (string.IsNullOrWhiteSpace(status))
+                throw new ArgumentException("Status cannot be null or empty.", nameof(status));
+                
             Status = status;
         }
     }

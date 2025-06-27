@@ -26,6 +26,7 @@ namespace CurrencyAvailables.API.Controllers
                 Symbol = c.Symbol,
                 Name = c.Name,
                 Backing = c.Backing,
+                Status = c.Status,
                 Histories = c.Histories.Select(h => new HistoryDto
                 {
                     Id = h.Id,
@@ -49,7 +50,15 @@ namespace CurrencyAvailables.API.Controllers
                 Id = currency.Id,
                 Symbol = currency.Symbol,
                 Name = currency.Name,
-                Backing = currency.Backing
+                Backing = currency.Backing,
+                Status = currency.Status, 
+                Histories = currency.Histories.Select(h => new HistoryDto
+                {
+                    Id = h.Id,
+                    CurrencyId = h.CurrencyId,
+                    DateTimeAt = h.DateTimeAt,
+                    Value = h.Value
+                }).ToList()
             });
         }
 
@@ -67,10 +76,13 @@ namespace CurrencyAvailables.API.Controllers
             var existing = await _service.GetByIdAsync(id);
             if (existing == null) return NotFound();
 
-            var updated = new Currency(dto.Symbol, dto.Name, dto.Backing, dto.Status); // ou atualize campos diretamente
-            typeof(Currency).GetProperty("Id")?.SetValue(updated, id); // ajustar ID manualmente
+            // Atualizar a entidade existente em vez de criar uma nova
+            existing.SetName(dto.Name);
+            existing.SetSymbol(dto.Symbol);
+            existing.SetBacking(dto.Backing);
+            existing.SetStatus(dto.Status);
 
-            await _service.UpdateAsync(updated);
+            await _service.UpdateAsync(existing);
             return NoContent();
         }
 
