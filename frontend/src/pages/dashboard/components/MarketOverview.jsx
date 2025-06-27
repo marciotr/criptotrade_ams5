@@ -3,9 +3,8 @@ import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-mo
 import { ArrowUp, ArrowDown, ChevronRight, TrendingUp, BarChart2, DollarSign, LineChart, Zap, AlertTriangle } from 'lucide-react';
 import CryptoIcon from '../../../components/common/CryptoIcons';
 import { FixedSizeList as List } from 'react-window';
-import { marketApi } from '../../../services/api/api'; // Importe a API aqui no início do arquivo
+import { marketApi } from '../../../services/api/api'; 
 
-// Gradient sparkline canvas component
 const SparkLine = ({ prices, trend, height = 40, width = 80 }) => {
   const canvasRef = React.useRef(null);
   
@@ -16,29 +15,24 @@ const SparkLine = ({ prices, trend, height = 40, width = 80 }) => {
     const ctx = canvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
     
-    // Set canvas dimensions accounting for device pixel ratio
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
     
-    // Clear canvas
     ctx.clearRect(0, 0, width, height);
     
-    // Calculate points
     const points = [];
     const step = width / (prices.length - 1);
     prices.forEach((price, i) => {
       points.push([i * step, height - (price * height)]);
     });
     
-    // Draw gradient path
     ctx.beginPath();
     ctx.moveTo(0, height);
     points.forEach(point => ctx.lineTo(point[0], point[1]));
     ctx.lineTo(width, height);
     ctx.closePath();
     
-    // Create gradient
     const gradient = ctx.createLinearGradient(0, 0, 0, height);
     if (trend >= 0) {
       gradient.addColorStop(0, 'rgba(16, 185, 129, 0.2)');
@@ -51,7 +45,6 @@ const SparkLine = ({ prices, trend, height = 40, width = 80 }) => {
     ctx.fillStyle = gradient;
     ctx.fill();
     
-    // Draw line
     ctx.beginPath();
     ctx.moveTo(points[0][0], points[0][1]);
     points.forEach(point => ctx.lineTo(point[0], point[1]));
@@ -60,7 +53,6 @@ const SparkLine = ({ prices, trend, height = 40, width = 80 }) => {
     ctx.lineWidth = 2;
     ctx.stroke();
     
-    // Draw end circle
     ctx.beginPath();
     ctx.arc(points[points.length - 1][0], points[points.length - 1][1], 3, 0, 2 * Math.PI);
     ctx.fillStyle = trend >= 0 ? '#10b981' : '#ef4444';
@@ -90,7 +82,6 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
   const [renderKey, setRenderKey] = useState(Date.now());
   const [processingOperation, setProcessingOperation] = useState(false);
-  // Estado para controlar erros de carregamento
   const [loadError, setLoadError] = useState(false);
 
   const generateSparkline = useCallback((priceChange) => {
@@ -123,7 +114,6 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
           console.log('Buscando dados da API...');
           const response = await marketApi.getAllTickers();
           
-          // Verificar se a resposta contém dados e logar para debug
           console.log('Resposta da API:', response);
           
           if (response && response.data) {
@@ -154,7 +144,6 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     }
   }, [data]);
   
-  // Use localData como fallback quando data não estiver disponível
   const enrichedData = useMemo(() => {
     const sourceData = data && data.length > 0 ? data : localData;
     if (!Array.isArray(sourceData) || sourceData.length === 0) {
@@ -167,13 +156,12 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     }));
   }, [data, localData, generateSparkline]);
 
-  // Category definitions
   const categories = useMemo(() => [
     { 
       id: 'trending', 
       label: 'Tendência', 
       icon: <TrendingUp size={16} />,
-      sortKey: 'volume',  // Ordenar por volume para tendências
+      sortKey: 'volume',  
       sortDirection: 'desc'
     },
     { 
@@ -201,9 +189,7 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     }
   ], []);
 
-  // Effect to set sorting based on selected category
   useEffect(() => {
-    // Não execute este useEffect durante a animação
     if (animatingCategory) return;
 
     const selectedCategory = categories.find(cat => cat.id === activeCategory);
@@ -214,20 +200,16 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
       });
     }
     
-    // Trigger animation when category changes (sem timer adicional)
     setAnimateCards(true);
-    
-    // Use um único timer para desativar a animação
+
     const timer = setTimeout(() => {
       setAnimateCards(false);
     }, 300);
     
     return () => clearTimeout(timer);
-  }, [activeCategory, categories, animatingCategory]); // Adicione animatingCategory como dependência
+  }, [activeCategory, categories, animatingCategory]);
 
-  // Sorted and filtered data
   const displayData = useMemo(() => {
-    // Use dados anteriores durante animações
     if (animatingCategory && previousDisplayData.length > 0) {
       return previousDisplayData;
     }
@@ -240,7 +222,6 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     return enrichedData.slice(0, 5);
   }, [enrichedData, animatingCategory, previousDisplayData]);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -261,13 +242,11 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     transition: { duration: 0.8, repeat: 0 }
   };
 
-  // Price formatting helper
   const formatPrice = useCallback((price) => {
     if (!price) return '0.00';
     
     const numPrice = parseFloat(price);
     
-    // If price is less than 1, show more decimals
     if (numPrice < 1) {
       return numPrice.toLocaleString(undefined, {
         minimumFractionDigits: 2,
@@ -275,7 +254,6 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
       });
     }
     
-    // If price is less than 100, show 2 decimals
     if (numPrice < 100) {
       return numPrice.toLocaleString(undefined, {
         minimumFractionDigits: 2,
@@ -287,13 +265,11 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     return Math.round(numPrice).toLocaleString();
   }, []);
   
-  // Volume formatting helper
   const formatVolume = useCallback((volume) => {
     if (!volume) return '0';
     
     const numVolume = typeof volume === 'number' ? volume : parseFloat(volume);
     
-    // Format large numbers with K, M, B suffixes
     if (numVolume >= 1e9) return (numVolume / 1e9).toFixed(2) + 'B';
     if (numVolume >= 1e6) return (numVolume / 1e6).toFixed(2) + 'M';
     if (numVolume >= 1e3) return (numVolume / 1e3).toFixed(2) + 'K';
@@ -301,20 +277,15 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     return numVolume.toLocaleString();
   }, []);
 
-  // Modifique a função de mudança de categoria
   const handleCategoryChange = useCallback((categoryId) => {
-    // Evite múltiplas operações simultâneas
     if (categoryId === activeCategory || animatingCategory || processingOperation) return;
     
-    // Sinal de que estamos processando uma mudança de categoria
     setProcessingOperation(true);
     
-    // Preserve os dados atuais para a transição
     if (displayData.length > 0) {
       setPreviousDisplayData(displayData);
     }
     
-    // Sinalize que estamos animando
     setAnimatingCategory(true);
     
     // Use um único timeout com um atraso curto para mudar a categoria
@@ -785,52 +756,3 @@ const fetchDataForCategory = async (categoryId, setLocalData, setLoadError, gene
     return [];
   }
 };
-
-// Usando no useEffect principal
-useEffect(() => {
-  // Não busque dados se já temos através das props
-  if (data && data.length > 0) return;
-  
-  const loadData = async () => {
-    setLoadError(false);
-    await fetchDataForCategory(activeCategory, setLocalData, setLoadError, generateSparkline);
-  };
-  
-  loadData();
-}, [activeCategory, data, generateSparkline]);
-
-// Modificando o handleCategoryChange para usar a função
-const handleCategoryChange = useCallback((categoryId) => {
-  // Evite múltiplas operações simultâneas
-  if (categoryId === activeCategory || animatingCategory || processingOperation) return;
-  
-  // Marque como processando
-  setProcessingOperation(true);
-  
-  // Preserve os dados atuais para a transição
-  if (displayData.length > 0) {
-    setPreviousDisplayData(displayData);
-  }
-  
-  // Marque como animando
-  setAnimatingCategory(true);
-  
-  // Usando um único timeout para melhor performance
-  const timer = setTimeout(async () => {
-    setActiveCategory(categoryId);
-    setRenderKey(Date.now());
-    
-    // Carregue novos dados para a categoria selecionada
-    await fetchDataForCategory(categoryId, setLocalData, setLoadError, generateSparkline);
-    
-    // Termine a animação após um tempo adequado
-    const finishTimer = setTimeout(() => {
-      setAnimatingCategory(false);
-      setProcessingOperation(false);
-    }, 400);
-    
-    return () => clearTimeout(finishTimer);
-  }, 50);
-  
-  return () => clearTimeout(timer);
-}, [activeCategory, displayData, animatingCategory, processingOperation, generateSparkline]);
