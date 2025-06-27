@@ -574,135 +574,155 @@ export function Dashboard() {
           </div>
         </div>
         
-        {/* Seção de Estatísticas - Layout adaptável */}
+        {/* Seção Flutuante Superior */}
         <div className="mb-6 sm:mb-8">
-          <div className="p-3 sm:p-4 lg:p-6 rounded-xl border border-border-primary bg-background-primary shadow-md mb-4 sm:mb-6">
-            <div className="flex flex-col lg:flex-row justify-between">
+          <motion.div 
+            className="p-3 sm:p-5 lg:p-6 rounded-2xl border border-border-primary bg-gradient-to-br from-background-primary to-background-secondary/30 shadow-lg backdrop-blur-sm mb-4 sm:mb-6 relative overflow-hidden"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)" }}
+          >
+            {/* Elementos decorativos flutuantes */}
+            <motion.div 
+              className="absolute -top-20 -left-20 w-40 h-40 rounded-full bg-brand-primary/10 blur-3xl"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 0.3, 0.5],
+              }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity,
+                repeatType: "mirror" 
+              }}
+            />
+            
+            <motion.div 
+              className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-purple-500/10 blur-3xl"
+              animate={{ 
+                scale: [1.2, 1, 1.2],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity,
+                repeatType: "mirror",
+                delay: 2
+              }}
+            />
+            
+            <div className="flex flex-col lg:flex-row justify-between relative z-10">
               <div className="lg:w-1/2 mb-4 lg:mb-0 lg:pr-6">
                 <h2 className="text-base sm:text-lg font-semibold text-text-primary flex items-center mb-3 sm:mb-4">
-                  <TrendingUp size={isMobile ? 18 : 20} className="mr-1.5 sm:mr-2 text-brand-primary" /> 
+                  <div className="p-2 rounded-full bg-brand-primary/10 mr-2.5">
+                    <TrendingUp size={isMobile ? 18 : 20} className="text-brand-primary" />
+                  </div>
                   <span>Moedas em tendência</span>
                 </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
                   {getTopMovers.gainers.slice(0, isMobile ? 4 : 3).map((coin, index) => (
-                    <div key={coin.symbol} className="p-2 sm:p-3 rounded-lg border border-border-primary bg-background-secondary">
+                    <motion.div 
+                      key={coin.symbol} 
+                      className="p-2.5 sm:p-3.5 rounded-xl border border-border-primary bg-background-secondary/60 backdrop-blur-sm hover:bg-background-secondary transition-all"
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
                       <div className="flex items-center justify-between">
                         <span className="font-medium text-text-primary text-xs sm:text-sm">{coin.coin}</span>
-                        <span className="text-green-500 text-[10px] sm:text-xs flex items-center">
+                        <motion.span 
+                          className="text-green-500 text-[10px] sm:text-xs flex items-center"
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
+                        >
                           <ArrowUpRight size={10} className="mr-0.5" />
                           {coin.change.toFixed(1)}%
-                        </span>
+                        </motion.span>
                       </div>
-                      <div className="text-text-secondary text-[10px] sm:text-xs mt-0.5 sm:mt-1">R${parseFloat(coin.price).toLocaleString()}</div>
-                    </div>
+                      <div className="text-text-secondary text-[10px] sm:text-xs mt-1 sm:mt-1.5">
+                        R${parseFloat(coin.price).toLocaleString()}
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
               
               <div className="lg:w-1/2 lg:border-l lg:pl-6 border-border-primary">
                 <h2 className="text-base sm:text-lg font-semibold text-text-primary flex items-center mb-3 sm:mb-4">
-                  <Zap size={isMobile ? 18 : 20} className="mr-1.5 sm:mr-2 text-brand-primary" /> 
+                  <div className="p-2 rounded-full bg-brand-primary/10 mr-2.5">
+                    <Zap size={isMobile ? 18 : 20} className="text-brand-primary" />
+                  </div>
                   <span>Dicas de trading</span>
                 </h2>
-                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg border border-border-primary">
-                  <p className="text-text-primary italic text-xs sm:text-sm">
-                    "Nunca invista mais do que você pode perder. Diversifique sua carteira para reduzir riscos."
-                  </p>
-                </div>
+                
+                <motion.div 
+                  className="bg-gradient-to-br from-background-secondary/80 to-background-secondary/30 p-3.5 sm:p-5 rounded-xl border border-border-primary backdrop-blur-sm relative overflow-hidden"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {/* Elemento decorativo */}
+                  <motion.div 
+                    className="absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-brand-primary/10 blur-xl"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  />
+                  
+                  <motion.p 
+                    className="text-text-primary italic text-xs sm:text-sm relative z-10"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    "Nunca invista mais do que você pode perder. Diversifique sua carteira para reduzir riscos e mantenha uma estratégia sólida nas tendências de mercado."
+                  </motion.p>
+                </motion.div>
               </div>
             </div>
-          </div>
-          
-          {/* Cards de estatísticas responsivos */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
-            {[
-              {
-                title: "Valor da Carteira", 
-                value: "R$25.670,84", 
-                change: "+8.2%", 
-                isPositive: true,
-                color: "var(--brand-primary)",
-                bgColor: "bg-brand-primary",
-                icon: TrendingUp
-              },
-              { 
-                title: "Lucro Diário", 
-                value: "+R$892,40", 
-                change: "+4.3%", 
-                isPositive: true,
-                color: "#10b981",
-                bgColor: "bg-green-500",
-                icon: TrendingUp
-              },
-              { 
-                title: "Variação 24h", 
-                value: "+12.36%", 
-                change: "+6.1%", 
-                isPositive: true,
-                color: "#f59e0b",
-                bgColor: "bg-amber-500",
-                icon: TrendingUp
-              },
-              { 
-                title: "Posições", 
-                value: "7", 
-                change: "+2", 
-                isPositive: true,
-                color: "#8b5cf6",
-                bgColor: "bg-purple-500",
-                icon: TrendingUp
-              }
-            ].map((card, index) => (
-              <div 
-                key={index}
-                className="relative overflow-hidden rounded-xl border border-border-primary bg-background-primary p-3 sm:p-4 shadow-md hover:translate-y-[-5px] transition-all duration-300"
-              >
-                <div 
-                  className="absolute top-0 left-0 w-full h-1" 
-                  style={{ background: `linear-gradient(to right, ${card.color}, transparent)` }} 
-                />
-                <div className="flex items-center justify-between">
-                  <div className={`p-1.5 sm:p-2 rounded-lg ${card.bgColor} bg-opacity-10`}>
-                    <card.icon size={isMobile ? 16 : 20} style={{ color: card.color }} />
-                  </div>
-                  <span className="text-[9px] sm:text-xs text-text-tertiary py-0.5 px-1.5 rounded-full bg-background-secondary">24h</span>
-                </div>
-                <p className="text-xs sm:text-sm text-text-secondary mt-1 sm:mt-2">{card.title}</p>
-                <div className="flex items-baseline mt-0.5 sm:mt-1">
-                  <p className="text-sm sm:text-lg lg:text-xl font-bold text-text-primary">{card.value}</p>
-                  <span className={`ml-1.5 sm:ml-2 text-[9px] sm:text-xs flex items-center ${card.isPositive ? 'text-green-500' : 'text-red-500'}`}>
-                    {card.isPositive ? <ArrowUpRight size={10} className="mr-0.5" /> : <ArrowDownRight size={10} className="mr-0.5" />}
-                    {card.change}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Abas de Navegação - Design responsivo simplificado para mobile */}
+        {/* Abas de Navegação estilizadas */}
         <AnimatedSection className="mb-4 sm:mb-6" delay={0.2}>
-          <div className="flex space-x-1 sm:space-x-2 mb-4 sm:mb-6 border-b border-border-primary pb-1 sm:pb-2 overflow-x-auto scrollbar-hide">
+          <div className="flex space-x-1.5 sm:space-x-3 mb-4 sm:mb-6 pb-2 sm:pb-3 overflow-x-auto scrollbar-hide relative">
+            {/* Linha inferior com gradiente */}
+            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border-primary to-transparent"></div>
+            
             {[
               { id: 'chart', icon: BarChart2, label: 'Gráfico', fullLabel: 'Gráfico em Tempo Real' },
               { id: 'markets', icon: Activity, label: 'Mercados', fullLabel: 'Mercados' },
               { id: 'transactions', icon: PieChart, label: 'Transações', fullLabel: 'Transações' },
               { id: 'news', icon: Clock, label: 'Notícias', fullLabel: 'Últimas Notícias' }
-            ].map(tab => (
+            ].map((tab, index) => (
               <motion.button
                 key={tab.id}
-                className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg flex items-center whitespace-nowrap ${
+                className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl flex items-center whitespace-nowrap transition-all ${
                   activeTab === tab.id 
-                    ? 'bg-brand-primary text-white font-medium' 
-                    : 'hover:bg-background-secondary text-text-secondary'
+                    ? 'bg-gradient-to-r from-brand-primary to-brand-primary/80 text-white font-medium shadow-lg' 
+                    : 'hover:bg-background-secondary/70 text-text-secondary backdrop-blur-sm'
                 }`}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => setActiveTab(tab.id)}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <tab.icon size={isMobile ? 16 : 18} className="mr-1 sm:mr-2" />
+                <tab.icon size={isMobile ? 16 : 18} className="mr-1.5 sm:mr-2" />
                 <span className={isMobile ? 'text-xs' : 'text-sm'}>
                   {isMobile ? tab.label : tab.fullLabel}
                 </span>
+                
+                {/* Indicador de aba ativa */}
+                {activeTab === tab.id && (
+                  <motion.div 
+                    className="ml-1.5 w-1.5 h-1.5 rounded-full bg-white"
+                    layoutId="tabIndicator"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
               </motion.button>
             ))}
           </div>
