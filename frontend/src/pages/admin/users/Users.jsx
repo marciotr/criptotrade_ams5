@@ -39,7 +39,7 @@ const Users = () => {
   const [error, setError] = useState(null);
   const [notification, setNotification] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [viewMode, setViewMode] = useState('grid'); 
   const [sortConfig, setSortConfig] = useState({ field: 'name', direction: 'asc' });
   const [filterRole, setFilterRole] = useState('all');
   
@@ -54,7 +54,6 @@ const Users = () => {
   const [actionLoading, setActionLoading] = useState(false);
   const [refreshLoading, setRefreshLoading] = useState(false);
 
-  // Virtualization references
   const parentRef = React.useRef(null);
   
   useEffect(() => {
@@ -108,7 +107,7 @@ const Users = () => {
   const rowVirtualizer = useVirtualizer({
     count: filteredAndSortedUsers.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => viewMode === 'grid' ? 330 : 72,
+    estimateSize: () => viewMode === 'grid' ? 260 : 48, 
     overscan: 5,
   });
 
@@ -257,7 +256,7 @@ const Users = () => {
         )}
       </AnimatePresence>
 
-      {/* Header Section */}
+      {/* Header */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -294,7 +293,7 @@ const Users = () => {
         </div>
       </motion.div>
 
-      {/* Filters Bar */}
+      {/* Barra de filtro */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -302,7 +301,7 @@ const Users = () => {
         className="w-full bg-background-secondary border border-border-primary rounded-xl shadow-md p-4 mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
       >
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto">
-          {/* Search */}
+          {/* Pesquisa */}
           <div className="relative w-full md:w-72">
             <Search className="absolute inset-y-0 left-3 text-text-tertiary m-auto h-4 w-4" />
             <input
@@ -322,7 +321,7 @@ const Users = () => {
             )}
           </div>
           
-          {/* Role Filter */}
+          {/* Filtro De Função */}
           <div className="relative w-full md:w-auto">
             <div className="flex items-center gap-2 text-sm bg-background-primary border border-border-primary p-2 px-4 rounded-xl">
               <Filter className="h-4 w-4 text-text-tertiary" />
@@ -339,7 +338,7 @@ const Users = () => {
             </div>
           </div>
 
-          {/* Sort Button */}
+          {/* Filtros de Nome e ETC */}
           <div className="relative w-full md:w-auto">
             <div className="flex items-center gap-2 text-sm bg-background-primary border border-border-primary p-2 px-4 rounded-xl">
               <ArrowUpDown className="h-4 w-4 text-text-tertiary" />
@@ -356,7 +355,7 @@ const Users = () => {
           </div>
         </div>
 
-        {/* View Mode Toggles */}
+        {/* Alterar Modo De Exibição */}
         <div className="flex items-center bg-background-primary border border-border-primary rounded-lg overflow-hidden">
           <button 
             className={`p-2 flex items-center justify-center ${viewMode === 'grid' ? 'bg-brand-primary text-white' : 'text-text-tertiary'}`}
@@ -406,7 +405,7 @@ const Users = () => {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="flex-1 border border-border-primary bg-background-primary rounded-xl shadow-xl backdrop-blur-sm p-4 md:p-6 overflow-hidden"
         >
-          {/* Users Count Badge */}
+          {/* Contagem de usuários */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center">
               <span className="bg-brand-primary/10 text-brand-primary text-sm font-medium py-1 px-3 rounded-full">
@@ -446,7 +445,7 @@ const Users = () => {
               <LayoutGroup>
                 {viewMode === 'grid' ? (
                   <div 
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
                     style={{
                       height: `${rowVirtualizer.getTotalSize()}px`,
                       width: '100%',
@@ -483,12 +482,14 @@ const Users = () => {
                 ) : (
                   <div
                     style={{
-                      height: `${rowVirtualizer.getTotalSize()}px`,
+                      height: viewMode === 'list' 
+                        ? `${42 + (filteredAndSortedUsers.length * 50)}px` 
+                        : `${rowVirtualizer.getTotalSize()}px`,
                       width: '100%',
                       position: 'relative',
                     }}
                   >
-                    <div className="sticky top-0 z-10 grid grid-cols-12 gap-2 border-b border-border-primary pb-2 mb-2 text-text-tertiary text-xs uppercase tracking-wider bg-background-primary">
+                    <div className="sticky top-0 z-10 grid grid-cols-12 gap-2 border-b border-border-primary pb-2 mb-3 pt-1 text-text-tertiary text-xs uppercase tracking-wider bg-background-primary">
                       <div className="col-span-5">User</div>
                       <div className="col-span-4 hidden sm:block">Contact</div>
                       <div className="col-span-2">Role</div>
@@ -504,8 +505,8 @@ const Users = () => {
                             top: 0,
                             left: 0,
                             width: '100%',
-                            height: `${virtualItem.size}px`,
-                            transform: `translateY(${virtualItem.start}px)`,
+                            height: '48px', 
+                            transform: `translateY(${(virtualItem.index * 50) + 46}px)`, 
                           }}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -549,13 +550,14 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
     >
-      <div className="p-5">
-        <div className="flex justify-between items-start mb-4">
+      <div className="p-4"> {/* Reduzido de p-5 para p-4 */}
+        <div className="flex justify-between items-start mb-3"> {/* Reduzido de mb-4 para mb-3 */}
           <div 
             onClick={onPreview}
             className="flex-shrink-0 cursor-pointer"
           >
-            <div className="h-14 w-14 rounded-full overflow-hidden bg-background-tertiary flex items-center justify-center border-2 border-brand-primary/20">
+            <div className="h-12 w-12 rounded-full overflow-hidden bg-background-tertiary flex items-center justify-center border-2 border-brand-primary/20">
+              {/* Reduzido o tamanho da foto de h-14 w-14 para h-12 w-12 */}
               {user.photo ? (
                 <img
                   src={user.photo}
@@ -567,7 +569,8 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
                   }}
                 />
               ) : (
-                <div className="flex items-center justify-center w-full h-full text-text-tertiary font-medium text-xl">
+                <div className="flex items-center justify-center w-full h-full text-text-tertiary font-medium text-lg">
+                  {/* Reduzido o tamanho do texto de text-xl para text-lg */}
                   {user.name.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -577,17 +580,17 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
           <div className="flex space-x-1">
             <button
               onClick={onEdit}
-              className="p-2 rounded-lg hover:bg-background-tertiary transition-colors text-text-tertiary hover:text-brand-primary"
+              className="p-1.5 rounded-lg hover:bg-background-tertiary transition-colors text-text-tertiary hover:text-brand-primary"
               title="Edit User"
             >
-              <Edit size={16} />
+              <Edit size={15} /> {/* Reduzido de 16 para 15 */}
             </button>
             <button
               onClick={onDelete}
-              className="p-2 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors text-text-tertiary hover:text-red-500"
+              className="p-1.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors text-text-tertiary hover:text-red-500"
               title="Delete User"
             >
-              <Trash2 size={16} />
+              <Trash2 size={15} /> {/* Reduzido de 16 para 15 */}
             </button>
           </div>
         </div>
@@ -596,20 +599,24 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
           <h3 className="text-text-primary font-medium truncate hover:text-brand-primary transition-colors">
             {user.name}
           </h3>
-          <div className="flex items-center text-text-tertiary text-sm mt-1 space-x-2">
-            <Mail size={14} className="flex-shrink-0" />
+          <div className="flex items-center text-text-tertiary text-xs mt-1 space-x-2">
+            {/* Reduzido de text-sm para text-xs */}
+            <Mail size={12} className="flex-shrink-0" /> {/* Reduzido de 14 para 12 */}
             <span className="truncate">{user.email}</span>
           </div>
           {user.phone && (
-            <div className="flex items-center text-text-tertiary text-sm mt-1 space-x-2">
-              <Phone size={14} className="flex-shrink-0" />
+            <div className="flex items-center text-text-tertiary text-xs mt-0.5 space-x-2">
+              {/* Reduzido de text-sm mt-1 para text-xs mt-0.5 */}
+              <Phone size={12} className="flex-shrink-0" /> {/* Reduzido de 14 para 12 */}
               <span className="truncate">{user.phone}</span>
             </div>
           )}
         </div>
         
-        <div className="mt-4 flex items-center justify-between">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${getRoleBadgeStyles(user.role)}`}>
+        <div className="mt-3 flex items-center justify-between">
+          {/* Reduzido de mt-4 para mt-3 */}
+          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getRoleBadgeStyles(user.role)}`}>
+            {/* Reduzido de px-3 py-1 para px-2 py-0.5 */}
             {user.role}
           </span>
           
@@ -617,7 +624,7 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
             onClick={onToggleExpand}
             className={`p-1 rounded-full bg-background-tertiary ${isExpanded ? 'text-brand-primary rotate-180' : 'text-text-tertiary'} transition-all`}
           >
-            <ChevronDown size={16} />
+            <ChevronDown size={15} /> {/* Reduzido de 16 para 15 */}
           </button>
         </div>
       </div>
@@ -627,9 +634,10 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="border-t border-border-primary p-4 bg-background-primary"
+          className="border-t border-border-primary p-3 bg-background-primary"
+ 
         >
-          <div className="grid grid-cols-2 gap-2 text-sm">
+          <div className="grid grid-cols-2 gap-2 text-xs"> 
             <div>
               <span className="text-text-tertiary">ID:</span>
               <p className="text-text-secondary">{user.id}</p>
@@ -645,7 +653,7 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
           
           <button
             onClick={onPreview}
-            className="w-full mt-3 py-2 text-brand-primary hover:bg-brand-primary/10 rounded-lg text-sm font-medium transition-colors"
+            className="w-full mt-2 py-1.5 text-brand-primary hover:bg-brand-primary/10 rounded-lg text-xs font-medium transition-colors"
           >
             View Full Profile
           </button>
@@ -655,21 +663,20 @@ const UserCard = ({ user, isExpanded, onToggleExpand, onEdit, onDelete, onPrevie
   );
 };
 
-// User Row Component for List View
 const UserRow = ({ user, onEdit, onDelete, onPreview, getRoleBadgeStyles }) => {
   const [showActions, setShowActions] = useState(false);
   
   return (
     <motion.div 
-      className="grid grid-cols-12 gap-2 items-center py-3 border-b border-border-primary text-text-primary hover:bg-background-secondary rounded-lg px-3 transition-colors relative"
+      className="grid grid-cols-12 gap-2 items-center py-1.5 border-b border-border-primary text-text-primary hover:bg-background-secondary rounded-lg px-3 transition-colors relative" // Reduzido de py-1.5 para py-0.5
       whileHover={{ backgroundColor: 'rgba(var(--background-secondary), 0.8)' }}
       onMouseEnter={() => setShowActions(true)}
       onMouseLeave={() => setShowActions(false)}
     >
-      <div className="col-span-5 flex items-center space-x-3">
+      <div className="col-span-5 flex items-center space-x-2"> 
         <div 
           onClick={onPreview}
-          className="h-10 w-10 rounded-full overflow-hidden bg-background-tertiary flex items-center justify-center cursor-pointer border-2 border-brand-primary/20"
+          className="h-8 w-8 rounded-full overflow-hidden bg-background-tertiary flex items-center justify-center cursor-pointer border-2 border-brand-primary/20" // Reduzir de h-10 w-10 para h-8 w-8
         >
           {user.photo ? (
             <img
@@ -682,8 +689,8 @@ const UserRow = ({ user, onEdit, onDelete, onPreview, getRoleBadgeStyles }) => {
               }}
             />
           ) : (
-            <div className="flex items-center justify-center w-full h-full text-text-tertiary font-medium">
-              {user.name.charAt(0).toUpperCase()}
+            <div className="flex items-center justify-center w-full h-full text-text-tertiary font-medium text-sm"> {/* Adicionar text-sm */
+            user.name.charAt(0).toUpperCase()}
             </div>
           )}
         </div>
@@ -694,17 +701,19 @@ const UserRow = ({ user, onEdit, onDelete, onPreview, getRoleBadgeStyles }) => {
           >
             {user.name}
           </button>
-          <p className="text-xs text-text-tertiary truncate">ID: {user.id}</p>
+          <p className="text-xs text-text-tertiary truncate text-opacity-70">
+            ID: {String(user.id).substring(0, 8)}...
+          </p> 
         </div>
       </div>
       
       <div className="col-span-4 hidden sm:block">
-        <div className="text-sm text-text-tertiary truncate flex items-center space-x-1">
-          <Mail size={12} />
+        <div className="text-xs text-text-tertiary truncate flex items-center space-x-1">
+          <Mail size={10} /> 
           <span>{user.email}</span>
         </div>
         {user.phone && (
-          <div className="text-xs text-text-tertiary mt-1 truncate flex items-center space-x-1">
+          <div className="text-xs text-text-tertiary mt-0 truncate flex items-center space-x-1"> 
             <Phone size={10} />
             <span>{user.phone}</span>
           </div>
@@ -712,7 +721,7 @@ const UserRow = ({ user, onEdit, onDelete, onPreview, getRoleBadgeStyles }) => {
       </div>
       
       <div className="col-span-2">
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRoleBadgeStyles(user.role)}`}>
+        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getRoleBadgeStyles(user.role)}`}> 
           <Shield className="w-3 h-3 inline-block mr-1" />
           {user.role}
         </span>
@@ -727,23 +736,23 @@ const UserRow = ({ user, onEdit, onDelete, onPreview, getRoleBadgeStyles }) => {
           >
             <button
               onClick={onEdit}
-              className="p-1.5 rounded-md hover:bg-background-tertiary transition-colors text-text-tertiary hover:text-brand-primary"
+              className="p-1 rounded-md hover:bg-background-tertiary transition-colors text-text-tertiary hover:text-brand-primary"
             >
-              <Edit size={15} />
+              <Edit size={14} /> 
             </button>
             <button
               onClick={onDelete}
-              className="p-1.5 rounded-md hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors text-text-tertiary hover:text-red-500"
+              className="p-1 rounded-md hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors text-text-tertiary hover:text-red-500" // Reduzir p-1.5 para p-1
             >
-              <Trash2 size={15} />
+              <Trash2 size={14} /> 
             </button>
           </motion.div>
         ) : (
           <button
             onClick={() => setShowActions(true)}
-            className="p-1.5 text-text-tertiary hover:text-text-primary"
+            className="p-1 text-text-tertiary hover:text-text-primary"
           >
-            <MoreHorizontal size={16} />
+            <MoreHorizontal size={14} /> 
           </button>
         )}
       </div>
