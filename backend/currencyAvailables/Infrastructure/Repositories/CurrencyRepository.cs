@@ -46,15 +46,22 @@ namespace CurrencyAvailables.Infrastructure.Repositories
 
         public async Task UpdateAsync(Currency currency)
         {
-            var existingEntity = await _context.Currencies.FindAsync(currency.Id);
+            var existingEntity = await _context.Currencies
+                .Include(c => c.Histories)
+                .FirstOrDefaultAsync(c => c.Id == currency.Id);
+                
             if (existingEntity != null)
             {
-                _context.Entry(existingEntity).CurrentValues.SetValues(currency);
+                existingEntity.SetName(currency.Name);
+                existingEntity.SetSymbol(currency.Symbol);
+                existingEntity.SetBacking(currency.Backing);
+                existingEntity.SetStatus(currency.Status);
             }
             else
             {
                 _context.Currencies.Update(currency);
             }
+            
             await _context.SaveChangesAsync();
         }
 
