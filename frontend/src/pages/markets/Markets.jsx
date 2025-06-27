@@ -128,83 +128,175 @@ const CoinTableRow = React.memo(({ coin, index, onFavoriteToggle, onCoinClick, i
   </motion.tr>
 ));
 
-// VirtualizedCoinRow - Este componente renderiza uma linha dentro do virtualizador
-const VirtualizedCoinRow = React.memo(({ data, index, style }) => {
-  const coin = data.items[index];
-  const { onFavoriteToggle, onCoinClick, tertiary } = data;
-  const isFavorite = tertiary.includes(coin.id);
-
-  return (
-    <div 
-      style={style}
-      className="border-b border-border-primary hover:bg-background-secondary transition-all duration-200 cursor-pointer"
-      onClick={(e) => onCoinClick(coin, e)}
-    >
-      <div className="flex items-center h-full">
-        <div className="px-6 py-4 flex items-center w-64">
-          <div className="flex items-center space-x-3">
-            <div className="p-1.5 rounded-full bg-background-secondary">
-              <CryptoIcon symbol={coin.id} size={24} />
-            </div>
-            <div>
-              <span className="font-semibold text-text-primary block">{coin.name}</span>
-              <span className="text-xs text-text-tertiary">{coin.symbol}</span>
-            </div>
+// Card de moeda responsivo para substituir as linhas da tabela
+const CoinCard = React.memo(({ coin, onFavoriteToggle, onCoinClick, isFavorite }) => (
+  <motion.div
+    className="flex flex-col h-full"
+    initial={{ opacity: 0, scale: 0.97 }}
+    animate={{ opacity: 1, scale: 1 }}
+    whileHover={{ 
+      y: -4, 
+      boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -5px rgba(0,0,0,0.05)",
+      backgroundColor: "var(--background-secondary)"
+    }}
+    transition={{ duration: 0.2 }}
+    onClick={(e) => onCoinClick(coin, e)}
+  >
+    <div className="bg-background-primary border border-border-primary rounded-2xl p-4 cursor-pointer transition-all duration-200 h-full backdrop-blur-sm hover:border-brand-primary/30">
+      {/* Cabeçalho do card */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="p-2 rounded-full bg-background-secondary">
+            <CryptoIcon symbol={coin.id} size={24} />
           </div>
-        </div>
-        
-        <div className="px-6 py-4 text-right font-semibold text-text-primary w-40">
-          ${coin.price.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: coin.price < 1 ? 6 : 2
-          })}
-        </div>
-        
-        <div className="px-6 py-4 text-right w-32">
-          <div className={`inline-flex items-center px-2 py-1 rounded-full ${
-            coin.change > 0 ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'
-          }`}>
-            {coin.change > 0 ? <ArrowUp size={12} className="mr-1" /> : <ArrowDown size={12} className="mr-1" />}
-            {Math.abs(coin.change).toFixed(2)}%
-          </div>
-        </div>
-        
-        <div className="px-6 py-4 text-right text-text-secondary w-40">
-          ${coin.volume.toLocaleString(undefined, {
-            maximumFractionDigits: 0
-          })}
-        </div>
-        
-        <div className="px-6 py-4 text-right text-text-secondary w-40">
-          ${coin.marketCap.toLocaleString(undefined, {
-            maximumFractionDigits: 0
-          })}
-        </div>
-        
-        <div className="px-6 py-4 w-20 text-center">
-          <div className="flex justify-center">
-            <div
-              className="favorite-star cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                onFavoriteToggle(coin.id);
-              }}
-            >
-              <Star
-                className={`transition-all duration-300 ${
-                  isFavorite
-                    ? 'fill-yellow-500 text-yellow-500 drop-shadow-md'
-                    : 'text-text-tertiary hover:text-yellow-500'
-                }`}
-                size={20}
-              />
+          <div>
+            <div className="flex items-center">
+              <span className="font-semibold text-text-primary">{coin.name}</span>
+              <span className="ml-1 text-xs bg-background-secondary text-text-tertiary py-0.5 px-1.5 rounded-full">{coin.symbol.replace(coin.name, '')}</span>
+            </div>
+            <div className={`text-xs flex items-center mt-0.5 ${
+              coin.change > 0 ? 'text-green-500' : 'text-red-500'
+            }`}>
+              {coin.change > 0 ? <ArrowUp size={10} className="mr-0.5" /> : <ArrowDown size={10} className="mr-0.5" />}
+              {Math.abs(coin.change).toFixed(2)}%
             </div>
           </div>
+        </div>
+        
+        <motion.div
+          whileTap={{ scale: 1.2 }}
+          className="favorite-star"
+          onClick={(e) => {
+            e.stopPropagation();
+            onFavoriteToggle(coin.id);
+          }}
+        >
+          <Star
+            className={`transition-all duration-300 ${
+              isFavorite
+                ? 'fill-yellow-500 text-yellow-500 drop-shadow-md'
+                : 'text-gray-400 hover:text-yellow-500'
+            }`}
+            size={18}
+          />
+        </motion.div>
+      </div>
+      
+      {/* Corpo do card com informações principais */}
+      <div className="mt-3 pt-3 border-t border-border-primary">
+        <div className="flex justify-between items-baseline">
+          <span className="text-xs text-text-tertiary">Preço</span>
+          <span className="font-bold text-text-primary">
+            ${coin.price.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: coin.price < 1 ? 6 : 2
+            })}
+          </span>
+        </div>
+        
+        <div className="flex justify-between items-baseline mt-1.5">
+          <span className="text-xs text-text-tertiary">Volume 24h</span>
+          <span className="text-text-secondary text-sm">
+            ${coin.volume.toLocaleString(undefined, {
+              maximumFractionDigits: 0
+            })}
+          </span>
+        </div>
+        
+        <div className="flex justify-between items-baseline mt-1.5">
+          <span className="text-xs text-text-tertiary">Cap. de Mercado</span>
+          <span className="text-text-secondary text-sm">
+            ${coin.marketCap.toLocaleString(undefined, {
+              maximumFractionDigits: 0
+            })}
+          </span>
         </div>
       </div>
+      
+      {/* Gradient indicator na base do card */}
+      <div className={`h-1 w-full mt-3 rounded-full ${
+        coin.change > 0 ? 'bg-gradient-to-r from-green-500 to-teal-400' : 'bg-gradient-to-r from-red-500 to-pink-500'
+      }`}></div>
+    </div>
+  </motion.div>
+));
+
+// Componente para as categorias do filtro
+const FilterButton = ({ label, active, onClick, icon }) => (
+  <motion.button
+    whileHover={{ y: -2 }}
+    whileTap={{ scale: 0.95 }}
+    onClick={onClick}
+    className={`flex items-center justify-center px-4 py-2 rounded-xl transition-all ${
+      active
+        ? 'bg-brand-primary text-white font-medium shadow-lg shadow-brand-primary/20'
+        : 'bg-background-secondary/60 backdrop-blur-sm text-text-secondary hover:bg-background-secondary border border-border-primary'
+    }`}
+  >
+    {icon && <span className="mr-2">{icon}</span>}
+    {label}
+  </motion.button>
+);
+
+// Componente do seletor de ordenação
+const SortSelector = ({ sortConfig, onSortChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const sortOptions = [
+    { key: 'marketCap', label: 'Cap. de Mercado', direction: 'desc' },
+    { key: 'price', label: 'Preço (maior)', direction: 'desc' },
+    { key: 'price', label: 'Preço (menor)', direction: 'asc' },
+    { key: 'change', label: 'Ganhos 24h', direction: 'desc' },
+    { key: 'change', label: 'Perdas 24h', direction: 'asc' },
+    { key: 'volume', label: 'Volume', direction: 'desc' },
+  ];
+  
+  const currentOption = sortOptions.find(
+    opt => opt.key === sortConfig.key && opt.direction === sortConfig.direction
+  ) || sortOptions[0];
+  
+  return (
+    <div className="relative">
+      <button 
+        className="flex items-center space-x-1 px-4 py-2 rounded-xl bg-background-secondary/60 backdrop-blur-sm border border-border-primary text-text-secondary hover:bg-background-secondary"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <ArrowUp size={14} className="mr-1" />
+        <span>Ordenar: {currentOption.label}</span>
+        <ChevronDown size={16} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute z-10 right-0 mt-1 bg-background-primary border border-border-primary rounded-xl shadow-lg py-1 min-w-[180px]"
+          >
+            {sortOptions.map((option) => (
+              <button
+                key={`${option.key}-${option.direction}`}
+                className={`w-full text-left px-4 py-2 hover:bg-background-secondary flex items-center ${
+                  currentOption.key === option.key && currentOption.direction === option.direction
+                    ? 'text-brand-primary font-medium'
+                    : 'text-text-secondary'
+                }`}
+                onClick={() => {
+                  onSortChange(option);
+                  setIsOpen(false);
+                }}
+              >
+                {option.direction === 'desc' ? <ChevronDown size={14} className="mr-2" /> : <ChevronUp size={14} className="mr-2" />}
+                {option.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
-});
+};
 
 export function Markets() {
   const navigate = useNavigate();
@@ -375,14 +467,14 @@ export function Markets() {
   }, [isLoading]);
 
   // Modificar a função de renderização da tabela para usar loading padronizado
-  const renderMarketTable = () => {
+  const renderMarketContent = () => {
     if (isLoading && isFirstRender) {
       return <LoadingScreen message="Carregando dados do mercado..." />;
     }
 
     if (!filteredData.length) {
       return (
-        <div className="px-6 py-16 text-center">
+        <div className="px-6 py-16 text-center bg-background-primary rounded-2xl border border-border-primary">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -411,26 +503,29 @@ export function Markets() {
     }
 
     return (
-      <div className="w-full" style={{ height: 'calc(100vh - 400px)', minHeight: '400px' }}>
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              className="market-list"
-              height={height}
-              itemCount={filteredData.length}
-              itemSize={72} // altura de cada linha
-              width={width}
-              itemData={{
-                items: filteredData,
-                onFavoriteToggle: toggleFavorite,
-                onCoinClick: handleCoinClick,
-                tertiary
-              }}
-            >
-              {VirtualizedCoinRow}
-            </List>
-          )}
-        </AutoSizer>
+      <div className="w-full pb-10">
+        {/* Informação de contagem */}
+        <div className="flex justify-between items-center mb-4 text-text-tertiary text-sm">
+          <span>Exibindo {filteredData.length} moedas</span>
+          
+          <SortSelector 
+            sortConfig={sortConfig}
+            onSortChange={({key, direction}) => setSortConfig({key, direction})}
+          />
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
+          {filteredData.map((coin, index) => (
+            <CoinCard
+              key={coin.id}
+              coin={coin}
+              onFavoriteToggle={toggleFavorite}
+              onCoinClick={handleCoinClick}
+              isFavorite={tertiary.includes(coin.id)}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     );
   };
@@ -465,7 +560,7 @@ export function Markets() {
         </div>
       </motion.div>
 
-      {/* Trending Pairs com visual melhorado */}
+      {/* Trending Pairs com visual melhorada */}
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-text-primary flex items-center">
@@ -493,10 +588,17 @@ export function Markets() {
         </div>
       </div>
 
-      {/* Search and Filters com melhor responsividade */}
-      <div className="max-w-7xl mx-auto mt-8">
-        <div className="flex flex-col lg:flex-row justify-between items-stretch gap-4">
-          <div className="relative w-full lg:w-96">
+     
+
+      {/* Market Content - Visualização em Grade ao invés de Tabela */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-7xl mx-auto mt-6"
+      >
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
+          {/* Caixa de pesquisa com filtros em linha */}
+          <div className="relative w-full md:max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary" size={20} />
             <input
               type="text"
@@ -507,168 +609,36 @@ export function Markets() {
             />
           </div>
           
-          <div className="hidden lg:flex flex-wrap gap-2">
-            {marketFilters.map((f) => (
-              <motion.button
-                key={f.id}
-                onClick={() => setFilter(f.id)}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-xl font-medium transition-all ${
-                  filter === f.id
-                    ? 'bg-brand-primary text-background-primary shadow-lg'
-                    : 'bg-background-secondary text-text-secondary hover:bg-background-tertiary'
-                }`}
-              >
-                {f.name}
-              </motion.button>
-            ))}
-          </div>
-          
-          {/* Filtro mobile */}
-          <div className="lg:hidden">
-            <button 
-              className="flex items-center justify-between w-full px-4 py-3 bg-background-secondary rounded-xl text-text-primary"
-              onClick={() => setShowMobileFilters(prev => !prev)}
-            >
-              <span className="flex items-center">
-                <Filter size={18} className="mr-2" />
-                Filtros
-              </span>
-              <ChevronDown 
-                size={18} 
-                className={`transition-transform ${showMobileFilters ? 'rotate-180' : ''}`} 
-              />
-            </button>
-            
-            <AnimatePresence>
-              {showMobileFilters && (
-                <motion.div 
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="mt-2 overflow-hidden"
-                >
-                  <div className="flex flex-wrap gap-2 p-2 bg-background-secondary rounded-xl">
-                    {marketFilters.map((f) => (
-                      <button
-                        key={f.id}
-                        onClick={() => {
-                          setFilter(f.id);
-                          setShowMobileFilters(false);
-                        }}
-                        className={`flex-1 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
-                          filter === f.id
-                            ? 'bg-brand-primary text-background-primary shadow-lg'
-                            : 'bg-background-tertiary text-text-secondary'
-                        }`}
-                      >
-                        {f.name}
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          {/* Filtros de categoria com design moderno */}
+          <div className="flex flex-wrap gap-2 w-full md:w-auto">
+            <FilterButton 
+              label="Todas" 
+              active={filter === 'all'} 
+              onClick={() => setFilter('all')} 
+            />
+            <FilterButton 
+              label="Favoritas" 
+              active={filter === 'tertiary'} 
+              onClick={() => setFilter('tertiary')} 
+              icon={<Star size={14} />} 
+            />
+            <FilterButton 
+              label="Em Alta" 
+              active={filter === 'gainers'} 
+              onClick={() => setFilter('gainers')} 
+              icon={<ArrowUp size={14} />} 
+            />
+            <FilterButton 
+              label="Em Baixa" 
+              active={filter === 'losers'} 
+              onClick={() => setFilter('losers')} 
+              icon={<ArrowDown size={14} />} 
+            />
           </div>
         </div>
-      </div>
-
-      {/* Market Table com virtualização */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-7xl mx-auto mt-6 bg-background-primary rounded-xl shadow-lg overflow-hidden border border-border-primary"
-      >
-        <div className="overflow-hidden">
-          {/* Cabeçalho da tabela (fixo) */}
-          <div className="bg-background-secondary border-b border-border-primary">
-            <div className="flex items-center">
-              <div className="px-6 py-4 w-64 text-left text-sm font-medium text-text-tertiary">Nome</div>
-              
-              <div 
-                className="px-6 py-4 w-40 text-right text-sm font-medium text-text-tertiary cursor-pointer hover:text-brand-primary transition-colors"
-                onClick={() => requestSort('price')}
-              >
-                <div className="flex items-center justify-end space-x-1">
-                  <span>Preço</span>
-                  <div className="flex flex-col">
-                    <ChevronUp 
-                      size={12} 
-                      className={`${sortConfig.key === 'price' && sortConfig.direction === 'asc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                    <ChevronDown 
-                      size={12} 
-                      className={`${sortConfig.key === 'price' && sortConfig.direction === 'desc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              <div 
-                className="px-6 py-4 w-32 text-right text-sm font-medium text-text-tertiary cursor-pointer hover:text-brand-primary transition-colors"
-                onClick={() => requestSort('change')}
-              >
-                <div className="flex items-center justify-end space-x-1">
-                  <span>24h</span>
-                  <div className="flex flex-col">
-                    <ChevronUp 
-                      size={12} 
-                      className={`${sortConfig.key === 'change' && sortConfig.direction === 'asc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                    <ChevronDown 
-                      size={12} 
-                      className={`${sortConfig.key === 'change' && sortConfig.direction === 'desc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              <div 
-                className="px-6 py-4 w-40 text-right text-sm font-medium text-text-tertiary cursor-pointer hover:text-brand-primary transition-colors"
-                onClick={() => requestSort('volume')}
-              >
-                <div className="flex items-center justify-end space-x-1">
-                  <span>Volume 24h</span>
-                  <div className="flex flex-col">
-                    <ChevronUp 
-                      size={12} 
-                      className={`${sortConfig.key === 'volume' && sortConfig.direction === 'asc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                    <ChevronDown 
-                      size={12} 
-                      className={`${sortConfig.key === 'volume' && sortConfig.direction === 'desc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              <div 
-                className="px-6 py-4 w-40 text-right text-sm font-medium text-text-tertiary cursor-pointer hover:text-brand-primary transition-colors"
-                onClick={() => requestSort('marketCap')}
-              >
-                <div className="flex items-center justify-end space-x-1">
-                  <span>Cap. de Mercado</span>
-                  <div className="flex flex-col">
-                    <ChevronUp 
-                      size={12} 
-                      className={`${sortConfig.key === 'marketCap' && sortConfig.direction === 'asc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                    <ChevronDown 
-                      size={12} 
-                      className={`${sortConfig.key === 'marketCap' && sortConfig.direction === 'desc' ? 'text-brand-primary' : 'text-text-tertiary opacity-50'}`} 
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="px-6 py-4 w-20 text-center text-sm font-medium text-text-tertiary">Favorito</div>
-            </div>
-          </div>
-          
-          {/* Corpo da tabela virtualizado */}
-          {renderMarketTable()}
-        </div>
+        
+        {/* Conteúdo das moedas em grid responsivo */}
+        {renderMarketContent()}
       </motion.div>
       
       {/* CTA para engajamento */}
@@ -694,6 +664,67 @@ export function Markets() {
           </motion.button>
         </div>
       </motion.div>
+
+      {/* Background Animado - Adicionado conforme sugestão */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div 
+          className="absolute top-[10%] left-[5%] w-72 h-72 rounded-full bg-brand-primary/5 blur-3xl"
+          animate={{ 
+            y: [0, 30, 0],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity,
+            repeatType: "reverse" 
+          }}
+        />
+        
+        <motion.div 
+          className="absolute bottom-[10%] right-[10%] w-96 h-96 rounded-full bg-purple-500/5 blur-3xl"
+          animate={{ 
+            y: [0, -30, 0],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ 
+            duration: 25, 
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: 5
+          }}
+        />
+        
+        <motion.div 
+          className="absolute top-[40%] right-[30%] w-64 h-64 rounded-full bg-blue-500/5 blur-3xl"
+          animate={{ 
+            y: [0, 20, 0],
+            opacity: [0.2, 0.3, 0.2],
+          }}
+          transition={{ 
+            duration: 18, 
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: 10
+          }}
+        />
+        
+        {/* Elementos decorativos tipo partículas */}
+        <motion.div 
+          className="fixed w-1 h-1 rounded-full bg-brand-primary/80 top-[15%] left-[20%]" 
+          animate={{ scale: [1, 3, 1], opacity: [0.7, 0, 0.7] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+        <motion.div 
+          className="fixed w-1 h-1 rounded-full bg-purple-500/80 top-[25%] left-[80%]" 
+          animate={{ scale: [1, 3, 1], opacity: [0.7, 0, 0.7] }}
+          transition={{ duration: 8, repeat: Infinity, delay: 1 }}
+        />
+        <motion.div 
+          className="fixed w-1.5 h-1.5 rounded-full bg-blue-500/80 top-[65%] left-[75%]" 
+          animate={{ scale: [1, 3, 1], opacity: [0.7, 0, 0.7] }}
+          transition={{ duration: 7, repeat: Infinity, delay: 2 }}
+        />
+      </div>
     </motion.div>
   );
 }
