@@ -15,6 +15,8 @@
     "chart.js": "^4.5.0",
     "clsx": "^2.1.0",
     "cryptocurrency-icons": "^0.18.1",
+    "expo": "^53.0.12",
+    "expo-cli": "^6.3.12",
     "framer-motion": "^11.0.8",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
