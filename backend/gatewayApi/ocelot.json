@@ -1,0 +1,150 @@
+{
+  "Routes": [
+ 
+    {
+      "DownstreamPathTemplate": "/api/Currency",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5169}],
+      "UpstreamPathTemplate": "/currency",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Currency/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5169}],
+      "UpstreamPathTemplate": "/currency/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/History",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5169}],
+      "UpstreamPathTemplate": "/history",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/History/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5169}],
+      "UpstreamPathTemplate": "/history/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/History/{currencyId}/range",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost", "Port": 5169}],
+      "UpstreamPathTemplate": "/history/{currencyId}/range",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/auth/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/profile",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/auth/profile",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/health",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/auth/health",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/user",
+      "UpstreamHttpMethod": [ "POST", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/user/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User/{id}/photo",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/user/{id}/photo",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+     {
+      "DownstreamPathTemplate": "/api/User/health",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/user/health",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+ 
+    {
+      "DownstreamPathTemplate": "/api/WalletCrypto",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5275}],
+      "UpstreamPathTemplate": "/wallet-crypto",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/WalletCrypto/{userId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5275}],
+      "UpstreamPathTemplate": "/wallet-crypto/{userId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/WalletCrypto/{id}/balance",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5275}],
+      "UpstreamPathTemplate": "/wallet-crypto/{id}/balance",
+      "UpstreamHttpMethod": [ "PATCH" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/WalletFiat/fiat",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5275}],
+      "UpstreamPathTemplate": "/wallet-fiat",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/WalletFiat/fiat/{userId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5275}],
+      "UpstreamPathTemplate": "/wallet-fiat/{userId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/WalletFiat/fiat/{walletId}/balance",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5275}],
+      "UpstreamPathTemplate": "/wallet-fiat/{walletId}/balance",
+      "UpstreamHttpMethod": [ "PATCH" ]
+    },
+    
+
+    {
+      "DownstreamPathTemplate": "/api/Crypto/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5101}],
+      "UpstreamPathTemplate": "/crypto/{everything}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000",
+    "RequestIdKey": "X-Correlation-ID"
+  }
+}
