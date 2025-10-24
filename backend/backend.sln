@@ -4,6 +4,8 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "userApi", "userApi\userApi.csproj", "{7D7B0805-1930-5D23-6E51-7234845C5BE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "walletApi2.Tests", "walletApi2.Tests\walletApi2.Tests.csproj", "{B1F6A9E1-9C2B-4F7A-8C9D-111111111111}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

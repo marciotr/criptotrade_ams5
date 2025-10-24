@@ -62,7 +62,28 @@ namespace WalletApi2.Services
                     };
 
                     await _historyRepository.AddAsync(tx);
-                    await _historyRepository.SaveChangesAsync();
+
+                    // Ensure SaveChangesAsync is awaited and handle failures before committing the DB transaction
+                    int savedCount;
+                    try
+                    {
+                        savedCount = await _historyRepository.SaveChangesAsync();
+                    }
+                    catch (Exception saveEx)
+                    {
+                        // If saving history fails, rollback the DB transaction and bubble up the error
+                        await transaction.RollbackAsync();
+                        _logger.LogError(saveEx, "Failed to save transaction history for UserId {UserId}. Transaction rolled back.", userId);
+                        throw;
+                    }
+
+                    if (savedCount <= 0)
+                    {
+                        // Nothing was saved; rollback to keep consistency
+                        await transaction.RollbackAsync();
+                        _logger.LogWarning("No transaction history rows were saved for UserId {UserId}. Transaction rolled back.", userId);
+                        return false;
+                    }
 
                     await transaction.CommitAsync();
                     _logger.LogInformation("Transaction committed for UserId {UserId}", userId);
