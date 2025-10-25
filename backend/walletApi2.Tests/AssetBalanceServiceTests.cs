@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -56,9 +57,8 @@ namespace WalletApi2.Tests
             await _dbContext.UserAssetBalances.AddAsync(initial);
             await _dbContext.SaveChangesAsync();
 
-            // Create repository and service instances using the test DbContext
-            var historyRepo = new GenericRepository<TransactionHistory>(_dbContext);
-            var service = new AssetBalanceService(_dbContext, historyRepo, _logger);
+            // Create service instance using the test DbContext
+            var service = new AssetBalanceService(_dbContext, _logger);
 
             // Act: adjust balance by +50
             var result = await service.AdjustBalanceAtomicAsync(101, "BTC", 50m);
@@ -100,8 +100,7 @@ namespace WalletApi2.Tests
             await _dbContext.UserAssetBalances.AddAsync(initial);
             await _dbContext.SaveChangesAsync();
 
-            var historyRepo = new GenericRepository<TransactionHistory>(_dbContext);
-            var service = new AssetBalanceService(_dbContext, historyRepo, NullLogger<AssetBalanceService>.Instance);
+            var service = new AssetBalanceService(_dbContext, NullLogger<AssetBalanceService>.Instance);
 
             // Act: try to withdraw 150 (delta = -150)
             var result = await service.AdjustBalanceAtomicAsync(101, "BTC", -150m);
@@ -124,8 +123,7 @@ namespace WalletApi2.Tests
             // Arrange: ensure no user with id 999 exists
             // (Db is empty at this point in the test class lifecycle)
 
-            var historyRepo = new GenericRepository<TransactionHistory>(_dbContext);
-            var service = new AssetBalanceService(_dbContext, historyRepo, NullLogger<AssetBalanceService>.Instance);
+            var service = new AssetBalanceService(_dbContext, NullLogger<AssetBalanceService>.Instance);
 
             // Act: try to adjust balance for non-existent user
             var result = await service.AdjustBalanceAtomicAsync(999, "BTC", 50m);
@@ -136,6 +134,83 @@ namespace WalletApi2.Tests
             // No transaction history entries should be created
             var historyEntries = await _dbContext.TransactionHistories.ToListAsync();
             Assert.Empty(historyEntries);
+        }
+
+        [Fact]
+        public async Task AdjustBalanceAtomicAsync_ConcurrentDebits_PreventsLostUpdate()
+        {
+            // Use a shared in-memory SQLite database (file:...;cache=shared) so multiple
+            // connections can open and transact concurrently without nested-transaction errors.
+            const string connStr = "Data Source=file:concurrentTest?mode=memory&cache=shared";
+
+            // Master connection keeps the in-memory DB alive for the duration of the test
+            using var masterConn = new SqliteConnection(connStr);
+            await masterConn.OpenAsync();
+
+            var masterOptions = new DbContextOptionsBuilder<WalletDbContext>()
+                .UseSqlite(masterConn)
+                .Options;
+
+            // Create schema and seed initial balance using the master context
+            using (var masterCtx = new WalletDbContext(masterOptions))
+            {
+                await masterCtx.Database.EnsureCreatedAsync();
+
+                var initial = new UserAssetBalance
+                {
+                    UserId = 101,
+                    AssetSymbol = "BTC",
+                    AvailableAmount = 1000m,
+                    LockedAmount = 0m,
+                    AverageAcquisitionPrice = 0m,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                await masterCtx.UserAssetBalances.AddAsync(initial);
+                await masterCtx.SaveChangesAsync();
+
+                // Parameters: 100 concurrent debits of -10 each -> total 100 * 10 = 1000
+                const int concurrentOps = 100;
+                const decimal delta = -10m;
+
+                // Act: run many concurrent tasks each using its own DbContext/connection instance
+                var tasks = new Task<bool>[concurrentOps];
+                for (int i = 0; i < concurrentOps; i++)
+                {
+                    tasks[i] = Task.Run(async () =>
+                    {
+                        // Each task opens its own connection to the shared in-memory DB
+                        await using var conn = new SqliteConnection(connStr);
+                        await conn.OpenAsync();
+
+                        var options = new DbContextOptionsBuilder<WalletDbContext>()
+                            .UseSqlite(conn)
+                            .Options;
+
+                        await using var ctx = new WalletDbContext(options);
+                        var svc = new AssetBalanceService(ctx, NullLogger<AssetBalanceService>.Instance);
+                        return await svc.AdjustBalanceAtomicAsync(101, "BTC", delta);
+                    });
+                }
+
+                var results = await Task.WhenAll(tasks);
+
+                // Force EF to refresh tracked state so we read the committed values from the DB
+                masterCtx.ChangeTracker.Clear();
+
+                // Assert 1: final balance should be 0 (1000 - 100 * 10)
+                var balance = await masterCtx.UserAssetBalances.SingleAsync(b => b.UserId == 101 && b.AssetSymbol == "BTC");
+                Assert.Equal(0m, balance.AvailableAmount);
+
+                // Assert 2: exactly 100 calls succeeded
+                var successCount = results.Count(r => r);
+                Assert.Equal(concurrentOps, successCount);
+
+                // Assert 3: exactly 100 transaction history records created
+                var historyEntries = await masterCtx.TransactionHistories.ToListAsync();
+                Assert.Equal(concurrentOps, historyEntries.Count);
+            }
         }
 
         public void Dispose()

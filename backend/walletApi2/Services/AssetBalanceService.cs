@@ -11,13 +11,12 @@ namespace WalletApi2.Services
     public class AssetBalanceService : IAssetBalanceService
     {
         private readonly WalletDbContext _dbContext;
-        private readonly IRepository<TransactionHistory> _historyRepository;
+    // history will be written directly via DbContext to ensure the same database transaction
         private readonly Microsoft.Extensions.Logging.ILogger<AssetBalanceService> _logger;
 
-        public AssetBalanceService(WalletDbContext dbContext, IRepository<TransactionHistory> historyRepository, Microsoft.Extensions.Logging.ILogger<AssetBalanceService> logger)
+        public AssetBalanceService(WalletDbContext dbContext, Microsoft.Extensions.Logging.ILogger<AssetBalanceService> logger)
         {
             _dbContext = dbContext;
-            _historyRepository = historyRepository;
             _logger = logger;
         }
 
@@ -47,9 +46,12 @@ namespace WalletApi2.Services
             {
                 var affected = await _dbContext.Database.ExecuteSqlInterpolatedAsync(updateSql);
 
+                // Clear tracked entities so subsequent reads reflect the database state after the raw SQL update
+                _dbContext.ChangeTracker.Clear();
+
                 if (affected > 0)
                 {
-                    // Create transaction history
+                    // Create transaction history and save using the same DbContext/transaction
                     var tx = new TransactionHistory
                     {
                         UserId = userId,
@@ -61,29 +63,8 @@ namespace WalletApi2.Services
                         CreatedAt = now
                     };
 
-                    await _historyRepository.AddAsync(tx);
-
-                    // Ensure SaveChangesAsync is awaited and handle failures before committing the DB transaction
-                    int savedCount;
-                    try
-                    {
-                        savedCount = await _historyRepository.SaveChangesAsync();
-                    }
-                    catch (Exception saveEx)
-                    {
-                        // If saving history fails, rollback the DB transaction and bubble up the error
-                        await transaction.RollbackAsync();
-                        _logger.LogError(saveEx, "Failed to save transaction history for UserId {UserId}. Transaction rolled back.", userId);
-                        throw;
-                    }
-
-                    if (savedCount <= 0)
-                    {
-                        // Nothing was saved; rollback to keep consistency
-                        await transaction.RollbackAsync();
-                        _logger.LogWarning("No transaction history rows were saved for UserId {UserId}. Transaction rolled back.", userId);
-                        return false;
-                    }
+                    await _dbContext.TransactionHistories.AddAsync(tx);
+                    await _dbContext.SaveChangesAsync();
 
                     await transaction.CommitAsync();
                     _logger.LogInformation("Transaction committed for UserId {UserId}", userId);
