@@ -82,5 +82,14 @@ namespace WalletApi2.Services
                 throw;
             }
         }
+
+        public async Task<System.Collections.Generic.List<Domain.Entities.UserAssetBalance>> GetAssetBalancesByUserId(int userId)
+        {
+            // Return all asset balances for a user
+            return await _dbContext.UserAssetBalances
+                .AsNoTracking()
+                .Where(b => b.UserId == userId)
+                .ToListAsync();
+        }
     }
 }

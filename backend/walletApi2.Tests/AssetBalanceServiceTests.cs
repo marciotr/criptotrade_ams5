@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -226,7 +228,7 @@ namespace WalletApi2.Tests
     {
         public System.Collections.Generic.List<string> LogEntries { get; } = new();
 
-        public IDisposable BeginScope<TState>(TState state) => NullScope.Instance;
+    public IDisposable BeginScope<TState>(TState state) where TState : notnull => NullScope.Instance;
 
         public bool IsEnabled(LogLevel logLevel) => true;
 
@@ -251,3 +253,5 @@ namespace WalletApi2.Tests
         }
     }
 }
+
+#nullable disable

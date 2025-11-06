@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using WalletApi2.Infrastructure;
+using Microsoft.OpenApi.Models;
 using WalletApi2.Infrastructure.Repositories;
 using WalletApi2.Domain.Interfaces;
 
@@ -11,7 +12,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+// Swagger / OpenAPI
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Wallet API", Version = "v1" });
+});
+// keep AddOpenApi if present for other tooling, but AddSwaggerGen is required for the default Swagger middleware
 builder.Services.AddOpenApi();
+
+// CORS - allow all origins for development/testing (local dev only)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", policyBuilder =>
+    {
+        policyBuilder.AllowAnyOrigin()
+                     .AllowAnyMethod()
+                     .AllowAnyHeader();
+    });
+});
 
 // Register WalletDbContext with SQLite
 builder.Services.AddDbContext<WalletDbContext>(options =>
@@ -54,6 +72,15 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Enable swagger middleware for development
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        // Ensure the UI points to the JSON served by Swashbuckle
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wallet API v1");
+        // leave RoutePrefix as default ('swagger') so UI is available at /swagger
+    });
+    // Keep MapOpenApi for additional OpenAPI mapping if needed by other tooling
     app.MapOpenApi();
 }
 
@@ -78,6 +105,9 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+// Enable CORS (development only)
+app.UseCors("AllowAllOrigins");
 
 app.UseAuthentication();
 app.UseAuthorization();

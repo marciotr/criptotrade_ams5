@@ -1,6 +1,7 @@
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WalletApi2.API.DTOs;
@@ -9,7 +10,7 @@ using WalletApi2.Domain.Interfaces;
 namespace WalletApi2.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/balance")]
     [Authorize]
     public class BalanceController : ControllerBase
     {
@@ -22,26 +23,61 @@ namespace WalletApi2.API.Controllers
             _logger = logger;
         }
 
-        [HttpPatch("{userId:int}")]
-        public async Task<IActionResult> AdjustBalance(int userId, [FromBody] AdjustBalanceRequest request)
+    // GET api/balance
+    [HttpGet]
+    public async Task<IActionResult> GetAssetBalances()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
+            {
+                _logger.LogWarning("Missing NameIdentifier claim on GET balances");
+                return Unauthorized();
+            }
+
+            if (!int.TryParse(claim.Value, out var userId))
+            {
+                _logger.LogWarning("Invalid NameIdentifier claim value on GET balances: {ClaimValue}", claim.Value);
+                return Unauthorized();
+            }
+
+            var balances = await _assetBalanceService.GetAssetBalancesByUserId(userId);
+
+            var response = balances.Select(b => new WalletApi2.API.DTOs.AssetBalanceResponse
+            {
+                AssetSymbol = b.AssetSymbol,
+                AvailableAmount = b.AvailableAmount,
+                LockedAmount = b.LockedAmount
+            }).ToList();
+
+            return Ok(response);
+        }
+
+        [HttpPatch("{assetSymbol}")]
+        public async Task<IActionResult> AdjustBalance([FromRoute] string assetSymbol, [FromBody] AdjustBalanceRequest request)
         {
             if (request == null) return BadRequest();
 
-            _logger.LogInformation("Adjusting balance for UserId {UserId} with Delta {Delta}", userId, request.DeltaAmount);
+            _logger.LogInformation("Adjusting balance for Asset {Asset} with Delta {Delta}", assetSymbol, request.DeltaAmount);
 
             // Extract user id from JWT claims
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim == null) return Forbid();
+            if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
+            {
+                _logger.LogWarning("Missing NameIdentifier claim");
+                return Unauthorized();
+            }
 
-            if (!int.TryParse(claim.Value, out var claimUserId)) return Forbid();
+            if (!int.TryParse(claim.Value, out var userId))
+            {
+                _logger.LogWarning("Invalid NameIdentifier claim value: {ClaimValue}", claim.Value);
+                return Unauthorized();
+            }
 
-            if (claimUserId != userId) return Unauthorized();
+            var ok = await _assetBalanceService.AdjustBalanceAtomicAsync(userId, assetSymbol, request.DeltaAmount);
 
-            var ok = await _assetBalanceService.AdjustBalanceAtomicAsync(userId, request.AssetSymbol, request.DeltaAmount);
+            if (ok) return Ok(new { message = "Balance adjusted" });
 
-            if (!ok) return NotFound();
-
-            return Ok();
+            return BadRequest(new { message = "Insufficient funds or operation failed" });
         }
     }
 }

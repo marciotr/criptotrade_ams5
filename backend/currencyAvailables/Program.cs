@@ -11,9 +11,9 @@ builder.Services.AddSwaggerGen(options =>
 {
         options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "User API",
+        Title = "Currency API",
         Version = "v1",
-        Description = "API para gerenciamento de usuários",
+        Description = "API para gerenciamento de moedas",
         Contact = new OpenApiContact
         {
             Name = "Cauan Ortiz",
