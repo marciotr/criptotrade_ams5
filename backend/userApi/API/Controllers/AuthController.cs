@@ -58,10 +58,12 @@ public class AuthController : ControllerBase
             throw new Exception("JWT Key is missing in appsettings.json");
         }
 
-        var key = Encoding.ASCII.GetBytes(jwtKey);
+        var key = Encoding.ASCII.GetBytes(jwtKey);;
+
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Email),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Email, user.Email),
             new Claim(ClaimTypes.Name, user.Name),
             new Claim(ClaimTypes.Role, "Administrator")
         };
@@ -70,6 +72,8 @@ public class AuthController : ControllerBase
         {
             Subject = new ClaimsIdentity(claims),
             Expires = DateTime.UtcNow.AddHours(2),
+            Issuer = _configuration["Jwt:Issuer"],
+            Audience = _configuration["Jwt:Audience"],
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature

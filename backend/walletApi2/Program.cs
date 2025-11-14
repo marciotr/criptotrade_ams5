@@ -8,7 +8,7 @@ using WalletApi2.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
-var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"] ?? "ReplaceWithYourKey");
+var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"] ?? throw new Exception("Jwt:Key missing"));
 
 // Authentication
 builder.Services.AddAuthentication(options =>
@@ -24,8 +24,14 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = false,
-        ValidateAudience = false
+
+        ValidateIssuer = true,
+        ValidIssuer = configuration["Jwt:Issuer"],
+
+        ValidateAudience = true,
+        ValidAudience = configuration["Jwt:Audience"],
+
+        ClockSkew = TimeSpan.Zero // opcional, para não ter folga de tempo
     };
 });
 

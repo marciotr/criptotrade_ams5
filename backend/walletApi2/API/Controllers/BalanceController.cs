@@ -42,7 +42,7 @@ namespace WalletApi2.API.Controllers
 
             var balances = await _assetBalanceService.GetAssetBalancesByUserId(userId);
 
-            var response = balances.Select(b => new WalletApi2.API.DTOs.AssetBalanceResponse
+            var response = balances.Select(b => new AssetBalanceResponse
             {
                 AssetSymbol = b.AssetSymbol,
                 AvailableAmount = b.AvailableAmount,
