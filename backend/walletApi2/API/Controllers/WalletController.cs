@@ -1,7 +1,5 @@
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,75 +9,65 @@ using WalletApi2.Domain.Interfaces;
 namespace WalletApi2.API.Controllers
 {
     [ApiController]
-    [Route("api/wallet")]
+    [Route("api/wallets")]
     [Authorize]
     public class WalletController : ControllerBase
     {
-        private readonly IWalletService _walletService;
+        private readonly IWalletService? _walletService;
         private readonly ILogger<WalletController> _logger;
 
-        public WalletController(IWalletService walletService, ILogger<WalletController> logger)
+        public WalletController(IWalletService? walletService, ILogger<WalletController> logger)
         {
             _walletService = walletService;
             _logger = logger;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateWallet()
+        public IActionResult Create([FromBody] CreateWalletRequest request)
         {
-            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
-            {
-                _logger.LogWarning("Missing NameIdentifier claim on CreateWallet");
-                return Unauthorized();
-            }
+            if (request == null) return BadRequest();
 
-            if (!int.TryParse(claim.Value, out var userId))
-            {
-                _logger.LogWarning("Invalid NameIdentifier claim value on CreateWallet: {ClaimValue}", claim.Value);
-                return Unauthorized();
-            }
-
-            var wallet = await _walletService.CreateWalletForUserAsync(userId);
-            if (wallet == null) return BadRequest(new { message = "Unable to create wallet" });
-
-            var resp = new WalletResponse
-            {
-                WalletId = wallet.Id,
-                Address = wallet.Address,
-                PublicKey = wallet.PublicKey
-            };
-
-            return Ok(resp);
+            var mock = new WalletResponse { WalletId = 123, Address = "addr_mock", PublicKey = "pub_mock" };
+            return CreatedAtAction(nameof(GetById), new { id = mock.WalletId }, mock);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetWallet()
+        public IActionResult List()
         {
-            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
+            var list = new List<WalletResponse>
             {
-                _logger.LogWarning("Missing NameIdentifier claim on GetWallet");
-                return Unauthorized();
-            }
-
-            if (!int.TryParse(claim.Value, out var userId))
-            {
-                _logger.LogWarning("Invalid NameIdentifier claim value on GetWallet: {ClaimValue}", claim.Value);
-                return Unauthorized();
-            }
-
-            var wallet = await _walletService.GetWalletByUserIdAsync(userId);
-            if (wallet == null) return NotFound();
-
-            var resp = new WalletResponse
-            {
-                WalletId = wallet.Id,
-                Address = wallet.Address,
-                PublicKey = wallet.PublicKey
+                new WalletResponse { WalletId = 1, Address = "addr1", PublicKey = "pub1" },
+                new WalletResponse { WalletId = 2, Address = "addr2", PublicKey = "pub2" }
             };
 
+            return Ok(list);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var resp = new WalletResponse { WalletId = id, Address = "addr_specific", PublicKey = "pub_specific" };
             return Ok(resp);
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, [FromBody] UpdateWalletRequest request)
+        {
+            if (request == null) return BadRequest();
+            return Ok(new { message = "Wallet updated", id, newName = request.NewName });
+        }
+
+        [HttpPost("transfer")]
+        public IActionResult Transfer([FromBody] TransferRequest request)
+        {
+            if (request == null) return BadRequest();
+            return Ok(new { message = "Transfer scheduled (mock)", request.FromWalletId, request.ToWalletId, request.AssetSymbol, request.Amount });
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            return NoContent();
         }
     }
 }

@@ -28,6 +28,12 @@ start dotnet run
 cd ..\..
 
 echo.
+echo WalletApi2...
+cd .\backend\walletApi2
+start dotnet run
+cd ..\..
+
+echo.
 echo Frontend...
 cd /d %~dp0\frontend
 
