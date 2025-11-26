@@ -4,7 +4,7 @@ import { CreditCard, DollarSign, Wallet, ArrowDownLeft, ArrowUpRight, X } from '
 import SimpleHeader from '../../components/SimpleHeader';
 import Logo from '../../assets/img/logoBinanceRemoved.png';
 import InputMask from 'react-input-mask';
-import { walletApi } from '../../services/api/api';
+import { walletApi, transactionApi } from '../../services/api/api';
 
 export function DepositPage() {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -16,6 +16,7 @@ export function DepositPage() {
   const [bankAmount, setBankAmount] = useState('');
   const [walletAddress, setWalletAddress] = useState(null);
   const [balances, setBalances] = useState([]);
+  const [transactions, setTransactions] = useState([]);
 
   const handleMethodClick = (method) => {
     setSelectedMethod(method === selectedMethod ? null : method);
@@ -32,6 +33,16 @@ export function DepositPage() {
       setBalances(res.data || []);
     } catch (err) {
      
+    }
+  };
+
+  const loadTransactions = async () => {
+    try {
+      const res = await transactionApi.getAll();
+      setTransactions(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      // silently ignore for now or set an empty list
+      setTransactions([]);
     }
   };
 
@@ -57,6 +68,7 @@ export function DepositPage() {
   useEffect(() => {
     loadOrCreateWallet();
     loadBalances();
+    loadTransactions();
   }, []);
 
   return (
@@ -400,32 +412,53 @@ export function DepositPage() {
             <h2 className="text-xl font-bold mb-4 text-text-primary">Recent Activity</h2>
             
               <div className="space-y-3">
-                {balances && balances.length > 0 ? (
-                  balances.map((b) => {
-                    const symbol = b.assetSymbol ?? b.AssetSymbol ?? 'UNKNOWN';
-                    const amount = (b.availableAmount ?? b.AvailableAmount) ?? 0;
-                    return (
-                      <div key={symbol} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                  {balances && balances.length > 0 ? (
+                    balances.map((b) => {
+                      const symbol = b.assetSymbol ?? b.AssetSymbol ?? 'UNKNOWN';
+                      const amount = (b.availableAmount ?? b.AvailableAmount) ?? 0;
+                      return (
+                        <div key={`bal-${symbol}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                          <div className="flex items-center">
+                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                              <ArrowDownLeft className="h-4 w-4 text-green-600" />
+                            </div>
+                            <div>
+                              <h4 className="text-text-primary">{symbol}</h4>
+                              <p className="text-xs text-text-terciary">Available</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-text-primary font-medium">{amount}</p>
+                            <p className="text-xs text-text-tertiary">Balance</p>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="p-3 border border-border-primary rounded-lg text-text-tertiary">No balances yet</div>
+                  )}
+
+                  {/* Integrate recent transactions into the same "Recent Activity" list */}
+                  {transactions && transactions.length > 0 && (
+                    transactions.slice(0, 6).map((tx) => (
+                      <div key={`tx-${tx.id ?? tx.Id ?? Math.random()}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
                         <div className="flex items-center">
-                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                            <ArrowDownLeft className="h-4 w-4 text-green-600" />
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${tx.type === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
+                            <span className="text-sm font-medium">{(tx.type ?? '').charAt(0).toUpperCase() || 'T'}</span>
                           </div>
                           <div>
-                            <h4 className="text-text-primary">{symbol}</h4>
-                            <p className="text-xs text-text-tertiary">Available</p>
+                            <h4 className="text-text-primary">{tx.type ? tx.type.charAt(0).toUpperCase() + tx.type.slice(1) : 'Txn'}</h4>
+                            <p className="text-xs text-text-tertiary">{tx.asset ?? tx.assetSymbol ?? tx.AssetSymbol ?? ''}</p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-text-primary font-medium">{amount}</p>
-                          <p className="text-xs text-text-tertiary">Balance</p>
+                          <p className="text-text-primary font-medium">{(tx.amount ?? tx.Amount ?? tx.value ?? '').toString()}</p>
+                          <p className="text-xs text-text-terciary">{tx.message ?? tx.description ?? ''}</p>
                         </div>
                       </div>
-                    );
-                  })
-                ) : (
-                  <div className="p-3 border border-border-primary rounded-lg text-text-tertiary">No balances yet</div>
-                )}
-              </div>
+                    ))
+                  )}
+                </div>
             
             <div className="mt-6">
               <h3 className="text-lg font-medium mb-3 text-text-primary">Your Balances</h3>
@@ -438,6 +471,35 @@ export function DepositPage() {
                   <p className="text-sm text-text-tertiary mb-1">EUR Balance</p>
                   <p className="text-lg font-medium text-text-primary">€0.00</p>
                 </div>
+              </div>
+            </div>
+
+            {/* Recent transactions / deposits */}
+            <div className="mt-6">
+              <h3 className="text-lg font-medium mb-3 text-text-primary">Recent Transactions</h3>
+              <div className="space-y-3">
+                {transactions && transactions.length > 0 ? (
+                  transactions.slice(0, 6).map((tx) => (
+                    <div key={tx.id} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                      <div className="flex items-center">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${tx.type === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
+                          {/* simple icon */}
+                          <span className="text-sm font-medium">{(tx.type || tx.type)?.charAt(0).toUpperCase()}</span>
+                        </div>
+                        <div>
+                          <h4 className="text-text-primary">{tx.type ? tx.type.charAt(0).toUpperCase() + tx.type.slice(1) : 'Txn'}</h4>
+                          <p className="text-xs text-text-tertiary">{tx.asset ?? tx.assetSymbol ?? tx.AssetSymbol ?? ''}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-text-primary font-medium">{(tx.amount ?? tx.Amount ?? tx.amount)?.toString()}</p>
+                        <p className="text-xs text-text-tertiary">{tx.message ?? ''}</p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="p-3 border border-border-primary rounded-lg text-text-tertiary">No recent transactions</div>
+                )}
               </div>
             </div>
           </motion.div>
