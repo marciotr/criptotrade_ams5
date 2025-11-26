@@ -8,6 +8,7 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import { useNavigate } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 import { LoadingScreen } from '../../components/common/LoadingScreen';
+import { transactionApi } from '../../services/api/api';
 import {
   BarChart, Bar, PieChart as RechartsPC, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
@@ -331,6 +332,22 @@ const StatCard = ({ label, value, icon, trend, color, onClick }) => (
 
 // Modal de análise responsivo
 const AnalyticsModal = ({ isOpen, onClose, data }) => {
+  // Local resize state to make this modal responsive independently
+  const [windowWidthModal, setWindowWidthModal] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+  useEffect(() => {
+    const handleResize = () => setWindowWidthModal(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isModalMobile = windowWidthModal < 640;
+  const modalScaleLocal = React.useMemo(() => {
+    if (windowWidthModal <= 1024) return 0.66;
+    if (windowWidthModal <= 1280) return 0.70;
+    if (windowWidthModal <= 1366) return 0.74;
+    if (windowWidthModal <= 1440) return 0.88;
+    return 1;
+  }, [windowWidthModal]);
   // Processar dados para o gráfico de barras (volume de transações por mês)
   const monthlyVolumeData = useMemo(() => {
     // Traduzir nomes de meses para português
@@ -422,10 +439,14 @@ const AnalyticsModal = ({ isOpen, onClose, data }) => {
           onClick={onClose}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="bg-background-primary rounded-xl shadow-xl w-full max-w-5xl p-3 sm:p-6 max-h-[90vh] overflow-y-auto"
+            initial={{ scale: modalScaleLocal * 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: isModalMobile ? 1 : modalScaleLocal, opacity: 1, y: 0 }}
+            exit={{ scale: modalScaleLocal * 0.9, opacity: 0, y: 20 }}
+            style={{ transformOrigin: 'center center', willChange: 'transform' }}
+            className={isModalMobile ?
+              'bg-background-primary rounded-none shadow-none w-full h-full p-0 overflow-auto' :
+              'bg-background-primary rounded-xl shadow-xl w-full max-w-5xl p-3 sm:p-6 max-h-[90vh] overflow-y-auto'
+            }
             onClick={e => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4 sm:mb-6">
@@ -665,6 +686,17 @@ const generateMockTransactions = (count) => {
   });
 };
 
+// Mapeador simples de tipos vindos da API para os rótulos usados na UI
+const mapTypeLabel = (raw) => {
+  if (!raw) return 'Transação';
+  const t = String(raw).toLowerCase();
+  if (t.includes('deposit')) return 'Depósito';
+  if (t.includes('withdraw') || t.includes('saque')) return 'Saque';
+  if (t.includes('buy')) return 'Compra';
+  if (t.includes('sell')) return 'Venda';
+  return raw.charAt(0).toUpperCase() + raw.slice(1);
+};
+
 // Componente principal - TransactionHistory totalmente responsivo
 export function TransactionHistory() {
   const navigate = useNavigate();
@@ -690,18 +722,50 @@ export function TransactionHistory() {
 
   const isMobile = windowWidth < 640;
 
+  // Modal scale used for desktop/laptop breakpoints (keeps modals from overflowing on smaller notebooks)
+  const modalScale = useMemo(() => {
+    if (windowWidth <= 1024) return 0.66;
+    if (windowWidth <= 1280) return 0.70;
+    if (windowWidth <= 1366) return 0.74;
+    if (windowWidth <= 1440) return 0.88;
+    return 1;
+  }, [windowWidth]);
+
   // Simular dados reais com um conjunto maior para testar performance
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    // Simulando carregamento de dados
-    setIsLoading(true);
-    
-    setTimeout(() => {
-      const mockData = generateMockTransactions(100);
-      setTransactions(mockData);
-      setIsLoading(false);
-    }, 800);
+    let mounted = true;
+    const fetchTransactions = async () => {
+      setIsLoading(true);
+      try {
+        const res = await transactionApi.getAll();
+        const data = Array.isArray(res.data) ? res.data : [];
+
+        const mapped = data.map((tx, idx) => ({
+          id: tx.id ?? tx.Id ?? idx + 1,
+          type: mapTypeLabel(tx.type ?? tx.Type ?? tx.transactionType),
+          amount: Number(tx.amount ?? tx.Amount ?? tx.value ?? 0),
+          status: String(tx.status ?? tx.Status ?? 'completed').toLowerCase(),
+          date: tx.date ?? tx.Date ?? new Date().toISOString(),
+          txId: tx.txId ?? tx.TxId ?? tx.id ?? `tx_${Math.random().toString(36).slice(2,9)}`,
+          method: tx.method ?? tx.Method ?? tx.paymentMethod ?? 'Desconhecido',
+          currency: tx.currency ?? tx.Currency ?? tx.asset ?? tx.assetSymbol ?? 'USD'
+        }));
+
+        if (mounted) setTransactions(mapped);
+      } catch (err) {
+        console.error('Erro ao buscar transações reais, usando mock como fallback', err);
+        // fallback para mock data
+        if (mounted) setTransactions(generateMockTransactions(30));
+      } finally {
+        if (mounted) setIsLoading(false);
+      }
+    };
+
+    fetchTransactions();
+
+    return () => { mounted = false; };
   }, []);
 
   // Ciclar insights financeiros
@@ -732,12 +796,17 @@ export function TransactionHistory() {
   // Filtro
   const filteredTransactions = useMemo(() => {
     return transactions.filter(tx => {
-      const matchesSearch = 
-        tx.txId.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-        tx.type.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-        tx.method.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-      
-      const matchesFilter = filterStatus === 'all' || tx.status.toLowerCase() === filterStatus.toLowerCase();
+      const search = (debouncedSearchTerm || '').toLowerCase();
+      const txIdStr = String(tx.txId ?? '');
+      const typeStr = String(tx.type ?? '');
+      const methodStr = String(tx.method ?? '');
+
+      const matchesSearch =
+        txIdStr.toLowerCase().includes(search) ||
+        typeStr.toLowerCase().includes(search) ||
+        methodStr.toLowerCase().includes(search);
+
+      const matchesFilter = filterStatus === 'all' || String(tx.status ?? '').toLowerCase() === filterStatus.toLowerCase();
       
       return matchesSearch && matchesFilter;
     });
@@ -1137,13 +1206,14 @@ export function TransactionHistory() {
             className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4"
             onClick={() => setIsTransactionDetailsOpen(false)}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-background-primary rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-border-primary"
-              onClick={e => e.stopPropagation()}
-            >
+                <motion.div
+                  initial={{ scale: isMobile ? 0.98 : modalScale * 0.9, opacity: 0, y: 20 }}
+                  animate={{ scale: isMobile ? 1 : modalScale, opacity: 1, y: 0 }}
+                  exit={{ scale: isMobile ? 0.98 : modalScale * 0.9, opacity: 0, y: 20 }}
+                  style={{ transformOrigin: 'center center', willChange: 'transform' }}
+                  className={isMobile ? 'bg-background-primary rounded-none w-full h-full overflow-auto border-none' : 'bg-background-primary rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-border-primary'}
+                  onClick={e => e.stopPropagation()}
+                >
               {/* Header estilizado responsivo */}
               <div className={`p-4 sm:p-6 ${
                 selectedTransaction.type === 'Depósito' 
