@@ -110,7 +110,10 @@ export function AuthForm({ type }) {
   const [loginMethod, setLoginMethod] = useState('email');
   const containerRef = useRef(null);
 
-  // Detectar tamanho da tela para ajustes responsivos
+  // escala responsiva para reduzir o modal em telas menores
+  const [scale, setScale] = useState(1);
+
+  // Detectar tamanho da tela para ajustes responsivos e calcular escala do modal
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
@@ -118,11 +121,31 @@ export function AuthForm({ type }) {
         const viewportHeight = window.innerHeight;
         containerRef.current.style.minHeight = `${viewportHeight}px`;
       }
+
+      // Ajustar escala do modal com base na largura da janela
+      const w = window.innerWidth;
+      let newScale = 1;
+      // Escalas mais agressivas para notebooks 13" e similares
+      // Ordem: menor largura primeiro
+      if (w <= 1024) {
+        newScale = 0.66; // tablets/pequenas janelas - reduzir mais
+      } else if (w <= 1280) {
+        newScale = 0.70; // notebooks 13" - redução adicional solicitada
+      } else if (w <= 1366) {
+        newScale = 0.74; // notebooks 13.3"/14" compactos
+      } else if (w <= 1440) {
+        newScale = 0.88; // laptops maiores
+      } else {
+        newScale = 1; // desktops grandes
+      }
+
+      // Evita re-renders desnecessários
+      if (Math.abs(scale - newScale) > 0.005) setScale(newScale);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-    
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -246,9 +269,10 @@ export function AuthForm({ type }) {
       
       {/* Container principal mantido no centro */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: Math.max(0.8, scale * 0.95) }}
+        animate={{ opacity: 1, scale }}
         transition={{ duration: 0.5 }}
+        style={{ transformOrigin: 'top center' }}
         className="z-10 w-full max-w-md relative my-auto"
       >
         {/* Elementos decorativos importados do componente separado */}
