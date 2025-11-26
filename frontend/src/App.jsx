@@ -24,6 +24,7 @@ import { FiatDepositPage } from './pages/deposit/FiatDepositPage';
 import { Wallet } from './pages/wallets/Wallet';
 import { Currency } from './pages/currency/Currency';
 import AdminDashboard from './pages/admin/dashboard/AdminDashboard'; // Importe o componente AdminDashboard
+import BuyCoin from './pages/markets/BuyCoin';
 
 
 function Layout({ children }) {
@@ -125,6 +126,11 @@ function App() {
                   <Route path="/price/:coinId" element={
                     <PrivateRoute>
                       <PricePage />
+                    </PrivateRoute>
+                  } />
+                  <Route path="/buy/:symbol" element={
+                    <PrivateRoute>
+                      <BuyCoin />
                     </PrivateRoute>
                   } />
                   <Route path="/deposit/fiat" element={

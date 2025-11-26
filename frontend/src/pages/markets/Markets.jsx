@@ -10,7 +10,7 @@ import AutoSizer from 'react-virtualized-auto-sizer'; // Importe esta biblioteca
 import { LoadingScreen } from '../../components/common/LoadingScreen';
 
 // Componente de card para moedas em trending
-const TrendingCoinCard = ({ coin, onClick, index }) => (
+const TrendingCoinCard = ({ coin, onClick, index, onBuy }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -55,6 +55,15 @@ const TrendingCoinCard = ({ coin, onClick, index }) => (
           {coin.change > 0 ? 'Bullish' : 'Bearish'}
         </span>
       </div>
+      <button
+        className="mt-4 w-full py-2 rounded-lg bg-brand-primary text-white font-semibold hover:bg-brand-primary/90 transition-colors"
+        onClick={(e) => {
+          e.stopPropagation();
+          onBuy(coin, e);
+        }}
+      >
+        Comprar {coin.name}
+      </button>
     </div>
   </motion.div>
 );
@@ -129,7 +138,7 @@ const CoinTableRow = React.memo(({ coin, index, onFavoriteToggle, onCoinClick, i
 ));
 
 // Card de moeda responsivo para substituir as linhas da tabela
-const CoinCard = React.memo(({ coin, onFavoriteToggle, onCoinClick, isFavorite }) => (
+const CoinCard = React.memo(({ coin, onFavoriteToggle, onCoinClick, onBuy, isFavorite }) => (
   <motion.div
     className="flex flex-col h-full"
     initial={{ opacity: 0, scale: 0.97 }}
@@ -217,6 +226,15 @@ const CoinCard = React.memo(({ coin, onFavoriteToggle, onCoinClick, isFavorite }
       <div className={`h-1 w-full mt-3 rounded-full ${
         coin.change > 0 ? 'bg-gradient-to-r from-green-500 to-teal-400' : 'bg-gradient-to-r from-red-500 to-pink-500'
       }`}></div>
+      <button
+        className="mt-4 w-full py-2 rounded-lg bg-brand-primary text-white font-semibold hover:bg-brand-primary/90 transition-colors"
+        onClick={(e) => {
+          e.stopPropagation();
+          onBuy(coin, e);
+        }}
+      >
+        Comprar {coin.name}
+      </button>
     </div>
   </motion.div>
 ));
@@ -371,12 +389,17 @@ export function Markets() {
     });
   }, []);
 
+  const handleBuyClick = useCallback((coin, event) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    navigate(`/buy/${coin.symbol}`);
+  }, [navigate]);
+
   const handleCoinClick = useCallback((coin, event) => {
     // Prevent navigation when clicking the favorite star
     if (event.target.closest('.favorite-star')) return;
-    
-    const coinPath = coin.name.toLowerCase();
-    navigate(`/price/${coinPath}`);
+    navigate(`/buy/${coin.symbol}`);
   }, [navigate]);
 
   // Aplicar filtros aos dados processados
@@ -505,7 +528,7 @@ export function Markets() {
     return (
       <div className="w-full pb-10">
         {/* Informação de contagem */}
-        <div className="flex justify-between items-center mb-4 text-text-tertiary text-sm">
+        <div className="flex justify-between items-center mb-4 text-text-terciary text-sm">
           <span>Exibindo {filteredData.length} moedas</span>
           
           <SortSelector 
@@ -521,6 +544,7 @@ export function Markets() {
               coin={coin}
               onFavoriteToggle={toggleFavorite}
               onCoinClick={handleCoinClick}
+              onBuy={handleBuyClick}
               isFavorite={tertiary.includes(coin.id)}
               index={index}
             />
@@ -583,6 +607,7 @@ export function Markets() {
               coin={pair} 
               index={index} 
               onClick={handleCoinClick}
+              onBuy={handleBuyClick}
             />
           ))}
         </div>
@@ -599,7 +624,7 @@ export function Markets() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
           {/* Caixa de pesquisa com filtros em linha */}
           <div className="relative w-full md:max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary" size={20} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-terciary" size={20} />
             <input
               type="text"
               placeholder="Buscar criptomoedas..."
