@@ -142,6 +142,28 @@
       "UpstreamPathTemplate": "/crypto/{everything}",
       "UpstreamHttpMethod": [ "GET" ]
     }
+    ,
+    {
+      "DownstreamPathTemplate": "/api/balance",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
+      "UpstreamPathTemplate": "/balance",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/balance/{assetSymbol}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
+      "UpstreamPathTemplate": "/balance/{assetSymbol}",
+      "UpstreamHttpMethod": [ "PATCH" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/wallet",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
+      "UpstreamPathTemplate": "/wallet",
+      "UpstreamHttpMethod": [ "POST", "GET" ]
+    }
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5000",

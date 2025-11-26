@@ -27,6 +27,7 @@ namespace WalletApi2.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateWallet()
         {
+
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
             {
@@ -56,6 +57,14 @@ namespace WalletApi2.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetWallet()
         {
+            _logger.LogInformation("GetWallet called. IsAuthenticated={IsAuthenticated}", User?.Identity?.IsAuthenticated ?? false);
+            try
+            {
+                var authHeader = Request?.Headers["Authorization"].FirstOrDefault();
+                _logger.LogInformation("Authorization header present: {HasAuthHeader}", !string.IsNullOrEmpty(authHeader));
+            }
+            catch { /* ignore logging errors */ }
+
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (claim == null || string.IsNullOrWhiteSpace(claim.Value))
             {

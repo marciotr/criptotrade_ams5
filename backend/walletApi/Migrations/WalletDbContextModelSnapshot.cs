@@ -3,11 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using walletApi.Infrastructure.Data;
+using WalletApi2.Infrastructure;
 
 #nullable disable
 
-namespace walletApi.Migrations
+namespace WalletApi2.Migrations
 {
     [DbContext(typeof(WalletDbContext))]
     partial class WalletDbContextModelSnapshot : ModelSnapshot
@@ -17,27 +17,40 @@ namespace walletApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
-            modelBuilder.Entity("walletApi.Domain.Entities.WalletCrypto", b =>
+            modelBuilder.Entity("WalletApi2.Domain.Entities.TransactionHistory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 8)
+                        .HasColumnType("decimal(18,8)");
 
-                    b.Property<decimal>("Balance")
+                    b.Property<string>("AssetSymbol")
+                        .IsRequired()
+                        .HasMaxLength(10)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Symbol")
+                    b.Property<decimal>("PriceAt")
+                        .HasPrecision(18, 8)
+                        .HasColumnType("decimal(18,8)");
+
+                    b.Property<string>("ReferenceId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<string>("TransactionHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
@@ -45,29 +58,44 @@ namespace walletApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId", "Symbol")
-                        .IsUnique();
+                    b.HasIndex("TransactionHash")
+                        .HasDatabaseName("IX_TransactionHash");
 
-                    b.ToTable("WalletCryptos");
+                    b.ToTable("TransactionHistories");
                 });
 
-            modelBuilder.Entity("walletApi.Domain.Entities.WalletFiat", b =>
+            modelBuilder.Entity("WalletApi2.Domain.Entities.UserAssetBalance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Balance")
+                    b.Property<string>("AssetSymbol")
+                        .IsRequired()
+                        .HasMaxLength(10)
                         .HasColumnType("TEXT");
+
+                    b.Property<decimal>("AvailableAmount")
+                        .HasPrecision(18, 8)
+                        .HasColumnType("decimal(18,8)");
+
+                    b.Property<decimal>("AverageAcquisitionPrice")
+                        .HasPrecision(18, 8)
+                        .HasColumnType("decimal(18,8)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<decimal>("LockedAmount")
+                        .HasPrecision(18, 8)
+                        .HasColumnType("decimal(18,8)");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("BLOB");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
@@ -75,10 +103,11 @@ namespace walletApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId", "Currency")
-                        .IsUnique();
+                    b.HasIndex("UserId", "AssetSymbol")
+                        .IsUnique()
+                        .HasDatabaseName("IX_User_Asset_Unique");
 
-                    b.ToTable("WalletFiats");
+                    b.ToTable("UserAssetBalances");
                 });
 #pragma warning restore 612, 618
         }

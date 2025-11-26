@@ -71,6 +71,40 @@ namespace WalletApi2.Services
                     return true;
                 }
 
+                if (deltaAmount > 0)
+                {
+                    var newBalance = new UserAssetBalance
+                    {
+                        UserId = userId,
+                        AssetSymbol = assetSymbol,
+                        AvailableAmount = deltaAmount,
+                        LockedAmount = 0m,
+                        CreatedAt = now,
+                        UpdatedAt = now
+                    };
+
+                    await _dbContext.UserAssetBalances.AddAsync(newBalance);
+                    await _dbContext.SaveChangesAsync();
+
+                    var tx = new TransactionHistory
+                    {
+                        UserId = userId,
+                        AssetSymbol = assetSymbol,
+                        Amount = deltaAmount,
+                        Type = TransactionType.DEPOSIT,
+                        Status = TransactionStatus.COMPLETED,
+                        PriceAt = 0m,
+                        CreatedAt = now
+                    };
+
+                    await _dbContext.TransactionHistories.AddAsync(tx);
+                    await _dbContext.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+                    _logger.LogInformation("Inserted new balance and committed for UserId {UserId}", userId);
+                    return true;
+                }
+
                 await transaction.RollbackAsync();
                 _logger.LogInformation("Transaction rolled back for UserId {UserId} - no rows affected", userId);
                 return false;

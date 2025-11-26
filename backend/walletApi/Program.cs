@@ -1,61 +1,112 @@
 using Microsoft.EntityFrameworkCore;
-using walletApi.Infrastructure.Data;
-using walletApi.Domain.Interfaces;   
-using walletApi.Infrastructure.Repositories;
-using walletApi.Services;
-using walletApi.API.Configurations;  
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using WalletApi2.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
+var configuration = builder.Configuration;
+var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"] ?? throw new Exception("Jwt:Key missing"));
+
+// Authentication
+builder.Services.AddAuthentication(options =>
 {
-    options.AddPolicy("AllowReactApp", policy =>
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        policy
-          .WithOrigins("http://localhost:5173")   
-          .AllowAnyHeader()
-          .AllowAnyMethod();
-    });
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+
+        ValidateIssuer = true,
+        ValidIssuer = configuration["Jwt:Issuer"],
+
+        ValidateAudience = true,
+        ValidAudience = configuration["Jwt:Audience"],
+
+        ClockSkew = TimeSpan.Zero // opcional, para não ter folga de tempo
+    };
 });
 
-builder.Services.AddApplicationServices();
+builder.Services.AddAuthorization();
 
+// Controllers and endpoints
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
+
+// Swagger with JWT support
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Wallet API", Version = "v1" });
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Title = "Wallet API",
-        Version = "v1",
-        Description = "API para gerenciamento de carteiras Fiat e Crypto"
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+        Description = "Enter your JWT token. Example: \"Bearer {token}\""
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+            },
+            new string[] { }
+        }
     });
 });
 
-var app = builder.Build();
-
-// força a criação do banco e das tabelas SQLite
-using(var scope = app.Services.CreateScope())
+// CORS
+builder.Services.AddCors(options =>
 {
-    var db = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
-    db.Database.EnsureCreated();
-}
+    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders("Authorization"));
+});
 
-app.UseCors("AllowReactApp");
+// DbContext
+builder.Services.AddDbContext<WalletDbContext>(options => options.UseSqlite("Data Source=wallet.db"));
+
+// Project services and repositories
+builder.Services.AddScoped(typeof(WalletApi2.Domain.Interfaces.IRepository<>), typeof(WalletApi2.Infrastructure.Repositories.GenericRepository<>));
+builder.Services.AddScoped<WalletApi2.Domain.Interfaces.IAssetBalanceService, WalletApi2.Services.AssetBalanceService>();
+builder.Services.AddScoped<WalletApi2.Domain.Interfaces.IWalletService, WalletApi2.Services.WalletService>();
+
+// HttpClient and other app services
+builder.Services.AddHttpClient();
+
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    app.UseSwaggerUI(options =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Wallet API V1");
-        c.RoutePrefix = string.Empty;
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Wallet API V1");
+        options.RoutePrefix = string.Empty;
     });
 }
 
 app.UseHttpsRedirection();
 
-app.MapControllers();
+// Order: CORS before Authentication and Authorization
+app.UseCors("AllowAll");
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers()
+   .RequireCors("AllowAll");
 
 app.Run();
+

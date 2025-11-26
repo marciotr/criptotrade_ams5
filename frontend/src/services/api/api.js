@@ -7,14 +7,13 @@ export const authApi = {
 };
 
 export const userApi = {
-  getusers: () => api.get('/user'),
+  getUsers: () => api.get('/user'),
   getProfile: (id) => api.get(`/user/${id}`),
   updateProfile: (id, data) => api.put(`/user/${id}`, data),
   deleteAccount: (id) => api.delete(`/user/${id}`),
   updatePhoto: (id, file) => {
     const formData = new FormData();
     formData.append('photo', file);
-    
     return api.post(`/user/${id}/photo`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -62,20 +61,16 @@ export const marketApi = {
 
 // Novo serviço para chamadas à API de Carteira
 export const walletApi = {
-  // Métodos existentes
-  getAllWallets: () => api.get('/Wallet'),
-  getWalletById: (id) => api.get(`/Wallet/${id}`),
-  getuserWallets: (userId) => api.get(`/Wallet/user/${userId}`),
-  createWallet: (walletData) => api.post('/Wallet', walletData),
-  updateWallet: (walletData) => api.put(`/Wallet/${walletData.id}`, walletData),
-  getWalletTransactions: (walletId) => api.get(`/Wallet/${walletId}/transactions`),
-  addTransaction: (walletId, transactionData) => api.post(`/Wallet/${walletId}/transactions`, transactionData),
-  
-  // Novos métodos para carteiras separadas
-  getuserFiatWallets: (userId) => api.get(`/Wallet/user/${userId}/fiat`),
-  getuserCryptoWallets: (userId) => api.get(`/Wallet/user/${userId}/crypto`),
-  depositFiat: (data) => api.post('/Wallet/deposit/fiat', data),
-  transferBetweenWallets: (data) => api.post('/Wallet/transfer', data),
+  // Simple gateway-backed wallet endpoints (lowercase routes expected by gateway)
+  getWallet: () => api.get('/wallet'),
+  createWallet: () => api.post('/wallet'),
+  getBalances: () => api.get('/balance'),
+  adjustBalance: (assetSymbol, deltaAmount, referenceId = null, description = null) =>
+    api.patch(`/balance/${assetSymbol}`, {
+      DeltaAmount: deltaAmount,
+      ReferenceId: referenceId,
+      Description: description,
+    }),
 };
 
 export const transactionApi = {
