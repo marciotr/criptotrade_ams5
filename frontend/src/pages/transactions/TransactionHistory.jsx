@@ -747,7 +747,7 @@ export function TransactionHistory() {
           type: mapTypeLabel(tx.type ?? tx.Type ?? tx.transactionType),
           amount: Number(tx.amount ?? tx.Amount ?? tx.value ?? 0),
           status: String(tx.status ?? tx.Status ?? 'completed').toLowerCase(),
-          date: tx.date ?? tx.Date ?? new Date().toISOString(),
+          date: tx.createdAt ?? tx.date ?? tx.Date ?? new Date().toISOString(),
           txId: tx.txId ?? tx.TxId ?? tx.id ?? `tx_${Math.random().toString(36).slice(2,9)}`,
           method: tx.method ?? tx.Method ?? tx.paymentMethod ?? 'Desconhecido',
           currency: tx.currency ?? tx.Currency ?? tx.asset ?? tx.assetSymbol ?? 'USD'

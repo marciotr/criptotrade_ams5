@@ -65,12 +65,20 @@ export const walletApi = {
   getWallet: () => api.get('/wallet'),
   createWallet: () => api.post('/wallet'),
   getBalances: () => api.get('/balance'),
-  adjustBalance: (assetSymbol, deltaAmount, referenceId = null, description = null) =>
-    api.patch(`/balance/${assetSymbol}`, {
+  getSummary: () => api.get('/balance/summary'),
+  getAssetLots: (assetSymbol, method = 'fifo') => api.get(`/balance/asset/${assetSymbol}/lots`, { params: { method } }),
+  adjustBalance: (assetSymbol, deltaAmount, options = {}) => {
+    const payload = {
       DeltaAmount: deltaAmount,
-      ReferenceId: referenceId,
-      Description: description,
-    }),
+      ReferenceId: options.referenceId ?? null,
+      Description: options.description ?? null,
+      Method: options.method ?? null,
+      UnitPriceUsd: options.unitPriceUsd ?? null,
+    };
+
+    return api.patch(`/balance/${assetSymbol}`, payload);
+  },
+  sell: (data) => api.post('/trade/sell', data),
 };
 
 export const transactionApi = {
@@ -78,6 +86,11 @@ export const transactionApi = {
   create: (data) => api.post('/transactions', data),
   getById: (id) => api.get(`/transactions/${id}`),
   update: (id, data) => api.put(`/transactions/${id}`, data),
+  buy: (data) => api.post('/transactions/buy', data),
+  sell: (data) => api.post('/transactions/sell', data),
+  swap: (data) => api.post('/transactions/swap', data),
+  depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
+  withdrawFiat: (data) => api.post('/transactions/withdraw/fiat', data),
 };
 
 export const settingsApi = {

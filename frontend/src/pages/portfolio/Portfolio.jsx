@@ -13,7 +13,26 @@ import {
 } from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import CryptoIcon from '../../components/common/CryptoIcons';
-import { portfolioData, portfolioHistoricalData, portfolioStats, PORTFOLIO_COLORS } from '../../data/mockData';
+import { LoadingScreen } from '../../components/common/LoadingScreen';
+import { walletApi, transactionApi } from '../../services/api/api';
+
+const PORTFOLIO_COLORS = ['#f59e0b', '#10b981', '#6366f1', '#ec4899', '#14b8a6', '#f97316'];
+
+const buildSyntheticHistory = (totalValue) => {
+  const base = totalValue > 0 ? totalValue : 1000;
+  const points = [];
+  for (let i = 6; i >= 0; i -= 1) {
+    const date = new Date();
+    date.setDate(date.getDate() - i);
+    const variance = (Math.random() * 0.04 - 0.02) * base;
+    const value = Math.max(0, base + variance);
+    points.push({
+      date: date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }),
+      value: Number(value.toFixed(2))
+    });
+  }
+  return points;
+};
 
 // Componente de Card com animação para estatísticas
 const StatCard = ({ icon: Icon, title, value, change, changeType, iconColor, delay = 0, onClick }) => (
@@ -82,6 +101,32 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export function Portfolio() {
+  const formatCurrency = (v) => {
+    const n = Number(v ?? 0) || 0;
+    return `US$ ${n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
+
+  const formatAmount8 = (v) => {
+    const n = Number(v ?? 0) || 0;
+    return n.toLocaleString('pt-BR', { minimumFractionDigits: 8, maximumFractionDigits: 8 });
+  };
+
+  const formatPercent = (v) => {
+    const n = Number(v ?? 0) || 0;
+    return `${n.toFixed(2)}%`;
+  };
+
+  const [portfolioStats, setPortfolioStats] = useState({
+    totalValue: 0,
+    dayChange: 0,
+    dayChangePercent: 0,
+    bestPerformer: { asset: '-', change: 0 }
+  });
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [portfolioHistoricalData, setPortfolioHistoricalData] = useState(buildSyntheticHistory(0));
+  const [loadingPortfolio, setLoadingPortfolio] = useState(true);
+  const [portfolioError, setPortfolioError] = useState('');
+
   const totalValue = portfolioStats.totalValue;
   const [activeView, setActiveView] = useState('overview'); // 'overview', 'allocation', 'performance'
   const [timeRange, setTimeRange] = useState('1M'); // Opções: '1W', '1M', '3M', '1Y', 'ALL'
@@ -92,9 +137,10 @@ export function Portfolio() {
   });
 
   // Verificar se o portfolio está com desempenho positivo ou negativo
-  const isPortfolioPositive = portfolioStats.dayChangePercent > 0;
-  const weekPerformance = portfolioHistoricalData[portfolioHistoricalData.length - 1].value - 
-                         portfolioHistoricalData[0].value;
+  const isPortfolioPositive = portfolioStats.dayChangePercent >= 0;
+  const weekPerformance = portfolioHistoricalData.length > 1
+    ? portfolioHistoricalData[portfolioHistoricalData.length - 1].value - portfolioHistoricalData[0].value
+    : 0;
   const isWeekPositive = weekPerformance > 0;
 
   // Animação para transição entre seções
@@ -118,6 +164,132 @@ export function Portfolio() {
     navigate('/deposit'); // Função para navegar para a página de depósito
   };
 
+  const handleSell = async (asset) => {
+    const qtyStr = window.prompt(`Quantidade de ${asset.symbol} para vender:`);
+    if (!qtyStr) return;
+    const qty = Number(qtyStr.replace(',', '.'));
+    if (isNaN(qty) || qty <= 0) {
+      alert('Quantidade inválida');
+      return;
+    }
+
+    try {
+      // Call backend sell endpoint; leave UnitPrice 0 so server will fetch market price
+      const payload = {
+        FromAsset: asset.symbol,
+        AmountFrom: qty,
+        UnitPrice: 0,
+        ReferenceId: `ui-sell-${Date.now()}`,
+        Description: `Sell via UI ${asset.symbol}`,
+        Method: 'UI'
+      };
+      const res = await walletApi.sell(payload);
+      if (res && (res.status === 200 || res.status === 204)) {
+        alert('Venda realizada com sucesso');
+        // Refresh portfolio
+        window.location.reload();
+      } else {
+        alert('Falha ao realizar venda');
+      }
+    } catch (err) {
+      console.error('Sell error', err);
+      alert('Erro ao vender. Verifique o console.');
+    }
+  };
+
+  // Lotes / Detalhes
+  const [lotsModalOpen, setLotsModalOpen] = useState(false);
+  const [lotsLoading, setLotsLoading] = useState(false);
+  const [lotsError, setLotsError] = useState('');
+  const [currentLots, setCurrentLots] = useState(null);
+
+  const openLotsModal = async (asset) => {
+    setLotsModalOpen(true);
+    setLotsLoading(true);
+    setLotsError('');
+    try {
+      const res = await walletApi.getAssetLots(asset.symbol);
+      setCurrentLots(res?.data ?? null);
+    } catch (err) {
+      console.error('Failed to load lots', err);
+      setLotsError('Falha ao carregar detalhes.');
+      setCurrentLots(null);
+    } finally {
+      setLotsLoading(false);
+    }
+  };
+
+  const closeLotsModal = () => {
+    setLotsModalOpen(false);
+    setCurrentLots(null);
+    setLotsError('');
+  };
+
+  useEffect(() => {
+    const loadPortfolio = async () => {
+      setLoadingPortfolio(true);
+      try {
+        const [summaryRes, historyRes] = await Promise.all([
+          walletApi.getSummary(),
+          transactionApi.getAll()
+        ]);
+
+        const summary = summaryRes?.data ?? { totalUsdValue: 0, items: [] };
+        const items = Array.isArray(summary.items) ? summary.items : [];
+        const total = summary.totalUsdValue ?? 0;
+
+        // Map and filter items: remove zero-amount assets and format numbers
+        const mappedData = items
+          .map(item => {
+            const amountNum = Number(item.amount ?? 0);
+            const priceNum = Number(item.usdPrice ?? 0);
+            const usdValue = Number((item.usdValue ?? (amountNum * priceNum)) ?? 0);
+            const purchasePrice = Number(item.averageAcquisitionPrice ?? 0);
+            const gainPercent = Number(item.gainPercent ?? 0);
+            const totalCost = Number(item.totalCostUsd ?? (purchasePrice * amountNum));
+
+            return {
+              name: item.assetSymbol,
+              asset: item.assetSymbol,
+              symbol: item.assetSymbol,
+              value: Number(usdValue),
+              amount: amountNum,
+              price: Number(priceNum),
+              purchasePrice,
+              totalCost,
+              gainPercent,
+              allocation: total > 0 ? Number(((usdValue / total) * 100).toFixed(2)) : 0,
+              change: 0
+            };
+          })
+          .filter(a => (a.amount ?? 0) > 0);
+
+        const best = mappedData.reduce((acc, curr) => (
+          !acc || curr.value > acc.value ? curr : acc
+        ), null);
+
+        setPortfolioData(mappedData);
+        setPortfolioStats({
+          totalValue: Number(total.toFixed ? total.toFixed(2) : total) || 0,
+          dayChange: 0,
+          dayChangePercent: 0,
+          bestPerformer: best ? { asset: best.asset, change: best.allocation } : { asset: '-', change: 0 }
+        });
+
+        const history = historyRes?.data ?? [];
+        setPortfolioHistoricalData(buildSyntheticHistory(total));
+        setPortfolioError('');
+      } catch (err) {
+        console.error('Erro ao carregar portfólio', err);
+        setPortfolioError('Não foi possível carregar o portfólio agora.');
+      } finally {
+        setLoadingPortfolio(false);
+      }
+    };
+
+    loadPortfolio();
+  }, []);
+
   // Gera uma mensagem personalizada com base no desempenho
   const getPerformanceMessage = () => {
     if (isPortfolioPositive) {
@@ -138,6 +310,10 @@ export function Portfolio() {
       return negativeMessages[Math.floor(Math.random() * negativeMessages.length)];
     }
   };
+
+  if (loadingPortfolio) {
+    return <LoadingScreen message="Carregando portfólio..." size="large" />;
+  }
 
   return (
     <motion.div
@@ -186,6 +362,12 @@ export function Portfolio() {
           </motion.button>
         </div>
       </div>
+
+      {portfolioError && (
+        <div className="p-4 rounded-xl border border-red-400 bg-red-500/10 text-red-500">
+          {portfolioError}
+        </div>
+      )}
 
       {/* NOVA SEÇÃO: Mensagem personalizada baseada no desempenho */}
       <motion.div
@@ -533,6 +715,8 @@ export function Portfolio() {
                     <th className="pb-4 text-text-tertiary">Ativo</th>
                     <th className="pb-4 text-text-tertiary">Quantidade</th>
                     <th className="pb-4 text-text-tertiary">Preço Atual</th>
+                    <th className="pb-4 text-text-tertiary">Preço Compra</th>
+                    <th className="pb-4 text-text-tertiary">Ganho (%)</th>
                     <th className="pb-4 text-text-tertiary">Valor</th>
                     <th className="pb-4 text-text-tertiary">Var 24h</th>
                     <th className="pb-4 text-text-tertiary">Alocação</th>
@@ -554,12 +738,19 @@ export function Portfolio() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 text-text-primary">{(Math.random() * 10).toFixed(4)} {asset.symbol}</td>
-                      <td className="py-4 text-text-primary">${(Math.random() * 10000).toFixed(2)}</td>
-                      <td className="py-4 text-text-primary font-medium">${asset.value.toLocaleString()}</td>
-                      <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : 'text-feedback-error'}`}>
+                      <td className="py-4 text-text-primary">{Number(asset.amount ?? 0).toFixed(4)} {asset.symbol}</td>
+                      <td className="py-4 text-text-primary">{formatCurrency(asset.price)}</td>
+                      <td className="py-4 text-text-primary">{formatCurrency(asset.purchasePrice)}</td>
+                      <td className="py-4 text-text-primary">{formatCurrency(asset.totalCost)}</td>
+                      <td className={`py-4 ${asset.gainPercent > 0 ? 'text-feedback-success' : asset.gainPercent < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                        {formatPercent(asset.gainPercent)}
+                      </td>
+                      <td className="py-4 text-text-primary font-medium">{formatCurrency(asset.value)}</td>
+                      <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : asset.change < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
                         <div className="flex items-center">
-                          {asset.change > 0 ? <ArrowUp size={16} className="mr-1" /> : <ArrowDown size={16} className="mr-1" />}
+                          {asset.change > 0 && <ArrowUp size={16} className="mr-1" />}
+                          {asset.change < 0 && <ArrowDown size={16} className="mr-1" />}
+                          {asset.change === 0 && <TrendingUp size={16} className="mr-1 opacity-50" />}
                           {Math.abs(asset.change)}%
                         </div>
                       </td>
@@ -577,22 +768,93 @@ export function Portfolio() {
                       </td>
                       <td className="py-4">
                         <div className="flex items-center space-x-1">
-                          <button className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors">
+                          <button className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors" title="Insights">
                             <TrendingUp size={16} />
                           </button>
-                          <button className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors">
-                            <Copy size={16} />
+                          <button onClick={() => handleSell(asset)} className="p-1.5 rounded-md bg-background-secondary hover:bg-red-500/10 text-text-secondary hover:text-red-500 transition-colors" title="Vender" aria-label={`Vender ${asset.asset}`}>
+                            <DollarSign size={16} />
+                          </button>
+                          <button onClick={() => openLotsModal(asset)} className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors" title="Detalhes" aria-label={`Detalhes ${asset.asset}`}>
+                            <Eye size={16} />
                           </button>
                         </div>
                       </td>
                     </tr>
                   ))}
+                  {portfolioData.length === 0 && (
+                    <tr>
+                      <td colSpan={7} className="py-6 text-center text-text-secondary">
+                        Nenhum ativo encontrado. Faça um depósito ou compra para começar.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
           </motion.div>
+              
         )}
       </AnimatePresence>
+
+      {/* Modal de Lotes (fora do AnimatePresence para evitar conflitos de JSX) */}
+      {lotsModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/50" onClick={closeLotsModal}></div>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="relative max-w-5xl w-full bg-background-primary rounded-2xl p-8 z-10 shadow-2xl border border-border-primary"
+          >
+            <div className="flex items-start justify-between pb-3 mb-4">
+              <h3 className="text-xl font-bold text-text-primary">Lotes - {currentLots?.assetSymbol ?? ''}</h3>
+              <button onClick={closeLotsModal} className="px-3 py-1 rounded bg-background-secondary text-text-secondary hover:bg-background-tertiary hover:text-text-primary">Fechar</button>
+            </div>
+
+            {lotsLoading && <div className="py-6 text-center text-text-secondary">Carregando...</div>}
+            {lotsError && <div className="py-4 text-feedback-error">{lotsError}</div>}
+
+            {!lotsLoading && !lotsError && currentLots && (
+              <div className="mt-4 overflow-auto max-h-[60vh]">
+                <table className="w-full text-left border-separate" style={{ borderSpacing: '0 8px' }}>
+                  <thead>
+                    <tr className="bg-background-secondary/50 sticky top-0">
+                      <th className="text-text-tertiary pb-3 pl-2">Compra</th>
+                      <th className="text-text-tertiary pb-3">Quantidade</th>
+                      <th className="text-text-tertiary pb-3">Restante</th>
+                      <th className="text-text-tertiary pb-3">Preço Unit. (USD)</th>
+                      <th className="text-text-tertiary pb-3">Custo Total (USD)</th>
+                      <th className="text-text-tertiary pb-3">Ganho Não Realizado (USD)</th>
+                      <th className="text-text-tertiary pb-3">Ganho Realizado (USD)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentLots.lots.map((lot) => (
+                      <tr key={lot.lotTransactionId} className="bg-background-primary border border-border-primary rounded-lg mb-2">
+                        <td className="py-3 px-2 text-text-primary w-[220px]">{new Date(lot.acquiredAt).toLocaleString()}</td>
+                        <td className="py-3 text-text-primary">{formatAmount8(lot.amountBought)}</td>
+                        <td className="py-3 text-text-primary">{formatAmount8(lot.amountRemaining)}</td>
+                        <td className="py-3 text-text-primary">{formatCurrency(lot.unitPriceUsd)}</td>
+                        <td className="py-3 text-text-primary">{formatCurrency(lot.totalCostUsd)}</td>
+                        <td className={`py-3 ${lot.unrealizedGainUsd > 0 ? 'text-feedback-success' : lot.unrealizedGainUsd < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                          {formatCurrency(lot.unrealizedGainUsd)}
+                        </td>
+                        <td className={`py-3 ${lot.realizedGainUsd > 0 ? 'text-feedback-success' : lot.realizedGainUsd < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                          {formatCurrency(lot.realizedGainUsd)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                <div className="mt-4 text-right text-sm">
+                  <div className="text-text-secondary">Total Não Realizado: <span className="text-text-primary font-medium">${Number(currentLots.totalUnrealizedGainUsd).toFixed(2)}</span></div>
+                  <div className="text-text-secondary">Total Realizado: <span className="text-text-primary font-medium">${Number(currentLots.totalRealizedGainUsd).toFixed(2)}</span></div>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      )}
 
       {/* Seção para adicionar novos ativos ou transações */}
       <motion.div

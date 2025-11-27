@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Loader, ArrowUp, ArrowDown } from 'lucide-react';
-import { currencyApi, walletApi, marketApi } from '../../services/api/api';
+import { ArrowLeft, ArrowUp, ArrowDown } from 'lucide-react';
+import { currencyApi, marketApi, transactionApi } from '../../services/api/api';
 import CryptoIcon from '../../components/common/CryptoIcons';
+import { CryptoChart } from '../dashboard/components/CryptoChart';
 
 const BuyCoin = () => {
   const { symbol } = useParams();
@@ -22,6 +23,8 @@ const BuyCoin = () => {
   const [ticker, setTicker] = useState(null); // dados atuais da moeda
   const [klines, setKlines] = useState([]);   // dados para o gráfico
   const [isChartLoading, setIsChartLoading] = useState(true);
+  const [chartData, setChartData] = useState([]);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
 
   const baseSymbol = useMemo(
     () => (symbol || '').replace('USDT', '').toUpperCase(),
@@ -106,8 +109,24 @@ const BuyCoin = () => {
         volume: Number(k[5])
       }));
       setKlines(klinesData);
+
+      const formattedForChart = klinesData.map(point => {
+        const date = new Date(point.openTime);
+        const shortLabel = timeRange === '1H' || timeRange === '24H'
+          ? date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+          : date.toLocaleDateString('pt-BR', { month: 'short', day: 'numeric' });
+
+        return {
+          time: shortLabel,
+          price: point.close,
+          volume: point.volume,
+          fullDate: date.toLocaleString('pt-BR')
+        };
+      });
+      setChartData(formattedForChart);
     } catch (err) {
       console.error('Erro ao carregar dados de mercado:', err);
+      setChartData([]);
     } finally {
       setIsChartLoading(false);
     }
@@ -116,6 +135,12 @@ const BuyCoin = () => {
   useEffect(() => {
     fetchMarketData();
   }, [fetchMarketData]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleTimeRangeChange = (value) => {
     setTimeRange(value);
@@ -138,8 +163,18 @@ const BuyCoin = () => {
 
     try {
       setLoadingBuy(true);
-      await walletApi.adjustBalance(baseSymbol, value);
-      setSuccess('Compra realizada com sucesso!');
+      const response = await transactionApi.buy({
+        walletId: 0,
+        assetSymbol: baseSymbol,
+        amount: value,
+      });
+      const usdSpent = response?.data?.usdSpent;
+      const price = response?.data?.priceUsd;
+      setSuccess(
+        usdSpent && price
+          ? `Compra realizada! Custo: $${usdSpent.toLocaleString(undefined, { maximumFractionDigits: 2 })} @ $${price.toFixed(2)}`
+          : 'Compra realizada com sucesso!'
+      );
       setAmount('');
     } catch (err) {
       console.error('Erro ao comprar:', err);
@@ -198,7 +233,7 @@ const BuyCoin = () => {
         />
       </div>
 
-      <div className="relative z-10 px-4 md:px-6 py-6 md:py-8 max-w-6xl mx-auto">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-10 py-6 lg:py-10 w-full max-w-[1400px] mx-auto">
         {/* Header com voltar + nome da moeda */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -236,13 +271,13 @@ const BuyCoin = () => {
         </motion.div>
 
         {/* Layout em duas colunas */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-6 xl:gap-8">
           {/* Esquerda: gráfico */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:col-span-2 rounded-2xl border border-border-primary bg-gradient-to-br from-background-primary/90 via-background-secondary/30 to-background-primary/90 shadow-xl backdrop-blur-xl p-4 md:p-6 relative overflow-hidden"
+            className="rounded-2xl border border-border-primary bg-gradient-to-br from-background-primary/90 via-background-secondary/35 to-background-primary/90 shadow-2xl shadow-brand-primary/5 backdrop-blur-xl p-4 md:p-6 relative overflow-hidden"
           >
             <motion.div 
               className="absolute inset-0 opacity-[0.15] pointer-events-none"
@@ -274,22 +309,22 @@ const BuyCoin = () => {
                     </span>
                   )}
                 </div>
-                {ticker && (
-                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] md:text-xs text-text-secondary">
+                  {ticker && (
+                    <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 text-[11px] md:text-xs text-text-secondary">
                     <div className="flex items-center justify-between sm:block">
-                      <span className="text-text-tertiary mr-2 sm:mr-0">Alta 24h</span>
+                      <span className="text-text-tertiary mr-2 sm:mr-0">Alta 24h </span>
                       <span className="font-medium text-emerald-400">
                         ${Number(ticker.highPrice).toLocaleString()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between sm:block">
-                      <span className="text-text-tertiary mr-2 sm:mr-0">Baixa 24h</span>
+                      <span className="text-text-tertiary mr-2 sm:mr-0">Baixa 24h </span>
                       <span className="font-medium text-red-400">
                         ${Number(ticker.lowPrice).toLocaleString()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between sm:block">
-                      <span className="text-text-tertiary mr-2 sm:mr-0">Volume 24h</span>
+                      <span className="text-text-tertiary mr-2 sm:mr-0">Volume 24h </span>
                       <span className="font-medium text-text-primary">
                         {Number(ticker.volume).toLocaleString()}
                       </span>
@@ -318,43 +353,19 @@ const BuyCoin = () => {
               </div>
             </div>
 
-            <div className="relative z-10 w-full h-[260px] md:h-[340px] rounded-xl bg-background-secondary/80 border border-border-primary overflow-hidden">
-              {isChartLoading ? (
-                <div className="w-full h-full flex flex-col items-center justify-center text-text-secondary text-xs">
-                  <Loader size={24} className="animate-spin mb-2" />
-                  Carregando gráfico em tempo real...
-                </div>
-              ) : klines.length === 0 ? (
-                <div className="w-full h-full flex items-center justify-center text-text-secondary text-sm">
+            <div className="relative z-10 w-full h-[260px] md:h-[360px] rounded-xl bg-background-secondary/80 border border-border-primary overflow-hidden">
+              {chartData.length === 0 && !isChartLoading ? (
+                <div className="absolute inset-0 flex items-center justify-center text-text-secondary text-sm">
                   Não há dados de gráfico disponíveis.
                 </div>
               ) : (
-                <svg className="w-full h-full">
-                  {klines.map((k, index) => {
-                    if (index === 0) return null;
-                    const prev = klines[index - 1];
-                    const x1 = ((index - 1) / klines.length) * 100;
-                    const x2 = (index / klines.length) * 100;
-                    const maxPrice = Math.max(...klines.map(p => p.close));
-                    const minPrice = Math.min(...klines.map(p => p.close));
-                    const normalize = (priceVal) => ((priceVal - minPrice) / (maxPrice - minPrice || 1));
-                    const y1 = 100 - normalize(prev.close) * 100;
-                    const y2 = 100 - normalize(k.close) * 100;
-                    return (
-                      <line
-                        key={k.openTime}
-                        x1={`${x1}%`}
-                        y1={`${y1}%`}
-                        x2={`${x2}%`}
-                        y2={`${y2}%`}
-                        stroke={isUp ? '#22c55e' : '#ef4444'}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        className="transition-all"
-                      />
-                    );
-                  })}
-                </svg>
+                <CryptoChart
+                  data={chartData}
+                  isLoading={isChartLoading}
+                  color={isUp ? '#22c55e' : '#ef4444'}
+                  height={isMobile ? 260 : 360}
+                  isMobile={isMobile}
+                />
               )}
             </div>
           </motion.div>
@@ -364,7 +375,7 @@ const BuyCoin = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.05 }}
-            className="rounded-2xl border border-border-primary bg-gradient-to-br from-background-primary/95 via-background-secondary/40 to-background-primary/95 shadow-xl backdrop-blur-xl p-4 md:p-6 flex flex-col justify-between"
+            className="rounded-2xl border border-border-primary bg-gradient-to-br from-background-primary/95 via-background-secondary/45 to-background-primary/95 shadow-2xl shadow-black/20 backdrop-blur-xl p-4 md:p-6 flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
@@ -403,7 +414,7 @@ const BuyCoin = () => {
                     step="0.00000001"
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-border-primary bg-background text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/80 text-sm"
+                    className="w-full px-3 py-2.5 rounded-xl border border-border-primary bg-background-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/80 text-sm"
                     placeholder="0.00"
                   />
                 </div>

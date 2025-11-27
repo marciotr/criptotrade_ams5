@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, DollarSign, Wallet, ArrowDownLeft, ArrowUpRight, X } from 'lucide-react';
 import SimpleHeader from '../../components/SimpleHeader';
+import * as signalR from '@microsoft/signalr';
+import { api as axiosApi } from '../../services/api/config';
 import Logo from '../../assets/img/logoBinanceRemoved.png';
 import InputMask from 'react-input-mask';
 import { walletApi, transactionApi } from '../../services/api/api';
@@ -65,10 +67,51 @@ export function DepositPage() {
     }
   };
 
+  // Helpers to safely read transaction properties with different casings
+  const getTxField = (tx, ...keys) => {
+    for (const k of keys) {
+      if (tx == null) break;
+      if (Object.prototype.hasOwnProperty.call(tx, k) && tx[k] !== undefined && tx[k] !== null) return tx[k];
+    }
+    return null;
+  };
+
+  const getTxTypeString = (tx) => {
+    const v = getTxField(tx, 'type', 'Type');
+    if (v == null) return '';
+    return typeof v === 'string' ? v : String(v);
+  };
+
+  const getTxAsset = (tx) => {
+    return getTxField(tx, 'asset', 'assetSymbol', 'AssetSymbol') || '';
+  };
+
   useEffect(() => {
     loadOrCreateWallet();
     loadBalances();
     loadTransactions();
+    // Setup SignalR connection for real-time balance updates
+    let connection;
+    try {
+      const token = localStorage.getItem('token');
+      const base = (axiosApi && axiosApi.defaults && axiosApi.defaults.baseURL) ? axiosApi.defaults.baseURL : window.location.origin;
+      connection = new signalR.HubConnectionBuilder()
+        .withUrl(`${base.replace(/\/$/, '')}/hubs/balance`, { accessTokenFactory: () => token })
+        .withAutomaticReconnect()
+        .build();
+
+      connection.on('BalancesUpdated', (payload) => {
+        setBalances(Array.isArray(payload) ? payload : []);
+      });
+
+      connection.start().catch(err => console.warn('SignalR start error', err));
+    } catch (e) {
+      console.warn('SignalR not initialized', e);
+    }
+
+    return () => {
+      if (connection) connection.stop().catch(() => {});
+    };
   }, []);
 
   return (
@@ -181,7 +224,12 @@ export function DepositPage() {
                           setDepositMessage(null);
                           try {
                             const ref = genReferenceId();
-                            await walletApi.adjustBalance('USD', value, ref, 'Deposit via card');
+                            await walletApi.adjustBalance('USD', value, {
+                              referenceId: ref,
+                              description: 'Depósito via cartão',
+                              method: 'Cartão de Crédito',
+                              unitPriceUsd: 1,
+                            });
                             setDepositMessage('Depósito concluído com sucesso');
                             setAmount('');
                             await loadBalances();
@@ -265,7 +313,12 @@ export function DepositPage() {
                           setDepositMessage(null);
                           try {
                             const ref = genReferenceId();
-                            await walletApi.adjustBalance('USD', value, ref, 'Bank transfer deposit');
+                            await walletApi.adjustBalance('USD', value, {
+                              referenceId: ref,
+                              description: 'Depósito via transferência bancária',
+                              method: 'Transferência Bancária',
+                              unitPriceUsd: 1,
+                            });
                             setDepositMessage('Depósito por transferência registrado com sucesso');
                             setBankAmount('');
                             await loadBalances();
@@ -345,7 +398,11 @@ export function DepositPage() {
                               setDepositMessage(null);
                               try {
                                 const ref = genReferenceId();
-                                await walletApi.adjustBalance(cryptoSymbol, value, ref, 'Crypto external deposit');
+                                await walletApi.adjustBalance(cryptoSymbol, value, {
+                                  referenceId: ref,
+                                  description: 'Depósito externo em cripto',
+                                  method: 'Transferência Cripto',
+                                });
                                 setDepositMessage('Depósito em cripto registrado com sucesso');
                                 setCryptoAmount('');
                                 await loadBalances();
@@ -424,7 +481,7 @@ export function DepositPage() {
                             </div>
                             <div>
                               <h4 className="text-text-primary">{symbol}</h4>
-                              <p className="text-xs text-text-terciary">Available</p>
+                              <p className="text-xs text-text-secondary">Available</p>
                             </div>
                           </div>
                           <div className="text-right">
@@ -440,23 +497,31 @@ export function DepositPage() {
 
                   {/* Integrate recent transactions into the same "Recent Activity" list */}
                   {transactions && transactions.length > 0 && (
-                    transactions.slice(0, 6).map((tx) => (
-                      <div key={`tx-${tx.id ?? tx.Id ?? Math.random()}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
-                        <div className="flex items-center">
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${tx.type === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
-                            <span className="text-sm font-medium">{(tx.type ?? '').charAt(0).toUpperCase() || 'T'}</span>
+                    transactions.slice(0, 6).map((tx) => {
+                      const typeStr = getTxTypeString(tx).toLowerCase();
+                      const displayType = (getTxTypeString(tx) || 'Txn');
+                      const assetLabel = getTxAsset(tx);
+                      const amountLabel = (tx.amount ?? tx.Amount ?? tx.value ?? '').toString();
+                      const messageLabel = tx.message ?? tx.description ?? tx.Message ?? '';
+
+                      return (
+                        <div key={`tx-${tx.id ?? tx.Id ?? Math.random()}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                          <div className="flex items-center">
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${typeStr === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
+                              <span className="text-sm font-medium">{(displayType.charAt(0) || 'T').toUpperCase()}</span>
+                            </div>
+                            <div>
+                              <h4 className="text-text-primary">{displayType.charAt(0).toUpperCase() + displayType.slice(1)}</h4>
+                              <p className="text-xs text-text-secondary">{assetLabel}</p>
+                            </div>
                           </div>
-                          <div>
-                            <h4 className="text-text-primary">{tx.type ? tx.type.charAt(0).toUpperCase() + tx.type.slice(1) : 'Txn'}</h4>
-                            <p className="text-xs text-text-tertiary">{tx.asset ?? tx.assetSymbol ?? tx.AssetSymbol ?? ''}</p>
+                          <div className="text-right">
+                            <p className="text-text-primary font-medium">{amountLabel}</p>
+                            <p className="text-xs text-text-secondary">{messageLabel}</p>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <p className="text-text-primary font-medium">{(tx.amount ?? tx.Amount ?? tx.value ?? '').toString()}</p>
-                          <p className="text-xs text-text-terciary">{tx.message ?? tx.description ?? ''}</p>
-                        </div>
-                      </div>
-                    ))
+                      );
+                    })
                   )}
                 </div>
             
@@ -479,24 +544,31 @@ export function DepositPage() {
               <h3 className="text-lg font-medium mb-3 text-text-primary">Recent Transactions</h3>
               <div className="space-y-3">
                 {transactions && transactions.length > 0 ? (
-                  transactions.slice(0, 6).map((tx) => (
-                    <div key={tx.id} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
-                      <div className="flex items-center">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${tx.type === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
-                          {/* simple icon */}
-                          <span className="text-sm font-medium">{(tx.type || tx.type)?.charAt(0).toUpperCase()}</span>
+                  transactions.slice(0, 6).map((tx) => {
+                    const typeStr = getTxTypeString(tx).toLowerCase();
+                    const displayType = (getTxTypeString(tx) || 'Txn');
+                    const assetLabel = getTxAsset(tx);
+                    const amountLabel = (tx.amount ?? tx.Amount ?? tx.value ?? tx.amount ?? '').toString();
+                    const messageLabel = tx.message ?? tx.description ?? tx.Message ?? '';
+
+                    return (
+                      <div key={tx.id ?? tx.Id} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                        <div className="flex items-center">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${typeStr === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
+                            <span className="text-sm font-medium">{(displayType.charAt(0) || 'T').toUpperCase()}</span>
+                          </div>
+                          <div>
+                            <h4 className="text-text-primary">{displayType.charAt(0).toUpperCase() + displayType.slice(1)}</h4>
+                              <p className="text-xs text-text-secondary">{assetLabel}</p>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="text-text-primary">{tx.type ? tx.type.charAt(0).toUpperCase() + tx.type.slice(1) : 'Txn'}</h4>
-                          <p className="text-xs text-text-tertiary">{tx.asset ?? tx.assetSymbol ?? tx.AssetSymbol ?? ''}</p>
+                        <div className="text-right">
+                          <p className="text-text-primary font-medium">{amountLabel}</p>
+                            <p className="text-xs text-text-secondary">{messageLabel}</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-text-primary font-medium">{(tx.amount ?? tx.Amount ?? tx.amount)?.toString()}</p>
-                        <p className="text-xs text-text-tertiary">{tx.message ?? ''}</p>
-                      </div>
-                    </div>
-                  ))
+                    );
+                  })
                 ) : (
                   <div className="p-3 border border-border-primary rounded-lg text-text-tertiary">No recent transactions</div>
                 )}
