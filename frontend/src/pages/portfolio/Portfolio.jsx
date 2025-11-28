@@ -226,68 +226,50 @@ export function Portfolio() {
   };
 
   useEffect(() => {
-    const loadPortfolio = async () => {
-      setLoadingPortfolio(true);
+    let mounted = true;
+
+    (async () => {
       try {
-        const [summaryRes, historyRes] = await Promise.all([
+        setLoadingPortfolio(true);
+        setPortfolioError('');
+
+        const [summaryRes, balancesRes] = await Promise.all([
           walletApi.getSummary(),
-          transactionApi.getAll()
+          walletApi.getBalances()
         ]);
 
-        const summary = summaryRes?.data ?? { totalUsdValue: 0, items: [] };
-        const items = Array.isArray(summary.items) ? summary.items : [];
-        const total = summary.totalUsdValue ?? 0;
+        if (!mounted) return;
 
-        // Map and filter items: remove zero-amount assets and format numbers
-        const mappedData = items
-          .map(item => {
-            const amountNum = Number(item.amount ?? 0);
-            const priceNum = Number(item.usdPrice ?? 0);
-            const usdValue = Number((item.usdValue ?? (amountNum * priceNum)) ?? 0);
-            const purchasePrice = Number(item.averageAcquisitionPrice ?? 0);
-            const gainPercent = Number(item.gainPercent ?? 0);
-            const totalCost = Number(item.totalCostUsd ?? (purchasePrice * amountNum));
+        const summary = summaryRes?.data ?? {};
+        const balances = Array.isArray(balancesRes?.data) ? balancesRes.data : [];
 
-            return {
-              name: item.assetSymbol,
-              asset: item.assetSymbol,
-              symbol: item.assetSymbol,
-              value: Number(usdValue),
-              amount: amountNum,
-              price: Number(priceNum),
-              purchasePrice,
-              totalCost,
-              gainPercent,
-              allocation: total > 0 ? Number(((usdValue / total) * 100).toFixed(2)) : 0,
-              change: 0
-            };
-          })
-          .filter(a => (a.amount ?? 0) > 0);
-
-        const best = mappedData.reduce((acc, curr) => (
-          !acc || curr.value > acc.value ? curr : acc
-        ), null);
-
-        setPortfolioData(mappedData);
         setPortfolioStats({
-          totalValue: Number(total.toFixed ? total.toFixed(2) : total) || 0,
-          dayChange: 0,
-          dayChangePercent: 0,
-          bestPerformer: best ? { asset: best.asset, change: best.allocation } : { asset: '-', change: 0 }
+          totalValue: summary.totalValue ?? 0,
+          dayChange: summary.dayChange ?? 0,
+          dayChangePercent: summary.dayChangePercent ?? 0,
+          bestPerformer: summary.bestPerformer ? { asset: summary.bestPerformer.symbol, change: summary.bestPerformer.value } : { asset: '-', change: 0 }
         });
 
-        const history = historyRes?.data ?? [];
-        setPortfolioHistoricalData(buildSyntheticHistory(total));
-        setPortfolioError('');
-      } catch (err) {
-        console.error('Erro ao carregar portfólio', err);
-        setPortfolioError('Não foi possível carregar o portfólio agora.');
-      } finally {
-        setLoadingPortfolio(false);
-      }
-    };
+        const mapped = balances.map((b, idx) => ({
+          id: b.currencyId ?? b.idCurrency ?? idx,
+          symbol: b.symbol ?? b.Symbol ?? b.currencySymbol ?? b.CurrencySymbol ?? 'UNKNOWN',
+          name: b.name ?? b.Name ?? null,
+          amount: Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0),
+          currentPrice: Number(b.currentPrice ?? b.CurrentPrice ?? 0),
+          value: (Number(b.amount ?? b.Amount ?? 0) * Number(b.currentPrice ?? b.CurrentPrice ?? 0)) || 0
+        }));
 
-    loadPortfolio();
+        setPortfolioData(mapped);
+        setPortfolioHistoricalData(buildSyntheticHistory(summary.totalValue ?? 0));
+      } catch (err) {
+        console.error('Erro ao carregar portfolio', err);
+        if (mounted) setPortfolioError('Erro ao carregar dados da carteira');
+      } finally {
+        if (mounted) setLoadingPortfolio(false);
+      }
+    })();
+
+    return () => { mounted = false; };
   }, []);
 
   // Gera uma mensagem personalizada com base no desempenho

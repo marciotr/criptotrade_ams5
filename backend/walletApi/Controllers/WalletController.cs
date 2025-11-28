@@ -29,41 +29,80 @@ public class WalletController : ControllerBase
 
     private Guid? GetUserGuid()
     {
-        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        if (!string.IsNullOrEmpty(userIdClaim) && Guid.TryParse(userIdClaim, out var g)) return g;
-
-        if (Request.Headers.TryGetValue("Authorization", out var authHeader))
+        try
         {
-            var auth = authHeader.ToString();
-            if (auth.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
-            {
-                var token = auth.Substring("Bearer ".Length).Trim();
-                try
-                {
-                    var key = _configuration["Jwt:Key"];
-                    var issuer = _configuration["Jwt:Issuer"];
-                    var audience = _configuration["Jwt:Audience"];
-                    var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
-                    var validationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = issuer,
-                        ValidAudience = audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
-                    };
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Console.WriteLine($"[Wallet] User.Identity.IsAuthenticated={User?.Identity?.IsAuthenticated}; NameIdentifierClaim={userIdClaim}");
+            if (!string.IsNullOrEmpty(userIdClaim) && Guid.TryParse(userIdClaim, out var g)) return g;
 
-                    var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
-                    var claim = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                    if (!string.IsNullOrEmpty(claim) && Guid.TryParse(claim, out var g2)) return g2;
-                }
-                catch
+            if (!string.IsNullOrEmpty(userIdClaim) && int.TryParse(userIdClaim, out var numericId))
+            {
+                var bytes = new byte[16];
+                var idBytes = BitConverter.GetBytes(numericId);
+                Array.Copy(idBytes, 0, bytes, 0, Math.Min(idBytes.Length, bytes.Length));
+                var deterministicGuid = new Guid(bytes);
+                Console.WriteLine($"[Wallet] NameIdentifier was numeric ({numericId}). Using deterministic GUID {deterministicGuid} as user id fallback.");
+                return deterministicGuid;
+            }
+
+            if (Request.Headers.TryGetValue("Authorization", out var authHeader))
+            {
+                var auth = authHeader.ToString();
+                Console.WriteLine($"[Wallet] Authorization header present (truncated)={(string.IsNullOrEmpty(auth) ? "<empty>" : auth.Length > 50 ? auth.Substring(0,50) : auth)}");
+                if (auth.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
                 {
-                    return null;
+                    var token = auth.Substring("Bearer ".Length).Trim();
+                    try
+                    {
+                        var key = _configuration["Jwt:Key"];
+                        var issuer = _configuration["Jwt:Issuer"];
+                        var audience = _configuration["Jwt:Audience"];
+                        if (string.IsNullOrEmpty(key))
+                        {
+                            Console.WriteLine("[Wallet] Jwt:Key is not configured");
+                            return null;
+                        }
+                        var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+                        var validationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = issuer,
+                            ValidAudience = audience,
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+                        };
+
+                        var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+                        var claim = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                        Console.WriteLine($"[Wallet] Token validated; NameIdentifier from token={claim}");
+                        if (!string.IsNullOrEmpty(claim) && Guid.TryParse(claim, out var g2)) return g2;
+
+                        if (!string.IsNullOrEmpty(claim) && int.TryParse(claim, out var numeric2))
+                        {
+                            var bytes2 = new byte[16];
+                            var idBytes2 = BitConverter.GetBytes(numeric2);
+                            Array.Copy(idBytes2, 0, bytes2, 0, Math.Min(idBytes2.Length, bytes2.Length));
+                            var deterministicGuid2 = new Guid(bytes2);
+                            Console.WriteLine($"[Wallet] Token NameIdentifier numeric fallback -> {deterministicGuid2}");
+                            return deterministicGuid2;
+                        }
+
+                        var email = principal.FindFirst(ClaimTypes.Email)?.Value;
+                        if (!string.IsNullOrEmpty(email)) Console.WriteLine($"[Wallet] Token email claim={email}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[Wallet] Token validation failed: {ex.Message}");
+                        return null;
+                    }
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Wallet] GetUserGuid unexpected error: {ex.Message}");
         }
 
         return null;
@@ -245,16 +284,29 @@ public class WalletController : ControllerBase
         var userGuid = u.Value;
 
         var account = await _db.Accounts.FirstOrDefaultAsync(a => a.IdUser == userGuid);
-        if (account == null) return NotFound(new { message = "Account not found for user" });
+        if (account == null)
+        {
+            // create a default account for this user id fallback so the route behaves consistently
+            account = new Domain.Entities.Account { IdAccount = Guid.NewGuid(), IdUser = userGuid, AvailableBalance = 0, LockedBalance = 0, Status = "ACTIVE" };
+            await _db.Accounts.AddAsync(account);
+            await _db.SaveChangesAsync();
+            Console.WriteLine($"[Wallet] Created missing account for user {userGuid} -> account {account.IdAccount}");
+        }
 
-        var balances = await _db.WalletPositions
+        // load positions into memory to aggregate on client side (workaround for SQLite Sum(decimal) limitation)
+        var positions = await _db.WalletPositions
             .Where(p => _db.Wallets.Any(w => w.IdWallet == p.IdWallet && w.IdAccount == account.IdAccount))
-            .GroupBy(p => p.IdCurrency)
-            .Select(g => new { IdCurrency = g.Key, Amount = g.Sum(x => x.Amount) })
             .ToListAsync();
 
+        var balances = positions
+            .GroupBy(p => p.IdCurrency)
+            .Select(g => new { IdCurrency = g.Key, Amount = g.Sum(x => x.Amount) })
+            .ToList();
+
+        var currencies = await _db.Currencies.ToListAsync();
+
         var detailed = (from b in balances
-                        join c in _db.Currencies on b.IdCurrency equals c.IdCurrency
+                        join c in currencies on b.IdCurrency equals c.IdCurrency
                         select new
                         {
                             CurrencyId = b.IdCurrency,
@@ -282,6 +334,7 @@ public class WalletController : ControllerBase
     public async Task<IActionResult> GetAssetLots(string assetSymbol, [FromQuery] string method = "fifo")
     {
         var u = GetUserGuid();
+        
         if (u == null) return Unauthorized();
         var userGuid = u.Value;
 
@@ -392,26 +445,29 @@ public class WalletController : ControllerBase
         var account = await _db.Accounts.FirstOrDefaultAsync(a => a.IdUser == userGuid);
         if (account == null) return NotFound(new { message = "Account not found for user" });
 
-        var balances = await _db.WalletPositions
+        // load positions into memory first to avoid SQLite decimal Sum translation issues
+        var positions = await _db.WalletPositions
             .Where(p => _db.Wallets.Any(w => w.IdWallet == p.IdWallet && w.IdAccount == account.IdAccount))
-            .GroupBy(p => p.IdCurrency)
-            .Select(g => new {
-                IdCurrency = g.Key,
-                Amount = g.Sum(x => x.Amount)
-            })
             .ToListAsync();
 
-        var result = from b in balances
-                     join c in _db.Currencies on b.IdCurrency equals c.IdCurrency
-                     select new {
-                         CurrencyId = b.IdCurrency,
-                         Symbol = c.Symbol,
-                         Name = c.Name,
-                         Amount = b.Amount,
-                         AvgPrice = (decimal?)null,
-                         CurrentPrice = c.CurrentPrice,
-                         Value = b.Amount * c.CurrentPrice
-                     };
+        var balances = positions
+            .GroupBy(p => p.IdCurrency)
+            .Select(g => new { IdCurrency = g.Key, Amount = g.Sum(x => x.Amount) })
+            .ToList();
+
+        var currencies = await _db.Currencies.ToListAsync();
+
+        var result = (from b in balances
+                      join c in currencies on b.IdCurrency equals c.IdCurrency
+                      select new {
+                          CurrencyId = b.IdCurrency,
+                          Symbol = c.Symbol,
+                          Name = c.Name,
+                          Amount = b.Amount,
+                          AvgPrice = (decimal?)null,
+                          CurrentPrice = c.CurrentPrice,
+                          Value = b.Amount * c.CurrentPrice
+                      }).ToList();
 
         return Ok(result);
     }

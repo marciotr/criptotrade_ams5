@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CreditCard, DollarSign, Wallet, ArrowDownLeft, ArrowUpRight, X } from 'lucide-react';
+import { CreditCard, DollarSign, Wallet, ArrowDownLeft } from 'lucide-react';
 import SimpleHeader from '../../components/SimpleHeader';
 import * as signalR from '@microsoft/signalr';
 import { api as axiosApi } from '../../services/api/config';
 import Logo from '../../assets/img/logoBinanceRemoved.png';
 import InputMask from 'react-input-mask';
-import { walletApi, transactionApi } from '../../services/api/api';
+import { walletApi } from '../../services/api/api';
 
 export function DepositPage() {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -19,6 +19,7 @@ export function DepositPage() {
   const [walletAddress, setWalletAddress] = useState(null);
   const [balances, setBalances] = useState([]);
   const [transactions, setTransactions] = useState([]);
+  const [usdTotal, setUsdTotal] = useState(null); // authoritative USD total from /balance/summary
 
   const handleMethodClick = (method) => {
     setSelectedMethod(method === selectedMethod ? null : method);
@@ -31,39 +32,59 @@ export function DepositPage() {
 
   const loadBalances = async () => {
     try {
-      const res = await walletApi.getBalances();
-      setBalances(res.data || []);
+      const res = await walletApi.getBalance();
+      console.debug('[DepositPage] raw /balance response', res?.data);
+      const raw = Array.isArray(res.data) ? res.data : [];
+      const normalized = raw.map((b) => ({
+        currencyId: b.currencyId ?? b.CurrencyId ?? b.IdCurrency ?? b.idCurrency,
+        symbol: (b.symbol ?? b.Symbol ?? b.CurrencySymbol ?? b.currencySymbol ?? '').toUpperCase(),
+        name: b.name ?? b.Name ?? '',
+        amount: Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0),
+        currentPrice: Number(b.currentPrice ?? b.CurrentPrice ?? 1),
+        value: Number(b.value ?? b.Value ?? ((Number(b.amount ?? b.Amount ?? 0) * Number(b.currentPrice ?? b.CurrentPrice ?? 1))))
+      }));
+      console.debug('[DepositPage] normalized balances', normalized);
+      setBalances(normalized);
+      // fetch summary total (authoritative USD total)
+      try {
+        const sumRes = await walletApi.getSummary();
+        console.debug('[DepositPage] /balance/summary response', sumRes?.data);
+        setUsdTotal(Number(sumRes?.data?.totalValue ?? 0));
+      } catch (e) {
+        console.warn('Failed to load balance summary', e);
+        setUsdTotal((prev) => prev ?? null);
+      }
     } catch (err) {
-     
+      console.warn('Erro ao carregar balances', err);
+      setBalances([]);
     }
   };
 
   const loadTransactions = async () => {
     try {
-      const res = await transactionApi.getAll();
+      const res = await walletApi.getTransactions();
       setTransactions(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      // silently ignore for now or set an empty list
+      console.warn('Erro ao carregar transações', err);
       setTransactions([]);
     }
   };
 
   const loadOrCreateWallet = async () => {
     try {
-      const res = await walletApi.getWallet();
-      setWalletAddress(res.data?.address ?? null);
-    } catch (err) {
-      if (err.response?.status === 404) {
-        try {
-          const created = await walletApi.createWallet();
-          setWalletAddress(created.data?.address ?? null);
-        } catch (e) {
-         
-          setWalletAddress(null);
-        }
-      } else {
-        setWalletAddress(null);
+      const res = await walletApi.getWallets();
+      const wallets = Array.isArray(res.data) ? res.data : [];
+      if (wallets.length > 0) {
+        setWalletAddress(wallets[0].idWallet || wallets[0].address || null);
+        return;
       }
+
+      const created = await walletApi.createWallet({ name: 'Default' });
+      const w = created.data;
+      setWalletAddress(w?.idWallet || w?.address || null);
+    } catch (err) {
+      console.warn('Erro ao carregar/criar wallet', err);
+      setWalletAddress(null);
     }
   };
 
@@ -101,7 +122,23 @@ export function DepositPage() {
         .build();
 
       connection.on('BalancesUpdated', (payload) => {
-        setBalances(Array.isArray(payload) ? payload : []);
+        // normalize payload if server sends array of balances
+        console.debug('[DepositPage] SignalR BalancesUpdated payload', payload);
+        const raw = Array.isArray(payload) ? payload : [];
+        const normalized = raw.map((b) => ({
+          currencyId: b.currencyId ?? b.CurrencyId ?? b.IdCurrency ?? b.idCurrency,
+          symbol: (b.symbol ?? b.Symbol ?? b.CurrencySymbol ?? b.currencySymbol ?? '').toUpperCase(),
+          name: b.name ?? b.Name ?? '',
+          amount: Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0),
+          currentPrice: Number(b.currentPrice ?? b.CurrentPrice ?? 1),
+          value: Number(b.value ?? b.Value ?? ((Number(b.amount ?? b.Amount ?? 0) * Number(b.currentPrice ?? b.CurrentPrice ?? 1))))
+        }));
+        console.debug('[DepositPage] SignalR normalized balances', normalized);
+        setBalances(normalized);
+        // If server sent an aggregated summary inside the SignalR payload use it
+        if (payload && payload.totalValue != null) {
+          setUsdTotal(Number(payload.totalValue));
+        }
       });
 
       connection.start().catch(err => console.warn('SignalR start error', err));
@@ -113,6 +150,33 @@ export function DepositPage() {
       if (connection) connection.stop().catch(() => {});
     };
   }, []);
+
+  // compute USD balance (include USDT as equivalent)
+  const usdSymbols = new Set(['USD', 'USDT', 'USDC']);
+  const usdBalance = balances.reduce((sum, b) => {
+    const sym = (b.symbol || '').toUpperCase();
+    if (usdSymbols.has(sym)) {
+      const val = Number(b.value ?? (Number(b.amount || 0) * Number(b.currentPrice || 1))) || 0;
+      return sum + val;
+    }
+    return sum;
+  }, 0);
+
+  let effectiveUsdBalance = usdBalance;
+  if (effectiveUsdBalance === 0 && balances.length > 0) {
+    const fallback = balances.reduce((s, b) => {
+      const sym = (b.symbol || '').toUpperCase();
+      const name = (b.name || '').toLowerCase();
+      if (sym.includes('USD') || name.includes('dollar') || name.includes('dólar') || name.includes('tether')) {
+        return s + (Number(b.value ?? (Number(b.amount || 0) * Number(b.currentPrice || 1))) || 0);
+      }
+      return s;
+    }, 0);
+    if (fallback > 0) {
+      console.debug('[DepositPage] usdBalance fallback applied, value=', fallback, 'balances=', balances);
+      effectiveUsdBalance = fallback;
+    }
+  }
 
   return (
     <>
@@ -224,12 +288,7 @@ export function DepositPage() {
                           setDepositMessage(null);
                           try {
                             const ref = genReferenceId();
-                            await walletApi.adjustBalance('USD', value, {
-                              referenceId: ref,
-                              description: 'Depósito via cartão',
-                              method: 'Cartão de Crédito',
-                              unitPriceUsd: 1,
-                            });
+                            await walletApi.depositFiat({ currency: 'USD', amount: value, method: 'CARD', referenceId: ref });
                             setDepositMessage('Depósito concluído com sucesso');
                             setAmount('');
                             await loadBalances();
@@ -313,12 +372,7 @@ export function DepositPage() {
                           setDepositMessage(null);
                           try {
                             const ref = genReferenceId();
-                            await walletApi.adjustBalance('USD', value, {
-                              referenceId: ref,
-                              description: 'Depósito via transferência bancária',
-                              method: 'Transferência Bancária',
-                              unitPriceUsd: 1,
-                            });
+                            await walletApi.depositFiat({ currency: 'USD', amount: value, method: 'BANK_TRANSFER', referenceId: ref });
                             setDepositMessage('Depósito por transferência registrado com sucesso');
                             setBankAmount('');
                             await loadBalances();
@@ -399,9 +453,9 @@ export function DepositPage() {
                               try {
                                 const ref = genReferenceId();
                                 await walletApi.adjustBalance(cryptoSymbol, value, {
+                                  unitPriceUsd: 1,
+                                  method: 'CRYPTO_TRANSFER',
                                   referenceId: ref,
-                                  description: 'Depósito externo em cripto',
-                                  method: 'Transferência Cripto',
                                 });
                                 setDepositMessage('Depósito em cripto registrado com sucesso');
                                 setCryptoAmount('');
@@ -471,10 +525,10 @@ export function DepositPage() {
               <div className="space-y-3">
                   {balances && balances.length > 0 ? (
                     balances.map((b) => {
-                      const symbol = b.assetSymbol ?? b.AssetSymbol ?? 'UNKNOWN';
-                      const amount = (b.availableAmount ?? b.AvailableAmount) ?? 0;
+                      const symbol = b.symbol || 'UNKNOWN';
+                      const amount = b.amount ?? 0;
                       return (
-                        <div key={`bal-${symbol}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                        <div key={`bal-${b.currencyId ?? symbol}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
                           <div className="flex items-center">
                             <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
                               <ArrowDownLeft className="h-4 w-4 text-green-600" />
@@ -530,7 +584,7 @@ export function DepositPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-background-secondary rounded-lg">
                   <p className="text-sm text-text-tertiary mb-1">USD Balance</p>
-                  <p className="text-lg font-medium text-text-primary">$1,250.00</p>
+                  <p className="text-lg font-medium text-text-primary">${(usdTotal != null ? usdTotal : effectiveUsdBalance).toFixed(2)}</p>
                 </div>
                 <div className="p-3 bg-background-secondary rounded-lg">
                   <p className="text-sm text-text-tertiary mb-1">EUR Balance</p>
