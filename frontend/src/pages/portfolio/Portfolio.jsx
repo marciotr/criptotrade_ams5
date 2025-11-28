@@ -183,7 +183,7 @@ export function Portfolio() {
         Description: `Sell via UI ${asset.symbol}`,
         Method: 'UI'
       };
-      const res = await walletApi.sell(payload);
+        const res = await transactionApi.sell(payload);
       if (res && (res.status === 200 || res.status === 204)) {
         alert('Venda realizada com sucesso');
         // Refresh portfolio

@@ -78,7 +78,9 @@ export const walletApi = {
 
     return api.patch(`/balance/${assetSymbol}`, payload);
   },
-  sell: (data) => api.post('/trade/sell', data),
+  // Use transactions route so gateway routes to walletApi
+  sell: (data) => api.post('/transactions/sell', data),
+  depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
 };
 
 export const transactionApi = {
