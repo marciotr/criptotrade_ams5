@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using WalletApi.Infrastructure.Data;
 using WalletApi.Services;
+using WalletApi.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,6 +77,16 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
     db.Database.EnsureCreated();
+    // Seed some common currencies for frontend testing (no mocks)
+    if (!db.Currencies.Any())
+    {
+        db.Currencies.AddRange(
+            new Currency { IdCurrency = Guid.NewGuid(), Symbol = "BTC", Name = "Bitcoin", CurrentPrice = 60000m },
+            new Currency { IdCurrency = Guid.NewGuid(), Symbol = "ETH", Name = "Ethereum", CurrentPrice = 4000m },
+            new Currency { IdCurrency = Guid.NewGuid(), Symbol = "USDT", Name = "Tether", CurrentPrice = 1m }
+        );
+        db.SaveChanges();
+    }
 }
 
 // Always enable Swagger UI so the root URL serves the API docs/try-it UI.

@@ -148,6 +148,19 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
       "UpstreamPathTemplate": "/balance",
+      "AddHeadersToRequest": {
+        "Authorization": "{UpstreamRequestHeader.Authorization}"
+      },
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/balance/summary",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
+      "UpstreamPathTemplate": "/balance/summary",
+      "AddHeadersToRequest": {
+        "Authorization": "{UpstreamRequestHeader.Authorization}"
+      },
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
@@ -155,7 +168,20 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
       "UpstreamPathTemplate": "/balance/{assetSymbol}",
+      "AddHeadersToRequest": {
+        "Authorization": "{UpstreamRequestHeader.Authorization}"
+      },
       "UpstreamHttpMethod": [ "PATCH" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/balance/asset/{assetSymbol}/lots",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
+      "UpstreamPathTemplate": "/balance/asset/{assetSymbol}/lots",
+      "AddHeadersToRequest": {
+        "Authorization": "{UpstreamRequestHeader.Authorization}"
+      },
+      "UpstreamHttpMethod": [ "GET" ]
     },
     {
       "DownstreamPathTemplate": "/api/wallets",
