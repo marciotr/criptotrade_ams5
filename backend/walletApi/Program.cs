@@ -1,112 +1,94 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using WalletApi2.Infrastructure;
+using WalletApi.Infrastructure.Data;
+using WalletApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var configuration = builder.Configuration;
-var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"] ?? throw new Exception("Jwt:Key missing"));
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Wallet API", Version = "v1" });
+    var securityScheme = new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer abcdef12345\"",
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.SecurityScheme,
+            Id = "Bearer"
+        }
+    };
+    c.AddSecurityDefinition("Bearer", securityScheme);
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        { securityScheme, Array.Empty<string>() }
+    });
+});
 
-// Authentication
+var jwtSection = builder.Configuration.GetSection("Jwt");
+var jwtKey = jwtSection.GetValue<string>("Key") ?? throw new InvalidOperationException("Jwt:Key not configured");
+var jwtIssuer = jwtSection.GetValue<string>("Issuer");
+var jwtAudience = jwtSection.GetValue<string>("Audience");
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters
+    .AddJwtBearer(options =>
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAudience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+    });
 
-        ValidateIssuer = true,
-        ValidIssuer = configuration["Jwt:Issuer"],
+var dbPath = Path.Combine(AppContext.BaseDirectory, "wallet.db");
+builder.Services.AddDbContext<WalletDbContext>(options =>
+    options.UseSqlite($"Data Source={dbPath}"));
 
-        ValidateAudience = true,
-        ValidAudience = configuration["Jwt:Audience"],
-
-        ClockSkew = TimeSpan.Zero // opcional, para não ter folga de tempo
-    };
-});
-
+builder.Services.AddScoped<IWalletService, WalletService>();
 builder.Services.AddAuthorization();
 
-// Controllers and endpoints
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-
-// Swagger with JWT support
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Wallet API", Version = "v1" });
-
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        BearerFormat = "JWT",
-        Scheme = "bearer",
-        Description = "Enter your JWT token. Example: \"Bearer {token}\""
-    });
-
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-            },
-            new string[] { }
-        }
-    });
-});
-
-// CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders("Authorization"));
-});
-
-// DbContext
-builder.Services.AddDbContext<WalletDbContext>(options => options.UseSqlite("Data Source=wallet.db"));
-
-// Project services and repositories
-builder.Services.AddScoped(typeof(WalletApi2.Domain.Interfaces.IRepository<>), typeof(WalletApi2.Infrastructure.Repositories.GenericRepository<>));
-builder.Services.AddScoped<WalletApi2.Domain.Interfaces.IAssetBalanceService, WalletApi2.Services.AssetBalanceService>();
-builder.Services.AddScoped<WalletApi2.Domain.Interfaces.IWalletService, WalletApi2.Services.WalletService>();
-
-// HttpClient and other app services
-builder.Services.AddHttpClient();
+// Force the application to listen on port 5094 when running via `dotnet run`.
+builder.WebHost.UseUrls("http://localhost:5094");
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Wallet API V1");
-        options.RoutePrefix = string.Empty;
-    });
+    var db = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
+    db.Database.EnsureCreated();
 }
 
-app.UseHttpsRedirection();
+// Always enable Swagger UI so the root URL serves the API docs/try-it UI.
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Wallet API V1");
+    options.RoutePrefix = string.Empty; // serve Swagger UI at application root
+});
 
-// Order: CORS before Authentication and Authorization
-app.UseCors("AllowAll");
-
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapControllers()
-   .RequireCors("AllowAll");
+app.MapControllers();
 
 app.Run();
-

@@ -1,13 +1,12 @@
-using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace WalletApi2.Domain.Entities
+namespace WalletApi.Domain.Entities;
+
+public class Wallet
 {
-    public class Wallet
-    {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Address { get; set; }
-        public string PublicKey { get; set; }
-        public DateTime CreatedAt { get; set; }
-    }
+    [Key]
+    public Guid IdWallet { get; set; }
+    public Guid IdAccount { get; set; }
+    public string? Name { get; set; }
+    public DateTime CreatedAt { get; set; }
 }
