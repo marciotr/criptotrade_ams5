@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, DollarSign, Wallet, ArrowDownLeft } from 'lucide-react';
 import SimpleHeader from '../../components/SimpleHeader';
+import { NotificationToast } from '../../components/common/NotificationToast';
 import * as signalR from '@microsoft/signalr';
 import { api as axiosApi } from '../../services/api/config';
 import Logo from '../../assets/img/logoBinanceRemoved.png';
@@ -13,6 +14,7 @@ export function DepositPage() {
   const [amount, setAmount] = useState('');
   const [depositLoading, setDepositLoading] = useState(false);
   const [depositMessage, setDepositMessage] = useState(null);
+  const [notification, setNotification] = useState(null);
   const [cryptoSymbol, setCryptoSymbol] = useState('BTC');
   const [cryptoAmount, setCryptoAmount] = useState('');
   const [bankAmount, setBankAmount] = useState('');
@@ -49,14 +51,16 @@ export function DepositPage() {
       try {
         const sumRes = await walletApi.getSummary();
         console.debug('[DepositPage] /balance/summary response', sumRes?.data);
-        setUsdTotal(Number(sumRes?.data?.totalValue ?? 0));
+        const total = sumRes?.data?.totalValue;
+        setUsdTotal(total != null ? Number(total) : null);
       } catch (e) {
         console.warn('Failed to load balance summary', e);
-        setUsdTotal((prev) => prev ?? null);
+        setUsdTotal(null);
       }
     } catch (err) {
       console.warn('Erro ao carregar balances', err);
       setBalances([]);
+      setUsdTotal(null);
     }
   };
 
@@ -105,6 +109,24 @@ export function DepositPage() {
 
   const getTxAsset = (tx) => {
     return getTxField(tx, 'asset', 'assetSymbol', 'AssetSymbol') || '';
+  };
+
+  const getTxDisplayType = (tx) => {
+    const raw = getTxField(tx, 'type', 'Type') || '';
+    const s = typeof raw === 'string' ? raw : String(raw);
+    const low = s.toLowerCase();
+    if (low.includes('deposit') && low.includes('fiat')) return 'Deposit';
+    if (low.includes('deposit')) return 'Deposit';
+    if (low.includes('withdraw')) return 'Withdraw';
+    if (low.includes('buy')) return 'Buy';
+    if (low.includes('sell')) return 'Sell';
+    if (low.includes('swap')) return 'Swap';
+    return s || '';
+  };
+
+  const getTxAmountLabel = (tx) => {
+    const amt = tx?.totalAmount ?? tx?.TotalAmount ?? tx?.total ?? tx?.amount ?? tx?.Amount ?? tx?.value ?? tx?.Value ?? '';
+    return amt !== null && amt !== undefined ? String(amt) : '';
   };
 
   useEffect(() => {
@@ -162,7 +184,7 @@ export function DepositPage() {
     return sum;
   }, 0);
 
-  let effectiveUsdBalance = usdBalance;
+  let effectiveUsdBalance = usdTotal != null ? usdTotal : usdBalance;
   if (effectiveUsdBalance === 0 && balances.length > 0) {
     const fallback = balances.reduce((s, b) => {
       const sym = (b.symbol || '').toUpperCase();
@@ -179,7 +201,18 @@ export function DepositPage() {
   }
 
   return (
-    <>
+     <>
+     <AnimatePresence>
+       {notification && (
+         <div className="fixed top-4 right-4 z-50">
+           <NotificationToast
+             type={notification.type}
+             message={notification.message}
+             onClose={() => setNotification(null)}
+           />
+         </div>
+       )}
+     </AnimatePresence>
      <SimpleHeader
           crumbs={[
             { label: 'Dashboard', to: '/dashboard' },
@@ -290,10 +323,13 @@ export function DepositPage() {
                             const ref = genReferenceId();
                             await walletApi.depositFiat({ currency: 'USD', amount: value, method: 'CARD', referenceId: ref });
                             setDepositMessage('Depósito concluído com sucesso');
+                            setNotification({ type: 'success', message: 'Depósito concluído com sucesso' });
                             setAmount('');
                             await loadBalances();
                           } catch (err) {
-                            setDepositMessage(err.response?.data?.message || err.message || 'Erro no depósito');
+                            const msg = err.response?.data?.message || err.message || 'Erro no depósito';
+                            setDepositMessage(msg);
+                            setNotification({ type: 'error', message: msg });
                           } finally {
                             setDepositLoading(false);
                           }
@@ -373,11 +409,15 @@ export function DepositPage() {
                           try {
                             const ref = genReferenceId();
                             await walletApi.depositFiat({ currency: 'USD', amount: value, method: 'BANK_TRANSFER', referenceId: ref });
-                            setDepositMessage('Depósito por transferência registrado com sucesso');
+                            const successMsg = 'Depósito por transferência registrado com sucesso';
+                            setDepositMessage(successMsg);
+                            setNotification({ type: 'success', message: successMsg });
                             setBankAmount('');
                             await loadBalances();
                           } catch (err) {
-                            setDepositMessage(err.response?.data?.message || err.message || 'Erro no depósito por transferência');
+                            const msg = err.response?.data?.message || err.message || 'Erro no depósito por transferência';
+                            setDepositMessage(msg);
+                            setNotification({ type: 'error', message: msg });
                           } finally {
                             setDepositLoading(false);
                           }
@@ -450,18 +490,22 @@ export function DepositPage() {
                               }
                               setDepositLoading(true);
                               setDepositMessage(null);
-                              try {
+                                try {
                                 const ref = genReferenceId();
                                 await walletApi.adjustBalance(cryptoSymbol, value, {
                                   unitPriceUsd: 1,
                                   method: 'CRYPTO_TRANSFER',
                                   referenceId: ref,
                                 });
-                                setDepositMessage('Depósito em cripto registrado com sucesso');
+                                const successMsg = 'Depósito em cripto registrado com sucesso';
+                                setDepositMessage(successMsg);
+                                setNotification({ type: 'success', message: successMsg });
                                 setCryptoAmount('');
                                 await loadBalances();
                               } catch (err) {
-                                setDepositMessage(err.response?.data?.message || err.message || 'Erro no depósito em cripto');
+                                const msg = err.response?.data?.message || err.message || 'Erro no depósito em cripto';
+                                setDepositMessage(msg);
+                                setNotification({ type: 'error', message: msg });
                               } finally {
                                 setDepositLoading(false);
                               }
@@ -552,14 +596,14 @@ export function DepositPage() {
                   {/* Integrate recent transactions into the same "Recent Activity" list */}
                   {transactions && transactions.length > 0 && (
                     transactions.slice(0, 6).map((tx) => {
-                      const typeStr = getTxTypeString(tx).toLowerCase();
-                      const displayType = (getTxTypeString(tx) || 'Txn');
+                      const displayType = getTxDisplayType(tx) || 'Txn';
+                      const typeStr = (displayType || '').toLowerCase();
                       const assetLabel = getTxAsset(tx);
-                      const amountLabel = (tx.amount ?? tx.Amount ?? tx.value ?? '').toString();
+                      const amountLabel = getTxAmountLabel(tx);
                       const messageLabel = tx.message ?? tx.description ?? tx.Message ?? '';
 
                       return (
-                        <div key={`tx-${tx.id ?? tx.Id ?? Math.random()}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                        <div key={`tx-${tx.id ?? tx.Id ?? tx.idTransaction ?? tx.IdTransaction ?? Math.random()}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
                           <div className="flex items-center">
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${typeStr === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
                               <span className="text-sm font-medium">{(displayType.charAt(0) || 'T').toUpperCase()}</span>
@@ -584,7 +628,9 @@ export function DepositPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-background-secondary rounded-lg">
                   <p className="text-sm text-text-tertiary mb-1">USD Balance</p>
-                  <p className="text-lg font-medium text-text-primary">${(usdTotal != null ? usdTotal : effectiveUsdBalance).toFixed(2)}</p>
+                  <p className="text-lg font-medium text-text-primary">
+                    ${Number(effectiveUsdBalance || 0).toFixed(2)}
+                  </p>
                 </div>
                 <div className="p-3 bg-background-secondary rounded-lg">
                   <p className="text-sm text-text-tertiary mb-1">EUR Balance</p>

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowUp, ArrowDown } from 'lucide-react';
-import { currencyApi, marketApi, transactionApi } from '../../services/api/api';
+import { currencyApi, marketApi, transactionApi, walletApi } from '../../services/api/api';
+import { useNotification } from '../../context/NotificationContext';
 import CryptoIcon from '../../components/common/CryptoIcons';
 import { CryptoChart } from '../dashboard/components/CryptoChart';
 
@@ -14,9 +15,14 @@ const BuyCoin = () => {
   const [isChecking, setIsChecking] = useState(true);
   const [isAvailable, setIsAvailable] = useState(false);
   const [amount, setAmount] = useState('');
+  const [buyMode, setBuyMode] = useState('qty'); // 'qty' = buy by crypto quantity, 'usd' = buy by fiat amount
   const [loadingBuy, setLoadingBuy] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [availableFiat, setAvailableFiat] = useState(null);
+  const [fiatCurrencySymbol, setFiatCurrencySymbol] = useState('USD');
+  const [currentWalletId, setCurrentWalletId] = useState(null);
+  const [currentAccountId, setCurrentAccountId] = useState(null);
 
   // Estados de mercado / gráfico
   const [timeRange, setTimeRange] = useState('24H');
@@ -136,6 +142,44 @@ const BuyCoin = () => {
     fetchMarketData();
   }, [fetchMarketData]);
 
+  // Load user's wallet and fiat position on mount so UI reflects available fiat immediately
+  useEffect(() => {
+    const loadWalletAndFiat = async () => {
+      try {
+        const wres = await walletApi.getWallets();
+        const list = Array.isArray(wres.data) ? wres.data : [];
+        let wId = null;
+        let aId = null;
+        if (list.length > 0) {
+          const first = list[0];
+          wId = first.idWallet ?? first.IdWallet ?? first.id ?? first.Id ?? null;
+          aId = first.idAccount ?? first.IdAccount ?? first.accountId ?? first.AccountId ?? null;
+          setCurrentWalletId(wId);
+          setCurrentAccountId(aId);
+        }
+
+        if (wId) {
+          const wb = await walletApi.getWalletBalances(wId);
+          const positions = Array.isArray(wb.data) ? wb.data : [];
+          const fiatPos = positions.find(p => {
+            const s = (p.symbol || p.Symbol || p.currencySymbol || '').toUpperCase();
+            return ['USDT', 'USD', 'USDC'].includes(s);
+          });
+          if (fiatPos) {
+            const walletFiatAvailable = Number(fiatPos.amount ?? fiatPos.Amount ?? 0);
+            setAvailableFiat(walletFiatAvailable);
+            const symbol = (fiatPos.symbol || fiatPos.Symbol || fiatPos.currencySymbol || 'USD').toUpperCase();
+            setFiatCurrencySymbol(symbol);
+          }
+        }
+      } catch (e) {
+        console.warn('Could not load wallet/fiat on mount', e);
+      }
+    };
+
+    loadWalletAndFiat();
+  }, []);
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener('resize', handleResize);
@@ -146,14 +190,32 @@ const BuyCoin = () => {
     setTimeRange(value);
   };
 
+  const { showNotification } = useNotification();
+
   const handleBuy = async () => {
     setError('');
     setSuccess('');
 
-    const value = parseFloat(String(amount).replace(',', '.'));
-    if (Number.isNaN(value) || value <= 0) {
-      setError('Informe uma quantidade válida.');
+    const raw = String(amount).replace(',', '.');
+    const parsed = parseFloat(raw);
+    if (Number.isNaN(parsed) || parsed <= 0) {
+      setError('Informe um valor válido.');
       return;
+    }
+
+    // Determine fiat amount to send to backend
+    let fiatToSpend = 0;
+    if (buyMode === 'qty') {
+      // buying by quantity: need current price
+      if (!price || price <= 0) {
+        setError('Preço inválido, tente novamente mais tarde.');
+        return;
+      }
+      const qty = parsed;
+      fiatToSpend = qty * price;
+    } else {
+      // buyMode === 'usd'
+      fiatToSpend = parsed;
     }
 
     if (!isAvailable) {
@@ -163,23 +225,153 @@ const BuyCoin = () => {
 
     try {
       setLoadingBuy(true);
-      const response = await transactionApi.buy({
-        walletId: 0,
-        assetSymbol: baseSymbol,
-        amount: value,
-      });
+
+      // Ensure we have wallet/account ids (prefer state loaded on mount)
+      let walletId = currentWalletId;
+      let accountId = currentAccountId;
+      try {
+        if (!walletId) {
+          const wres = await walletApi.getWallets();
+          const list = Array.isArray(wres.data) ? wres.data : [];
+          if (list.length > 0) {
+            const first = list[0];
+            walletId = first.idWallet ?? first.IdWallet ?? first.id ?? first.Id ?? null;
+            accountId = first.idAccount ?? first.IdAccount ?? first.accountId ?? first.AccountId ?? null;
+            setCurrentWalletId(walletId);
+            setCurrentAccountId(accountId);
+          } else {
+            const created = await walletApi.createWallet({ name: 'Default' });
+            const w = created.data;
+            walletId = w?.idWallet ?? w?.IdWallet ?? w?.id ?? w?.Id ?? null;
+            accountId = w?.idAccount ?? w?.IdAccount ?? w?.accountId ?? w?.AccountId ?? null;
+            setCurrentWalletId(walletId);
+            setCurrentAccountId(accountId);
+          }
+        }
+      } catch (werr) {
+        console.warn('Could not fetch/create wallet, proceeding with null ids', werr);
+      }
+
+      // Resolve currency GUID from wallet API (match by symbol)
+      // First check the public currency service to ensure symbol exists, then map to walletApi's currency id
+      const currenciesRes = await currencyApi.getAllCurrencies();
+      const currencies = Array.isArray(currenciesRes.data) ? currenciesRes.data : [];
+      const publicCurrency = currencies.find(c => (c.symbol || c.Symbol || '').toUpperCase() === baseSymbol.toUpperCase());
+      if (!publicCurrency) {
+        const msg = 'Currency not found in public currency service';
+        setError(msg);
+        showNotification(msg, 'error');
+        setLoadingBuy(false);
+        return;
+      }
+
+      // Now ask the wallet API for its list of currencies and match by symbol to obtain the wallet-side IdCurrency
+      const walletCurrenciesRes = await walletApi.getCurrencies();
+      const walletCurrencies = Array.isArray(walletCurrenciesRes.data) ? walletCurrenciesRes.data : [];
+      const walletCurrency = walletCurrencies.find(c => (c.symbol || c.Symbol || '').toUpperCase() === baseSymbol.toUpperCase());
+      if (!walletCurrency) {
+        const msg = 'Currency not available in wallet service';
+        setError(msg);
+        showNotification(msg, 'error');
+        setLoadingBuy(false);
+        return;
+      }
+
+      const currencyId = walletCurrency.idCurrency ?? walletCurrency.IdCurrency ?? walletCurrency.id ?? walletCurrency.Id ?? null;
+
+      // If we still don't have availableFiat loaded in state, try to fetch wallet balances now
+      try {
+        if (walletId && availableFiat === null) {
+          const wb = await walletApi.getWalletBalances(walletId);
+          const positions = Array.isArray(wb.data) ? wb.data : [];
+          const fiatPos = positions.find(p => {
+            const s = (p.symbol || p.Symbol || p.currencySymbol || '').toUpperCase();
+            return ['USDT', 'USD', 'USDC'].includes(s);
+          });
+          if (fiatPos) {
+            const walletFiatAvailable = Number(fiatPos.amount ?? fiatPos.Amount ?? 0);
+            setAvailableFiat(walletFiatAvailable);
+            const symbol = (fiatPos.symbol || fiatPos.Symbol || fiatPos.currencySymbol || 'USD').toUpperCase();
+            setFiatCurrencySymbol(symbol);
+          }
+        }
+      } catch (e) {
+        console.warn('Could not fetch wallet balances', e);
+      }
+
+      // If wallet has fiat position in state, validate sufficient funds before sending buy
+      if (availableFiat !== null && fiatToSpend > availableFiat) {
+        const msg = 'Saldo fiat insuficiente na carteira monetária.';
+        setError(msg);
+        showNotification(msg, 'error');
+        setLoadingBuy(false);
+        return;
+      }
+
+      const payload = {
+        IdAccount: accountId ?? '',
+        IdWallet: walletId ?? '',
+        IdCurrency: currencyId,
+        FiatAmount: fiatToSpend
+      };
+
+      const response = await transactionApi.buy(payload);
       const usdSpent = response?.data?.usdSpent;
       const price = response?.data?.priceUsd;
-      setSuccess(
-        usdSpent && price
-          ? `Compra realizada! Custo: $${usdSpent.toLocaleString(undefined, { maximumFractionDigits: 2 })} @ $${price.toFixed(2)}`
-          : 'Compra realizada com sucesso!'
-      );
+      const succMsg = usdSpent && price
+        ? `Compra realizada! Custo: $${usdSpent.toLocaleString(undefined, { maximumFractionDigits: 2 })} @ $${price.toFixed(2)}`
+        : 'Compra realizada com sucesso!';
+      setSuccess(succMsg);
+      showNotification(succMsg, 'success');
+      // Notify other parts of the app (portfolio) to refresh their data
+      try {
+        window.dispatchEvent(new Event('wallet-updated'));
+      } catch (e) {
+        // ignore if window not available
+      }
+      // Redirect user to portfolio so they immediately see the updated position and P/L
+      try {
+        navigate('/portfolio');
+      } catch (e) {
+        // ignore navigation errors
+      }
       setAmount('');
+      // Refresh wallet balances (fiat position) for immediate UI update
+      try {
+        if (walletId) {
+          const wb2 = await walletApi.getWalletBalances(walletId);
+          const positions2 = Array.isArray(wb2.data) ? wb2.data : [];
+          const fiatPos2 = positions2.find(p => {
+            const s = (p.symbol || p.Symbol || p.currencySymbol || '').toUpperCase();
+            return ['USDT', 'USD', 'USDC'].includes(s);
+          });
+          if (fiatPos2) {
+            const newAvailable = Number(fiatPos2.amount ?? fiatPos2.Amount ?? 0);
+            setAvailableFiat(newAvailable);
+            const symbol2 = (fiatPos2.symbol || fiatPos2.Symbol || fiatPos2.currencySymbol || 'USD').toUpperCase();
+            setFiatCurrencySymbol(symbol2);
+          }
+        }
+      } catch (e) {
+        console.warn('Could not refresh wallet balances after buy', e);
+      }
+      // Refresh wallet balances/summary so portfolio and deposit pages reflect the new position
+      try {
+        await Promise.all([walletApi.getBalance(), walletApi.getSummary()]);
+      } catch (e) {
+        // non-fatal; UI will refresh on next navigation or SignalR update
+        console.warn('Could not refresh wallet summary after buy', e);
+      }
     } catch (err) {
       console.error('Erro ao comprar:', err);
-      const msg = err?.response?.data?.message || 'Erro ao realizar compra. Tente novamente.';
+      // Backend may return a plain string (e.g. "Insufficient fiat balance") or an object { message/... }
+      const respData = err?.response?.data;
+      let msg;
+      if (!respData) msg = err?.message || 'Erro ao realizar compra. Tente novamente.';
+      else if (typeof respData === 'string') msg = respData;
+      else msg = respData.message ?? respData.error ?? JSON.stringify(respData);
       setError(msg);
+      showNotification(msg, 'error');
     } finally {
       setLoadingBuy(false);
     }
@@ -404,20 +596,59 @@ const BuyCoin = () => {
 
               {/* Campo quantidade */}
               <div className="mb-4">
-                <label className="block text-[11px] md:text-xs text-text-secondary mb-1">
-                  Quantidade de {baseSymbol}
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-[11px] md:text-xs text-text-secondary">
+                    {buyMode === 'qty' ? 'Quantidade' : `Valor (${fiatCurrencySymbol})`}
+                  </label>
+                  <div className="inline-flex bg-background-secondary/80 rounded-xl p-0.5">
+                    <button
+                      onClick={() => setBuyMode('qty')}
+                      className={`px-3 py-1 rounded-xl text-[11px] md:text-xs font-medium ${buyMode === 'qty' ? 'bg-brand-primary text-white' : 'text-text-secondary hover:bg-background-secondary'}`}
+                    >
+                      Quantidade
+                    </button>
+                    <button
+                      onClick={() => setBuyMode('usd')}
+                      className={`px-3 py-1 rounded-xl text-[11px] md:text-xs font-medium ${buyMode === 'usd' ? 'bg-brand-primary text-white' : 'text-text-secondary hover:bg-background-secondary'}`}
+                    >
+                      {fiatCurrencySymbol}
+                    </button>
+                  </div>
+                </div>
+
                 <div className="flex items-center space-x-2">
                   <input
                     type="number"
                     min="0"
-                    step="0.00000001"
+                    step={buyMode === 'qty' ? '0.00000001' : '0.01'}
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
                     className="w-full px-3 py-2.5 rounded-xl border border-border-primary bg-background-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/80 text-sm"
-                    placeholder="0.00"
+                    placeholder={buyMode === 'qty' ? '0.00000000' : '0.00'}
                   />
                 </div>
+
+                <p className="text-[11px] text-text-secondary mt-2">
+                  {buyMode === 'qty'
+                    ? 'Insira a quantidade da criptomoeda que deseja comprar — o sistema calculará o valor em fiat.'
+                    : `Insira o valor em ${fiatCurrencySymbol} que deseja gastar — o sistema comprará a quantidade correspondente da criptomoeda.`}
+                </p>
+
+                {availableFiat !== null && (
+                  <p className="text-[11px] text-text-secondary mt-2">Disponível na carteira fiat ({fiatCurrencySymbol}): <span className="font-medium text-text-primary">${Number(availableFiat).toLocaleString(undefined, { maximumFractionDigits: 2 })}</span></p>
+                )}
+                {availableFiat !== null && (() => {
+                  // compute estimated fiat to spend from current input
+                  const raw = String(amount).replace(',', '.');
+                  const parsed = parseFloat(raw);
+                  const estimatedFiat = (buyMode === 'qty' && price) ? (Number.isNaN(parsed) ? 0 : parsed * price) : (Number.isNaN(parsed) ? 0 : parsed);
+                  if (estimatedFiat > availableFiat) {
+                    return (
+                      <p className="text-[11px] text-red-500 mt-2">Saldo insuficiente na carteira fiat para esta ordem.</p>
+                    );
+                  }
+                  return null;
+                })()}
               </div>
 
               {/* Resumo da ordem */}
@@ -429,11 +660,35 @@ const BuyCoin = () => {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>Valor estimado</span>
+                  <span>Quantidade estimada</span>
                   <span className="text-text-primary font-medium">
-                    {price && amount
-                      ? `$${(price * parseFloat(amount || '0')).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
-                      : '--'}
+                    {(() => {
+                      const raw = String(amount).replace(',', '.');
+                      const parsed = parseFloat(raw || '0');
+                      if (buyMode === 'qty') {
+                        return parsed && parsed > 0 ? `${parsed.toFixed(8)} ${baseSymbol}` : '--';
+                      }
+                      // buyMode === 'usd'
+                      if (price && parsed) {
+                        return `${(parsed / price).toFixed(8)} ${baseSymbol}`;
+                      }
+                      return '--';
+                    })()}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Valor gasto (USD)</span>
+                  <span className="text-text-primary font-medium">
+                    {(() => {
+                      const raw = String(amount).replace(',', '.');
+                      const parsed = parseFloat(raw || '0');
+                      if (buyMode === 'qty') {
+                        if (!price || Number.isNaN(parsed)) return '--';
+                        const fiat = parsed * price;
+                        return `$${fiat.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+                      }
+                      return parsed ? `$${Number(parsed).toLocaleString(undefined, { maximumFractionDigits: 2 })}` : '--';
+                    })()}
                   </span>
                 </div>
                 {changePercent !== null && (
@@ -475,7 +730,12 @@ const BuyCoin = () => {
               whileHover={isAvailable && !loadingBuy && !isChecking ? { scale: 1.02, y: -1 } : {}}
               whileTap={isAvailable && !loadingBuy && !isChecking ? { scale: 0.97, y: 0 } : {}}
               onClick={handleBuy}
-              disabled={!isAvailable || loadingBuy || isChecking}
+              disabled={!isAvailable || loadingBuy || isChecking || (availableFiat !== null && (() => {
+                const raw = String(amount).replace(',', '.');
+                const parsed = parseFloat(raw);
+                const estimatedFiat = (buyMode === 'qty' && price) ? (Number.isNaN(parsed) ? 0 : parsed * price) : (Number.isNaN(parsed) ? 0 : parsed);
+                return estimatedFiat > availableFiat;
+              })())}
               className={`w-full py-3 mt-2 rounded-xl font-semibold text-sm md:text-base transition-all duration-150 shadow-lg shadow-brand-primary/20 ${
                 !isAvailable || isChecking
                   ? 'bg-gray-600/80 cursor-not-allowed text-white/80'

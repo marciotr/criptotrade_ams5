@@ -61,12 +61,16 @@ export const marketApi = {
 
 // Novo serviço para chamadas à API de Carteira
 export const walletApi = {
-  // Simple gateway-backed wallet endpoints (lowercase routes expected by gateway)
   getWallet: () => api.get('/wallet'),
-  createWallet: () => api.post('/wallet'),
+  createWallet: (data) => api.post('/wallet', data),
+  getWallets: () => api.get('/wallets'),
+  getWalletBalances: (walletId) => api.get(`/positions/${walletId}`),
+  createWallets: (data) => api.post('/wallets', data),
   getBalances: () => api.get('/balance'),
+  getBalance: () => api.get('/balance'),
   getSummary: () => api.get('/balance/summary'),
   getAssetLots: (assetSymbol, method = 'fifo') => api.get(`/balance/asset/${assetSymbol}/lots`, { params: { method } }),
+  getCurrencies: () => api.get('/currencies'),
   adjustBalance: (assetSymbol, deltaAmount, options = {}) => {
     const payload = {
       DeltaAmount: deltaAmount,
@@ -78,10 +82,12 @@ export const walletApi = {
 
     return api.patch(`/balance/${assetSymbol}`, payload);
   },
-  // Use transactions route so gateway routes to walletApi
   sell: (data) => api.post('/transactions/sell', data),
   depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
 };
+
+walletApi.getTransactions = () => api.get('/transactions');
+walletApi.getWallet = walletApi.getWallet; 
 
 export const transactionApi = {
   getAll: () => api.get('/transactions'),

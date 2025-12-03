@@ -15,6 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import CryptoIcon from '../../components/common/CryptoIcons';
 import { LoadingScreen } from '../../components/common/LoadingScreen';
 import { walletApi, transactionApi } from '../../services/api/api';
+import AssetDetailsModal from './components/AssetDetailsModal';
+import SellAssetModal from './components/SellAssetModal';
+import { useNotification } from '../../context/NotificationContext';
 
 const PORTFOLIO_COLORS = ['#f59e0b', '#10b981', '#6366f1', '#ec4899', '#14b8a6', '#f97316'];
 
@@ -128,6 +131,10 @@ export function Portfolio() {
   const [portfolioError, setPortfolioError] = useState('');
 
   const totalValue = portfolioStats.totalValue;
+  const totalCost = portfolioData.reduce((acc, a) => acc + (a.totalCost ?? 0), 0);
+  const totalGainPercent = totalCost > 0 ? ((totalValue - totalCost) / totalCost) * 100 : 0;
+  const totalGainFormatted = `${totalGainPercent > 0 ? '+' : ''}${totalGainPercent.toFixed(2)}%`;
+  const totalGainType = totalGainPercent >= 0 ? 'positive' : 'negative';
   const [activeView, setActiveView] = useState('overview'); // 'overview', 'allocation', 'performance'
   const [timeRange, setTimeRange] = useState('1M'); // Opções: '1W', '1M', '3M', '1Y', 'ALL'
   const navigate = useNavigate(); // Adicione o hook de navegação
@@ -135,6 +142,8 @@ export function Portfolio() {
     // Obter o nome do usuário de algum lugar (localStorage, context API, etc.)
     return localStorage.getItem('userName') || 'Investidor';
   });
+
+  const { showNotification } = useNotification();
 
   // Verificar se o portfolio está com desempenho positivo ou negativo
   const isPortfolioPositive = portfolioStats.dayChangePercent >= 0;
@@ -164,36 +173,65 @@ export function Portfolio() {
     navigate('/deposit'); // Função para navegar para a página de depósito
   };
 
-  const handleSell = async (asset) => {
-    const qtyStr = window.prompt(`Quantidade de ${asset.symbol} para vender:`);
-    if (!qtyStr) return;
-    const qty = Number(qtyStr.replace(',', '.'));
+  // Open sell modal for asset
+  const [sellModalOpen, setSellModalOpen] = useState(false);
+  const [sellLoading, setSellLoading] = useState(false);
+  const [sellError, setSellError] = useState('');
+  const [sellAsset, setSellAsset] = useState(null);
+  const [sellAmount, setSellAmount] = useState('');
+
+  const openSellModal = (asset) => {
+    setSellAsset(asset);
+    setSellAmount('');
+    setSellError('');
+    setSellModalOpen(true);
+  };
+
+  const closeSellModal = () => {
+    setSellModalOpen(false);
+    setSellAsset(null);
+    setSellAmount('');
+    setSellError('');
+    setSellLoading(false);
+  };
+
+  const handleConfirmSell = async (amountToSell) => {
+    if (!sellAsset) return;
+    const qty = Number(amountToSell);
     if (isNaN(qty) || qty <= 0) {
-      alert('Quantidade inválida');
+      setSellError('Quantidade inválida');
+      return;
+    }
+    if (qty > (sellAsset.amount ?? 0)) {
+      setSellError('Quantidade maior que o disponível');
       return;
     }
 
+    setSellLoading(true);
+    setSellError('');
     try {
-      // Call backend sell endpoint; leave UnitPrice 0 so server will fetch market price
       const payload = {
-        FromAsset: asset.symbol,
-        AmountFrom: qty,
-        UnitPrice: 0,
-        ReferenceId: `ui-sell-${Date.now()}`,
-        Description: `Sell via UI ${asset.symbol}`,
-        Method: 'UI'
+        IdCurrency: sellAsset.id || sellAsset.Id || sellAsset.currencyId,
+        CriptoAmount: qty,
+        Fee: 0
       };
-        const res = await transactionApi.sell(payload);
+
+      const res = await transactionApi.sell(payload);
       if (res && (res.status === 200 || res.status === 204)) {
-        alert('Venda realizada com sucesso');
-        // Refresh portfolio
-        window.location.reload();
+        showNotification('Venda realizada com sucesso', 'success');
+        // trigger global refresh used by portfolio
+        window.dispatchEvent(new Event('wallet-updated'));
+        closeSellModal();
       } else {
-        alert('Falha ao realizar venda');
+        const msg = res?.data?.message || 'Falha ao realizar venda';
+        setSellError(msg);
+        showNotification(msg, 'error');
       }
     } catch (err) {
       console.error('Sell error', err);
-      alert('Erro ao vender. Verifique o console.');
+      setSellError('Erro ao vender. Verifique o console.');
+    } finally {
+      setSellLoading(false);
     }
   };
 
@@ -228,7 +266,7 @@ export function Portfolio() {
   useEffect(() => {
     let mounted = true;
 
-    (async () => {
+    const fetchPortfolio = async () => {
       try {
         setLoadingPortfolio(true);
         setPortfolioError('');
@@ -250,14 +288,31 @@ export function Portfolio() {
           bestPerformer: summary.bestPerformer ? { asset: summary.bestPerformer.symbol, change: summary.bestPerformer.value } : { asset: '-', change: 0 }
         });
 
-        const mapped = balances.map((b, idx) => ({
-          id: b.currencyId ?? b.idCurrency ?? idx,
-          symbol: b.symbol ?? b.Symbol ?? b.currencySymbol ?? b.CurrencySymbol ?? 'UNKNOWN',
-          name: b.name ?? b.Name ?? null,
-          amount: Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0),
-          currentPrice: Number(b.currentPrice ?? b.CurrentPrice ?? 0),
-          value: (Number(b.amount ?? b.Amount ?? 0) * Number(b.currentPrice ?? b.CurrentPrice ?? 0)) || 0
-        }));
+        const mapped = balances.map((b, idx) => {
+          const amount = Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0);
+          const currentPrice = Number(b.currentPrice ?? b.CurrentPrice ?? b.price ?? 0) || 0;
+          const purchasePrice = Number(b.avgPrice ?? b.avgPurchasePrice ?? b.purchasePrice ?? b.avgPriceUsd ?? 0) || 0;
+          const value = amount * currentPrice;
+          const totalCost = amount * purchasePrice;
+          const gainPercent = purchasePrice > 0 ? ((currentPrice - purchasePrice) / purchasePrice) * 100 : 0;
+          const change = Number(b.change ?? b.priceChangePercent ?? b.changePercent24h ?? 0) || 0;
+          const allocation = (summary.totalValue && summary.totalValue > 0) ? (value / (summary.totalValue || 1)) * 100 : 0;
+          return {
+            id: b.currencyId ?? b.idCurrency ?? idx,
+            symbol: (b.symbol ?? b.Symbol ?? b.currencySymbol ?? b.CurrencySymbol ?? 'UNKNOWN').toUpperCase(),
+            name: b.name ?? b.asset ?? b.Asset ?? b.Name ?? (b.symbol ?? b.Symbol ?? 'UNKNOWN'),
+            asset: b.name ?? b.asset ?? (b.symbol ?? b.Symbol ?? 'UNKNOWN'),
+            amount,
+            price: currentPrice,
+            currentPrice,
+            purchasePrice,
+            totalCost,
+            gainPercent,
+            change,
+            value,
+            allocation: Number(allocation.toFixed(2))
+          };
+        });
 
         setPortfolioData(mapped);
         setPortfolioHistoricalData(buildSyntheticHistory(summary.totalValue ?? 0));
@@ -267,9 +322,17 @@ export function Portfolio() {
       } finally {
         if (mounted) setLoadingPortfolio(false);
       }
-    })();
+    };
 
-    return () => { mounted = false; };
+    fetchPortfolio();
+
+    // Re-fetch when other parts of the app emit update event (e.g. after a buy)
+    const onWalletUpdated = () => {
+      fetchPortfolio();
+    };
+    window.addEventListener('wallet-updated', onWalletUpdated);
+
+    return () => { mounted = false; window.removeEventListener('wallet-updated', onWalletUpdated); };
   }, []);
 
   // Gera uma mensagem personalizada com base no desempenho
@@ -397,8 +460,8 @@ export function Portfolio() {
           icon={Wallet}
           title="Valor Total"
           value={`$${totalValue.toLocaleString()}`}
-          change="+12.5%"
-          changeType="positive"
+          change={totalGainFormatted}
+          changeType={totalGainType}
           iconColor="bg-brand-primary"
           delay={0}
         />
@@ -723,7 +786,6 @@ export function Portfolio() {
                       <td className="py-4 text-text-primary">{Number(asset.amount ?? 0).toFixed(4)} {asset.symbol}</td>
                       <td className="py-4 text-text-primary">{formatCurrency(asset.price)}</td>
                       <td className="py-4 text-text-primary">{formatCurrency(asset.purchasePrice)}</td>
-                      <td className="py-4 text-text-primary">{formatCurrency(asset.totalCost)}</td>
                       <td className={`py-4 ${asset.gainPercent > 0 ? 'text-feedback-success' : asset.gainPercent < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
                         {formatPercent(asset.gainPercent)}
                       </td>
@@ -733,7 +795,7 @@ export function Portfolio() {
                           {asset.change > 0 && <ArrowUp size={16} className="mr-1" />}
                           {asset.change < 0 && <ArrowDown size={16} className="mr-1" />}
                           {asset.change === 0 && <TrendingUp size={16} className="mr-1 opacity-50" />}
-                          {Math.abs(asset.change)}%
+                          {asset.change > 0 ? '+' + formatPercent(asset.change) : formatPercent(asset.change)}
                         </div>
                       </td>
                       <td className="py-4">
@@ -753,7 +815,7 @@ export function Portfolio() {
                           <button className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors" title="Insights">
                             <TrendingUp size={16} />
                           </button>
-                          <button onClick={() => handleSell(asset)} className="p-1.5 rounded-md bg-background-secondary hover:bg-red-500/10 text-text-secondary hover:text-red-500 transition-colors" title="Vender" aria-label={`Vender ${asset.asset}`}>
+                          <button onClick={() => openSellModal(asset)} className="p-1.5 rounded-md bg-background-secondary hover:bg-red-500/10 text-text-secondary hover:text-red-500 transition-colors" title="Vender" aria-label={`Vender ${asset.asset}`}>
                             <DollarSign size={16} />
                           </button>
                           <button onClick={() => openLotsModal(asset)} className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors" title="Detalhes" aria-label={`Detalhes ${asset.asset}`}>
@@ -778,65 +840,27 @@ export function Portfolio() {
         )}
       </AnimatePresence>
 
-      {/* Modal de Lotes (fora do AnimatePresence para evitar conflitos de JSX) */}
-      {lotsModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="absolute inset-0 bg-black/50" onClick={closeLotsModal}></div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="relative max-w-5xl w-full bg-background-primary rounded-2xl p-8 z-10 shadow-2xl border border-border-primary"
-          >
-            <div className="flex items-start justify-between pb-3 mb-4">
-              <h3 className="text-xl font-bold text-text-primary">Lotes - {currentLots?.assetSymbol ?? ''}</h3>
-              <button onClick={closeLotsModal} className="px-3 py-1 rounded bg-background-secondary text-text-secondary hover:bg-background-tertiary hover:text-text-primary">Fechar</button>
-            </div>
+      <AssetDetailsModal
+        isOpen={lotsModalOpen}
+        onClose={closeLotsModal}
+        lots={currentLots}
+        loading={lotsLoading}
+        error={lotsError}
+        formatCurrency={formatCurrency}
+        formatAmount8={formatAmount8}
+      />
 
-            {lotsLoading && <div className="py-6 text-center text-text-secondary">Carregando...</div>}
-            {lotsError && <div className="py-4 text-feedback-error">{lotsError}</div>}
-
-            {!lotsLoading && !lotsError && currentLots && (
-              <div className="mt-4 overflow-auto max-h-[60vh]">
-                <table className="w-full text-left border-separate" style={{ borderSpacing: '0 8px' }}>
-                  <thead>
-                    <tr className="bg-background-secondary/50 sticky top-0">
-                      <th className="text-text-tertiary pb-3 pl-2">Compra</th>
-                      <th className="text-text-tertiary pb-3">Quantidade</th>
-                      <th className="text-text-tertiary pb-3">Restante</th>
-                      <th className="text-text-tertiary pb-3">Preço Unit. (USD)</th>
-                      <th className="text-text-tertiary pb-3">Custo Total (USD)</th>
-                      <th className="text-text-tertiary pb-3">Ganho Não Realizado (USD)</th>
-                      <th className="text-text-tertiary pb-3">Ganho Realizado (USD)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {currentLots.lots.map((lot) => (
-                      <tr key={lot.lotTransactionId} className="bg-background-primary border border-border-primary rounded-lg mb-2">
-                        <td className="py-3 px-2 text-text-primary w-[220px]">{new Date(lot.acquiredAt).toLocaleString()}</td>
-                        <td className="py-3 text-text-primary">{formatAmount8(lot.amountBought)}</td>
-                        <td className="py-3 text-text-primary">{formatAmount8(lot.amountRemaining)}</td>
-                        <td className="py-3 text-text-primary">{formatCurrency(lot.unitPriceUsd)}</td>
-                        <td className="py-3 text-text-primary">{formatCurrency(lot.totalCostUsd)}</td>
-                        <td className={`py-3 ${lot.unrealizedGainUsd > 0 ? 'text-feedback-success' : lot.unrealizedGainUsd < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
-                          {formatCurrency(lot.unrealizedGainUsd)}
-                        </td>
-                        <td className={`py-3 ${lot.realizedGainUsd > 0 ? 'text-feedback-success' : lot.realizedGainUsd < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
-                          {formatCurrency(lot.realizedGainUsd)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-
-                <div className="mt-4 text-right text-sm">
-                  <div className="text-text-secondary">Total Não Realizado: <span className="text-text-primary font-medium">${Number(currentLots.totalUnrealizedGainUsd).toFixed(2)}</span></div>
-                  <div className="text-text-secondary">Total Realizado: <span className="text-text-primary font-medium">${Number(currentLots.totalRealizedGainUsd).toFixed(2)}</span></div>
-                </div>
-              </div>
-            )}
-          </motion.div>
-        </div>
-      )}
+      <SellAssetModal
+        isOpen={sellModalOpen}
+        onClose={closeSellModal}
+        asset={sellAsset}
+        amount={sellAmount}
+        onChangeAmount={setSellAmount}
+        onConfirm={handleConfirmSell}
+        loading={sellLoading}
+        error={sellError}
+        formatCurrency={formatCurrency}
+      />
 
       {/* Seção para adicionar novos ativos ou transações */}
       <motion.div
