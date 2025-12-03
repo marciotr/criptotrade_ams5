@@ -8,10 +8,14 @@ namespace WalletApi.Services;
 public class WalletService : IWalletService
 {
     private readonly WalletDbContext _db;
+    private readonly ICurrencyCatalogClient _currencyCatalogClient;
+    private readonly IHttpClientFactory _httpFactory;
 
-    public WalletService(WalletDbContext db)
+    public WalletService(WalletDbContext db, ICurrencyCatalogClient currencyCatalogClient, IHttpClientFactory httpFactory)
     {
         _db = db;
+        _currencyCatalogClient = currencyCatalogClient;
+        _httpFactory = httpFactory;
     }
 
     public async Task<OperationResult> BuyAsync(BuyRequest dto)
@@ -19,11 +23,17 @@ public class WalletService : IWalletService
         using var tx = await _db.Database.BeginTransactionAsync();
         try
         {
-            var currency = await _db.Currencies.FindAsync(dto.IdCurrency);
-            if (currency == null) return OperationResult.Failure("Currency not found");
+            // Busca os dados da moeda no catálogo central (currencyAPI)
+            var currency = await _currencyCatalogClient.GetByIdAsync(dto.IdCurrency);
+            if (currency == null) return OperationResult.Failure("Moeda não encontrada no catálogo");
 
             var account = await _db.Accounts.FindAsync(dto.IdAccount);
             if (account == null) return OperationResult.Failure("Account not found");
+
+            if (account.AvailableBalance < dto.FiatAmount)
+            {
+                return OperationResult.Failure("Saldo Insuficiente!");
+            }
 
             var tDebit = new Transaction
             {
@@ -35,6 +45,64 @@ public class WalletService : IWalletService
                 Status = "COMPLETED",
                 CreatedAt = DateTime.UtcNow
             };
+
+            if (currency.CurrentPrice <= 0)
+            {
+                Console.WriteLine($"[BuyAsync] Currency before fallback: Id={currency.Id} Symbol='{currency.Symbol}' CurrentPrice={currency.CurrentPrice}");
+                // tenta buscar preço de mercado ao vivo no serviço de cripto via gateway
+                try
+                {
+                    var client = _httpFactory.CreateClient();
+                    client.BaseAddress = new Uri("http://localhost:5102");
+                    // assume market pair against USDT
+                    var pair = (currency.Symbol ?? string.Empty).ToUpperInvariant() + "USDT";
+                    var resp = await client.GetAsync($"/crypto/ticker/{pair}");
+                    if (resp.IsSuccessStatusCode)
+                    {
+                        var bodyText = await resp.Content.ReadAsStringAsync();
+                        try
+                        {
+                            using var doc = System.Text.Json.JsonDocument.Parse(bodyText);
+                            var root = doc.RootElement;
+                            decimal last = 0m;
+                            if (root.ValueKind == System.Text.Json.JsonValueKind.Object)
+                            {
+                                if (root.TryGetProperty("lastPrice", out var lp))
+                                {
+                                    if (lp.ValueKind == System.Text.Json.JsonValueKind.Number) last = lp.GetDecimal();
+                                    else if (lp.ValueKind == System.Text.Json.JsonValueKind.String) Decimal.TryParse(lp.GetString(), out last);
+                                }
+                                else if (root.TryGetProperty("LastPrice", out var lp2))
+                                {
+                                    if (lp2.ValueKind == System.Text.Json.JsonValueKind.Number) last = lp2.GetDecimal();
+                                    else if (lp2.ValueKind == System.Text.Json.JsonValueKind.String) Decimal.TryParse(lp2.GetString(), out last);
+                                }
+                            }
+
+                            if (last > 0)
+                            {
+                                currency.CurrentPrice = last;
+                                Console.WriteLine($"[BuyAsync] Fallback parsed lastPrice={last} and set currency.CurrentPrice");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"[BuyAsync] Fallback parsed no valid lastPrice from ticker response: {bodyText}");
+                            }
+                        }
+                        catch (System.Text.Json.JsonException je)
+                        {
+                            Console.WriteLine($"[BuyAsync] Failed parsing ticker JSON: {je.Message}");
+                        }
+                    }
+                }
+                catch {  }
+                Console.WriteLine($"[BuyAsync] Currency after fallback: Id={currency.Id} Symbol='{currency.Symbol}' CurrentPrice={currency.CurrentPrice}");
+            }
+
+            if (currency.CurrentPrice <= 0)
+            {
+                return OperationResult.Failure("Preço da moeda inválido (zero)");
+            }
 
             var criptoAmount = (dto.FiatAmount - dto.Fee) / currency.CurrentPrice;
 
@@ -50,7 +118,8 @@ public class WalletService : IWalletService
                 RelatedTransactionId = tDebit.IdTransaction
             };
 
-            tDebit.RelatedTransactionId = tCredit.IdTransaction;
+            // Evita definir RelatedTransactionId de forma circular em ambas as transações.
+            // Mantém a relação unidirecional: o crédito referencia o débito.
 
             await _db.Transactions.AddRangeAsync(tDebit, tCredit);
 
@@ -64,7 +133,54 @@ public class WalletService : IWalletService
 
             await _db.TransactionCriptos.AddAsync(tc);
 
-            // update wallet position
+            // Determina a fonte de financiamento fiat: prefere posição fiat na carteira (USDT/USD/USDC), caso contrário usa account.AvailableBalance
+            decimal fiatNeeded = dto.FiatAmount;
+
+            Domain.Entities.WalletPosition? fiatPosition = null;
+            if (dto.IdWallet != Guid.Empty)
+            {
+                // Tenta encontrar uma posição fiat dentro da carteira (USD/USDT/USDC).
+                // Procuramos posições da carteira para este wallet e comparamos o
+                // símbolo no catálogo com símbolos fiat comuns. Isso mantém os fundos
+                // fiat dentro da carteira sincronizados quando uma compra é executada.
+                var walletPositions = await _db.WalletPositions
+                    .Where(p => p.IdWallet == dto.IdWallet)
+                    .ToListAsync();
+
+                var fiatSymbols = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "USD", "USDT", "USDC" };
+                foreach (var wp in walletPositions)
+                {
+                    try
+                    {
+                        var c = await _currencyCatalogClient.GetByIdAsync(wp.IdCurrency);
+                        if (c != null && !string.IsNullOrEmpty(c.Symbol) && fiatSymbols.Contains(c.Symbol.Trim().ToUpperInvariant()))
+                        {
+                            fiatPosition = wp;
+                            break;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
+
+            if (fiatPosition != null)
+            {
+                if (fiatPosition.Amount < fiatNeeded) return OperationResult.Failure("Insufficient fiat wallet balance");
+                fiatPosition.Amount -= fiatNeeded;
+                fiatPosition.UpdatedAt = DateTime.UtcNow;
+                _db.WalletPositions.Update(fiatPosition);
+            }
+            else
+            {
+                // fallback para o saldo da conta
+                if (account.AvailableBalance < fiatNeeded) return OperationResult.Failure("Insufficient fiat balance");
+                account.AvailableBalance -= fiatNeeded;
+                _db.Accounts.Update(account);
+            }
+
+            // atualiza a posição na carteira
             var position = await _db.WalletPositions
                 .FirstOrDefaultAsync(p => p.IdWallet == dto.IdWallet && p.IdCurrency == dto.IdCurrency);
 
@@ -95,7 +211,20 @@ public class WalletService : IWalletService
             await _db.SaveChangesAsync();
             await tx.CommitAsync();
 
-            return OperationResult.Ok(new { DebitTransaction = tDebit.IdTransaction, CreditTransaction = tCredit.IdTransaction });
+            // Retorna metadados úteis para o frontend: quanto foi gasto e o preço executado
+            var usdSpent = dto.FiatAmount;
+            var priceUsd = currency.CurrentPrice;
+            var resultPayload = new
+            {
+                DebitTransaction = tDebit.IdTransaction,
+                CreditTransaction = tCredit.IdTransaction,
+                usdSpent,
+                priceUsd,
+                currency = new { Id = currency.Id, currency.Symbol, currency.Name },
+                position = new { position.IdWalletPosition, position.IdCurrency, position.Amount, position.AvgPrice }
+            };
+
+            return OperationResult.Ok(resultPayload);
         }
         catch (Exception ex)
         {
@@ -114,8 +243,8 @@ public class WalletService : IWalletService
             if (position == null || position.Amount < dto.CriptoAmount)
                 return OperationResult.Failure("Insufficient crypto amount");
 
-            var currency = await _db.Currencies.FindAsync(dto.IdCurrency);
-            if (currency == null) return OperationResult.Failure("Currency not found");
+            var currency = await _currencyCatalogClient.GetByIdAsync(dto.IdCurrency);
+            if (currency == null) return OperationResult.Failure("Moeda não encontrada no catálogo");
 
             var tDebit = new Transaction
             {
@@ -140,7 +269,7 @@ public class WalletService : IWalletService
                 RelatedTransactionId = tDebit.IdTransaction
             };
 
-            tDebit.RelatedTransactionId = tCredit.IdTransaction;
+            // Evita FK circular: mantém a relação unidirecional (crédito referencia o débito)
 
             await _db.Transactions.AddRangeAsync(tDebit, tCredit);
 
@@ -154,10 +283,70 @@ public class WalletService : IWalletService
 
             await _db.TransactionCriptos.AddAsync(tc);
 
-            // update position
+            // atualiza a posição
             position.Amount -= dto.CriptoAmount;
             position.UpdatedAt = DateTime.UtcNow;
             _db.WalletPositions.Update(position);
+
+            // credita os proventos fiat de volta para a carteira ou conta
+            try
+            {
+                var proceeds = dto.CriptoAmount * currency.CurrentPrice - dto.Fee;
+                if (proceeds < 0) proceeds = 0m;
+
+                Domain.Entities.WalletPosition? fiatPosition = null;
+                if (dto.IdWallet != Guid.Empty)
+                {
+                    var walletPositions = await _db.WalletPositions
+                        .Where(p => p.IdWallet == dto.IdWallet)
+                        .ToListAsync();
+
+                    var fiatSymbols = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "USD", "USDT", "USDC" };
+                    foreach (var wp in walletPositions)
+                    {
+                        try
+                        {
+                            var c = await _currencyCatalogClient.GetByIdAsync(wp.IdCurrency);
+                            if (c != null && !string.IsNullOrEmpty(c.Symbol) && fiatSymbols.Contains(c.Symbol.Trim().ToUpperInvariant()))
+                            {
+                                fiatPosition = wp;
+                                break;
+                            }
+                        }
+                        catch
+                        {
+                            // ignora falhas por posição e continua
+                        }
+                    }
+                }
+
+                if (fiatPosition != null)
+                {
+                    fiatPosition.Amount += proceeds;
+                    fiatPosition.UpdatedAt = DateTime.UtcNow;
+                    _db.WalletPositions.Update(fiatPosition);
+                }
+                else
+                {
+                    // fallback para o saldo da conta
+                    var account = await _db.Accounts.FindAsync(dto.IdAccount);
+                    if (account != null)
+                    {
+                        account.AvailableBalance += proceeds;
+                        _db.Accounts.Update(account);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[SellAsync] Error crediting fiat proceeds: {ex.Message}");
+            }
+
+            // se a posição atingir zero, remove-a para manter a UI limpa
+            if (position.Amount == 0m)
+            {
+                _db.WalletPositions.Remove(position);
+            }
 
             await _db.SaveChangesAsync();
             await tx.CommitAsync();
@@ -176,18 +365,23 @@ public class WalletService : IWalletService
         using var tx = await _db.Database.BeginTransactionAsync();
         try
         {
-            var currencyA = await _db.Currencies.FindAsync(dto.IdCurrencyOut);
-            var currencyB = await _db.Currencies.FindAsync(dto.IdCurrencyIn);
-            if (currencyA == null || currencyB == null) return OperationResult.Failure("Currency not found");
+            var currencyA = await _currencyCatalogClient.GetByIdAsync(dto.IdCurrencyOut);
+            var currencyB = await _currencyCatalogClient.GetByIdAsync(dto.IdCurrencyIn);
+            if (currencyA == null || currencyB == null) return OperationResult.Failure("Moeda não encontrada no catálogo");
 
             var positionA = await _db.WalletPositions
                 .FirstOrDefaultAsync(p => p.IdWallet == dto.IdWallet && p.IdCurrency == dto.IdCurrencyOut);
             if (positionA == null || positionA.Amount < dto.AmountOut)
                 return OperationResult.Failure("Insufficient amount for swap");
 
-            // determine fiat-equivalent value
+            // determina o valor equivalente em fiat
             var fiatValue = dto.AmountOut * currencyA.CurrentPrice;
-            var amountIn = fiatValue / currencyB.CurrentPrice; // basic conversion
+            if (currencyB.CurrentPrice <= 0)
+            {
+                return OperationResult.Failure("Preço da moeda destino inválido (zero)");
+            }
+
+            var amountIn = fiatValue / currencyB.CurrentPrice; // conversão básica
 
             var tOut = new Transaction
             {
@@ -212,7 +406,7 @@ public class WalletService : IWalletService
                 RelatedTransactionId = tOut.IdTransaction
             };
 
-            tOut.RelatedTransactionId = tIn.IdTransaction;
+            // Evita FK circular: mantém a relação unidirecional (in referencia out)
 
             await _db.Transactions.AddRangeAsync(tOut, tIn);
 
@@ -234,7 +428,7 @@ public class WalletService : IWalletService
 
             await _db.TransactionCriptos.AddRangeAsync(tcOut, tcIn);
 
-            // update positions
+            // atualiza posições
             positionA.Amount -= dto.AmountOut;
             positionA.UpdatedAt = DateTime.UtcNow;
             _db.WalletPositions.Update(positionA);

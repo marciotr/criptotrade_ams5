@@ -5,7 +5,6 @@ using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using WalletApi.Infrastructure.Data;
 using WalletApi.Services;
-using WalletApi.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,7 +64,15 @@ var dbPath = Path.Combine(AppContext.BaseDirectory, "wallet.db");
 builder.Services.AddDbContext<WalletDbContext>(options =>
     options.UseSqlite($"Data Source={dbPath}"));
 
+// Registro do serviço de carteira
 builder.Services.AddScoped<IWalletService, WalletService>();
+
+// Cliente HTTP para consumir o catálogo de moedas via gatewayAPI (currencyAvailables)
+builder.Services.AddHttpClient<ICurrencyCatalogClient, CurrencyCatalogClient>(client =>
+{
+    // O gateway está configurado para expor /currency e redirecionar para a currencyAPI
+    client.BaseAddress = new Uri("http://localhost:5102");
+});
 builder.Services.AddAuthorization();
 
 // Force the application to listen on port 5094 when running via `dotnet run`.
@@ -77,16 +84,6 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
     db.Database.EnsureCreated();
-    // Seed some common currencies for frontend testing (no mocks)
-    if (!db.Currencies.Any())
-    {
-        db.Currencies.AddRange(
-            new Currency { IdCurrency = Guid.NewGuid(), Symbol = "BTC", Name = "Bitcoin", CurrentPrice = 60000m },
-            new Currency { IdCurrency = Guid.NewGuid(), Symbol = "ETH", Name = "Ethereum", CurrentPrice = 4000m },
-            new Currency { IdCurrency = Guid.NewGuid(), Symbol = "USDT", Name = "Tether", CurrentPrice = 1m }
-        );
-        db.SaveChanges();
-    }
 }
 
 // Always enable Swagger UI so the root URL serves the API docs/try-it UI.

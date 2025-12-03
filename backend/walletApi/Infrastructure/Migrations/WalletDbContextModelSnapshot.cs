@@ -40,26 +40,6 @@ namespace walletApi.Infrastructure.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("WalletApi.Domain.Entities.Currency", b =>
-                {
-                    b.Property<Guid>("IdCurrency")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("CurrentPrice")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Symbol")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("IdCurrency");
-
-                    b.ToTable("Currencies");
-                });
-
             modelBuilder.Entity("WalletApi.Domain.Entities.Transaction", b =>
                 {
                     b.Property<Guid>("IdTransaction")

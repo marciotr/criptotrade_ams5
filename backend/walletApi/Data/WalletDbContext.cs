@@ -9,7 +9,6 @@ public class WalletDbContext : DbContext
 
     public DbSet<Account> Accounts => Set<Account>();
     public DbSet<Wallet> Wallets => Set<Wallet>();
-    public DbSet<Currency> Currencies => Set<Currency>();
     public DbSet<WalletPosition> WalletPositions => Set<WalletPosition>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
     public DbSet<TransactionCripto> TransactionCriptos => Set<TransactionCripto>();
@@ -19,7 +18,6 @@ public class WalletDbContext : DbContext
     {
         modelBuilder.Entity<Account>().HasKey(a => a.IdAccount);
         modelBuilder.Entity<Wallet>().HasKey(w => w.IdWallet);
-        modelBuilder.Entity<Currency>().HasKey(c => c.IdCurrency);
         modelBuilder.Entity<WalletPosition>().HasKey(wp => wp.IdWalletPosition);
         modelBuilder.Entity<Transaction>().HasKey(t => t.IdTransaction);
         modelBuilder.Entity<TransactionCripto>().HasKey(tc => tc.IdTransaction);

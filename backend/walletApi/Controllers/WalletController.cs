@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -18,12 +18,14 @@ public class WalletController : ControllerBase
 {
     private readonly IWalletService _service;
     private readonly WalletApi.Infrastructure.Data.WalletDbContext _db;
+    private readonly ICurrencyCatalogClient _currencyClient;
     private readonly IConfiguration _configuration;
 
-    public WalletController(IWalletService service, WalletApi.Infrastructure.Data.WalletDbContext db, IConfiguration configuration)
+    public WalletController(IWalletService service, WalletApi.Infrastructure.Data.WalletDbContext db, ICurrencyCatalogClient currencyClient, IConfiguration configuration)
     {
         _service = service;
         _db = db;
+        _currencyClient = currencyClient;
         _configuration = configuration;
     }
 
@@ -228,19 +230,29 @@ public class WalletController : ControllerBase
     [HttpGet("positions/{walletId}")]
     public async Task<IActionResult> GetPositions(Guid walletId)
     {
-        var positions = await _db.WalletPositions
-            .Where(p => p.IdWallet == walletId)
-            .Join(_db.Currencies, p => p.IdCurrency, c => c.IdCurrency, (p, c) => new {
-                p.IdWalletPosition,
-                p.IdWallet,
-                p.IdCurrency,
-                CurrencySymbol = c.Symbol,
-                CurrencyName = c.Name,
-                p.Amount,
-                p.AvgPrice,
-                p.UpdatedAt
-            }).ToListAsync();
-        return Ok(positions);
+        // Buscar posições da carteira e enriquecer com dados do catálogo de moedas
+        var positions = await _db.WalletPositions.Where(p => p.IdWallet == walletId).ToListAsync();
+        var currencyIds = positions.Select(p => p.IdCurrency).Distinct().ToList();
+        var currencies = new Dictionary<Guid, CurrencyCatalogItem?>();
+        foreach (var id in currencyIds)
+        {
+            currencies[id] = await _currencyClient.GetByIdAsync(id);
+        }
+
+        var result = positions.Select(p => new
+        {
+            p.IdWalletPosition,
+            p.IdWallet,
+            p.IdCurrency,
+            CurrencySymbol = currencies.TryGetValue(p.IdCurrency, out var c) && c != null ? c.Symbol : null,
+            CurrencyName = currencies.TryGetValue(p.IdCurrency, out c) && c != null ? c.Name : null,
+            p.Amount,
+            p.AvgPrice,
+            Change = currencies.TryGetValue(p.IdCurrency, out c) && c != null ? (c.PriceChangePercent) : 0m,
+            p.UpdatedAt
+        }).ToList();
+
+        return Ok(result);
     }
 
     // GET api/wallet/transactions?accountId={accountId}
@@ -271,8 +283,8 @@ public class WalletController : ControllerBase
     [HttpGet("currencies")]
     public async Task<IActionResult> GetCurrencies()
     {
-        var list = await _db.Currencies.ToListAsync();
-        return Ok(list);
+        var all = await _currencyClient.GetAllAsync();
+        return Ok(all);
     }
 
     // GET api/balance/summary
@@ -303,33 +315,80 @@ public class WalletController : ControllerBase
             .Select(g => new { IdCurrency = g.Key, Amount = g.Sum(x => x.Amount) })
             .ToList();
 
-        var currencies = await _db.Currencies.ToListAsync();
+        // buscar dados do catálogo para os ids presentes nas posições
+        var currenciesDict = new Dictionary<Guid, CurrencyCatalogItem?>();
+        foreach (var b in balances)
+        {
+            currenciesDict[b.IdCurrency] = await _currencyClient.GetByIdAsync(b.IdCurrency);
+        }
 
-        var detailed = (from b in balances
-                        join c in currencies on b.IdCurrency equals c.IdCurrency
-                        select new
-                        {
-                            CurrencyId = b.IdCurrency,
-                            Symbol = c.Symbol,
-                            Amount = b.Amount,
-                            CurrentPrice = c.CurrentPrice,
-                            Value = b.Amount * c.CurrentPrice
-                        }).ToList();
+        // constroi uma informação da média de compra por moeda
+        var detailed = balances.Select(b =>
+        {
+            var related = positions.Where(p => p.IdCurrency == b.IdCurrency).ToList();
+            decimal? avgPrice = null;
+            var totalAmount = related.Sum(p => p.Amount);
+            if (totalAmount > 0)
+            {
+                var weighted = related.Sum(p => p.Amount * (p.AvgPrice));
+                avgPrice = weighted / totalAmount;
+            }
+
+            var currentPrice = currenciesDict[b.IdCurrency]?.CurrentPrice ?? 0m;
+            var changePercent = currenciesDict[b.IdCurrency]?.PriceChangePercent ?? 0m;
+            decimal prevPrice = currentPrice;
+            if (changePercent != 0)
+            {
+                // infer previous price 24h ago from percent (approximate)
+                prevPrice = currentPrice / (1 + (changePercent / 100m));
+            }
+
+            var value = b.Amount * currentPrice;
+            var prevValue = b.Amount * prevPrice;
+
+            var gainPercentSincePurchase = (avgPrice.HasValue && avgPrice.Value > 0) ? ((currentPrice - avgPrice.Value) / avgPrice.Value) * 100m : 0m;
+
+            return new
+            {
+                CurrencyId = b.IdCurrency,
+                Symbol = currenciesDict[b.IdCurrency]?.Symbol,
+                Amount = b.Amount,
+                AvgPrice = avgPrice,
+                CurrentPrice = currentPrice,
+                ChangePercent = changePercent,
+                Value = value,
+                PrevValue = prevValue,
+                GainPercentSincePurchase = gainPercentSincePurchase
+            };
+        }).ToList();
 
         var totalValue = detailed.Sum(x => x.Value);
+        // total cost based on avg purchase prices
+        var totalCost = detailed.Sum(x => (x.AvgPrice ?? 0m) * x.Amount);
+        var roiTotalPercent = totalCost > 0 ? ((totalValue - totalCost) / totalCost) * 100m : 0m;
+
+        var dayChange = totalValue - totalCost;
+        var dayChangePercent = totalCost > 0 ? (dayChange / totalCost) * 100m : 0m;
+
+        // best performer by percent since purchase (ignore assets with no avg price)
+        var best = detailed.Where(d => d.GainPercentSincePurchase != 0m).OrderByDescending(d => d.GainPercentSincePurchase).FirstOrDefault()
+                   ?? detailed.OrderByDescending(d => d.ChangePercent).FirstOrDefault();
+
+        var bestPerformer = best == null ? null : new { symbol = best.Symbol, value = Math.Round(best.GainPercentSincePurchase != 0m ? best.GainPercentSincePurchase : best.ChangePercent, 2) };
 
         var summary = new
         {
             totalValue,
-            dayChange = 0m,
-            dayChangePercent = 0m,
-            bestPerformer = detailed.OrderByDescending(x => x.Value).FirstOrDefault()
+            dayChange = Math.Round(dayChange, 2),
+            dayChangePercent = Math.Round(dayChangePercent, 2),
+            bestPerformer,
+            totalCost = Math.Round(totalCost, 2),
+            roiTotalPercent = Math.Round(roiTotalPercent, 2)
         };
 
         return Ok(summary);
     }
 
-    // GET api/balance/asset/{assetSymbol}/lots
     [HttpGet("balance/asset/{assetSymbol}/lots")]
     public async Task<IActionResult> GetAssetLots(string assetSymbol, [FromQuery] string method = "fifo")
     {
@@ -341,7 +400,7 @@ public class WalletController : ControllerBase
         var account = await _db.Accounts.FirstOrDefaultAsync(a => a.IdUser == userGuid);
         if (account == null) return NotFound(new { message = "Account not found for user" });
 
-        var currency = await _db.Currencies.FirstOrDefaultAsync(c => c.Symbol.ToUpper() == assetSymbol.ToUpper());
+        var currency = await _currencyClient.GetBySymbolAsync(assetSymbol);
         if (currency == null) return NotFound(new { message = "Currency not found" });
 
         // gather transaction cripto entries for user's transactions
@@ -351,7 +410,7 @@ public class WalletController : ControllerBase
             .ToListAsync();
 
         var tcList = await _db.TransactionCriptos
-            .Where(tc => tc.IdCurrency == currency.IdCurrency && txs.Select(t => t.IdTransaction).Contains(tc.IdTransaction))
+            .Where(tc => tc.IdCurrency == currency.Id && txs.Select(t => t.IdTransaction).Contains(tc.IdTransaction))
             .OrderBy(tc => tc.IdTransaction)
             .ToListAsync();
 
@@ -418,20 +477,27 @@ public class WalletController : ControllerBase
         var w = await _db.Wallets.FindAsync(id);
         if (w == null) return NotFound();
 
-        var positions = await _db.WalletPositions
-            .Where(p => p.IdWallet == id)
-            .Join(_db.Currencies, p => p.IdCurrency, c => c.IdCurrency, (p, c) => new {
-                p.IdWalletPosition,
-                p.IdWallet,
-                p.IdCurrency,
-                CurrencySymbol = c.Symbol,
-                CurrencyName = c.Name,
-                p.Amount,
-                p.AvgPrice,
-                p.UpdatedAt
-            }).ToListAsync();
+        var positions = await _db.WalletPositions.Where(p => p.IdWallet == id).ToListAsync();
+        var currencyIds = positions.Select(p => p.IdCurrency).Distinct().ToList();
+        var currencies = new Dictionary<Guid, CurrencyCatalogItem?>();
+        foreach (var cid in currencyIds)
+        {
+            currencies[cid] = await _currencyClient.GetByIdAsync(cid);
+        }
 
-        return Ok(positions);
+        var result = positions.Select(p => new
+        {
+            p.IdWalletPosition,
+            p.IdWallet,
+            p.IdCurrency,
+            CurrencySymbol = currencies.TryGetValue(p.IdCurrency, out var c) && c != null ? c.Symbol : null,
+            CurrencyName = currencies.TryGetValue(p.IdCurrency, out c) && c != null ? c.Name : null,
+            p.Amount,
+            p.AvgPrice,
+            p.UpdatedAt
+        }).ToList();
+
+        return Ok(result);
     }
 
     // GET api/balance
@@ -455,19 +521,36 @@ public class WalletController : ControllerBase
             .Select(g => new { IdCurrency = g.Key, Amount = g.Sum(x => x.Amount) })
             .ToList();
 
-        var currencies = await _db.Currencies.ToListAsync();
+        var currenciesDict = new Dictionary<Guid, CurrencyCatalogItem?>();
+        foreach (var b in balances)
+        {
+            currenciesDict[b.IdCurrency] = await _currencyClient.GetByIdAsync(b.IdCurrency);
+        }
 
-        var result = (from b in balances
-                      join c in currencies on b.IdCurrency equals c.IdCurrency
-                      select new {
-                          CurrencyId = b.IdCurrency,
-                          Symbol = c.Symbol,
-                          Name = c.Name,
-                          Amount = b.Amount,
-                          AvgPrice = (decimal?)null,
-                          CurrentPrice = c.CurrentPrice,
-                          Value = b.Amount * c.CurrentPrice
-                      }).ToList();
+        var result = balances.Select(b =>
+        {
+            var relatedPositions = positions.Where(p => p.IdCurrency == b.IdCurrency).ToList();
+            decimal? avgPrice = null;
+            var totalAmount = relatedPositions.Sum(p => p.Amount);
+            if (totalAmount > 0)
+            {
+                var weighted = relatedPositions.Sum(p => p.Amount * (p.AvgPrice));
+                avgPrice = weighted / totalAmount;
+            }
+
+            var current = currenciesDict[b.IdCurrency]?.CurrentPrice ?? 0m;
+            return new
+            {
+                CurrencyId = b.IdCurrency,
+                Symbol = currenciesDict[b.IdCurrency]?.Symbol,
+                Name = currenciesDict[b.IdCurrency]?.Name,
+                Amount = b.Amount,
+                AvgPrice = avgPrice,
+                CurrentPrice = current,
+                Value = b.Amount * current,
+                Change = currenciesDict[b.IdCurrency]?.PriceChangePercent ?? 0m
+            };
+        }).ToList();
 
         return Ok(result);
     }
@@ -483,7 +566,7 @@ public class WalletController : ControllerBase
         var account = await _db.Accounts.FirstOrDefaultAsync(a => a.IdUser == userGuid);
         if (account == null) return NotFound(new { message = "Account not found for user" });
 
-        var currency = await _db.Currencies.FirstOrDefaultAsync(c => c.Symbol.ToUpper() == assetSymbol.ToUpper());
+        var currency = await _currencyClient.GetBySymbolAsync(assetSymbol);
         if (currency == null) return NotFound(new { message = "Currency not found" });
 
         // get or create a default wallet for the account
@@ -494,7 +577,7 @@ public class WalletController : ControllerBase
             await _db.Wallets.AddAsync(wallet);
         }
 
-        var position = await _db.WalletPositions.FirstOrDefaultAsync(p => p.IdWallet == wallet.IdWallet && p.IdCurrency == currency.IdCurrency);
+        var position = await _db.WalletPositions.FirstOrDefaultAsync(p => p.IdWallet == wallet.IdWallet && p.IdCurrency == currency.Id);
         var delta = dto.DeltaAmount;
         if (position == null)
         {
@@ -502,7 +585,7 @@ public class WalletController : ControllerBase
             {
                 IdWalletPosition = Guid.NewGuid(),
                 IdWallet = wallet.IdWallet,
-                IdCurrency = currency.IdCurrency,
+                IdCurrency = currency.Id,
                 Amount = delta,
                 AvgPrice = dto.UnitPriceUsd ?? currency.CurrentPrice,
                 UpdatedAt = DateTime.UtcNow
@@ -542,7 +625,7 @@ public class WalletController : ControllerBase
         var tc = new Domain.Entities.TransactionCripto
         {
             IdTransaction = tx.IdTransaction,
-            IdCurrency = currency.IdCurrency,
+            IdCurrency = currency.Id,
             ExchangeRate = currency.CurrentPrice,
             CriptoAmount = delta
         };
@@ -569,12 +652,17 @@ public class WalletController : ControllerBase
             await _db.Accounts.AddAsync(account);
         }
 
-        // find or create currency (fiat)
-        var currency = await _db.Currencies.FirstOrDefaultAsync(c => c.Symbol.ToUpper() == dto.Currency.ToUpper());
+        // localizar moeda fiat já autorizada no catálogo, normalizando o símbolo
+        var symbol = (dto.Currency ?? string.Empty).Trim().ToUpperInvariant();
+        if (string.IsNullOrEmpty(symbol))
+        {
+            return BadRequest(new { message = "Moeda obrigatória" });
+        }
+
+        var currency = await _currencyClient.GetBySymbolAsync(symbol);
         if (currency == null)
         {
-            currency = new Domain.Entities.Currency { IdCurrency = Guid.NewGuid(), Symbol = dto.Currency.ToUpper(), Name = dto.Currency.ToUpper(), CurrentPrice = 1m };
-            await _db.Currencies.AddAsync(currency);
+            return BadRequest(new { message = "Moeda não autorizada pela plataforma" });
         }
 
         var wallet = await _db.Wallets.FirstOrDefaultAsync(w => w.IdAccount == account.IdAccount);
@@ -584,7 +672,7 @@ public class WalletController : ControllerBase
             await _db.Wallets.AddAsync(wallet);
         }
 
-        // create transaction
+        // create transaction (explicit fiat flow)
         var tx = new Domain.Entities.Transaction
         {
             IdTransaction = Guid.NewGuid(),
@@ -597,6 +685,7 @@ public class WalletController : ControllerBase
         };
         await _db.Transactions.AddAsync(tx);
 
+        // always create a TransactionFiat for deposit fiat (do not create TransactionCripto here)
         var tf = new Domain.Entities.TransactionFiat
         {
             IdTransaction = tx.IdTransaction,
@@ -608,10 +697,10 @@ public class WalletController : ControllerBase
         await _db.TransactionFiats.AddAsync(tf);
 
         // add fiat to wallet position (use currency entry)
-        var position = await _db.WalletPositions.FirstOrDefaultAsync(p => p.IdWallet == wallet.IdWallet && p.IdCurrency == currency.IdCurrency);
+        var position = await _db.WalletPositions.FirstOrDefaultAsync(p => p.IdWallet == wallet.IdWallet && p.IdCurrency == currency.Id);
         if (position == null)
         {
-            position = new Domain.Entities.WalletPosition { IdWalletPosition = Guid.NewGuid(), IdWallet = wallet.IdWallet, IdCurrency = currency.IdCurrency, Amount = dto.Amount, AvgPrice = 1m, UpdatedAt = DateTime.UtcNow };
+            position = new Domain.Entities.WalletPosition { IdWalletPosition = Guid.NewGuid(), IdWallet = wallet.IdWallet, IdCurrency = currency.Id, Amount = dto.Amount, AvgPrice = 1m, UpdatedAt = DateTime.UtcNow };
             await _db.WalletPositions.AddAsync(position);
         }
         else
@@ -620,6 +709,9 @@ public class WalletController : ControllerBase
             position.UpdatedAt = DateTime.UtcNow;
             _db.WalletPositions.Update(position);
         }
+
+        account.AvailableBalance += dto.Amount;
+        _db.Accounts.Update(account);
 
         await _db.SaveChangesAsync();
 
@@ -637,14 +729,14 @@ public class WalletController : ControllerBase
         var account = await _db.Accounts.FirstOrDefaultAsync(a => a.IdUser == userGuid);
         if (account == null) return NotFound(new { message = "Account not found" });
 
-        var currency = await _db.Currencies.FirstOrDefaultAsync(c => c.Symbol.ToUpper() == dto.Currency.ToUpper());
+        var currency = await _currencyClient.GetBySymbolAsync(dto.Currency);
         if (currency == null) return NotFound(new { message = "Currency not found" });
 
         var wallet = await _db.Wallets.FirstOrDefaultAsync(w => w.IdAccount == account.IdAccount);
         if (wallet == null) return NotFound(new { message = "Wallet not found" });
 
-        var position = await _db.WalletPositions.FirstOrDefaultAsync(p => p.IdWallet == wallet.IdWallet && p.IdCurrency == currency.IdCurrency);
-        if (position == null || position.Amount < dto.Amount) return BadRequest(new { message = "Insufficient balance" });
+        var position = await _db.WalletPositions.FirstOrDefaultAsync(p => p.IdWallet == wallet.IdWallet && p.IdCurrency == currency.Id);
+        if (position == null || position.Amount < dto.Amount) return BadRequest(new { message = "Saldo Insuficiente!" });
 
         // create transaction
         var tx = new Domain.Entities.Transaction
