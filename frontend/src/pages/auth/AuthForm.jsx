@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, User, Github, Facebook, Chrome, Bitcoin, DollarSign, ArrowRight, CheckCircle, Wallet, Zap, AlertCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,25 +10,34 @@ import { DecorativeElements } from './DecorativeElements';
 
 // Componente para as partículas flutuantes (ajustado para dispositivos móveis)
 const FloatingCoins = () => {
-  // Reduzir o número de partículas em telas pequenas para melhor performance
-  const isMobile = window.innerWidth < 768;
-  const particleCount = isMobile ? 10 : 20;
-  
-  const coins = Array.from({ length: particleCount }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * (isMobile ? 0.4 : 0.6) + (isMobile ? 0.15 : 0.2), // Tamanhos menores em mobile
-    duration: Math.random() * 8 + 10,
-    type: Math.random() > 0.5 ? 'bitcoin' : 'dollar'
-  }));
+  // manter breakpoint em estado para detectar mudanças de tamanho reais
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // memoizar as partículas para que não sejam recriadas em cada render (digitando não as reinicia)
+  const coins = useMemo(() => {
+    const particleCount = isMobile ? 10 : 20;
+    return Array.from({ length: particleCount }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * (isMobile ? 0.4 : 0.6) + (isMobile ? 0.15 : 0.2),
+      duration: Math.random() * 8 + 10,
+      type: Math.random() > 0.5 ? 'bitcoin' : 'dollar'
+    }));
+  }, [isMobile]);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {coins.map(coin => (
         <motion.div
           key={coin.id}
-          className="absolute text-brand-primary/30"
+          className="absolute"
           style={{
             left: `${coin.x}%`,
             top: `${coin.y}%`,
@@ -46,7 +55,11 @@ const FloatingCoins = () => {
             ease: "easeInOut",
           }}
         >
-          {coin.type === 'bitcoin' ? <Bitcoin /> : <DollarSign />}
+          {coin.type === 'bitcoin' ? (
+            <Bitcoin className="text-amber-400/90 dark:text-amber-300/80" />
+          ) : (
+            <DollarSign className="text-green-400/90 dark:text-green-300/80" />
+          )}
         </motion.div>
       ))}
     </div>
@@ -524,7 +537,8 @@ export function AuthForm({ type }) {
                     <div className="w-full border-t border-border-primary"></div>
                   </div>
                   <div className="relative flex justify-center text-xs">
-                    <span className="px-2 bg-background-primary text-text-terciary text-xs">Ou continue com</span>
+                    {/* Texto do divisor acompanha as cores globais de texto conforme o tema */}
+                    <span className="px-2 bg-transparent text-text-secondary text-xs">Ou continue com</span>
                   </div>
                 </div>
 
@@ -565,7 +579,7 @@ export function AuthForm({ type }) {
 
         {/* Elementos decorativos */}
         <motion.div
-          className="absolute -bottom-4 -left-4 w-6 h-6 sm:w-12 sm:h-12 bg-gradient-to-br from-brand-primary to-purple-600 rounded-full"
+          className="absolute -bottom-4 -left-4 w-6 h-6 sm:w-12 sm:h-12 bg-gradient-to-br from-brand-primary to-purple-600 dark:from-brand-primary/80 dark:to-purple-700 rounded-full"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.7, 1, 0.7],
@@ -578,7 +592,7 @@ export function AuthForm({ type }) {
         />
         
         <motion.div
-          className="absolute -top-4 -right-4 w-5 h-5 sm:w-8 sm:h-8 bg-amber-400 rounded-full"
+          className="absolute -top-4 -right-4 w-5 h-5 sm:w-8 sm:h-8 bg-amber-400 dark:bg-amber-600 rounded-full"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.7, 1, 0.7],
