@@ -188,7 +188,27 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
       "UpstreamPathTemplate": "/wallet",
+      "AddHeadersToRequest": {
+        "Authorization": "{UpstreamRequestHeader.Authorization}"
+      },
       "UpstreamHttpMethod": [ "POST", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/wallets",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
+      "UpstreamPathTemplate": "/wallets",
+      "AddHeadersToRequest": {
+        "Authorization": "{UpstreamRequestHeader.Authorization}"
+      },
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/currencies",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
+      "UpstreamPathTemplate": "/currencies",
+      "UpstreamHttpMethod": [ "GET" ]
     },
     {
       "DownstreamPathTemplate": "/api/wallets/{id}",
