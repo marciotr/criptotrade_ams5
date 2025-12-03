@@ -697,6 +697,24 @@ const mapTypeLabel = (raw) => {
   return raw.charAt(0).toUpperCase() + raw.slice(1);
 };
 
+// Map method-like tokens (or fallback type tokens) to human-friendly labels
+const mapMethodLabel = (raw) => {
+  if (!raw) return 'Desconhecido';
+  const r = String(raw);
+  const lower = r.toLowerCase();
+
+  if (lower.includes('deposit')) return 'Depósito';
+  if (lower.includes('withdraw') || lower.includes('saque')) return 'Saque';
+  if (lower.includes('fiat')) return 'Depósito';
+  if (lower.includes('crypto') || lower.includes('cripto')) return 'Cripto';
+  if (lower.includes('paypal')) return 'PayPal';
+  if (lower.includes('card') || lower.includes('cartao') || lower.includes('cartão')) return 'Cartão de Crédito';
+  if (lower.includes('transfer') || lower.includes('transferencia') || lower.includes('transferência') ) return 'Transferência Bancária';
+
+  // If it's already a friendly label, return as-is (trimmed)
+  return r.trim();
+};
+
 // Componente principal - TransactionHistory totalmente responsivo
 export function TransactionHistory() {
   const navigate = useNavigate();
@@ -722,7 +740,6 @@ export function TransactionHistory() {
 
   const isMobile = windowWidth < 640;
 
-  // Modal scale used for desktop/laptop breakpoints (keeps modals from overflowing on smaller notebooks)
   const modalScale = useMemo(() => {
     if (windowWidth <= 1024) return 0.66;
     if (windowWidth <= 1280) return 0.70;
@@ -743,13 +760,13 @@ export function TransactionHistory() {
         const data = Array.isArray(res.data) ? res.data : [];
 
         const mapped = data.map((tx, idx) => ({
-          id: tx.id ?? tx.Id ?? idx + 1,
+          id: tx.id ?? tx.Id ?? tx.idTransaction ?? tx.IdTransaction ?? idx + 1,
           type: mapTypeLabel(tx.type ?? tx.Type ?? tx.transactionType),
-          amount: Number(tx.amount ?? tx.Amount ?? tx.value ?? 0),
+          amount: Number(tx.totalAmount ?? tx.TotalAmount ?? tx.amount ?? tx.Amount ?? tx.value ?? 0),
           status: String(tx.status ?? tx.Status ?? 'completed').toLowerCase(),
-          date: tx.createdAt ?? tx.date ?? tx.Date ?? new Date().toISOString(),
-          txId: tx.txId ?? tx.TxId ?? tx.id ?? `tx_${Math.random().toString(36).slice(2,9)}`,
-          method: tx.method ?? tx.Method ?? tx.paymentMethod ?? 'Desconhecido',
+          date: tx.createdAt ?? tx.createdAtUtc ?? tx.date ?? tx.Date ?? new Date().toISOString(),
+          txId: tx.txId ?? tx.TxId ?? tx.idTransaction ?? tx.IdTransaction ?? tx.id ?? `tx_${Math.random().toString(36).slice(2,9)}`,
+          method: mapMethodLabel(tx.method ?? tx.Method ?? tx.paymentMethod ?? tx.type ?? tx.Type ?? tx.transactionType ?? 'Desconhecido'),
           currency: tx.currency ?? tx.Currency ?? tx.asset ?? tx.assetSymbol ?? 'USD'
         }));
 
