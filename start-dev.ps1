@@ -6,7 +6,7 @@ $services = @(
     "cryptoApi",
     "currencyAvailables",
     "userApi",
-    "walletApi2",
+    "walletApi",
     "gatewayApi"
 )
 
@@ -19,7 +19,7 @@ foreach ($service in $services) {
     if (Test-Path $path) {
         Write-Host "Iniciando $service..." -ForegroundColor Green
         # Abre uma nova janela PowerShell, navega e roda o dotnet watch
-        Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$path'; dotnet watch"
+        Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$path'; dotnet run"
     } else {
         Write-Host "ERRO: Pasta não encontrada: $path" -ForegroundColor Red
     }
@@ -35,7 +35,7 @@ if (Test-Path $frontendPath) {
     # Verifica se node_modules existe, senão instala
     if (-not (Test-Path "node_modules")) {
         Write-Host "Instalando dependências do Frontend..." -ForegroundColor Yellow
-        npm install
+        npm install --legacy-peer-deps
     }
 
     Write-Host "Iniciando Frontend..." -ForegroundColor Green
