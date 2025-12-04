@@ -2,13 +2,14 @@ import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, ArrowDown, Search, Filter, Download, ChevronLeft, ChevronRight, AlertTriangle, 
          CheckCircle, Clock, RefreshCw, TrendingUp, Sparkles, Calendar, Wallet, Zap, 
-         BarChart2, Share2, Bookmark, PieChart, ChevronDown } from 'lucide-react';
+         BarChart2, Share2, Bookmark, PieChart, ChevronDown, CreditCard } from 'lucide-react';
+import CryptoIcon from '../../components/common/CryptoIcons';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { useNavigate } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 import { LoadingScreen } from '../../components/common/LoadingScreen';
-import { transactionApi } from '../../services/api/api';
+import { transactionApi, currencyApi } from '../../services/api/api';
 import {
   BarChart, Bar, PieChart as RechartsPC, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
@@ -58,6 +59,42 @@ const MiniChart = ({ data = [], height = 30, width = 80, color = "#3498db" }) =>
         })}
       </g>
     </svg>
+  );
+};
+
+const MethodBadge = ({ method, currency, size = 14 }) => {
+  const m = method || '';
+  let label = m;
+  let colorClass = 'bg-background-secondary text-text-tertiary';
+  let icon = null;
+
+  if (/cart[oã]o|card/i.test(m)) {
+    colorClass = 'bg-blue-100 text-blue-700';
+    icon = <CreditCard size={size} className="mr-2" />;
+    label = 'Cartão';
+  } else if (/transfer(ência|encia)|bank|banc/i.test(m)) {
+    colorClass = 'bg-indigo-100 text-indigo-700';
+    icon = <Wallet size={size} className="mr-2 text-indigo-600" />;
+    label = 'Transferência';
+  } else if (/paypal/i.test(m)) {
+    colorClass = 'bg-yellow-100 text-yellow-800';
+    icon = <span className="mr-2 font-bold text-yellow-700">P</span>;
+    label = 'PayPal';
+  } else if (/cripto|crypto|crypto/i.test(m)) {
+    colorClass = 'bg-amber-100 text-amber-800';
+    icon = (
+      <div className="mr-2 w-5 h-5 rounded-full overflow-hidden flex items-center justify-center">
+        <CryptoIcon symbol={currency} size={size} />
+      </div>
+    );
+    label = 'Cripto';
+  }
+
+  return (
+    <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${colorClass}`}>
+      {icon}
+      <span className="truncate">{label}</span>
+    </div>
   );
 };
 
@@ -171,37 +208,15 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
         
         <div className="px-4 py-4 w-24 text-sm text-text-primary flex items-center">
           <div className="flex items-center space-x-1.5">
-            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-              <span className="text-[8px] font-bold text-white">
-                {transaction.currency.charAt(0)}
-              </span>
+            <div className="w-6 h-6 rounded-full overflow-hidden">
+              <CryptoIcon symbol={transaction.currency} size={20} />
             </div>
             <span>{transaction.currency}</span>
           </div>
         </div>
         
         <div className="px-4 py-4 w-32 text-sm text-text-primary">
-          <div className="flex items-center">
-            {transaction.method === 'Cartão de Crédito' && (
-              <div className="w-6 h-4 mr-2 rounded bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-              </div>
-            )}
-            {transaction.method === 'Transferência Bancária' && (
-              <Wallet size={14} className="mr-2 text-gray-500" />
-            )}
-            {transaction.method === 'PayPal' && (
-              <div className="mr-2 text-blue-600 font-bold text-xs">P</div>
-            )}
-            {transaction.method === 'Cripto' && (
-              <div className="p-0.5 bg-orange-500 text-white mr-2 rounded-full">
-                <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none">
-                  <path d="M9 8l3 8.5L15 8l4.5 16H4.5L9 8z" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            )}
-            {transaction.method}
-          </div>
+          <MethodBadge method={transaction.method} currency={transaction.currency} />
         </div>
         
         <div className="px-4 py-4 w-32 text-sm text-text-tertiary">
@@ -261,10 +276,8 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
                   ${transaction.amount.toLocaleString()}
                 </span>
                 <div className="flex items-center justify-end mt-1">
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mr-1">
-                    <span className="text-[6px] font-bold text-white">
-                      {transaction.currency.charAt(0)}
-                    </span>
+                  <div className="w-5 h-5 rounded-full overflow-hidden mr-1">
+                    <CryptoIcon symbol={transaction.currency} size={16} />
                   </div>
                   <span className="text-[10px] text-text-tertiary">{transaction.currency}</span>
                 </div>
@@ -767,10 +780,61 @@ export function TransactionHistory() {
           date: tx.createdAt ?? tx.createdAtUtc ?? tx.date ?? tx.Date ?? new Date().toISOString(),
           txId: tx.txId ?? tx.TxId ?? tx.idTransaction ?? tx.IdTransaction ?? tx.id ?? `tx_${Math.random().toString(36).slice(2,9)}`,
           method: mapMethodLabel(tx.method ?? tx.Method ?? tx.paymentMethod ?? tx.type ?? tx.Type ?? tx.transactionType ?? 'Desconhecido'),
-          currency: tx.currency ?? tx.Currency ?? tx.asset ?? tx.assetSymbol ?? 'USD'
+          currency: tx.currency ?? tx.Currency ?? tx.asset ?? tx.assetSymbol ?? 'USD',
+          rawType: (tx.type ?? tx.Type ?? tx.transactionType ?? '').toString()
         }));
 
         if (mounted) setTransactions(mapped);
+
+        const likelyCryptoRegex = /buy|sell|swap|compra|venda/i;
+        const toEnrich = mapped.filter(m => (
+          (m.currency === 'USD' || !m.currency || m.currency === 'UNKNOWN') && likelyCryptoRegex.test(m.rawType)
+        ));
+
+        if (toEnrich.length > 0) {
+          try {
+            const promises = toEnrich.map(async (t) => {
+              try {
+                const detRes = await transactionApi.getById(t.id);
+                const det = detRes?.data ?? {};
+                const cripto = det?.cripto ?? det?.transactionCripto ?? det?.transactionCriptos ?? null;
+                const fiat = det?.fiat ?? null;
+                if (cripto) {
+                  const idCurrency = cripto.idCurrency ?? cripto.IdCurrency ?? cripto.IdCurrency ?? cripto.IdCurrency ?? cripto.idCurrency ?? null;
+                  if (idCurrency) {
+                    try {
+                      const cRes = await currencyApi.getCurrencyById(idCurrency);
+                      const c = cRes?.data ?? null;
+                      const symbol = c?.symbol ?? c?.Symbol ?? c?.name ?? c?.Name ?? null;
+                      return { id: t.id, currency: symbol || c?.name || t.currency };
+                    } catch (e) {
+                      return { id: t.id, currency: t.currency };
+                    }
+                  }
+                }
+                // fallback: if det has currency info directly
+                if (det?.currency) {
+                  const symbol = det.currency.symbol ?? det.currency.Symbol ?? det.currency.name ?? null;
+                  return { id: t.id, currency: symbol || t.currency };
+                }
+                return { id: t.id, currency: t.currency };
+              } catch (e) {
+                return { id: t.id, currency: t.currency };
+              }
+            });
+
+            const results = await Promise.all(promises);
+            if (mounted) {
+              setTransactions(prev => prev.map(p => {
+                const found = results.find(r => r.id === p.id);
+                if (found && found.currency) return { ...p, currency: (found.currency || p.currency) };
+                return p;
+              }));
+            }
+          } catch (e) {
+            console.warn('Failed enriching transactions with detail', e);
+          }
+        }
       } catch (err) {
         console.error('Erro ao buscar transações reais, usando mock como fallback', err);
         // fallback para mock data
@@ -823,7 +887,8 @@ export function TransactionHistory() {
         typeStr.toLowerCase().includes(search) ||
         methodStr.toLowerCase().includes(search);
 
-      const matchesFilter = filterStatus === 'all' || String(tx.status ?? '').toLowerCase() === filterStatus.toLowerCase();
+      const statusStr = String(tx.status ?? '').toLowerCase();
+      const matchesFilter = filterStatus === 'all' || statusStr === filterStatus.toLowerCase();
       
       return matchesSearch && matchesFilter;
     });
@@ -1301,25 +1366,7 @@ export function TransactionHistory() {
                   <div className="flex justify-between items-center">
                     <span className="text-xs sm:text-sm text-text-tertiary">Método</span>
                     <div className="flex items-center text-xs sm:text-sm text-text-primary">
-                      {selectedTransaction.method === 'Cartão de Crédito' && (
-                        <div className="w-5 sm:w-6 h-3 sm:h-4 mr-1.5 sm:mr-2 rounded bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-                          <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-yellow-400"></div>
-                        </div>
-                      )}
-                      {selectedTransaction.method === 'Transferência Bancária' && (
-                        <Wallet size={isMobile ? 12 : 14} className="mr-1.5 sm:mr-2 text-gray-500" />
-                      )}
-                      {selectedTransaction.method === 'PayPal' && (
-                        <div className="mr-1.5 sm:mr-2 text-blue-600 font-bold text-xs">P</div>
-                      )}
-                      {selectedTransaction.method === 'Cripto' && (
-                        <div className="p-0.5 bg-orange-500 text-white mr-1.5 sm:mr-2 rounded-full">
-                          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none">
-                            <path d="M9 8l3 8.5L15 8l4.5 16H4.5L9 8z" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-                      )}
-                      {selectedTransaction.method}
+                      <MethodBadge method={selectedTransaction.method} currency={selectedTransaction.currency} />
                     </div>
                   </div>
                 </div>
