@@ -363,14 +363,14 @@ public class WalletController : ControllerBase
         }).ToList();
 
         var totalValue = detailed.Sum(x => x.Value);
-        // total cost based on avg purchase prices
+        // custo total baseado nos preços médios de compra
         var totalCost = detailed.Sum(x => (x.AvgPrice ?? 0m) * x.Amount);
         var roiTotalPercent = totalCost > 0 ? ((totalValue - totalCost) / totalCost) * 100m : 0m;
 
         var dayChange = totalValue - totalCost;
         var dayChangePercent = totalCost > 0 ? (dayChange / totalCost) * 100m : 0m;
 
-        // best performer by percent since purchase (ignore assets with no avg price)
+        // melhor performance por porcentagem não por preço
         var best = detailed.Where(d => d.GainPercentSincePurchase != 0m).OrderByDescending(d => d.GainPercentSincePurchase).FirstOrDefault()
                    ?? detailed.OrderByDescending(d => d.ChangePercent).FirstOrDefault();
 
@@ -403,7 +403,6 @@ public class WalletController : ControllerBase
         var currency = await _currencyClient.GetBySymbolAsync(assetSymbol);
         if (currency == null) return NotFound(new { message = "Currency not found" });
 
-        // gather transaction cripto entries for user's transactions
         var txs = await _db.Transactions
             .Where(t => t.IdAccount == account.IdAccount)
             .OrderBy(t => t.CreatedAt)
@@ -672,7 +671,6 @@ public class WalletController : ControllerBase
             await _db.Wallets.AddAsync(wallet);
         }
 
-        // create transaction (explicit fiat flow)
         var tx = new Domain.Entities.Transaction
         {
             IdTransaction = Guid.NewGuid(),
@@ -685,7 +683,6 @@ public class WalletController : ControllerBase
         };
         await _db.Transactions.AddAsync(tx);
 
-        // always create a TransactionFiat for deposit fiat (do not create TransactionCripto here)
         var tf = new Domain.Entities.TransactionFiat
         {
             IdTransaction = tx.IdTransaction,
