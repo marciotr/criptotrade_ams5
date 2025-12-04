@@ -23,6 +23,7 @@ const BuyCoin = () => {
   const [fiatCurrencySymbol, setFiatCurrencySymbol] = useState('USD');
   const [currentWalletId, setCurrentWalletId] = useState(null);
   const [currentAccountId, setCurrentAccountId] = useState(null);
+  const [usdBalance, setUsdBalance] = useState(0);
 
   // Estados de mercado / gráfico
   const [timeRange, setTimeRange] = useState('24H');
@@ -159,17 +160,45 @@ const BuyCoin = () => {
         }
 
         if (wId) {
-          const wb = await walletApi.getWalletBalances(wId);
-          const positions = Array.isArray(wb.data) ? wb.data : [];
+          let positions = [];
+          try {
+            const balRes = await walletApi.getBalance();
+            positions = Array.isArray(balRes?.data) ? balRes.data : [];
+          } catch (e) {
+            positions = [];
+          }
+
+          if (!positions || positions.length === 0) {
+            try {
+              const wb = await walletApi.getWalletBalances(wId);
+              positions = Array.isArray(wb.data) ? wb.data : positions;
+            } catch (e) {
+            }
+          }
           const fiatPos = positions.find(p => {
-            const s = (p.symbol || p.Symbol || p.currencySymbol || '').toUpperCase();
+            const s = ((p.symbol ?? p.Symbol ?? p.currencySymbol ?? p.CurrencySymbol) + '').toUpperCase();
             return ['USDT', 'USD', 'USDC'].includes(s);
           });
           if (fiatPos) {
-            const walletFiatAvailable = Number(fiatPos.amount ?? fiatPos.Amount ?? 0);
+            const walletFiatAvailable = Number(fiatPos.amount ?? fiatPos.Amount ?? fiatPos.Amount ?? 0);
             setAvailableFiat(walletFiatAvailable);
-            const symbol = (fiatPos.symbol || fiatPos.Symbol || fiatPos.currencySymbol || 'USD').toUpperCase();
+            const symbol = ((fiatPos.symbol ?? fiatPos.Symbol ?? fiatPos.currencySymbol ?? fiatPos.CurrencySymbol ?? 'USD') + '').toUpperCase();
             setFiatCurrencySymbol(symbol);
+          }
+          try {
+            const usdVal = positions.reduce((acc, p) => {
+              const s = ((p.symbol ?? p.Symbol ?? p.currencySymbol ?? p.CurrencySymbol ?? p.Symbol ?? p.Symbol) + '').toUpperCase();
+              if (['USD', 'USDT', 'USDC'].includes(s)) {
+                const amt = Number(p.amount ?? p.Amount ?? p.Amount ?? p.availableAmount ?? p.AvailableAmount ?? 0) || 0;
+                const price = Number(p.currentPrice ?? p.CurrentPrice ?? p.price ?? p.Price ?? 1) || 1;
+                const val = Number(p.value ?? p.Value ?? (amt * price)) || 0;
+                return acc + val;
+              }
+              return acc;
+            }, 0);
+            setUsdBalance(usdVal || 0);
+          } catch (e) {
+            setUsdBalance(0);
           }
         }
       } catch (e) {
@@ -280,18 +309,18 @@ const BuyCoin = () => {
       const currencyId = walletCurrency.idCurrency ?? walletCurrency.IdCurrency ?? walletCurrency.id ?? walletCurrency.Id ?? null;
 
       // If we still don't have availableFiat loaded in state, try to fetch wallet balances now
-      try {
+          try {
         if (walletId && availableFiat === null) {
           const wb = await walletApi.getWalletBalances(walletId);
           const positions = Array.isArray(wb.data) ? wb.data : [];
           const fiatPos = positions.find(p => {
-            const s = (p.symbol || p.Symbol || p.currencySymbol || '').toUpperCase();
+            const s = ((p.symbol ?? p.Symbol ?? p.currencySymbol ?? p.CurrencySymbol) + '').toUpperCase();
             return ['USDT', 'USD', 'USDC'].includes(s);
           });
           if (fiatPos) {
             const walletFiatAvailable = Number(fiatPos.amount ?? fiatPos.Amount ?? 0);
             setAvailableFiat(walletFiatAvailable);
-            const symbol = (fiatPos.symbol || fiatPos.Symbol || fiatPos.currencySymbol || 'USD').toUpperCase();
+            const symbol = ((fiatPos.symbol ?? fiatPos.Symbol ?? fiatPos.currencySymbol ?? fiatPos.CurrencySymbol ?? 'USD') + '').toUpperCase();
             setFiatCurrencySymbol(symbol);
           }
         }
@@ -351,6 +380,21 @@ const BuyCoin = () => {
             const symbol2 = (fiatPos2.symbol || fiatPos2.Symbol || fiatPos2.currencySymbol || 'USD').toUpperCase();
             setFiatCurrencySymbol(symbol2);
           }
+            try {
+              const usdVal2 = positions2.reduce((acc, p) => {
+                const s = ((p.symbol ?? p.Symbol ?? p.currencySymbol ?? p.CurrencySymbol) + '').toUpperCase();
+                if (['USD', 'USDT', 'USDC'].includes(s)) {
+                  const amt = Number(p.amount ?? p.Amount ?? 0) || 0;
+                  const price = Number(p.currentPrice ?? p.CurrentPrice ?? p.price ?? p.Price ?? 1) || 1;
+                  const val = Number(p.value ?? p.Value ?? (amt * price)) || 0;
+                  return acc + val;
+                }
+                return acc;
+              }, 0);
+              setUsdBalance(usdVal2 || 0);
+            } catch (e) {
+              setUsdBalance(0);
+            }
         }
       } catch (e) {
         console.warn('Could not refresh wallet balances after buy', e);
@@ -635,7 +679,7 @@ const BuyCoin = () => {
                 </p>
 
                 {availableFiat !== null && (
-                  <p className="text-[11px] text-text-secondary mt-2">Disponível na carteira fiat ({fiatCurrencySymbol}): <span className="font-medium text-text-primary">${Number(availableFiat).toLocaleString(undefined, { maximumFractionDigits: 2 })}</span></p>
+                  <p className="text-[11px] text-text-secondary mt-2">Disponível na carteira ({fiatCurrencySymbol}): <span className="font-medium text-text-primary">${Number(availableFiat).toLocaleString(undefined, { maximumFractionDigits: 2 })}</span></p>
                 )}
                 {availableFiat !== null && (() => {
                   // compute estimated fiat to spend from current input
