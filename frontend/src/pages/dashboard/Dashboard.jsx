@@ -225,11 +225,18 @@ export function Dashboard() {
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [cryptoData, setCryptoData] = useState([]);
   const [selectedCryptoData, setSelectedCryptoData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // loading global: aguarda primeiro carregamento de dados
+  const [tickersLoaded, setTickersLoaded] = useState(false);
+  const [initialCoinLoaded, setInitialCoinLoaded] = useState(false);
   const [visibleCount, setVisibleCount] = useState(5);
   const [tickers, setTickers] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [activeTab, setActiveTab] = useState('chart'); // 'chart', 'transactions', 'news'
+  const isInitialChartLoading = useMemo(
+    () => !!selectedCoin.id && (!selectedCoin.data || selectedCoin.data.length === 0),
+    [selectedCoin]
+  );
+  const initializedRef = useRef(false);
 
   // Detectar o tamanho da tela
   const isMobile = useMemo(() => windowWidth < 768, [windowWidth]);
@@ -258,6 +265,8 @@ export function Dashboard() {
         
         requestAnimationFrame(() => {
           setTickers(tickersData);
+          // marcar tickers como prontos para o overlay
+          setTickersLoaded(true);
         });
       } catch (error) {
         console.error('Erro ao buscar tickers:', error);
@@ -268,6 +277,17 @@ export function Dashboard() {
     const interval = setInterval(fetchData, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  // Fallback de timeout para evitar overlay preso (15s)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!tickersLoaded) setTickersLoaded(true);
+      if (!initialCoinLoaded) setInitialCoinLoaded(true);
+      setIsLoading(false);
+    }, 15000);
+
+    return () => clearTimeout(timeout);
+  }, [tickersLoaded, initialCoinLoaded]);
 
   const processedCryptoData = useMemo(() => {
     if (!tickers?.length) return [];
@@ -308,40 +328,16 @@ export function Dashboard() {
     }
   };
 
-  useEffect(() => {
-    const fetchCryptoData = async () => {
-      try {
-        setIsLoading(true);
-        
-        if (processedCryptoData.length > 0) {
-          const firstCrypto = processedCryptoData[0];
-          setSelectedCoin({
-            id: firstCrypto.symbol,
-            name: firstCrypto.name,
-            color: '#F7931A',
-            data: []
-          });
-
-          await fetchCoinData(firstCrypto.symbol);
-        }
-      } catch (error) {
-        console.error('Erro ao buscar dados de criptomoedas:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchCryptoData();
-  }, [processedCryptoData]);
-
-  const fetchCoinData = useCallback(async (symbol) => {
-    // Crio uma variável local de loading para o gráfico
-    // Para evitar a tela ficar piscando pra cada vez que a moeda é selecionada
+  const fetchCoinData = useCallback(async (symbol, { showGlobalLoading = false } = {}) => {
+    // Loading local do gráfico para evitar piscar a tela inteira
     const chartComponent = document.querySelector('.crypto-chart-container');
     if (chartComponent) {
       chartComponent.classList.add('loading');
     }
-    
+    if (showGlobalLoading) {
+      setIsLoading(true);
+    }
+
     try {
       const formattedSymbol = symbol.replace(/USDT+$/, '') + 'USDT';
       const { interval, limit } = getIntervalFromTimeRange(timeRange);
@@ -372,16 +368,51 @@ export function Dashboard() {
         if (chartComponent) {
           chartComponent.classList.remove('loading');
         }
+
+        // marca que o primeiro coin foi carregado (se estivermos aguardando overlay)
+        if (showGlobalLoading) {
+          setInitialCoinLoaded(true);
+        }
       });
 
     } catch (error) {
       console.error('Erro ao buscar dados da moeda:', error);
-      // Remove classe de loading mesmo em caso de erro
       if (chartComponent) {
         chartComponent.classList.remove('loading');
       }
+    } finally {
+      if (showGlobalLoading) {
+        setIsLoading(false);
+      }
     }
   }, [timeRange]);
+
+  useEffect(() => {
+    const fetchCryptoData = async () => {
+      try {
+        // Apenas inicializa a seleção e o fetch inicial uma única vez
+        if (!initializedRef.current && processedCryptoData.length > 0) {
+          const firstCrypto = processedCryptoData[0];
+          setSelectedCoin(prev => ({
+            ...prev,
+            id: firstCrypto.symbol,
+            name: firstCrypto.name,
+            color: '#F7931A',
+            data: prev.data || []
+          }));
+
+          // Carrega os primeiros dados e exibe overlay global enquanto preparamos a dashboard
+          await fetchCoinData(firstCrypto.symbol, { showGlobalLoading: true });
+          initializedRef.current = true;
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados de criptomoedas:', error);
+      }
+    };
+
+    // Não bloquear a renderização inicial da dashboard; apenas dispara o carregamento
+    fetchCryptoData();
+  }, [processedCryptoData, fetchCoinData]);
 
   const handleCoinSelection = useCallback(async (coin) => {
     // Não seto mais isLoading para true aqui, apenas atualizo a moeda selecionada
@@ -399,22 +430,18 @@ export function Dashboard() {
       }));
       
       // Busca os dados por trás da aplicação sem afetar o estado de loading
-      fetchCoinData(coin.id);
+      fetchCoinData(coin.id, { showGlobalLoading: false });
     } catch (error) {
       console.error('Erro ao selecionar moeda:', error);
     }
   }, [fetchCoinData]);
 
-  useEffect(() => {
-    if (selectedCoin?.id) {
-      fetchCoinData(selectedCoin.id);
-    }
-  }, [selectedCoin?.id, fetchCoinData]);
+  // Removido o refetch automático em toda mudança de selectedCoin.id
 
   const handleTimeRangeChange = useCallback((newRange) => {
     setTimeRange(newRange);
     if (selectedCoin?.id) {
-      fetchCoinData(selectedCoin.id);
+      fetchCoinData(selectedCoin.id, { showGlobalLoading: false });
     }
   }, [selectedCoin?.id, fetchCoinData]);
 
@@ -500,6 +527,8 @@ export function Dashboard() {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 }
   };
+
+  const showGlobalOverlay = isLoading || !tickersLoaded || !initialCoinLoaded;
 
   return (
     <>      
@@ -724,18 +753,30 @@ export function Dashboard() {
           </div>
         </AnimatedSection>
 
-        {/* Spinner de carregamento para o estado de loading */}
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background-primary bg-opacity-75 z-30">
+        {/* Overlay global: espera tickers + primeiro coin (com fallback) */}
+        {showGlobalOverlay && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-background-primary/90 backdrop-blur-2xl z-40 px-4 text-center">
             <motion.div 
-              className="w-12 h-12 border-4 border-brand-primary border-t-transparent rounded-full"
+              className="w-14 h-14 border-4 border-brand-primary border-t-transparent rounded-full mb-4"
               animate={{ rotate: 360 }}
               transition={{
                 duration: 1,
                 repeat: Infinity,
                 ease: "linear"
               }}
-            ></motion.div>
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              <p className="text-sm sm:text-base font-medium text-text-primary mb-1">
+                Aguarde um momento, preparando sua dashboard personalizada...
+              </p>
+              <p className="text-xs sm:text-sm text-text-secondary max-w-md mx-auto">
+                Carregando cotações, gráficos e dados do mercado. Isso pode levar alguns segundos.
+              </p>
+            </motion.div>
           </div>
         )}
 
@@ -786,9 +827,19 @@ export function Dashboard() {
                       }}
                     />
                     
+                    {/* Estado de carregamento inicial do gráfico */}
+                    {isInitialChartLoading && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-background-primary/40 backdrop-blur-[1px]">
+                        <div className="w-10 h-10 border-4 border-brand-primary/60 border-t-transparent rounded-full animate-spin mb-3" />
+                        <p className="text-xs sm:text-sm text-text-secondary">
+                          Carregando dados iniciais do mercado...
+                        </p>
+                      </div>
+                    )}
+
                     <CryptoChart 
                       data={selectedCoin?.data}
-                      isLoading={isLoading}
+                      isLoading={isLoading || isInitialChartLoading}
                       color={selectedCoin?.color}
                       height={getChartHeight()}
                       isMobile={isMobile}
@@ -799,7 +850,7 @@ export function Dashboard() {
                 <HoverCard delay={0.2}>
                   <MarketOverview 
                     data={visibleMarketData}
-                    isLoading={isLoading}
+                    isLoading={isLoading || !visibleMarketData.length}
                     onShowMore={handleShowMore}
                     isMobile={isMobile}
                   />
