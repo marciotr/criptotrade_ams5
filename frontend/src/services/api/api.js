@@ -7,14 +7,13 @@ export const authApi = {
 };
 
 export const userApi = {
-  getusers: () => api.get('/user'),
+  getUsers: () => api.get('/user'),
   getProfile: (id) => api.get(`/user/${id}`),
   updateProfile: (id, data) => api.put(`/user/${id}`, data),
   deleteAccount: (id) => api.delete(`/user/${id}`),
   updatePhoto: (id, file) => {
     const formData = new FormData();
     formData.append('photo', file);
-    
     return api.post(`/user/${id}/photo`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -62,27 +61,44 @@ export const marketApi = {
 
 // Novo serviço para chamadas à API de Carteira
 export const walletApi = {
-  // Métodos existentes
-  getAllWallets: () => api.get('/Wallet'),
-  getWalletById: (id) => api.get(`/Wallet/${id}`),
-  getuserWallets: (userId) => api.get(`/Wallet/user/${userId}`),
-  createWallet: (walletData) => api.post('/Wallet', walletData),
-  updateWallet: (walletData) => api.put(`/Wallet/${walletData.id}`, walletData),
-  getWalletTransactions: (walletId) => api.get(`/Wallet/${walletId}/transactions`),
-  addTransaction: (walletId, transactionData) => api.post(`/Wallet/${walletId}/transactions`, transactionData),
-  
-  // Novos métodos para carteiras separadas
-  getuserFiatWallets: (userId) => api.get(`/Wallet/user/${userId}/fiat`),
-  getuserCryptoWallets: (userId) => api.get(`/Wallet/user/${userId}/crypto`),
-  depositFiat: (data) => api.post('/Wallet/deposit/fiat', data),
-  transferBetweenWallets: (data) => api.post('/Wallet/transfer', data),
+  getWallet: () => api.get('/wallet'),
+  createWallet: (data) => api.post('/wallet', data),
+  getWallets: () => api.get('/wallets'),
+  getWalletBalances: (walletId) => api.get(`/positions/${walletId}`),
+  createWallets: (data) => api.post('/wallets', data),
+  getBalances: () => api.get('/balance'),
+  getBalance: () => api.get('/balance'),
+  getSummary: () => api.get('/balance/summary'),
+  getAssetLots: (assetSymbol, method = 'fifo') => api.get(`/balance/asset/${assetSymbol}/lots`, { params: { method } }),
+  getCurrencies: () => api.get('/currencies'),
+  adjustBalance: (assetSymbol, deltaAmount, options = {}) => {
+    const payload = {
+      DeltaAmount: deltaAmount,
+      ReferenceId: options.referenceId ?? null,
+      Description: options.description ?? null,
+      Method: options.method ?? null,
+      UnitPriceUsd: options.unitPriceUsd ?? null,
+    };
+
+    return api.patch(`/balance/${assetSymbol}`, payload);
+  },
+  sell: (data) => api.post('/transactions/sell', data),
+  depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
 };
+
+walletApi.getTransactions = () => api.get('/transactions');
+walletApi.getWallet = walletApi.getWallet; 
 
 export const transactionApi = {
   getAll: () => api.get('/transactions'),
   create: (data) => api.post('/transactions', data),
   getById: (id) => api.get(`/transactions/${id}`),
   update: (id, data) => api.put(`/transactions/${id}`, data),
+  buy: (data) => api.post('/transactions/buy', data),
+  sell: (data) => api.post('/transactions/sell', data),
+  swap: (data) => api.post('/transactions/swap', data),
+  depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
+  withdrawFiat: (data) => api.post('/transactions/withdraw/fiat', data),
 };
 
 export const settingsApi = {

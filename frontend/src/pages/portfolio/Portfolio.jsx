@@ -13,7 +13,29 @@ import {
 } from 'recharts';
 import { useNavigate } from 'react-router-dom';
 import CryptoIcon from '../../components/common/CryptoIcons';
-import { portfolioData, portfolioHistoricalData, portfolioStats, PORTFOLIO_COLORS } from '../../data/mockData';
+import { LoadingScreen } from '../../components/common/LoadingScreen';
+import { walletApi, transactionApi } from '../../services/api/api';
+import AssetDetailsModal from './components/AssetDetailsModal';
+import SellAssetModal from './components/SellAssetModal';
+import { useNotification } from '../../context/NotificationContext';
+
+const PORTFOLIO_COLORS = ['#f59e0b', '#10b981', '#6366f1', '#ec4899', '#14b8a6', '#f97316'];
+
+const buildSyntheticHistory = (totalValue) => {
+  const base = totalValue > 0 ? totalValue : 1000;
+  const points = [];
+  for (let i = 6; i >= 0; i -= 1) {
+    const date = new Date();
+    date.setDate(date.getDate() - i);
+    const variance = (Math.random() * 0.04 - 0.02) * base;
+    const value = Math.max(0, base + variance);
+    points.push({
+      date: date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }),
+      value: Number(value.toFixed(2))
+    });
+  }
+  return points;
+};
 
 // Componente de Card com animação para estatísticas
 const StatCard = ({ icon: Icon, title, value, change, changeType, iconColor, delay = 0, onClick }) => (
@@ -36,10 +58,14 @@ const StatCard = ({ icon: Icon, title, value, change, changeType, iconColor, del
     </div>
     <h3 className="text-2xl font-bold mt-3 text-text-primary">{value}</h3>
     <div className="flex items-center justify-between mt-3">
-      <p className={`flex items-center ${changeType === 'positive' ? 'text-feedback-success' : 'text-feedback-error'}`}>
-        {changeType === 'positive' ? <ArrowUp size={16} className="mr-1" /> : <ArrowDown size={16} className="mr-1" />}
-        {change}
-      </p>
+      {(change !== undefined && change !== null && change !== '') ? (
+        <p className={`flex items-center ${changeType === 'positive' ? 'text-feedback-success' : 'text-feedback-error'}`}>
+          {changeType === 'positive' ? <ArrowUp size={16} className="mr-1" /> : <ArrowDown size={16} className="mr-1" />}
+          {change}
+        </p>
+      ) : (
+        <div />
+      )}
       <span className="text-xs text-text-tertiary">24h</span>
     </div>
   </motion.div>
@@ -82,7 +108,39 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export function Portfolio() {
+  const formatCurrency = (v) => {
+    const n = Number(v ?? 0) || 0;
+    return `US$ ${n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
+
+  const formatAmount8 = (v) => {
+    const n = Number(v ?? 0) || 0;
+    return n.toLocaleString('pt-BR', { minimumFractionDigits: 8, maximumFractionDigits: 8 });
+  };
+
+  const formatPercent = (v) => {
+    const n = Number(v ?? 0) || 0;
+    return `${n.toFixed(2)}%`;
+  };
+
+  const [portfolioStats, setPortfolioStats] = useState({
+    totalValue: 0,
+    dayChange: 0,
+    dayChangePercent: 0,
+    bestPerformer: { asset: '-', change: 0 }
+  });
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [usdBalance, setUsdBalance] = useState(0);
+  const [portfolioHistoricalData, setPortfolioHistoricalData] = useState(buildSyntheticHistory(0));
+  const [loadingPortfolio, setLoadingPortfolio] = useState(true);
+  const [portfolioError, setPortfolioError] = useState('');
+  const [noTradeableAssets, setNoTradeableAssets] = useState(false);
+
   const totalValue = portfolioStats.totalValue;
+  const totalCost = portfolioData.reduce((acc, a) => acc + (a.totalCost ?? 0), 0);
+  const totalGainPercent = totalCost > 0 ? ((totalValue - totalCost) / totalCost) * 100 : 0;
+  const totalGainFormatted = `${totalGainPercent > 0 ? '+' : ''}${totalGainPercent.toFixed(2)}%`;
+  const totalGainType = totalGainPercent >= 0 ? 'positive' : 'negative';
   const [activeView, setActiveView] = useState('overview'); // 'overview', 'allocation', 'performance'
   const [timeRange, setTimeRange] = useState('1M'); // Opções: '1W', '1M', '3M', '1Y', 'ALL'
   const navigate = useNavigate(); // Adicione o hook de navegação
@@ -91,10 +149,13 @@ export function Portfolio() {
     return localStorage.getItem('userName') || 'Investidor';
   });
 
+  const { showNotification } = useNotification();
+
   // Verificar se o portfolio está com desempenho positivo ou negativo
-  const isPortfolioPositive = portfolioStats.dayChangePercent > 0;
-  const weekPerformance = portfolioHistoricalData[portfolioHistoricalData.length - 1].value - 
-                         portfolioHistoricalData[0].value;
+  const isPortfolioPositive = portfolioStats.dayChangePercent >= 0;
+  const weekPerformance = portfolioHistoricalData.length > 1
+    ? portfolioHistoricalData[portfolioHistoricalData.length - 1].value - portfolioHistoricalData[0].value
+    : 0;
   const isWeekPositive = weekPerformance > 0;
 
   // Animação para transição entre seções
@@ -118,6 +179,204 @@ export function Portfolio() {
     navigate('/deposit'); // Função para navegar para a página de depósito
   };
 
+  // Open sell modal for asset
+  const [sellModalOpen, setSellModalOpen] = useState(false);
+  const [sellLoading, setSellLoading] = useState(false);
+  const [sellError, setSellError] = useState('');
+  const [sellAsset, setSellAsset] = useState(null);
+  const [sellAmount, setSellAmount] = useState('');
+
+  const openSellModal = (asset) => {
+    setSellAsset(asset);
+    setSellAmount('');
+    setSellError('');
+    setSellModalOpen(true);
+  };
+
+  const closeSellModal = () => {
+    setSellModalOpen(false);
+    setSellAsset(null);
+    setSellAmount('');
+    setSellError('');
+    setSellLoading(false);
+  };
+
+  const handleConfirmSell = async (amountToSell) => {
+    if (!sellAsset) return;
+    const qty = Number(amountToSell);
+    if (isNaN(qty) || qty <= 0) {
+      setSellError('Quantidade inválida');
+      return;
+    }
+    if (qty > (sellAsset.amount ?? 0)) {
+      setSellError('Quantidade maior que o disponível');
+      return;
+    }
+
+    setSellLoading(true);
+    setSellError('');
+    try {
+      const payload = {
+        IdCurrency: sellAsset.id || sellAsset.Id || sellAsset.currencyId,
+        CriptoAmount: qty,
+        Fee: 0
+      };
+
+      const res = await transactionApi.sell(payload);
+      if (res && (res.status === 200 || res.status === 204)) {
+        showNotification('Venda realizada com sucesso', 'success');
+        // trigger global refresh used by portfolio
+        window.dispatchEvent(new Event('wallet-updated'));
+        closeSellModal();
+      } else {
+        const msg = res?.data?.message || 'Falha ao realizar venda';
+        setSellError(msg);
+        showNotification(msg, 'error');
+      }
+    } catch (err) {
+      console.error('Sell error', err);
+      setSellError('Erro ao vender. Verifique o console.');
+    } finally {
+      setSellLoading(false);
+    }
+  };
+
+  // Lotes / Detalhes
+  const [lotsModalOpen, setLotsModalOpen] = useState(false);
+  const [lotsLoading, setLotsLoading] = useState(false);
+  const [lotsError, setLotsError] = useState('');
+  const [currentLots, setCurrentLots] = useState(null);
+
+  const openLotsModal = async (asset) => {
+    setLotsModalOpen(true);
+    setLotsLoading(true);
+    setLotsError('');
+    try {
+      const res = await walletApi.getAssetLots(asset.symbol);
+      setCurrentLots(res?.data ?? null);
+    } catch (err) {
+      console.error('Failed to load lots', err);
+      setLotsError('Falha ao carregar detalhes.');
+      setCurrentLots(null);
+    } finally {
+      setLotsLoading(false);
+    }
+  };
+
+  const closeLotsModal = () => {
+    setLotsModalOpen(false);
+    setCurrentLots(null);
+    setLotsError('');
+  };
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchPortfolio = async () => {
+      try {
+        setLoadingPortfolio(true);
+        setPortfolioError('');
+
+        const [summaryRes, balancesRes] = await Promise.all([
+          walletApi.getSummary(),
+          walletApi.getBalances()
+        ]);
+
+        if (!mounted) return;
+
+        const summary = summaryRes?.data ?? {};
+        const balances = Array.isArray(balancesRes?.data) ? balancesRes.data : [];
+
+        const onlyUsd = (balances || []).filter(b => {
+          const sym = ((b.symbol ?? b.Symbol ?? b.currencySymbol ?? b.CurrencySymbol) + '').toUpperCase();
+          const amt = Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0) || 0;
+          return sym !== 'USD' && amt > 0;
+        }).length === 0;
+
+        let bestPerf = { asset: '-', change: 0 };
+        const bp = summary.bestPerformer;
+        if (bp) {
+          if (typeof bp === 'string') {
+            if ((bp + '').toUpperCase() !== 'USD') bestPerf = { asset: bp, change: 0 };
+          } else if (bp.symbol) {
+            if (((bp.symbol + '').toUpperCase()) !== 'USD') {
+              bestPerf = { asset: bp.symbol, change: bp.value ?? bp.change ?? 0 };
+            }
+          }
+        }
+
+        setPortfolioStats({
+          totalValue: summary.totalValue ?? 0,
+          dayChange: summary.dayChange ?? 0,
+          dayChangePercent: summary.dayChangePercent ?? 0,
+          bestPerformer: bestPerf
+        });
+
+        setNoTradeableAssets(onlyUsd);
+
+        const mapped = balances.map((b, idx) => {
+          const amount = Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0);
+          const currentPrice = Number(b.currentPrice ?? b.CurrentPrice ?? b.price ?? 0) || 0;
+          const purchasePrice = Number(b.avgPrice ?? b.avgPurchasePrice ?? b.purchasePrice ?? b.avgPriceUsd ?? 0) || 0;
+          const value = amount * currentPrice;
+          const totalCost = amount * purchasePrice;
+          const gainPercent = purchasePrice > 0 ? ((currentPrice - purchasePrice) / purchasePrice) * 100 : 0;
+          const change = Number(b.change ?? b.priceChangePercent ?? b.changePercent24h ?? 0) || 0;
+          const allocation = (summary.totalValue && summary.totalValue > 0) ? (value / (summary.totalValue || 1)) * 100 : 0;
+          return {
+            id: b.currencyId ?? b.idCurrency ?? idx,
+            symbol: (b.symbol ?? b.Symbol ?? b.currencySymbol ?? b.CurrencySymbol ?? 'UNKNOWN').toUpperCase(),
+            name: b.name ?? b.asset ?? b.Asset ?? b.Name ?? (b.symbol ?? b.Symbol ?? 'UNKNOWN'),
+            asset: b.name ?? b.asset ?? (b.symbol ?? b.Symbol ?? 'UNKNOWN'),
+            amount,
+            price: currentPrice,
+            currentPrice,
+            purchasePrice,
+            totalCost,
+            gainPercent,
+            change,
+            value,
+            allocation: Number(allocation.toFixed(2))
+          };
+        });
+
+        setPortfolioData(mapped);
+        try {
+          const usdVal = mapped.reduce((acc, a) => {
+            const sym = (a.symbol || '').toUpperCase();
+            if (sym === 'USD') {
+              const amt = Number(a.amount ?? 0) || 0;
+              const price = Number(a.currentPrice ?? a.price ?? 1) || 1;
+              const val = Number(a.value ?? (amt * price)) || 0;
+              return acc + val;
+            }
+            return acc;
+          }, 0);
+          setUsdBalance(usdVal);
+        } catch (e) {
+          setUsdBalance(0);
+        }
+
+        setPortfolioHistoricalData(buildSyntheticHistory(summary.totalValue ?? 0));
+      } catch (err) {
+        console.error('Erro ao carregar portfolio', err);
+        if (mounted) setPortfolioError('Erro ao carregar dados da carteira');
+      } finally {
+        if (mounted) setLoadingPortfolio(false);
+      }
+    };
+
+    fetchPortfolio();
+
+    // Re-fetch when other parts of the app emit update event (e.g. after a buy)
+    const onWalletUpdated = () => {
+      fetchPortfolio();
+    };
+    window.addEventListener('wallet-updated', onWalletUpdated);
+
+    return () => { mounted = false; window.removeEventListener('wallet-updated', onWalletUpdated); };
+  }, []);
+
   // Gera uma mensagem personalizada com base no desempenho
   const getPerformanceMessage = () => {
     if (isPortfolioPositive) {
@@ -138,6 +397,10 @@ export function Portfolio() {
       return negativeMessages[Math.floor(Math.random() * negativeMessages.length)];
     }
   };
+
+  if (loadingPortfolio) {
+    return <LoadingScreen message="Carregando portfólio..." size="large" />;
+  }
 
   return (
     <motion.div
@@ -186,6 +449,17 @@ export function Portfolio() {
           </motion.button>
         </div>
       </div>
+      
+      {noTradeableAssets && (
+        <div className="mt-3 p-3 rounded-lg border border-amber-200 bg-amber-50 text-amber-700 text-sm">
+          Você possui apenas saldo em USD — nenhum ativo negociável disponível no momento.
+        </div>
+      )}
+      {portfolioError && (
+        <div className="p-4 rounded-xl border border-red-400 bg-red-500/10 text-red-500">
+          {portfolioError}
+        </div>
+      )}
 
       {/* NOVA SEÇÃO: Mensagem personalizada baseada no desempenho */}
       <motion.div
@@ -233,8 +507,8 @@ export function Portfolio() {
           icon={Wallet}
           title="Valor Total"
           value={`$${totalValue.toLocaleString()}`}
-          change="+12.5%"
-          changeType="positive"
+          change={totalGainFormatted}
+          changeType={totalGainType}
           iconColor="bg-brand-primary"
           delay={0}
         />
@@ -261,9 +535,9 @@ export function Portfolio() {
         
         <StatCard 
           icon={Award}
-          title="ROI Total"
-          value="+24.8%"
-          change="desde início"
+          title="Saldo"
+          value={formatCurrency(usdBalance)}
+          change={undefined}
           changeType="positive"
           iconColor="bg-amber-500"
           delay={3}
@@ -533,14 +807,20 @@ export function Portfolio() {
                     <th className="pb-4 text-text-tertiary">Ativo</th>
                     <th className="pb-4 text-text-tertiary">Quantidade</th>
                     <th className="pb-4 text-text-tertiary">Preço Atual</th>
+                    <th className="pb-4 text-text-tertiary">Preço Compra</th>
+                    <th className="pb-4 text-text-tertiary">Ganho (%)</th>
                     <th className="pb-4 text-text-tertiary">Valor</th>
                     <th className="pb-4 text-text-tertiary">Var 24h</th>
                     <th className="pb-4 text-text-tertiary">Alocação</th>
-                    <th className="pb-4 text-text-tertiary">Ações</th>
+                    <th className="py-4 align-middle whitespace-nowrap text-text-tertiary">
+                      <div className="flex items-center justify-end h-full">Ações</div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {portfolioData.map((asset, index) => (
+                  {portfolioData.map((asset, index) => {
+                    const isBaseCurrency = ((asset.symbol || '') + '').toUpperCase() === 'USD';
+                    return (
                     <tr 
                       key={asset.asset} 
                       className="border-t border-border-primary hover:bg-background-secondary transition-colors cursor-pointer"
@@ -554,13 +834,19 @@ export function Portfolio() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 text-text-primary">{(Math.random() * 10).toFixed(4)} {asset.symbol}</td>
-                      <td className="py-4 text-text-primary">${(Math.random() * 10000).toFixed(2)}</td>
-                      <td className="py-4 text-text-primary font-medium">${asset.value.toLocaleString()}</td>
-                      <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : 'text-feedback-error'}`}>
+                      <td className="py-4 text-text-primary">{Number(asset.amount ?? 0).toFixed(4)} {asset.symbol}</td>
+                      <td className="py-4 text-text-primary">{formatCurrency(asset.price)}</td>
+                      <td className="py-4 text-text-primary">{formatCurrency(asset.purchasePrice)}</td>
+                      <td className={`py-4 ${asset.gainPercent > 0 ? 'text-feedback-success' : asset.gainPercent < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                        {formatPercent(asset.gainPercent)}
+                      </td>
+                      <td className="py-4 text-text-primary font-medium">{formatCurrency(asset.value)}</td>
+                      <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : asset.change < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
                         <div className="flex items-center">
-                          {asset.change > 0 ? <ArrowUp size={16} className="mr-1" /> : <ArrowDown size={16} className="mr-1" />}
-                          {Math.abs(asset.change)}%
+                          {asset.change > 0 && <ArrowUp size={16} className="mr-1" />}
+                          {asset.change < 0 && <ArrowDown size={16} className="mr-1" />}
+                          {asset.change === 0 && <TrendingUp size={16} className="mr-1 opacity-50" />}
+                          {asset.change > 0 ? '+' + formatPercent(asset.change) : formatPercent(asset.change)}
                         </div>
                       </td>
                       <td className="py-4">
@@ -575,24 +861,75 @@ export function Portfolio() {
                         </div>
                         <span className="text-xs text-text-tertiary">{asset.allocation}%</span>
                       </td>
-                      <td className="py-4">
-                        <div className="flex items-center space-x-1">
-                          <button className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors">
+                      <td className="py-4 align-middle text-right whitespace-nowrap">
+                        <div className="inline-flex items-center justify-end space-x-2">
+                          <button
+                            className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors"
+                            title="Insights"
+                            aria-label={`Insights ${asset.asset}`}
+                          >
                             <TrendingUp size={16} />
                           </button>
-                          <button className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors">
-                            <Copy size={16} />
+
+                          <button
+                            onClick={() => { if (!isBaseCurrency) openSellModal(asset); }}
+                            disabled={isBaseCurrency}
+                            className={`w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary text-text-secondary transition-colors ${isBaseCurrency ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-500/10 hover:text-red-500'}`}
+                            title={isBaseCurrency ? 'Venda não permitida para USD' : 'Vender'}
+                            aria-label={isBaseCurrency ? `Venda não permitida para ${asset.asset}` : `Vender ${asset.asset}`}
+                          >
+                            <DollarSign size={16} />
+                          </button>
+
+                          <button
+                            onClick={() => openLotsModal(asset)}
+                            className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors"
+                            title="Detalhes"
+                            aria-label={`Detalhes ${asset.asset}`}
+                          >
+                            <Eye size={16} />
                           </button>
                         </div>
                       </td>
                     </tr>
-                  ))}
+                    );
+                  })}
+                  {portfolioData.length === 0 && (
+                    <tr>
+                      <td colSpan={7} className="py-6 text-center text-text-secondary">
+                        Nenhum ativo encontrado. Faça um depósito ou compra para começar.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
           </motion.div>
+              
         )}
       </AnimatePresence>
+
+      <AssetDetailsModal
+        isOpen={lotsModalOpen}
+        onClose={closeLotsModal}
+        lots={currentLots}
+        loading={lotsLoading}
+        error={lotsError}
+        formatCurrency={formatCurrency}
+        formatAmount8={formatAmount8}
+      />
+
+      <SellAssetModal
+        isOpen={sellModalOpen}
+        onClose={closeSellModal}
+        asset={sellAsset}
+        amount={sellAmount}
+        onChangeAmount={setSellAmount}
+        onConfirm={handleConfirmSell}
+        loading={sellLoading}
+        error={sellError}
+        formatCurrency={formatCurrency}
+      />
 
       {/* Seção para adicionar novos ativos ou transações */}
       <motion.div

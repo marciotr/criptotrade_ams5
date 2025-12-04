@@ -65,7 +65,16 @@ namespace CurrencyAvailables.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CurrencyDto dto)
         {
-            var currency = new Currency(dto.Symbol, dto.Name, dto.Backing, dto.Status);
+            Currency currency;
+            if (dto.Id != Guid.Empty)
+            {
+                currency = new Currency(dto.Id, dto.Symbol, dto.Name, dto.Backing, dto.Status);
+            }
+            else
+            {
+                currency = new Currency(dto.Symbol, dto.Name, dto.Backing, dto.Status);
+            }
+
             await _service.AddAsync(currency);
             return CreatedAtAction(nameof(GetById), new { id = currency.Id }, dto);
         }

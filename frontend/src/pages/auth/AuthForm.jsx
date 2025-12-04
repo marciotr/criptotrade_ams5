@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, User, Github, Facebook, Chrome, Bitcoin, DollarSign, ArrowRight, CheckCircle, Wallet, Zap, AlertCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,25 +10,34 @@ import { DecorativeElements } from './DecorativeElements';
 
 // Componente para as partículas flutuantes (ajustado para dispositivos móveis)
 const FloatingCoins = () => {
-  // Reduzir o número de partículas em telas pequenas para melhor performance
-  const isMobile = window.innerWidth < 768;
-  const particleCount = isMobile ? 10 : 20;
-  
-  const coins = Array.from({ length: particleCount }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * (isMobile ? 0.4 : 0.6) + (isMobile ? 0.15 : 0.2), // Tamanhos menores em mobile
-    duration: Math.random() * 8 + 10,
-    type: Math.random() > 0.5 ? 'bitcoin' : 'dollar'
-  }));
+  // manter breakpoint em estado para detectar mudanças de tamanho reais
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // memoizar as partículas para que não sejam recriadas em cada render (digitando não as reinicia)
+  const coins = useMemo(() => {
+    const particleCount = isMobile ? 10 : 20;
+    return Array.from({ length: particleCount }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * (isMobile ? 0.4 : 0.6) + (isMobile ? 0.15 : 0.2),
+      duration: Math.random() * 8 + 10,
+      type: Math.random() > 0.5 ? 'bitcoin' : 'dollar'
+    }));
+  }, [isMobile]);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {coins.map(coin => (
         <motion.div
           key={coin.id}
-          className="absolute text-brand-primary/30"
+          className="absolute"
           style={{
             left: `${coin.x}%`,
             top: `${coin.y}%`,
@@ -46,7 +55,11 @@ const FloatingCoins = () => {
             ease: "easeInOut",
           }}
         >
-          {coin.type === 'bitcoin' ? <Bitcoin /> : <DollarSign />}
+          {coin.type === 'bitcoin' ? (
+            <Bitcoin className="text-amber-400/90 dark:text-amber-300/80" />
+          ) : (
+            <DollarSign className="text-green-400/90 dark:text-green-300/80" />
+          )}
         </motion.div>
       ))}
     </div>
@@ -110,7 +123,10 @@ export function AuthForm({ type }) {
   const [loginMethod, setLoginMethod] = useState('email');
   const containerRef = useRef(null);
 
-  // Detectar tamanho da tela para ajustes responsivos
+  // escala responsiva para reduzir o modal em telas menores
+  const [scale, setScale] = useState(1);
+
+  // Detectar tamanho da tela para ajustes responsivos e calcular escala do modal
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
@@ -118,11 +134,31 @@ export function AuthForm({ type }) {
         const viewportHeight = window.innerHeight;
         containerRef.current.style.minHeight = `${viewportHeight}px`;
       }
+
+      // Ajustar escala do modal com base na largura da janela
+      const w = window.innerWidth;
+      let newScale = 1;
+      // Escalas mais agressivas para notebooks 13" e similares
+      // Ordem: menor largura primeiro
+      if (w <= 1024) {
+        newScale = 0.66; // tablets/pequenas janelas - reduzir mais
+      } else if (w <= 1280) {
+        newScale = 0.70; // notebooks 13" - redução adicional solicitada
+      } else if (w <= 1366) {
+        newScale = 0.74; // notebooks 13.3"/14" compactos
+      } else if (w <= 1440) {
+        newScale = 0.88; // laptops maiores
+      } else {
+        newScale = 1; // desktops grandes
+      }
+
+      // Evita re-renders desnecessários
+      if (Math.abs(scale - newScale) > 0.005) setScale(newScale);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
-    
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -246,9 +282,10 @@ export function AuthForm({ type }) {
       
       {/* Container principal mantido no centro */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: Math.max(0.8, scale * 0.95) }}
+        animate={{ opacity: 1, scale }}
         transition={{ duration: 0.5 }}
+        style={{ transformOrigin: 'top center' }}
         className="z-10 w-full max-w-md relative my-auto"
       >
         {/* Elementos decorativos importados do componente separado */}
@@ -500,7 +537,8 @@ export function AuthForm({ type }) {
                     <div className="w-full border-t border-border-primary"></div>
                   </div>
                   <div className="relative flex justify-center text-xs">
-                    <span className="px-2 bg-background-primary text-text-terciary text-xs">Ou continue com</span>
+                    {/* Texto do divisor acompanha as cores globais de texto conforme o tema */}
+                    <span className="px-2 bg-transparent text-text-secondary text-xs">Ou continue com</span>
                   </div>
                 </div>
 
@@ -541,7 +579,7 @@ export function AuthForm({ type }) {
 
         {/* Elementos decorativos */}
         <motion.div
-          className="absolute -bottom-4 -left-4 w-6 h-6 sm:w-12 sm:h-12 bg-gradient-to-br from-brand-primary to-purple-600 rounded-full"
+          className="absolute -bottom-4 -left-4 w-6 h-6 sm:w-12 sm:h-12 bg-gradient-to-br from-brand-primary to-purple-600 dark:from-brand-primary/80 dark:to-purple-700 rounded-full"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.7, 1, 0.7],
@@ -554,7 +592,7 @@ export function AuthForm({ type }) {
         />
         
         <motion.div
-          className="absolute -top-4 -right-4 w-5 h-5 sm:w-8 sm:h-8 bg-amber-400 rounded-full"
+          className="absolute -top-4 -right-4 w-5 h-5 sm:w-8 sm:h-8 bg-amber-400 dark:bg-amber-600 rounded-full"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.7, 1, 0.7],

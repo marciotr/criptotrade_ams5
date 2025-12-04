@@ -25,6 +25,16 @@ namespace CurrencyAvailables.Domain.Entities
             SetStatus(status);
         }
 
+        // Novo construtor que permite especificar o Id (útil para sincronização de catálogos)
+        public Currency(Guid id, string symbol, string name, string backing, string status)
+        {
+            Id = id;
+            SetSymbol(symbol);
+            SetName(name);
+            SetBacking(backing);
+            SetStatus(status);
+        }
+
         public void AddHistory(History history)
         {
             if (history == null)

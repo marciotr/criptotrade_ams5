@@ -6,24 +6,36 @@ echo Iniciando APIs...
 echo.
 echo CryptoApi...
 cd .\backend\cryptoApi
-start dotnet run
+start dotnet watch
 cd ..\..
 
 echo.
 echo CurrencyAvailables...
 cd .\backend\currencyAvailables
-start dotnet run
+start dotnet watch
 cd ..\..
 
 echo.
 echo UserApi...
 cd .\backend\userApi
-start dotnet run
+start dotnet watch
 cd ..\..
 
 echo.
-echo WalletApi...
-cd .\backend\walletApi
+echo WalletApi2...
+cd .\backend\walletApi2
+start dotnet watch
+cd ..\..
+
+echo.
+echo gatewayApi...
+cd .\backend\gatewayApi
+start dotnet watch
+cd ..\..
+
+echo.
+echo WalletApi2...
+cd .\backend\walletApi2
 start dotnet run
 cd ..\..
 

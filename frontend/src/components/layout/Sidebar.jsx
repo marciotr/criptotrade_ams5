@@ -39,6 +39,8 @@ export function Sidebar() {
   // Fechar o menu móvel quando mudar de rota
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    // Ao mudar de rota, garante que a sidebar desktop volte a ficar recolhida
+    setIsHovered(false);
   }, [location.pathname]);
 
   if (!isAuthenticated) {
