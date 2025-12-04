@@ -213,14 +213,47 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
     if (animatingCategory && previousDisplayData.length > 0) {
       return previousDisplayData;
     }
-    
+
     if (!Array.isArray(enrichedData) || enrichedData.length === 0) {
       return [];
     }
-    
-    // Os dados já vêm ordenados e filtrados da API, só precisamos garantir quantidade
-    return enrichedData.slice(0, 5);
-  }, [enrichedData, animatingCategory, previousDisplayData]);
+
+    // Aplicar filtro e ordenação conforme categoria selecionada
+    const category = categories.find(c => c.id === activeCategory) || {};
+
+    // Aplicar filtro se existir (tolerante a campos indefinidos)
+    let result = Array.isArray(enrichedData) ? enrichedData.slice() : [];
+    if (typeof category.filter === 'function') {
+      result = result.filter(coin => {
+        try {
+          const val = Number(coin.priceChangePercent ?? coin.priceChange ?? 0);
+          return category.filter({ ...coin, priceChangePercent: val });
+        } catch (e) {
+          return false;
+        }
+      });
+    }
+
+    // Determinar chave de ordenação e direção
+    const sortKey = category.sortKey || sortConfig.key || 'priceChange';
+    const direction = category.sortDirection || sortConfig.direction || 'desc';
+
+    const getNumeric = (item, key) => {
+      const raw = item[key] ?? item.priceChangePercent ?? item.priceChange ?? item.currentPrice ?? item.volume ?? 0;
+      const n = Number(raw);
+      return Number.isFinite(n) ? n : 0;
+    };
+
+    result.sort((a, b) => {
+      const aVal = getNumeric(a, sortKey);
+      const bVal = getNumeric(b, sortKey);
+      if (aVal === bVal) return 0;
+      return direction === 'asc' ? aVal - bVal : bVal - aVal;
+    });
+
+    // limitar quantidade exibida
+    return result.slice(0, 5);
+  }, [enrichedData, animatingCategory, previousDisplayData, activeCategory, categories, sortConfig]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
