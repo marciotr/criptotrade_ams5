@@ -58,10 +58,14 @@ const StatCard = ({ icon: Icon, title, value, change, changeType, iconColor, del
     </div>
     <h3 className="text-2xl font-bold mt-3 text-text-primary">{value}</h3>
     <div className="flex items-center justify-between mt-3">
-      <p className={`flex items-center ${changeType === 'positive' ? 'text-feedback-success' : 'text-feedback-error'}`}>
-        {changeType === 'positive' ? <ArrowUp size={16} className="mr-1" /> : <ArrowDown size={16} className="mr-1" />}
-        {change}
-      </p>
+      {(change !== undefined && change !== null && change !== '') ? (
+        <p className={`flex items-center ${changeType === 'positive' ? 'text-feedback-success' : 'text-feedback-error'}`}>
+          {changeType === 'positive' ? <ArrowUp size={16} className="mr-1" /> : <ArrowDown size={16} className="mr-1" />}
+          {change}
+        </p>
+      ) : (
+        <div />
+      )}
       <span className="text-xs text-text-tertiary">24h</span>
     </div>
   </motion.div>
@@ -126,9 +130,11 @@ export function Portfolio() {
     bestPerformer: { asset: '-', change: 0 }
   });
   const [portfolioData, setPortfolioData] = useState([]);
+  const [usdBalance, setUsdBalance] = useState(0);
   const [portfolioHistoricalData, setPortfolioHistoricalData] = useState(buildSyntheticHistory(0));
   const [loadingPortfolio, setLoadingPortfolio] = useState(true);
   const [portfolioError, setPortfolioError] = useState('');
+  const [noTradeableAssets, setNoTradeableAssets] = useState(false);
 
   const totalValue = portfolioStats.totalValue;
   const totalCost = portfolioData.reduce((acc, a) => acc + (a.totalCost ?? 0), 0);
@@ -281,12 +287,32 @@ export function Portfolio() {
         const summary = summaryRes?.data ?? {};
         const balances = Array.isArray(balancesRes?.data) ? balancesRes.data : [];
 
+        const onlyUsd = (balances || []).filter(b => {
+          const sym = ((b.symbol ?? b.Symbol ?? b.currencySymbol ?? b.CurrencySymbol) + '').toUpperCase();
+          const amt = Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0) || 0;
+          return sym !== 'USD' && amt > 0;
+        }).length === 0;
+
+        let bestPerf = { asset: '-', change: 0 };
+        const bp = summary.bestPerformer;
+        if (bp) {
+          if (typeof bp === 'string') {
+            if ((bp + '').toUpperCase() !== 'USD') bestPerf = { asset: bp, change: 0 };
+          } else if (bp.symbol) {
+            if (((bp.symbol + '').toUpperCase()) !== 'USD') {
+              bestPerf = { asset: bp.symbol, change: bp.value ?? bp.change ?? 0 };
+            }
+          }
+        }
+
         setPortfolioStats({
           totalValue: summary.totalValue ?? 0,
           dayChange: summary.dayChange ?? 0,
           dayChangePercent: summary.dayChangePercent ?? 0,
-          bestPerformer: summary.bestPerformer ? { asset: summary.bestPerformer.symbol, change: summary.bestPerformer.value } : { asset: '-', change: 0 }
+          bestPerformer: bestPerf
         });
+
+        setNoTradeableAssets(onlyUsd);
 
         const mapped = balances.map((b, idx) => {
           const amount = Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0);
@@ -315,6 +341,22 @@ export function Portfolio() {
         });
 
         setPortfolioData(mapped);
+        try {
+          const usdVal = mapped.reduce((acc, a) => {
+            const sym = (a.symbol || '').toUpperCase();
+            if (sym === 'USD') {
+              const amt = Number(a.amount ?? 0) || 0;
+              const price = Number(a.currentPrice ?? a.price ?? 1) || 1;
+              const val = Number(a.value ?? (amt * price)) || 0;
+              return acc + val;
+            }
+            return acc;
+          }, 0);
+          setUsdBalance(usdVal);
+        } catch (e) {
+          setUsdBalance(0);
+        }
+
         setPortfolioHistoricalData(buildSyntheticHistory(summary.totalValue ?? 0));
       } catch (err) {
         console.error('Erro ao carregar portfolio', err);
@@ -407,7 +449,12 @@ export function Portfolio() {
           </motion.button>
         </div>
       </div>
-
+      
+      {noTradeableAssets && (
+        <div className="mt-3 p-3 rounded-lg border border-amber-200 bg-amber-50 text-amber-700 text-sm">
+          Você possui apenas saldo em USD — nenhum ativo negociável disponível no momento.
+        </div>
+      )}
       {portfolioError && (
         <div className="p-4 rounded-xl border border-red-400 bg-red-500/10 text-red-500">
           {portfolioError}
@@ -488,9 +535,9 @@ export function Portfolio() {
         
         <StatCard 
           icon={Award}
-          title="ROI Total"
-          value="+24.8%"
-          change="desde início"
+          title="Saldo"
+          value={formatCurrency(usdBalance)}
+          change={undefined}
           changeType="positive"
           iconColor="bg-amber-500"
           delay={3}
@@ -765,11 +812,15 @@ export function Portfolio() {
                     <th className="pb-4 text-text-tertiary">Valor</th>
                     <th className="pb-4 text-text-tertiary">Var 24h</th>
                     <th className="pb-4 text-text-tertiary">Alocação</th>
-                    <th className="pb-4 text-text-tertiary">Ações</th>
+                    <th className="py-4 align-middle whitespace-nowrap text-text-tertiary">
+                      <div className="flex items-center justify-end h-full">Ações</div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {portfolioData.map((asset, index) => (
+                  {portfolioData.map((asset, index) => {
+                    const isBaseCurrency = ((asset.symbol || '') + '').toUpperCase() === 'USD';
+                    return (
                     <tr 
                       key={asset.asset} 
                       className="border-t border-border-primary hover:bg-background-secondary transition-colors cursor-pointer"
@@ -810,21 +861,39 @@ export function Portfolio() {
                         </div>
                         <span className="text-xs text-text-tertiary">{asset.allocation}%</span>
                       </td>
-                      <td className="py-4">
-                        <div className="flex items-center space-x-1">
-                          <button className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors" title="Insights">
+                      <td className="py-4 align-middle text-right whitespace-nowrap">
+                        <div className="inline-flex items-center justify-end space-x-2">
+                          <button
+                            className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors"
+                            title="Insights"
+                            aria-label={`Insights ${asset.asset}`}
+                          >
                             <TrendingUp size={16} />
                           </button>
-                          <button onClick={() => openSellModal(asset)} className="p-1.5 rounded-md bg-background-secondary hover:bg-red-500/10 text-text-secondary hover:text-red-500 transition-colors" title="Vender" aria-label={`Vender ${asset.asset}`}>
+
+                          <button
+                            onClick={() => { if (!isBaseCurrency) openSellModal(asset); }}
+                            disabled={isBaseCurrency}
+                            className={`w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary text-text-secondary transition-colors ${isBaseCurrency ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-500/10 hover:text-red-500'}`}
+                            title={isBaseCurrency ? 'Venda não permitida para USD' : 'Vender'}
+                            aria-label={isBaseCurrency ? `Venda não permitida para ${asset.asset}` : `Vender ${asset.asset}`}
+                          >
                             <DollarSign size={16} />
                           </button>
-                          <button onClick={() => openLotsModal(asset)} className="p-1.5 rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors" title="Detalhes" aria-label={`Detalhes ${asset.asset}`}>
+
+                          <button
+                            onClick={() => openLotsModal(asset)}
+                            className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors"
+                            title="Detalhes"
+                            aria-label={`Detalhes ${asset.asset}`}
+                          >
                             <Eye size={16} />
                           </button>
                         </div>
                       </td>
                     </tr>
-                  ))}
+                    );
+                  })}
                   {portfolioData.length === 0 && (
                     <tr>
                       <td colSpan={7} className="py-6 text-center text-text-secondary">
