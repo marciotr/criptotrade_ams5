@@ -28,6 +28,8 @@ export default function SellAssetModal({
   const parsedAmount = Number(amount ?? 0) || 0;
   const estimated = parsedAmount * currentPrice;
 
+  const isBaseCurrency = ((asset?.symbol || asset?.asset || '') + '').toUpperCase() === 'USD';
+
   const quickFill = (percent) => {
     if (percent === 100) {
       onChangeAmount?.(String(Number((maxAmount || 0).toFixed(8))));
@@ -74,13 +76,20 @@ export default function SellAssetModal({
               onChange={(e) => onChangeAmount?.(e.target.value)}
               className="flex-1 p-3 rounded-lg bg-background-secondary border border-border-primary text-text-primary"
               placeholder="0.00000000"
+              disabled={isBaseCurrency}
             />
             <div className="flex space-x-1">
               {[25,50,100].map(p => (
-                <button key={p} onClick={() => quickFill(p)} className="px-3 py-2 rounded-lg bg-background-secondary text-text-secondary hover:bg-background-tertiary text-sm">{p}%</button>
+                <button key={p} onClick={() => quickFill(p)} disabled={isBaseCurrency} className="px-3 py-2 rounded-lg bg-background-secondary text-text-secondary hover:bg-background-tertiary text-sm">{p}%</button>
               ))}
             </div>
           </div>
+
+          {isBaseCurrency && (
+            <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-700 text-sm">
+              USD é a moeda base do sistema e não pode ser vendida.
+            </div>
+          )}
 
           <div className="grid grid-cols-2 gap-2 text-sm text-text-tertiary">
             <div>Preço atual</div>
@@ -101,10 +110,10 @@ export default function SellAssetModal({
 
             <button
               onClick={() => onConfirm?.(Math.min(parsedAmount, Number(maxAmount || 0)))}
-              disabled={loading || parsedAmount <= 0}
+              disabled={loading || parsedAmount <= 0 || isBaseCurrency}
               className="flex-1 py-2 rounded-lg bg-amber-500 text-white hover:opacity-95 disabled:opacity-50"
             >
-              {loading ? 'Processando...' : `Vender ${asset?.symbol}`}
+              {loading ? 'Processando...' : isBaseCurrency ? 'Venda não permitida' : `Vender ${asset?.symbol}`}
             </button>
           </div>
         </div>
