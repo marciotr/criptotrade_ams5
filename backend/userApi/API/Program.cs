@@ -73,6 +73,9 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddApplicationServices();
 
+// Novo Token de service
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 // Register services
 builder.Services.AddHttpClient();
 

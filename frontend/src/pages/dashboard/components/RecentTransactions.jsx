@@ -10,7 +10,6 @@ export const RecentTransactions = React.memo(() => {
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // mapping helpers (similar to TransactionHistory)
   const mapTypeLabel = (raw) => {
     if (!raw) return 'Desconhecido';
     const t = String(raw).toLowerCase();
@@ -53,14 +52,11 @@ export const RecentTransactions = React.memo(() => {
 
         if (!mounted) return;
 
-        // keep newest first
         mapped.sort((a,b) => new Date(b.date) - new Date(a.date));
 
-        // only keep the 4 most recent for this widget
         const top = mapped.slice(0, 4);
         setTransactions(top);
 
-        // Enrich currencies when likely crypto missing
         const likelyCryptoRegex = /buy|sell|swap|compra|venda/i;
         const toEnrich = top.filter(m => (
           (m.currency === 'USD' || !m.currency || m.currency === 'UNKNOWN') && likelyCryptoRegex.test(m.rawType)
@@ -104,7 +100,6 @@ export const RecentTransactions = React.memo(() => {
               return p;
             }));
           } catch (e) {
-            // ignore enrichment errors
           }
         }
 

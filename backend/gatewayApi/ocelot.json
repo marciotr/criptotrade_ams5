@@ -48,6 +48,13 @@
       "UpstreamHttpMethod": ["POST"]
     },
     {
+      "DownstreamPathTemplate": "/api/auth-fallback/verify-mfa",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],
+      "UpstreamPathTemplate": "/auth/verify-mfa",
+      "UpstreamHttpMethod": ["POST"]
+    },
+    {
       "DownstreamPathTemplate": "/api/auth/profile",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5294}],

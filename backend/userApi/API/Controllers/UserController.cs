@@ -71,6 +71,15 @@ public class UserController : ControllerBase
                 Console.WriteLine($"Atualizando role para: {updateDto.Role}");
                 existingUser.Role = updateDto.Role;
             }
+
+            if (updateDto.MfaEnabled.HasValue)
+            {
+                existingUser.MfaEnabled = updateDto.MfaEnabled.Value;
+            }
+            if (updateDto.MfaType != null)
+            {
+                existingUser.MfaType = updateDto.MfaType;
+            }
             
             if (updateDto.Photo != null)
                 existingUser.Photo = updateDto.Photo;

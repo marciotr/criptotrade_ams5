@@ -2,6 +2,7 @@ import { api } from './config';
 
 export const authApi = {
   login: (credentials) => api.post('/auth/login', credentials),
+  verifyMfa: (payload) => api.post('/auth/verify-mfa', payload),
   register: (userData) => api.post('/user', userData),
   verifyToken: () => api.get('/auth/verify'),
 };

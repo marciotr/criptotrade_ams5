@@ -107,11 +107,14 @@ const AnimatedLogo = () => {
 
 export function AuthForm({ type }) {
   const { showNotification } = useNotification();
-  const { login } = useAuth();
+  const { login, verifyMfa } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [mfaPending, setMfaPending] = useState(null);
+  const [mfaCode, setMfaCode] = useState('');
+  const [isVerifying, setIsVerifying] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -187,14 +190,21 @@ export function AuthForm({ type }) {
 
     try {
       if (type === 'signin') {
-        const success = await login(formData);
-        
-        if (success) {
+        const response = await login(formData);
+
+        if (response && response.mfaRequired) {
+          setMfaPending(response);
+          showNotification('Autenticação de dois fatores requerida. Insira o código enviado.', 'info');
+          setIsLoading(false);
+          return;
+        }
+
+        if (response && response.success) {
           const userInfo = JSON.parse(localStorage.getItem('user')) || { name: 'Usuário' };
-          
+
           // Verificar se é o primeiro login do usuário
           const isFirstLogin = !localStorage.getItem('hasSeenWelcome');
-          
+
           if (isFirstLogin) {
             setUserData(userInfo);
             setShowWelcome(true);
@@ -248,6 +258,34 @@ export function AuthForm({ type }) {
     }
   };
 
+  const handleMfaSubmit = async (e) => {
+    e.preventDefault();
+    if (!mfaPending) return;
+    setIsVerifying(true);
+    try {
+      const result = await verifyMfa({ userId: mfaPending.userId, code: mfaCode });
+      if (result && result.success) {
+        const userInfo = JSON.parse(localStorage.getItem('user')) || { name: 'Usuário' };
+        const isFirstLogin = !localStorage.getItem('hasSeenWelcome');
+
+        if (isFirstLogin) {
+          setUserData(userInfo);
+          setShowWelcome(true);
+          localStorage.setItem('hasSeenWelcome', 'true');
+        } else {
+          navigate('/dashboard', { replace: true });
+        }
+      } else {
+        showNotification('Código inválido. Tente novamente.', 'error');
+      }
+    } catch (err) {
+      console.error('MFA verification failed', err);
+      showNotification(err.message || 'Falha na verificação MFA', 'error');
+    } finally {
+      setIsVerifying(false);
+    }
+  };
+
   const handleWelcomeComplete = () => {
     navigate('/dashboard', { replace: true });
   };
@@ -257,6 +295,54 @@ export function AuthForm({ type }) {
     { icon: Facebook, label: 'Facebook', color: 'bg-blue-600' },
     { icon: Github, label: 'Github', color: 'bg-gray-800' },
   ];
+
+  // Se houver um MFA pendente, renderiza a tela de inserção do código antes da WelcomeScreen
+  if (mfaPending) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center overflow-auto bg-background-primary px-4 py-6 md:py-10">
+        <div className="z-10 w-full max-w-md relative my-auto">
+          <div className="backdrop-blur-xl bg-background-primary/80 border border-border-primary rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl p-6">
+            <h2 className="text-lg font-bold text-text-primary mb-2">Verificação em duas etapas</h2>
+            <p className="text-text-secondary mb-4">Insira o código recebido por {mfaPending.mfaType || 'seu método de autenticação'} para continuar.</p>
+
+            <form onSubmit={handleMfaSubmit} className="space-y-3">
+              <div>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  placeholder="Código de verificação"
+                  value={mfaCode}
+                  onChange={(e) => setMfaCode(e.target.value)}
+                  className="w-full text-sm pl-3 pr-3 py-2 rounded-lg border border-border-primary bg-background-secondary text-text-primary placeholder-text-terciary focus:ring-2 focus:ring-brand-primary"
+                  required
+                />
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="submit"
+                  disabled={isVerifying}
+                  className="flex-1 px-4 py-2 bg-brand-primary text-background-primary rounded-lg hover:opacity-90 transition-colors"
+                >
+                  {isVerifying ? 'Verificando...' : 'Verificar'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setMfaPending(null); setMfaCode(''); localStorage.removeItem('mfaPending'); }}
+                  className="px-4 py-2 border border-border-primary rounded-lg text-text-primary bg-transparent"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+
+            <div className="text-xs text-text-secondary mt-3">Não recebeu o código? Verifique seu e-mail ou app autenticador.</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Renderizar a tela de boas-vindas se showWelcome for true
   if (showWelcome && userData) {

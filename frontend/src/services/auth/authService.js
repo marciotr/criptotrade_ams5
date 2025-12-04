@@ -4,21 +4,26 @@ export const authService = {
   login: async (credentials) => {
     try {
       const response = await api.post('/auth/login', credentials);
-      const { token } = response.data;
-      
+      const data = response.data || {};
+
+      if (data.mfaRequired) {
+        return { mfaRequired: true, mfaType: data.mfaType, userId: data.userId };
+      }
+
+      const token = data.token;
       if (!token) {
         throw new Error('Invalid credentials');
       }
-      
+
       localStorage.setItem('token', token);
-      
+
       const usersResponse = await api.get('/User');
       const currentUser = usersResponse.data.find(u => u.email === credentials.email);
-      
+
       if (!currentUser) {
         throw new Error('User profile not found');
       }
-      
+
       localStorage.setItem('user', JSON.stringify(currentUser));
       return { token, user: currentUser };
       
@@ -33,6 +38,25 @@ export const authService = {
         throw new Error('User not found');
       }
       throw new Error(error.message || 'Login failed. Please try again.');
+    }
+  },
+
+  verifyMfa: async ({ userId, code }) => {
+    try {
+      const response = await api.post('/auth/verify-mfa', { userId, code });
+      const data = response.data || {};
+      const token = data.token;
+      if (!token) throw new Error('MFA verification failed');
+
+      localStorage.setItem('token', token);
+
+      const usersResponse = await api.get('/User');
+      const currentUser = usersResponse.data.find(u => u.id === userId || u.email === data.email);
+      if (currentUser) localStorage.setItem('user', JSON.stringify(currentUser));
+
+      return { token, user: currentUser };
+    } catch (error) {
+      throw new Error(error.response?.data?.message || error.message || 'MFA verification failed');
     }
   },
 

@@ -988,8 +988,6 @@ export function TransactionHistory() {
   }, [categoryModalType]);
 
   const openCategoryModal = (type) => {
-    // debug: log attempts to open category modal
-    // eslint-disable-next-line no-console
     console.log('[TransactionHistory] openCategoryModal called:', type);
     setCategoryModalType(type);
     setShowCategoryModal(true);

@@ -11,11 +11,13 @@ public class AuthController : ControllerBase
 {
     private readonly IUserService _userService;
     private readonly IConfiguration _configuration;
+    private readonly ITokenService _tokenService;
 
-    public AuthController(IUserService userService, IConfiguration configuration)
+    public AuthController(IUserService userService, IConfiguration configuration, ITokenService tokenService)
     {
         _userService = userService;
         _configuration = configuration;
+        _tokenService = tokenService;
     }
 
     [HttpPost("login")]
@@ -27,8 +29,38 @@ public class AuthController : ControllerBase
             return Unauthorized(new { message = "Email ou senha inválidos." });
         }
 
-        var token = GenerateJwtToken(user);
-        return Ok(new AuthResponseDTO { Token = token });
+        var fullUser = _userService.GetUserDetails(user.Id);
+        if (fullUser != null && fullUser.MfaEnabled)
+        {
+            return Ok(new AuthResponseDTO
+            {
+                Token = null,
+                MfaRequired = true,
+                MfaType = fullUser.MfaType ?? "sms",
+                UserId = fullUser.Id,
+                Email = fullUser.Email
+            });
+        }
+
+        var token = _tokenService.GenerateJwtToken(user);
+        return Ok(new AuthResponseDTO { Token = token, MfaRequired = false });
+    }
+
+    [HttpPost("verify-mfa")]
+    public IActionResult VerifyMfa([FromBody] VerifyMfaDTO verify)
+    {
+        if (verify == null) return BadRequest();
+
+        var user = _userService.GetUserDetails(verify.UserId);
+        if (user == null) return NotFound();
+
+        if (verify.Code == "123456")
+        {
+            var token = _tokenService.GenerateJwtToken(user);
+            return Ok(new AuthResponseDTO { Token = token, MfaRequired = false });
+        }
+
+        return Unauthorized(new { message = "Invalid MFA code" });
     }
 
 
@@ -50,40 +82,7 @@ public class AuthController : ControllerBase
         });
     }
 
-    private string GenerateJwtToken(UserDTO user)
-    {
-        var jwtKey = _configuration["Jwt:Key"];
-        if (string.IsNullOrEmpty(jwtKey))
-        {
-            throw new Exception("JWT Key is missing in appsettings.json");
-        }
-
-        var key = Encoding.ASCII.GetBytes(jwtKey);;
-
-        var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, user.Name),
-            new Claim(ClaimTypes.Role, "Administrator")
-        };
-
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.UtcNow.AddHours(2),
-            Issuer = _configuration["Jwt:Issuer"],
-            Audience = _configuration["Jwt:Audience"],
-            SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(key),
-                SecurityAlgorithms.HmacSha256Signature
-            )
-        };
-
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
-    }
+    //agora o token vai ser operado pelo service do ITokenService
 
     
 }
