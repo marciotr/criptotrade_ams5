@@ -3,9 +3,14 @@ import React, { useState } from 'react';
 const CryptoIcon = ({ symbol, size = 24 }) => {
   const [iconError, setIconError] = useState(false);
 
-  const cleanSymbol = symbol
-    ?.replace(/USDT$|BTC$/i, '')
-    .toLowerCase();
+  const cleanSymbol = (() => {
+    if (!symbol) return '';
+    const s = String(symbol).toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const SUFFIXES = ['USDT','USDC','BUSD','TUSD','USDP','DAI','BIDR','BRL','EUR','USD'];
+    const suffix = SUFFIXES.find(x => s.length > x.length && s.endsWith(x));
+    const base = suffix ? s.slice(0, -suffix.length) : s;
+    return base.toLowerCase();
+  })();
 
   const iconUrls = [
     `https://assets.coincap.io/assets/icons/${cleanSymbol}@2x.png`,
