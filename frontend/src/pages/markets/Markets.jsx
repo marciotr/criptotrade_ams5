@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Star, ArrowUp, ArrowDown, TrendingUp, Loader, Filter, ChevronUp, ChevronDown } from 'lucide-react';
+import { Search, Star, ArrowUp, ArrowDown, TrendingUp, Loader, Filter, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import CryptoIcon from '../../components/common/CryptoIcons';
 import { marketFilters } from '../../data/mockData';
 import { useNavigate } from 'react-router-dom';
@@ -50,7 +50,7 @@ const TrendingCoinCard = ({ coin, onClick, index, onBuy }) => (
         <span className="text-sm text-text-tertiary">Preço 7d</span>
         {/* Mini sparkline chart poderia ser adicionado aqui */}
         <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-          coin.change > 0 ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'
+          coin.change > 0 ? 'bg-feedback-success/10 text-feedback-success' : 'bg-feedback-error/10 text-feedback-error'
         }`}>
           {coin.change > 0 ? 'Bullish' : 'Bearish'}
         </span>
@@ -96,9 +96,9 @@ const CoinTableRow = React.memo(({ coin, index, onFavoriteToggle, onCoinClick, i
       })}
     </td>
     <td className="px-6 py-4 text-right">
-      <div className={`inline-flex items-center px-2 py-1 rounded-full ${
-        coin.change > 0 ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'
-      }`}>
+          <div className={`inline-flex items-center px-2 py-1 rounded-full ${
+            coin.change > 0 ? 'bg-feedback-success/10 text-feedback-success' : 'bg-feedback-error/10 text-feedback-error'
+          }`}>
         {coin.change > 0 ? <ArrowUp size={12} className="mr-1" /> : <ArrowDown size={12} className="mr-1" />}
         {Math.abs(coin.change).toFixed(2)}%
       </div>
@@ -123,7 +123,7 @@ const CoinTableRow = React.memo(({ coin, index, onFavoriteToggle, onCoinClick, i
             className={`transition-all duration-300 ${
               isFavorite
                 ? 'fill-yellow-500 text-yellow-500 drop-shadow-md'
-                : 'text-gray-400 hover:text-yellow-500'
+                : 'text-text-secondary hover:text-yellow-500'
             }`}
             size={20}
             onClick={(e) => {
@@ -164,7 +164,7 @@ const CoinCard = React.memo(({ coin, onFavoriteToggle, onCoinClick, onBuy, isFav
               <span className="ml-1 text-xs bg-background-secondary text-text-tertiary py-0.5 px-1.5 rounded-full">{coin.symbol.replace(coin.name, '')}</span>
             </div>
             <div className={`text-xs flex items-center mt-0.5 ${
-              coin.change > 0 ? 'text-green-500' : 'text-red-500'
+              coin.change > 0 ? 'text-feedback-success' : 'text-feedback-error'
             }`}>
               {coin.change > 0 ? <ArrowUp size={10} className="mr-0.5" /> : <ArrowDown size={10} className="mr-0.5" />}
               {Math.abs(coin.change).toFixed(2)}%
@@ -184,7 +184,7 @@ const CoinCard = React.memo(({ coin, onFavoriteToggle, onCoinClick, onBuy, isFav
             className={`transition-all duration-300 ${
               isFavorite
                 ? 'fill-yellow-500 text-yellow-500 drop-shadow-md'
-                : 'text-gray-400 hover:text-yellow-500'
+                : 'text-text-secondary hover:text-yellow-500'
             }`}
             size={18}
           />
@@ -224,7 +224,7 @@ const CoinCard = React.memo(({ coin, onFavoriteToggle, onCoinClick, onBuy, isFav
       
       {/* Gradient indicator na base do card */}
       <div className={`h-1 w-full mt-3 rounded-full ${
-        coin.change > 0 ? 'bg-gradient-to-r from-green-500 to-teal-400' : 'bg-gradient-to-r from-red-500 to-pink-500'
+        coin.change > 0 ? 'bg-gradient-to-r from-feedback-success to-feedback-success/70' : 'bg-gradient-to-r from-feedback-error to-feedback-error/70'
       }`}></div>
       <button
         className="mt-4 w-full py-2 rounded-lg bg-brand-primary text-white font-semibold hover:bg-brand-primary/90 transition-colors"
@@ -431,6 +431,19 @@ export function Markets() {
     return result;
   }, [processedMarketData, searchTerm, filter, tertiary, sortConfig]);
 
+  // Paginação: fatia atual baseada em currentPage e itemsPerPage
+  const paginatedData = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredData.slice(start, start + itemsPerPage);
+  }, [filteredData, currentPage, itemsPerPage]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredData.length / itemsPerPage));
+
+  useEffect(() => {
+    if (currentPage > totalPages) setCurrentPage(totalPages);
+    if (currentPage < 1) setCurrentPage(1);
+  }, [totalPages]);
+
   // Obter as moedas em tendência (top 3 por volume)
   const trendingPairs = useMemo(() => {
     if (!processedMarketData.length) return [];
@@ -503,7 +516,7 @@ export function Markets() {
             animate={{ opacity: 1, scale: 1 }}
             className="flex flex-col items-center"
           >
-            <Search size={40} className="text-text-tertiary opacity-50 mb-3" />
+            <Search size={40} className="text-text-tertiary opacity-50 mb-3" aria-hidden="true" />
             <p className="text-text-tertiary font-medium">
               {searchTerm 
                 ? "Nenhuma criptomoeda encontrada com esse termo" 
@@ -528,8 +541,8 @@ export function Markets() {
     return (
       <div className="w-full pb-10">
         {/* Informação de contagem */}
-        <div className="flex justify-between items-center mb-4 text-text-terciary text-sm">
-          <span>Exibindo {filteredData.length} moedas</span>
+        <div className="flex justify-between items-center mb-4 text-text-tertiary text-sm">
+          <span>Exibindo {paginatedData.length} de {filteredData.length} moedas</span>
           
           <SortSelector 
             sortConfig={sortConfig}
@@ -538,7 +551,7 @@ export function Markets() {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
-          {filteredData.map((coin, index) => (
+          {paginatedData.map((coin, index) => (
             <CoinCard
               key={coin.id}
               coin={coin}
@@ -549,6 +562,87 @@ export function Markets() {
               index={index}
             />
           ))}
+        </div>
+        {/* Paginação */}
+        <div className="mt-4 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <label className="text-xs text-text-tertiary">Por página:</label>
+            <select
+              className="px-2 py-1 rounded bg-background-secondary border border-border-primary text-text-primary"
+              value={itemsPerPage}
+              onChange={(e) => { setItemsPerPage(Number(e.target.value)); setCurrentPage(1); }}
+            >
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={200}>200</option>
+            </select>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="p-1 sm:p-1.5 rounded-lg border border-border-primary hover:border-brand-primary disabled:opacity-50 disabled:border-border-primary"
+            >
+              <ChevronLeft size={16} className="text-text-primary" />
+            </button>
+
+            <div className="hidden sm:flex items-center space-x-1">
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = currentPage - 2 + i;
+                }
+
+                return (
+                  <motion.button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`w-8 h-8 flex items-center justify-center rounded-lg text-sm ${
+                      currentPage === pageNum ? 'bg-brand-primary text-background-primary' : 'text-text-primary hover:bg-background-secondary'
+                    }`}
+                  >
+                    {pageNum}
+                  </motion.button>
+                );
+              })}
+
+              {totalPages > 5 && currentPage < totalPages - 2 && (
+                <>
+                  <span className="text-text-tertiary">...</span>
+                  <motion.button
+                    onClick={() => setCurrentPage(totalPages)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-8 h-8 flex items-center justify-center rounded-lg text-sm text-text-primary hover:bg-background-secondary"
+                  >
+                    {totalPages}
+                  </motion.button>
+                </>
+              )}
+            </div>
+
+            <div className="text-[10px] sm:hidden text-text-primary px-2">
+              {currentPage} / {totalPages}
+            </div>
+
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages || totalPages === 0}
+              className="p-1 sm:p-1.5 rounded-lg border border-border-primary hover:border-brand-primary disabled:opacity-50 disabled:border-border-primary"
+            >
+              <ChevronRight size={16} className="text-text-primary" />
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -624,7 +718,7 @@ export function Markets() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
           {/* Caixa de pesquisa com filtros em linha */}
           <div className="relative w-full md:max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-terciary" size={20} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none" size={20} aria-hidden="true" />
             <input
               type="text"
               placeholder="Buscar criptomoedas..."

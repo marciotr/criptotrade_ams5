@@ -2,17 +2,21 @@ import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, ArrowDown, Search, Filter, Download, ChevronLeft, ChevronRight, AlertTriangle, 
          CheckCircle, Clock, RefreshCw, TrendingUp, Sparkles, Calendar, Wallet, Zap, 
-         BarChart2, Share2, Bookmark, PieChart, ChevronDown } from 'lucide-react';
+         BarChart2, Share2, Bookmark, PieChart, ChevronDown, CreditCard } from 'lucide-react';
+import CryptoIcon from '../../components/common/CryptoIcons';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { useNavigate } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 import { LoadingScreen } from '../../components/common/LoadingScreen';
-import { transactionApi } from '../../services/api/api';
+import { transactionApi, currencyApi } from '../../services/api/api';
 import {
   BarChart, Bar, PieChart as RechartsPC, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
+import TransactionDetailsModal from './components/TransactionDetailsModal';
+import TransactionsAnalyticsModal from './components/TransactionsAnalyticsModal';
+import TransactionsListModal from './components/TransactionsListModal';
 
 // Componentes reutilizáveis
 
@@ -58,6 +62,42 @@ const MiniChart = ({ data = [], height = 30, width = 80, color = "#3498db" }) =>
         })}
       </g>
     </svg>
+  );
+};
+
+const MethodBadge = ({ method, currency, size = 14 }) => {
+  const m = method || '';
+  let label = m;
+  let colorClass = 'bg-background-secondary text-text-tertiary';
+  let icon = null;
+
+  if (/cart[oã]o|card/i.test(m)) {
+    colorClass = 'bg-blue-100 text-blue-700';
+    icon = <CreditCard size={size} className="mr-2" />;
+    label = 'Cartão';
+  } else if (/transfer(ência|encia)|bank|banc/i.test(m)) {
+    colorClass = 'bg-indigo-100 text-indigo-700';
+    icon = <Wallet size={size} className="mr-2 text-indigo-600" />;
+    label = 'Transferência';
+  } else if (/paypal/i.test(m)) {
+    colorClass = 'bg-yellow-100 text-yellow-800';
+    icon = <span className="mr-2 font-bold text-yellow-700">P</span>;
+    label = 'PayPal';
+  } else if (/cripto|crypto|crypto/i.test(m)) {
+    colorClass = 'bg-amber-100 text-amber-800';
+    icon = (
+      <div className="mr-2 w-5 h-5 rounded-full overflow-hidden flex items-center justify-center">
+        <CryptoIcon symbol={currency} size={size} />
+      </div>
+    );
+    label = 'Cripto';
+  }
+
+  return (
+    <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${colorClass}`}>
+      {icon}
+      <span className="truncate">{label}</span>
+    </div>
   );
 };
 
@@ -135,9 +175,9 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
         <div className="px-4 py-4 w-32 sm:w-40">
           <div className="flex items-center space-x-2">
             <div className={`p-1.5 rounded-full transition-transform group-hover:scale-110 
-              ${transaction.type === 'Depósito' ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}
+              ${(transaction.type === 'Depósito' || transaction.type === 'Venda') ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}
             >
-              {transaction.type === 'Depósito' ? (
+              {(transaction.type === 'Depósito' || transaction.type === 'Venda') ? (
                 <ArrowUp className="text-feedback-success" size={16} />
               ) : (
                 <ArrowDown className="text-feedback-error" size={16} />
@@ -171,37 +211,15 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
         
         <div className="px-4 py-4 w-24 text-sm text-text-primary flex items-center">
           <div className="flex items-center space-x-1.5">
-            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-              <span className="text-[8px] font-bold text-white">
-                {transaction.currency.charAt(0)}
-              </span>
+            <div className="w-6 h-6 rounded-full overflow-hidden">
+              <CryptoIcon symbol={transaction.currency} size={20} />
             </div>
             <span>{transaction.currency}</span>
           </div>
         </div>
         
         <div className="px-4 py-4 w-32 text-sm text-text-primary">
-          <div className="flex items-center">
-            {transaction.method === 'Cartão de Crédito' && (
-              <div className="w-6 h-4 mr-2 rounded bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-              </div>
-            )}
-            {transaction.method === 'Transferência Bancária' && (
-              <Wallet size={14} className="mr-2 text-gray-500" />
-            )}
-            {transaction.method === 'PayPal' && (
-              <div className="mr-2 text-blue-600 font-bold text-xs">P</div>
-            )}
-            {transaction.method === 'Cripto' && (
-              <div className="p-0.5 bg-orange-500 text-white mr-2 rounded-full">
-                <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none">
-                  <path d="M9 8l3 8.5L15 8l4.5 16H4.5L9 8z" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            )}
-            {transaction.method}
-          </div>
+          <MethodBadge method={transaction.method} currency={transaction.currency} />
         </div>
         
         <div className="px-4 py-4 w-32 text-sm text-text-tertiary">
@@ -231,9 +249,9 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
       <div className="flex sm:hidden items-center h-full">
         <div className="flex-1 flex items-center px-3 py-3">
           <div className={`p-1.5 rounded-full mr-2
-            ${transaction.type === 'Depósito' ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}
+            ${(transaction.type === 'Depósito' || transaction.type === 'Venda') ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'}`}
           >
-            {transaction.type === 'Depósito' ? (
+            {(transaction.type === 'Depósito' || transaction.type === 'Venda') ? (
               <ArrowUp className="text-feedback-success" size={15} />
             ) : (
               <ArrowDown className="text-feedback-error" size={15} />
@@ -261,10 +279,8 @@ const VirtualizedTransactionRow = ({ data, index, style }) => {
                   ${transaction.amount.toLocaleString()}
                 </span>
                 <div className="flex items-center justify-end mt-1">
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mr-1">
-                    <span className="text-[6px] font-bold text-white">
-                      {transaction.currency.charAt(0)}
-                    </span>
+                  <div className="w-5 h-5 rounded-full overflow-hidden mr-1">
+                    <CryptoIcon symbol={transaction.currency} size={16} />
                   </div>
                   <span className="text-[10px] text-text-tertiary">{transaction.currency}</span>
                 </div>
@@ -711,7 +727,6 @@ const mapMethodLabel = (raw) => {
   if (lower.includes('card') || lower.includes('cartao') || lower.includes('cartão')) return 'Cartão de Crédito';
   if (lower.includes('transfer') || lower.includes('transferencia') || lower.includes('transferência') ) return 'Transferência Bancária';
 
-  // If it's already a friendly label, return as-is (trimmed)
   return r.trim();
 };
 
@@ -726,6 +741,8 @@ export function TransactionHistory() {
   const [isTransactionDetailsOpen, setIsTransactionDetailsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const [categoryModalType, setCategoryModalType] = useState(null); // 'deposit' | 'withdraw' | 'pending'
   const [activeInsight, setActiveInsight] = useState(0);
   const [viewMode, setViewMode] = useState('list'); // 'list' ou 'calendar'
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -748,8 +765,63 @@ export function TransactionHistory() {
     return 1;
   }, [windowWidth]);
 
-  // Simular dados reais com um conjunto maior para testar performance
+
+  const [calendarMonth, setCalendarMonth] = useState(new Date()); 
+  const [showDayModal, setShowDayModal] = useState(false);
+  const [dayModalDate, setDayModalDate] = useState(null);
+
+  const openDayModal = (dateStr) => {
+    setDayModalDate(dateStr);
+    setShowDayModal(true);
+  };
+  const closeDayModal = () => {
+    setShowDayModal(false);
+    setDayModalDate(null);
+  };
+
   const [transactions, setTransactions] = useState([]);
+
+  const transactionsByDate = useMemo(() => {
+    const map = {};
+    transactions.forEach(tx => {
+      try {
+        const d = new Date(tx.date);
+        const key = d.toISOString().slice(0,10);
+        if (!map[key]) map[key] = [];
+        map[key].push(tx);
+      } catch (e) {
+      }
+    });
+    return map;
+  }, [transactions]);
+
+  const monthMatrix = useMemo(() => {
+    const year = calendarMonth.getFullYear();
+    const month = calendarMonth.getMonth();
+
+    const firstDay = new Date(year, month, 1);
+    const startDay = firstDay.getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const cells = [];
+    for (let i = 0; i < startDay; i++) cells.push(null);
+    for (let d = 1; d <= daysInMonth; d++) cells.push(new Date(year, month, d));
+
+    // pad to multiple of 7
+    while (cells.length % 7 !== 0) cells.push(null);
+
+    const weeks = [];
+    for (let i = 0; i < cells.length; i += 7) {
+      weeks.push(cells.slice(i, i + 7));
+    }
+    return weeks;
+  }, [calendarMonth]);
+
+  const prevMonth = () => setCalendarMonth(d => new Date(d.getFullYear(), d.getMonth() - 1, 1));
+  const nextMonth = () => setCalendarMonth(d => new Date(d.getFullYear(), d.getMonth() + 1, 1));
+
+  const formatMonthLabel = (d) => d.toLocaleString('pt-BR', { month: 'long', year: 'numeric' });
+  const formatDayLabel = (d) => d.toLocaleDateString('pt-BR');
 
   useEffect(() => {
     let mounted = true;
@@ -767,10 +839,61 @@ export function TransactionHistory() {
           date: tx.createdAt ?? tx.createdAtUtc ?? tx.date ?? tx.Date ?? new Date().toISOString(),
           txId: tx.txId ?? tx.TxId ?? tx.idTransaction ?? tx.IdTransaction ?? tx.id ?? `tx_${Math.random().toString(36).slice(2,9)}`,
           method: mapMethodLabel(tx.method ?? tx.Method ?? tx.paymentMethod ?? tx.type ?? tx.Type ?? tx.transactionType ?? 'Desconhecido'),
-          currency: tx.currency ?? tx.Currency ?? tx.asset ?? tx.assetSymbol ?? 'USD'
+          currency: tx.currency ?? tx.Currency ?? tx.asset ?? tx.assetSymbol ?? 'USD',
+          rawType: (tx.type ?? tx.Type ?? tx.transactionType ?? '').toString()
         }));
 
         if (mounted) setTransactions(mapped);
+
+        const likelyCryptoRegex = /buy|sell|swap|compra|venda/i;
+        const toEnrich = mapped.filter(m => (
+          (m.currency === 'USD' || !m.currency || m.currency === 'UNKNOWN') && likelyCryptoRegex.test(m.rawType)
+        ));
+
+        if (toEnrich.length > 0) {
+          try {
+            const promises = toEnrich.map(async (t) => {
+              try {
+                const detRes = await transactionApi.getById(t.id);
+                const det = detRes?.data ?? {};
+                const cripto = det?.cripto ?? det?.transactionCripto ?? det?.transactionCriptos ?? null;
+                const fiat = det?.fiat ?? null;
+                if (cripto) {
+                  const idCurrency = cripto.idCurrency ?? cripto.IdCurrency ?? cripto.IdCurrency ?? cripto.IdCurrency ?? cripto.idCurrency ?? null;
+                  if (idCurrency) {
+                    try {
+                      const cRes = await currencyApi.getCurrencyById(idCurrency);
+                      const c = cRes?.data ?? null;
+                      const symbol = c?.symbol ?? c?.Symbol ?? c?.name ?? c?.Name ?? null;
+                      return { id: t.id, currency: symbol || c?.name || t.currency };
+                    } catch (e) {
+                      return { id: t.id, currency: t.currency };
+                    }
+                  }
+                }
+                // fallback: if det has currency info directly
+                if (det?.currency) {
+                  const symbol = det.currency.symbol ?? det.currency.Symbol ?? det.currency.name ?? null;
+                  return { id: t.id, currency: symbol || t.currency };
+                }
+                return { id: t.id, currency: t.currency };
+              } catch (e) {
+                return { id: t.id, currency: t.currency };
+              }
+            });
+
+            const results = await Promise.all(promises);
+            if (mounted) {
+              setTransactions(prev => prev.map(p => {
+                const found = results.find(r => r.id === p.id);
+                if (found && found.currency) return { ...p, currency: (found.currency || p.currency) };
+                return p;
+              }));
+            }
+          } catch (e) {
+            console.warn('Failed enriching transactions with detail', e);
+          }
+        }
       } catch (err) {
         console.error('Erro ao buscar transações reais, usando mock como fallback', err);
         // fallback para mock data
@@ -823,7 +946,8 @@ export function TransactionHistory() {
         typeStr.toLowerCase().includes(search) ||
         methodStr.toLowerCase().includes(search);
 
-      const matchesFilter = filterStatus === 'all' || String(tx.status ?? '').toLowerCase() === filterStatus.toLowerCase();
+      const statusStr = String(tx.status ?? '').toLowerCase();
+      const matchesFilter = filterStatus === 'all' || statusStr === filterStatus.toLowerCase();
       
       return matchesSearch && matchesFilter;
     });
@@ -841,12 +965,72 @@ export function TransactionHistory() {
     return { totalVolume, deposits, withdrawals, pending };
   }, [transactions]);
 
+  // Dados para o modal de lista por categoria
+  const categoryData = useMemo(() => {
+    if (!categoryModalType) return [];
+    if (categoryModalType === 'deposit') {
+      return transactions.filter(tx => tx.type === 'Depósito');
+    }
+    if (categoryModalType === 'withdraw') {
+      return transactions.filter(tx => tx.type === 'Saque');
+    }
+    if (categoryModalType === 'pending') {
+      return transactions.filter(tx => String(tx.status).toLowerCase() === 'pending');
+    }
+    return [];
+  }, [transactions, categoryModalType]);
+
+  const categoryTitle = useMemo(() => {
+    if (categoryModalType === 'deposit') return 'Depósitos';
+    if (categoryModalType === 'withdraw') return 'Saques';
+    if (categoryModalType === 'pending') return 'Pendentes';
+    return '';
+  }, [categoryModalType]);
+
+  const openCategoryModal = (type) => {
+    // debug: log attempts to open category modal
+    // eslint-disable-next-line no-console
+    console.log('[TransactionHistory] openCategoryModal called:', type);
+    setCategoryModalType(type);
+    setShowCategoryModal(true);
+  };
+
+  const closeCategoryModal = () => {
+    setShowCategoryModal(false);
+    setCategoryModalType(null);
+  };
+
+  // debug: log when category modal visibility or content changes
+  useEffect(() => {
+    if (showCategoryModal) {
+      // eslint-disable-next-line no-console
+      console.log('[TransactionHistory] category modal opened:', categoryModalType, 'itemsCount=', (categoryData || []).length);
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('[TransactionHistory] category modal closed');
+    }
+  }, [showCategoryModal, categoryModalType, categoryData]);
+
   // Paginação
   const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
   const currentTransactions = filteredTransactions.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  // Manter currentPage em um valor válido quando os filtros/itens mudarem
+  useEffect(() => {
+    if (totalPages === 0) {
+      setCurrentPage(1);
+    } else if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [totalPages]);
+
+  // Quando a busca ou filtro mudarem, resetar para a primeira página
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearchTerm, filterStatus]);
 
   // Handler para visualizar detalhes da transação
   const handleViewTransactionDetails = useCallback((transaction) => {
@@ -976,21 +1160,21 @@ export function TransactionHistory() {
           icon={<ArrowUp size={isMobile ? 16 : 20} />}
           trend="23 neste mês"
           color="text-green-500"
-          onClick={() => setFilterStatus('completed')}
+          onClick={() => openCategoryModal('deposit')}
         />
         <StatCard 
           label="Saques" 
           value={transactionStats.withdrawals} 
           icon={<ArrowDown size={isMobile ? 16 : 20} />}
           color="text-red-500"
-          onClick={() => setFilterStatus('completed')}
+          onClick={() => openCategoryModal('withdraw')}
         />
         <StatCard 
           label="Pendentes" 
           value={transactionStats.pending} 
           icon={<Clock size={isMobile ? 16 : 20} />}
           color="text-yellow-500"
-          onClick={() => setFilterStatus('pending')}
+          onClick={() => openCategoryModal('pending')}
         />
       </motion.div>
 
@@ -1099,19 +1283,19 @@ export function TransactionHistory() {
                 <div style={{ height: isMobile ? 'calc(100vh - 350px)' : 'calc(100vh - 380px)', minHeight: isMobile ? '250px' : '300px' }}>
                   <AutoSizer>
                     {({ height, width }) => (
-                      <List
-                        height={height}
-                        itemCount={filteredTransactions.length}
-                        itemSize={isMobile ? 80 : 64} // altura ajustada para mobile
-                        width={width}
-                        itemData={{
-                          items: filteredTransactions,
-                          onViewDetails: handleViewTransactionDetails,
-                          isMobile
-                        }}
-                      >
-                        {VirtualizedTransactionRow}
-                      </List>
+                          <List
+                            height={height}
+                            itemCount={currentTransactions.length}
+                            itemSize={isMobile ? 80 : 64} 
+                            width={width}
+                            itemData={{
+                              items: currentTransactions,
+                              onViewDetails: handleViewTransactionDetails,
+                              isMobile
+                            }}
+                          >
+                            {VirtualizedTransactionRow}
+                          </List>
                     )}
                   </AutoSizer>
                 </div>
@@ -1120,14 +1304,67 @@ export function TransactionHistory() {
               )}
             </>
           ) : (
-            // Visualização de calendário responsiva
-            <div className="p-4 min-h-[300px] sm:min-h-[500px] flex items-center justify-center">
-              <div className="text-center">
-                <Calendar size={isMobile ? 40 : 64} className="mx-auto text-text-tertiary opacity-30 mb-2 sm:mb-3" />
-                <h3 className="text-sm sm:text-base text-text-primary font-medium">Calendário</h3>
-                <p className="text-[10px] sm:text-sm text-text-tertiary mt-1">
-                  Visualize suas transações em um calendário interativo.
-                </p>
+            <div className="p-4 min-h-[300px] sm:min-h-[500px]">
+              <div className="max-w-7xl mx-auto">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center space-x-2">
+                    <button onClick={prevMonth} className="p-2 rounded-lg hover:bg-background-secondary">
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button onClick={nextMonth} className="p-2 rounded-lg hover:bg-background-secondary">
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+
+                  <h3 className="text-sm sm:text-base text-text-primary font-medium">{formatMonthLabel(calendarMonth)}</h3>
+
+                  <div className="text-xs text-text-tertiary">Clique em um dia para ver as transações</div>
+                </div>
+
+                <div className="grid grid-cols-7 gap-1 text-[11px] text-text-tertiary mb-2">
+                  {['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'].map(d => (
+                    <div key={d} className="text-center py-1">{d}</div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-7 gap-2">
+                  {monthMatrix.map((week, wi) => (
+                    <React.Fragment key={wi}>
+                      {week.map((day, di) => {
+                        if (!day) return <div key={di} className="p-2 h-24 sm:h-28 bg-background-secondary rounded-lg opacity-40" />;
+                        const key = day.toISOString().slice(0,10);
+                        const list = transactionsByDate[key] || [];
+                        const isToday = key === (new Date().toISOString().slice(0,10));
+
+                        return (
+                          <div
+                            key={key}
+                            onClick={() => list.length > 0 && openDayModal(key)}
+                            className={`p-2 h-24 sm:h-28 rounded-lg border border-border-primary flex flex-col justify-between cursor-pointer transition-shadow ${list.length ? 'hover:shadow-md' : 'opacity-60'}`}
+                          >
+                            <div className="flex justify-between items-start">
+                              <span className={`${isToday ? 'bg-brand-primary text-white px-2 py-0.5 rounded-full text-[12px]' : 'text-text-primary text-[12px]'}`}>{day.getDate()}</span>
+                              {list.length > 0 && (
+                                <span className="text-[11px] bg-brand-primary/10 text-brand-primary px-2 py-0.5 rounded-full">{list.length}</span>
+                              )}
+                            </div>
+
+                            <div className="text-[10px] text-text-tertiary truncate">
+                              {list.slice(0,2).map(tx => (
+                                <div key={tx.id} className="flex items-center justify-start space-x-2">
+                                  <div className="w-4 h-4 rounded-full overflow-hidden">
+                                    <CryptoIcon symbol={tx.currency} size={14} />
+                                  </div>
+                                  <span className="truncate">{tx.currency} • {tx.amount.toLocaleString()}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </React.Fragment>
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -1136,7 +1373,11 @@ export function TransactionHistory() {
           {filteredTransactions.length > 0 && viewMode === 'list' && (
             <div className="flex flex-col xs:flex-row xs:items-center justify-between px-3 sm:px-4 py-3 sm:py-4 border-t border-border-primary gap-2 sm:gap-4">
               <p className="text-[10px] sm:text-xs text-text-secondary">
-                Mostrando {Math.min(filteredTransactions.length, 1)}-{Math.min(currentPage * itemsPerPage, filteredTransactions.length)} de {filteredTransactions.length} transações
+                {filteredTransactions.length === 0 ? (
+                  'Mostrando 0 de 0 transações'
+                ) : (
+                  <>Mostrando {((currentPage - 1) * itemsPerPage) + 1}-{Math.min(currentPage * itemsPerPage, filteredTransactions.length)} de {filteredTransactions.length} transações</>
+                )}
               </p>
               
               <div className="flex items-center space-x-1 sm:space-x-2">
@@ -1213,177 +1454,35 @@ export function TransactionHistory() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Modal de detalhes da transação - Responsivo */}
-      <AnimatePresence>
-        {isTransactionDetailsOpen && selectedTransaction && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4"
-            onClick={() => setIsTransactionDetailsOpen(false)}
-          >
-                <motion.div
-                  initial={{ scale: isMobile ? 0.98 : modalScale * 0.9, opacity: 0, y: 20 }}
-                  animate={{ scale: isMobile ? 1 : modalScale, opacity: 1, y: 0 }}
-                  exit={{ scale: isMobile ? 0.98 : modalScale * 0.9, opacity: 0, y: 20 }}
-                  style={{ transformOrigin: 'center center', willChange: 'transform' }}
-                  className={isMobile ? 'bg-background-primary rounded-none w-full h-full overflow-auto border-none' : 'bg-background-primary rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-border-primary'}
-                  onClick={e => e.stopPropagation()}
-                >
-              {/* Header estilizado responsivo */}
-              <div className={`p-4 sm:p-6 ${
-                selectedTransaction.type === 'Depósito' 
-                  ? 'bg-gradient-to-r from-green-500 to-emerald-600' 
-                  : 'bg-gradient-to-r from-red-500 to-rose-600'
-              } text-white`}>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <div className="flex items-center">
-                      {selectedTransaction.type === 'Depósito' ? (
-                        <ArrowUp className="mr-2" size={isMobile ? 16 : 20} />
-                      ) : (
-                        <ArrowDown className="mr-2" size={isMobile ? 16 : 20} />
-                      )}
-                      <h3 className="text-lg sm:text-xl font-bold">{selectedTransaction.type}</h3>
-                    </div>
-                    <p className="opacity-90 text-xs sm:text-sm mt-0.5 sm:mt-1">Transação #{selectedTransaction.id}</p>
-                  </div>
-                  <button 
-                    onClick={() => setIsTransactionDetailsOpen(false)}
-                    className="p-1 sm:p-1.5 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-                  >
-                    ✕
-                  </button>
-                </div>
-                
-                <div className="mt-3 sm:mt-4">
-                  <p className="text-xs sm:text-sm opacity-80">Valor</p>
-                  <div className="flex items-baseline">
-                    <span className="text-2xl sm:text-3xl font-bold">R${selectedTransaction.amount.toLocaleString()}</span>
-                    <span className="ml-2 text-sm sm:text-base">{selectedTransaction.currency}</span>
-                  </div>
-                </div>
-              </div>
-                
-              <div className="p-4 sm:p-6 space-y-3 sm:space-y-5">
-                <div className="flex justify-between items-center pb-3 sm:pb-4 border-b border-border-primary">
-                  <span className="text-xs sm:text-sm text-text-tertiary">Status</span>
-                  <TransactionStatus status={selectedTransaction.status} />
-                </div>
-                
-                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs sm:text-sm text-text-tertiary">Data</span>
-                    <span className="text-xs sm:text-sm text-text-primary">
-                      {new Date(selectedTransaction.date).toLocaleDateString('pt-BR', { 
-                        year: 'numeric', 
-                        month: 'short', 
-                        day: 'numeric' 
-                      })}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs sm:text-sm text-text-tertiary">Horário</span>
-                    <span className="text-xs sm:text-sm text-text-primary">
-                      {new Date().toLocaleTimeString('pt-BR', { 
-                        hour: '2-digit', 
-                        minute: '2-digit'
-                      })}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs sm:text-sm text-text-tertiary">Método</span>
-                    <div className="flex items-center text-xs sm:text-sm text-text-primary">
-                      {selectedTransaction.method === 'Cartão de Crédito' && (
-                        <div className="w-5 sm:w-6 h-3 sm:h-4 mr-1.5 sm:mr-2 rounded bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-                          <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-yellow-400"></div>
-                        </div>
-                      )}
-                      {selectedTransaction.method === 'Transferência Bancária' && (
-                        <Wallet size={isMobile ? 12 : 14} className="mr-1.5 sm:mr-2 text-gray-500" />
-                      )}
-                      {selectedTransaction.method === 'PayPal' && (
-                        <div className="mr-1.5 sm:mr-2 text-blue-600 font-bold text-xs">P</div>
-                      )}
-                      {selectedTransaction.method === 'Cripto' && (
-                        <div className="p-0.5 bg-orange-500 text-white mr-1.5 sm:mr-2 rounded-full">
-                          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none">
-                            <path d="M9 8l3 8.5L15 8l4.5 16H4.5L9 8z" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-                      )}
-                      {selectedTransaction.method}
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="bg-background-secondary p-3 sm:p-4 rounded-lg">
-                  <div>
-                    <span className="text-text-tertiary block mb-2">ID da Transação</span>
-                    <div className="flex items-center justify-between">
-                      <span className="text-text-primary text-xs font-mono">{selectedTransaction.txId}</span>
-                      <motion.button 
-                        whileTap={{ scale: 0.9 }}
-                        className="p-1.5 text-text-tertiary hover:text-brand-primary rounded-full hover:bg-background-tertiary"
-                        onClick={() => {
-                          navigator.clipboard.writeText(selectedTransaction.txId);
-                          // Poderia mostrar um toast de confirmação aqui
-                        }}
-                      >
-                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
-                          <path d="M5 2V1H10V2H5ZM4.75 0C4.33579 0 4 0.335786 4 0.75V1H3.5C2.67157 1 2 1.67157 2 2.5V12.5C2 13.3284 2.67157 14 3.5 14H11.5C12.3284 14 13 13.3284 13 12.5V2.5C13 1.67157 12.3284 1 11.5 1H11V0.75C11 0.335786 10.6642 0 10.25 0H4.75ZM3 2.5C3 2.22386 3.22386 2 3.5 2H4V2.25C4 2.66421 4.33579 3 4.75 3H10.25C10.6642 3 11 2.66421 11 2.25V2H11.5C11.7761 2 12 2.22386 12 2.5V12.5C12 12.7761 11.7761 13 11.5 13H3.5C3.22386 13 3 12.7761 3 12.5V2.5Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
-                        </svg>
-                      </motion.button>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Insight específico da transação */}
-                <FinancialInsight 
-                  insight={
-                    selectedTransaction.type === 'Depósito' 
-                      ? "Este depósito foi 24% maior que a média dos seus depósitos." 
-                      : "Este saque foi processado 30% mais rápido que a média."
-                  } 
-                />
-              </div>
-              
-              <div className="px-4 sm:px-6 pb-6 flex justify-between">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="px-3 sm:px-4 py-1.5 sm:py-2 border border-border-primary text-text-primary rounded-lg hover:bg-background-secondary transition-colors"
-                  onClick={() => setIsTransactionDetailsOpen(false)}
-                >
-                  Fechar
-                </motion.button>
-                
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-primary text-white rounded-lg"
-                >
-                  <Share2 size={16} className="mr-2 inline" />
-                  Compartilhar
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Modal de detalhes da transação - usando componente externo */}
+      <TransactionDetailsModal
+        isOpen={isTransactionDetailsOpen}
+        onClose={() => setIsTransactionDetailsOpen(false)}
+        transaction={selectedTransaction}
+        isMobile={isMobile}
+        modalScale={modalScale}
+      />
       
-      {/* Modal de análise de transações */}
-      <AnalyticsModal 
+      {/* Modal de análise de transações - componente externo */}
+      <TransactionsAnalyticsModal 
         isOpen={showAnalyticsModal} 
         onClose={() => setShowAnalyticsModal(false)} 
         data={transactions}
+      />
+
+      {/* Modal de lista por categoria (Depósitos, Saques, Pendentes) */}
+      <TransactionsListModal
+        isOpen={showCategoryModal}
+        onClose={closeCategoryModal}
+        title={categoryTitle}
+        transactions={categoryData}
+      />
+      {/* Modal por dia (Calendário) */}
+      <TransactionsListModal
+        isOpen={showDayModal}
+        onClose={closeDayModal}
+        title={dayModalDate ? `Transações — ${new Date(dayModalDate).toLocaleDateString('pt-BR')}` : 'Transações'}
+        transactions={transactionsByDate[dayModalDate] ?? []}
       />
     </motion.div>
   );
