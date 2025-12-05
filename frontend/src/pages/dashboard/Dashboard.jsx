@@ -757,7 +757,7 @@ export function Dashboard() {
 
         {/* Overlay global: espera tickers + primeiro coin (com fallback) */}
         {showGlobalOverlay && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-background-primary/90 backdrop-blur-2xl z-40 px-4 text-center">
+          <div className="fixed inset-0 flex flex-col items-center justify-center bg-background-primary/95 backdrop-blur-2xl z-[9999] px-4 text-center">
             <motion.div 
               className="w-14 h-14 border-4 border-brand-primary border-t-transparent rounded-full mb-4"
               animate={{ rotate: 360 }}
