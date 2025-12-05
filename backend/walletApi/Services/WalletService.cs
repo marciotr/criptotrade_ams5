@@ -196,6 +196,21 @@ public class WalletService : IWalletService
                     UpdatedAt = DateTime.UtcNow
                 };
                 await _db.WalletPositions.AddAsync(position);
+                // cria um lote representando esta compra (se solicitado)
+                if (dto.CreateNewLot)
+                {
+                    var lot = new WalletPositionLot
+                    {
+                        IdWalletPositionLot = Guid.NewGuid(),
+                        IdWallet = dto.IdWallet,
+                        IdCurrency = dto.IdCurrency,
+                        OriginalAmount = criptoAmount,
+                        RemainingAmount = criptoAmount,
+                        AvgPrice = currency.CurrentPrice,
+                        CreatedAt = DateTime.UtcNow
+                    };
+                    await _db.WalletPositionLots.AddAsync(lot);
+                }
             }
             else
             {
@@ -206,6 +221,22 @@ public class WalletService : IWalletService
                 position.Amount = newAmount;
                 position.UpdatedAt = DateTime.UtcNow;
                 _db.WalletPositions.Update(position);
+
+                // cria um lote para esta compra adicional (se solicitado)
+                if (dto.CreateNewLot)
+                {
+                    var lot = new WalletPositionLot
+                    {
+                        IdWalletPositionLot = Guid.NewGuid(),
+                        IdWallet = dto.IdWallet,
+                        IdCurrency = dto.IdCurrency,
+                        OriginalAmount = criptoAmount,
+                        RemainingAmount = criptoAmount,
+                        AvgPrice = currency.CurrentPrice,
+                        CreatedAt = DateTime.UtcNow
+                    };
+                    await _db.WalletPositionLots.AddAsync(lot);
+                }
             }
 
             await _db.SaveChangesAsync();
@@ -283,7 +314,61 @@ public class WalletService : IWalletService
 
             await _db.TransactionCriptos.AddAsync(tc);
 
-            // atualiza a posição
+            // consome lotes: se foi enviado um IdWalletPositionLot específico, consome primeiro desse lote
+            decimal realizedPnL = 0m;
+            var remainingToSell = dto.CriptoAmount;
+
+            if (dto.IdWalletPositionLot.HasValue && dto.IdWalletPositionLot != Guid.Empty)
+            {
+                var targetLot = await _db.WalletPositionLots
+                    .FirstOrDefaultAsync(l => l.IdWalletPositionLot == dto.IdWalletPositionLot.Value && l.IdWallet == dto.IdWallet && l.IdCurrency == dto.IdCurrency && l.RemainingAmount > 0);
+
+                if (targetLot == null)
+                {
+                    return OperationResult.Failure("Lote especificado não encontrado ou sem saldo");
+                }
+
+                var toConsumeFromLot = dto.LotAmount.HasValue && dto.LotAmount.Value > 0 ? Math.Min(dto.LotAmount.Value, targetLot.RemainingAmount) : Math.Min(targetLot.RemainingAmount, remainingToSell);
+                toConsumeFromLot = Math.Min(toConsumeFromLot, remainingToSell);
+
+                if (toConsumeFromLot > 0)
+                {
+                    realizedPnL += (currency.CurrentPrice - targetLot.AvgPrice) * toConsumeFromLot;
+                    targetLot.RemainingAmount -= toConsumeFromLot;
+                    remainingToSell -= toConsumeFromLot;
+                    _db.WalletPositionLots.Update(targetLot);
+                }
+            }
+
+            // se ainda restar, consome demais lotes FIFO
+            if (remainingToSell > 0)
+            {
+                var lots = await _db.WalletPositionLots
+                    .Where(l => l.IdWallet == dto.IdWallet && l.IdCurrency == dto.IdCurrency && l.RemainingAmount > 0)
+                    .OrderBy(l => l.CreatedAt)
+                    .ToListAsync();
+
+                foreach (var lot in lots)
+                {
+                    if (remainingToSell <= 0) break;
+                    // caso tenhamos já consumido the target lot above, skip if it's now zero
+                    var consume = Math.Min(lot.RemainingAmount, remainingToSell);
+                    if (consume <= 0) continue;
+                    // lucro realizado por este lote
+                    realizedPnL += (currency.CurrentPrice - lot.AvgPrice) * consume;
+                    lot.RemainingAmount -= consume;
+                    remainingToSell -= consume;
+                    _db.WalletPositionLots.Update(lot);
+                }
+
+                if (remainingToSell > 0)
+                {
+                    // não deveria acontecer pois checamos saldo antes
+                    return OperationResult.Failure("Erro ao consumir lotes: saldo insuficiente nos lotes");
+                }
+            }
+
+            // atualiza a posição consolidada
             position.Amount -= dto.CriptoAmount;
             position.UpdatedAt = DateTime.UtcNow;
             _db.WalletPositions.Update(position);
@@ -351,7 +436,7 @@ public class WalletService : IWalletService
             await _db.SaveChangesAsync();
             await tx.CommitAsync();
 
-            return OperationResult.Ok(new { DebitTransaction = tDebit.IdTransaction, CreditTransaction = tCredit.IdTransaction });
+            return OperationResult.Ok(new { DebitTransaction = tDebit.IdTransaction, CreditTransaction = tCredit.IdTransaction, RealizedPnL = realizedPnL });
         }
         catch (Exception ex)
         {

@@ -13,4 +13,6 @@ public class BuyRequest
     [Required]
     public decimal FiatAmount { get; set; }
     public decimal Fee { get; set; }
+    // Se verdadeiro, cria um novo lote para essa compra; caso contrário, apenas atualiza a posição consolidada
+    public bool CreateNewLot { get; set; } = true;
 }

@@ -13,4 +13,6 @@ public class SellRequest
     [Required]
     public decimal CriptoAmount { get; set; }
     public decimal Fee { get; set; }
+    public Guid? IdWalletPositionLot { get; set; }
+    public decimal? LotAmount { get; set; }
 }

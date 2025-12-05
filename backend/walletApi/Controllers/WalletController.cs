@@ -402,7 +402,35 @@ public class WalletController : ControllerBase
 
         var currency = await _currencyClient.GetBySymbolAsync(assetSymbol);
         if (currency == null) return NotFound(new { message = "Currency not found" });
+        // Primeiro tenta obter lotes persistidos (WalletPositionLots). Se existirem, usa-os.
+        var walletIds = await _db.Wallets.Where(w => w.IdAccount == account.IdAccount).Select(w => w.IdWallet).ToListAsync();
 
+        var persistedLots = await _db.WalletPositionLots
+            .Where(l => walletIds.Contains(l.IdWallet) && l.IdCurrency == currency.Id)
+            .OrderBy(l => l.CreatedAt)
+            .ToListAsync();
+
+        if (persistedLots != null && persistedLots.Count > 0)
+        {
+            var lotsOutput = persistedLots.Select(l => new
+            {
+                lotTransactionId = l.IdWalletPositionLot,
+                acquiredAt = l.CreatedAt,
+                amountBought = l.OriginalAmount,
+                amountRemaining = l.RemainingAmount,
+                unitPriceUsd = l.AvgPrice,
+                totalCostUsd = Math.Round(l.OriginalAmount * l.AvgPrice, 8),
+                // ganho não realizado baseado no preço atual do catálogo
+                unrealizedGainUsd = Math.Round(((currency.CurrentPrice - l.AvgPrice) * l.RemainingAmount), 8),
+                // realized gain não é calculado por lote aqui (padrão 0, pode ser melhorado)
+                realizedGainUsd = 0m
+            }).ToList();
+
+            var response = new { symbol = currency.Symbol, asset = currency.Name, assetSymbol = currency.Symbol, lots = lotsOutput, totalAmount = lotsOutput.Sum(x => (decimal)x.amountRemaining), totalUnrealizedGainUsd = lotsOutput.Sum(x => (decimal)x.unrealizedGainUsd), totalRealizedGainUsd = lotsOutput.Sum(x => (decimal)x.realizedGainUsd) };
+            return Ok(response);
+        }
+
+        // Fallback: calcula lotes a partir do histórico de transações (compatibilidade com implementações antigas)
         var txs = await _db.Transactions
             .Where(t => t.IdAccount == account.IdAccount)
             .OrderBy(t => t.CreatedAt)
@@ -432,11 +460,12 @@ public class WalletController : ControllerBase
 
             if (available > 0)
             {
-                lots.Add(new { TxId = b.IdTransaction, Amount = available, UnitPrice = b.ExchangeRate });
+                lots.Add(new { lotTransactionId = b.IdTransaction, acquiredAt = (DateTime?)null, amountBought = available, amountRemaining = available, unitPriceUsd = b.ExchangeRate, totalCostUsd = Math.Round(available * b.ExchangeRate, 8), unrealizedGainUsd = Math.Round(((currency.CurrentPrice - b.ExchangeRate) * available), 8), realizedGainUsd = 0m });
             }
         }
 
-        return Ok(new { symbol = currency.Symbol, lots });
+        var fallback = new { symbol = currency.Symbol, asset = currency.Name, assetSymbol = currency.Symbol, lots, totalAmount = lots.Sum(x => (decimal)((dynamic)x).amountRemaining), totalUnrealizedGainUsd = lots.Sum(x => (decimal)((dynamic)x).unrealizedGainUsd), totalRealizedGainUsd = 0m };
+        return Ok(fallback);
     }
 
     // POST api/transactions (generic)
