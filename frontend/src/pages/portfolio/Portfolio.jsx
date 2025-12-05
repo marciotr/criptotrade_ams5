@@ -4,7 +4,7 @@ import {
   Wallet, ArrowUp, ArrowDown, DollarSign, 
   Percent, TrendingUp, Settings, Copy, 
   Share2, Download, Eye, Award, Activity,
-  TrendingDown, Smile, Trophy
+  TrendingDown, Smile, Trophy, ChevronDown, ChevronUp
 } from 'lucide-react';
 import { 
   PieChart, Pie, Cell, ResponsiveContainer, 
@@ -113,6 +113,49 @@ export function Portfolio() {
     return `US$ ${n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
+  const toggleAssetLotsInline = async (asset) => {
+    const sym = (asset.symbol ?? asset.Symbol ?? '').toUpperCase();
+    const currentlyExpanded = !!expandedAssets[sym];
+    if (currentlyExpanded) {
+      setExpandedAssets(prev => ({ ...prev, [sym]: false }));
+      return;
+    }
+
+    if (!lotsByAsset[sym]) {
+      try {
+        const res = await walletApi.getAssetLots(asset.symbol);
+        const normalized = normalizeLotsData(res?.data ?? null, asset) ?? { lots: [] };
+        setLotsByAsset(prev => ({ ...prev, [sym]: normalized }));
+      } catch (err) {
+        console.error('Failed to load inline lots', err);
+        setLotsByAsset(prev => ({ ...prev, [sym]: { lots: [] } }));
+      }
+    }
+
+    setExpandedAssets(prev => ({ ...prev, [sym]: true }));
+  };
+
+    const fetchAllLotsForPortfolio = async () => {
+      setLotsFetchingAll(true);
+      const map = {};
+      try {
+        await Promise.all(portfolioData.map(async (asset) => {
+          const sym = (asset.symbol ?? '').toUpperCase();
+          try {
+            const res = await walletApi.getAssetLots(asset.symbol);
+            const normalized = normalizeLotsData(res?.data ?? null, asset) ?? { lots: [] };
+            map[sym] = normalized;
+          } catch (err) {
+            console.error('Failed to load lots for', sym, err);
+            map[sym] = { lots: [] };
+          }
+        }));
+        setLotsByAsset(map);
+      } finally {
+        setLotsFetchingAll(false);
+      }
+    };
+
   const formatAmount8 = (v) => {
     const n = Number(v ?? 0) || 0;
     return n.toLocaleString('pt-BR', { minimumFractionDigits: 8, maximumFractionDigits: 8 });
@@ -179,18 +222,35 @@ export function Portfolio() {
     navigate('/deposit'); // Função para navegar para a página de depósito
   };
 
-  // Open sell modal for asset
   const [sellModalOpen, setSellModalOpen] = useState(false);
   const [sellLoading, setSellLoading] = useState(false);
   const [sellError, setSellError] = useState('');
   const [sellAsset, setSellAsset] = useState(null);
   const [sellAmount, setSellAmount] = useState('');
+  const [sellLots, setSellLots] = useState(null);
 
   const openSellModal = (asset) => {
     setSellAsset(asset);
     setSellAmount('');
     setSellError('');
+    setSellLots(null);
     setSellModalOpen(true);
+
+    (async () => {
+      try {
+        const sym = (asset?.symbol || asset?.asset || '') + '';
+        if (lotsByAsset[sym] && lotsByAsset[sym].lots) {
+          setSellLots(lotsByAsset[sym]);
+          return;
+        }
+        const res = await walletApi.getAssetLots(sym);
+        const d = res?.data ?? null;
+        if (!d) return;
+        const normalized = normalizeLotsData(d, asset);
+        setSellLots(normalized);
+      } catch (err) {
+      }
+    })();
   };
 
   const closeSellModal = () => {
@@ -201,7 +261,7 @@ export function Portfolio() {
     setSellLoading(false);
   };
 
-  const handleConfirmSell = async (amountToSell) => {
+  const handleConfirmSell = async (amountToSell, lotId = null) => {
     if (!sellAsset) return;
     const qty = Number(amountToSell);
     if (isNaN(qty) || qty <= 0) {
@@ -219,13 +279,35 @@ export function Portfolio() {
       const payload = {
         IdCurrency: sellAsset.id || sellAsset.Id || sellAsset.currencyId,
         CriptoAmount: qty,
-        Fee: 0
+        Fee: 0,
+        ...(lotId ? { IdWalletPositionLot: lotId, LotAmount: qty } : {})
       };
 
       const res = await transactionApi.sell(payload);
       if (res && (res.status === 200 || res.status === 204)) {
         showNotification('Venda realizada com sucesso', 'success');
-        // trigger global refresh used by portfolio
+        
+        // Recarregar os lotes do ativo vendido
+        const sym = (sellAsset?.symbol || sellAsset?.asset || '').toUpperCase();
+        try {
+          const lotsRes = await walletApi.getAssetLots(sellAsset.symbol);
+          const normalized = normalizeLotsData(lotsRes?.data ?? null, sellAsset);
+          
+          // Atualizar cache de lotes para a tabela expandida
+          if (normalized) {
+            setLotsByAsset(prev => ({
+              ...prev,
+              [sym]: normalized
+            }));
+          }
+          
+          // Atualizar lotes do modal de venda
+          setSellLots(normalized);
+        } catch (err) {
+          console.error('Falha ao recarregar lotes após venda', err);
+        }
+        
+        // trigger global atualização de carteira
         window.dispatchEvent(new Event('wallet-updated'));
         closeSellModal();
       } else {
@@ -247,13 +329,150 @@ export function Portfolio() {
   const [lotsError, setLotsError] = useState('');
   const [currentLots, setCurrentLots] = useState(null);
 
+  const [lotsByAsset, setLotsByAsset] = useState({});
+  const [expandedAssets, setExpandedAssets] = useState({});
+  const [showByLots, setShowByLots] = useState(false);
+  const [lotsFetchingAll, setLotsFetchingAll] = useState(false);
+
+  const normalizeLotsData = (d, asset) => {
+    if (!d) return null;
+    const rawLots = Array.isArray(d.lots) ? d.lots : (Array.isArray(d.Lots) ? d.Lots : []);
+
+    const parseDateToMs = (v) => {
+      if (v === null || v === undefined || v === '') return null;
+      if (typeof v === 'number') return v < 1e12 ? v * 1000 : v;
+      const s = (v + '').trim();
+      const m = s.match(/\/(?:Date)?\((\d+)(?:[+-]\d+)?\)\//i);
+      if (m) {
+        const n = Number(m[1]);
+        return n < 1e12 ? n * 1000 : n;
+      }
+      if (/^\d+$/.test(s)) {
+        const n = Number(s);
+        return n < 1e12 ? n * 1000 : n;
+      }
+      const parsed = Date.parse(s);
+      return Number.isNaN(parsed) ? null : parsed;
+    };
+
+    const lots = rawLots.map((l) => {
+      const amountBought = Number(l.amountBought ?? l.amount ?? l.originalAmount ?? l.Amount ?? 0) || 0;
+      const amountRemaining = Number(l.amountRemaining ?? l.remainingAmount ?? l.remaining ?? l.RemainingAmount ?? amountBought) || 0;
+      const unitPriceUsd = Number(l.unitPriceUsd ?? l.unit_price_usd ?? l.avgPrice ?? l.avgPriceUsd ?? l.unitPrice ?? 0) || 0;
+      const totalCostUsd = Number(l.totalCostUsd ?? l.totalCost ?? unitPriceUsd * amountBought) || 0;
+      const unrealizedGainUsd = Number(l.unrealizedGainUsd ?? l.unrealizedGain ?? l.unrealized ?? 0) || 0;
+      const realizedGainUsd = Number(l.realizedGainUsd ?? l.realizedGain ?? l.realized ?? 0) || 0;
+      const rawDate = l.acquiredAt ?? l.createdAt ?? l.CreatedAt ?? l.date ?? l.AcquiredAt ?? null;
+      const acquiredAtMs = parseDateToMs(rawDate);
+
+      return {
+        lotTransactionId: l.lotTransactionId ?? l.lotId ?? l.id ?? l.idWalletPositionLot ?? null,
+        acquiredAt: acquiredAtMs,
+        amountBought,
+        amountRemaining,
+        unitPriceUsd,
+        totalCostUsd,
+        unrealizedGainUsd,
+        realizedGainUsd
+      };
+    });
+
+    const totalAmount = Number(d.totalAmount ?? d.total ?? d.total_amount ?? lots.reduce((s, L) => s + (L.amountRemaining || 0), 0)) || 0;
+    const currentValueUsd = Number(d.currentValueUsd ?? d.currentValue ?? d.current_value_usd ?? 0) || 0;
+    const totalUnrealizedGainUsd = Number(d.totalUnrealizedGainUsd ?? d.totalUnrealized ?? d.total_unrealized_gain_usd ?? lots.reduce((s, L) => s + (L.unrealizedGainUsd || 0), 0)) || 0;
+    const totalRealizedGainUsd = Number(d.totalRealizedGainUsd ?? d.totalRealized ?? d.total_realized_gain_usd ?? lots.reduce((s, L) => s + (L.realizedGainUsd || 0), 0)) || 0;
+
+    return {
+      asset: d.asset ?? d.assetName ?? asset.name ?? asset.asset ?? asset.symbol ?? '',
+      assetSymbol: (d.assetSymbol ?? d.asset_symbol ?? d.symbol ?? asset.symbol ?? '').toUpperCase(),
+      lots,
+      totalAmount,
+      total: totalAmount,
+      currentValueUsd,
+      currentValue: currentValueUsd,
+      totalUnrealizedGainUsd,
+      totalRealizedGainUsd
+    };
+  };
+
   const openLotsModal = async (asset) => {
     setLotsModalOpen(true);
     setLotsLoading(true);
     setLotsError('');
     try {
       const res = await walletApi.getAssetLots(asset.symbol);
-      setCurrentLots(res?.data ?? null);
+      const d = res?.data ?? null;
+
+      if (!d) {
+        setCurrentLots(null);
+      } else {
+        // Normaliza a resposta dos lotes
+        const rawLots = Array.isArray(d.lots) ? d.lots : (Array.isArray(d.Lots) ? d.Lots : []);
+        // Helper pra parsear datas variadas
+        const parseDateToMs = (v) => {
+          if (v === null || v === undefined || v === '') return null;
+          // Se já é um número
+          if (typeof v === 'number') {
+            return v < 1e12 ? v * 1000 : v; // converte segundos -> ms
+          }
+          // string
+          const s = (v + '').trim();
+          // formato /Date(1234567890)/
+          const m = s.match(/\/(?:Date)?\((\d+)(?:[+-]\d+)?\)\//i);
+          if (m) {
+            const n = Number(m[1]);
+            return n < 1e12 ? n * 1000 : n;
+          }
+          // string numérica
+          if (/^\d+$/.test(s)) {
+            const n = Number(s);
+            return n < 1e12 ? n * 1000 : n;
+          }
+          // string ISO ou outro formato de data parseável
+          const parsed = Date.parse(s);
+          return Number.isNaN(parsed) ? null : parsed;
+        };
+
+        const lots = rawLots.map((l) => {
+          const amountBought = Number(l.amountBought ?? l.amount ?? l.originalAmount ?? l.Amount ?? 0) || 0;
+          const amountRemaining = Number(l.amountRemaining ?? l.remainingAmount ?? l.remaining ?? l.RemainingAmount ?? amountBought) || 0;
+          const unitPriceUsd = Number(l.unitPriceUsd ?? l.unit_price_usd ?? l.avgPrice ?? l.avgPriceUsd ?? l.unitPrice ?? 0) || 0;
+          const totalCostUsd = Number(l.totalCostUsd ?? l.totalCost ?? unitPriceUsd * amountBought) || 0;
+          const unrealizedGainUsd = Number(l.unrealizedGainUsd ?? l.unrealizedGain ?? l.unrealized ?? 0) || 0;
+          const realizedGainUsd = Number(l.realizedGainUsd ?? l.realizedGain ?? l.realized ?? 0) || 0;
+
+          const rawDate = l.acquiredAt ?? l.createdAt ?? l.CreatedAt ?? l.date ?? l.AcquiredAt ?? null;
+          const acquiredAtMs = parseDateToMs(rawDate);
+
+          return {
+            lotTransactionId: l.lotTransactionId ?? l.lotId ?? l.id ?? l.idWalletPositionLot ?? null,
+            acquiredAt: acquiredAtMs,
+            amountBought,
+            amountRemaining,
+            unitPriceUsd,
+            totalCostUsd,
+            unrealizedGainUsd,
+            realizedGainUsd
+          };
+        });
+
+        const totalAmount = Number(d.totalAmount ?? d.total ?? d.total_amount ?? lots.reduce((s, L) => s + (L.amountRemaining || 0), 0)) || 0;
+        const currentValueUsd = Number(d.currentValueUsd ?? d.currentValue ?? d.current_value_usd ?? d.currentValueUsd ?? 0) || 0;
+        const totalUnrealizedGainUsd = Number(d.totalUnrealizedGainUsd ?? d.totalUnrealized ?? d.total_unrealized_gain_usd ?? lots.reduce((s, L) => s + (L.unrealizedGainUsd || 0), 0)) || 0;
+        const totalRealizedGainUsd = Number(d.totalRealizedGainUsd ?? d.totalRealized ?? d.total_realized_gain_usd ?? lots.reduce((s, L) => s + (L.realizedGainUsd || 0), 0)) || 0;
+
+        setCurrentLots({
+          asset: d.asset ?? d.assetName ?? asset.name ?? asset.asset ?? asset.symbol ?? '',
+          assetSymbol: (d.assetSymbol ?? d.asset_symbol ?? d.symbol ?? asset.symbol ?? '').toUpperCase(),
+          lots,
+          totalAmount,
+          total: totalAmount,
+          currentValueUsd,
+          currentValue: currentValueUsd,
+          totalUnrealizedGainUsd,
+          totalRealizedGainUsd
+        });
+      }
     } catch (err) {
       console.error('Failed to load lots', err);
       setLotsError('Falha ao carregar detalhes.');
@@ -527,8 +746,8 @@ export function Portfolio() {
           icon={TrendingUp}
           title="Melhor Performance"
           value={portfolioStats.bestPerformer.asset}
-          change={`+${portfolioStats.bestPerformer.change}%`}
-          changeType="positive"
+          change={`${portfolioStats.bestPerformer.change >= 0 ? '+' : ''}${portfolioStats.bestPerformer.change}%`}
+          changeType={portfolioStats.bestPerformer.change >= 0 ? 'positive' : 'negative'}
           iconColor="bg-purple-500"
           delay={2}
         />
@@ -799,7 +1018,21 @@ export function Portfolio() {
             exit={{ opacity: 0 }}
             className="bg-background-primary p-6 rounded-xl shadow-md border border-border-primary"
           >
-            <h3 className="text-xl font-bold mb-6 text-text-primary">Detalhamento de Ativos</h3>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl font-bold text-text-primary">Detalhamento de Ativos</h3>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={async () => {
+                    const next = !showByLots;
+                    setShowByLots(next);
+                    if (next) await fetchAllLotsForPortfolio();
+                  }}
+                  className={`px-3 py-2 rounded-md text-sm ${showByLots ? 'bg-brand-primary text-white' : 'bg-background-secondary text-text-secondary'}`}
+                >
+                  {lotsFetchingAll ? 'Carregando...' : (showByLots ? 'Exibir por Lotes' : 'Exibir por Ativo')}
+                </button>
+              </div>
+            </div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -818,82 +1051,241 @@ export function Portfolio() {
                   </tr>
                 </thead>
                 <tbody>
-                  {portfolioData.map((asset, index) => {
-                    const isBaseCurrency = ((asset.symbol || '') + '').toUpperCase() === 'USD';
-                    return (
-                    <tr 
-                      key={asset.asset} 
-                      className="border-t border-border-primary hover:bg-background-secondary transition-colors cursor-pointer"
-                    >
-                      <td className="py-4">
-                        <div className="flex items-center space-x-3">
-                          <CryptoIcon symbol={asset.symbol} size={24} />
-                          <div>
-                            <span className="font-semibold text-text-primary">{asset.asset}</span>
-                            <p className="text-xs text-text-tertiary">{asset.symbol}</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="py-4 text-text-primary">{Number(asset.amount ?? 0).toFixed(4)} {asset.symbol}</td>
-                      <td className="py-4 text-text-primary">{formatCurrency(asset.price)}</td>
-                      <td className="py-4 text-text-primary">{formatCurrency(asset.purchasePrice)}</td>
-                      <td className={`py-4 ${asset.gainPercent > 0 ? 'text-feedback-success' : asset.gainPercent < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
-                        {formatPercent(asset.gainPercent)}
-                      </td>
-                      <td className="py-4 text-text-primary font-medium">{formatCurrency(asset.value)}</td>
-                      <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : asset.change < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
-                        <div className="flex items-center">
-                          {asset.change > 0 && <ArrowUp size={16} className="mr-1" />}
-                          {asset.change < 0 && <ArrowDown size={16} className="mr-1" />}
-                          {asset.change === 0 && <TrendingUp size={16} className="mr-1 opacity-50" />}
-                          {asset.change > 0 ? '+' + formatPercent(asset.change) : formatPercent(asset.change)}
-                        </div>
-                      </td>
-                      <td className="py-4">
-                        <div className="w-full bg-background-secondary rounded-full h-2">
-                          <div 
-                            className="h-2 rounded-full" 
-                            style={{ 
-                              width: `${asset.allocation}%`,
-                              backgroundColor: PORTFOLIO_COLORS[index % PORTFOLIO_COLORS.length]
-                            }}
-                          ></div>
-                        </div>
-                        <span className="text-xs text-text-tertiary">{asset.allocation}%</span>
-                      </td>
-                      <td className="py-4 align-middle text-right whitespace-nowrap">
-                        <div className="inline-flex items-center justify-end space-x-2">
-                          <button
-                            className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors"
-                            title="Insights"
-                            aria-label={`Insights ${asset.asset}`}
-                          >
-                            <TrendingUp size={16} />
-                          </button>
+                  {showByLots ? (
+                    // Renderiza linhas agrupadas por lotes
+                    portfolioData.map((asset, index) => {
+                      const sym = (asset.symbol || '').toUpperCase();
+                      const lotsGroup = lotsByAsset[sym];
+                      if (lotsGroup && Array.isArray(lotsGroup.lots) && lotsGroup.lots.length > 0) {
+                        return lotsGroup.lots.map((lot) => {
+                          const lotValue = (lot.amountRemaining || 0) * (asset.price || 0);
+                          const gainPercent = lot.unitPriceUsd > 0 ? ((asset.price - lot.unitPriceUsd) / lot.unitPriceUsd) * 100 : 0;
+                          const isBaseCurrency = sym === 'USD';
+                          return (
+                            <tr key={`${sym}-${lot.lotTransactionId}`} className="border-t border-border-primary hover:bg-background-secondary transition-colors">
+                              <td className="py-4">
+                                <div className="flex items-center space-x-3">
+                                  <CryptoIcon symbol={asset.symbol} size={24} />
+                                  <div>
+                                    <span className="font-semibold text-text-primary">{asset.asset} — Lote</span>
+                                    <p className="text-xs text-text-tertiary">{asset.symbol}</p>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="py-4 text-text-primary">{formatAmount8(lot.amountRemaining)} {asset.symbol}</td>
+                              <td className="py-4 text-text-primary">{formatCurrency(asset.price)}</td>
+                              <td className="py-4 text-text-primary">{formatCurrency(lot.unitPriceUsd)}</td>
+                              <td className={`py-4 ${gainPercent > 0 ? 'text-feedback-success' : gainPercent < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                                {formatPercent(gainPercent)}
+                              </td>
+                              <td className="py-4 text-text-primary font-medium">{formatCurrency(lotValue)}</td>
+                              <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : asset.change < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                                <div className="flex items-center">
+                                  {asset.change > 0 && <ArrowUp size={16} className="mr-1" />}
+                                  {asset.change < 0 && <ArrowDown size={16} className="mr-1" />}
+                                  {asset.change === 0 && <TrendingUp size={16} className="mr-1 opacity-50" />}
+                                  {asset.change > 0 ? '+' + formatPercent(asset.change) : formatPercent(asset.change)}
+                                </div>
+                              </td>
+                              <td className="py-4">
+                                <div className="w-full bg-background-secondary rounded-full h-2">
+                                  <div className="h-2 rounded-full" style={{ width: `${((lotValue / (portfolioStats.totalValue || 1)) * 100).toFixed(2)}%`, backgroundColor: PORTFOLIO_COLORS[index % PORTFOLIO_COLORS.length] }}></div>
+                                </div>
+                                <span className="text-xs text-text-tertiary">{((lotValue / (portfolioStats.totalValue || 1)) * 100).toFixed(2)}%</span>
+                              </td>
+                              <td className="py-4 align-middle text-right whitespace-nowrap">
+                                <div className="inline-flex items-center justify-end space-x-2">
+                                  <button className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors" title="Insights"><TrendingUp size={16} /></button>
+                                  <button onClick={() => { if (!isBaseCurrency) openSellModal(asset); }} disabled={isBaseCurrency} className={`w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary text-text-secondary transition-colors ${isBaseCurrency ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-500/10 hover:text-red-500'}`} title={isBaseCurrency ? 'Venda não permitida para USD' : 'Vender'}><DollarSign size={16} /></button>
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        });
+                      }
 
-                          <button
-                            onClick={() => { if (!isBaseCurrency) openSellModal(asset); }}
-                            disabled={isBaseCurrency}
-                            className={`w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary text-text-secondary transition-colors ${isBaseCurrency ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-500/10 hover:text-red-500'}`}
-                            title={isBaseCurrency ? 'Venda não permitida para USD' : 'Vender'}
-                            aria-label={isBaseCurrency ? `Venda não permitida para ${asset.asset}` : `Vender ${asset.asset}`}
+                      // sem lotes -> fallback para linha de ativo
+                      return (
+                        <tr key={asset.asset} className="border-t border-border-primary hover:bg-background-secondary transition-colors cursor-pointer">
+                          <td className="py-4">
+                            <div className="flex items-center space-x-3">
+                              <CryptoIcon symbol={asset.symbol} size={24} />
+                              <div>
+                                <span className="font-semibold text-text-primary">{asset.asset}</span>
+                                <p className="text-xs text-text-tertiary">{asset.symbol}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-4 text-text-primary">{Number(asset.amount ?? 0).toFixed(4)} {asset.symbol}</td>
+                          <td className="py-4 text-text-primary">{formatCurrency(asset.price)}</td>
+                          <td className="py-4 text-text-primary">{formatCurrency(asset.purchasePrice)}</td>
+                          <td className={`py-4 ${asset.gainPercent > 0 ? 'text-feedback-success' : asset.gainPercent < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>{formatPercent(asset.gainPercent)}</td>
+                          <td className="py-4 text-text-primary font-medium">{formatCurrency(asset.value)}</td>
+                          <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : asset.change < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                            <div className="flex items-center">
+                              {asset.change > 0 && <ArrowUp size={16} className="mr-1" />}
+                              {asset.change < 0 && <ArrowDown size={16} className="mr-1" />}
+                              {asset.change === 0 && <TrendingUp size={16} className="mr-1 opacity-50" />}
+                              {asset.change > 0 ? '+' + formatPercent(asset.change) : formatPercent(asset.change)}
+                            </div>
+                          </td>
+                          <td className="py-4">
+                            <div className="w-full bg-background-secondary rounded-full h-2"><div className="h-2 rounded-full" style={{ width: `${asset.allocation}%`, backgroundColor: PORTFOLIO_COLORS[index % PORTFOLIO_COLORS.length] }}></div></div>
+                            <span className="text-xs text-text-tertiary">{asset.allocation}%</span>
+                          </td>
+                          <td className="py-4 align-middle text-right whitespace-nowrap">
+                            <div className="inline-flex items-center justify-end space-x-2">
+                              <button className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors" title="Insights"><TrendingUp size={16} /></button>
+                              <button onClick={() => openSellModal(asset)} className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary text-text-secondary transition-colors hover:bg-red-500/10 hover:text-red-500" title="Vender"><DollarSign size={16} /></button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    // visualização padrão do ativo (com expansão inline)
+                    portfolioData.map((asset, index) => {
+                      const isBaseCurrency = ((asset.symbol || '') + '').toUpperCase() === 'USD';
+                      const sym = (asset.symbol || '').toUpperCase();
+                      return (
+                        <React.Fragment key={asset.asset}>
+                          <tr 
+                            className="border-t border-border-primary hover:bg-background-secondary transition-colors cursor-pointer"
                           >
-                            <DollarSign size={16} />
-                          </button>
+                            <td className="py-4">
+                              <div className="flex items-center space-x-3">
+                                <CryptoIcon symbol={asset.symbol} size={24} />
+                                <div>
+                                  <span className="font-semibold text-text-primary">{asset.asset}</span>
+                                  <p className="text-xs text-text-tertiary">{asset.symbol}</p>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="py-4 text-text-primary">{Number(asset.amount ?? 0).toFixed(4)} {asset.symbol}</td>
+                            <td className="py-4 text-text-primary">{formatCurrency(asset.price)}</td>
+                            <td className="py-4 text-text-primary">{formatCurrency(asset.purchasePrice)}</td>
+                            <td className={`py-4 ${asset.gainPercent > 0 ? 'text-feedback-success' : asset.gainPercent < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                              {formatPercent(asset.gainPercent)}
+                            </td>
+                            <td className="py-4 text-text-primary font-medium">{formatCurrency(asset.value)}</td>
+                            <td className={`py-4 ${asset.change > 0 ? 'text-feedback-success' : asset.change < 0 ? 'text-feedback-error' : 'text-text-secondary'}`}>
+                              <div className="flex items-center">
+                                {asset.change > 0 && <ArrowUp size={16} className="mr-1" />}
+                                {asset.change < 0 && <ArrowDown size={16} className="mr-1" />}
+                                {asset.change === 0 && <TrendingUp size={16} className="mr-1 opacity-50" />}
+                                {asset.change > 0 ? '+' + formatPercent(asset.change) : formatPercent(asset.change)}
+                              </div>
+                            </td>
+                            <td className="py-4">
+                              <div className="w-full bg-background-secondary rounded-full h-2">
+                                <div 
+                                  className="h-2 rounded-full" 
+                                  style={{ 
+                                    width: `${asset.allocation}%`,
+                                    backgroundColor: PORTFOLIO_COLORS[index % PORTFOLIO_COLORS.length]
+                                  }}
+                                ></div>
+                              </div>
+                              <span className="text-xs text-text-tertiary">{asset.allocation}%</span>
+                            </td>
+                            <td className="py-4 align-middle text-right whitespace-nowrap">
+                              <div className="inline-flex items-center justify-end space-x-2">
+                                <button
+                                  className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/20 text-text-secondary hover:text-brand-primary transition-colors"
+                                  title="Insights"
+                                  aria-label={`Insights ${asset.asset}`}
+                                >
+                                  <TrendingUp size={16} />
+                                </button>
 
-                          <button
-                            onClick={() => openLotsModal(asset)}
-                            className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors"
-                            title="Detalhes"
-                            aria-label={`Detalhes ${asset.asset}`}
-                          >
-                            <Eye size={16} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    );
-                  })}
+                                <button
+                                  onClick={() => { if (!isBaseCurrency) openSellModal(asset); }}
+                                  disabled={isBaseCurrency}
+                                  className={`w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary text-text-secondary transition-colors ${isBaseCurrency ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-500/10 hover:text-red-500'}`}
+                                  title={isBaseCurrency ? 'Venda não permitida para USD' : 'Vender'}
+                                  aria-label={isBaseCurrency ? `Venda não permitida para ${asset.asset}` : `Vender ${asset.asset}`}
+                                >
+                                  <DollarSign size={16} />
+                                </button>
+
+                                <button
+                                  onClick={() => toggleAssetLotsInline(asset)}
+                                  className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors"
+                                  title={expandedAssets[sym] ? 'Fechar lotes' : 'Mostrar lotes'}
+                                  aria-label={expandedAssets[sym] ? `Fechar lotes ${asset.asset}` : `Mostrar lotes ${asset.asset}`}
+                                >
+                                  {expandedAssets[sym] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                                </button>
+
+                                <button
+                                  onClick={() => openLotsModal(asset)}
+                                  className="w-9 h-9 flex items-center justify-center rounded-md bg-background-secondary hover:bg-brand-primary/10 text-text-secondary hover:text-brand-primary transition-colors"
+                                  title="Detalhes"
+                                  aria-label={`Detalhes ${asset.asset}`}
+                                >
+                                  <Eye size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+
+                          {expandedAssets[sym] && lotsByAsset[sym] && (
+                            <tr>
+                              <td colSpan={9} className="bg-background-secondary p-4">
+                                <div className="space-y-3">
+                                  {(lotsByAsset[sym].lots || []).length === 0 ? (
+                                    <div className="text-text-secondary">Nenhum lote disponível para este ativo.</div>
+                                  ) : (
+                                    <div className="grid grid-cols-1 gap-3">
+                                      {lotsByAsset[sym].lots.map((lot) => (
+                                        <div key={lot.lotTransactionId ?? Math.random()} className="p-3 bg-background-primary border border-border-primary rounded-md flex items-center justify-between">
+                                          <div>
+                                            <div className="text-sm text-text-tertiary">Compra</div>
+                                            <div className="text-xs text-text-secondary">{lot.acquiredAt ? new Date(lot.acquiredAt).toLocaleString() : '-'}</div>
+                                            <div className="mt-2 grid grid-cols-2 gap-4">
+                                              <div>
+                                                <div className="text-xs text-text-tertiary">Quantidade</div>
+                                                <div className="text-text-primary font-medium">{formatAmount8(lot.amountBought)}</div>
+                                              </div>
+                                              <div>
+                                                <div className="text-xs text-text-tertiary">Restante</div>
+                                                <div className="text-text-primary font-medium">{formatAmount8(lot.amountRemaining)}</div>
+                                              </div>
+                                              <div>
+                                                <div className="text-xs text-text-tertiary">Preço Unit. (USD)</div>
+                                                <div className="text-text-primary font-medium">{formatCurrency(lot.unitPriceUsd)}</div>
+                                              </div>
+                                              <div>
+                                                <div className="text-xs text-text-tertiary">Custo Total (USD)</div>
+                                                <div className="text-text-primary font-medium">{formatCurrency(lot.totalCostUsd)}</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="text-right">
+                                            <div className="text-xs text-text-tertiary">Ganho Não Realizado</div>
+                                            <div className={`font-medium ${lot.unrealizedGainUsd > 0 ? 'text-feedback-success' : lot.unrealizedGainUsd < 0 ? 'text-feedback-error' : 'text-text-primary'}`}>
+                                              {formatCurrency(lot.unrealizedGainUsd)}
+                                            </div>
+                                            <div className="text-xs text-text-tertiary mt-2">Ganho Realizado</div>
+                                            <div className={`font-medium ${lot.realizedGainUsd > 0 ? 'text-feedback-success' : lot.realizedGainUsd < 0 ? 'text-feedback-error' : 'text-text-primary'}`}>{formatCurrency(lot.realizedGainUsd)}</div>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+
+                                  <div className="text-right text-xs md:text-sm">
+                                    <div className="text-text-secondary">Total Não Realizado: <span className="text-text-primary font-medium">{formatCurrency(lotsByAsset[sym].totalUnrealizedGainUsd ?? 0)}</span></div>
+                                    <div className="text-text-secondary mt-1">Total Realizado: <span className="text-text-primary font-medium">{formatCurrency(lotsByAsset[sym].totalRealizedGainUsd ?? 0)}</span></div>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          )}
+                        </React.Fragment>
+                      );
+                    })
+                  )}
                   {portfolioData.length === 0 && (
                     <tr>
                       <td colSpan={7} className="py-6 text-center text-text-secondary">
@@ -929,6 +1321,7 @@ export function Portfolio() {
         loading={sellLoading}
         error={sellError}
         formatCurrency={formatCurrency}
+        lots={sellLots}
       />
 
       {/* Seção para adicionar novos ativos ou transações */}
