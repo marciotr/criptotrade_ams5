@@ -87,6 +87,11 @@ export const walletApi = {
   depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
 };
 
+// Chamadas ao Chatbot via gateway
+export const chatbotApi = {
+  sendMessage: (body) => api.post('/chatbot/message', body),
+};
+
 walletApi.getTransactions = () => api.get('/transactions');
 walletApi.getWallet = walletApi.getWallet; 
 

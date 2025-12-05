@@ -9,6 +9,7 @@ import {
   Droplets, Diamond, Star, Clock, Plus, Menu, X,
   ChevronDown, Users, Briefcase, Settings, Bell
 } from 'lucide-react';
+import ChatWidget from '../../components/ChatWidget';
 import logoBranca from '../../assets/img/logoBinanceRemoved.png';
 import logoPreta from '../../assets/img/logoBinanceRemoved.png';
 import { transactions, news, statsData } from '../../data/mockData';
@@ -507,6 +508,7 @@ export function Dashboard() {
   }, [processedCryptoData]);
 
   const visibleMarketData = cryptoData.slice(0, visibleCount);
+  const [showChat, setShowChat] = useState(false);
 
   const handleShowMore = useCallback(() => {
     navigate('/markets'); 
@@ -962,11 +964,12 @@ export function Dashboard() {
           transition={{ delay: 1, type: "spring" }}
         >
           <motion.button
+            onClick={() => setShowChat(true)}
             className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-lg"
             whileHover={{ scale: 1.1, rotate: 180 }}
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            aria-label="Menu de acesso rápido"
+            aria-label="Abrir chat"
           >
             <Plus size={22} />
           </motion.button>
@@ -1011,6 +1014,9 @@ export function Dashboard() {
             )}
           </AnimatePresence>
         </motion.div>
+        {showChat && (
+          <ChatWidget userId={user?.id} onClose={() => setShowChat(false)} />
+        )}
       </motion.div>
     </>
   );

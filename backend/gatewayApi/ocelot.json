@@ -230,6 +230,13 @@
       "DownstreamHostAndPorts": [{"Host": "localhost","Port": 5094}],
       "UpstreamPathTemplate": "/transactions/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "PATCH", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/chatbot/message",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [{"Host": "localhost", "Port": 6000}],
+      "UpstreamPathTemplate": "/chatbot/message",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ],
   "GlobalConfiguration": {
