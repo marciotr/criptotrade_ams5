@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUp, ArrowDown } from 'lucide-react';
+import { ArrowLeft, ArrowUp, ArrowDown, ArrowRight } from 'lucide-react';
 import { currencyApi, marketApi, transactionApi, walletApi } from '../../services/api/api';
 import { useNotification } from '../../context/NotificationContext';
 import CryptoIcon from '../../components/common/CryptoIcons';
@@ -341,7 +341,8 @@ const BuyCoin = () => {
         IdAccount: accountId ?? '',
         IdWallet: walletId ?? '',
         IdCurrency: currencyId,
-        FiatAmount: fiatToSpend
+        FiatAmount: fiatToSpend,
+        CreateNewLot: true
       };
 
       const response = await transactionApi.buy(payload);
@@ -474,11 +475,11 @@ const BuyCoin = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between mb-6 md:mb-8"
+          className="flex items-center justify-between mb-6 md:mb-8 p-4 md:p-5 rounded-2xl bg-gradient-to-r from-background-secondary/50 via-background-primary/30 to-background-secondary/50 border border-border-primary backdrop-blur-sm"
         >
           <button
             onClick={() => navigate(-1)}
-            className="inline-flex items-center text-text-secondary hover:text-text-primary text-sm md:text-base transition-colors"
+            className="inline-flex items-center px-4 py-2 rounded-xl bg-background-secondary/80 hover:bg-background-tertiary text-text-secondary hover:text-text-primary text-sm md:text-base transition-all border border-border-primary shadow-sm"
           >
             <ArrowLeft size={18} className="mr-2" />
             Voltar
@@ -486,19 +487,20 @@ const BuyCoin = () => {
 
           <div className="flex items-center space-x-3 md:space-x-4">
             <motion.div 
-              className="p-2.5 md:p-3 rounded-2xl bg-background-secondary/80 border border-border-primary shadow-sm backdrop-blur-sm"
-              whileHover={{ scale: 1.05, rotate: 2 }}
+              className="p-3 md:p-3.5"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 250, damping: 18 }}
             >
               <CryptoIcon symbol={symbol} size={32} />
             </motion.div>
             <div className="text-right">
-              <p className="text-[11px] md:text-xs uppercase tracking-[0.16em] text-text-tertiary">Tela de compra</p>
-              <div className="flex items-center justify-end space-x-1 md:space-x-2">
-                <h1 className="text-lg md:text-2xl font-bold text-text-primary">
+              <p className="text-[11px] md:text-xs uppercase tracking-[0.16em] text-text-tertiary mb-1">Tela de compra</p>
+              <div className="flex items-center justify-end space-x-2">
+                <h1 className="text-xl md:text-3xl font-bold text-text-primary">
                   {baseSymbol}
                 </h1>
-                <span className="px-2 py-0.5 rounded-full bg-background-secondary/80 text-[11px] md:text-xs text-text-tertiary border border-border-primary">
+                <span className="px-2.5 py-1 rounded-full bg-brand-primary text-white shadow-lg shadow-brand-primary/30 text-[11px] md:text-xs font-medium">
                   {symbol}
                 </span>
               </div>
@@ -644,19 +646,29 @@ const BuyCoin = () => {
                   <label className="block text-[11px] md:text-xs text-text-secondary">
                     {buyMode === 'qty' ? 'Quantidade' : `Valor (${fiatCurrencySymbol})`}
                   </label>
-                  <div className="inline-flex bg-background-secondary/80 rounded-xl p-0.5">
-                    <button
+                  <div className="inline-flex bg-background-secondary/80 rounded-xl p-1 border border-border-primary shadow-sm">
+                    <motion.button
                       onClick={() => setBuyMode('qty')}
-                      className={`px-3 py-1 rounded-xl text-[11px] md:text-xs font-medium ${buyMode === 'qty' ? 'bg-brand-primary text-white' : 'text-text-secondary hover:bg-background-secondary'}`}
+                      whileTap={{ scale: 0.95 }}
+                      className={`px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-medium transition-all ${
+                        buyMode === 'qty' 
+                          ? 'bg-brand-primary text-white shadow-md' 
+                          : 'text-text-secondary hover:bg-background-tertiary'
+                      }`}
                     >
                       Quantidade
-                    </button>
-                    <button
+                    </motion.button>
+                    <motion.button
                       onClick={() => setBuyMode('usd')}
-                      className={`px-3 py-1 rounded-xl text-[11px] md:text-xs font-medium ${buyMode === 'usd' ? 'bg-brand-primary text-white' : 'text-text-secondary hover:bg-background-secondary'}`}
+                      whileTap={{ scale: 0.95 }}
+                      className={`px-3 py-1.5 rounded-lg text-[11px] md:text-xs font-medium transition-all ${
+                        buyMode === 'usd' 
+                          ? 'bg-brand-primary text-white shadow-md' 
+                          : 'text-text-secondary hover:bg-background-tertiary'
+                      }`}
                     >
                       {fiatCurrencySymbol}
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
 
@@ -667,7 +679,7 @@ const BuyCoin = () => {
                     step={buyMode === 'qty' ? '0.00000001' : '0.01'}
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-border-primary bg-background-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/80 text-sm"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-border-primary bg-background-primary/50 backdrop-blur-sm text-text-tertiary focus:outline-none focus:border-gray-500 focus:ring-4 focus:ring-gray-500/20 text-sm md:text-base font-medium transition-all"
                     placeholder={buyMode === 'qty' ? '0.00000000' : '0.00'}
                   />
                 </div>
@@ -696,7 +708,7 @@ const BuyCoin = () => {
               </div>
 
               {/* Resumo da ordem */}
-              <div className="mb-4 rounded-2xl bg-background-secondary/70 border border-border-primary/80 p-3.5 space-y-2 text-[11px] md:text-xs text-text-secondary">
+              <div className="mb-4 rounded-2xl bg-gradient-to-br from-background-secondary/70 to-background-tertiary/50 border border-border-primary/80 p-4 space-y-3 text-[11px] md:text-xs text-text-secondary shadow-lg">
                 <div className="flex items-center justify-between">
                   <span>Preço atual</span>
                   <span className="text-text-primary font-medium">
@@ -745,6 +757,16 @@ const BuyCoin = () => {
                 )}
               </div>
 
+              {/* Info sobre lotes */}
+              <div className="mb-4 p-3 rounded-xl bg-gradient-to-r from-gray-700/20 to-gray-800/20 border border-gray-600/50">
+                <p className="text-[11px] md:text-xs text-gray-300 font-medium flex items-center">
+                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Cada compra cria um novo lote para controle preciso do seu histórico e ganhos.
+                </p>
+              </div>
+
               {/* Mensagens */}
               <AnimatePresence>
                 {error && (
@@ -771,8 +793,8 @@ const BuyCoin = () => {
             </div>
 
             <motion.button
-              whileHover={isAvailable && !loadingBuy && !isChecking ? { scale: 1.02, y: -1 } : {}}
-              whileTap={isAvailable && !loadingBuy && !isChecking ? { scale: 0.97, y: 0 } : {}}
+              whileHover={isAvailable && !loadingBuy && !isChecking ? { scale: 1.02, y: -2 } : {}}
+              whileTap={isAvailable && !loadingBuy && !isChecking ? { scale: 0.98 } : {}}
               onClick={handleBuy}
               disabled={!isAvailable || loadingBuy || isChecking || (availableFiat !== null && (() => {
                 const raw = String(amount).replace(',', '.');
@@ -780,19 +802,35 @@ const BuyCoin = () => {
                 const estimatedFiat = (buyMode === 'qty' && price) ? (Number.isNaN(parsed) ? 0 : parsed * price) : (Number.isNaN(parsed) ? 0 : parsed);
                 return estimatedFiat > availableFiat;
               })())}
-              className={`w-full py-3 mt-2 rounded-xl font-semibold text-sm md:text-base transition-all duration-150 shadow-lg shadow-brand-primary/20 ${
+              className={`w-full py-3.5 mt-2 rounded-xl font-bold text-sm md:text-base transition-all duration-200 flex items-center justify-center space-x-2 ${
                 !isAvailable || isChecking
-                  ? 'bg-gray-600/80 cursor-not-allowed text-white/80'
-                  : 'bg-brand-primary hover:bg-brand-primary/90 text-white'
+                  ? 'bg-gray-600/80 cursor-not-allowed text-white/80 shadow-lg'
+                  : 'bg-brand-primary hover:bg-brand-primary/90 text-white shadow-xl shadow-brand-primary/20'
               }`}
             >
-              {isChecking
-                ? 'Verificando moeda...'
-                : !isAvailable
-                  ? 'Moeda não disponível no nosso banco'
-                  : loadingBuy
-                    ? 'Processando compra...'
-                    : `Comprar ${baseSymbol}`}
+              {loadingBuy ? (
+                <>
+                  <motion.div
+                    className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  />
+                  <span>Processando compra...</span>
+                </>
+              ) : (
+                <>
+                  <span>
+                    {isChecking
+                      ? 'Verificando moeda...'
+                      : !isAvailable
+                        ? 'Moeda não disponível no nosso banco'
+                        : `Comprar ${baseSymbol}`}
+                  </span>
+                  {isAvailable && !isChecking && (
+                    <ArrowRight size={18} />
+                  )}
+                </>
+              )}
             </motion.button>
           </motion.div>
         </div>

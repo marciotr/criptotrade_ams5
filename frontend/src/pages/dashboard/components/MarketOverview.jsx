@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { ArrowUp, ArrowDown, ChevronRight, TrendingUp, BarChart2, DollarSign, LineChart, Zap, AlertTriangle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import CryptoIcon from '../../../components/common/CryptoIcons';
 import { FixedSizeList as List } from 'react-window';
 import { marketApi } from '../../../services/api/api'; 
@@ -70,6 +71,7 @@ const SparkLine = ({ prices, trend, height = 40, width = 80 }) => {
 };
 
 export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
+  const navigate = useNavigate();
   const [sortConfig, setSortConfig] = useState({
     key: 'priceChange',
     direction: 'desc'
@@ -551,7 +553,8 @@ export const MarketOverview = React.memo(({ data, isLoading, onShowMore }) => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2, delay: index * 0.05 }}
-                  className={`rounded-xl p-3.5 border border-transparent hover:border-border-primary transition-all ${
+                  onClick={() => navigate(`/buy/${coin.symbol}`)}
+                  className={`rounded-xl p-3.5 border border-transparent hover:border-border-primary transition-all cursor-pointer ${
                     isMobile ? 'flex flex-col' : 'flex items-center'
                   } bg-gradient-to-r ${
                     Number(coin.priceChange || 0) >= 0 
