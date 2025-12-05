@@ -7,11 +7,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-          // Durante desenvolvimento permitimos qualquer origem para facilitar testes locais.
-          // Em produção substitua por origens específicas e remova AllowAnyOrigin.
-          policy.AllowAnyOrigin()
+          // Mudei pra permitir somente o frontend e o gateway (não sei se é o ideal)
+          policy
+              .WithOrigins("http://localhost:5173", "http://localhost:5102")
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
