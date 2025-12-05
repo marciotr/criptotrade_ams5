@@ -30,10 +30,18 @@ public class TokenService : ITokenService
             new Claim(ClaimTypes.Role, user.Role ?? "user")
         };
 
+        // Ler expiração configurável (minutos). Se ausente, usa 120 minutos por padrão.
+        int expiryMinutes = 120;
+        var expiryConfig = _configuration["Jwt:ExpiryMinutes"];
+        if (!string.IsNullOrEmpty(expiryConfig) && int.TryParse(expiryConfig, out var parsed))
+        {
+            expiryMinutes = parsed;
+        }
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.UtcNow.AddHours(2),
+            Expires = DateTime.UtcNow.AddMinutes(expiryMinutes),
             Issuer = _configuration["Jwt:Issuer"],
             Audience = _configuration["Jwt:Audience"],
             SigningCredentials = new SigningCredentials(

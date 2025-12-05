@@ -19,12 +19,20 @@ public class UserController : ControllerBase
      [HttpPost]
     public IActionResult RegisterUser(UserDTO userDto)
     {
-        var newUser = new User 
+        try
         {
-            Role = userDto.Role ?? "user" 
-        };
-        var result = _userService.RegisterUser(userDto);
-        return Ok(result);
+            var result = _userService.RegisterUser(userDto);
+            return Ok(result);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao registrar usuário: {ex.Message}");
+            return StatusCode(500, new { message = "Erro interno ao registrar usuário" });
+        }
     }
 
     [HttpGet("{id}")]

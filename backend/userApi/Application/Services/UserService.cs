@@ -9,6 +9,16 @@ public class UserService : IUserService
 
     public UserDTO RegisterUser(UserDTO userDto)
     {
+        // validar unicidade de email antes de criar
+        if (!string.IsNullOrEmpty(userDto.Email))
+        {
+            var existing = _userRepository.GetByEmail(userDto.Email);
+            if (existing != null)
+            {
+                throw new InvalidOperationException("Email já cadastrado");
+            }
+        }
+
         var user = new User
         {
             Name = userDto.Name,
@@ -17,13 +27,13 @@ public class UserService : IUserService
             Phone = userDto.Phone ?? "", 
             Address = userDto.Address ?? "",
             Photo = userDto.Photo ?? "",
-                Role = userDto.Role ?? "user",
-                MfaEnabled = userDto.MfaEnabled,
-                MfaType = userDto.MfaType
+            Role = userDto.Role ?? "user",
+            MfaEnabled = userDto.MfaEnabled,
+            MfaType = userDto.MfaType
         };
-        
+
         _userRepository.Add(user);
-        
+
         return new UserDTO
         {
             Id = user.Id,
