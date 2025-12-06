@@ -9,7 +9,7 @@ builder.Services.AddCors(options =>
     {
           // Mudei pra permitir somente o frontend e o gateway (não sei se é o ideal)
           policy
-              .WithOrigins("http://localhost:5173", "http://localhost:5102")
+              .WithOrigins("http://localhost:5173", "http://localhost:5102", "http://localhost:8081")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();

@@ -86,7 +86,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", policyBuilder =>
     {
         policyBuilder
-            .WithOrigins("http://localhost:5173", "http://localhost:5102")
+            .WithOrigins("http://localhost:5173", "http://localhost:5102", "http://localhost:8081")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials()
