@@ -1,4 +1,4 @@
-namespace WalletApi.DTOs;
+namespace WalletApi.API.DTOs;
 
 public record OperationResult(bool IsSuccess, string? Error, object? Data = null)
 {

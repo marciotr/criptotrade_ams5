@@ -1,6 +1,6 @@
-using WalletApi.DTOs;
+using WalletApi.API.DTOs;
 
-namespace WalletApi.Services;
+namespace WalletApi.Application.Interfaces;
 
 public interface IWalletService
 {

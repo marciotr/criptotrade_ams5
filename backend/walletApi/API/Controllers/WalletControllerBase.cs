@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
-namespace WalletApi.Controllers;
+namespace WalletApi.API.Controllers;
 
 [ApiController]
 public abstract class WalletControllerBase : ControllerBase

@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using WalletApi.Infrastructure.Data;
-using WalletApi.Services;
+using WalletApi.Application.Interfaces;
+using WalletApi.Application.Services;
+using WalletApi.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

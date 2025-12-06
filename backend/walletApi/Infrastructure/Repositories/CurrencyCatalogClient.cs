@@ -1,44 +1,7 @@
 using System.Net.Http.Json;
+using WalletApi.Application.Interfaces;
 
-namespace WalletApi.Services;
-
-// DTO simples para consumir a API de moedas (currencyAvailables) via gateway
-public class CurrencyCatalogItem
-{
-    public Guid Id { get; set; }
-    // Compatibilidade com código legado que referia "IdCurrency"
-    // Mantemos a propriedade apenas como alias para facilitar a transição.
-    public Guid IdCurrency => Id;
-    public string Symbol { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
-    // Valor atual da moeda, vindo da currencyAPI (pode ser o último preço ou campo dedicado)
-    public decimal CurrentPrice { get; set; }
-    // 24h porcentagem de ganho (se disponível do ticker ou catálogo)
-    public decimal PriceChangePercent { get; set; }
-
-    // Heurística simples para identificar moedas fiat localmente.
-    // Não é perfeita, mas ajuda o `walletApi` a decidir tratamentos específicos para fiat.
-    public bool IsFiat
-    {
-        get
-        {
-            var fiatSymbols = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "USD", "USDT", "USDC", "EUR", "BRL", "GBP", "JPY", "CAD", "AUD" };
-            if (!string.IsNullOrEmpty(Symbol) && fiatSymbols.Contains(Symbol)) return true;
-            var n = (Name ?? string.Empty).ToLowerInvariant();
-            if (n.Contains("dollar") || n.Contains("dólar") || n.Contains("euro") || n.Contains("real") || n.Contains("yen")) return true;
-            return false;
-        }
-    }
-}
-
-public interface ICurrencyCatalogClient
-{
-    // Busca uma moeda pelo Id no catálogo central de moedas
-    Task<CurrencyCatalogItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
-    Task<IEnumerable<CurrencyCatalogItem>> GetAllAsync(CancellationToken cancellationToken = default);
-    Task<CurrencyCatalogItem?> GetBySymbolAsync(string symbol, CancellationToken cancellationToken = default);
-    Task<CurrencyCatalogItem?> CreateAsync(CurrencyCatalogItem item, CancellationToken cancellationToken = default);
-}
+namespace WalletApi.Infrastructure.Repositories;
 
 public class CurrencyCatalogClient : ICurrencyCatalogClient
 {

@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WalletApi.DTOs;
+using WalletApi.API.DTOs;
+using WalletApi.Application.Interfaces;
 using WalletApi.Infrastructure.Data;
-using WalletApi.Services;
 
-namespace WalletApi.Controllers;
+namespace WalletApi.API.Controllers;
 
 [ApiController]
 [Authorize]

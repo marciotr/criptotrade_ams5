@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using WalletApi.API.DTOs;
+using WalletApi.Application.Interfaces;
 using WalletApi.Infrastructure.Data;
-using WalletApi.DTOs;
 using WalletApi.Domain.Entities;
 
-namespace WalletApi.Services;
+namespace WalletApi.Application.Services;
 
 public class WalletService : IWalletService
 {

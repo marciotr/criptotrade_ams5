@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WalletApi.DTOs;
+namespace WalletApi.API.DTOs;
 
 public class SwapRequest
 {
