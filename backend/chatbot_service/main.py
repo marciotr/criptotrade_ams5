@@ -8,12 +8,13 @@ import json
 import httpx
 import uuid
 from typing import Optional
+from typing import Dict, Any
 
 app = FastAPI(title="Chatbot Service")
 
 GATEWAY_BASE = os.getenv('GATEWAY_BASE', 'http://localhost:5102')
 
-# Configure CORS so the frontend (and gateway) can call this service directly
+# Configurar CORS para o frontend (e gateway) poder chamar este serviço diretamente
 allowed_origins = [
     os.getenv('FRONTEND_ORIGIN', 'http://localhost:5294'),
     os.getenv('GATEWAY_ORIGIN', 'http://localhost:5102')
@@ -61,6 +62,107 @@ async def process_deposit_via_gateway(payload: dict, auth_header: Optional[str] 
             raise
         except Exception:
             raise
+
+
+async def process_gateway_request(path: str, method: str = 'POST', payload: Optional[Dict[str, Any]] = None, auth_header: Optional[str] = None) -> Any:
+    """Generic gateway caller used by chatbot: supports GET and POST currently."""
+    url = f"{GATEWAY_BASE}/{path.lstrip('/') }"
+    headers = {"Authorization": auth_header} if auth_header else None
+    async with httpx.AsyncClient(timeout=10) as client:
+        try:
+            if method.upper() == 'GET':
+                resp = await client.get(url, headers=headers, params=payload)
+            else:
+                resp = await client.post(url, json=payload, headers=headers)
+            resp.raise_for_status()
+            try:
+                return resp.json()
+            except Exception:
+                return resp.text
+        except httpx.HTTPStatusError as e:
+            raise
+        except Exception:
+            raise
+
+
+def normalize_number(s: str) -> float:
+    try:
+        return float(s.replace(',', '.'))
+    except Exception:
+        return 0.0
+
+
+async def resolve_currency_and_price(target_symbol: str, auth_header: Optional[str] = None):
+    """Find currency object from catalog and ensure we have a usable current price.
+    Returns (found_currency_dict, price_float, error_message_or_None).
+    """
+    try:
+        currencies = await process_gateway_request('currency', method='GET', payload=None, auth_header=auth_header)
+    except Exception as e:
+        return None, 0.0, f"Falha ao consultar catálogo de moedas: {e}"
+
+    found = None
+    if isinstance(currencies, list):
+        for c in currencies:
+            sym = (c.get('symbol') or c.get('Symbol') or '').upper()
+            if sym == target_symbol:
+                found = c
+                break
+
+    if not found:
+        return None, 0.0, f"Moeda {target_symbol} não encontrada no catálogo."
+
+    raw_price = found.get('currentPrice') or found.get('CurrentPrice') or found.get('price') or found.get('Price') or 0
+    price = 0.0
+    try:
+        price = float(raw_price) if raw_price is not None else 0.0
+    except Exception:
+        price = 0.0
+
+    if price <= 0:
+        tried = []
+        for pair in (f"{target_symbol}USDT", target_symbol):
+            tried.append(pair)
+            try:
+                resp = await process_gateway_request(f'crypto/ticker/{pair}', method='GET', payload=None, auth_header=auth_header)
+                candidate = None
+                if isinstance(resp, dict):
+                    for key in ('lastPrice', 'LastPrice', 'price', 'last', 'close'):
+                        if key in resp:
+                            candidate = resp.get(key)
+                            break
+                else:
+                    try:
+                        j = json.loads(resp)
+                        if isinstance(j, dict):
+                            for key in ('lastPrice', 'LastPrice', 'price', 'last', 'close'):
+                                if key in j:
+                                    candidate = j.get(key)
+                                    break
+                    except Exception:
+                        candidate = None
+
+                if candidate is not None:
+                    try:
+                        price = float(candidate)
+                        if price > 0:
+                            break
+                    except Exception:
+                        price = 0.0
+            except Exception:
+                continue
+
+    return found, price, None
+
+
+HELP_TEXT = (
+    "Posso ajudar com alguns comandos: \n"
+    "- 'Qual meu saldo?' — resumo da carteira.\n"
+    "- 'Depositar 200 USD' — inicia depósito.\n"
+    "- 'Comprar 0.01 BTC' ou 'Comprar 100 USD de BTC' — comprar cripto.\n"
+    "- 'Vender 0.5 BTC' — vender cripto.\n"
+    "- 'Histórico' ou 'Extrato' — ver transações recentes.\n"
+)
 
 
 async def background_event_worker():
@@ -175,7 +277,133 @@ async def handle_message(req: ChatRequest, request: Request):
 
         return ChatResponse(reply=reply, published=published, event=event)
 
-    # fallback reply
+    # Verifica comando de compra: "comprar 0.01 btc" ou "comprar 100 usd de btc"
+    m_buy = re.search(r"\b(comprar|buy)\b\s+(\d+[\.,]?\d*)\s*(usd|brl)?\s*(de\s*)?(btc|eth|[A-Za-z]{2,6})?", lower)
+    if m_buy:
+        qty_or_amount = m_buy.group(2)
+        fiat_marker = m_buy.group(3)
+        symbol = m_buy.group(5) or m_buy.group(4) or None
+        if not auth_header:
+            return ChatResponse(reply="Para comprar preciso do token de autenticação. Faça login e tente novamente.")
+
+        reference_id = str(uuid.uuid4())
+        target_symbol = (symbol or 'BTC').upper() if symbol else 'BTC'
+        found, price, err = await resolve_currency_and_price(target_symbol, auth_header=auth_header)
+        if err:
+            return ChatResponse(reply=err)
+
+        id_currency = found.get('id') or found.get('Id')
+        if not id_currency:
+            return ChatResponse(reply=f"Id da moeda {target_symbol} não disponível no catálogo.")
+
+        if fiat_marker:
+            fiat_amount = normalize_number(qty_or_amount)
+            dto = {
+                'IdAccount': '00000000-0000-0000-0000-000000000000',
+                'IdWallet': '00000000-0000-0000-0000-000000000000',
+                'IdCurrency': id_currency,
+                'FiatAmount': fiat_amount,
+                'Fee': 0,
+                'CreateNewLot': True,
+                'ReferenceId': reference_id,
+            }
+        else:
+            qty = normalize_number(qty_or_amount)
+            if price <= 0:
+                return ChatResponse(reply=f"Preço da moeda {target_symbol} indisponível; não é possível calcular o valor fiat.")
+            fiat_amount = qty * price
+            dto = {
+                'IdAccount': '00000000-0000-0000-0000-000000000000',
+                'IdWallet': '00000000-0000-0000-0000-000000000000',
+                'IdCurrency': id_currency,
+                'FiatAmount': fiat_amount,
+                'Fee': 0,
+                'CreateNewLot': True,
+                'ReferenceId': reference_id,
+            }
+
+        try:
+            print("[Chatbot] Sending BUY DTO:", dto)
+            resp = await process_gateway_request('transactions/buy', method='POST', payload=dto, auth_header=auth_header)
+            print("[Chatbot] Gateway buy response:", resp)
+            return ChatResponse(reply=f"Ordem de compra enviada: {resp}")
+        except Exception as e:
+            return ChatResponse(reply=f"Falha ao enviar ordem de compra: {e}")
+
+    # Verifica comando de venda: "vender 0.5 btc" ou "vender 100 usd de btc"
+    m_sell = re.search(r"\b(vender|sell)\b\s+(\d+[\.,]?\d*)\s*(usd|brl)?\s*(de\s*)?(btc|eth|[A-Za-z]{2,6})?", lower)
+    if m_sell:
+        qty_or_amount = m_sell.group(2)
+        fiat_marker = m_sell.group(3)
+        symbol = m_sell.group(5) or m_sell.group(4) or None
+        if not auth_header:
+            return ChatResponse(reply="Para vender preciso do token de autenticação. Faça login e tente novamente.")
+
+        reference_id = str(uuid.uuid4())
+        target_symbol = (symbol or 'BTC').upper() if symbol else 'BTC'
+        try:
+            currencies = await process_gateway_request('currency', method='GET', payload=None, auth_header=auth_header)
+        except Exception as e:
+            return ChatResponse(reply=f"Falha ao consultar catálogo de moedas: {e}")
+
+        target_symbol = (symbol or 'BTC').upper() if symbol else 'BTC'
+        found, price, err = await resolve_currency_and_price(target_symbol, auth_header=auth_header)
+        if err:
+            return ChatResponse(reply=err)
+
+        id_currency = found.get('id') or found.get('Id')
+        if not id_currency:
+            return ChatResponse(reply=f"Id da moeda {target_symbol} não disponível no catálogo.")
+
+        if fiat_marker:
+            fiat_amount = normalize_number(qty_or_amount)
+            if price <= 0:
+                return ChatResponse(reply=f"Preço da moeda {target_symbol} indisponível; não é possível calcular a quantidade a vender.")
+            cripto_amount = fiat_amount / price
+        else:
+            cripto_amount = normalize_number(qty_or_amount)
+
+        dto = {
+            'IdAccount': '00000000-0000-0000-0000-000000000000',
+            'IdWallet': '00000000-0000-0000-0000-000000000000',
+            'IdCurrency': id_currency,
+            'CriptoAmount': cripto_amount,
+            'Fee': 0,
+            'IdWalletPositionLot': None,
+            'LotAmount': None,
+            'ReferenceId': reference_id,
+        }
+
+        try:
+            print("[Chatbot] Sending SELL DTO:", dto)
+            resp = await process_gateway_request('transactions/sell', method='POST', payload=dto, auth_header=auth_header)
+            print("[Chatbot] Gateway sell response:", resp)
+            return ChatResponse(reply=f"Ordem de venda enviada: {resp}")
+        except Exception as e:
+            return ChatResponse(reply=f"Falha ao enviar ordem de venda: {e}")
+
+    # Verifica histórico/extrato
+    if re.search(r"\b(hist[oó]rico|extrato|transa[cç][oõ]es|minhas transa(c|ç)oes)\b", lower):
+        if not auth_header:
+            return ChatResponse(reply="Para ver o histórico preciso do token de autenticação. Faça login e tente novamente.")
+        try:
+            resp = await process_gateway_request('transactions', method='GET', payload=None, auth_header=auth_header)
+            if isinstance(resp, list):
+                parts = []
+                for t in resp[:5]:
+                    typ = t.get('type') or t.get('transactionType') or t.get('kind') or 'txn'
+                    amt = t.get('amount') or t.get('fiatAmount') or t.get('quantity') or ''
+                    cur = t.get('symbol') or t.get('currency') or ''
+                    parts.append(f"{typ} {amt} {cur}")
+                return ChatResponse(reply=("Transações recentes: " + ", ".join(parts)) if parts else "Nenhuma transação encontrada.")
+            return ChatResponse(reply=f"Histórico: {resp}")
+        except Exception as e:
+            return ChatResponse(reply=f"Falha ao recuperar histórico: {e}")
+
+    # Ajuda
+    if re.search(r"\b(ajuda|help|comandos|o que posso fazer)\b", lower):
+        return ChatResponse(reply=HELP_TEXT)
+
     return ChatResponse(reply="Desculpe, não entendi. Posso responder consultas como 'Qual meu saldo?' ou executar comandos como 'Depositar 200 USD'.")
 
 
