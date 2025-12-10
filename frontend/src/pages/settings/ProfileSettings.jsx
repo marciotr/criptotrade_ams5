@@ -16,7 +16,7 @@ import { useAuth } from '../../store/auth/useAuth';
 import { userApi } from '../../services/api/api';
 
 export function ProfileSettings() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
@@ -282,6 +282,15 @@ export function ProfileSettings() {
       setIsLoading(true);
       await userApi.updatePhoto(user.id, file);
       
+      try {
+        const resp = await userApi.getProfile(user.id);
+        const updated = resp.data;
+        setFormData(prev => ({ ...prev, photo: updated.photo || prev.photo }));
+        if (updateUser) updateUser(updated);
+      } catch (err) {
+        console.warn('Foto atualizada, mas falha ao buscar perfil atualizado:', err);
+      }
+
       setNotification({
         type: 'success',
         message: 'Foto de perfil atualizada com sucesso!'

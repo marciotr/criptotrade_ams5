@@ -17,6 +17,16 @@ export function AuthProvider({ children }) {
     navigate('/signin', { replace: true });
   }, [navigate]);
 
+  const updateUser = useCallback((newUser) => {
+    try {
+      setUser(newUser);
+      if (newUser) localStorage.setItem('user', JSON.stringify(newUser));
+      else localStorage.removeItem('user');
+    } catch (e) {
+      console.error('Failed to update user in AuthContext', e);
+    }
+  }, []);
+
   const login = async (credentials) => {
     try {
       const response = await authService.login(credentials);
@@ -97,6 +107,7 @@ export function AuthProvider({ children }) {
     login,
     verifyMfa,
     logout,
+    updateUser,
     loading,
     isAuthenticated
   };
