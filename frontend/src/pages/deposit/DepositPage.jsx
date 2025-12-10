@@ -1,720 +1,697 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CreditCard, DollarSign, Wallet, ChevronDown, TrendingUp, ArrowDown, Search, AlertCircle } from 'lucide-react';
-import { CryptoCard } from '../../components/common/CryptoCard';
-import { PaymentMethodButton } from './components/PaymentMethodButton';
-import CryptoIcon from '../../components/common/CryptoIcons';
-import { availableCoins } from '../../data/mockData';
-import { walletApi, marketApi } from '../../services/api/api';
-import { AuthContext } from '../../store/auth/AuthContext';
-import { useNotification } from '../../hooks/useNotification'; // Importando o hook personalizado
-
-const hotCryptos = [
-  { id: 'BTC', name: 'Bitcoin', symbol: 'BTC', price: 47234.12, change: 5.23, trending: true },
-  { id: 'ETH', name: 'Ethereum', symbol: 'ETH', price: 3456.78, change: -2.14, trending: true },
-  { id: 'SOL', name: 'Solana', symbol: 'SOL', price: 98.45, change: 12.3, trending: true },
-  { id: 'ADA', name: 'Cardano', symbol: 'ADA', price: 1.23, change: 8.56, trending: true },
-  { id: 'BNB', name: 'Binance Coin', symbol: 'BNB', price: 312.78, change: 3.45, trending: true },
-];
-
-const buyRecommendations = [
-  { id: 'SOL', name: 'Solana', symbol: 'SOL', price: 98.45, change: 12.3, trending: true, reason: 'Strong growth potential' },
-  { id: 'ETH', name: 'Ethereum', symbol: 'ETH', price: 3456.78, change: -2.14, trending: true, reason: 'Major network upgrade coming' },
-  { id: 'BNB', name: 'Binance Coin', symbol: 'BNB', price: 312.78, change: 3.45, trending: true, reason: 'Growing ecosystem' },
-  { id: 'ADA', name: 'Cardano', symbol: 'ADA', price: 1.23, change: 8.56, trending: true, reason: 'New partnerships announced' },
-  { id: 'MATIC', name: 'Polygon', symbol: 'MATIC', price: 0.85, change: 15.2, trending: true, reason: 'Rising adoption rate' },
-];
-
-const sellRecommendations = [
-  { id: 'DOGE', name: 'Dogecoin', symbol: 'DOGE', price: 0.12, change: 25.3, trending: true, reason: 'Price at recent peak' },
-  { id: 'XRP', name: 'Ripple', symbol: 'XRP', price: 0.56, change: 18.4, trending: true, reason: 'High volatility expected' },
-  { id: 'SHIB', name: 'Shiba Inu', symbol: 'SHIB', price: 0.00002, change: 30.2, trending: true, reason: 'Take profits opportunity' },
-  { id: 'LUNA', name: 'Terra Luna', symbol: 'LUNA', price: 2.45, change: 22.1, trending: true, reason: 'Market uncertainty' },
-  { id: 'AVAX', name: 'Avalanche', symbol: 'AVAX', price: 34.56, change: 16.8, trending: true, reason: 'Resistance level reached' },
-];
-
-const paymentMethods = [
-  { id: 'card', name: 'Credit Card', icon: CreditCard },
-  { id: 'bank', name: 'Bank Transfer', icon: DollarSign },
-  { id: 'crypto', name: 'Crypto Wallet', icon: Wallet },
-];
-
-const dropdownVariants = {
-  hidden: { 
-    opacity: 0,
-    y: -10,
-    transition: {
-      duration: 0.2
-    }
-  },
-  visible: { 
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.2
-    }
-  },
-  exit: { 
-    opacity: 0,
-    y: -10,
-    transition: {
-      duration: 0.2
-    }
-  }
-};
-
-const formVariants = {
-  initial: {
-    opacity: 0,
-    x: -20,
-  },
-  animate: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.3,
-      staggerChildren: 0.1
-    }
-  },
-  exit: {
-    opacity: 0,
-    x: 20,
-    transition: {
-      duration: 0.2
-    }
-  }
-};
-
-const inputVariants = {
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -10 }
-};
-
-const tabVariants = {
-  selected: {
-    backgroundColor: 'var(--brand-primary-light)',
-    color: 'var(--brand-primary)',
-    scale: 1.05,
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 20
-    }
-  },
-  notSelected: {
-    backgroundColor: 'transparent',
-    color: 'var(--text-secondary)',
-    scale: 1
-  }
-};
+import { CreditCard, DollarSign, Wallet, ArrowDownLeft } from 'lucide-react';
+import SimpleHeader from '../../components/SimpleHeader';
+import { NotificationToast } from '../../components/common/NotificationToast';
+import * as signalR from '@microsoft/signalr';
+import { api as axiosApi } from '../../services/api/config';
+import Logo from '../../assets/img/logoBinanceRemoved.png';
+import InputMask from 'react-input-mask';
+import { walletApi } from '../../services/api/api';
 
 export function DepositPage() {
-  const [activeTab, setActiveTab] = useState('buy');
+  const [selectedMethod, setSelectedMethod] = useState(null);
   const [amount, setAmount] = useState('');
-  const [selectedCurrency, setSelectedCurrency] = useState('USD');
-  const [selectedCoin, setSelectedCoin] = useState(availableCoins[0]);
-  const [paymentMethod, setPaymentMethod] = useState(paymentMethods[0]);
-  const [cryptoDropdownOpen, setCryptoDropdownOpen] = useState(false);
-  const [methodDropdownOpen, setMethodDropdownOpen] = useState(false);
-  const [tabHovered, setTabHovered] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredCoins, setFilteredCoins] = useState(availableCoins);
-  const [currencySearchQuery, setCurrencySearchQuery] = useState('');
-  const [filteredCurrencies, setFilteredCurrencies] = useState(['USD', 'EUR', 'GBP', 'JPY', 'BRL']);
-  const [isLoading, setIsLoading] = useState(false);
-  const [userWallets, setUserWallets] = useState([]);
-  const [selectedWallet, setSelectedWallet] = useState(null);
-  const { user } = useContext(AuthContext);
-  const { showNotification } = useNotification(); // Hook personalizado de notificação
+  const [depositLoading, setDepositLoading] = useState(false);
+  const [depositMessage, setDepositMessage] = useState(null);
+  const [notification, setNotification] = useState(null);
+  const [cryptoSymbol, setCryptoSymbol] = useState('BTC');
+  const [cryptoAmount, setCryptoAmount] = useState('');
+  const [bankAmount, setBankAmount] = useState('');
+  const [walletAddress, setWalletAddress] = useState(null);
+  const [balances, setBalances] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+  const [usdTotal, setUsdTotal] = useState(null); // authoritative USD total from /balance/summary
 
-  const estimatedCrypto = amount ? (parseFloat(amount) / selectedCoin.data[0].price).toFixed(6) : '0';
+  const handleMethodClick = (method) => {
+    setSelectedMethod(method === selectedMethod ? null : method);
+  };
 
-  useEffect(() => {
-    if (user?.id) {
-      fetchUserWallets();
-    }
-  }, [user]);
+  const genReferenceId = () => {
+    if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  };
 
-  const fetchUserWallets = async () => {
+  const loadBalances = async () => {
     try {
-      const response = await walletApi.getUserWallets(user.id);
-      setUserWallets(response.data);
-      const existingWallet = response.data.find(wallet => 
-        wallet.currency === selectedCoin.id
-      );
-      if (existingWallet) {
-        setSelectedWallet(existingWallet);
-      } else {
-        setSelectedWallet(null);
+      const res = await walletApi.getBalance();
+      console.debug('[DepositPage] raw /balance response', res?.data);
+      const raw = Array.isArray(res.data) ? res.data : [];
+      const normalized = raw.map((b) => ({
+        currencyId: b.currencyId ?? b.CurrencyId ?? b.IdCurrency ?? b.idCurrency,
+        symbol: (b.symbol ?? b.Symbol ?? b.CurrencySymbol ?? b.currencySymbol ?? '').toUpperCase(),
+        name: b.name ?? b.Name ?? '',
+        amount: Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0),
+        currentPrice: Number(b.currentPrice ?? b.CurrentPrice ?? 1),
+        value: Number(b.value ?? b.Value ?? ((Number(b.amount ?? b.Amount ?? 0) * Number(b.currentPrice ?? b.CurrentPrice ?? 1))))
+      }));
+      console.debug('[DepositPage] normalized balances', normalized);
+      setBalances(normalized);
+      // fetch summary total (authoritative USD total)
+      try {
+        const sumRes = await walletApi.getSummary();
+        console.debug('[DepositPage] /balance/summary response', sumRes?.data);
+        const total = sumRes?.data?.totalValue;
+        setUsdTotal(total != null ? Number(total) : null);
+      } catch (e) {
+        console.warn('Failed to load balance summary', e);
+        setUsdTotal(null);
       }
-    } catch (error) {
-      console.error("Error fetching user wallets:", error);
-      showNotification({
-        message: "Failed to load wallets",
-        type: "error"
-      });
+    } catch (err) {
+      console.warn('Erro ao carregar balances', err);
+      setBalances([]);
+      setUsdTotal(null);
     }
   };
 
-  const handleContinue = async () => {
-    if (!user) {
-      showNotification({
-        message: "Please login to continue",
-        type: "error"
-      });
-      return;
-    }
-
-    if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
-      showNotification({
-        message: "Please enter a valid amount",
-        type: "error"
-      });
-      return;
-    }
-
-    setIsLoading(true);
-
+  const loadTransactions = async () => {
     try {
-      if (selectedWallet) {
-        await walletApi.addTransaction(selectedWallet.id, {
-          type: activeTab === 'buy' ? 0 : 1,
-          amount: parseFloat(estimatedCrypto),
-          currency: selectedCoin.id,
-          description: `${activeTab === 'buy' ? 'Bought' : 'Sold'} ${estimatedCrypto} ${selectedCoin.id} with ${amount} ${selectedCurrency} via ${paymentMethod.name}`,
-          status: 1
-        });
+      const res = await walletApi.getTransactions();
+      setTransactions(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      console.warn('Erro ao carregar transações', err);
+      setTransactions([]);
+    }
+  };
 
-        showNotification({
-          message: `Successfully ${activeTab === 'buy' ? 'bought' : 'sold'} ${estimatedCrypto} ${selectedCoin.id}`,
-          type: "success"
-        });
-      } else {
-        const newWallet = await walletApi.createWallet({
-          userId: user.id,
-          currency: selectedCoin.id,
-          balance: parseFloat(estimatedCrypto)
-        });
-
-        await walletApi.addTransaction(newWallet.data.id, {
-          type: 0,
-          amount: parseFloat(estimatedCrypto),
-          currency: selectedCoin.id,
-          description: `Initial deposit of ${estimatedCrypto} ${selectedCoin.id} with ${amount} ${selectedCurrency} via ${paymentMethod.name}`,
-          status: 1
-        });
-
-        showNotification({
-          message: `Successfully created wallet and deposited ${estimatedCrypto} ${selectedCoin.id}`,
-          type: "success"
-        });
-        fetchUserWallets();
+  const loadOrCreateWallet = async () => {
+    try {
+      const res = await walletApi.getWallets();
+      const wallets = Array.isArray(res.data) ? res.data : [];
+      if (wallets.length > 0) {
+        setWalletAddress(wallets[0].idWallet || wallets[0].address || null);
+        return;
       }
 
-      setAmount('');
-      
-    } catch (error) {
-      console.error("Transaction error:", error);
-      showNotification({
-        message: error.response?.data?.message || "Transaction failed",
-        type: "error"
-      });
-    } finally {
-      setIsLoading(false);
+      const created = await walletApi.createWallet({ name: 'Default' });
+      const w = created.data;
+      setWalletAddress(w?.idWallet || w?.address || null);
+    } catch (err) {
+      console.warn('Erro ao carregar/criar wallet', err);
+      setWalletAddress(null);
     }
+  };
+
+  // Helpers to safely read transaction properties with different casings
+  const getTxField = (tx, ...keys) => {
+    for (const k of keys) {
+      if (tx == null) break;
+      if (Object.prototype.hasOwnProperty.call(tx, k) && tx[k] !== undefined && tx[k] !== null) return tx[k];
+    }
+    return null;
+  };
+
+  const getTxTypeString = (tx) => {
+    const v = getTxField(tx, 'type', 'Type');
+    if (v == null) return '';
+    return typeof v === 'string' ? v : String(v);
+  };
+
+  const getTxAsset = (tx) => {
+    return getTxField(tx, 'asset', 'assetSymbol', 'AssetSymbol') || '';
+  };
+
+  const getTxDisplayType = (tx) => {
+    const raw = getTxField(tx, 'type', 'Type') || '';
+    const s = typeof raw === 'string' ? raw : String(raw);
+    const low = s.toLowerCase();
+    if (low.includes('deposit') && low.includes('fiat')) return 'Deposit';
+    if (low.includes('deposit')) return 'Deposit';
+    if (low.includes('withdraw')) return 'Withdraw';
+    if (low.includes('buy')) return 'Buy';
+    if (low.includes('sell')) return 'Sell';
+    if (low.includes('swap')) return 'Swap';
+    return s || '';
+  };
+
+  const getTxAmountLabel = (tx) => {
+    const amt = tx?.totalAmount ?? tx?.TotalAmount ?? tx?.total ?? tx?.amount ?? tx?.Amount ?? tx?.value ?? tx?.Value ?? '';
+    return amt !== null && amt !== undefined ? String(amt) : '';
   };
 
   useEffect(() => {
-    if (userWallets.length > 0) {
-      const existingWallet = userWallets.find(wallet => 
-        wallet.currency === selectedCoin.id
-      );
-      setSelectedWallet(existingWallet || null);
+    loadOrCreateWallet();
+    loadBalances();
+    loadTransactions();
+    // Setup SignalR connection for real-time balance updates
+    let connection;
+    try {
+      const token = localStorage.getItem('token');
+      const base = (axiosApi && axiosApi.defaults && axiosApi.defaults.baseURL) ? axiosApi.defaults.baseURL : window.location.origin;
+      connection = new signalR.HubConnectionBuilder()
+        .withUrl(`${base.replace(/\/$/, '')}/hubs/balance`, { accessTokenFactory: () => token })
+        .withAutomaticReconnect()
+        .build();
+
+      connection.on('BalancesUpdated', (payload) => {
+        // normalize payload if server sends array of balances
+        console.debug('[DepositPage] SignalR BalancesUpdated payload', payload);
+        const raw = Array.isArray(payload) ? payload : [];
+        const normalized = raw.map((b) => ({
+          currencyId: b.currencyId ?? b.CurrencyId ?? b.IdCurrency ?? b.idCurrency,
+          symbol: (b.symbol ?? b.Symbol ?? b.CurrencySymbol ?? b.currencySymbol ?? '').toUpperCase(),
+          name: b.name ?? b.Name ?? '',
+          amount: Number(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount ?? 0),
+          currentPrice: Number(b.currentPrice ?? b.CurrentPrice ?? 1),
+          value: Number(b.value ?? b.Value ?? ((Number(b.amount ?? b.Amount ?? 0) * Number(b.currentPrice ?? b.CurrentPrice ?? 1))))
+        }));
+        console.debug('[DepositPage] SignalR normalized balances', normalized);
+        setBalances(normalized);
+        // If server sent an aggregated summary inside the SignalR payload use it
+        if (payload && payload.totalValue != null) {
+          setUsdTotal(Number(payload.totalValue));
+        }
+      });
+
+      connection.start().catch(err => console.warn('SignalR start error', err));
+    } catch (e) {
+      console.warn('SignalR not initialized', e);
     }
-  }, [selectedCoin, userWallets]);
 
-  const filterCoins = (query) => {
-    const filtered = availableCoins.filter(coin => 
-      coin.name.toLowerCase().includes(query.toLowerCase()) ||
-      coin.id.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredCoins(filtered);
-  };
+    return () => {
+      if (connection) connection.stop().catch(() => {});
+    };
+  }, []);
 
-  const filterCurrencies = (query) => {
-    const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'BRL'];
-    const filtered = currencies.filter(currency => 
-      currency.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredCurrencies(filtered);
-  };
+  // compute USD balance (include USDT as equivalent)
+  const usdSymbols = new Set(['USD', 'USDT', 'USDC']);
+  const usdBalance = balances.reduce((sum, b) => {
+    const sym = (b.symbol || '').toUpperCase();
+    if (usdSymbols.has(sym)) {
+      const val = Number(b.value ?? (Number(b.amount || 0) * Number(b.currentPrice || 1))) || 0;
+      return sum + val;
+    }
+    return sum;
+  }, 0);
+
+  let effectiveUsdBalance = usdTotal != null ? usdTotal : usdBalance;
+  if (effectiveUsdBalance === 0 && balances.length > 0) {
+    const fallback = balances.reduce((s, b) => {
+      const sym = (b.symbol || '').toUpperCase();
+      const name = (b.name || '').toLowerCase();
+      if (sym.includes('USD') || name.includes('dollar') || name.includes('dólar') || name.includes('tether')) {
+        return s + (Number(b.value ?? (Number(b.amount || 0) * Number(b.currentPrice || 1))) || 0);
+      }
+      return s;
+    }, 0);
+    if (fallback > 0) {
+      console.debug('[DepositPage] usdBalance fallback applied, value=', fallback, 'balances=', balances);
+      effectiveUsdBalance = fallback;
+    }
+  }
 
   return (
-    <div className="p-2 sm:p-6 mt-12 sm:mt-16">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-text-primary px-2 sm:px-0">
-          Deposit / Buy Crypto
-        </h1>
+     <>
+     <AnimatePresence>
+       {notification && (
+         <div className="fixed top-4 right-4 z-50">
+           <NotificationToast
+             type={notification.type}
+             message={notification.message}
+             onClose={() => setNotification(null)}
+           />
+         </div>
+       )}
+     </AnimatePresence>
+     <SimpleHeader
+          crumbs={[
+            { label: 'Dashboard', to: '/dashboard' },
+            { label: 'Deposit' }
+          ]}
+          
+        />
+    <div className="container mx-auto py-8 pt-20">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         
-        {selectedWallet && (
-          <div className="mb-4 p-4 bg-background-secondary rounded-lg border border-border-primary">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <div className="mr-3">
-                  <CryptoIcon symbol={selectedWallet.currency} size={24} />
-                </div>
-                <div>
-                  <h3 className="font-medium text-text-primary">{selectedWallet.currency} Wallet</h3>
-                  <p className="text-sm text-text-secondary">Current Balance: {selectedWallet.balance} {selectedWallet.currency}</p>
-                </div>
-              </div>
-              <button 
-                onClick={fetchUserWallets}
-                className="text-brand-primary hover:text-brand-primary-dark text-sm"
-              >
-                Refresh
-              </button>
-            </div>
-          </div>
-        )}
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+
+        <h1 className="text-2xl font-bold text-text-primary mb-6">Deposit / Buy Crypto</h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left panel */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-2 bg-background-primary rounded-xl shadow-lg overflow-hidden"
-          >
-            {/* Tabs and Form Section */}
-            <div className="relative flex h-14 sm:h-16 mb-4 bg-background-secondary rounded-t-xl">
-              <motion.div 
-                className="absolute bottom-0 h-1 bg-brand-primary"
-                animate={{ 
-                  left: activeTab === 'buy' ? '0%' : '50%',
-                  right: activeTab === 'buy' ? '50%' : '0%'
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 30
-                }}
-              />
-              <motion.button 
-                className="flex-1 relative flex items-center justify-center"
-                variants={tabVariants}
-                animate={activeTab === 'buy' ? 'selected' : 'notSelected'}
-                whileHover={{ scale: activeTab !== 'buy' ? 1.02 : 1.05 }}
-                onHoverStart={() => setTabHovered('buy')}
-                onHoverEnd={() => setTabHovered(null)}
-                onClick={() => setActiveTab('buy')}
-              >
-                <span className="font-medium text-base sm:text-lg">Buy</span>
-                {tabHovered === 'buy' && activeTab !== 'buy' && (
-                  <motion.div
-                    className="absolute inset-0 bg-brand-primary"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.05 }}
-                    exit={{ opacity: 0 }}
-                  />
-                )}
-              </motion.button>
-
-              <motion.button 
-                className="flex-1 relative flex items-center justify-center"
-                variants={tabVariants}
-                animate={activeTab === 'sell' ? 'selected' : 'notSelected'}
-                whileHover={{ scale: activeTab !== 'sell' ? 1.02 : 1.05 }}
-                onHoverStart={() => setTabHovered('sell')}
-                onHoverEnd={() => setTabHovered(null)}
-                onClick={() => setActiveTab('sell')}
-              >
-                <span className="font-medium text-base sm:text-lg">Sell</span>
-                {tabHovered === 'sell' && activeTab !== 'sell' && (
-                  <motion.div
-                    className="absolute inset-0 bg-brand-primary"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.05 }}
-                    exit={{ opacity: 0 }}
-                  />
-                )}
-              </motion.button>
-            </div>
-
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={formVariants}
-                >
-                  {/* Amount Input */}
-                  <motion.div variants={inputVariants} className="mb-4">
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      {activeTab === 'buy' ? 'I want to spend' : 'I want to sell'}
-                    </label>
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-                      <input
-                        type="text"
-                        className="w-full sm:flex-grow px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none border border-border-primary bg-background-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary"
-                        placeholder="0.00"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                      />
-                      <div className="relative w-full sm:w-auto">
-                        <button 
-                          className="w-full sm:w-auto flex items-center justify-between min-w-[100px] px-3 sm:px-4 py-2.5 sm:py-3 bg-background-secondary border border-border-primary rounded-lg sm:rounded-l-none sm:rounded-r-lg text-text-primary focus:outline-none"
-                          onClick={() => setMethodDropdownOpen(!methodDropdownOpen)}
-                        >
-                          <span>{selectedCurrency}</span>
-                          <ChevronDown size={16} className={`ml-2 transition-transform duration-200 ${methodDropdownOpen ? 'transform rotate-180' : ''}`} />
-                        </button>
-                        <AnimatePresence>
-                          {methodDropdownOpen && (
-                            <motion.div
-                              initial="hidden"
-                              animate="visible"
-                              exit="exit"
-                              variants={dropdownVariants}
-                              className="absolute right-0 mt-2 w-full sm:w-56 bg-background-primary rounded-lg shadow-lg z-10 overflow-hidden"
-                            >
-                              <div className="p-2 border-b border-border-primary">
-                                <div className="relative">
-                                  <Search size={16} className="absolute left-2 top-1/2 -translate-y-1/2 text-text-tertiary" />
-                                  <input
-                                    type="text"
-                                    placeholder="Search currency..."
-                                    value={currencySearchQuery}
-                                    onChange={(e) => {
-                                      setCurrencySearchQuery(e.target.value);
-                                      filterCurrencies(e.target.value);
-                                    }}
-                                    className="w-full pl-8 pr-3 py-1.5 text-sm rounded-md border border-border-primary bg-background-secondary text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-primary"
-                                  />
-                                </div>
-                              </div>
-                              <motion.div className="py-1 max-h-60 overflow-y-auto">
-                                {filteredCurrencies.length > 0 ? (
-                                  filteredCurrencies.map((currency, index) => (
-                                    <motion.button
-                                      key={currency}
-                                      initial={{ opacity: 0, y: -8 }}
-                                      animate={{ 
-                                        opacity: 1, 
-                                        y: 0,
-                                        transition: { delay: index * 0.05 }
-                                      }}
-                                      className="block w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-background-secondary"
-                                      onClick={() => {
-                                        setSelectedCurrency(currency);
-                                        setMethodDropdownOpen(false);
-                                        setCurrencySearchQuery('');
-                                        setFilteredCurrencies(['USD', 'EUR', 'GBP', 'JPY', 'BRL']);
-                                      }}
-                                    >
-                                      {currency}
-                                    </motion.button>
-                                  ))
-                                ) : (
-                                  <div className="px-4 py-2 text-sm text-text-tertiary">
-                                    No currencies found
-                                  </div>
-                                )}
-                              </motion.div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div 
-                    variants={inputVariants}
-                    className="flex justify-center my-4"
-                    animate={{ 
-                      rotateX: activeTab === 'buy' ? 0 : 180,
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <ArrowDown size={20} className="text-text-tertiary" />
-                  </motion.div>
-
-                  <motion.div variants={inputVariants} className="mb-4">
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      {activeTab === 'buy' ? 'I will receive approximately' : 'I will receive'}
-                    </label>
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-                      <input
-                        type="text"
-                        className="w-full sm:flex-grow px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none border border-border-primary bg-background-primary text-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary"
-                        placeholder="0.00"
-                        value={estimatedCrypto}
-                        readOnly
-                      />
-                      <div className="relative w-full sm:w-auto">
-                        <button 
-                          className="w-full sm:w-auto flex items-center justify-between min-w-[100px] px-3 sm:px-4 py-2.5 sm:py-3 bg-background-secondary border border-border-primary rounded-lg sm:rounded-l-none sm:rounded-r-lg text-text-primary focus:outline-none"
-                          onClick={() => setCryptoDropdownOpen(!cryptoDropdownOpen)}
-                        >
-                          <div className="flex items-center">
-                            <CryptoIcon symbol={selectedCoin.id} size={16} className="mr-2 flex-shrink-0" />
-                            <span>{selectedCoin.id}</span>
-                          </div>
-                          <ChevronDown size={16} className={`ml-2 transition-transform duration-200 ${cryptoDropdownOpen ? 'transform rotate-180' : ''}`} />
-                        </button>
-                        <AnimatePresence>
-                          {cryptoDropdownOpen && (
-                            <motion.div
-                              initial="hidden"
-                              animate="visible"
-                              exit="exit"
-                              variants={dropdownVariants}
-                              className="absolute right-0 mt-2 w-full sm:w-56 bg-background-primary rounded-lg shadow-lg z-10 overflow-hidden"
-                            >
-                              <div className="p-2 border-b border-border-primary">
-                                <div className="relative">
-                                  <Search size={16} className="absolute left-2 top-1/2 -translate-y-1/2 text-text-tertiary" />
-                                  <input
-                                    type="text"
-                                    placeholder="Search coins..."
-                                    value={searchQuery}
-                                    onChange={(e) => {
-                                      setSearchQuery(e.target.value);
-                                      filterCoins(e.target.value);
-                                    }}
-                                    className="w-full pl-8 pr-3 py-1.5 text-sm rounded-md border border-border-primary bg-background-secondary text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-primary"
-                                  />
-                                </div>
-                              </div>
-                              <motion.div className="py-1 max-h-60 overflow-y-auto">
-                                {filteredCoins.length > 0 ? (
-                                  filteredCoins.map((coin, index) => (
-                                    <motion.button
-                                      key={coin.id}
-                                      initial={{ opacity: 0, y: -8 }}
-                                      animate={{ 
-                                        opacity: 1, 
-                                        y: 0,
-                                        transition: { delay: index * 0.05 }
-                                      }}
-                                      className="block w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-background-secondary"
-                                      onClick={() => {
-                                        setSelectedCoin(coin);
-                                        setCryptoDropdownOpen(false);
-                                        setSearchQuery('');
-                                        setFilteredCoins(availableCoins);
-                                      }}
-                                    >
-                                      <div className="flex items-center">
-                                        <CryptoIcon symbol={coin.id} size={16} className="mr-3 flex-shrink-0" />
-                                        <span className="whitespace-nowrap overflow-hidden text-ellipsis">
-                                          {coin.name} ({coin.id})
-                                        </span>
-                                      </div>
-                                    </motion.button>
-                                  ))
-                                ) : (
-                                  <div className="px-4 py-2 text-sm text-text-tertiary">
-                                    No coins found
-                                  </div>
-                                )}
-                              </motion.div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div variants={inputVariants}>
-                    <label className="block text-sm font-medium text-text-primary mb-2">
-                      {activeTab === 'buy' ? 'Payment Method' : 'Payout Method'}
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
-                      {paymentMethods.map((method) => (
-                        <PaymentMethodButton
-                          key={method.id}
-                          method={method}
-                          isSelected={paymentMethod.id === method.id}
-                          onClick={() => setPaymentMethod(method)}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  <motion.button
-                    variants={inputVariants}
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    className={`w-full py-2.5 sm:py-3 bg-brand-primary text-background-primary rounded-lg hover:opacity-90 transition-colors font-medium mt-6 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    onClick={handleContinue}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? 'Processing...' : (activeTab === 'buy' ? 'Continue to Buy' : 'Continue to Sell')}
-                  </motion.button>
-
-                  {!selectedWallet && (
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="mt-4 p-3 bg-background-secondary rounded-lg flex items-start"
-                    >
-                      <AlertCircle size={16} className="text-brand-primary mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-sm text-text-secondary">
-                        You don't have a {selectedCoin.id} wallet yet. A new wallet will be created automatically when you make your first purchase.
-                      </p>
-                    </motion.div>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.div>
-
-          {/* Hot Cryptos Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            className="bg-background-primary p-6 rounded-xl shadow-lg"
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="hidden lg:block bg-background-primary p-4 sm:p-6 rounded-xl shadow-lg"
+            transition={{ delay: 0.2 }}
           >
-            <div className="flex items-center mb-4">
-              <TrendingUp size={20} className="text-brand-primary mr-2" />
-              <h2 className="text-lg font-bold text-text-primary">
-                {activeTab === 'buy' ? 'Best Time to Buy' : 'Recommended to Sell'}
-              </h2>
-            </div>
+            <h2 className="text-xl font-bold mb-4 text-text-primary">Deposit Options</h2>
+            <p className="text-text-secondary mb-6">Choose a method to add funds to your account</p>
+            {depositMessage && (
+              <div className="mb-4 p-3 rounded bg-emerald-50 text-emerald-800">{depositMessage}</div>
+            )}
             
             <div className="space-y-4">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {(activeTab === 'buy' ? buyRecommendations : sellRecommendations).map((crypto) => (
-                    <motion.div
-                      key={crypto.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-4 bg-background-secondary rounded-lg cursor-pointer hover:bg-background-secondary/80 transition-colors"
-                      onClick={() => setSelectedCoin(availableCoins.find(c => c.id === crypto.id))}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <CryptoIcon symbol={crypto.symbol} size={20} />
-                          <span className="font-medium text-text-primary">{crypto.name}</span>
+              <div 
+                className={`p-4 bg-background-secondary rounded-lg flex items-center cursor-pointer ${
+                  selectedMethod === 'card' ? 'ring-2 ring-brand-primary' : 'hover:bg-background-tertiary'
+                } transition-colors`}
+                onClick={() => handleMethodClick('card')}
+              >
+                <div className="w-10 h-10 bg-brand-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                  <CreditCard className="text-brand-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-text-primary">Credit / Debit Card</h3>
+                  <p className="text-sm text-text-secondary">Instant deposit, 1.5% fee</p>
+                </div>
+              </div>
+              
+              <AnimatePresence initial={false}>
+                {selectedMethod === 'card' && (
+                  <motion.div
+                    key="card"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="ml-14 mt-2 p-4 bg-background-secondary rounded-lg"
+                  >
+                    <h4 className="text-sm font-bold text-text-primary mb-3">Card Details</h4>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm text-text-secondary mb-1">Card Number</label>
+                        <InputMask
+                          mask="9999 9999 9999 9999"
+                          placeholder="1234 5678 9012 3456" 
+                          className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-sm text-text-secondary mb-1">Expiry Date</label>
+                          <InputMask 
+                            mask="99/99"
+                            placeholder="MM/YY" 
+                            className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                          />
                         </div>
-                        <div className={`text-sm font-medium ${crypto.change > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                          {crypto.change > 0 ? '+' : ''}{crypto.change}%
+                        <div>
+                          <label className="block text-sm text-text-secondary mb-1">CVC</label>
+                          <InputMask 
+                            mask="999"
+                            placeholder="123" 
+                            className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                          />
                         </div>
                       </div>
-                      <div className="text-sm text-text-secondary mt-1">
-                        {crypto.reason}
+                      <div>
+                        <label className="block text-sm text-text-secondary mb-1">Amount (USD)</label>
+                        <InputMask 
+                          mask="$ 999999999.99"
+                          maskChar={null}
+                          placeholder="$ 0.00" 
+                          className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                          value={amount}
+                          onChange={(e) => setAmount(e.target.value)}
+                        />
                       </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+                      <button
+                        className="w-full py-2 bg-brand-primary text-white rounded-md hover:bg-opacity-90 transition-colors"
+                        onClick={async () => {
+                          const value = parseFloat(amount.replace(/[^0-9.-]+/g, '')) || 0;
+                          if (!value || value <= 0) {
+                            setDepositMessage('Informe um valor válido');
+                            return;
+                          }
+                          setDepositLoading(true);
+                          setDepositMessage(null);
+                          try {
+                            const ref = genReferenceId();
+                            await walletApi.depositFiat({ currency: 'USD', amount: value, method: 'CARD', referenceId: ref });
+                            setDepositMessage('Depósito concluído com sucesso');
+                            setNotification({ type: 'success', message: 'Depósito concluído com sucesso' });
+                            setAmount('');
+                            await loadBalances();
+                          } catch (err) {
+                            const msg = err.response?.data?.message || err.message || 'Erro no depósito';
+                            setDepositMessage(msg);
+                            setNotification({ type: 'error', message: msg });
+                          } finally {
+                            setDepositLoading(false);
+                          }
+                        }}
+                        disabled={depositLoading}
+                      >
+                        {depositLoading ? 'Processando...' : 'Complete Deposit'}
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              
+              <div 
+                className={`p-4 bg-background-secondary rounded-lg flex items-center cursor-pointer ${
+                  selectedMethod === 'bank' ? 'ring-2 ring-brand-primary' : 'hover:bg-background-tertiary'
+                } transition-colors`}
+                onClick={() => handleMethodClick('bank')}
+              >
+                <div className="w-10 h-10 bg-brand-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                  <DollarSign className="text-brand-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-text-primary">Bank Transfer</h3>
+                  <p className="text-sm text-text-secondary">1-3 business days, no fee</p>
+                </div>
+              </div>
+              
+              <AnimatePresence initial={false}>
+                {selectedMethod === 'bank' && (
+                  <motion.div
+                    key="bank"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="ml-14 mt-2 p-4 bg-background-secondary rounded-lg"
+                  >
+                    <h4 className="text-sm font-bold text-text-primary mb-3">Bank Transfer Details</h4>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm text-text-secondary mb-1">Account Holder Name</label>
+                        <input
+                          type="text"
+                          placeholder="Your full name"
+                          className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm text-text-secondary mb-1">Amount (USD)</label>
+                        <InputMask 
+                          mask="$ 999999999.99"
+                          maskChar={null}
+                          placeholder="$ 0.00" 
+                          className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                          value={bankAmount}
+                          onChange={(e) => setBankAmount(e.target.value)}
+                        />
+                      </div>
+                      <div className="bg-background-primary p-3 rounded-md border border-border-primary">
+                        <h5 className="text-sm font-medium text-text-primary mb-1">Our Bank Details</h5>
+                        <p className="text-xs text-text-secondary">Account: 123456789</p>
+                        <p className="text-xs text-text-secondary">Routing: 012345678</p>
+                        <p className="text-xs text-text-secondary">Bank: CriptoTrade Financial</p>
+                        <p className="text-xs text-text-secondary mb-2">Reference: Include your user ID</p>
+                      </div>
+                      <button
+                        className="w-full py-2 bg-brand-primary text-white rounded-md hover:bg-opacity-90 transition-colors"
+                        onClick={async () => {
+                          const value = parseFloat(bankAmount.replace(/[^0-9.-]+/g, '')) || 0;
+                          if (!value || value <= 0) {
+                            setDepositMessage('Informe um valor válido para transferência bancária');
+                            return;
+                          }
+                          setDepositLoading(true);
+                          setDepositMessage(null);
+                          try {
+                            const ref = genReferenceId();
+                            await walletApi.depositFiat({ currency: 'USD', amount: value, method: 'BANK_TRANSFER', referenceId: ref });
+                            const successMsg = 'Depósito por transferência registrado com sucesso';
+                            setDepositMessage(successMsg);
+                            setNotification({ type: 'success', message: successMsg });
+                            setBankAmount('');
+                            await loadBalances();
+                          } catch (err) {
+                            const msg = err.response?.data?.message || err.message || 'Erro no depósito por transferência';
+                            setDepositMessage(msg);
+                            setNotification({ type: 'error', message: msg });
+                          } finally {
+                            setDepositLoading(false);
+                          }
+                        }}
+                        disabled={depositLoading}
+                      >
+                        {depositLoading ? 'Processando...' : "I've Sent the Transfer"}
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              
+              <div 
+                className={`p-4 bg-background-secondary rounded-lg flex items-center cursor-pointer ${
+                  selectedMethod === 'crypto' ? 'ring-2 ring-brand-primary' : 'hover:bg-background-tertiary'
+                } transition-colors`}
+                onClick={() => handleMethodClick('crypto')}
+              >
+                <div className="w-10 h-10 bg-brand-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                  <Wallet className="text-brand-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-text-primary">Crypto Transfer</h3>
+                  <p className="text-sm text-text-secondary">Deposit crypto from external wallet</p>
+                </div>
+              </div>
+              
+              <AnimatePresence initial={false}>
+                {selectedMethod === 'crypto' && (
+                  <motion.div
+                    key="crypto"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="ml-14 mt-2 p-4 bg-background-secondary rounded-lg"
+                  >
+                    <h4 className="text-sm font-bold text-text-primary mb-3">Deposit Cryptocurrency</h4>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm text-text-secondary mb-1">Select Cryptocurrency</label>
+                        <select
+                          className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                          value={cryptoSymbol}
+                          onChange={(e) => setCryptoSymbol(e.target.value)}
+                        >
+                          <option value="BTC">Bitcoin (BTC)</option>
+                          <option value="ETH">Ethereum (ETH)</option>
+                          <option value="USDT">Tether (USDT)</option>
+                          <option value="USDC">USD Coin (USDC)</option>
+                        </select>
+                        <div className="mt-3">
+                          <label className="block text-sm text-text-secondary mb-1">Amount</label>
+                          <input
+                            type="number"
+                            step="any"
+                            placeholder="0.0000"
+                            className="w-full p-2 border border-border-secondary rounded-md bg-background-secondary text-text-primary"
+                            value={cryptoAmount}
+                            onChange={(e) => setCryptoAmount(e.target.value)}
+                          />
+                          <button
+                            className="mt-3 w-full py-2 bg-brand-primary text-white rounded-md hover:bg-opacity-90 transition-colors"
+                            onClick={async () => {
+                              const value = parseFloat(cryptoAmount) || 0;
+                              if (!value || value <= 0) {
+                                setDepositMessage('Informe um valor válido para o depósito em cripto');
+                                return;
+                              }
+                              setDepositLoading(true);
+                              setDepositMessage(null);
+                                try {
+                                const ref = genReferenceId();
+                                await walletApi.adjustBalance(cryptoSymbol, value, {
+                                  unitPriceUsd: 1,
+                                  method: 'CRYPTO_TRANSFER',
+                                  referenceId: ref,
+                                });
+                                const successMsg = 'Depósito em cripto registrado com sucesso';
+                                setDepositMessage(successMsg);
+                                setNotification({ type: 'success', message: successMsg });
+                                setCryptoAmount('');
+                                await loadBalances();
+                              } catch (err) {
+                                const msg = err.response?.data?.message || err.message || 'Erro no depósito em cripto';
+                                setDepositMessage(msg);
+                                setNotification({ type: 'error', message: msg });
+                              } finally {
+                                setDepositLoading(false);
+                              }
+                            }}
+                            disabled={depositLoading}
+                          >
+                            {depositLoading ? 'Processando...' : 'Confirm Deposit'}
+                          </button>
+                        </div>
+                      </div>
+                      <div className="bg-background-primary p-3 rounded-md border border-border-primary">
+                        <h5 className="text-sm font-medium text-text-primary mb-2">Your Deposit Address</h5>
+                        <div className="flex items-center justify-between mb-2">
+                          <code className="text-xs bg-background-secondary p-2 rounded w-full overflow-hidden">
+                            {walletAddress ?? 'Loading or not available'}
+                          </code>
+                          <button
+                            className="ml-2 p-1 bg-background-secondary rounded hover:bg-background-tertiary"
+                            onClick={() => {
+                              try {
+                                navigator.clipboard.writeText(walletAddress || '');
+                                setDepositMessage('Endereço copiado para área de transferência');
+                              } catch { /* ignore */ }
+                            }}
+                          >
+                            <CreditCard size={16} className="text-text-secondary" />
+                          </button>
+                        </div>
+                        <div className="flex justify-center py-2">
+                          <div className="bg-white p-2 rounded w-32 h-32">
+                            {/* QR Code placeholder */}
+                            <div className="w-full h-full border-2 border-dashed border-gray-300 flex items-center justify-center">
+                              <span className="text-xs text-gray-500">QR Code</span>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-xs text-amber-500 mt-2">Important: Only send BTC to this address. Sending any other coin may result in permanent loss.</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
               </AnimatePresence>
             </div>
             
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0, transition: { delay: 0.3 }}}
-              className="mt-6 p-4 bg-background-secondary rounded-lg"
-            >
-              <h3 className="font-medium text-brand-primary mb-2">
-                {activeTab === 'buy' ? `Why buy ${selectedCoin.name}?` : `Why sell ${selectedCoin.name}?`}
-              </h3>
-              <ul className="text-sm space-y-2 text-text-secondary">
-                {activeTab === 'buy' ? (
-                  <>
-                    <motion.li 
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex items-start"
-                    >
-                      <span className="mr-2 flex-shrink-0">•</span>
-                      <span>Market momentum is favorable</span>
-                    </motion.li>
-                    <motion.li 
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex items-start"
-                    >
-                      <span className="mr-2 flex-shrink-0">•</span>
-                      <span>Technical indicators are positive</span>
-                    </motion.li>
-                  </>
-                ) : (
-                  <>
-                    <motion.li 
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex items-start"
-                    >
-                      <span className="mr-2 flex-shrink-0">•</span>
-                      <span>Price reached resistance level</span>
-                    </motion.li>
-                    <motion.li 
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex items-start"
-                    >
-                      <span className="mr-2 flex-shrink-0">•</span>
-                      <span>Good opportunity to take profits</span>
-                    </motion.li>
-                  </>
-                )}
-              </ul>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="lg:hidden bg-background-primary p-4 rounded-xl shadow-lg"
-          >
-            <div className="flex items-center mb-3">
-              <TrendingUp size={18} className="text-brand-primary mr-2" />
-              <h2 className="text-base font-bold text-text-primary">
-                {activeTab === 'buy' ? 'Best Time to Buy' : 'Recommended to Sell'}
-              </h2>
+            <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <p className="text-sm text-amber-700">
+                Tela ainda mockada. Os formulários não submetem dados reais.
+              </p>
             </div>
+          </motion.div>
+          
+          {/* Right panel */}
+          <motion.div 
+            className="bg-background-primary p-6 rounded-xl shadow-lg"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <h2 className="text-xl font-bold mb-4 text-text-primary">Recent Activity</h2>
             
-            <div className="grid grid-cols-2 gap-3">
-              {(activeTab === 'buy' ? buyRecommendations : sellRecommendations)
-                .slice(0, 4)
-                .map((crypto, index) => (
-                  <motion.button
-                    key={crypto.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ 
-                      opacity: 1, 
-                      y: 0,
-                      transition: { delay: 0.1 + (index * 0.05) }
-                    }}
-                    className="p-3 rounded-lg border border-border-primary hover:bg-background-secondary transition-colors text-left"
-                    onClick={() => setSelectedCoin(availableCoins.find(c => c.id === crypto.id))}
-                  >
-                    <div className="flex items-center space-x-2 mb-1">
-                      <CryptoIcon symbol={crypto.symbol} size={16} className="flex-shrink-0" />
-                      <span className="text-sm font-medium text-text-primary">{crypto.symbol}</span>
-                    </div>
-                    <div className={`text-xs ${crypto.change > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                      {crypto.change > 0 ? '+' : ''}{crypto.change}%
-                    </div>
-                    <div className="text-xs text-text-secondary mt-1 line-clamp-2">
-                      {crypto.reason}
-                    </div>
-                  </motion.button>
-              ))}
+              <div className="space-y-3">
+                  {balances && balances.length > 0 ? (
+                    balances.map((b) => {
+                      const symbol = b.symbol || 'UNKNOWN';
+                      const amount = b.amount ?? 0;
+                      return (
+                        <div key={`bal-${b.currencyId ?? symbol}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                          <div className="flex items-center">
+                            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                              <ArrowDownLeft className="h-4 w-4 text-green-600" />
+                            </div>
+                            <div>
+                              <h4 className="text-text-primary">{symbol}</h4>
+                              <p className="text-xs text-text-secondary">Available</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-text-primary font-medium">{amount}</p>
+                            <p className="text-xs text-text-tertiary">Balance</p>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="p-3 border border-border-primary rounded-lg text-text-tertiary">No balances yet</div>
+                  )}
+
+                  {/* Integrate recent transactions into the same "Recent Activity" list */}
+                  {transactions && transactions.length > 0 && (
+                    transactions.slice(0, 6).map((tx) => {
+                      const displayType = getTxDisplayType(tx) || 'Txn';
+                      const typeStr = (displayType || '').toLowerCase();
+                      const assetLabel = getTxAsset(tx);
+                      const amountLabel = getTxAmountLabel(tx);
+                      const messageLabel = tx.message ?? tx.description ?? tx.Message ?? '';
+
+                      return (
+                        <div key={`tx-${tx.id ?? tx.Id ?? tx.idTransaction ?? tx.IdTransaction ?? Math.random()}`} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                          <div className="flex items-center">
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${typeStr === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
+                              <span className="text-sm font-medium">{(displayType.charAt(0) || 'T').toUpperCase()}</span>
+                            </div>
+                            <div>
+                              <h4 className="text-text-primary">{displayType.charAt(0).toUpperCase() + displayType.slice(1)}</h4>
+                              <p className="text-xs text-text-secondary">{assetLabel}</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-text-primary font-medium">{amountLabel}</p>
+                            <p className="text-xs text-text-secondary">{messageLabel}</p>
+                          </div>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+            
+            <div className="mt-6">
+              <h3 className="text-lg font-medium mb-3 text-text-primary">Your Balances</h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-background-secondary rounded-lg">
+                  <p className="text-sm text-text-tertiary mb-1">USD Balance</p>
+                  <p className="text-lg font-medium text-text-primary">
+                    ${Number(effectiveUsdBalance || 0).toFixed(2)}
+                  </p>
+                </div>
+                <div className="p-3 bg-background-secondary rounded-lg">
+                  <p className="text-sm text-text-tertiary mb-1">EUR Balance</p>
+                  <p className="text-lg font-medium text-text-primary">€0.00</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Recent transactions / deposits */}
+            <div className="mt-6">
+              <h3 className="text-lg font-medium mb-3 text-text-primary">Recent Transactions</h3>
+              <div className="space-y-3">
+                {transactions && transactions.length > 0 ? (
+                  transactions.slice(0, 6).map((tx) => {
+                    const typeStr = getTxTypeString(tx).toLowerCase();
+                    const displayType = (getTxTypeString(tx) || 'Txn');
+                    const assetLabel = getTxAsset(tx);
+                    const amountLabel = (tx.amount ?? tx.Amount ?? tx.value ?? tx.amount ?? '').toString();
+                    const messageLabel = tx.message ?? tx.description ?? tx.Message ?? '';
+
+                    return (
+                      <div key={tx.id ?? tx.Id} className="p-3 border border-border-primary rounded-lg flex items-center justify-between">
+                        <div className="flex items-center">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${typeStr === 'deposit' ? 'bg-emerald-100' : 'bg-blue-100'}`}>
+                            <span className="text-sm font-medium">{(displayType.charAt(0) || 'T').toUpperCase()}</span>
+                          </div>
+                          <div>
+                            <h4 className="text-text-primary">{displayType.charAt(0).toUpperCase() + displayType.slice(1)}</h4>
+                              <p className="text-xs text-text-secondary">{assetLabel}</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-text-primary font-medium">{amountLabel}</p>
+                            <p className="text-xs text-text-secondary">{messageLabel}</p>
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="p-3 border border-border-primary rounded-lg text-text-tertiary">No recent transactions</div>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>
-      </div>
+
+        <div className="mt-8 flex justify-center">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-center text-text-secondary text-sm"
+          >
+            <img src={Logo} alt="CriptoTrade" className="w-12 h-12 mx-auto mb-2" />
+            <p>Esta é uma interface mockada. Os dados não são reais.</p>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
+
+    </>
+   
   );
 }

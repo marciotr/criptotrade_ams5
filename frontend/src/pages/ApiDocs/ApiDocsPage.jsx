@@ -3,14 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle, Copy, Code, RefreshCcw, ExternalLink, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../store/auth/useAuth';
-import { NotificationToast } from '../../components/common/NotificationToast'; // Ajuste o caminho
+import { NotificationToast } from '../../components/common/NotificationToast';
 
 export function ApiDocsPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [apiStatus, setApiStatus] = useState({
     userApi: 'checking',
-    cryptoApi: 'checking'
+    cryptoApi: 'checking',
+    walletApi: 'checking',     
+    currencyApi: 'checking'    
   });
   const [copied, setCopied] = useState('');
   const [expanded, setExpanded] = useState({});
@@ -40,6 +42,48 @@ export function ApiDocsPage() {
         { name: 'Get Price', method: 'GET', path: '/api/crypto/price/{symbol}' },
         { name: '24h Market Data', method: 'GET', path: '/api/crypto/ticker/{symbol}' },
         { name: 'Historical Data', method: 'GET', path: '/api/crypto/history/{symbol}' }
+      ]
+    },
+    // Wallet API (novo serviço walletApi)
+    walletApi: {
+      base: 'http://localhost:5094',
+      health: 'http://localhost:5094/health',
+      swagger: 'http://localhost:5094/index.html',
+      spec: 'http://localhost:5094/swagger/v1/swagger.json',
+      endpoints: [
+        { name: 'Get All Wallets', method: 'GET', path: '/api/wallets' },
+        { name: 'Create Wallet', method: 'POST', path: '/api/wallets' },
+        { name: 'Get Wallet By Id', method: 'GET', path: '/api/wallets/{id}' },
+        { name: 'Get Wallet Balances', method: 'GET', path: '/api/wallets/{id}/balances' },
+        { name: 'Get Positions (wallet)', method: 'GET', path: '/api/positions/{walletId}' },
+        { name: 'Get Transactions', method: 'GET', path: '/api/transactions' },
+        { name: 'Get Transaction By Id', method: 'GET', path: '/api/transactions/{id}' },
+        { name: 'Buy (transaction)', method: 'POST', path: '/api/transactions/buy' },
+        { name: 'Sell (transaction)', method: 'POST', path: '/api/transactions/sell' },
+        { name: 'Swap (transaction)', method: 'POST', path: '/api/transactions/swap' },
+        { name: 'Create Generic Transaction', method: 'POST', path: '/api/transactions' },
+        { name: 'Get Balance Summary', method: 'GET', path: '/api/balance/summary' },
+        { name: 'Get Balance (per currency)', method: 'GET', path: '/api/balance' },
+        { name: 'Get Asset Lots', method: 'GET', path: '/api/balance/asset/{assetSymbol}/lots' },
+        { name: 'Adjust Balance (admin)', method: 'PATCH', path: '/api/balance/{assetSymbol}' },
+        { name: 'Deposit Fiat', method: 'POST', path: '/api/transactions/deposit/fiat' },
+        { name: 'Withdraw Fiat', method: 'POST', path: '/api/transactions/withdraw/fiat' },
+        { name: 'Get Currencies (catalog)', method: 'GET', path: '/api/currencies' }
+      ]
+    },
+    // Nova API Currency
+    currencyApi: {
+      base: 'http://localhost:5169',
+      health: 'http://localhost:5169/health',
+      swagger: 'http://localhost:5169/index.html',
+      spec: 'http://localhost:5169/swagger/v1/swagger.json',
+      endpoints: [
+        { name: 'Get All Currencies', method: 'GET', path: '/api/currency' },
+        { name: 'Get Currency', method: 'GET', path: '/api/currency/{id}' },
+        { name: 'Create Currency', method: 'POST', path: '/api/currency' },
+        { name: 'Update Currency', method: 'PUT', path: '/api/currency/{id}' },
+        { name: 'Delete Currency', method: 'DELETE', path: '/api/currency/{id}' },
+        { name: 'Get History by Currency', method: 'GET', path: '/api/history/currency/{currencyId}' }
       ]
     }
   };
@@ -78,6 +122,28 @@ export function ApiDocsPage() {
     } catch (error) {
       setApiStatus(prev => ({ ...prev, cryptoApi: 'offline' }));
     }
+    
+    // Verificando Wallet API
+    try {
+      const walletResponse = await fetch(apiEndpoints.walletApi.base, { 
+        method: 'HEAD',
+        mode: 'no-cors' 
+      });
+      setApiStatus(prev => ({ ...prev, walletApi: 'online' }));
+    } catch (error) {
+      setApiStatus(prev => ({ ...prev, walletApi: 'offline' }));
+    }
+    
+    // Verificando Currency API
+    try {
+      const currencyResponse = await fetch(apiEndpoints.currencyApi.base, { 
+        method: 'HEAD',
+        mode: 'no-cors' 
+      });
+      setApiStatus(prev => ({ ...prev, currencyApi: 'online' }));
+    } catch (error) {
+      setApiStatus(prev => ({ ...prev, currencyApi: 'offline' }));
+    }
   };
 
   const copyToClipboard = (text, type) => {
@@ -98,14 +164,14 @@ export function ApiDocsPage() {
   const refreshApiData = async () => {
     try {
       setRefreshLoading(true);
-      await checkApiStatus(); // Use a função existente em vez de fetchApiEndpoints
+      await checkApiStatus(); 
     } catch (error) {
       console.error('Error refreshing API data:', error);
       showNotification('error', 'Failed to refresh API documentation');
     } finally {
       setTimeout(() => {
         setRefreshLoading(false);
-      }, 500); // Adicione um pequeno atraso para garantir que a animação seja visível
+      }, 500);
     }
   };
 
@@ -155,6 +221,7 @@ export function ApiDocsPage() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* User API Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -220,6 +287,7 @@ export function ApiDocsPage() {
           </div>
         </motion.div>
 
+        {/* Crypto API Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -277,6 +345,136 @@ export function ApiDocsPage() {
                         <Copy className="w-4 h-4" />
                       </button>
                       {copied === `cryptoApi-${index}` && <CheckCircle className="w-4 h-4 text-green-500" />}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="bg-background-primary p-6 rounded-xl shadow-lg"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-text-primary">Wallet API</h2>
+            {apiStatus.walletApi === 'online' ? (
+              <CheckCircle className="w-6 h-6 text-green-500" />
+            ) : apiStatus.walletApi === 'offline' ? (
+              <XCircle className="w-6 h-6 text-red-500" />
+            ) : (
+              <RefreshCcw className="w-6 h-6 text-yellow-500 animate-spin" />
+            )}
+          </div>
+          <p className="text-text-secondary mb-4">
+            Endpoints para gerenciar carteiras, posições, transações e o catálogo de moedas.
+          </p>
+          <div className="flex space-x-4 mb-4">
+            <a 
+              href={apiEndpoints.walletApi.swagger} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-brand-primary text-background-primary rounded-lg hover:opacity-90 transition-colors"
+            >
+              Swagger UI
+            </a>
+            <a 
+              href={apiEndpoints.walletApi.spec} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-border-primary text-text-primary rounded-lg hover:bg-background-secondary transition-colors"
+            >
+              OpenAPI Spec
+            </a>
+          </div>
+          <div>
+            {apiEndpoints.walletApi.endpoints.map((endpoint, index) => (
+              <div key={index} className="mb-2">
+                <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleExpanded(`walletApi-${index}`)}>
+                  <div className="flex items-center space-x-2">
+                    <Code className="w-5 h-5 text-text-primary" />
+                    <span className="text-text-primary">{endpoint.name}</span>
+                  </div>
+                  <ChevronRight className={`w-5 h-5 text-text-primary transform ${expanded[`walletApi-${index}`] ? 'rotate-90' : ''}`} />
+                </div>
+                {expanded[`walletApi-${index}`] && (
+                  <div className="ml-7 mt-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-text-secondary">{endpoint.method}</span>
+                      <span className="text-text-secondary">{endpoint.path}</span>
+                      <button onClick={() => copyToClipboard(endpoint.path, `walletApi-${index}`)} className="text-brand-primary hover:opacity-80 transition-opacity">
+                        <Copy className="w-4 h-4" />
+                      </button>
+                      {copied === `walletApi-${index}` && <CheckCircle className="w-4 h-4 text-green-500" />}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Currency API Card - NOVO */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="bg-background-primary p-6 rounded-xl shadow-lg"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-text-primary">Currency API</h2>
+            {apiStatus.currencyApi === 'online' ? (
+              <CheckCircle className="w-6 h-6 text-green-500" />
+            ) : apiStatus.currencyApi === 'offline' ? (
+              <XCircle className="w-6 h-6 text-red-500" />
+            ) : (
+              <RefreshCcw className="w-6 h-6 text-yellow-500 animate-spin" />
+            )}
+          </div>
+          <p className="text-text-secondary mb-4">
+            Manage cryptocurrency listings, including details, status, and historical price data
+            through this API.
+          </p>
+          <div className="flex space-x-4 mb-4">
+            <a 
+              href={apiEndpoints.currencyApi.swagger} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-brand-primary text-background-primary rounded-lg hover:opacity-90 transition-colors"
+            >
+              Swagger UI
+            </a>
+            <a 
+              href={apiEndpoints.currencyApi.spec} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-border-primary text-text-primary rounded-lg hover:bg-background-secondary transition-colors"
+            >
+              OpenAPI Spec
+            </a>
+          </div>
+          <div>
+            {apiEndpoints.currencyApi.endpoints.map((endpoint, index) => (
+              <div key={index} className="mb-2">
+                <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleExpanded(`currencyApi-${index}`)}>
+                  <div className="flex items-center space-x-2">
+                    <Code className="w-5 h-5 text-text-primary" />
+                    <span className="text-text-primary">{endpoint.name}</span>
+                  </div>
+                  <ChevronRight className={`w-5 h-5 text-text-primary transform ${expanded[`currencyApi-${index}`] ? 'rotate-90' : ''}`} />
+                </div>
+                {expanded[`currencyApi-${index}`] && (
+                  <div className="ml-7 mt-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-text-secondary">{endpoint.method}</span>
+                      <span className="text-text-secondary">{endpoint.path}</span>
+                      <button onClick={() => copyToClipboard(endpoint.path, `currencyApi-${index}`)} className="text-brand-primary hover:opacity-80 transition-opacity">
+                        <Copy className="w-4 h-4" />
+                      </button>
+                      {copied === `currencyApi-${index}` && <CheckCircle className="w-4 h-4 text-green-500" />}
                     </div>
                   </div>
                 )}

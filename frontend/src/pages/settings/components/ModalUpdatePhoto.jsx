@@ -42,9 +42,9 @@ export function ModalUpdatePhoto({ onClose, onUpdate, currentPhoto }) {
     <Modal onClose={onClose}>
       <div className="space-y-6">
         <div className="text-center">
-          <h3 className="text-xl font-semibold text-text-primary">Update Profile Photo</h3>
+          <h3 className="text-xl font-semibold text-text-primary">Atualizar Foto de Perfil</h3>
           <p className="mt-2 text-text-secondary text-sm">
-            Choose a new profile photo. Recommended size: 400x400px
+            Escolha uma nova foto de perfil. Tamanho recomendado: 400x400px
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export function ModalUpdatePhoto({ onClose, onUpdate, currentPhoto }) {
           <div className="w-32 h-32 relative rounded-full overflow-hidden">
             <img
               src={preview || currentPhoto}
-              alt="Profile preview"
+              alt="Prévia do perfil"
               className="w-full h-full object-cover"
             />
           </div>
@@ -66,12 +66,12 @@ export function ModalUpdatePhoto({ onClose, onUpdate, currentPhoto }) {
             />
             <div className="flex items-center gap-2 text-brand-primary hover:text-brand-secondary">
               <Upload size={20} />
-              <span className="text-sm font-medium">Upload new photo</span>
+              <span className="text-sm font-medium">Enviar nova foto</span>
             </div>
           </label>
 
           <div className="text-xs text-text-tertiary">
-            Supported formats: JPG, PNG, GIF (max. 2MB)
+            Formatos suportados: JPG, PNG, GIF (máx. 2MB)
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export function ModalUpdatePhoto({ onClose, onUpdate, currentPhoto }) {
             onClick={onClose}
             className="px-4 py-2 text-text-primary hover:bg-background-secondary rounded-lg transition-colors"
           >
-            Cancel
+            Cancelar
           </button>
           <button
             type="button"
@@ -92,10 +92,10 @@ export function ModalUpdatePhoto({ onClose, onUpdate, currentPhoto }) {
             {isLoading ? (
               <>
                 <span className="w-4 h-4 border-2 border-white rounded-full border-t-transparent animate-spin" />
-                Updating...
+                Atualizando...
               </>
             ) : (
-              'Update Photo'
+              'Atualizar Foto'
             )}
           </button>
         </div>

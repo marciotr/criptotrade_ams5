@@ -73,19 +73,23 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddApplicationServices();
 
+// Novo Token de service
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 // Register services
 builder.Services.AddHttpClient();
 
 
-// Adicione a configuração do CORS aqui
+// Adicione a configuração do CORS aqui (permitir apenas origens conhecidas)
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
+    options.AddPolicy("AllowAll", policyBuilder =>
     {
-        builder
-            .AllowAnyOrigin()
+        policyBuilder
+            .WithOrigins("http://localhost:5173", "http://localhost:5102", "http://localhost:8081")
             .AllowAnyMethod()
             .AllowAnyHeader()
+            .AllowCredentials()
             .WithExposedHeaders("Authorization");
     });
 });

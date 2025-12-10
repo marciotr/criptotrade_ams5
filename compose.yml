@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  gateway:
+    image: gateway:dev
+    build:
+      context: ./backend/gateway
+    ports:
+      - "5040:80"
+    depends_on:
+      - cryptoapi
+      - walletapi
+      - userapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  cryptoapi:
+    image: cryptoapi:dev
+    build:
+      context: ./backend/cryptoApi
+    ports:
+      - "5101:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  walletapi:
+    image: walletapi:dev
+    build:
+      context: ./backend/walletApi/API
+    ports:
+      - "5275:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  userapi:
+    image: userapi:dev
+    build:
+      context: ./backend/userApi
+    ports:
+      - "5294:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

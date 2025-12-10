@@ -8,6 +8,8 @@ namespace userApi.API.DTOs
         public string? Address { get; set; }
         public string? Photo { get; set; }
         public string? Role { get; set; }
+        public bool? MfaEnabled { get; set; }
+        public string? MfaType { get; set; }
 
         public string? Password { get; set; }
     }

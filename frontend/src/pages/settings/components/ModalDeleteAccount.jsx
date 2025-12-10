@@ -15,9 +15,9 @@ export function ModalDeleteAccount({ onClose, onDelete, isLoading }) {
             size={48} 
             className="text-feedback-error mb-4" 
           />
-          <h3 className="text-xl font-semibold text-text-primary">Delete Account</h3>
+          <h3 className="text-xl font-semibold text-text-primary">Excluir Conta</h3>
           <p className="mt-2 text-text-secondary">
-            Are you sure you want to delete your account? This action cannot be undone.
+            Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.
           </p>
         </div>
 
@@ -28,7 +28,7 @@ export function ModalDeleteAccount({ onClose, onDelete, isLoading }) {
             disabled={isLoading}
             className="px-4 py-2 text-text-primary hover:bg-background-secondary rounded-lg transition-colors"
           >
-            Cancel
+            Cancelar
           </button>
           <button
             type="button"
@@ -39,10 +39,10 @@ export function ModalDeleteAccount({ onClose, onDelete, isLoading }) {
             {isLoading ? (
               <>
                 <span className="w-4 h-4 border-2 border-white rounded-full border-t-transparent animate-spin" />
-                Deleting...
+                Excluindo...
               </>
             ) : (
-              'Delete Account'
+              'Excluir Conta'
             )}
           </button>
         </div>

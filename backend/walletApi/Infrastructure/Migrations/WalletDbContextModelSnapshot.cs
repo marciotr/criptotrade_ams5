@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using walletApi.Infrastructure.Data;
+using WalletApi.Infrastructure.Data;
 
 #nullable disable
 
@@ -15,89 +15,189 @@ namespace walletApi.Infrastructure.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
 
-            modelBuilder.Entity("walletApi.Domain.Entities.Transaction", b =>
+            modelBuilder.Entity("WalletApi.Domain.Entities.Account", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("IdAccount")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Amount")
+                    b.Property<decimal>("AvailableBalance")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdUser")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("LockedBalance")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IdAccount");
+
+                    b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("WalletApi.Domain.Entities.Transaction", b =>
+                {
+                    b.Property<Guid>("IdTransaction")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
+                    b.Property<decimal>("Fee")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<Guid>("IdAccount")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TransactionHash")
-                        .IsRequired()
+                    b.Property<Guid?>("RelatedTransactionId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Status")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("WalletId")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("WalletId");
+                    b.HasKey("IdTransaction");
+
+                    b.HasIndex("RelatedTransactionId");
 
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("walletApi.Domain.Entities.Wallet", b =>
+            modelBuilder.Entity("WalletApi.Domain.Entities.TransactionCripto", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("IdTransaction")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal>("CriptoAmount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("ExchangeRate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdCurrency")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IdTransaction");
+
+                    b.ToTable("TransactionCriptos");
+                });
+
+            modelBuilder.Entity("WalletApi.Domain.Entities.TransactionFiat", b =>
+                {
+                    b.Property<Guid>("IdTransaction")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ExternalRef")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentInfo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Provider")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IdTransaction");
+
+                    b.ToTable("TransactionFiats");
+                });
+
+            modelBuilder.Entity("WalletApi.Domain.Entities.Wallet", b =>
+                {
+                    b.Property<Guid>("IdWallet")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
+                    b.Property<Guid>("IdAccount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IdWallet");
+
+                    b.ToTable("Wallets");
+                });
+
+            modelBuilder.Entity("WalletApi.Domain.Entities.WalletPosition", b =>
+                {
+                    b.Property<Guid>("IdWalletPosition")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("AvgPrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdCurrency")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdWallet")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.HasKey("IdWalletPosition");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Wallets");
+                    b.ToTable("WalletPositions");
                 });
 
-            modelBuilder.Entity("walletApi.Domain.Entities.Transaction", b =>
+            modelBuilder.Entity("WalletApi.Domain.Entities.WalletPositionLot", b =>
                 {
-                    b.HasOne("walletApi.Domain.Entities.Wallet", "Wallet")
-                        .WithMany("Transactions")
-                        .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("IdWalletPositionLot")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
 
-                    b.Navigation("Wallet");
+                    b.Property<decimal>("AvgPrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdCurrency")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdWallet")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("OriginalAmount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("RemainingAmount")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IdWalletPositionLot");
+
+                    b.ToTable("WalletPositionLots");
                 });
 
-            modelBuilder.Entity("walletApi.Domain.Entities.Wallet", b =>
+            modelBuilder.Entity("WalletApi.Domain.Entities.Transaction", b =>
                 {
-                    b.Navigation("Transactions");
+                    b.HasOne("WalletApi.Domain.Entities.Transaction", null)
+                        .WithMany()
+                        .HasForeignKey("RelatedTransactionId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

@@ -18,22 +18,22 @@ export function UsabilitySettings() {
       transition={{ delay: 0.2 }}
       className="bg-background-primary p-6 rounded-xl shadow-lg"
     >
-      <h2 className="text-xl font-semibold text-text-primary mb-4">Usability</h2>
+      <h2 className="text-xl font-semibold text-text-primary mb-4">Usabilidade</h2>
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <span className="text-text-secondary flex items-center">
-            {theme === 'light' ? <Sun className="mr-2" /> : <Moon className="mr-2" />} Dark Mode
+            {theme === 'light' ? <Sun className="mr-2" /> : <Moon className="mr-2" />} Modo Escuro
           </span>
           <button
             onClick={toggleTheme}
             className="px-4 py-2 rounded-lg bg-background-secondary text-text-secondary hover:bg-background-tertiary"
           >
-            {theme === 'light' ? 'Enable Dark Mode' : 'Disable Dark Mode'}
+            {theme === 'light' ? 'Ativar Modo Escuro' : 'Desativar Modo Escuro'}
           </button>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-gray-600 dark:text-gray-400 flex items-center">
-            {notificationsEnabled ? <Bell className="mr-2" /> : <BellOff className="mr-2" />} Enable Notifications
+            {notificationsEnabled ? <Bell className="mr-2" /> : <BellOff className="mr-2" />} Ativar Notificações
           </span>
           <button
             onClick={handleNotificationsToggle}
@@ -43,7 +43,7 @@ export function UsabilitySettings() {
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
             }`}
           >
-            {notificationsEnabled ? 'Disable' : 'Enable'}
+            {notificationsEnabled ? 'Desativar' : 'Ativar'}
           </button>
         </div>
       </div>

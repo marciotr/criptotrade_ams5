@@ -8,8 +8,12 @@ export function Modal({
   width = 'max-w-md',
   height = 'auto',
   maxHeight = 'max-h-[80vh]',
-  overflow = 'overflow-auto'
+  overflow = 'overflow-auto',
+  isOpen = true 
 }) {
+
+  if (!isOpen) return null;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
       <motion.div

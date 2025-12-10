@@ -1,21 +1,21 @@
-import { userApiConfig, cryptoApiConfig, walletApiConfig } from './config';
+import { api } from './config';
 
 export const authApi = {
-  login: (credentials) => userApiConfig.post('/auth/login', credentials),
-  register: (userData) => userApiConfig.post('/User', userData),
-  verifyToken: () => userApiConfig.get('/auth/verify'),
+  login: (credentials) => api.post('/auth/login', credentials),
+  verifyMfa: (payload) => api.post('/auth/verify-mfa', payload),
+  register: (userData) => api.post('/user', userData),
+  verifyToken: () => api.get('/auth/verify'),
 };
 
 export const userApi = {
-  getUsers: () => userApiConfig.get('/User'),
-  getProfile: (id) => userApiConfig.get(`/User/${id}`),
-  updateProfile: (id, data) => userApiConfig.put(`/User/${id}`, data),
-  deleteAccount: (id) => userApiConfig.delete(`/User/${id}`),
+  getUsers: () => api.get('/user'),
+  getProfile: (id) => api.get(`/user/${id}`),
+  updateProfile: (id, data) => api.put(`/user/${id}`, data),
+  deleteAccount: (id) => api.delete(`/user/${id}`),
   updatePhoto: (id, file) => {
     const formData = new FormData();
     formData.append('photo', file);
-    
-    return userApiConfig.post(`/User/${id}/photo`, formData, {
+    return api.post(`/user/${id}/photo`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -25,47 +25,97 @@ export const userApi = {
 
 // Use cryptoApiConfig para todas as chamadas de criptomoeda
 export const marketApi = {
-  getPrices: () => cryptoApiConfig.get('/crypto/prices'),
-  getAllTickers: () => cryptoApiConfig.get('/crypto/tickers'),
-  getTickerBySymbol: (symbol) => cryptoApiConfig.get(`/crypto/ticker/${symbol}`),
-  getOrderBook: (symbol, limit = 100) => cryptoApiConfig.get(`/crypto/orderbook/${symbol}`, {
+  // Métodos existentes
+  getPrices: () => api.get('/crypto/prices'),
+  getAllTickers: () => api.get('/crypto/tickers'),
+  getTickerBySymbol: (symbol) => api.get(`/crypto/ticker/${symbol}`),
+  
+  // Novos métodos para gainers, losers e trending
+  getGainers: (limit = 5) => api.get('/crypto/gainers', { 
+    params: { limit } 
+  }),
+  getLosers: (limit = 5) => api.get('/crypto/losers', { 
+    params: { limit } 
+  }),
+  getTrending: (limit = 5) => api.get('/crypto/trending', { 
+    params: { limit } 
+  }),
+  
+  getOrderBook: (symbol, limit = 100) => api.get(`/crypto/orderbook/${symbol}`, {
     params: { limit }
   }),
-  getRecentTrades: (symbol, limit = 500) => cryptoApiConfig.get(`/crypto/trades/${symbol}`, {
+  getRecentTrades: (symbol, limit = 500) => api.get(`/crypto/trades/${symbol}`, {
     params: { limit }
   }),
-  getCoinData: (symbol) => cryptoApiConfig.get(`/market/coin/${symbol}`),
-  getHistory: (symbol, timeframe) => cryptoApiConfig.get(`/market/history/${symbol}`, { 
+  getCoinData: (symbol) => api.get(`/market/coin/${symbol}`),
+  getHistory: (symbol, timeframe) => api.get(`/market/history/${symbol}`, { 
     params: { timeframe } 
   }),
-  getAllCryptos: () => userApiConfig.get('/Crypto'), // Esta ainda usa a userApi, está correto?
-  getCryptoBySymbol: (symbol) => userApiConfig.get(`/Crypto/${symbol}`), // Essa também
+  getAllCryptos: () => api.get('/Crypto'),
+  getCryptoBySymbol: (symbol) => userApiConfig.get(`/Crypto/${symbol}`),
   getCryptoIcon: (symbol) => `https://bin.bnbstatic.com/image/crypto/${symbol.toLowerCase()}.png`,
   getKlines: (symbol, interval = '15m', limit = 100) => 
-    cryptoApiConfig.get(`/crypto/klines/${symbol}`, {
+    api.get(`/crypto/klines/${symbol}`, {
       params: { interval, limit }
     }),
 };
 
 // Novo serviço para chamadas à API de Carteira
 export const walletApi = {
-  getAllWallets: () => walletApiConfig.get('/Wallet'),
-  getWalletById: (id) => walletApiConfig.get(`/Wallet/${id}`),
-  getUserWallets: (userId) => walletApiConfig.get(`/Wallet/user/${userId}`),
-  createWallet: (walletData) => walletApiConfig.post('/Wallet', walletData),
-  updateWallet: (walletData) => walletApiConfig.put(`/Wallet/${walletData.id}`, walletData),
-  getWalletTransactions: (walletId) => walletApiConfig.get(`/Wallet/${walletId}/transactions`),
-  addTransaction: (walletId, transactionData) => walletApiConfig.post(`/Wallet/${walletId}/transactions`, transactionData),
+  getWallet: () => api.get('/wallet'),
+  createWallet: (data) => api.post('/wallet', data),
+  getWallets: () => api.get('/wallets'),
+  getWalletBalances: (walletId) => api.get(`/positions/${walletId}`),
+  createWallets: (data) => api.post('/wallets', data),
+  getBalances: () => api.get('/balance'),
+  getBalance: () => api.get('/balance'),
+  getSummary: () => api.get('/balance/summary'),
+  getAssetLots: (assetSymbol, method = 'fifo') => api.get(`/balance/asset/${assetSymbol}/lots`, { params: { method } }),
+  getCurrencies: () => api.get('/currencies'),
+  adjustBalance: (assetSymbol, deltaAmount, options = {}) => {
+    const payload = {
+      DeltaAmount: deltaAmount,
+      ReferenceId: options.referenceId ?? null,
+      Description: options.description ?? null,
+      Method: options.method ?? null,
+      UnitPriceUsd: options.unitPriceUsd ?? null,
+    };
+
+    return api.patch(`/balance/${assetSymbol}`, payload);
+  },
+  sell: (data) => api.post('/transactions/sell', data),
+  depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
 };
 
+// Chamadas ao Chatbot via gateway
+export const chatbotApi = {
+  sendMessage: (body) => api.post('/chatbot/message', body),
+};
+
+walletApi.getTransactions = () => api.get('/transactions');
+walletApi.getWallet = walletApi.getWallet; 
+
 export const transactionApi = {
-  getAll: () => userApiConfig.get('/transactions'),
-  create: (data) => userApiConfig.post('/transactions', data),
-  getById: (id) => userApiConfig.get(`/transactions/${id}`),
-  update: (id, data) => userApiConfig.put(`/transactions/${id}`, data),
+  getAll: () => api.get('/transactions'),
+  create: (data) => api.post('/transactions', data),
+  getById: (id) => api.get(`/transactions/${id}`),
+  update: (id, data) => api.put(`/transactions/${id}`, data),
+  buy: (data) => api.post('/transactions/buy', data),
+  sell: (data) => api.post('/transactions/sell', data),
+  swap: (data) => api.post('/transactions/swap', data),
+  depositFiat: (data) => api.post('/transactions/deposit/fiat', data),
+  withdrawFiat: (data) => api.post('/transactions/withdraw/fiat', data),
 };
 
 export const settingsApi = {
-  get: () => userApiConfig.get('/settings'),
-  update: (data) => userApiConfig.put('/settings', data),
+  get: () => api.get('/settings'),
+  update: (data) => api.put('/settings', data),
+};  
+
+export const currencyApi = {
+  getAllCurrencies: () => api.get('/Currency'),
+  getCurrencyById: (id) => api.get(`/Currency/${id}`),
+  createCurrency: (currencyData) => api.post('/Currency', currencyData),
+  updateCurrency: (id, currencyData) => api.put(`/Currency/${id}`, currencyData),
+  deleteCurrency: (id) => api.delete(`/Currency/${id}`),
 };

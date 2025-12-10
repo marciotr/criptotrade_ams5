@@ -1,0 +1,5 @@
+# .gitignore
+
+# Pastas que devem ser ignoradas (compilação)
+**/bin/
+**/obj/

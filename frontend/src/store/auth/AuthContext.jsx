@@ -20,18 +20,41 @@ export function AuthProvider({ children }) {
   const login = async (credentials) => {
     try {
       const response = await authService.login(credentials);
-      
+
       if (response && response.token) {
         setUser(response.user);
         setIsAuthenticated(true);
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
-        return true;
+        return { success: true };
       }
-      return false;
+
+      if (response && response.mfaRequired) {
+        localStorage.setItem('mfaPending', JSON.stringify({ userId: response.userId, mfaType: response.mfaType, email: credentials.email }));
+        return { mfaRequired: true, mfaType: response.mfaType, userId: response.userId };
+      }
+
+      return { success: false };
     } catch (error) {
       setIsAuthenticated(false);
       setUser(null);
+      throw error;
+    }
+  };
+
+  const verifyMfa = async ({ userId, code }) => {
+    try {
+      const response = await authService.verifyMfa({ userId, code });
+      if (response && response.token) {
+        setUser(response.user);
+        setIsAuthenticated(true);
+        localStorage.setItem('token', response.token);
+        if (response.user) localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.removeItem('mfaPending');
+        return { success: true };
+      }
+      return { success: false };
+    } catch (error) {
       throw error;
     }
   };
@@ -72,6 +95,7 @@ export function AuthProvider({ children }) {
   const value = {
     user,
     login,
+    verifyMfa,
     logout,
     loading,
     isAuthenticated

@@ -9,6 +9,16 @@ public class UserService : IUserService
 
     public UserDTO RegisterUser(UserDTO userDto)
     {
+        // validar unicidade de email antes de criar
+        if (!string.IsNullOrEmpty(userDto.Email))
+        {
+            var existing = _userRepository.GetByEmail(userDto.Email);
+            if (existing != null)
+            {
+                throw new InvalidOperationException("Email já cadastrado");
+            }
+        }
+
         var user = new User
         {
             Name = userDto.Name,
@@ -17,11 +27,13 @@ public class UserService : IUserService
             Phone = userDto.Phone ?? "", 
             Address = userDto.Address ?? "",
             Photo = userDto.Photo ?? "",
-            Role = userDto.Role ?? "user"
+            Role = userDto.Role ?? "user",
+            MfaEnabled = userDto.MfaEnabled,
+            MfaType = userDto.MfaType
         };
-        
+
         _userRepository.Add(user);
-        
+
         return new UserDTO
         {
             Id = user.Id,
@@ -30,7 +42,9 @@ public class UserService : IUserService
             Phone = user.Phone,
             Address = user.Address,
             Photo = user.Photo,
-            Role = user.Role
+            Role = user.Role,
+            MfaEnabled = user.MfaEnabled,
+            MfaType = user.MfaType
         };
     }
 
@@ -45,7 +59,9 @@ public class UserService : IUserService
             Phone = user.Phone,
             Address = user.Address,
             Photo = user.Photo,
-            Role = user.Role
+                Role = user.Role,
+                MfaEnabled = user.MfaEnabled,
+                MfaType = user.MfaType
         } : null;
     }
 
@@ -59,7 +75,9 @@ public class UserService : IUserService
             Phone = user.Phone,
             Address = user.Address,
             Photo = user.Photo,
-            Role = user.Role
+            Role = user.Role,
+            MfaEnabled = user.MfaEnabled,
+            MfaType = user.MfaType
         }).ToList();
     }
 
@@ -91,6 +109,11 @@ public class UserService : IUserService
         if (!string.IsNullOrEmpty(userDto.Photo))
         {
             user.Photo = userDto.Photo;
+        }
+        user.MfaEnabled = userDto.MfaEnabled;
+        if (!string.IsNullOrEmpty(userDto.MfaType))
+        {
+            user.MfaType = userDto.MfaType;
         }
         
         _userRepository.Update(user);
@@ -128,7 +151,9 @@ public class UserService : IUserService
             Phone = user.Phone,
             Address = user.Address,
             Photo = user.Photo,
-            Role = user.Role
+            Role = user.Role,
+            MfaEnabled = user.MfaEnabled,
+            MfaType = user.MfaType
         };
     }
 

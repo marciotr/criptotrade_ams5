@@ -20,23 +20,26 @@ import { PrivateRoute } from './components/auth/PrivateRoute';
 import { useAuth } from './store/auth/useAuth';
 import Users from './pages/admin/users/Users'; 
 import { ApiDocsPage } from './pages/ApiDocs/ApiDocsPage';
+import { FiatDepositPage } from './pages/deposit/FiatDepositPage';
+import { Wallet } from './pages/wallets/Wallet';
+import { Currency } from './pages/currency/Currency';
+import AdminDashboard from './pages/admin/dashboard/AdminDashboard'; // Importe o componente AdminDashboard
+import BuyCoin from './pages/markets/BuyCoin';
 
 
 function Layout({ children }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-background-primary transition-colors duration-200">
-      <Header onSidebarOpen={() => setIsSidebarOpen(true)} />
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-      <main className="pt-16">
+      <Header />
+      <Sidebar />
+      <main className="pt-16 pl-0 md:pl-24">
         {children}
       </main>
     </div>
   );
 }
 
-// Crie um componente de rota protegida para admin
+// Componente de rota protegida para admin
 function AdminRoute({ children }) {
   const { user } = useAuth();
   
@@ -125,12 +128,27 @@ function App() {
                       <PricePage />
                     </PrivateRoute>
                   } />
+                  <Route path="/buy/:symbol" element={
+                    <PrivateRoute>
+                      <BuyCoin />
+                    </PrivateRoute>
+                  } />
+                  <Route path="/deposit/fiat" element={
+                    <PrivateRoute>
+                      <FiatDepositPage />
+                    </PrivateRoute>
+                  } />
                   
                   {/* Admin Routes */}
                   <Route path="/admin/users" element={
                     <PrivateRoute>
                       <Users />
                     </PrivateRoute>
+                  } />
+                  <Route path="/admin" element={
+                    <AdminRoute>
+                      <AdminDashboard />
+                    </AdminRoute>
                   } />
 
                   {/* API Docs Route */}
@@ -139,6 +157,18 @@ function App() {
                       <ApiDocsPage />
                     </AdminRoute>
                   } />
+
+                  <Route path="/wallet" element={
+                      <PrivateRoute>
+                        <Wallet />
+                      </PrivateRoute>
+                    } />
+
+                    <Route path="/currency" element={
+                      <PrivateRoute>
+                        <Currency/>
+                      </PrivateRoute>
+                    } />
 
                   {/* Default Route */}
                   <Route path="/" element={<Navigate to="/signin" replace />} />

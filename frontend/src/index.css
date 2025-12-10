@@ -4,3 +4,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Scrollbar Styles - Adapta automaticamente aos temas */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-border-secondary)) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-brand-primary) / 0.6),
+    rgb(var(--color-brand-primary) / 0.8)
+  );
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-brand-primary) / 0.8),
+    rgb(var(--color-brand-primary))
+  );
+  border-width: 1px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background: rgb(var(--color-brand-primary));
+}
+
+/* Scrollbar global para elementos que não têm custom-scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-border-secondary)) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(var(--color-background-secondary) / 0.3);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-brand-primary) / 0.5),
+    rgb(var(--color-brand-primary) / 0.7)
+  );
+  border-radius: 10px;
+  border: 2px solid rgb(var(--color-background-primary));
+  transition: all 0.2s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-brand-primary) / 0.7),
+    rgb(var(--color-brand-primary) / 0.9)
+  );
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: rgb(var(--color-brand-primary));
+}
+
+/* Scrollbar corner quando há scroll vertical e horizontal */
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}

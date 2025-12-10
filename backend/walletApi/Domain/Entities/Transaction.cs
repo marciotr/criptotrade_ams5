@@ -1,36 +1,16 @@
-using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace walletApi.Domain.Entities
+namespace WalletApi.Domain.Entities;
+
+public class Transaction
 {
-    public class Transaction
-    {
-        public int Id { get; set; }
-        public int WalletId { get; set; }
-        public Wallet Wallet { get; set; }
-        public TransactionType Type { get; set; }
-        public decimal Amount { get; set; }
-        public string Currency { get; set; }
-        public string Description { get; set; }
-        public string TransactionHash { get; set; }
-        public TransactionStatus Status { get; set; } = TransactionStatus.Completed;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    }
-    
-    public enum TransactionType
-    {
-        Deposit,
-        Withdrawal,
-        Transfer,
-        Purchase,
-        Sale,
-        Fee
-    }
-    
-    public enum TransactionStatus
-    {
-        Pending,
-        Completed,
-        Failed,
-        Canceled
-    }
+    [Key]
+    public Guid IdTransaction { get; set; }
+    public Guid IdAccount { get; set; }
+    public string? Type { get; set; }
+    public decimal TotalAmount { get; set; }
+    public decimal Fee { get; set; }
+    public string? Status { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public Guid? RelatedTransactionId { get; set; }
 }

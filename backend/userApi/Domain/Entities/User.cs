@@ -11,4 +11,6 @@ public class User
     public string Password { get; set; }
     public string? Photo { get; set; }
     public string Role { get; set; } = "user";
+    public bool MfaEnabled { get; set; } = false;
+    public string? MfaType { get; set; }
 }
