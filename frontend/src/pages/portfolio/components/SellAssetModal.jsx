@@ -37,12 +37,31 @@ export default function SellAssetModal({
     }
   }, [lots, onChangeAmount]);
 
+  // Obter a quantidade disponível baseada no lote selecionado
+  const getAvailableAmount = () => {
+    if (selectedLotId === null) {
+      return maxAmount || 0;
+    }
+    
+    const selectedLot = lots?.lots?.find(l => 
+      (l.lotTransactionId ?? l.lotId ?? l.id) === selectedLotId
+    );
+    
+    if (selectedLot) {
+      return Number(selectedLot.amountRemaining ?? selectedLot.amountBought ?? 0);
+    }
+    
+    return maxAmount || 0;
+  };
+
   const quickFill = (percent) => {
-    // Se for 100%, usar o valor exato sem arredondamento para evitar deixar frações
+    const availableAmount = getAvailableAmount();
+    
+    // Para 100%, usar o valor exato sem arredondamento
     if (percent === 100) {
-      onChangeAmount?.(String(maxAmount || 0));
+      onChangeAmount?.(String(availableAmount));
     } else {
-      const val = ((maxAmount || 0) * percent) / 100;
+      const val = (availableAmount * percent) / 100;
       onChangeAmount?.(String(Number(val.toFixed(8))));
     }
   };
