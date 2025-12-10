@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -95,6 +96,18 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+try
+{
+    var uploadsPath = Path.Combine(app.Environment.ContentRootPath, "wwwroot", "uploads");
+    if (!Directory.Exists(uploadsPath)) Directory.CreateDirectory(uploadsPath);
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Failed to create uploads directory: {ex.Message}");
+}
+
+app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {
