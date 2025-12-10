@@ -21,20 +21,29 @@ import { useNotification } from '../../context/NotificationContext';
 
 const PORTFOLIO_COLORS = ['#f59e0b', '#10b981', '#6366f1', '#ec4899', '#14b8a6', '#f97316'];
 
-const buildSyntheticHistory = (totalValue) => {
-  const base = totalValue > 0 ? totalValue : 1000;
-  const points = [];
-  for (let i = 6; i >= 0; i -= 1) {
-    const date = new Date();
-    date.setDate(date.getDate() - i);
-    const variance = (Math.random() * 0.04 - 0.02) * base;
-    const value = Math.max(0, base + variance);
-    points.push({
-      date: date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }),
-      value: Number(value.toFixed(2))
-    });
-  }
-  return points;
+// Constrói histórico real a partir do preço atual e variação 24h devolvida pelo backend
+const buildRealHistoryFromBalances = (balances, totalValue) => {
+  const normalizeNumber = (v) => Number(v ?? 0) || 0;
+  const currentTotal = normalizeNumber(totalValue);
+
+  const totalYesterday = (balances || []).reduce((acc, b) => {
+    const amount = normalizeNumber(b.amount ?? b.Amount ?? b.availableAmount ?? b.AvailableAmount);
+    const price = normalizeNumber(b.currentPrice ?? b.CurrentPrice ?? b.price);
+    const changePct = normalizeNumber(b.change ?? b.Change ?? b.priceChangePercent ?? b.changePercent24h);
+    const divisor = 1 + (changePct / 100);
+    const prevPrice = price > 0 && divisor !== 0 ? price / divisor : price;
+    return acc + (amount * (Number.isFinite(prevPrice) ? prevPrice : 0));
+  }, 0);
+
+  const formatLabel = (d) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+  const today = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate() - 1);
+
+  return [
+    { date: formatLabel(yesterday), value: Number(totalYesterday.toFixed(2)) },
+    { date: formatLabel(today), value: Number(currentTotal.toFixed(2)) }
+  ];
 };
 
 // Componente de Card com animação para estatísticas
@@ -170,17 +179,19 @@ export function Portfolio() {
     totalValue: 0,
     dayChange: 0,
     dayChangePercent: 0,
-    bestPerformer: { asset: '-', change: 0 }
+    bestPerformer: { asset: '-', change: 0 },
+    totalCost: 0,
+    roiTotalPercent: 0
   });
   const [portfolioData, setPortfolioData] = useState([]);
   const [usdBalance, setUsdBalance] = useState(0);
-  const [portfolioHistoricalData, setPortfolioHistoricalData] = useState(buildSyntheticHistory(0));
+  const [portfolioHistoricalData, setPortfolioHistoricalData] = useState(buildRealHistoryFromBalances([], 0));
   const [loadingPortfolio, setLoadingPortfolio] = useState(true);
   const [portfolioError, setPortfolioError] = useState('');
   const [noTradeableAssets, setNoTradeableAssets] = useState(false);
 
   const totalValue = portfolioStats.totalValue;
-  const totalCost = portfolioData.reduce((acc, a) => acc + (a.totalCost ?? 0), 0);
+  const totalCost = (portfolioStats.totalCost ?? 0) || portfolioData.reduce((acc, a) => acc + (a.totalCost ?? 0), 0);
   const totalGainPercent = totalCost > 0 ? ((totalValue - totalCost) / totalCost) * 100 : 0;
   const totalGainFormatted = `${totalGainPercent > 0 ? '+' : ''}${totalGainPercent.toFixed(2)}%`;
   const totalGainType = totalGainPercent >= 0 ? 'positive' : 'negative';
@@ -200,6 +211,46 @@ export function Portfolio() {
     ? portfolioHistoricalData[portfolioHistoricalData.length - 1].value - portfolioHistoricalData[0].value
     : 0;
   const isWeekPositive = weekPerformance > 0;
+
+  const historyStartValue = portfolioHistoricalData.length ? portfolioHistoricalData[0].value : 0;
+  const historyEndValue = portfolioHistoricalData.length ? portfolioHistoricalData[portfolioHistoricalData.length - 1].value : 0;
+  const historyGainValue = historyEndValue - historyStartValue;
+  const historyGainPercent = historyStartValue > 0 ? (historyGainValue / historyStartValue) * 100 : 0;
+
+  const nonUsdHoldings = portfolioData.filter(a => ((a.symbol ?? a.Symbol ?? '') + '').toUpperCase() !== 'USD').length;
+  const achievementsState = {
+    beginner: totalValue > 0 && nonUsdHoldings > 0,
+    diversified: nonUsdHoldings >= 5,
+    hodler: totalGainPercent > 0,
+    trader: portfolioStats.dayChangePercent > 0
+  };
+
+  const achievements = [
+    {
+      title: 'Investidor iniciante',
+      description: 'Realizar seu primeiro investimento',
+      icon: Award,
+      completed: achievementsState.beginner
+    },
+    {
+      title: 'Diversificado',
+      description: 'Ter pelo menos 5 ativos diferentes',
+      icon: Wallet,
+      completed: achievementsState.diversified
+    },
+    {
+      title: 'HODLer',
+      description: 'Manter retorno acumulado positivo',
+      icon: TrendingUp,
+      completed: achievementsState.hodler
+    },
+    {
+      title: 'Trader Expert',
+      description: 'Fechar o dia no verde',
+      icon: DollarSign,
+      completed: achievementsState.trader
+    }
+  ];
 
   // Animação para transição entre seções
   const pageVariants = {
@@ -376,16 +427,18 @@ export function Portfolio() {
         realizedGainUsd
       };
     });
+    // Filtrar lotes com quantidade zero para não exibir lotes vazios
+    const filteredLots = lots.filter(l => (Number(l.amountRemaining) || 0) > 0);
 
-    const totalAmount = Number(d.totalAmount ?? d.total ?? d.total_amount ?? lots.reduce((s, L) => s + (L.amountRemaining || 0), 0)) || 0;
+    const totalAmount = Number(d.totalAmount ?? d.total ?? d.total_amount ?? filteredLots.reduce((s, L) => s + (L.amountRemaining || 0), 0)) || 0;
     const currentValueUsd = Number(d.currentValueUsd ?? d.currentValue ?? d.current_value_usd ?? 0) || 0;
-    const totalUnrealizedGainUsd = Number(d.totalUnrealizedGainUsd ?? d.totalUnrealized ?? d.total_unrealized_gain_usd ?? lots.reduce((s, L) => s + (L.unrealizedGainUsd || 0), 0)) || 0;
-    const totalRealizedGainUsd = Number(d.totalRealizedGainUsd ?? d.totalRealized ?? d.total_realized_gain_usd ?? lots.reduce((s, L) => s + (L.realizedGainUsd || 0), 0)) || 0;
+    const totalUnrealizedGainUsd = Number(d.totalUnrealizedGainUsd ?? d.totalUnrealized ?? d.total_unrealized_gain_usd ?? filteredLots.reduce((s, L) => s + (L.unrealizedGainUsd || 0), 0)) || 0;
+    const totalRealizedGainUsd = Number(d.totalRealizedGainUsd ?? d.totalRealized ?? d.total_realized_gain_usd ?? filteredLots.reduce((s, L) => s + (L.realizedGainUsd || 0), 0)) || 0;
 
     return {
       asset: d.asset ?? d.assetName ?? asset.name ?? asset.asset ?? asset.symbol ?? '',
       assetSymbol: (d.assetSymbol ?? d.asset_symbol ?? d.symbol ?? asset.symbol ?? '').toUpperCase(),
-      lots,
+      lots: filteredLots,
       totalAmount,
       total: totalAmount,
       currentValueUsd,
@@ -455,16 +508,18 @@ export function Portfolio() {
             realizedGainUsd
           };
         });
+        // Filtrar lotes com quantidade zero para não exibir lotes vazios
+        const filteredLots = lots.filter(l => (Number(l.amountRemaining) || 0) > 0);
 
-        const totalAmount = Number(d.totalAmount ?? d.total ?? d.total_amount ?? lots.reduce((s, L) => s + (L.amountRemaining || 0), 0)) || 0;
+        const totalAmount = Number(d.totalAmount ?? d.total ?? d.total_amount ?? filteredLots.reduce((s, L) => s + (L.amountRemaining || 0), 0)) || 0;
         const currentValueUsd = Number(d.currentValueUsd ?? d.currentValue ?? d.current_value_usd ?? d.currentValueUsd ?? 0) || 0;
-        const totalUnrealizedGainUsd = Number(d.totalUnrealizedGainUsd ?? d.totalUnrealized ?? d.total_unrealized_gain_usd ?? lots.reduce((s, L) => s + (L.unrealizedGainUsd || 0), 0)) || 0;
-        const totalRealizedGainUsd = Number(d.totalRealizedGainUsd ?? d.totalRealized ?? d.total_realized_gain_usd ?? lots.reduce((s, L) => s + (L.realizedGainUsd || 0), 0)) || 0;
+        const totalUnrealizedGainUsd = Number(d.totalUnrealizedGainUsd ?? d.totalUnrealized ?? d.total_unrealized_gain_usd ?? filteredLots.reduce((s, L) => s + (L.unrealizedGainUsd || 0), 0)) || 0;
+        const totalRealizedGainUsd = Number(d.totalRealizedGainUsd ?? d.totalRealized ?? d.total_realized_gain_usd ?? filteredLots.reduce((s, L) => s + (L.realizedGainUsd || 0), 0)) || 0;
 
         setCurrentLots({
           asset: d.asset ?? d.assetName ?? asset.name ?? asset.asset ?? asset.symbol ?? '',
           assetSymbol: (d.assetSymbol ?? d.asset_symbol ?? d.symbol ?? asset.symbol ?? '').toUpperCase(),
-          lots,
+          lots: filteredLots,
           totalAmount,
           total: totalAmount,
           currentValueUsd,
@@ -528,7 +583,9 @@ export function Portfolio() {
           totalValue: summary.totalValue ?? 0,
           dayChange: summary.dayChange ?? 0,
           dayChangePercent: summary.dayChangePercent ?? 0,
-          bestPerformer: bestPerf
+          bestPerformer: bestPerf,
+          totalCost: summary.totalCost ?? 0,
+          roiTotalPercent: summary.roiTotalPercent ?? 0
         });
 
         setNoTradeableAssets(onlyUsd);
@@ -566,7 +623,7 @@ export function Portfolio() {
             if (sym === 'USD') {
               const amt = Number(a.amount ?? 0) || 0;
               const price = Number(a.currentPrice ?? a.price ?? 1) || 1;
-              const val = Number(a.value ?? (amt * price)) || 0;
+              const val = Number(a.value ?? (amt * price)) || 0;zz
               return acc + val;
             }
             return acc;
@@ -576,7 +633,7 @@ export function Portfolio() {
           setUsdBalance(0);
         }
 
-        setPortfolioHistoricalData(buildSyntheticHistory(summary.totalValue ?? 0));
+        setPortfolioHistoricalData(buildRealHistoryFromBalances(balances, summary.totalValue ?? 0));
       } catch (err) {
         console.error('Erro ao carregar portfolio', err);
         if (mounted) setPortfolioError('Erro ao carregar dados da carteira');
@@ -851,11 +908,13 @@ export function Portfolio() {
               <div className="mt-4 flex justify-between items-center">
                 <div>
                   <span className="text-text-tertiary text-sm">Valor inicial:</span>
-                  <span className="ml-2 text-text-primary font-medium">$10,000.00</span>
+                  <span className="ml-2 text-text-primary font-medium">{formatCurrency(historyStartValue)}</span>
                 </div>
                 <div>
                   <span className="text-text-tertiary text-sm">Ganho total:</span>
-                  <span className="ml-2 text-feedback-success font-medium">+$15,670.84 (156.7%)</span>
+                  <span className={`ml-2 font-medium ${historyGainValue >= 0 ? 'text-feedback-success' : 'text-feedback-error'}`}>
+                    {`${historyGainValue >= 0 ? '+' : '-'}${formatCurrency(Math.abs(historyGainValue))}`} ({historyGainPercent >= 0 ? '+' : ''}{historyGainPercent.toFixed(2)}%)
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -867,33 +926,15 @@ export function Portfolio() {
               className="bg-background-primary p-6 rounded-xl shadow-md border border-border-primary"
             >
               <h3 className="text-xl font-bold text-text-primary mb-4">Conquistas</h3>
-              <Achievement 
-                title="Investidor iniciante" 
-                description="Realizar seu primeiro investimento" 
-                icon={Award} 
-                completed={true}
-              />
-              
-              <Achievement 
-                title="Diversificado" 
-                description="Ter pelo menos 5 ativos diferentes" 
-                icon={Wallet} 
-                completed={true}
-              />
-              
-              <Achievement 
-                title="HODLer" 
-                description="Manter um ativo por mais de 3 meses" 
-                icon={TrendingUp} 
-                completed={false}
-              />
-              
-              <Achievement 
-                title="Trader Expert" 
-                description="Realizar 50 trades com lucro" 
-                icon={DollarSign} 
-                completed={false}
-              />
+              {achievements.map((ach) => (
+                <Achievement
+                  key={ach.title}
+                  title={ach.title}
+                  description={ach.description}
+                  icon={ach.icon}
+                  completed={ach.completed}
+                />
+              ))}
               
               <motion.div 
                 className="mt-6 p-4 bg-brand-primary/10 rounded-lg border border-brand-primary"
