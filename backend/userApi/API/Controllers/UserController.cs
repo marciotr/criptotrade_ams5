@@ -139,17 +139,57 @@ public class UserController : ControllerBase
         if (user == null)
             return NotFound();
 
-        using var ms = new MemoryStream();
-        await photo.CopyToAsync(ms);
-        var fileBytes = ms.ToArray();
-        string base64String = Convert.ToBase64String(fileBytes);
+        try
+        {
+            // wwwroot/uploads/{userId}
+            var uploadsRoot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+            var userFolder = Path.Combine(uploadsRoot, id.ToString());
+            if (!Directory.Exists(userFolder)) Directory.CreateDirectory(userFolder);
 
-        string photoData = $"data:{photo.ContentType};base64,{base64String}";
-        
-        user.Photo = photoData;
-        var updatedUser = _userService.UpdateUser(id, user);
-        
-        return Ok(new { photo = updatedUser.Photo });
+            // Gero o nome do arquivo correto
+            var ext = Path.GetExtension(photo.FileName);
+            if (string.IsNullOrEmpty(ext))
+            {
+                ext = photo.ContentType switch
+                {
+                    "image/jpeg" => ".jpg",
+                    "image/png" => ".png",
+                    "image/gif" => ".gif",
+                    _ => ".bin"
+                };
+            }
+
+            var fileName = $"profile_{Guid.NewGuid()}{ext}";
+            var fullPath = Path.Combine(userFolder, fileName);
+
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                await photo.CopyToAsync(stream);
+            }
+
+            // Salvo a url path
+            var publicUrlRelative = $"/uploads/{id}/{fileName}";
+            var requestHost = string.Empty;
+            try
+            {
+                requestHost = $"{Request.Scheme}://{Request.Host.Value}";
+            }
+            catch
+            {
+                requestHost = string.Empty;
+            }
+
+            var publicUrl = string.IsNullOrEmpty(requestHost) ? publicUrlRelative : requestHost + publicUrlRelative;
+            user.Photo = publicUrl;
+            var updatedUser = _userService.UpdateUser(id, user);
+
+            return Ok(new { photo = updatedUser.Photo, url = publicUrl });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao salvar foto do usuário {id}: {ex.Message}");
+            return StatusCode(500, new { message = "Erro ao salvar foto" });
+        }
     }
 
     [HttpGet("health")]
