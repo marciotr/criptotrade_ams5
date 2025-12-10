@@ -136,16 +136,23 @@ public class BalanceController : WalletControllerBase
 
         if (persistedLots != null && persistedLots.Count > 0)
         {
-            var lotsOutput = persistedLots.Select(l => new
+            var lotsOutput = persistedLots.Select(l =>
             {
-                lotTransactionId = l.IdWalletPositionLot,
-                acquiredAt = l.CreatedAt,
-                amountBought = l.OriginalAmount,
-                amountRemaining = l.RemainingAmount,
-                unitPriceUsd = l.AvgPrice,
-                totalCostUsd = Math.Round(l.OriginalAmount * l.AvgPrice, 8),
-                unrealizedGainUsd = Math.Round(((currency.CurrentPrice - l.AvgPrice) * l.RemainingAmount), 8),
-                realizedGainUsd = 0m
+                var priceChange = (currency.CurrentPrice - l.AvgPrice) * l.RemainingAmount;
+                var currentValue = currency.CurrentPrice * l.RemainingAmount;
+
+                return new
+                {
+                    lotTransactionId = l.IdWalletPositionLot,
+                    acquiredAt = l.CreatedAt,
+                    amountBought = l.OriginalAmount,
+                    amountRemaining = l.RemainingAmount,
+                    unitPriceUsd = l.AvgPrice,
+                    totalCostUsd = Math.Round(l.OriginalAmount * l.AvgPrice, 8),
+                    currentValueUsd = Math.Round(currentValue, 8),
+                    unrealizedGainUsd = Math.Round(priceChange, 8),
+                    realizedGainUsd = Math.Round(priceChange, 8)
+                };
             }).ToList();
 
             var response = new
@@ -156,7 +163,8 @@ public class BalanceController : WalletControllerBase
                 lots = lotsOutput,
                 totalAmount = lotsOutput.Sum(x => (decimal)x.amountRemaining),
                 totalUnrealizedGainUsd = lotsOutput.Sum(x => (decimal)x.unrealizedGainUsd),
-                totalRealizedGainUsd = lotsOutput.Sum(x => (decimal)x.realizedGainUsd)
+                totalRealizedGainUsd = lotsOutput.Sum(x => (decimal)x.realizedGainUsd),
+                totalCurrentValueUsd = lotsOutput.Sum(x => (decimal)x.currentValueUsd)
             };
             return Ok(response);
         }
@@ -190,6 +198,9 @@ public class BalanceController : WalletControllerBase
 
             if (available > 0)
             {
+                var priceChange = (currency.CurrentPrice - b.ExchangeRate) * available;
+                var currentValue = currency.CurrentPrice * available;
+
                 lots.Add(new
                 {
                     lotTransactionId = b.IdTransaction,
@@ -198,8 +209,9 @@ public class BalanceController : WalletControllerBase
                     amountRemaining = available,
                     unitPriceUsd = b.ExchangeRate,
                     totalCostUsd = Math.Round(available * b.ExchangeRate, 8),
-                    unrealizedGainUsd = Math.Round(((currency.CurrentPrice - b.ExchangeRate) * available), 8),
-                    realizedGainUsd = 0m
+                    currentValueUsd = Math.Round(currentValue, 8),
+                    unrealizedGainUsd = Math.Round(priceChange, 8),
+                    realizedGainUsd = Math.Round(priceChange, 8)
                 });
             }
         }
@@ -212,7 +224,8 @@ public class BalanceController : WalletControllerBase
             lots,
             totalAmount = lots.Sum(x => (decimal)((dynamic)x).amountRemaining),
             totalUnrealizedGainUsd = lots.Sum(x => (decimal)((dynamic)x).unrealizedGainUsd),
-            totalRealizedGainUsd = 0m
+            totalRealizedGainUsd = lots.Sum(x => (decimal)((dynamic)x).realizedGainUsd),
+            totalCurrentValueUsd = lots.Sum(x => (decimal)((dynamic)x).currentValueUsd)
         };
         return Ok(fallback);
     }
