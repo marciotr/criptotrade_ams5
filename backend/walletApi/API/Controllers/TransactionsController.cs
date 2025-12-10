@@ -96,8 +96,26 @@ public class TransactionsController : WalletControllerBase
     [HttpGet]
     public async Task<IActionResult> GetTransactions([FromQuery] Guid? accountId)
     {
+        if (accountId == null)
+        {
+            var u = GetUserGuid();
+            if (u != null)
+            {
+                var account = await _db.Accounts.FirstOrDefaultAsync(a => a.IdUser == u.Value);
+                if (account != null)
+                {
+                    accountId = account.IdAccount;
+                }
+            }
+        }
+
+        if (accountId == null)
+        {
+            return Ok(new List<object>());
+        }
+
         var q = _db.Transactions.AsQueryable();
-        if (accountId != null) q = q.Where(t => t.IdAccount == accountId);
+        q = q.Where(t => t.IdAccount == accountId);
         var list = await q.OrderByDescending(t => t.CreatedAt).ToListAsync();
         return Ok(list);
     }
