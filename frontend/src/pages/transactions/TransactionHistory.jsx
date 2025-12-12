@@ -706,10 +706,10 @@ const generateMockTransactions = (count) => {
 const mapTypeLabel = (raw) => {
   if (!raw) return 'Transação';
   const t = String(raw).toLowerCase();
-  if (t.includes('deposit')) return 'Depósito';
-  if (t.includes('withdraw') || t.includes('saque')) return 'Saque';
-  if (t.includes('buy')) return 'Compra';
-  if (t.includes('sell')) return 'Venda';
+  if (t.includes('deposit') || t.includes('depósito') || t.includes('deposito')) return 'Depósito';
+  if (t.includes('withdraw') || t.includes('saque') || t.includes('withdrawal')) return 'Saque';
+  if (t.includes('buy') || t.includes('compra') || t.includes('purchase')) return 'Compra';
+  if (t.includes('sell') || t.includes('venda') || t.includes('sale')) return 'Venda';
   return raw.charAt(0).toUpperCase() + raw.slice(1);
 };
 
@@ -719,9 +719,11 @@ const mapMethodLabel = (raw) => {
   const r = String(raw);
   const lower = r.toLowerCase();
 
-  if (lower.includes('deposit')) return 'Depósito';
-  if (lower.includes('withdraw') || lower.includes('saque')) return 'Saque';
+  if (lower.includes('deposit') || lower.includes('depósito') || lower.includes('deposito')) return 'Depósito';
+  if (lower.includes('withdraw') || lower.includes('saque') || lower.includes('withdrawal')) return 'Saque';
   if (lower.includes('fiat')) return 'Depósito';
+  if (lower.includes('buy') || lower.includes('compra') || lower.includes('purchase')) return 'Compra';
+  if (lower.includes('sell') || lower.includes('venda') || lower.includes('sale')) return 'Venda';
   if (lower.includes('crypto') || lower.includes('cripto')) return 'Cripto';
   if (lower.includes('paypal')) return 'PayPal';
   if (lower.includes('card') || lower.includes('cartao') || lower.includes('cartão')) return 'Cartão de Crédito';
