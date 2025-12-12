@@ -21,7 +21,8 @@ export function DepositPage() {
   const [walletAddress, setWalletAddress] = useState(null);
   const [balances, setBalances] = useState([]);
   const [transactions, setTransactions] = useState([]);
-  const [usdTotal, setUsdTotal] = useState(null); // authoritative USD total from /balance/summary
+  const [usdTotal, setUsdTotal] = useState(null); 
+  const navigate = useNavigate();
 
   const handleMethodClick = (method) => {
     setSelectedMethod(method === selectedMethod ? null : method);
