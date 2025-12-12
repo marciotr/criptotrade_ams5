@@ -147,20 +147,20 @@ export default function AssetDetailsModal({
                       <div className="p-3 rounded-xl bg-gradient-to-br from-background-secondary/60 to-background-tertiary/40 backdrop-blur-sm border border-border-primary">
                         <div className="flex items-center space-x-2 text-text-tertiary text-xs mb-1">
                           <TrendingUp size={14} />
-                          <span>Ganho Não Realizado</span>
+                          <span>{(lots.totalUnrealizedGainUsd ?? 0) < 0 ? 'Ganho Não Realizado' : 'Ganho Realizado'}</span>
                         </div>
                         <div
                           className={`font-bold text-lg flex items-center ${
-                            (lots.totalUnrealizedGainUsd ?? 0) > 0
-                              ? 'text-emerald-400'
-                              : (lots.totalUnrealizedGainUsd ?? 0) < 0
+                            (lots.totalUnrealizedGainUsd ?? 0) < 0
                               ? 'text-red-400'
+                              : (lots.totalRealizedGainUsd ?? 0) > 0
+                              ? 'text-emerald-400'
                               : 'text-text-primary'
                           }`}
                         >
-                          {(lots.totalUnrealizedGainUsd ?? 0) > 0 && <ArrowUp size={18} className="mr-1" />}
+                          {(lots.totalRealizedGainUsd ?? 0) > 0 && <ArrowUp size={18} className="mr-1" />}
                           {(lots.totalUnrealizedGainUsd ?? 0) < 0 && <ArrowDown size={18} className="mr-1" />}
-                          {formatCurrencySafe(lots.totalUnrealizedGainUsd ?? 0)}
+                          {formatCurrencySafe((lots.totalUnrealizedGainUsd ?? 0) < 0 ? lots.totalUnrealizedGainUsd : lots.totalRealizedGainUsd)}
                         </div>
                       </div>
                     </motion.div>
@@ -204,8 +204,11 @@ export default function AssetDetailsModal({
               {!loading && !error && lots && lots.lots && lots.lots.length > 0 && (
                 <div className="space-y-3">
                   {lots.lots.map((lot, idx) => {
+                    const unrealized = Number(lot.unrealizedGainUsd ?? 0);
+                    const realized = Number(lot.realizedGainUsd ?? 0);
+                    const totalGain = unrealized + realized;
                     const gainPercent = lot.unitPriceUsd > 0 
-                      ? ((lot.unrealizedGainUsd / (lot.amountRemaining * lot.unitPriceUsd)) * 100) 
+                      ? ((lot.currentPrice - lot.unitPriceUsd) / lot.unitPriceUsd) * 100
                       : 0;
 
                     return (
@@ -240,14 +243,14 @@ export default function AssetDetailsModal({
 
                           {/* Badge de performance */}
                           <div className={`px-3 py-1.5 rounded-full text-xs font-bold flex items-center space-x-1 ${
-                            lot.unrealizedGainUsd > 0
+                            totalGain > 0
                               ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                              : lot.unrealizedGainUsd < 0
+                              : totalGain < 0
                               ? 'bg-red-500/20 text-red-400 border border-red-500/30'
                               : 'bg-background-tertiary text-text-tertiary border border-border-primary'
                           }`}>
-                            {lot.unrealizedGainUsd > 0 && <ArrowUp size={14} />}
-                            {lot.unrealizedGainUsd < 0 && <ArrowDown size={14} />}
+                            {totalGain > 0 && <ArrowUp size={14} />}
+                            {totalGain < 0 && <ArrowDown size={14} />}
                             <span>{gainPercent >= 0 ? '+' : ''}{gainPercent.toFixed(2)}%</span>
                           </div>
                         </div>
@@ -285,29 +288,23 @@ export default function AssetDetailsModal({
                           <div className="p-3 rounded-lg bg-background-primary/50">
                             <div className="text-xs text-text-tertiary mb-1">Ganho Não Realizado</div>
                             <div className={`text-base font-bold flex items-center ${
-                              lot.unrealizedGainUsd > 0 
-                                ? 'text-emerald-400' 
-                                : lot.unrealizedGainUsd < 0 
+                              unrealized < 0 
                                 ? 'text-red-400' 
                                 : 'text-text-primary'
                             }`}>
-                              {lot.unrealizedGainUsd > 0 && <ArrowUp size={16} className="mr-1" />}
-                              {lot.unrealizedGainUsd < 0 && <ArrowDown size={16} className="mr-1" />}
-                              {formatCurrencySafe(lot.unrealizedGainUsd)}
+                              {unrealized < 0 && <ArrowDown size={16} className="mr-1" />}
+                              {formatCurrencySafe(unrealized)}
                             </div>
                           </div>
                           <div className="p-3 rounded-lg bg-background-primary/50">
                             <div className="text-xs text-text-tertiary mb-1">Ganho Realizado</div>
                             <div className={`text-base font-bold flex items-center ${
-                              lot.realizedGainUsd > 0 
+                              realized > 0 
                                 ? 'text-emerald-400' 
-                                : lot.realizedGainUsd < 0 
-                                ? 'text-red-400' 
                                 : 'text-text-primary'
                             }`}>
-                              {lot.realizedGainUsd > 0 && <ArrowUp size={16} className="mr-1" />}
-                              {lot.realizedGainUsd < 0 && <ArrowDown size={16} className="mr-1" />}
-                              {formatCurrencySafe(lot.realizedGainUsd)}
+                              {realized > 0 && <ArrowUp size={16} className="mr-1" />}
+                              {formatCurrencySafe(realized)}
                             </div>
                           </div>
                         </div>
@@ -330,13 +327,11 @@ export default function AssetDetailsModal({
                       <div>
                         <div className="text-xs text-text-tertiary mb-1">Total Não Realizado</div>
                         <div className={`text-lg font-bold ${
-                          (lots.totalUnrealizedGainUsd ?? 0) > 0
-                            ? 'text-emerald-400'
-                            : (lots.totalUnrealizedGainUsd ?? 0) < 0
+                          (lots.totalUnrealizedGainUsd ?? 0) < 0
                             ? 'text-red-400'
                             : 'text-text-primary'
                         }`}>
-                          {formatCurrencySafe(lots.totalUnrealizedGainUsd)}
+                          {formatCurrencySafe(lots.totalUnrealizedGainUsd ?? 0)}
                         </div>
                       </div>
                       <div>
@@ -344,11 +339,9 @@ export default function AssetDetailsModal({
                         <div className={`text-lg font-bold ${
                           (lots.totalRealizedGainUsd ?? 0) > 0
                             ? 'text-emerald-400'
-                            : (lots.totalRealizedGainUsd ?? 0) < 0
-                            ? 'text-red-400'
                             : 'text-text-primary'
                         }`}>
-                          {formatCurrencySafe(lots.totalRealizedGainUsd)}
+                          {formatCurrencySafe(lots.totalRealizedGainUsd ?? 0)}
                         </div>
                       </div>
                     </div>
