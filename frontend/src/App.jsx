@@ -21,6 +21,7 @@ import { useAuth } from './store/auth/useAuth';
 import Users from './pages/admin/users/Users'; 
 import { ApiDocsPage } from './pages/ApiDocs/ApiDocsPage';
 import { FiatDepositPage } from './pages/deposit/FiatDepositPage';
+import { FiatWithdrawPage } from './pages/deposit/FiatWithdrawPage';
 import { Wallet } from './pages/wallets/Wallet';
 import { Currency } from './pages/currency/Currency';
 import AdminDashboard from './pages/admin/dashboard/AdminDashboard'; // Importe o componente AdminDashboard
@@ -136,6 +137,11 @@ function App() {
                   <Route path="/deposit/fiat" element={
                     <PrivateRoute>
                       <FiatDepositPage />
+                    </PrivateRoute>
+                  } />
+                  <Route path="/withdraw/fiat" element={
+                    <PrivateRoute>
+                      <FiatWithdrawPage />
                     </PrivateRoute>
                   } />
                   

@@ -7,7 +7,28 @@ const NotificationContext = createContext({});
 export function NotificationProvider({ children }) {
   const [notifications, setNotifications] = useState([]);
 
-  const showNotification = (message, type = 'success') => {
+  const showNotification = (arg1, arg2 = 'success') => {
+    let message;
+    let type;
+
+    if (typeof arg1 === 'object' && arg1 !== null) {
+      message = arg1.message ?? '';
+      type = arg1.type ?? arg2 ?? 'success';
+    } else if (typeof arg1 === 'string' && typeof arg2 === 'string') {
+      const possibleType = arg1.toLowerCase();
+      const knownTypes = ['success', 'error', 'info', 'warning'];
+      if (knownTypes.includes(possibleType) && arg2 && !knownTypes.includes(arg2.toLowerCase())) {
+        type = possibleType;
+        message = arg2;
+      } else {
+        message = arg1;
+        type = arg2 || 'success';
+      }
+    } else {
+      message = String(arg1 ?? '');
+      type = arg2 || 'success';
+    }
+
     const id = Math.random().toString(36).substring(7);
     setNotifications((prev) => [...prev, { id, message, type }]);
 

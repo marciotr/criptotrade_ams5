@@ -167,7 +167,7 @@ export function ApiDocsPage() {
       await checkApiStatus(); 
     } catch (error) {
       console.error('Error refreshing API data:', error);
-      showNotification('error', 'Failed to refresh API documentation');
+      showNotification('Failed to refresh API documentation', 'error');
     } finally {
       setTimeout(() => {
         setRefreshLoading(false);
