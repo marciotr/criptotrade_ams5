@@ -138,8 +138,18 @@ public class BalanceController : WalletControllerBase
         {
             var lotsOutput = persistedLots.Select(l =>
             {
-                var priceChange = (currency.CurrentPrice - l.AvgPrice) * l.RemainingAmount;
-                var currentValue = currency.CurrentPrice * l.RemainingAmount;
+                decimal priceChange;
+                decimal currentValue;
+                if (currency.CurrentPrice <= 0m)
+                {
+                    priceChange = 0m;
+                    currentValue = 0m;
+                }
+                else
+                {
+                    priceChange = (currency.CurrentPrice - l.AvgPrice) * l.RemainingAmount;
+                    currentValue = currency.CurrentPrice * l.RemainingAmount;
+                }
 
                 return new
                 {
@@ -148,10 +158,11 @@ public class BalanceController : WalletControllerBase
                     amountBought = l.OriginalAmount,
                     amountRemaining = l.RemainingAmount,
                     unitPriceUsd = l.AvgPrice,
+                    currentPrice = currency.CurrentPrice,
                     totalCostUsd = Math.Round(l.OriginalAmount * l.AvgPrice, 8),
                     currentValueUsd = Math.Round(currentValue, 8),
-                    unrealizedGainUsd = Math.Round(priceChange, 8),
-                    realizedGainUsd = Math.Round(priceChange, 8)
+                    unrealizedGainUsd = priceChange < 0 ? Math.Round(priceChange, 8) : 0m,
+                    realizedGainUsd = priceChange > 0 ? Math.Round(priceChange, 8) : 0m
                 };
             }).ToList();
 
@@ -198,8 +209,18 @@ public class BalanceController : WalletControllerBase
 
             if (available > 0)
             {
-                var priceChange = (currency.CurrentPrice - b.ExchangeRate) * available;
-                var currentValue = currency.CurrentPrice * available;
+                decimal priceChange;
+                decimal currentValue;
+                if (currency.CurrentPrice <= 0m)
+                {
+                    priceChange = 0m;
+                    currentValue = 0m;
+                }
+                else
+                {
+                    priceChange = (currency.CurrentPrice - b.ExchangeRate) * available;
+                    currentValue = currency.CurrentPrice * available;
+                }
 
                 lots.Add(new
                 {
@@ -208,10 +229,11 @@ public class BalanceController : WalletControllerBase
                     amountBought = available,
                     amountRemaining = available,
                     unitPriceUsd = b.ExchangeRate,
+                    currentPrice = currency.CurrentPrice,
                     totalCostUsd = Math.Round(available * b.ExchangeRate, 8),
                     currentValueUsd = Math.Round(currentValue, 8),
-                    unrealizedGainUsd = Math.Round(priceChange, 8),
-                    realizedGainUsd = Math.Round(priceChange, 8)
+                    unrealizedGainUsd = priceChange < 0 ? Math.Round(priceChange, 8) : 0m,
+                    realizedGainUsd = priceChange > 0 ? Math.Round(priceChange, 8) : 0m
                 });
             }
         }
